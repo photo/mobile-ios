@@ -11,4 +11,19 @@ OpenPhoto
 
 ----------------------------------------
 
+### JSON to website
+Tag searching version 1.0.
+http://current.openphoto.me/photos/tags-animal
+http://current.openphoto.me/photos/tags-person
+
+As always, the API just requires a .json extension.
+
+http://current.openphoto.me/photos/tags-animal.json
+http://current.openphoto.me/photos/tags-person.json
+
+
+For the pictures:
+http://current.openphoto.me/photos.json
+
+
 
