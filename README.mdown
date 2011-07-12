@@ -21,7 +21,12 @@ As always, the API just requires a .json extension.
 http://current.openphoto.me/photos/tags-animal.json
 http://current.openphoto.me/photos/tags-person.json
 
+---------------------------------------
+### Modules
+Don't forget to execute
+$ git submodule update --init
 
+---------------------------------------
 For the pictures:
 http://current.openphoto.me/photos.json
 
