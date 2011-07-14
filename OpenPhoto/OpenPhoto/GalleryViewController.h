@@ -14,6 +14,7 @@
 
 @interface GalleryViewController : TTThumbsViewController {
 
+        NSMutableData *responseData;
 }
 
 @end

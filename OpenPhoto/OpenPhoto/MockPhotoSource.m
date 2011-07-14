@@ -152,7 +152,7 @@
 
 - (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size
     caption:(NSString*)caption {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _photoSource = nil;
     _URL = [URL copy];
     _smallURL = [smallURL copy];

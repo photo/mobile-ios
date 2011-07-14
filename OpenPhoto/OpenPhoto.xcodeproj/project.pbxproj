@@ -24,9 +24,7 @@
 		B526B6EB1389DBDF003DF9D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B526B6E91389DBDF003DF9D4 /* InfoPlist.strings */; };
 		B526B6EE1389DBDF003DF9D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B526B6ED1389DBDF003DF9D4 /* main.m */; };
 		B526B6F11389DBDF003DF9D4 /* OpenPhotoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B526B6F01389DBDF003DF9D4 /* OpenPhotoAppDelegate.m */; };
-		B53B50CA138F1CAA00FFDA04 /* reddit-alien.png in Resources */ = {isa = PBXBuildFile; fileRef = B53B50C9138F1CAA00FFDA04 /* reddit-alien.png */; };
 		B55789341389ED3700931676 /* LauncherController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55789331389ED3700931676 /* LauncherController.m */; };
-		B55789361389EEF800931676 /* pictures.png in Resources */ = {isa = PBXBuildFile; fileRef = B55789351389EEF800931676 /* pictures.png */; };
 		CD72CDB413CC6D9D00D86FF2 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD72CDB313CC6D9D00D86FF2 /* MockPhotoSource.m */; };
 		CDA14EAE13CB86680037AA6D /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14EAD13CB86680037AA6D /* GalleryViewController.m */; };
 		CDCB8A8B13CB4780001F3AF1 /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB8A8813CB4780001F3AF1 /* appbar_logo.png */; };
@@ -239,10 +237,8 @@
 		B526B6ED1389DBDF003DF9D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B526B6EF1389DBDF003DF9D4 /* OpenPhotoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenPhotoAppDelegate.h; sourceTree = "<group>"; };
 		B526B6F01389DBDF003DF9D4 /* OpenPhotoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoAppDelegate.m; sourceTree = "<group>"; };
-		B53B50C9138F1CAA00FFDA04 /* reddit-alien.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reddit-alien.png"; sourceTree = "<group>"; };
 		B55789321389ED3700931676 /* LauncherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LauncherController.h; sourceTree = "<group>"; };
 		B55789331389ED3700931676 /* LauncherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherController.m; sourceTree = "<group>"; };
-		B55789351389EEF800931676 /* pictures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pictures.png; sourceTree = "<group>"; };
 		CD72CDB213CC6D9D00D86FF2 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		CD72CDB313CC6D9D00D86FF2 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		CDA14EAC13CB86680037AA6D /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
@@ -407,8 +403,6 @@
 		B526B6E71389DBDF003DF9D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B53B50C9138F1CAA00FFDA04 /* reddit-alien.png */,
-				B55789351389EEF800931676 /* pictures.png */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				B526B6E81389DBDF003DF9D4 /* OpenPhoto-Info.plist */,
 				B526B6E91389DBDF003DF9D4 /* InfoPlist.strings */,
@@ -658,9 +652,7 @@
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
 				B526B6EB1389DBDF003DF9D4 /* InfoPlist.strings in Resources */,
-				B55789361389EEF800931676 /* pictures.png in Resources */,
 				B5226C9E138DF66200CF061E /* MainWindow.xib in Resources */,
-				B53B50CA138F1CAA00FFDA04 /* reddit-alien.png in Resources */,
 				CDCB8A8B13CB4780001F3AF1 /* appbar_logo.png in Resources */,
 				CDCB8A8C13CB4780001F3AF1 /* Default.png in Resources */,
 				CDCB8A8D13CB4780001F3AF1 /* logo.png in Resources */,
@@ -761,7 +753,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
@@ -781,7 +773,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
