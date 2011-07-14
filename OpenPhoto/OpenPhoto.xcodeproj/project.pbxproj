@@ -26,6 +26,7 @@
 		B526B6F11389DBDF003DF9D4 /* OpenPhotoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B526B6F01389DBDF003DF9D4 /* OpenPhotoAppDelegate.m */; };
 		B55789341389ED3700931676 /* LauncherController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55789331389ED3700931676 /* LauncherController.m */; };
 		CD72CDB413CC6D9D00D86FF2 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD72CDB313CC6D9D00D86FF2 /* MockPhotoSource.m */; };
+		CD8F606C13CF675D00FF909C /* PhotoUploaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8F606B13CF675D00FF909C /* PhotoUploaderController.m */; };
 		CDA14EAE13CB86680037AA6D /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDA14EAD13CB86680037AA6D /* GalleryViewController.m */; };
 		CDCB8A8B13CB4780001F3AF1 /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB8A8813CB4780001F3AF1 /* appbar_logo.png */; };
 		CDCB8A8C13CB4780001F3AF1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCB8A8913CB4780001F3AF1 /* Default.png */; };
@@ -241,6 +242,8 @@
 		B55789331389ED3700931676 /* LauncherController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LauncherController.m; sourceTree = "<group>"; };
 		CD72CDB213CC6D9D00D86FF2 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		CD72CDB313CC6D9D00D86FF2 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
+		CD8F606A13CF675D00FF909C /* PhotoUploaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploaderController.h; sourceTree = "<group>"; };
+		CD8F606B13CF675D00FF909C /* PhotoUploaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploaderController.m; sourceTree = "<group>"; };
 		CDA14EAC13CB86680037AA6D /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		CDA14EAD13CB86680037AA6D /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		CDCB8A8813CB4780001F3AF1 /* appbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbar_logo.png; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 		B526B6E61389DBDF003DF9D4 /* OpenPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				CD8F606D13CF676500FF909C /* uploader */,
 				CDA14EC613CB879F0037AA6D /* gallery */,
 				B526B6EF1389DBDF003DF9D4 /* OpenPhotoAppDelegate.h */,
 				B526B6F01389DBDF003DF9D4 /* OpenPhotoAppDelegate.m */,
@@ -410,6 +414,15 @@
 				B526B6ED1389DBDF003DF9D4 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CD8F606D13CF676500FF909C /* uploader */ = {
+			isa = PBXGroup;
+			children = (
+				CD8F606A13CF675D00FF909C /* PhotoUploaderController.h */,
+				CD8F606B13CF675D00FF909C /* PhotoUploaderController.m */,
+			);
+			name = uploader;
 			sourceTree = "<group>";
 		};
 		CDA14EC613CB879F0037AA6D /* gallery */ = {
@@ -676,6 +689,7 @@
 				B55789341389ED3700931676 /* LauncherController.m in Sources */,
 				CDA14EAE13CB86680037AA6D /* GalleryViewController.m in Sources */,
 				CD72CDB413CC6D9D00D86FF2 /* MockPhotoSource.m in Sources */,
+				CD8F606C13CF675D00FF909C /* PhotoUploaderController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

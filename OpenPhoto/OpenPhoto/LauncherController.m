@@ -6,6 +6,11 @@
     [super loadView];
     
     self.title = @"Open Photo Mobile";
+    self.navigationItem.rightBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                     target:@"openphoto://upload"
+                                     action:@selector(openURLFromButton:)] autorelease];
+
     
     launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
     launcherView.delegate = self;
