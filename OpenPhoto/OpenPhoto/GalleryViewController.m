@@ -105,7 +105,7 @@
 
 - (void)searchPhotos{
     // create the url to connect to OpenPhoto
-    NSString *urlString = @"http://current.openphoto.me/photos.json";
+    NSString *urlString = @"http://current.openphoto.me/photos/pageSize-25.json";
     NSURL *url = [NSURL URLWithString:urlString];
     
     responseData = [[NSMutableData data] retain];
