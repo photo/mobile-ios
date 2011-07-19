@@ -8,8 +8,8 @@
     self.title = @"Open Photo Mobile";
     self.navigationItem.rightBarButtonItem =
     [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                     target:@"openphoto://upload"
-                                     action:@selector(openURLFromButton:)] autorelease];
+                                     target:self
+                                     action:@selector(openPickerFromButton)] autorelease];
 
     
     launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
@@ -34,5 +34,7 @@
     [[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:item.URL]];
 }
 
-
+- (void) openPickerFromButton{
+    NSLog(@"Get pictures");
+}
 @end

@@ -36,10 +36,6 @@
     // gallery from the website
     [map from:@"openphoto://gallery" toViewController:[GalleryViewController class]];
     
-    // upload photo
-    [map from:@"openphoto://upload" toModalViewController:[PhotoUploaderController class]];
-    
-    
     
     // initial point is home
     if (![navigator restoreViewControllers]) {
