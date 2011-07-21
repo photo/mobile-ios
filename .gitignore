@@ -6,6 +6,7 @@
 *.pyc 
 *~.nib/
 build/*
+OpenPhoto/OpenPhoto.xcodeproj/xcuserdata/patrick.xcuserdatad/xcdebugger/
 
 # Textmate - if you build your xcode projects with it
 *.tm_build_errors
