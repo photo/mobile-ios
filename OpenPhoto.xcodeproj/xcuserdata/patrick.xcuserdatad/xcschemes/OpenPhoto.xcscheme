@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B526B6DB1389DBDE003DF9D4"
+               BlueprintIdentifier = "CDD438D413DDF41000C03A46"
                BuildableName = "OpenPhoto.app"
                BlueprintName = "OpenPhoto"
                ReferencedContainer = "container:OpenPhoto.xcodeproj">
@@ -32,15 +32,13 @@
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B526B6DB1389DBDE003DF9D4"
+            BlueprintIdentifier = "CDD438D413DDF41000C03A46"
             BuildableName = "OpenPhoto.app"
             BlueprintName = "OpenPhoto"
             ReferencedContainer = "container:OpenPhoto.xcodeproj">
@@ -50,8 +48,6 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -59,7 +55,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B526B6DB1389DBDE003DF9D4"
+            BlueprintIdentifier = "CDD438D413DDF41000C03A46"
             BuildableName = "OpenPhoto.app"
             BlueprintName = "OpenPhoto"
             ReferencedContainer = "container:OpenPhoto.xcodeproj">
@@ -71,7 +67,6 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      customArchiveName = "OpenPhoto"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

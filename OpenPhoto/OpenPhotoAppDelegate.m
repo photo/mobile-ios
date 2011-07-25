@@ -1,48 +1,26 @@
+//
+//  OpenPhotoAppDelegate.m
+//  OpenPhoto
+//
+//  Created by Patrick Santana on 25/07/11.
+//  Copyright 2011 Moogu bvba. All rights reserved.
+//
+
 #import "OpenPhotoAppDelegate.h"
+
+#import "OpenPhotoViewController.h"
 
 @implementation OpenPhotoAppDelegate
 
-
-@synthesize window=_window;
+@synthesize window = _window;
+@synthesize viewController = _viewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    // Allow HTTP response size to be unlimited.
-    [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
-    
-    // Configure the in-memory image cache to keep approximately
-    // 10 images in memory, assuming that each picture's dimensions
-    // are 320x480. Note that your images can have whatever dimensions
-    // you want, I am just setting this to a reasonable value
-    // since the default is unlimited.
-    [[TTURLCache sharedCache] setMaxPixelCount:10*320*480];
-
-    // Create a TTNavigator instance that can intercept URL calls and dispatch them to appropriate controllers
-    TTNavigator* navigator = [TTNavigator navigator];
-    navigator.persistenceMode = TTNavigatorPersistenceModeAll;
-    navigator.window = self.window;
-    
-    
-    // start mapping URLs to controllers
-    TTURLMap* map = navigator.URLMap;
-    
-    // catchall - any URL that isn't explicitly defined here goes to a web controller
-    [map from:@"*" toViewController:[TTWebController class]];
-    
-    // home controller
-    [map from:@"openphoto://home" toViewController:[LauncherController class]];
-       
-    // gallery from the website
-    [map from:@"openphoto://gallery" toViewController:[GalleryViewController class]];
-    
-    
-    // initial point is home
-    if (![navigator restoreViewControllers]) {
-        NSLog(@"Opening view");
-        [navigator openURLAction:[TTURLAction actionWithURLPath:@"openphoto://home"]];
-    }
-    
+    // Override point for customization after application launch.
+     
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -88,6 +66,7 @@
 - (void)dealloc
 {
     [_window release];
+    [_viewController release];
     [super dealloc];
 }
 

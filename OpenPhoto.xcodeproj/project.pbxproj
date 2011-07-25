@@ -1,0 +1,360 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CDD438DA13DDF41000C03A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438D913DDF41000C03A46 /* UIKit.framework */; };
+		CDD438DC13DDF41000C03A46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438DB13DDF41000C03A46 /* Foundation.framework */; };
+		CDD438DE13DDF41000C03A46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438DD13DDF41000C03A46 /* CoreGraphics.framework */; };
+		CDD438E413DDF41000C03A46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDD438E213DDF41000C03A46 /* InfoPlist.strings */; };
+		CDD438E613DDF41000C03A46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD438E513DDF41000C03A46 /* main.m */; };
+		CDD438EA13DDF41000C03A46 /* OpenPhotoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */; };
+		CDD438ED13DDF41000C03A46 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD438EB13DDF41000C03A46 /* MainWindow.xib */; };
+		CDD438F013DDF41000C03A46 /* OpenPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD438EF13DDF41000C03A46 /* OpenPhotoViewController.m */; };
+		CDD438F313DDF41000C03A46 /* OpenPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD438F113DDF41000C03A46 /* OpenPhotoViewController.xib */; };
+		CDD5DC9313DDF58D001BF963 /* Active1.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8413DDF58D001BF963 /* Active1.png */; };
+		CDD5DC9413DDF58D001BF963 /* Active2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8513DDF58D001BF963 /* Active2.png */; };
+		CDD5DC9513DDF58D001BF963 /* Active3.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8613DDF58D001BF963 /* Active3.png */; };
+		CDD5DC9613DDF58D001BF963 /* Active4.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8713DDF58D001BF963 /* Active4.png */; };
+		CDD5DC9713DDF58D001BF963 /* Active5.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8813DDF58D001BF963 /* Active5.png */; };
+		CDD5DC9813DDF58D001BF963 /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8913DDF58D001BF963 /* appbar_blank.png */; };
+		CDD5DC9913DDF58D001BF963 /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8A13DDF58D001BF963 /* appbar_logo.png */; };
+		CDD5DC9A13DDF58D001BF963 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8B13DDF58D001BF963 /* Default.png */; };
+		CDD5DC9B13DDF58D001BF963 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8C13DDF58D001BF963 /* Icon-72.png */; };
+		CDD5DC9C13DDF58D001BF963 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8D13DDF58D001BF963 /* Icon-Small-50.png */; };
+		CDD5DC9D13DDF58D001BF963 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8E13DDF58D001BF963 /* Icon-Small.png */; };
+		CDD5DC9E13DDF58D001BF963 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8F13DDF58D001BF963 /* Icon-Small@2x.png */; };
+		CDD5DC9F13DDF58D001BF963 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC9013DDF58D001BF963 /* Icon.png */; };
+		CDD5DCA013DDF58D001BF963 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC9113DDF58D001BF963 /* Icon@2x.png */; };
+		CDD5DCA113DDF58D001BF963 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC9213DDF58D001BF963 /* logo.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CDD438D513DDF41000C03A46 /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDD438D913DDF41000C03A46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CDD438DB13DDF41000C03A46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CDD438DD13DDF41000C03A46 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CDD438E113DDF41000C03A46 /* OpenPhoto-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpenPhoto-Info.plist"; sourceTree = "<group>"; };
+		CDD438E313DDF41000C03A46 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CDD438E513DDF41000C03A46 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CDD438E713DDF41000C03A46 /* OpenPhoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenPhoto-Prefix.pch"; sourceTree = "<group>"; };
+		CDD438E813DDF41000C03A46 /* OpenPhotoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenPhotoAppDelegate.h; sourceTree = "<group>"; };
+		CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoAppDelegate.m; sourceTree = "<group>"; };
+		CDD438EC13DDF41000C03A46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		CDD438EE13DDF41000C03A46 /* OpenPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenPhotoViewController.h; sourceTree = "<group>"; };
+		CDD438EF13DDF41000C03A46 /* OpenPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoViewController.m; sourceTree = "<group>"; };
+		CDD438F213DDF41000C03A46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/OpenPhotoViewController.xib; sourceTree = "<group>"; };
+		CDD5DC8413DDF58D001BF963 /* Active1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Active1.png; path = images/Active1.png; sourceTree = "<group>"; };
+		CDD5DC8513DDF58D001BF963 /* Active2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Active2.png; path = images/Active2.png; sourceTree = "<group>"; };
+		CDD5DC8613DDF58D001BF963 /* Active3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Active3.png; path = images/Active3.png; sourceTree = "<group>"; };
+		CDD5DC8713DDF58D001BF963 /* Active4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Active4.png; path = images/Active4.png; sourceTree = "<group>"; };
+		CDD5DC8813DDF58D001BF963 /* Active5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Active5.png; path = images/Active5.png; sourceTree = "<group>"; };
+		CDD5DC8913DDF58D001BF963 /* appbar_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_blank.png; path = images/appbar_blank.png; sourceTree = "<group>"; };
+		CDD5DC8A13DDF58D001BF963 /* appbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_logo.png; path = images/appbar_logo.png; sourceTree = "<group>"; };
+		CDD5DC8B13DDF58D001BF963 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
+		CDD5DC8C13DDF58D001BF963 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
+		CDD5DC8D13DDF58D001BF963 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "images/Icon-Small-50.png"; sourceTree = "<group>"; };
+		CDD5DC8E13DDF58D001BF963 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "images/Icon-Small.png"; sourceTree = "<group>"; };
+		CDD5DC8F13DDF58D001BF963 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "images/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		CDD5DC9013DDF58D001BF963 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = images/Icon.png; sourceTree = "<group>"; };
+		CDD5DC9113DDF58D001BF963 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "images/Icon@2x.png"; sourceTree = "<group>"; };
+		CDD5DC9213DDF58D001BF963 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = images/logo.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CDD438D213DDF41000C03A46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD438DA13DDF41000C03A46 /* UIKit.framework in Frameworks */,
+				CDD438DC13DDF41000C03A46 /* Foundation.framework in Frameworks */,
+				CDD438DE13DDF41000C03A46 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CDD438CA13DDF41000C03A46 = {
+			isa = PBXGroup;
+			children = (
+				CDD438DF13DDF41000C03A46 /* OpenPhoto */,
+				CDD438D813DDF41000C03A46 /* Frameworks */,
+				CDD438D613DDF41000C03A46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CDD438D613DDF41000C03A46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDD438D513DDF41000C03A46 /* OpenPhoto.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CDD438D813DDF41000C03A46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CDD438D913DDF41000C03A46 /* UIKit.framework */,
+				CDD438DB13DDF41000C03A46 /* Foundation.framework */,
+				CDD438DD13DDF41000C03A46 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDD438DF13DDF41000C03A46 /* OpenPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				CDD438E813DDF41000C03A46 /* OpenPhotoAppDelegate.h */,
+				CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */,
+				CDD438EB13DDF41000C03A46 /* MainWindow.xib */,
+				CDD438EE13DDF41000C03A46 /* OpenPhotoViewController.h */,
+				CDD438EF13DDF41000C03A46 /* OpenPhotoViewController.m */,
+				CDD438F113DDF41000C03A46 /* OpenPhotoViewController.xib */,
+				CDD438E013DDF41000C03A46 /* Supporting Files */,
+			);
+			path = OpenPhoto;
+			sourceTree = "<group>";
+		};
+		CDD438E013DDF41000C03A46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CDD5DC8213DDF577001BF963 /* images */,
+				CDD438E113DDF41000C03A46 /* OpenPhoto-Info.plist */,
+				CDD438E213DDF41000C03A46 /* InfoPlist.strings */,
+				CDD438E513DDF41000C03A46 /* main.m */,
+				CDD438E713DDF41000C03A46 /* OpenPhoto-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDD5DC8213DDF577001BF963 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				CDD5DC8413DDF58D001BF963 /* Active1.png */,
+				CDD5DC8513DDF58D001BF963 /* Active2.png */,
+				CDD5DC8613DDF58D001BF963 /* Active3.png */,
+				CDD5DC8713DDF58D001BF963 /* Active4.png */,
+				CDD5DC8813DDF58D001BF963 /* Active5.png */,
+				CDD5DC8913DDF58D001BF963 /* appbar_blank.png */,
+				CDD5DC8A13DDF58D001BF963 /* appbar_logo.png */,
+				CDD5DC8B13DDF58D001BF963 /* Default.png */,
+				CDD5DC8C13DDF58D001BF963 /* Icon-72.png */,
+				CDD5DC8D13DDF58D001BF963 /* Icon-Small-50.png */,
+				CDD5DC8E13DDF58D001BF963 /* Icon-Small.png */,
+				CDD5DC8F13DDF58D001BF963 /* Icon-Small@2x.png */,
+				CDD5DC9013DDF58D001BF963 /* Icon.png */,
+				CDD5DC9113DDF58D001BF963 /* Icon@2x.png */,
+				CDD5DC9213DDF58D001BF963 /* logo.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CDD438D413DDF41000C03A46 /* OpenPhoto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CDD438F613DDF41000C03A46 /* Build configuration list for PBXNativeTarget "OpenPhoto" */;
+			buildPhases = (
+				CDD438D113DDF41000C03A46 /* Sources */,
+				CDD438D213DDF41000C03A46 /* Frameworks */,
+				CDD438D313DDF41000C03A46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenPhoto;
+			productName = OpenPhoto;
+			productReference = CDD438D513DDF41000C03A46 /* OpenPhoto.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CDD438CC13DDF41000C03A46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Moogu bvba";
+			};
+			buildConfigurationList = CDD438CF13DDF41000C03A46 /* Build configuration list for PBXProject "OpenPhoto" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = CDD438CA13DDF41000C03A46;
+			productRefGroup = CDD438D613DDF41000C03A46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CDD438D413DDF41000C03A46 /* OpenPhoto */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CDD438D313DDF41000C03A46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD438E413DDF41000C03A46 /* InfoPlist.strings in Resources */,
+				CDD438ED13DDF41000C03A46 /* MainWindow.xib in Resources */,
+				CDD438F313DDF41000C03A46 /* OpenPhotoViewController.xib in Resources */,
+				CDD5DC9313DDF58D001BF963 /* Active1.png in Resources */,
+				CDD5DC9413DDF58D001BF963 /* Active2.png in Resources */,
+				CDD5DC9513DDF58D001BF963 /* Active3.png in Resources */,
+				CDD5DC9613DDF58D001BF963 /* Active4.png in Resources */,
+				CDD5DC9713DDF58D001BF963 /* Active5.png in Resources */,
+				CDD5DC9813DDF58D001BF963 /* appbar_blank.png in Resources */,
+				CDD5DC9913DDF58D001BF963 /* appbar_logo.png in Resources */,
+				CDD5DC9A13DDF58D001BF963 /* Default.png in Resources */,
+				CDD5DC9B13DDF58D001BF963 /* Icon-72.png in Resources */,
+				CDD5DC9C13DDF58D001BF963 /* Icon-Small-50.png in Resources */,
+				CDD5DC9D13DDF58D001BF963 /* Icon-Small.png in Resources */,
+				CDD5DC9E13DDF58D001BF963 /* Icon-Small@2x.png in Resources */,
+				CDD5DC9F13DDF58D001BF963 /* Icon.png in Resources */,
+				CDD5DCA013DDF58D001BF963 /* Icon@2x.png in Resources */,
+				CDD5DCA113DDF58D001BF963 /* logo.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CDD438D113DDF41000C03A46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDD438E613DDF41000C03A46 /* main.m in Sources */,
+				CDD438EA13DDF41000C03A46 /* OpenPhotoAppDelegate.m in Sources */,
+				CDD438F013DDF41000C03A46 /* OpenPhotoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CDD438E213DDF41000C03A46 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDD438E313DDF41000C03A46 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CDD438EB13DDF41000C03A46 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDD438EC13DDF41000C03A46 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		CDD438F113DDF41000C03A46 /* OpenPhotoViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDD438F213DDF41000C03A46 /* en */,
+			);
+			name = OpenPhotoViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CDD438F413DDF41000C03A46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CDD438F513DDF41000C03A46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CDD438F713DDF41000C03A46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CDD438F813DDF41000C03A46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CDD438CF13DDF41000C03A46 /* Build configuration list for PBXProject "OpenPhoto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDD438F413DDF41000C03A46 /* Debug */,
+				CDD438F513DDF41000C03A46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CDD438F613DDF41000C03A46 /* Build configuration list for PBXNativeTarget "OpenPhoto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDD438F713DDF41000C03A46 /* Debug */,
+				CDD438F813DDF41000C03A46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CDD438CC13DDF41000C03A46 /* Project object */;
+}
