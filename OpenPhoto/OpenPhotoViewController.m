@@ -3,7 +3,7 @@
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 25/07/11.
-//  Copyright 2011 Moogu bvba. All rights reserved.
+//  Copyright 2011 OpenPhoto. All rights reserved.
 //
 
 #import "OpenPhotoViewController.h"
