@@ -16,6 +16,10 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934513DEB81A007043A5 /* QSFileManager.m */; };
+		CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934713DEB81A007043A5 /* QSHttpClient.m */; };
+		CDB0934D13DEB81A007043A5 /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934913DEB81A007043A5 /* QSStrings.m */; };
+		CDB0935113DEB829007043A5 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0935013DEB829007043A5 /* GTMNSString+HTML.m */; };
 		CDD438DA13DDF41000C03A46 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438D913DDF41000C03A46 /* UIKit.framework */; };
 		CDD438DC13DDF41000C03A46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438DB13DDF41000C03A46 /* Foundation.framework */; };
 		CDD438DE13DDF41000C03A46 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD438DD13DDF41000C03A46 /* CoreGraphics.framework */; };
@@ -202,6 +206,16 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CDB0934413DEB81A007043A5 /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSFileManager.h; path = QSUtilities/QSFileManager.h; sourceTree = "<group>"; };
+		CDB0934513DEB81A007043A5 /* QSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QSFileManager.m; path = QSUtilities/QSFileManager.m; sourceTree = "<group>"; };
+		CDB0934613DEB81A007043A5 /* QSHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSHttpClient.h; path = QSUtilities/QSHttpClient.h; sourceTree = "<group>"; };
+		CDB0934713DEB81A007043A5 /* QSHttpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QSHttpClient.m; path = QSUtilities/QSHttpClient.m; sourceTree = "<group>"; };
+		CDB0934813DEB81A007043A5 /* QSStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSStrings.h; path = QSUtilities/QSStrings.h; sourceTree = "<group>"; };
+		CDB0934913DEB81A007043A5 /* QSStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QSStrings.m; path = QSUtilities/QSStrings.m; sourceTree = "<group>"; };
+		CDB0934A13DEB81A007043A5 /* QSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSUtilities.h; path = QSUtilities/QSUtilities.h; sourceTree = "<group>"; };
+		CDB0934E13DEB829007043A5 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMDefines.h; path = QSUtilities/GTM/GTMDefines.h; sourceTree = "<group>"; };
+		CDB0934F13DEB829007043A5 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GTMNSString+HTML.h"; path = "QSUtilities/GTM/GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		CDB0935013DEB829007043A5 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GTMNSString+HTML.m"; path = "QSUtilities/GTM/GTMNSString+HTML.m"; sourceTree = "<group>"; };
 		CDD438D513DDF41000C03A46 /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD438D913DDF41000C03A46 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDD438DB13DDF41000C03A46 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -318,6 +332,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CDB0933413DEB5E2007043A5 /* Three20 */ = {
+			isa = PBXGroup;
+			children = (
+				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
+				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
+				320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */,
+				320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */,
+				320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */,
+				320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */,
+				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
+			);
+			name = Three20;
+			sourceTree = "<group>";
+		};
+		CDB0933513DEB6A1007043A5 /* QSUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDB0934E13DEB829007043A5 /* GTMDefines.h */,
+				CDB0934F13DEB829007043A5 /* GTMNSString+HTML.h */,
+				CDB0935013DEB829007043A5 /* GTMNSString+HTML.m */,
+				CDB0934413DEB81A007043A5 /* QSFileManager.h */,
+				CDB0934513DEB81A007043A5 /* QSFileManager.m */,
+				CDB0934613DEB81A007043A5 /* QSHttpClient.h */,
+				CDB0934713DEB81A007043A5 /* QSHttpClient.m */,
+				CDB0934813DEB81A007043A5 /* QSStrings.h */,
+				CDB0934913DEB81A007043A5 /* QSStrings.m */,
+				CDB0934A13DEB81A007043A5 /* QSUtilities.h */,
+			);
+			name = QSUtilities;
+			sourceTree = "<group>";
+		};
 		CDD438CA13DDF41000C03A46 = {
 			isa = PBXGroup;
 			children = (
@@ -338,14 +383,9 @@
 		CDD438D813DDF41000C03A46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
-				320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */,
-				320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */,
-				320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */,
-				320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */,
+				CDB0933513DEB6A1007043A5 /* QSUtilities */,
+				CDB0933413DEB5E2007043A5 /* Three20 */,
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
-				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
-				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
 				CDD438D913DDF41000C03A46 /* UIKit.framework */,
 				CDD438DB13DDF41000C03A46 /* Foundation.framework */,
 				CDD438DD13DDF41000C03A46 /* CoreGraphics.framework */,
@@ -622,6 +662,10 @@
 				CDD438E613DDF41000C03A46 /* main.m in Sources */,
 				CDD438EA13DDF41000C03A46 /* OpenPhotoAppDelegate.m in Sources */,
 				CDD438F013DDF41000C03A46 /* OpenPhotoViewController.m in Sources */,
+				CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */,
+				CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */,
+				CDB0934D13DEB81A007043A5 /* QSStrings.m in Sources */,
+				CDB0935113DEB829007043A5 /* GTMNSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
