@@ -3,16 +3,6 @@
 
 @implementation PhotoTest2Controller
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)dismiss {
-    NSLog(@"Dismiss this view");
-    TTOpenURL([NSString stringWithFormat:@"tt://tabbar"]);
-}
-
-
-//NSObject
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -22,14 +12,8 @@
         self.view.backgroundColor = [UIColor blackColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
         self.title=@"Gallery";
-//        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-//                                                  initWithTitle:@"Home" style:UIBarButtonItemStyleDone 
-//                                                  target:self action:@selector(dismiss)] autorelease];
-
-        
-        
         self.hidesBottomBarWhenPushed = NO;
-       // self.wantsFullScreenLayout = NO;
+       self.wantsFullScreenLayout = YES;
         
     }
     return self;
@@ -39,7 +23,7 @@
 - (void)viewDidLoad {
     
     
-    
+    [super viewDidLoad];
     
     
   self.photoSource = [[MockPhotoSource alloc]
@@ -313,8 +297,6 @@
 //    nil]
   ];
     
-    self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
-
 }
 
 @end
