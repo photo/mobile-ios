@@ -7,16 +7,13 @@
 //
 
 #import "OpenPhotoAppDelegate.h"
-#import "MenuViewController.h"
+#import "HomeViewController.h"
+#import "PhotoTest2Controller.h"
+#import "TabBarController.h"
 
 @implementation OpenPhotoAppDelegate
 
-@synthesize window = _window;
-@synthesize viewController;
-
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (void)applicationDidFinishLaunching:(UIApplication*)application {
     // Override point for customization after application launch.
     // Allow HTTP response size to be unlimited.
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
@@ -28,55 +25,43 @@
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*320*480];
 
-     
-    [self.window addSubview:viewController.view];
-    [self.window makeKeyAndVisible];
+    TTNavigator* navigator = [TTNavigator navigator];
+    navigator.supportsShakeToReload = YES;
+    navigator.persistenceMode = TTNavigatorPersistenceModeAll;
+    navigator.window = [[[UIWindow alloc] initWithFrame:TTScreenBounds()] autorelease];
+  
+    TTURLMap* map = navigator.URLMap;
+    
+    // catchall - any URL that isn't explicitly defined here goes to a web controller
+    [map from:@"*" toViewController:[TTWebController class]];
+    
+    // The tab bar controller is shared, meaning there will only ever be one created.  Loading
+    // This URL will make the existing tab bar controller appear if it was not visible.
+    [map from:@"openphoto://tabBar" toSharedViewController:[TabBarController class]];
+
+    
+    // home controller
+    [map from:@"openphoto://home" toViewController:[HomeViewController class]];
+    
+    // gallery from the website
+    [map from:@"openphoto://gallery" parent:@"openphoto://tabBar" toViewController:[PhotoTest2Controller class] selector: nil
+   transition: 0];
+    
+    
+    // initial point is home
+    if (![navigator restoreViewControllers]) {
+        NSLog(@"Opening tab view controller");
+        // This is the first launch, so we just start with the tab bar
+        [navigator openURLAction:[TTURLAction actionWithURLPath:@"openphoto://tabBar"]];
+    }
+}
+- (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)URL {
+    [[TTNavigator navigator] openURLAction:[TTURLAction actionWithURLPath:URL.absoluteString]];
     return YES;
-}
-
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    /*
-     Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-     Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-     */
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    /*
-     Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-     */
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    /*
-     Called when the application is about to terminate.
-     Save data if appropriate.
-     See also applicationDidEnterBackground:.
-     */
 }
 
 - (void)dealloc
 {
-    [viewController release];
-    [_window release];
     [super dealloc];
 }
 

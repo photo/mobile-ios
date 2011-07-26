@@ -1,15 +1,23 @@
 //
-//  MenuViewController.m
+//  TabBarController.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 26/07/11.
 //  Copyright 2011 OpenPhoto. All rights reserved.
 //
 
-#import "MenuViewController.h"
+#import "TabBarController.h"
 
-@implementation MenuViewController
 
+@implementation TabBarController
+
+- (void)viewDidLoad {
+    [self setTabURLs:[NSArray arrayWithObjects:@"openphoto://home",
+                      @"openphoto://gallery",
+                      nil]];
+}
+
+/*
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -41,5 +49,6 @@
     
     self.viewControllers = [NSArray arrayWithObjects:home,tags,photo,gallery,settings,nil];
 }
+ */
 
 @end

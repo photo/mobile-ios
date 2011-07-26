@@ -16,14 +16,14 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
-		CD2A3D7913DF0F7500AFF1CC /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2A3D7713DF0F7500AFF1CC /* MenuViewController.m */; };
-		CD2A3D7A13DF0F7500AFF1CC /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD2A3D7813DF0F7500AFF1CC /* MenuViewController.xib */; };
+		CD2A3D7913DF0F7500AFF1CC /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2A3D7713DF0F7500AFF1CC /* TabBarController.m */; };
 		CD68A2F113DEFB70009A76AC /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD68A2EC13DEFB41009A76AC /* libextThree20JSON+SBJSON.a */; };
 		CD930B1313DF187800B9D560 /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1113DF187800B9D560 /* capture-button.png */; };
 		CD930B1413DF187800B9D560 /* capture-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1213DF187800B9D560 /* capture-button@2x.png */; };
 		CD930B1613DF196100B9D560 /* tab-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1513DF196100B9D560 /* tab-picture.png */; };
 		CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */; };
 		CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */; };
+		CD930B7613DF209100B9D560 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B7513DF209100B9D560 /* HomeViewController.m */; };
 		CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */; };
 		CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934513DEB81A007043A5 /* QSFileManager.m */; };
 		CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934713DEB81A007043A5 /* QSHttpClient.m */; };
@@ -35,7 +35,6 @@
 		CDD438E413DDF41000C03A46 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDD438E213DDF41000C03A46 /* InfoPlist.strings */; };
 		CDD438E613DDF41000C03A46 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD438E513DDF41000C03A46 /* main.m */; };
 		CDD438EA13DDF41000C03A46 /* OpenPhotoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */; };
-		CDD438ED13DDF41000C03A46 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDD438EB13DDF41000C03A46 /* MainWindow.xib */; };
 		CDD5DC9813DDF58D001BF963 /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8913DDF58D001BF963 /* appbar_blank.png */; };
 		CDD5DC9913DDF58D001BF963 /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8A13DDF58D001BF963 /* appbar_logo.png */; };
 		CDD5DC9A13DDF58D001BF963 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD5DC8B13DDF58D001BF963 /* Default.png */; };
@@ -255,9 +254,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
-		CD2A3D7613DF0F7500AFF1CC /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
-		CD2A3D7713DF0F7500AFF1CC /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		CD2A3D7813DF0F7500AFF1CC /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		CD2A3D7613DF0F7500AFF1CC /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		CD2A3D7713DF0F7500AFF1CC /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		CD68A2E013DEFB41009A76AC /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = three20/src/extThree20JSON/extThree20JSON.xcodeproj; sourceTree = "<group>"; };
 		CD930B1113DF187800B9D560 /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button.png"; path = "images/tabs/capture-button.png"; sourceTree = "<group>"; };
 		CD930B1213DF187800B9D560 /* capture-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button@2x.png"; path = "images/tabs/capture-button@2x.png"; sourceTree = "<group>"; };
@@ -266,6 +264,8 @@
 		CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
 		CD930B6413DF1BAB00B9D560 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
 		CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
+		CD930B7413DF209100B9D560 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		CD930B7513DF209100B9D560 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		CDAFAF0113DEBA4400A5CFDE /* OpenPhotoBase64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoBase64Utilities.h; sourceTree = "<group>"; };
 		CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoBase64Utilities.m; sourceTree = "<group>"; };
 		CDB0934413DEB81A007043A5 /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSFileManager.h; path = QSUtilities/QSFileManager.h; sourceTree = "<group>"; };
@@ -288,7 +288,6 @@
 		CDD438E713DDF41000C03A46 /* OpenPhoto-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpenPhoto-Prefix.pch"; sourceTree = "<group>"; };
 		CDD438E813DDF41000C03A46 /* OpenPhotoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenPhotoAppDelegate.h; sourceTree = "<group>"; };
 		CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoAppDelegate.m; sourceTree = "<group>"; };
-		CDD438EC13DDF41000C03A46 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		CDD5DC8913DDF58D001BF963 /* appbar_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_blank.png; path = images/appbar_blank.png; sourceTree = "<group>"; };
 		CDD5DC8A13DDF58D001BF963 /* appbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_logo.png; path = images/appbar_logo.png; sourceTree = "<group>"; };
 		CDD5DC8B13DDF58D001BF963 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
@@ -439,6 +438,8 @@
 		CD930B1A13DF19A700B9D560 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CD930B7413DF209100B9D560 /* HomeViewController.h */,
+				CD930B7513DF209100B9D560 /* HomeViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -530,12 +531,10 @@
 				CD930B1713DF199B00B9D560 /* Gallery */,
 				CD930B1B13DF19F900B9D560 /* Settings */,
 				CDAFAF0013DEBA1100A5CFDE /* Utilities */,
-				CD2A3D7613DF0F7500AFF1CC /* MenuViewController.h */,
-				CD2A3D7713DF0F7500AFF1CC /* MenuViewController.m */,
-				CD2A3D7813DF0F7500AFF1CC /* MenuViewController.xib */,
+				CD2A3D7613DF0F7500AFF1CC /* TabBarController.h */,
+				CD2A3D7713DF0F7500AFF1CC /* TabBarController.m */,
 				CDD438E813DDF41000C03A46 /* OpenPhotoAppDelegate.h */,
 				CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */,
-				CDD438EB13DDF41000C03A46 /* MainWindow.xib */,
 				CDD438E013DDF41000C03A46 /* Supporting Files */,
 			);
 			path = OpenPhoto;
@@ -815,7 +814,6 @@
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
 				CDD438E413DDF41000C03A46 /* InfoPlist.strings in Resources */,
-				CDD438ED13DDF41000C03A46 /* MainWindow.xib in Resources */,
 				CDD5DC9813DDF58D001BF963 /* appbar_blank.png in Resources */,
 				CDD5DC9913DDF58D001BF963 /* appbar_logo.png in Resources */,
 				CDD5DC9A13DDF58D001BF963 /* Default.png in Resources */,
@@ -838,7 +836,6 @@
 				CDFB3C5E13DF08950075A44B /* tab-settings@2x.png in Resources */,
 				CDFB3C5F13DF08950075A44B /* tab-tags.png in Resources */,
 				CDFB3C6013DF08950075A44B /* tab-tags@2x.png in Resources */,
-				CD2A3D7A13DF0F7500AFF1CC /* MenuViewController.xib in Resources */,
 				CD930B1313DF187800B9D560 /* capture-button.png in Resources */,
 				CD930B1413DF187800B9D560 /* capture-button@2x.png in Resources */,
 				CD930B1613DF196100B9D560 /* tab-picture.png in Resources */,
@@ -859,9 +856,10 @@
 				CDB0934D13DEB81A007043A5 /* QSStrings.m in Sources */,
 				CDB0935113DEB829007043A5 /* GTMNSString+HTML.m in Sources */,
 				CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */,
-				CD2A3D7913DF0F7500AFF1CC /* MenuViewController.m in Sources */,
+				CD2A3D7913DF0F7500AFF1CC /* TabBarController.m in Sources */,
 				CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */,
 				CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */,
+				CD930B7613DF209100B9D560 /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,14 +910,6 @@
 				CDD438E313DDF41000C03A46 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CDD438EB13DDF41000C03A46 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CDD438EC13DDF41000C03A46 /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

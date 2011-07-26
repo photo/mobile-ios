@@ -3,6 +3,34 @@
 
 @implementation PhotoTest2Controller
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// private
+
+- (void)dismiss {
+    NSLog(@"Dismiss this view");
+    TTOpenURL([NSString stringWithFormat:@"tt://tabbar"]);
+}
+
+
+//NSObject
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        
+        self.view.backgroundColor = [UIColor blackColor];
+        self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
+        self.title=@"Gallery";
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithTitle:@"Home" style:UIBarButtonItemStyleDone 
+                                                  target:self action:@selector(dismiss)] autorelease];
+
+    }
+    return self;
+}
+
+
 - (void)viewDidLoad {
   self.photoSource = [[MockPhotoSource alloc]
     initWithType:MockPhotoSourceNormal
