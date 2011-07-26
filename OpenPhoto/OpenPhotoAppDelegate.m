@@ -7,13 +7,13 @@
 //
 
 #import "OpenPhotoAppDelegate.h"
-
-#import "OpenPhotoViewController.h"
+#import "MenuViewController.h"
 
 @implementation OpenPhotoAppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize viewController;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -27,9 +27,9 @@
     // you want, I am just setting this to a reasonable value
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*320*480];
-    
+
      
-    self.window.rootViewController = self.viewController;
+    [self.window addSubview:viewController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -75,8 +75,8 @@
 
 - (void)dealloc
 {
+    [viewController release];
     [_window release];
-    [_viewController release];
     [super dealloc];
 }
 
