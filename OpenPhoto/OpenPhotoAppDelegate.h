@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#include <Three20/Three20.h>
+
 
 @class OpenPhotoViewController;
 

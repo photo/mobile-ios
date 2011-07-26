@@ -16,6 +16,7 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */; };
 		CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934513DEB81A007043A5 /* QSFileManager.m */; };
 		CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934713DEB81A007043A5 /* QSHttpClient.m */; };
 		CDB0934D13DEB81A007043A5 /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934913DEB81A007043A5 /* QSStrings.m */; };
@@ -206,6 +207,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CDAFAF0113DEBA4400A5CFDE /* OpenPhotoBase64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoBase64Utilities.h; sourceTree = "<group>"; };
+		CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoBase64Utilities.m; sourceTree = "<group>"; };
 		CDB0934413DEB81A007043A5 /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSFileManager.h; path = QSUtilities/QSFileManager.h; sourceTree = "<group>"; };
 		CDB0934513DEB81A007043A5 /* QSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QSFileManager.m; path = QSUtilities/QSFileManager.m; sourceTree = "<group>"; };
 		CDB0934613DEB81A007043A5 /* QSHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSHttpClient.h; path = QSUtilities/QSHttpClient.h; sourceTree = "<group>"; };
@@ -332,6 +335,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CDAFAF0013DEBA1100A5CFDE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CDAFAF0113DEBA4400A5CFDE /* OpenPhotoBase64Utilities.h */,
+				CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		CDB0933413DEB5E2007043A5 /* Three20 */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +408,7 @@
 		CDD438DF13DDF41000C03A46 /* OpenPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				CDAFAF0013DEBA1100A5CFDE /* Utilities */,
 				CDD438E813DDF41000C03A46 /* OpenPhotoAppDelegate.h */,
 				CDD438E913DDF41000C03A46 /* OpenPhotoAppDelegate.m */,
 				CDD438EB13DDF41000C03A46 /* MainWindow.xib */,
@@ -666,6 +679,7 @@
 				CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */,
 				CDB0934D13DEB81A007043A5 /* QSStrings.m in Sources */,
 				CDB0935113DEB829007043A5 /* GTMNSString+HTML.m in Sources */,
+				CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
