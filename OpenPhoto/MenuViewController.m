@@ -29,10 +29,10 @@
     photo.tabBarItem.image=[UIImage imageNamed:@"tab-picture.png"];
     photo.title=@"Photo";
     
-    UIViewController *gallery = [[[UIViewController alloc] init] autorelease];
-    gallery.view.backgroundColor = [UIColor greenColor];
+    PhotoTest2Controller *gallery = [[[PhotoTest2Controller alloc] init] autorelease];
     gallery.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
     gallery.title=@"Gallery";
+
     
     UIViewController *settings = [[[UIViewController alloc] init] autorelease];
     settings.view.backgroundColor = [UIColor blueColor];

@@ -22,6 +22,8 @@
 		CD930B1313DF187800B9D560 /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1113DF187800B9D560 /* capture-button.png */; };
 		CD930B1413DF187800B9D560 /* capture-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1213DF187800B9D560 /* capture-button@2x.png */; };
 		CD930B1613DF196100B9D560 /* tab-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1513DF196100B9D560 /* tab-picture.png */; };
+		CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */; };
+		CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */; };
 		CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */; };
 		CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934513DEB81A007043A5 /* QSFileManager.m */; };
 		CDB0934C13DEB81A007043A5 /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934713DEB81A007043A5 /* QSHttpClient.m */; };
@@ -260,6 +262,10 @@
 		CD930B1113DF187800B9D560 /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button.png"; path = "images/tabs/capture-button.png"; sourceTree = "<group>"; };
 		CD930B1213DF187800B9D560 /* capture-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button@2x.png"; path = "images/tabs/capture-button@2x.png"; sourceTree = "<group>"; };
 		CD930B1513DF196100B9D560 /* tab-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-picture.png"; path = "images/tabs/tab-picture.png"; sourceTree = "<group>"; };
+		CD930B6213DF1BAB00B9D560 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
+		CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
+		CD930B6413DF1BAB00B9D560 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
+		CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
 		CDAFAF0113DEBA4400A5CFDE /* OpenPhotoBase64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoBase64Utilities.h; sourceTree = "<group>"; };
 		CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoBase64Utilities.m; sourceTree = "<group>"; };
 		CDB0934413DEB81A007043A5 /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSFileManager.h; path = QSUtilities/QSFileManager.h; sourceTree = "<group>"; };
@@ -408,6 +414,10 @@
 		CD930B1713DF199B00B9D560 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				CD930B6213DF1BAB00B9D560 /* MockPhotoSource.h */,
+				CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */,
+				CD930B6413DF1BAB00B9D560 /* PhotoTest2Controller.h */,
+				CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -850,6 +860,8 @@
 				CDB0935113DEB829007043A5 /* GTMNSString+HTML.m in Sources */,
 				CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */,
 				CD2A3D7913DF0F7500AFF1CC /* MenuViewController.m in Sources */,
+				CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */,
+				CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
