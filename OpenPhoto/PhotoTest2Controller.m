@@ -22,16 +22,26 @@
         self.view.backgroundColor = [UIColor blackColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
         self.title=@"Gallery";
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
-                                                  initWithTitle:@"Home" style:UIBarButtonItemStyleDone 
-                                                  target:self action:@selector(dismiss)] autorelease];
+//        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+//                                                  initWithTitle:@"Home" style:UIBarButtonItemStyleDone 
+//                                                  target:self action:@selector(dismiss)] autorelease];
 
+        
+        
+        self.hidesBottomBarWhenPushed = NO;
+       // self.wantsFullScreenLayout = NO;
+        
     }
     return self;
 }
 
 
 - (void)viewDidLoad {
+    
+    
+    
+    
+    
   self.photoSource = [[MockPhotoSource alloc]
     initWithType:MockPhotoSourceNormal
     //initWithType:MockPhotoSourceDelayed
