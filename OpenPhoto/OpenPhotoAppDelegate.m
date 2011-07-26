@@ -8,8 +8,10 @@
 
 #import "OpenPhotoAppDelegate.h"
 #import "HomeViewController.h"
-#import "PhotoTest2Controller.h"
+#import "GalleryViewController.h"
 #import "TabBarController.h"
+#import "SettingsViewController.h"
+#import "TagsViewController.h"
 
 @implementation OpenPhotoAppDelegate
 
@@ -42,10 +44,14 @@
     
     // home controller
     [map from:@"openphoto://home" toViewController:[HomeViewController class]];
+    //tag controller
+        [map from:@"openphoto://tags" toViewController:[TagsViewController class]];
+    
+    //settings
+        [map from:@"openphoto://settings" toViewController:[SettingsViewController class]];
     
     // gallery from the website
-    [map from:@"openphoto://gallery" parent:@"openphoto://tabBar" toViewController:[PhotoTest2Controller class] selector: nil
-   transition: 0];
+    [map from:@"openphoto://gallery" toViewController:[GalleryViewController class] ];
     
     
     // initial point is home

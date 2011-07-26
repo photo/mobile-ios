@@ -16,13 +16,15 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CD06DD1013DF5CCC0064FBAF /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD06DD0F13DF5CCC0064FBAF /* GalleryViewController.m */; };
 		CD2A3D7913DF0F7500AFF1CC /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2A3D7713DF0F7500AFF1CC /* TabBarController.m */; };
+		CD60499013DF59D40095D461 /* TagsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD60498F13DF59D40095D461 /* TagsViewController.m */; };
+		CD60499313DF59F70095D461 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD60499213DF59F70095D461 /* SettingsViewController.m */; };
 		CD68A2F113DEFB70009A76AC /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD68A2EC13DEFB41009A76AC /* libextThree20JSON+SBJSON.a */; };
 		CD930B1313DF187800B9D560 /* capture-button.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1113DF187800B9D560 /* capture-button.png */; };
 		CD930B1413DF187800B9D560 /* capture-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1213DF187800B9D560 /* capture-button@2x.png */; };
 		CD930B1613DF196100B9D560 /* tab-picture.png in Resources */ = {isa = PBXBuildFile; fileRef = CD930B1513DF196100B9D560 /* tab-picture.png */; };
 		CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */; };
-		CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */; };
 		CD930B7613DF209100B9D560 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD930B7513DF209100B9D560 /* HomeViewController.m */; };
 		CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFAF0213DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m */; };
 		CDB0934B13DEB81A007043A5 /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0934513DEB81A007043A5 /* QSFileManager.m */; };
@@ -254,16 +256,20 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CD06DD0E13DF5CCC0064FBAF /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		CD06DD0F13DF5CCC0064FBAF /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		CD2A3D7613DF0F7500AFF1CC /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		CD2A3D7713DF0F7500AFF1CC /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		CD60498E13DF59D40095D461 /* TagsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsViewController.h; sourceTree = "<group>"; };
+		CD60498F13DF59D40095D461 /* TagsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsViewController.m; sourceTree = "<group>"; };
+		CD60499113DF59F70095D461 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		CD60499213DF59F70095D461 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CD68A2E013DEFB41009A76AC /* extThree20JSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = extThree20JSON.xcodeproj; path = three20/src/extThree20JSON/extThree20JSON.xcodeproj; sourceTree = "<group>"; };
 		CD930B1113DF187800B9D560 /* capture-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button.png"; path = "images/tabs/capture-button.png"; sourceTree = "<group>"; };
 		CD930B1213DF187800B9D560 /* capture-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "capture-button@2x.png"; path = "images/tabs/capture-button@2x.png"; sourceTree = "<group>"; };
 		CD930B1513DF196100B9D560 /* tab-picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-picture.png"; path = "images/tabs/tab-picture.png"; sourceTree = "<group>"; };
 		CD930B6213DF1BAB00B9D560 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
-		CD930B6413DF1BAB00B9D560 /* PhotoTest2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTest2Controller.h; sourceTree = "<group>"; };
-		CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTest2Controller.m; sourceTree = "<group>"; };
 		CD930B7413DF209100B9D560 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		CD930B7513DF209100B9D560 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		CDAFAF0113DEBA4400A5CFDE /* OpenPhotoBase64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoBase64Utilities.h; sourceTree = "<group>"; };
@@ -413,10 +419,10 @@
 		CD930B1713DF199B00B9D560 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				CD06DD0E13DF5CCC0064FBAF /* GalleryViewController.h */,
+				CD06DD0F13DF5CCC0064FBAF /* GalleryViewController.m */,
 				CD930B6213DF1BAB00B9D560 /* MockPhotoSource.h */,
 				CD930B6313DF1BAB00B9D560 /* MockPhotoSource.m */,
-				CD930B6413DF1BAB00B9D560 /* PhotoTest2Controller.h */,
-				CD930B6513DF1BAB00B9D560 /* PhotoTest2Controller.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -431,6 +437,8 @@
 		CD930B1913DF19A300B9D560 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				CD60498E13DF59D40095D461 /* TagsViewController.h */,
+				CD60498F13DF59D40095D461 /* TagsViewController.m */,
 			);
 			name = Tags;
 			sourceTree = "<group>";
@@ -447,6 +455,8 @@
 		CD930B1B13DF19F900B9D560 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CD60499113DF59F70095D461 /* SettingsViewController.h */,
+				CD60499213DF59F70095D461 /* SettingsViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -858,8 +868,10 @@
 				CDAFAF0313DEBA4400A5CFDE /* OpenPhotoBase64Utilities.m in Sources */,
 				CD2A3D7913DF0F7500AFF1CC /* TabBarController.m in Sources */,
 				CD930B6713DF1BAB00B9D560 /* MockPhotoSource.m in Sources */,
-				CD930B6813DF1BAB00B9D560 /* PhotoTest2Controller.m in Sources */,
 				CD930B7613DF209100B9D560 /* HomeViewController.m in Sources */,
+				CD60499013DF59D40095D461 /* TagsViewController.m in Sources */,
+				CD60499313DF59F70095D461 /* SettingsViewController.m in Sources */,
+				CD06DD1013DF5CCC0064FBAF /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

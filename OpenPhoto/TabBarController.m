@@ -13,7 +13,7 @@
 
 - (void)viewDidLoad {
     [self setTabURLs:[NSArray arrayWithObjects:@"openphoto://home",
-                      @"openphoto://gallery",
+                      @"openphoto://tags", @"openphoto://gallery", @"openphoto://settings",
                       nil]];
     
     self.selectedIndex=0;

@@ -1,25 +1,22 @@
 //
-//  HomeViewController.m
+//  TagsViewController.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 26/07/11.
 //  Copyright 2011 OpenPhoto. All rights reserved.
 //
 
-#import "HomeViewController.h"
+#import "TagsViewController.h"
 
-@implementation HomeViewController
+@implementation TagsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        
-        self.view.backgroundColor = [UIColor redColor];
-        self.tabBarItem.image=[UIImage imageNamed:@"tab-home.png"];
-        self.tabBarItem.title=@"Home";
-        self.title=@"Open Photo";
+        self.view.backgroundColor = [UIColor blueColor];
+        self.tabBarItem.image=[UIImage imageNamed:@"tab-tags.png"];
+        self.title=@"Tags";
     }
     return self;
 }
