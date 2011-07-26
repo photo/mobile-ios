@@ -54,7 +54,10 @@
 - (IBAction)openUpload:(id)sender {
     NSLog(@"Open upload");
     UIImage *image = [UIImage imageNamed: @"Active3.png"];
-    imageMenu.image = image;}
+    imageMenu.image = image;
+
+
+}
 
 - (IBAction)openGallery:(id)sender {
     NSLog(@"Open gallery");
