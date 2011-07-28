@@ -37,7 +37,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self searchPhotos];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -78,27 +79,32 @@
         NSString *title = [photo objectForKey:@"Name"];
         
         // print the title and url. If no name, add Untitled.
+        NSLog(@"All details %@",photo);
         NSLog(@"Photo Title: %@", (title.length > 0 ? title : @"Untitled"));
         NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
         NSLog(@"Photo url: %@ \n\n", photoURLString);
         
+        float width = [[photo objectForKey:@"width"] floatValue];
+        float height = [[photo objectForKey:@"height"] floatValue];
+        
+        // calculate the real size of the image. It will keep the aspect ratio.
+        float realWidth = 0;
+        float realHeight = 0;
+        
+        if(width/height >= 1) { 
+            // portrait or square
+            realWidth = 640;
+            realHeight = height/width*640;
+        } else { 
+            // landscape
+            realHeight = 960;
+            realWidth = width/height*960;
+        }
         
         [mockPhotos addObject: [[[MockPhoto alloc]
-                                 initWithURL:[NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]]
-                                 smallURL:[NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]]
-                                 size:CGSizeMake(220, 200)] autorelease]];
-        /*
-         
-         NSMutableArray  *photoTitles;         // Titles of images
-         NSMutableArray  *photoSmallImageData; // Image data (thumbnail)
-         NSMutableArray  *photoURLsLargeImage; // URL to larger image 
-         
-         [photoTitles addObject:(title.length > 0 ? title : @"Untitled")];
-         [photoSmallImageData addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:photoURLString]]];
-         [photoURLsLargeImage addObject:[NSURL URLWithString:photoURLString]]; 
-         
-         */
-        
+                                 initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
+                                 smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]]
+                                 size:CGSizeMake(realWidth, realHeight)] autorelease]];
     } 
     
     self.photoSource = [[MockPhotoSource alloc]
@@ -118,12 +124,17 @@
     // ];
     
     [mockPhotos autorelease];
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
 }
 
 - (void)searchPhotos{
+    //show
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     // create the url to connect to OpenPhoto
-    NSString *urlString = @"http://current.openphoto.me/photos/pageSize-25.json";
+    NSString *urlString = @"http://current.openphoto.me/photos/pageSize-25.json?returnSizes=200x200,640x960";
     NSURL *url = [NSURL URLWithString:urlString];
     
     responseData = [[NSMutableData data] retain];

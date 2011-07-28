@@ -66,12 +66,21 @@
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES; 
     
+    // progress
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    CGRect size = CGRectMake(130,100,50,50);
+    [indicator setFrame:size];
+    [indicator startAnimating];
+    indicator.hidesWhenStopped=YES;
+    [self.view addSubview:indicator];
     
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
+    
+    //show
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     
     // send message to the site. it is pickedImage
     NSData *imageData = UIImageJPEGRepresentation(pickedImage,0.7);
@@ -117,8 +126,11 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 	NSString *jsonString = [[NSString alloc] initWithData:XMLResponse encoding:NSUTF8StringEncoding];
     NSLog(@"Result = %@",jsonString);   
     
-    app.networkActivityIndicatorVisible = NO;
-
+    // don't show
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [indicator stopAnimating];
+    [indicator release];
+    
     // Show user a message
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Image uploaded" 
                                                    delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -130,7 +142,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 }
 
 -(void) dealloc{
-
+    
     [super dealloc];
 }
 @end
