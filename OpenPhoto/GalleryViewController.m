@@ -32,7 +32,7 @@
         self.title=@"Gallery";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
-        
+                
     }
     return self;
 }
@@ -41,15 +41,15 @@
     [self searchPhotos];
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-	[responseData setLength:0];
+    [responseData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-	[responseData appendData:data];
+    [responseData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSLog(@"Connection failed: %@", [error description]);
+    NSLog(@"Connection failed: %@", [error description]);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -57,7 +57,7 @@
     [connection release];
     
     // convert the responseDate to the json string
-	NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     // it can be released
     [responseData release];
     
@@ -65,10 +65,10 @@
     // When there are newline characters in the JSON string, 
     // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
     jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-	NSDictionary *results =  [jsonString JSONValue];
+    NSDictionary *results =  [jsonString JSONValue];
     
     // Build an array with all photos from the dictionary.
-	NSArray *photos = [results objectForKey:@"result"] ;
+    NSArray *photos = [results objectForKey:@"result"] ;
     
     NSMutableArray *mockPhotos = [[NSMutableArray alloc] init];
     
@@ -99,24 +99,24 @@
          
          */
         
-        } 
+    } 
     
-        self.photoSource = [[MockPhotoSource alloc]
-                            initWithType:MockPhotoSourceNormal
-                            title:@"Gallery"
-                            photos:mockPhotos
-                            photos2:nil];
-                            
-                            // this is for the loading
-                            //  photos2:nil
-                           // photos2:[[NSArray alloc] initWithObjects:
-                           //          [[[MockPhoto alloc]
-                           //            initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-                           //            smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-                           //            size:CGSizeMake(800, 533)] autorelease],
-                           //          nil]
-                           // ];
-        
+    self.photoSource = [[MockPhotoSource alloc]
+                        initWithType:MockPhotoSourceNormal
+                        title:@"Gallery"
+                        photos:mockPhotos
+                        photos2:nil];
+    
+    // this is for the loading
+    //  photos2:nil
+    // photos2:[[NSArray alloc] initWithObjects:
+    //          [[[MockPhoto alloc]
+    //            initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
+    //            smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
+    //            size:CGSizeMake(800, 533)] autorelease],
+    //          nil]
+    // ];
+    
     [mockPhotos autorelease];
     
 }
@@ -128,7 +128,7 @@
     
     responseData = [[NSMutableData data] retain];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-	[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
 }
 

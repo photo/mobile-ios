@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CDD438D413DDF41000C03A46"
+               BlueprintIdentifier = "CDF1C94613E1C45C0018AD0B"
                BuildableName = "OpenPhoto.app"
                BlueprintName = "OpenPhoto"
                ReferencedContainer = "container:OpenPhoto.xcodeproj">
@@ -27,6 +27,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CDF1C96A13E1C45C0018AD0B"
+               BuildableName = "OpenPhotoTests.octest"
+               BlueprintName = "OpenPhotoTests"
+               ReferencedContainer = "container:OpenPhoto.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -38,7 +48,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDD438D413DDF41000C03A46"
+            BlueprintIdentifier = "CDF1C94613E1C45C0018AD0B"
             BuildableName = "OpenPhoto.app"
             BlueprintName = "OpenPhoto"
             ReferencedContainer = "container:OpenPhoto.xcodeproj">
@@ -55,7 +65,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CDD438D413DDF41000C03A46"
+            BlueprintIdentifier = "CDF1C94613E1C45C0018AD0B"
             BuildableName = "OpenPhoto.app"
             BlueprintName = "OpenPhoto"
             ReferencedContainer = "container:OpenPhoto.xcodeproj">
