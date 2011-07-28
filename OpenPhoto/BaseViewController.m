@@ -35,7 +35,6 @@
     
     
     // Here we keep the link of what is in the BAR and its Controllers
-    
     if (title == @"Home"){
         
     }else if (title == @"Gallery"){
@@ -81,8 +80,6 @@
         center.y = center.y - heightDifference/2.0;
         button.center = center;
     }
-    
-    
     
     [self.tabBar addSubview:button];
 }
