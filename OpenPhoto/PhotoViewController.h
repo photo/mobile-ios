@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "QSStrings.h"
 
-@interface PhotoViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate>{
+@interface PhotoViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
 }
-
-- (IBAction)snapshot:(id)sender;
-- (IBAction)cameraRoll:(id)sender;
 
 @end

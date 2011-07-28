@@ -8,6 +8,11 @@
 
 #import "PhotoViewController.h"
 
+@interface PhotoViewController()
+- (void) openTypePhotoLibrary;    
+- (void) openTypeCamera;
+@end
+
 @implementation PhotoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +34,52 @@
 
 #pragma mark - View lifecycle
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    // check if user has camera
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        
+        UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Upload your picture" delegate:self cancelButtonTitle:@"Cancel Button" destructiveButtonTitle:nil otherButtonTitles:@"Camera roll", @"Snapshot", nil];
+        menu.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [menu showInView:self.tabBarController.view];
+        [menu release];
+    }else{
+        // open direct the library
+        [self openTypePhotoLibrary];
+    }
+}
+
+-(void) openTypePhotoLibrary{
+    UIImagePickerController *pickerController = [[UIImagePickerController
+                                                  alloc]
+                                                 init];
+    pickerController.sourceType =
+    UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerController.delegate = self;
+    [self presentModalViewController:pickerController animated:YES];
+    [pickerController release]; 
+}
+
+-(void) openTypeCamera{
+    UIImagePickerController *pickerController = [[UIImagePickerController
+                                                  alloc]
+                                                 init];
+    pickerController.sourceType =UIImagePickerControllerSourceTypeCamera;
+    pickerController.delegate = self;
+    [self presentModalViewController:pickerController animated:YES];
+    [pickerController release];
+}
+
+
+// user can open the photo library or the camera. Ask him.
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self openTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [self openTypeCamera];
+    } 
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -48,25 +99,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)snapshot:(id)sender {
-}
-
-- (IBAction)cameraRoll:(id)sender {
-    UIImagePickerController *pickerController = [[UIImagePickerController
-                                                  alloc]
-                                                 init];
-    pickerController.sourceType =
-    UIImagePickerControllerSourceTypePhotoLibrary;
-    pickerController.delegate = self;
-    [self presentModalViewController:pickerController animated:YES];
-    [pickerController release];
-}
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker
 didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    
+{    
     // progress
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     CGRect size = CGRectMake(130,100,50,50);
@@ -137,8 +173,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     [alert show];
     [alert release];
     
-    
-    [[    picker navigationController]  popViewControllerAnimated:YES];
+    [picker dismissModalViewControllerAnimated:YES];
 }
 
 -(void) dealloc{
