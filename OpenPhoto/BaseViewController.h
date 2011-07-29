@@ -28,6 +28,7 @@
 #import <UIKit/UIKit.h>
 #import "GalleryViewController.h"
 #import "QSStrings.h"
+#import "PhotoViewController.h"
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
 

@@ -16,7 +16,8 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
-		CD23FC5213E1DDD900E13E52 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD23FC5013E1DDD900E13E52 /* PhotoViewController.m */; };
+		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
+		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
 		CD2FF13513E2337E00F75A1E /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12B13E2337E00F75A1E /* appbar_blank.png */; };
 		CD2FF13613E2337E00F75A1E /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12C13E2337E00F75A1E /* appbar_logo.png */; };
 		CD2FF13713E2337E00F75A1E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12D13E2337E00F75A1E /* Default.png */; };
@@ -269,8 +270,8 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
-		CD23FC4F13E1DDD900E13E52 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
-		CD23FC5013E1DDD900E13E52 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		CD2FF12B13E2337E00F75A1E /* appbar_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbar_blank.png; sourceTree = "<group>"; };
 		CD2FF12C13E2337E00F75A1E /* appbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbar_logo.png; sourceTree = "<group>"; };
 		CD2FF12D13E2337E00F75A1E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -291,6 +292,7 @@
 		CD2FF14613E233AC00F75A1E /* tab-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-settings@2x.png"; sourceTree = "<group>"; };
 		CD2FF14713E233AC00F75A1E /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tags.png"; sourceTree = "<group>"; };
 		CD2FF14813E233AC00F75A1E /* tab-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tags@2x.png"; sourceTree = "<group>"; };
+		CD775F6F13E33BBE00FD1721 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PhotoViewController.h; sourceTree = "<group>"; };
 		CD9DA89F13E1C87800D727BD /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSFileManager.h; sourceTree = "<group>"; };
 		CD9DA8A013E1C87800D727BD /* QSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSFileManager.m; sourceTree = "<group>"; };
 		CD9DA8A113E1C87800D727BD /* QSHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSHttpClient.h; sourceTree = "<group>"; };
@@ -599,8 +601,9 @@
 		CDF4463B13E1C5F1007E8F72 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				CD23FC4F13E1DDD900E13E52 /* PhotoViewController.h */,
-				CD23FC5013E1DDD900E13E52 /* PhotoViewController.m */,
+				CD775F7013E33BBE00FD1721 /* PhotoViewController.h */,
+				CD1F823813E337DD00C91729 /* PhotoViewController.m */,
+				CD1F823913E337DD00C91729 /* PhotoViewController.xib */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -914,6 +917,7 @@
 				CD2FF15013E233AC00F75A1E /* tab-settings@2x.png in Resources */,
 				CD2FF15113E233AC00F75A1E /* tab-tags.png in Resources */,
 				CD2FF15213E233AC00F75A1E /* tab-tags@2x.png in Resources */,
+				CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,7 +967,7 @@
 				CD9DA8A713E1C87800D727BD /* QSHttpClient.m in Sources */,
 				CD9DA8A813E1C87800D727BD /* QSStrings.m in Sources */,
 				CD9DA8AC13E1C88800D727BD /* GTMNSString+HTML.m in Sources */,
-				CD23FC5213E1DDD900E13E52 /* PhotoViewController.m in Sources */,
+				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1025,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CD775F7013E33BBE00FD1721 /* PhotoViewController.h */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD775F6F13E33BBE00FD1721 /* en */,
+			);
+			name = PhotoViewController.h;
+			sourceTree = "<group>";
+		};
 		CDF1C95413E1C45C0018AD0B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
