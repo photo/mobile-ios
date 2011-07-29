@@ -28,7 +28,7 @@
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-home.png"]],
                             [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-gallery.png"]],
-                            [self viewControllerWithTabTitle:@"Photo" image:[UIImage imageNamed:@"tab-picture.png"]],
+                            [self viewControllerWithTabTitle:@"Photo" image:nil],
                             [self viewControllerWithTabTitle:@"Tags" image:[UIImage imageNamed:@"tab-tags.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-settings.png"]], nil];
     
@@ -37,7 +37,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
-   // [self addCenterButtonWithImage:[UIImage imageNamed:@"cameraTabBarItem.png"] highlightImage:nil];
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-camera.png"] highlightImage:nil];
     [super viewWillAppear:animated];
 }
 

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QSStrings.h"
 
-@interface PhotoViewController : UIViewController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
+@interface PhotoViewController{
 }
 
 @end
