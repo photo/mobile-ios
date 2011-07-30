@@ -29,7 +29,9 @@
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"
-#import "SearchTestController.h"
+#import "TagsViewController.h"
+#import "HomeViewController.h"
+#import "SettingsViewController.h"
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
 

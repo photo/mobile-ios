@@ -1,62 +1,61 @@
-//
-//  TagsViewController.m
-//  OpenPhoto
-//
-//  Created by Patrick Santana on 26/07/11.
-//  Copyright 2011 OpenPhoto. All rights reserved.
-//
 
 #import "TagsViewController.h"
+#import "MockDataSource.h"
+#import "GalleryViewController.h"
+
+
+@interface TagsViewController()
+- (void)searchTestController:(TagsViewController*)controller didSelectObject:(id)object;
+@end
 
 @implementation TagsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.view.backgroundColor = [UIColor blueColor];
-        self.tabBarItem.image=[UIImage imageNamed:@"tab-tags.png"];
-        self.title=@"Tags";
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// NSObject
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = @"Search Tags";
+        self.dataSource = [[[MockDataSource alloc] init] autorelease];
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
+- (void)dealloc {
+	[super dealloc];
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// UIViewController
+
+- (void)loadView {
+    [super loadView];
     
-    // Release any cached data, images, etc that aren't in use.
+    TTTableViewController* searchController = [[[TTTableViewController alloc] init] autorelease];
+    searchController.dataSource = [[[MockSearchDataSource alloc] initWithDuration:0.5] autorelease];
+    self.searchViewController = searchController;
+    self.tableView.tableHeaderView = _searchController.searchBar;
 }
 
-#pragma mark - View lifecycle
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTTableViewController
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-*/
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
+    [self searchTestController:self didSelectObject:object];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// TTSearchTextFieldDelegate
+
+- (void)textField:(TTSearchTextField*)textField didSelectObject:(id)object {
+    [self searchTestController:self didSelectObject:object];
+}
+
+//////// Actions when the item is selected
+- (void)searchTestController:(TagsViewController*)controller didSelectObject:(id)object{
+    NSLog(@"Row selected");
+    GalleryViewController *galleryController = [[[GalleryViewController alloc]init] autorelease];
+    [self.navigationController pushViewController:galleryController animated:YES];
 }
 
 @end

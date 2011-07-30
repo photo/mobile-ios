@@ -1,13 +1,9 @@
-//
-//  TagsViewController.h
-//  OpenPhoto
-//
-//  Created by Patrick Santana on 26/07/11.
-//  Copyright 2011 OpenPhoto. All rights reserved.
-//
+#import <Three20/Three20.h>
 
-#import <UIKit/UIKit.h>
+@class MockDataSource;
 
-@interface TagsViewController : UIViewController
+@interface TagsViewController : TTTableViewController <TTSearchTextFieldDelegate> {
+}
 
 @end
+

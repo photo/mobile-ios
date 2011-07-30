@@ -41,19 +41,34 @@
     
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
-        
+        HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        return navController;
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         return navController;
     }else if (title == @"Tags"){
-        SearchTestController *controller = [[[SearchTestController alloc] init]autorelease];
+        TagsViewController *controller = [[[TagsViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
         return navController;
     }else if (title == @"Settings"){
+        SettingsViewController *controller = [[[SettingsViewController alloc]init ]autorelease];
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
+        return navController;
     }
     
     

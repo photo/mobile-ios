@@ -15,8 +15,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
-        self.view.backgroundColor = [UIColor redColor];
+        self.view.backgroundColor = [UIColor whiteColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-home.png"];
         self.tabBarItem.title=@"Home";
         self.title=@"Open Photo";
@@ -41,13 +40,51 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    
+        [super viewDidLoad];
+    
+    
+    NSArray *myImages = [NSArray arrayWithObjects:
+                         [UIImage imageNamed:@"picture1.jpg"],
+                         [UIImage imageNamed:@"picture2.png"],
+                         [UIImage imageNamed:@"picture3.jpg"],
+                         nil];
+    
+    UIImageView *myAnimatedView = [UIImageView alloc];
+    CGRect myImageRect = CGRectMake(10, 10, 200, 200);
+    [myAnimatedView initWithFrame:myImageRect];
+    myAnimatedView.animationImages = myImages;
+    myAnimatedView.animationDuration = 7; // seconds
+    myAnimatedView.animationRepeatCount = 0; // 0 = loops forever
+    myAnimatedView.contentMode = UIViewContentModeScaleAspectFit;
+    [myAnimatedView startAnimating];
+    [self.view addSubview:myAnimatedView];
+    [myAnimatedView release]; 
+    
+    
+    NSArray *myImages2 = [NSArray arrayWithObjects:
+                         [UIImage imageNamed:@"picture3.jpg"],
+                         [UIImage imageNamed:@"picture1.jpg"],
+                         [UIImage imageNamed:@"picture2.png"],
+                         nil];
+    
+    UIImageView *myAnimatedView2 = [UIImageView alloc];
+    CGRect myImageRect2 = CGRectMake(100, 100, 250, 250);
+    [myAnimatedView2 initWithFrame:myImageRect2];
+    myAnimatedView2.animationImages = myImages2;
+    myAnimatedView2.animationDuration = 6; // seconds
+    myAnimatedView2.animationRepeatCount = 0; // 0 = loops forever
+    myAnimatedView2.contentMode = UIViewContentModeScaleAspectFit;
+    [myAnimatedView2 startAnimating];
+    [self.view addSubview:myAnimatedView2];
+    [myAnimatedView2 release]; 
+
 }
-*/
+
 
 - (void)viewDidUnload
 {
