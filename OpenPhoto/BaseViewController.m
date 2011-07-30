@@ -48,7 +48,10 @@
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         return navController;
     }else if (title == @"Tags"){
-        
+        SearchTestController *controller = [[[SearchTestController alloc] init]autorelease];
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        return navController;
     }else if (title == @"Settings"){
         
     }

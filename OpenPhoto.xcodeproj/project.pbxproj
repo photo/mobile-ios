@@ -32,6 +32,8 @@
 		CD6FA94513E40942007561EB /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94013E40942007561EB /* tab-home.png */; };
 		CD6FA94613E40942007561EB /* tab-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94113E40942007561EB /* tab-settings.png */; };
 		CD6FA94713E40942007561EB /* tab-tags.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94213E40942007561EB /* tab-tags.png */; };
+		CD6FAA8313E41322007561EB /* MockDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6FAA7F13E41322007561EB /* MockDataSource.m */; };
+		CD6FAA8413E41322007561EB /* SearchTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD6FAA8013E41322007561EB /* SearchTestController.m */; };
 		CD9DA8A613E1C87800D727BD /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9DA8A013E1C87800D727BD /* QSFileManager.m */; };
 		CD9DA8A713E1C87800D727BD /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9DA8A213E1C87800D727BD /* QSHttpClient.m */; };
 		CD9DA8A813E1C87800D727BD /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9DA8A413E1C87800D727BD /* QSStrings.m */; };
@@ -280,6 +282,10 @@
 		CD6FA94013E40942007561EB /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home.png"; sourceTree = "<group>"; };
 		CD6FA94113E40942007561EB /* tab-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-settings.png"; sourceTree = "<group>"; };
 		CD6FA94213E40942007561EB /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tags.png"; sourceTree = "<group>"; };
+		CD6FAA7F13E41322007561EB /* MockDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockDataSource.m; sourceTree = "<group>"; };
+		CD6FAA8013E41322007561EB /* SearchTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTestController.m; sourceTree = "<group>"; };
+		CD6FAA8113E41322007561EB /* MockDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockDataSource.h; sourceTree = "<group>"; };
+		CD6FAA8213E41322007561EB /* SearchTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTestController.h; sourceTree = "<group>"; };
 		CD775F6F13E33BBE00FD1721 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PhotoViewController.h; sourceTree = "<group>"; };
 		CD9DA89F13E1C87800D727BD /* QSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSFileManager.h; sourceTree = "<group>"; };
 		CD9DA8A013E1C87800D727BD /* QSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSFileManager.m; sourceTree = "<group>"; };
@@ -574,6 +580,10 @@
 		CDF4463A13E1C5EA007E8F72 /* Tags */ = {
 			isa = PBXGroup;
 			children = (
+				CD6FAA8113E41322007561EB /* MockDataSource.h */,
+				CD6FAA7F13E41322007561EB /* MockDataSource.m */,
+				CD6FAA8213E41322007561EB /* SearchTestController.h */,
+				CD6FAA8013E41322007561EB /* SearchTestController.m */,
 				CDF4464813E1C69F007E8F72 /* TagsViewController.h */,
 				CDF4464913E1C69F007E8F72 /* TagsViewController.m */,
 			);
@@ -944,6 +954,8 @@
 				CD9DA8A813E1C87800D727BD /* QSStrings.m in Sources */,
 				CD9DA8AC13E1C88800D727BD /* GTMNSString+HTML.m in Sources */,
 				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,
+				CD6FAA8313E41322007561EB /* MockDataSource.m in Sources */,
+				CD6FAA8413E41322007561EB /* SearchTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
