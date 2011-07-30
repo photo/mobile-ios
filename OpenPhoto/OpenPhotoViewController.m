@@ -37,7 +37,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-camera.png"] highlightImage:nil];
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"Icon-Small-50.png"] highlightImage:nil];
     [super viewWillAppear:animated];
 }
 
