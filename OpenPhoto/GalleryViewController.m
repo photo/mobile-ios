@@ -29,6 +29,7 @@
         
         self.view.backgroundColor = [UIColor blackColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
+        self.tabBarItem.title=@"Gallery";
         self.title=@"Gallery";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
