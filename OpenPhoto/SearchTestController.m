@@ -1,18 +1,20 @@
 
 #import "SearchTestController.h"
 #import "MockDataSource.h"
+#import "GalleryViewController.h"
 
+
+@interface SearchTestController()
+- (void)searchTestController:(SearchTestController*)controller didSelectObject:(id)object;
+@end
+    
 @implementation SearchTestController
-
-@synthesize delegate = _delegate;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
   if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-    _delegate = nil;
-
     self.title = @"Search Tags";
     self.dataSource = [[[MockDataSource alloc] init] autorelease];
   }
@@ -39,14 +41,21 @@
 // TTTableViewController
 
 - (void)didSelectObject:(id)object atIndexPath:(NSIndexPath*)indexPath {
-  [_delegate searchTestController:self didSelectObject:object];
+  [self searchTestController:self didSelectObject:object];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTSearchTextFieldDelegate
 
 - (void)textField:(TTSearchTextField*)textField didSelectObject:(id)object {
-  [_delegate searchTestController:self didSelectObject:object];
+  [self searchTestController:self didSelectObject:object];
+}
+
+//////// Actions when the item is selected
+- (void)searchTestController:(SearchTestController*)controller didSelectObject:(id)object{
+    NSLog(@"Row selected");
+    GalleryViewController *galleryController = [[[GalleryViewController alloc]init] autorelease];
+    [self.navigationController pushViewController:galleryController animated:YES];
 }
 
 @end
