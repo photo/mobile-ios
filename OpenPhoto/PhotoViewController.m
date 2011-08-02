@@ -20,12 +20,13 @@
 @synthesize image;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker withNavigation:(UINavigationController*) controller;
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         image = imageFromPicker;
+        [image retain];
     }
     return self;
 }
@@ -45,9 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    imagePreview.image=image;
     statusBar.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 }
 
 - (void)viewDidUnload
@@ -97,7 +97,7 @@
     
     
     // send message to the site. it is pickedImage
-    NSData *imageData = UIImageJPEGRepresentation(imagePreview.image,0.7);
+    NSData *imageData = UIImageJPEGRepresentation(image ,0.7);
     //Custom implementations, no built in base64 or HTTP escaping for iPhone
     NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
     
@@ -143,7 +143,8 @@
     [statusBar stopAnimating];
     statusBar.hidden = YES;
     
-    [pool release];
     [self dismissModalViewControllerAnimated:YES];
+    [pool release];
+
 }
 @end
