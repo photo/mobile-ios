@@ -125,7 +125,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     
     
     // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@",imageEscaped];
+    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&tittle=%@&description=%@",imageEscaped,[values objectForKey:@"tittle"],[values objectForKey:@"description"] ];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
