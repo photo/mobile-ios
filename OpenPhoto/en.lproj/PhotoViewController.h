@@ -8,12 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "QSStrings.h"
+#import "OpenPhotoBase64Utilities.h"
 
-@interface PhotoViewController : UIViewController {
+#define kNumbersRow     5
+
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>{
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
     UIActivityIndicatorView *statusBar;
     UIImage* imageToSend;
+    UITableView *detailsPictureTable;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -22,5 +26,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;
 - (IBAction)upload:(id)sender;
 
+@property (nonatomic, retain) IBOutlet UITableView *detailsPictureTable;
 
 @end

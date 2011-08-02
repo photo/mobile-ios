@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OpenPhotoBase64Utilities : NSObject
+@interface OpenPhotoBase64Utilities : NSObject{
+    
+}
+
+
++ (NSString*) pictureEscape:(NSString*) string;
++ (NSString*) fullEscape:(NSString*) string;
 
 @end
+
