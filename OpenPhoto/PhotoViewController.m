@@ -98,7 +98,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     
     
     NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, @"this is the tile", @"this is the description", nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, @"this is the title", @"this is the description", nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -125,7 +125,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     
     
     // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&tittle=%@&description=%@",imageEscaped,[values objectForKey:@"tittle"],[values objectForKey:@"description"] ];
+    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"] ];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
