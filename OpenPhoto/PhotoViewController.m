@@ -15,18 +15,18 @@
 
 
 @implementation PhotoViewController
-@synthesize imagePreview;
 @synthesize statusBar;
-@synthesize image;
+@synthesize imageToSend;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker withNavigation:(UINavigationController*) controller;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        image = imageFromPicker;
-        [image retain];
+        imageToSend = imageFromPicker;
+        // it will be necessary to send the 
+        [imageToSend retain];
     }
     return self;
 }
@@ -44,11 +44,13 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{
-    [super viewDidLoad];
-    statusBar.hidden = YES;
+{        statusBar.hidden = YES;  
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [super viewDidLoad];
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -59,7 +61,6 @@
     [statusBar release];
     statusBar = nil;
     
-    [self setImagePreview:nil];
     [self setStatusBar:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -76,8 +77,7 @@
     [imageTitle release];
     [imageDescription release];
     [statusBar release];
-    [image release];
-    [imagePreview release];
+    [imageToSend release];
     [statusBar release];
     [super dealloc];
 }
@@ -89,7 +89,7 @@
     // to send the request we add a thread.
     [NSThread detachNewThreadSelector:@selector(doTheTransfer) 
                              toTarget:self 
-                           withObject:nil];    
+                           withObject:        nil];    
 }
 
 -(void) doTheTransfer{
@@ -97,7 +97,7 @@
     
     
     // send message to the site. it is pickedImage
-    NSData *imageData = UIImageJPEGRepresentation(image ,0.7);
+    NSData *imageData = UIImageJPEGRepresentation(imageToSend ,0.7);
     //Custom implementations, no built in base64 or HTTP escaping for iPhone
     NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
     
@@ -145,6 +145,6 @@
     
     [self dismissModalViewControllerAnimated:YES];
     [pool release];
-
+    
 }
 @end

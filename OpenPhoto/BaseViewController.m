@@ -150,7 +150,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
     
-    PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photo:pickedImage withNavigation:picker.navigationController];
+    PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photo:pickedImage];
     [picker pushViewController:controller animated:YES];
 }
 

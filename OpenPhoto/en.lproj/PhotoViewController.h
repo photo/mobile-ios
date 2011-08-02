@@ -12,15 +12,14 @@
 @interface PhotoViewController : UIViewController {
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
-    UIImageView *imagePreview;
     UIActivityIndicatorView *statusBar;
-    UIImage* image;
+    UIImage* imageToSend;
 }
-@property (nonatomic, retain) IBOutlet UIImageView *imagePreview;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
-@property (nonatomic, retain) UIImage *image;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image withNavigation:(UINavigationController*) navigationController;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
+@property (nonatomic, retain) UIImage *imageToSend;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;
 - (IBAction)upload:(id)sender;
 
 
