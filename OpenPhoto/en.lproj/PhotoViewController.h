@@ -19,10 +19,15 @@
     UIActivityIndicatorView *statusBar;
     UIImage* imageToSend;
     UITableView *detailsPictureTable;
+    UITextField *titleTextField;
+    UITextField *descriptionTextField;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
 @property (nonatomic, retain) UIImage *imageToSend;
+@property (nonatomic, retain) UITextField *titleTextField;
+@property (nonatomic, retain) UITextField *descriptionTextField;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;
 - (IBAction)upload:(id)sender;

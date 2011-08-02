@@ -19,6 +19,8 @@
 @synthesize detailsPictureTable;
 @synthesize statusBar;
 @synthesize imageToSend;
+@synthesize titleTextField;
+@synthesize descriptionTextField;
 
 
 static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
@@ -90,6 +92,8 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     [imageToSend release];
     [statusBar release];
     [detailsPictureTable release];
+    [titleTextField release];
+    [descriptionTextField release];
     [super dealloc];
 }
 
@@ -97,9 +101,8 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     statusBar.hidden = NO;
     [statusBar startAnimating];
     
-    
     NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, @"this is the title", @"this is the description", nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, titleTextField.text, descriptionTextField.text, nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -170,7 +173,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierTitle] autorelease];
-                UITextField *titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 titleTextField.adjustsFontSizeToFitWidth = YES;
                 titleTextField.textColor = [UIColor grayColor];
                 
@@ -180,7 +183,6 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
                 titleTextField.delegate = self;
                 titleTextField.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:titleTextField];
-                [titleTextField release];
             }
             break;
         case 1:
@@ -190,7 +192,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierDescription] autorelease];
                 
-                UITextField *descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 descriptionTextField.adjustsFontSizeToFitWidth = YES;
                 descriptionTextField.textColor = [UIColor grayColor];
                 
@@ -200,9 +202,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
                 descriptionTextField.delegate = self;
                 
                 descriptionTextField.backgroundColor = [UIColor whiteColor];
-                [cell addSubview:descriptionTextField];
-                [descriptionTextField release];
-                
+                [cell addSubview:descriptionTextField];                
             }
             break;
         case 2:

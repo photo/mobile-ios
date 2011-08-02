@@ -64,7 +64,7 @@
 						</object>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Upload</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="609388294">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="165317895">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
@@ -90,7 +90,7 @@
 						<bool key="IBUIHidesWhenStopped">NO</bool>
 						<int key="IBUIStyle">2</int>
 					</object>
-					<object class="IBUITableView" id="58863555">
+					<object class="IBUITableView" id="893303267">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{10, 48}, {301, 305}}</string>
@@ -98,7 +98,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="274138276"/>
 						<string key="NSReuseIdentifierKey">_NS:392</string>
-						<reference key="IBUIBackgroundColor" ref="609388294"/>
+						<reference key="IBUIBackgroundColor" ref="165317895"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIAlwaysBounceVertical">YES</bool>
@@ -108,7 +108,6 @@
 						<int key="IBUIStyle">1</int>
 						<int key="IBUISeparatorStyle">2</int>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 						<float key="IBUIRowHeight">44</float>
 						<float key="IBUISectionHeaderHeight">10</float>
 						<float key="IBUISectionFooterHeight">10</float>
@@ -117,7 +116,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="58863555"/>
+				<reference key="NSNextKeyView" ref="893303267"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -160,7 +159,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
-						<reference key="source" ref="58863555"/>
+						<reference key="source" ref="893303267"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">30</int>
@@ -168,7 +167,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="58863555"/>
+						<reference key="source" ref="893303267"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">31</int>
@@ -177,7 +176,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">detailsPictureTable</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="58863555"/>
+						<reference key="destination" ref="893303267"/>
 					</object>
 					<int key="connectionID">32</int>
 				</object>
@@ -198,7 +197,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="274138276"/>
 							<reference ref="630669633"/>
-							<reference ref="58863555"/>
+							<reference ref="893303267"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -225,7 +224,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">29</int>
-						<reference key="object" ref="58863555"/>
+						<reference key="object" ref="893303267"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
