@@ -9,7 +9,8 @@
 #import "PhotoViewController.h"
 
 @interface PhotoViewController()
--(void) doTheTransfer:(NSDictionary*) values;
+// all details 
+-(void) uploadPictureOnDetachTread:(NSDictionary*) values;
 @end
 
 
@@ -34,7 +35,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
         // Custom initialization
         imageToSend = imageFromPicker;
         // it will be necessary to send the 
-       [imageToSend retain];
+        [imageToSend retain];
     }
     return self;
 }
@@ -103,12 +104,12 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
     // to send the request we add a thread.
-    [NSThread detachNewThreadSelector:@selector(doTheTransfer:) 
+    [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
                              toTarget:self 
                            withObject:values];    
 }
 
--(void) doTheTransfer:(NSDictionary*) values
+-(void) uploadPictureOnDetachTread:(NSDictionary*) values
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -169,10 +170,18 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierTitle] autorelease];
-                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
+                UITextField *titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                titleTextField.adjustsFontSizeToFitWidth = YES;
+                titleTextField.textColor = [UIColor grayColor];
+                
+                titleTextField.placeholder = @"title";
+                titleTextField.keyboardType = UIKeyboardTypeDefault;
+                titleTextField.returnKeyType = UIReturnKeyDone;
+                titleTextField.delegate = self;
+                titleTextField.backgroundColor = [UIColor whiteColor];
+                [cell addSubview:titleTextField];
+                [titleTextField release];
             }
-            
-            cell.textLabel.text=@"Title";
             break;
         case 1:
             // description
@@ -180,11 +189,21 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierDescription] autorelease];
-                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
+                
+                UITextField *descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                descriptionTextField.adjustsFontSizeToFitWidth = YES;
+                descriptionTextField.textColor = [UIColor grayColor];
+                
+                descriptionTextField.placeholder = @"description";
+                descriptionTextField.keyboardType = UIKeyboardTypeDefault;
+                descriptionTextField.returnKeyType = UIReturnKeyDone;
+                descriptionTextField.delegate = self;
+                
+                descriptionTextField.backgroundColor = [UIColor whiteColor];
+                [cell addSubview:descriptionTextField];
+                [descriptionTextField release];
+                
             }
-            
-            cell.textLabel.text=@"Description";
-            cell.textLabel.numberOfLines=3;
             break;
         case 2:
             // tags
@@ -196,6 +215,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             }
             
             cell.textLabel.text=@"Tags";
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             break;
         case 3:
             // filter: disclosure button
@@ -207,6 +227,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             }
             
             cell.textLabel.text=@"Filter";
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
         case 4:
             // private flag
@@ -218,42 +239,34 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             }
             
             cell.textLabel.text=@"Private";
+            UISwitch *mySwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = mySwitch;
+            [(UISwitch *)cell.accessoryView setOn:NO];
             break;
             
         default:
             break;
     }
-    /*
-     
-     
-     [[cell textLabel] setText:@"Bla"];
-     
-     
-     
-     
-     
-     UITextField* title = [[[UITextField alloc] init] autorelease];
-     title.placeholder = @"Tittle";
-     title.font = TTSTYLEVAR(font);
-     
-     
-     
-     
-     TTTextEditor* description = [[[TTTextEditor alloc] init] autorelease];
-     description.font = TTSTYLEVAR(font);
-     description.backgroundColor = TTSTYLEVAR(backgroundColor);
-     description.autoresizesToText = NO;
-     description.minNumberOfLines = 3;
-     description.placeholder = @"Description";
-     
-     
-     UISwitch* private = [[[UISwitch alloc] init] autorelease];
-     TTTableControlItem* privateItem = [TTTableControlItem itemWithCaption:@"Private" control:private];
-     
-     
-     */
+    
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSUInteger row = [indexPath row];
+    NSLog(@"Row clicked = %d",row);
+    
+    if ( row == 3){
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        FilterViewController *filter = [[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil]autorelease];
+        [self.navigationController pushViewController:filter animated:YES];
+    }  
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

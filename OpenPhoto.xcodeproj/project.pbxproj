@@ -16,6 +16,9 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		CD1EC1B613E886AF00AA0C0A /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */; };
+		CD1EC1B713E886AF00AA0C0A /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */; };
+		CD1EC1B913E8870500AA0C0A /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1EC1B813E8870500AA0C0A /* attention.png */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
 		CD2FF13513E2337E00F75A1E /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12B13E2337E00F75A1E /* appbar_blank.png */; };
@@ -268,6 +271,10 @@
 		320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20Style.xcodeproj; path = three20/src/Three20Style/Three20Style.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CD1EC1B313E886AF00AA0C0A /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
+		CD1EC1B813E8870500AA0C0A /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		CD2FF12B13E2337E00F75A1E /* appbar_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbar_blank.png; sourceTree = "<group>"; };
@@ -541,6 +548,7 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD1EC1B813E8870500AA0C0A /* attention.png */,
 				CD6FAA8813E42801007561EB /* picture1.jpg */,
 				CD6FAA8913E42801007561EB /* picture2.png */,
 				CD6FAA8A13E42801007561EB /* picture3.jpg */,
@@ -600,6 +608,9 @@
 				CD775F7013E33BBE00FD1721 /* PhotoViewController.h */,
 				CD1F823813E337DD00C91729 /* PhotoViewController.m */,
 				CD1F823913E337DD00C91729 /* PhotoViewController.xib */,
+				CD1EC1B313E886AF00AA0C0A /* FilterViewController.h */,
+				CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */,
+				CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -911,6 +922,8 @@
 				CD6FAA8B13E42801007561EB /* picture1.jpg in Resources */,
 				CD6FAA8C13E42801007561EB /* picture2.png in Resources */,
 				CD6FAA8D13E42801007561EB /* picture3.jpg in Resources */,
+				CD1EC1B713E886AF00AA0C0A /* FilterViewController.xib in Resources */,
+				CD1EC1B913E8870500AA0C0A /* attention.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +975,7 @@
 				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,
 				CD6FAA8313E41322007561EB /* MockDataSource.m in Sources */,
 				CD6FAA8413E41322007561EB /* TagsViewController.m in Sources */,
+				CD1EC1B613E886AF00AA0C0A /* FilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

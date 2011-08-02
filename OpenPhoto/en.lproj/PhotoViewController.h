@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "QSStrings.h"
 #import "OpenPhotoBase64Utilities.h"
+#import "FilterViewController.h"
 
 #define kNumbersRow     5
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
     UIActivityIndicatorView *statusBar;
