@@ -67,6 +67,8 @@
 		CDF4464D13E1C6B2007E8F72 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464C13E1C6B2007E8F72 /* SettingsViewController.m */; };
 		CDF4465113E1C6CF007E8F72 /* OpenPhotoBase64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465013E1C6CF007E8F72 /* OpenPhotoBase64Utilities.m */; };
 		CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465313E1C6DC007E8F72 /* HomeViewController.m */; };
+		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
+		CDF59C5913E93D770019ED62 /* WebServiceInvoker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5813E93D770019ED62 /* WebServiceInvoker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -342,6 +344,10 @@
 		CDF4465013E1C6CF007E8F72 /* OpenPhotoBase64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoBase64Utilities.m; sourceTree = "<group>"; };
 		CDF4465213E1C6DC007E8F72 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		CDF4465313E1C6DC007E8F72 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		CDF59C5413E93D600019ED62 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
+		CDF59C5513E93D600019ED62 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		CDF59C5713E93D770019ED62 /* WebServiceInvoker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServiceInvoker.h; sourceTree = "<group>"; };
+		CDF59C5813E93D770019ED62 /* WebServiceInvoker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServiceInvoker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -504,6 +510,7 @@
 		CDF1C95113E1C45C0018AD0B /* OpenPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				CDF59C5313E93D190019ED62 /* Server */,
 				CDF4463D13E1C5F8007E8F72 /* Home */,
 				CDF4463C13E1C5F5007E8F72 /* Gallery */,
 				CDF4463B13E1C5F1007E8F72 /* Photo */,
@@ -651,6 +658,17 @@
 				CDF4465013E1C6CF007E8F72 /* OpenPhotoBase64Utilities.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		CDF59C5313E93D190019ED62 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				CDF59C5413E93D600019ED62 /* WebService.h */,
+				CDF59C5513E93D600019ED62 /* WebService.m */,
+				CDF59C5713E93D770019ED62 /* WebServiceInvoker.h */,
+				CDF59C5813E93D770019ED62 /* WebServiceInvoker.m */,
+			);
+			name = Server;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -976,6 +994,8 @@
 				CD6FAA8313E41322007561EB /* MockDataSource.m in Sources */,
 				CD6FAA8413E41322007561EB /* TagsViewController.m in Sources */,
 				CD1EC1B613E886AF00AA0C0A /* FilterViewController.m in Sources */,
+				CDF59C5613E93D600019ED62 /* WebService.m in Sources */,
+				CDF59C5913E93D770019ED62 /* WebServiceInvoker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
