@@ -31,6 +31,7 @@
 		CD2FF13C13E2337E00F75A1E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF13213E2337E00F75A1E /* Icon.png */; };
 		CD2FF13D13E2337E00F75A1E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF13313E2337E00F75A1E /* Icon@2x.png */; };
 		CD2FF13E13E2337E00F75A1E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF13413E2337E00F75A1E /* logo.png */; };
+		CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */; };
 		CD6FA94413E40942007561EB /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA93F13E40942007561EB /* tab-gallery.png */; };
 		CD6FA94513E40942007561EB /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94013E40942007561EB /* tab-home.png */; };
 		CD6FA94613E40942007561EB /* tab-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94113E40942007561EB /* tab-settings.png */; };
@@ -170,6 +171,13 @@
 			remoteGlobalIDString = BEF31F3A0F352DF5000DE5D2;
 			remoteInfo = Three20UI;
 		};
+		CD3C7A1413EC72AA006ED46C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDF4462D13E1C5A8007E8F72 /* extThree20JSON.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
+			remoteInfo = "extThree20JSON+SBJSON";
+		};
 		CDF1C97113E1C45C0018AD0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CDF1C93E13E1C45C0018AD0B /* Project object */;
@@ -289,6 +297,8 @@
 		CD2FF13213E2337E00F75A1E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		CD2FF13313E2337E00F75A1E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		CD2FF13413E2337E00F75A1E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
+		CD3C7A1613EC73D5006ED46C /* OpenPhoto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = OpenPhoto.entitlements; sourceTree = "<group>"; };
 		CD6FA93F13E40942007561EB /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-gallery.png"; sourceTree = "<group>"; };
 		CD6FA94013E40942007561EB /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home.png"; sourceTree = "<group>"; };
 		CD6FA94113E40942007561EB /* tab-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-settings.png"; sourceTree = "<group>"; };
@@ -470,6 +480,7 @@
 		CDF1C93C13E1C45C0018AD0B = {
 			isa = PBXGroup;
 			children = (
+				CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */,
 				CDF1C95113E1C45C0018AD0B /* OpenPhoto */,
 				CDF1C97313E1C45C0018AD0B /* OpenPhotoTests */,
 				CDF1C94A13E1C45C0018AD0B /* Frameworks */,
@@ -510,6 +521,7 @@
 		CDF1C95113E1C45C0018AD0B /* OpenPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				CD3C7A1613EC73D5006ED46C /* OpenPhoto.entitlements */,
 				CDF59C5313E93D190019ED62 /* Server */,
 				CDF4463D13E1C5F8007E8F72 /* Home */,
 				CDF4463C13E1C5F5007E8F72 /* Gallery */,
@@ -685,6 +697,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CD3C7A1513EC72AA006ED46C /* PBXTargetDependency */,
 				3201088596B4756681693701 /* PBXTargetDependency */,
 				320D7DCCE32703ACAB9A45E1 /* PBXTargetDependency */,
 				320A737074758E53BA54BE91 /* PBXTargetDependency */,
@@ -942,6 +955,7 @@
 				CD6FAA8D13E42801007561EB /* picture3.jpg in Resources */,
 				CD1EC1B713E886AF00AA0C0A /* FilterViewController.xib in Resources */,
 				CD1EC1B913E8870500AA0C0A /* attention.png in Resources */,
+				CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1059,11 @@
 			name = Three20UI;
 			targetProxy = 320F2C48872C2E2C4DF86202 /* PBXContainerItemProxy */;
 		};
+		CD3C7A1513EC72AA006ED46C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "extThree20JSON+SBJSON";
+			targetProxy = CD3C7A1413EC72AA006ED46C /* PBXContainerItemProxy */;
+		};
 		CDF1C97213E1C45C0018AD0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CDF1C94613E1C45C0018AD0B /* OpenPhoto */;
@@ -1096,6 +1115,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CD3C79F313EC6FC9006ED46C /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(BUILT_PRODUCTS_DIR)/../three20",
+					"$(BUILT_PRODUCTS_DIR)/../../three20",
+					three20/Build/Products/three20,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		CD3C79F413EC6FC9006ED46C /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.entitlements;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
+		CD3C79F513EC6FC9006ED46C /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/OpenPhoto.app/OpenPhoto";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				INFOPLIST_FILE = "OpenPhotoTests/OpenPhotoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc";
+		};
 		CDF1C97D13E1C45D0018AD0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1121,7 +1199,10 @@
 					three20/Build/Products/three20,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1145,7 +1226,10 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1157,6 +1241,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1168,6 +1253,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1215,6 +1301,7 @@
 			buildConfigurations = (
 				CDF1C97D13E1C45D0018AD0B /* Debug */,
 				CDF1C97E13E1C45D0018AD0B /* Release */,
+				CD3C79F313EC6FC9006ED46C /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1224,6 +1311,7 @@
 			buildConfigurations = (
 				CDF1C98013E1C45D0018AD0B /* Debug */,
 				CDF1C98113E1C45D0018AD0B /* Release */,
+				CD3C79F413EC6FC9006ED46C /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1233,6 +1321,7 @@
 			buildConfigurations = (
 				CDF1C98313E1C45D0018AD0B /* Debug */,
 				CDF1C98413E1C45D0018AD0B /* Release */,
+				CD3C79F513EC6FC9006ED46C /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
