@@ -8,82 +8,50 @@
 
 #import "GalleryViewController.h"
 
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- * Private interface definitions
- *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-@interface GalleryViewController()
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-- (void)searchPhotos;
-@end
-
-
 @implementation GalleryViewController
+@synthesize service;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        
         self.view.backgroundColor = [UIColor blackColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-gallery.png"];
         self.tabBarItem.title=@"Gallery";
         self.title=@"Gallery";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
-                
+        
+        // create service and the delegate
+        service = [[WebService alloc]init];
+        [service setDelegate:self];
+        
     }
     return self;
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self searchPhotos];
-}
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    [responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSLog(@"Value service=%@",service);
+    [service loadGallery:25];
+    
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection failed: %@", [error description]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-    [connection release];
-    
-    // convert the responseDate to the json string
-    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    // it can be released
-    [responseData release];
-    
-    // Create a dictionary from JSON string
-    // When there are newline characters in the JSON string, 
-    // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
-    jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDictionary *results =  [jsonString JSONValue];
-    
-    // Build an array with all photos from the dictionary.
-    NSArray *photos = [results objectForKey:@"result"] ;
-    
+// delegate
+-(void) receivedResponse:(NSDictionary *)response{
+    NSArray *photos = [response objectForKey:@"result"] ;
     NSMutableArray *mockPhotos = [[NSMutableArray alloc] init];
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
     for (NSDictionary *photo in photos){
-        // Get title of the image
+        // Get title/description of the image
         NSString *title = [photo objectForKey:@"Name"];
+        NSString *description = [photo objectForKey:@"Description"];
         
-        // print the title and url. If no name, add Untitled.
-        NSLog(@"All details %@",photo);
-        NSLog(@"Photo Title: %@", (title.length > 0 ? title : @"Untitled"));
         NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-        NSLog(@"Photo url: %@ \n\n", photoURLString);
+        NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
         
         float width = [[photo objectForKey:@"width"] floatValue];
         float height = [[photo objectForKey:@"height"] floatValue];
@@ -125,27 +93,11 @@
     // ];
     
     [mockPhotos autorelease];
-
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
 }
-
-- (void)searchPhotos{
-    //show
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-    // create the url to connect to OpenPhoto
-    NSString *urlString = @"http://current.openphoto.me/photos/pageSize-25.json?returnSizes=200x200,640x960";
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    responseData = [[NSMutableData data] retain];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: url];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-}
-
 
 - (void) dealloc {
+    [service release];
     [super dealloc];
 }
 

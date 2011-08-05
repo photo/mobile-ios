@@ -44,20 +44,20 @@
         HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         return navController;
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         return navController;
     }else if (title == @"Tags"){
         TagsViewController *controller = [[[TagsViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-                navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
@@ -70,7 +70,6 @@
         
         return navController;
     }
-    
     
     UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
     viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
@@ -98,18 +97,11 @@
     }
     
     // action for this button
-    [button addTarget:self action:@selector(buttonEvent) forControlEvents:UIControlEventTouchUpInside];
-    
+    [button addTarget:self action:@selector(buttonEvent) forControlEvents:UIControlEventTouchUpInside];    
     [self.tabBar addSubview:button];
 }
 
 -(void)buttonEvent{
-    
-    
-    ///
-    /// NEEDS REFACTORING
-    ///
-    ///
     // check if user has camera
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         
@@ -172,4 +164,5 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)dealloc {
     [super dealloc];
 }
+
 @end

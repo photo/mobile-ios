@@ -6,12 +6,11 @@
 //  Copyright 2011 OpenPhoto. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface OpenPhotoBase64Utilities : NSObject{
     
 }
-
 
 + (NSString*) pictureEscape:(NSString*) string;
 + (NSString*) fullEscape:(NSString*) string;

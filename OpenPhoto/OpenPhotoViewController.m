@@ -23,18 +23,14 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];    
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-home.png"]],
                             [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-gallery.png"]],
                             [self viewControllerWithTabTitle:@"Photo" image:nil],
                             [self viewControllerWithTabTitle:@"Tags" image:[UIImage imageNamed:@"tab-tags.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-settings.png"]], nil];
-    
-
 }
-
 
 - (void)viewWillAppear:(BOOL)animated{
     [self addCenterButtonWithImage:[UIImage imageNamed:@"Icon-Small-50.png"] highlightImage:nil];

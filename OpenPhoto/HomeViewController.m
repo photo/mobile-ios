@@ -33,19 +33,11 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     
-        [super viewDidLoad];
+    [super viewDidLoad];
     
     
     NSArray *myImages = [NSArray arrayWithObjects:
@@ -67,10 +59,10 @@
     
     
     NSArray *myImages2 = [NSArray arrayWithObjects:
-                         [UIImage imageNamed:@"picture3.jpg"],
-                         [UIImage imageNamed:@"picture1.jpg"],
-                         [UIImage imageNamed:@"picture2.png"],
-                         nil];
+                          [UIImage imageNamed:@"picture3.jpg"],
+                          [UIImage imageNamed:@"picture1.jpg"],
+                          [UIImage imageNamed:@"picture2.png"],
+                          nil];
     
     UIImageView *myAnimatedView2 = [UIImageView alloc];
     CGRect myImageRect2 = CGRectMake(100, 100, 250, 250);
@@ -82,7 +74,7 @@
     [myAnimatedView2 startAnimating];
     [self.view addSubview:myAnimatedView2];
     [myAnimatedView2 release]; 
-
+    
 }
 
 

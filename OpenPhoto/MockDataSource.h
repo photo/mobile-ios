@@ -5,13 +5,13 @@
  * loading and/or search time
  */
 @interface MockAddressBook : NSObject <TTModel> {
-  NSMutableArray* _delegates;
-  NSMutableArray* _names;
-  NSArray* _allNames;
-  NSTimer* _fakeSearchTimer;
-  NSTimeInterval _fakeSearchDuration;
-  NSTimer* _fakeLoadingTimer;
-  NSTimeInterval _fakeLoadingDuration;
+    NSMutableArray* _delegates;
+    NSMutableArray* _names;
+    NSArray* _allNames;
+    NSTimer* _fakeSearchTimer;
+    NSTimeInterval _fakeSearchDuration;
+    NSTimer* _fakeLoadingTimer;
+    NSTimeInterval _fakeLoadingDuration;
 }
 
 @property(nonatomic,retain) NSArray* names;
@@ -28,7 +28,7 @@
 @end
 
 @interface MockDataSource : TTSectionedDataSource {
-  MockAddressBook* _addressBook;
+    MockAddressBook* _addressBook;
 }
 
 @property(nonatomic,readonly) MockAddressBook* addressBook;
@@ -36,7 +36,7 @@
 @end
 
 @interface MockSearchDataSource : TTSectionedDataSource {
-  MockAddressBook* _addressBook;
+    MockAddressBook* _addressBook;
 }
 
 @property(nonatomic,readonly) MockAddressBook* addressBook;
