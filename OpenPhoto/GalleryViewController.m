@@ -47,8 +47,9 @@
     // Loop through each entry in the dictionary and create an array of MockPhoto
     for (NSDictionary *photo in photos){
         // Get title/description of the image
-        NSString *title = [photo objectForKey:@"Name"];
-        NSString *description = [photo objectForKey:@"Description"];
+        
+        NSString *title = [photo objectForKey:@"title"];
+        NSString *description = [photo objectForKey:@"description"];
         
         NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
         NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
@@ -72,8 +73,8 @@
         
         [mockPhotos addObject: [[[MockPhoto alloc]
                                  initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
-                                 smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]]
-                                 size:CGSizeMake(realWidth, realHeight)] autorelease]];
+                                 smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
+                                 size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
     } 
     
     self.photoSource = [[MockPhotoSource alloc]
