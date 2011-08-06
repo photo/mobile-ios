@@ -16,11 +16,13 @@
 
 
 @implementation PhotoViewController
+
 @synthesize detailsPictureTable;
 @synthesize statusBar;
 @synthesize imageToSend;
 @synthesize titleTextField;
 @synthesize descriptionTextField;
+@synthesize permissionPicture;
 
 
 static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
@@ -94,6 +96,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     [detailsPictureTable release];
     [titleTextField release];
     [descriptionTextField release];
+    [permissionPicture release];
     [super dealloc];
 }
 
@@ -101,8 +104,15 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     statusBar.hidden = NO;
     [statusBar startAnimating];
     
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, titleTextField.text, descriptionTextField.text, nil];
+    // default permission for the pictures is PUBLIC
+    NSString *defaultPermission = @"1";
+    
+    if ([permissionPicture isOn]){
+        defaultPermission = @"0";
+    }
+    
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, titleTextField.text, descriptionTextField.text, defaultPermission, nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -116,11 +126,6 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    
-    for (id key in values) {
-        NSLog(@"key: %@, value: %@", key, [values objectForKey:key]);
-    }
-    
     // send message to the site. it is pickedImage
     NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
     //Custom implementations, no built in base64 or HTTP escaping for iPhone
@@ -129,7 +134,8 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     
     
     // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"] ];
+    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"] ];
+
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
@@ -239,8 +245,8 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             }
             
             cell.textLabel.text=@"Private";
-            UISwitch *mySwitch = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = mySwitch;
+            permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = permissionPicture;
             [(UISwitch *)cell.accessoryView setOn:NO];
             break;
             

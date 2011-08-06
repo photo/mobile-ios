@@ -14,9 +14,6 @@
 - (void) receivedResponse:(NSDictionary*) response;
 @end
 
-// Const for the server. In the future it will be inside the Settings
-NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
-
 @interface WebService : NSObject{
     NSMutableData *responseData;
     id <WebServiceDelegate> delegate;

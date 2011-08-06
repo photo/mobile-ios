@@ -21,12 +21,14 @@
     UITableView *detailsPictureTable;
     UITextField *titleTextField;
     UITextField *descriptionTextField;
+    UISwitch *permissionPicture;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
 @property (nonatomic, retain) UIImage *imageToSend;
 @property (nonatomic, retain) UITextField *titleTextField;
 @property (nonatomic, retain) UITextField *descriptionTextField;
+@property (nonatomic, retain) UISwitch *permissionPicture;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;

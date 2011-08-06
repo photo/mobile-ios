@@ -20,6 +20,9 @@
 @implementation WebService
 @synthesize delegate;
 
+// Const for the server. In the future it will be inside the Settings
+NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
+
 - (id)init
 {
     self = [super init];
