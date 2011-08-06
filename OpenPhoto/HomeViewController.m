@@ -19,6 +19,7 @@
         self.tabBarItem.image=[UIImage imageNamed:@"tab-home.png"];
         self.tabBarItem.title=@"Home";
         self.title=@"Open Photo";
+        
     }
     return self;
 }
