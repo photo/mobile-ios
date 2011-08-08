@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OpenPhotoBase64Utilities : NSObject{
+@interface Base64Utilities : NSObject{
     
 }
 

@@ -133,7 +133,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
     //Custom implementations, no built in base64 or HTTP escaping for iPhone
     NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
-    NSString* imageEscaped = [OpenPhotoBase64Utilities pictureEscape:imageB64];
+    NSString* imageEscaped = [Base64Utilities pictureEscape:imageB64];
     
     
     // set all details to send

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "QSStrings.h"
-#import "OpenPhotoBase64Utilities.h"
+#import "Base64Utilities.h"
 #import "FilterViewController.h"
 
 #define kNumbersRow     6

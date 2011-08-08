@@ -1,14 +1,14 @@
 //
-//  OpenPhotoBase64Utilities.m
+//  Base64Utilities.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 26/07/11.
 //  Copyright 2011 OpenPhoto. All rights reserved.
 //
 
-#import "OpenPhotoBase64Utilities.h"
+#import "Base64Utilities.h"
 
-@implementation OpenPhotoBase64Utilities
+@implementation Base64Utilities
 
 - (id)init
 {
