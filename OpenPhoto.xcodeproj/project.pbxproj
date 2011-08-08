@@ -695,6 +695,7 @@
 				CDF1C94313E1C45C0018AD0B /* Sources */,
 				CDF1C94413E1C45C0018AD0B /* Frameworks */,
 				CDF1C94513E1C45C0018AD0B /* Resources */,
+				CD2F172F13EFD7FF00A980B6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -976,6 +977,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		CD2F172F13EFD7FF00A980B6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "buildPlist=${INFOPLIST_FILE}\n\n#Short version\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $buildPlist)\necho \"Version id = $CFBundleShortVersionString\"\nCFBundleShortVersionString=`echo $CFBundleShortVersionString + \"0.1\" | bc`; \n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleShortVersionString\" $buildPlist\n\n# incremental\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nCFBundleVersion=$(($CFBundleVersion + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\n\n#date\nCFBuildDate=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
+		};
 		CDF1C96913E1C45C0018AD0B /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
