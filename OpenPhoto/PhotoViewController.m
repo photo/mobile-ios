@@ -107,6 +107,12 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     statusBar.hidden = NO;
     [statusBar startAnimating];
     
+    // title
+    NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
+    
+    // description
+    NSString *description = (descriptionTextField.text.length > 0 ? descriptionTextField.text : @"");
+    
     // default permission for the pictures is PUBLIC
     NSString *defaultPermission = @"1";
     
@@ -114,8 +120,14 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
         defaultPermission = @"0";
     }
     
+    // check the size of the image
+    if (![highResolutionPicture isOn]){
+        CGSize sz = CGSizeMake(imageToSend.size.width/2,imageToSend.size.height/2);
+        imageToSend = [ImageManipulation imageWithImage:imageToSend scaledToSize:sz];
+    }
+    
     NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, titleTextField.text, descriptionTextField.text, defaultPermission, nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -138,7 +150,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     // set all details to send
     NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"] ];
-
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];

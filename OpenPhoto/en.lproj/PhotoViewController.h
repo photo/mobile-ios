@@ -10,6 +10,7 @@
 #import "QSStrings.h"
 #import "Base64Utilities.h"
 #import "FilterViewController.h"
+#import "ImageManipulation.h"
 
 #define kNumbersRow     6
 
