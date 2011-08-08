@@ -11,7 +11,7 @@
 #import "OpenPhotoBase64Utilities.h"
 #import "FilterViewController.h"
 
-#define kNumbersRow     5
+#define kNumbersRow     6
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
     IBOutlet UITextField *imageTitle;
@@ -22,6 +22,7 @@
     UITextField *titleTextField;
     UITextField *descriptionTextField;
     UISwitch *permissionPicture;
+    UISwitch *highResolutionPicture;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) UITextField *titleTextField;
 @property (nonatomic, retain) UITextField *descriptionTextField;
 @property (nonatomic, retain) UISwitch *permissionPicture;
+@property (nonatomic, retain) UISwitch *highResolutionPicture;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;

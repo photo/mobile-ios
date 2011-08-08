@@ -23,6 +23,7 @@
 @synthesize titleTextField;
 @synthesize descriptionTextField;
 @synthesize permissionPicture;
+@synthesize highResolutionPicture;
 
 
 static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
@@ -30,6 +31,7 @@ static NSString *cellIdentifierDescription = @"cellIdentifierDescription";
 static NSString *cellIdentifierTags=@"cellIdentifierTags";
 static NSString *cellIdentifierFilter=@"cellIdentifierFilter";
 static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
+static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker
@@ -97,6 +99,7 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
     [titleTextField release];
     [descriptionTextField release];
     [permissionPicture release];
+    [highResolutionPicture release];
     [super dealloc];
 }
 
@@ -235,7 +238,23 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
             cell.textLabel.text=@"Filter";
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
+            
         case 4:
+            // high resolution picture
+            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierHighResolutionPicture];
+            if (cell == nil)
+            {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierHighResolutionPicture] autorelease];
+                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
+            }
+            
+            cell.textLabel.text=@"High resolution";
+            highResolutionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = highResolutionPicture;
+            [(UISwitch *)cell.accessoryView setOn:NO];
+            break;
+            
+        case 5:
             // private flag
             cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierPrivate];
             if (cell == nil)
