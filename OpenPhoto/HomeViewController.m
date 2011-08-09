@@ -44,15 +44,26 @@
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     NSArray *photos = [response objectForKey:@"result"] ;
-    NSLog(@"Message received = %@",photos);
+    
+    NSString *key;
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+        // retina display
+        key = [[NSString alloc]initWithString:@"path640x770xCR"];
+    }else{
+        // not retina display
+        key = [[NSString alloc]initWithString:@"path320x385xCR"];
+    }
+    
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
     if (photos != nil){
-            int i =0; // needs to be removed after bug is fixed
+        int i =0; // needs to be removed after bug is fixed
         for (NSDictionary *photo in photos){
-            UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]]]];
+            
+            NSLog(@"Photo URL = %@",[photo objectForKey:key]);
+            UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
             [images addObject:[img autorelease]];
-             i++;
+            i++;
             
             if (i == 4){
                 break;
@@ -68,9 +79,10 @@
         [myAnimatedView startAnimating];
         [self.view addSubview:myAnimatedView];
         [myAnimatedView release]; 
-
+        
     }
     
+    [key release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 

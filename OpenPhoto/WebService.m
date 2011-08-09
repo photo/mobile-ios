@@ -38,15 +38,18 @@ NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
 }
 
 - (void) getHomePictures{
-    //  it is not working. Check with jaisen:
-    //[self sendRequest:@"/photos.json?sortBy=dateUploaded&pageSize=3"];
+    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos.json?orderBy=dateUploaded&pageSize=3&returnSizes="];
+    
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-     // retina display
-    [self sendRequest:@"/photos.json?pageSize=3&returnSizes=640x770xCR"];
+        // retina display
+        [homePicturesRequest appendString:@"640x770xCR"];
     }else{
         // not retina display
-        [self sendRequest:@"/photos.json?pageSize=3&returnSizes=320x385xCR"];
+        [homePicturesRequest appendString:@"320x385xCR"];
     }
+    
+    NSLog(@"** Sending request to get pictures=%@",homePicturesRequest);
+    [self sendRequest:homePicturesRequest];
 }
 
 - (void) loadGallery:(int) pageSize{

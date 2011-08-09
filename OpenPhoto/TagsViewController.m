@@ -1,14 +1,12 @@
 
 #import "TagsViewController.h"
-#import "MockDataSource.h"
-#import "GalleryViewController.h"
-
 
 @interface TagsViewController()
 - (void)searchTestController:(TagsViewController*)controller didSelectObject:(id)object;
 @end
 
 @implementation TagsViewController
+@synthesize service;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
@@ -22,7 +20,12 @@
 }
 
 - (void)dealloc {
+    [service release];
 	[super dealloc];
+}
+
+// PROTOCOL TO RECEIVE THE TAGS
+-(void) receivedResponse:(NSDictionary *)response{
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
