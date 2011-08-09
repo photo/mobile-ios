@@ -10,6 +10,9 @@
 
 @implementation HomeViewController
 
+@synthesize service;
+@synthesize images;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -19,6 +22,12 @@
         self.tabBarItem.image=[UIImage imageNamed:@"tab-home.png"];
         self.tabBarItem.title=@"Home";
         self.title=@"Open Photo";
+        
+        // create service and the delegate
+        service = [[WebService alloc]init];
+        [service setDelegate:self];
+        
+        images = [[NSMutableArray alloc] init];  
         
     }
     return self;
@@ -32,64 +41,56 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+// delegate
+-(void) receivedResponse:(NSDictionary *)response{
+    NSArray *photos = [response objectForKey:@"result"] ;
+    
+    // Loop through each entry in the dictionary and create an array of MockPhoto
+    if (photos == nil){
+        for (NSDictionary *photo in photos){
+            UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]]]];
+            
+            UIImageView *animation = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];        
+            [images addObject:[animation autorelease]];
+            [img release];
+        } 
+        
+        UIImageView *myAnimatedView = [UIImageView alloc];
+        CGRect myImageRect = CGRectMake(10, 10, 200, 200);
+        [myAnimatedView initWithFrame:myImageRect];
+        myAnimatedView.animationImages = images;
+        myAnimatedView.animationDuration = 10; // seconds
+        myAnimatedView.animationRepeatCount = 0; // 0 = loops forever
+        myAnimatedView.contentMode = UIViewContentModeScaleAspectFit;
+        [myAnimatedView startAnimating];
+        [self.view addSubview:myAnimatedView];
+        [myAnimatedView release]; 
+    }
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+
 #pragma mark - View lifecycle
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];  
     
-    [super viewDidLoad];
-    
-    
-    NSArray *myImages = [NSArray arrayWithObjects:
-                         [UIImage imageNamed:@"picture1.jpg"],
-                         [UIImage imageNamed:@"picture2.png"],
-                         [UIImage imageNamed:@"picture3.jpg"],
-                         nil];
-    
-    UIImageView *myAnimatedView = [UIImageView alloc];
-    CGRect myImageRect = CGRectMake(10, 10, 200, 200);
-    [myAnimatedView initWithFrame:myImageRect];
-    myAnimatedView.animationImages = myImages;
-    myAnimatedView.animationDuration = 7; // seconds
-    myAnimatedView.animationRepeatCount = 0; // 0 = loops forever
-    myAnimatedView.contentMode = UIViewContentModeScaleAspectFit;
-    [myAnimatedView startAnimating];
-    [self.view addSubview:myAnimatedView];
-    [myAnimatedView release]; 
-    
-    
-    NSArray *myImages2 = [NSArray arrayWithObjects:
-                          [UIImage imageNamed:@"picture3.jpg"],
-                          [UIImage imageNamed:@"picture1.jpg"],
-                          [UIImage imageNamed:@"picture2.png"],
-                          nil];
-    
-    UIImageView *myAnimatedView2 = [UIImageView alloc];
-    CGRect myImageRect2 = CGRectMake(100, 100, 250, 250);
-    [myAnimatedView2 initWithFrame:myImageRect2];
-    myAnimatedView2.animationImages = myImages2;
-    myAnimatedView2.animationDuration = 6; // seconds
-    myAnimatedView2.animationRepeatCount = 0; // 0 = loops forever
-    myAnimatedView2.contentMode = UIViewContentModeScaleAspectFit;
-    [myAnimatedView2 startAnimating];
-    [self.view addSubview:myAnimatedView2];
-    [myAnimatedView2 release]; 
-    
+    // load some pictures
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [service getHomePictures];  
 }
 
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) dealloc {
+    [service release];
+    [images release];
+    [super dealloc];
 }
 
 @end

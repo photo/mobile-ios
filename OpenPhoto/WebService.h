@@ -25,7 +25,7 @@
 // get all tags. It brings how many images have this tag.
 - (void) getTags; 
 
-// get home pictures. It will bring 10 pictures from the last shared. 
+// get home pictures. It will bring 3 pictures from the last shared. 
 - (void) getHomePictures; 
 
 // get 25 pictures

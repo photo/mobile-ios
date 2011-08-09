@@ -38,7 +38,7 @@ NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
 }
 
 - (void) getHomePictures{
-    [self sendRequest:@"/photos.json?sortBy=dateUploaded&pageSize=10"];
+    [self sendRequest:@"/photos.json?sortBy=dateUploaded&pageSize=3"];
 }
 
 - (void) loadGallery:(int) pageSize{
