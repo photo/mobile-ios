@@ -43,9 +43,9 @@
     if (title == @"Home"){
         HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        return navController;
+   //     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+   //     navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        return controller;
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];

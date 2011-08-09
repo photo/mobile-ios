@@ -44,27 +44,31 @@
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     NSArray *photos = [response objectForKey:@"result"] ;
+    NSLog(@"Message received = %@",photos);
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
-    if (photos == nil){
+    if (photos != nil){
+            int i =0; // needs to be removed after bug is fixed
         for (NSDictionary *photo in photos){
             UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]]]];
+            [images addObject:[img autorelease]];
+             i++;
             
-            UIImageView *animation = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];        
-            [images addObject:[animation autorelease]];
-            [img release];
+            if (i == 4){
+                break;
+            }
         } 
         
         UIImageView *myAnimatedView = [UIImageView alloc];
-        CGRect myImageRect = CGRectMake(10, 10, 200, 200);
+        CGRect myImageRect = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
         [myAnimatedView initWithFrame:myImageRect];
         myAnimatedView.animationImages = images;
-        myAnimatedView.animationDuration = 10; // seconds
+        myAnimatedView.animationDuration = 17; // seconds
         myAnimatedView.animationRepeatCount = 0; // 0 = loops forever
-        myAnimatedView.contentMode = UIViewContentModeScaleAspectFit;
         [myAnimatedView startAnimating];
         [self.view addSubview:myAnimatedView];
         [myAnimatedView release]; 
+
     }
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -74,6 +78,12 @@
 #pragma mark - View lifecycle
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];  
+    
+    // load the logo
+    UIImageView *logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appbar_logo.png"]];
+    CGRect positionLogo = CGRectMake(0, 0, 320, 46);
+    [logo setFrame:positionLogo];
+    [self.view addSubview:logo];
     
     // load some pictures
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
