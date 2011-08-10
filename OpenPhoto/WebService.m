@@ -38,7 +38,7 @@ NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
 }
 
 - (void) getHomePictures{
-    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos.json?orderBy=dateUploaded&pageSize=3&returnSizes="];
+    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos.json?sortBy=dateUploaded,DESC&pageSize=3&returnSizes="];
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
@@ -48,7 +48,6 @@ NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
         [homePicturesRequest appendString:@"320x385xCR"];
     }
     
-    NSLog(@"** Sending request to get pictures=%@",homePicturesRequest);
     [self sendRequest:homePicturesRequest];
 }
 

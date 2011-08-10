@@ -56,18 +56,13 @@
     
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
+/*
     if (photos != nil){
-        int i =0; // needs to be removed after bug is fixed
         for (NSDictionary *photo in photos){
             
             NSLog(@"Photo URL = %@",[photo objectForKey:key]);
             UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
             [images addObject:[img autorelease]];
-            i++;
-            
-            if (i == 4){
-                break;
-            }
         } 
         
         UIImageView *myAnimatedView = [UIImageView alloc];
@@ -81,6 +76,7 @@
         [myAnimatedView release]; 
         
     }
+ */
     
     [key release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
