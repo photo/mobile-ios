@@ -53,8 +53,13 @@
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         return navController;
     }else if (title == @"Tags"){
-        TagsViewController *controller = [[[TagsViewController alloc] init]autorelease];
+     //   TagsViewController *controller = [[[TagsViewController alloc] init]autorelease];
+     //   controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        
+     
+        TagViewController *controller = [[[TagViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        
         
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;

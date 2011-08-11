@@ -32,6 +32,7 @@
 #import "TagsViewController.h"
 #import "HomeViewController.h"
 #import "SettingsViewController.h"
+#import "TagViewController.h"
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
 }

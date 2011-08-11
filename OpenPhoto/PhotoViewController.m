@@ -39,9 +39,9 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        imageToSend = imageFromPicker;
+        self.imageToSend = imageFromPicker;
         // it will be necessary to send the 
-        [imageToSend retain];
+        //[imageToSend retain];
     }
     return self;
 }

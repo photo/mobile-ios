@@ -24,10 +24,10 @@
         self.title=@"Open Photo";
         
         // create service and the delegate
-        service = [[WebService alloc]init];
+        self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        images = [[NSMutableArray alloc] init];  
+        self.images = [[NSMutableArray alloc] init];  
         
     }
     return self;

@@ -24,7 +24,7 @@
         self.wantsFullScreenLayout = YES;
         
         // create service and the delegate
-        service = [[WebService alloc]init];
+       self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
     }

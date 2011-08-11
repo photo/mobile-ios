@@ -15,6 +15,7 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = @"Search Tags";
         self.dataSource = [[[MockDataSource alloc] init] autorelease];
+        self.service = [[WebService alloc]init];
     }
     return self;
 }
