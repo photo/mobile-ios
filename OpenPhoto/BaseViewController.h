@@ -29,7 +29,6 @@
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"
-#import "TagsViewController.h"
 #import "HomeViewController.h"
 #import "SettingsViewController.h"
 #import "TagViewController.h"

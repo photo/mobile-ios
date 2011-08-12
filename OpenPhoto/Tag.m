@@ -10,12 +10,14 @@
 
 @implementation Tag
 
-@synthesize tagName;
-- (id)initWithTagName:(NSString*) name{
+@synthesize tagName,quantity;
+
+- (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd{
     self = [super init];
     if (self) {
         // Initialization code here.
         self.tagName=name;
+        self.quantity = qtd;
     }
     
     return self;

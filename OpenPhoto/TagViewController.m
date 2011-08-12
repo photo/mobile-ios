@@ -20,7 +20,7 @@
         // create the service
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
-
+        
         
         // initialize the object tags
         self.tags = [[NSMutableArray alloc]init];      
@@ -76,8 +76,15 @@
         // tag name       
         NSString *name = [tagDetails objectForKey:@"id"];
         name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        Tag *tag = [[Tag alloc]initWithTagName:name];
+        
+        // how many images
+        NSString *qtd = [tagDetails objectForKey:@"count"];
+        
+        // create a tag and add to the list
+        Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
         [tags addObject:tag];
+        
+        // we don't need it anymore.
         [tag release];
     }
     
@@ -104,12 +111,13 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
     }
     NSUInteger row = [indexPath row];
     
     Tag *tag = [tags objectAtIndex:row];
     cell.textLabel.text=tag.tagName;
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
     
     return cell;
 }
@@ -122,10 +130,12 @@
     NSUInteger row = [indexPath row];
     Tag *tag = [tags objectAtIndex:row];
     
-    // open the gallery with a tag
-    GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:tag.tagName];
-    [self.navigationController pushViewController:galleryController animated:YES];
-    [galleryController release];
+    if (tag.quantity >0){
+        // open the gallery with a tag that contains at least one picture.
+        GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:tag.tagName];
+        [self.navigationController pushViewController:galleryController animated:YES];
+        [galleryController release];
+    }
 }
 
 @end

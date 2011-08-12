@@ -11,11 +11,13 @@
 
 @interface Tag : NSObject{
     NSString *tagName;
+    NSInteger quantity;
 }
 
 // constructor with tag name
-- (id)initWithTagName:(NSString*) name;
+- (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd;
 
 @property (nonatomic, copy) NSString *tagName;
+@property (nonatomic) NSInteger quantity;
 
 @end
