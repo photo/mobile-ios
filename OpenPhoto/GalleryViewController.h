@@ -15,7 +15,13 @@
 
 @interface GalleryViewController : TTThumbsViewController <WebServiceDelegate>{
     WebService* service;
+    NSString *tagName;
 }
-@property (nonatomic, retain) WebService* service;
+
+@property (nonatomic, retain) WebService *service;
+@property (nonatomic, copy) NSString *tagName;
+
+// methods
+- (id) initWithTagName:(NSString*) tag;
 
 @end

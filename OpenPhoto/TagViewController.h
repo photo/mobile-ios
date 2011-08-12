@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Tag.h"
 #import "WebService.h"
+#import "GalleryViewController.h"
 
 @interface TagViewController : UITableViewController<WebServiceDelegate>{
     NSMutableArray *tags;

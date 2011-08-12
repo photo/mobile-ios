@@ -9,11 +9,10 @@
 #import "GalleryViewController.h"
 
 @implementation GalleryViewController
-@synthesize service;
+@synthesize service, tagName;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init{
+    self = [super init];
     if (self) {
         // Custom initialization
         self.view.backgroundColor = [UIColor blackColor];
@@ -24,9 +23,17 @@
         self.wantsFullScreenLayout = YES;
         
         // create service and the delegate
-       self.service = [[WebService alloc]init];
+        self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
+    }
+    return self;
+}
+
+- (id) initWithTagName:(NSString*) tag{
+    self = [self init];
+    if (self) {
+        self.tagName = tag;
     }
     return self;
 }
@@ -34,8 +41,12 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    NSLog(@"Value service=%@",service);
-    [service loadGallery:25];
+    
+    if (self.tagName != nil){
+        [service loadGallery:25 withTag:self.tagName];
+    }else{
+        [service loadGallery:25];
+    }
     
 }
 
@@ -99,6 +110,7 @@
 
 - (void) dealloc {
     [service release];
+    [tagName release];
     [super dealloc];
 }
 
