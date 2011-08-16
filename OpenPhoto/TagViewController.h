@@ -14,8 +14,12 @@
 @interface TagViewController : UITableViewController<WebServiceDelegate>{
     NSMutableArray *tags;
     WebService *service;
+    BOOL readOnly;
 }
 
 @property (nonatomic, retain) NSMutableArray *tags;
 @property (nonatomic, retain) WebService *service;
+
+-(void) setReadOnly;
+
 @end

@@ -126,8 +126,8 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
         imageToSend = [ImageManipulation imageWithImage:imageToSend scaledToSize:sz];
     }
     
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model], nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
@@ -149,7 +149,8 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     
     // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"] ];
+    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"] ];
+   
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
@@ -236,7 +237,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             }
             
             cell.textLabel.text=@"Tags";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
         case 3:
             // filter: disclosure button
@@ -263,7 +264,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             cell.textLabel.text=@"High resolution";
             highResolutionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             cell.accessoryView = highResolutionPicture;
-            [(UISwitch *)cell.accessoryView setOn:NO];
+            [(UISwitch *)cell.accessoryView setOn:YES];
             break;
             
         case 5:
@@ -285,20 +286,28 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             break;
     }
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    
-    
+      
     NSUInteger row = [indexPath row];
-    NSLog(@"Row clicked = %d",row);
+    
+    NSLog(@"Value row = %d",row);
     
     if ( row == 3){
+        // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         FilterViewController *filter = [[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil]autorelease];
         [self.navigationController pushViewController:filter animated:YES];
-    }  
+    }else if (row == 2){
+        // tags
+         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+                TagViewController *controller = [[[TagViewController alloc] init]autorelease];
+        [controller setReadOnly];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

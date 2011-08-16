@@ -23,7 +23,9 @@
         
         
         // initialize the object tags
-        self.tags = [[NSMutableArray alloc]init];      
+        self.tags = [[NSMutableArray alloc]init];    
+        
+        readOnly = NO;
     }
     return self;
 }
@@ -41,6 +43,10 @@
     [service release];
     [super dealloc];
 }
+- (void) setReadOnly{
+    readOnly = YES;
+}
+
 
 #pragma mark - View lifecycle
 
@@ -130,7 +136,7 @@
     NSUInteger row = [indexPath row];
     Tag *tag = [tags objectAtIndex:row];
     
-    if (tag.quantity >0){
+    if (tag.quantity >0 && readOnly == NO){
         // open the gallery with a tag that contains at least one picture.
         GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:tag.tagName];
         [self.navigationController pushViewController:galleryController animated:YES];

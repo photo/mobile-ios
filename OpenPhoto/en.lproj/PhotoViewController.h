@@ -11,6 +11,7 @@
 #import "Base64Utilities.h"
 #import "FilterViewController.h"
 #import "ImageManipulation.h"
+#import "TagViewController.h"
 
 #define kNumbersRow     6
 
