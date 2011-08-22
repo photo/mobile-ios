@@ -24,6 +24,7 @@
 @synthesize descriptionTextField;
 @synthesize permissionPicture;
 @synthesize highResolutionPicture;
+@synthesize tagController;
 
 
 static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
@@ -40,8 +41,11 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     if (self) {
         // Custom initialization
         self.imageToSend = imageFromPicker;
-        // it will be necessary to send the 
-        //[imageToSend retain];
+
+        // initialization of tag controller
+        self.tagController = [[[TagViewController alloc] init]autorelease];
+        [self.tagController setReadOnly];
+
     }
     return self;
 }
@@ -59,7 +63,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
-{        statusBar.hidden = YES;  
+{   statusBar.hidden = YES;  
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [super viewDidLoad];
@@ -126,15 +130,15 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
         imageToSend = [ImageManipulation imageWithImage:imageToSend scaledToSize:sz];
     }
     
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model], nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",nil];
+    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil];
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
     // to send the request we add a thread.
     [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
                              toTarget:self 
-                           withObject:values];    
+                           withObject:values];
 }
 
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values
@@ -149,9 +153,8 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     
     // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"] ];
+    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"]];
    
-    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
@@ -171,7 +174,6 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     [self dismissModalViewControllerAnimated:YES];
     [pool release];
-    
 }
 
 
@@ -304,9 +306,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     }else if (row == 2){
         // tags
          [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-                TagViewController *controller = [[[TagViewController alloc] init]autorelease];
-        [controller setReadOnly];
-        [self.navigationController pushViewController:controller animated:YES];
+         [self.navigationController pushViewController:self.tagController animated:YES];
     }
 }
 

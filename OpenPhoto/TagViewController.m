@@ -47,6 +47,44 @@
     readOnly = YES;
 }
 
+// this method return only the tag's name.
+- (NSArray*) getSelectedTags{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    for (id object in self.tags) {
+        Tag *tag = (Tag*) object;
+        if (tag.selected == YES){
+            [array addObject:tag.tagName];   
+        }
+    }
+    
+    return array;
+}
+
+// this method return the tag's name but in the format to send to openphoto server
+- (NSString *) getSelectedTagsInJsonFormat{  
+    NSMutableString *result = [NSMutableString string];
+    [result appendFormat:@"["];
+    
+    NSArray *array = [self getSelectedTags];
+    int counter = 1;
+    
+    if (array != nil && [array count]>0){
+        for (id string in array) {
+            [result appendFormat:@"%@%@%@",@"'",string,@"'"];
+            
+            // add the ,
+            if ( counter < [array count]){
+                [result appendFormat:@", "];
+            }
+            
+            counter++;
+        }
+    }
+    
+    [result appendFormat:@"]"];
+    return result;
+}
 
 #pragma mark - View lifecycle
 
@@ -123,7 +161,9 @@
     
     Tag *tag = [tags objectAtIndex:row];
     cell.textLabel.text=tag.tagName;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
+    if (readOnly == NO){
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
+    }
     
     return cell;
 }
@@ -141,6 +181,20 @@
         GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:tag.tagName];
         [self.navigationController pushViewController:galleryController animated:YES];
         [galleryController release];
+    }
+    
+    if (readOnly == TRUE){
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        NSUInteger row = [indexPath row];
+        Tag *tag = [tags objectAtIndex:row];
+        
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            tag.selected = NO;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            tag.selected = YES;
+        }
     }
 }
 

@@ -25,6 +25,7 @@
     UITextField *descriptionTextField;
     UISwitch *permissionPicture;
     UISwitch *highResolutionPicture;
+    TagViewController *tagController;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) UITextField *descriptionTextField;
 @property (nonatomic, retain) UISwitch *permissionPicture;
 @property (nonatomic, retain) UISwitch *highResolutionPicture;
+@property (nonatomic, retain) TagViewController *tagController;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;

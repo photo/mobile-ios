@@ -21,5 +21,7 @@
 @property (nonatomic, retain) WebService *service;
 
 -(void) setReadOnly;
+-(NSArray*) getSelectedTags;
+-(NSString *) getSelectedTagsInJsonFormat;
 
 @end

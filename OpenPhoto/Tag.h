@@ -12,6 +12,7 @@
 @interface Tag : NSObject{
     NSString *tagName;
     NSInteger quantity;
+    BOOL selected;
 }
 
 // constructor with tag name
@@ -19,5 +20,6 @@
 
 @property (nonatomic, copy) NSString *tagName;
 @property (nonatomic) NSInteger quantity;
+@property (nonatomic) BOOL  selected;
 
 @end

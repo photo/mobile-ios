@@ -10,7 +10,7 @@
 
 @implementation Tag
 
-@synthesize tagName,quantity;
+@synthesize tagName,quantity,selected;
 
 - (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd{
     self = [super init];
@@ -18,6 +18,8 @@
         // Initialization code here.
         self.tagName=name;
         self.quantity = qtd;
+        // by default no tag is selected. This is used for READ ONLY proposal
+        self.selected = NO;
     }
     
     return self;
