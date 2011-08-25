@@ -30,11 +30,16 @@
 #import "QSStrings.h"
 #import "PhotoViewController.h"
 #import "HomeViewController.h"
-#import "SettingsViewController.h"
 #import "TagViewController.h"
+#import "IASKAppSettingsViewController.h"
+#import "IASKSettingsStoreFile.h"
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>{
+
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate>{
+        IASKAppSettingsViewController *appSettingsViewController;
 }
+
+@property (nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*)title image:(UIImage*)image;

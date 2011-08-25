@@ -59,6 +59,7 @@
 		CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */; };
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
+		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
 		CD6FA94413E40942007561EB /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA93F13E40942007561EB /* tab-gallery.png */; };
 		CD6FA94513E40942007561EB /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94013E40942007561EB /* tab-home.png */; };
 		CD6FA94613E40942007561EB /* tab-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94113E40942007561EB /* tab-settings.png */; };
@@ -88,7 +89,6 @@
 		CDF4464313E1C62E007E8F72 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464013E1C62E007E8F72 /* BaseViewController.m */; };
 		CDF4464413E1C62E007E8F72 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464213E1C62E007E8F72 /* GalleryViewController.m */; };
 		CDF4464713E1C655007E8F72 /* MockPhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464613E1C655007E8F72 /* MockPhotoSource.m */; };
-		CDF4464D13E1C6B2007E8F72 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464C13E1C6B2007E8F72 /* SettingsViewController.m */; };
 		CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */; };
 		CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465313E1C6DC007E8F72 /* HomeViewController.m */; };
 		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
@@ -370,6 +370,7 @@
 		CD4DF4DC13F3C1F000A31234 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
+		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CD6FA93F13E40942007561EB /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-gallery.png"; sourceTree = "<group>"; };
 		CD6FA94013E40942007561EB /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home.png"; sourceTree = "<group>"; };
 		CD6FA94113E40942007561EB /* tab-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-settings.png"; sourceTree = "<group>"; };
@@ -408,8 +409,6 @@
 		CDF4464213E1C62E007E8F72 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		CDF4464513E1C655007E8F72 /* MockPhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockPhotoSource.h; sourceTree = "<group>"; };
 		CDF4464613E1C655007E8F72 /* MockPhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockPhotoSource.m; sourceTree = "<group>"; };
-		CDF4464B13E1C6B2007E8F72 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		CDF4464C13E1C6B2007E8F72 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		CDF4464F13E1C6CF007E8F72 /* Base64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Utilities.h; sourceTree = "<group>"; };
 		CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Utilities.m; sourceTree = "<group>"; };
 		CDF4465213E1C6DC007E8F72 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
@@ -803,8 +802,7 @@
 		CDF4463E13E1C60B007E8F72 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CDF4464B13E1C6B2007E8F72 /* SettingsViewController.h */,
-				CDF4464C13E1C6B2007E8F72 /* SettingsViewController.m */,
+				CD6834CD1406596200468742 /* Settings.bundle */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1109,6 +1107,7 @@
 				CD12AA501405A927008B124A /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				CD12AA511405A927008B124A /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				CD12AA521405A927008B124A /* IASKSpecifierValuesView.xib in Resources */,
+				CD6834CE1406596200468742 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,7 +1162,6 @@
 				CDF4464313E1C62E007E8F72 /* BaseViewController.m in Sources */,
 				CDF4464413E1C62E007E8F72 /* GalleryViewController.m in Sources */,
 				CDF4464713E1C655007E8F72 /* MockPhotoSource.m in Sources */,
-				CDF4464D13E1C6B2007E8F72 /* SettingsViewController.m in Sources */,
 				CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */,
 				CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */,
 				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,

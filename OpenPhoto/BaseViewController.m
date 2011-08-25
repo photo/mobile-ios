@@ -35,6 +35,16 @@
 
 @implementation BaseViewController
 
+@synthesize appSettingsViewController;
+
+- (IASKAppSettingsViewController*)appSettingsViewController {
+	if (!appSettingsViewController) {
+		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+		appSettingsViewController.delegate = self;
+	}
+	return appSettingsViewController;
+}
+
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {
@@ -62,12 +72,16 @@
         
         return navController;
     }else if (title == @"Settings"){
-        SettingsViewController *controller = [[[SettingsViewController alloc]init ]autorelease];
+        UINavigationController *controller = [[[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
-        return navController;
+        //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
+        // But we encourage you not to uncomment. Thank you!
+
+        self.appSettingsViewController.showDoneButton = NO;        
+        controller.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
+        return controller;
     }
     
     UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
@@ -75,6 +89,11 @@
     return viewController;
 }
 
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
+    [self dismissModalViewControllerAnimated:YES];
+	
+	// your code here to reconfigure the app for changed settings
+}
 
 // Create a custom UIButton and add it to the center of our tab bar
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
@@ -161,6 +180,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 
 
 - (void)dealloc {
+    [appSettingsViewController release];
+	appSettingsViewController = nil;
     [super dealloc];
 }
 
