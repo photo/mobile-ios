@@ -8,69 +8,143 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Report a bug</string>
+			<string>Account</string>
 		</dict>
+		<dict>
+            <key>DefaultValue</key>
+			<string>http://current.openphoto.me</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Server</string>
+			<key>Key</key>
+			<string>account_server</string>
+		</dict>
+		<dict>
+            <key>DefaultValue</key>
+			<string>hello@openphoto.me</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>User</string>
+			<key>Key</key>
+			<string>account_user</string>
+		</dict>
+		<dict>
+            <key>DefaultValue</key>
+			<string>a342d455v567b654</string>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Token</string>
+			<key>Key</key>
+			<string>account_token</string>
+		</dict>        
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>User configuration</string>
+			<string>Photos</string>
 		</dict>
+        <dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>photos_save_camera_roll</string>
+			<key>Title</key>
+			<string>Save original to Library</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+        <dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>photos_save_filtered</string>
+			<key>Title</key>
+			<string>Save filtered to Library</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict> 
+        <dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>photos_high_resolution</string>
+			<key>Title</key>
+			<string>High resolution</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict> 
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Privacy</string>
 		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Group</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>AutocapitalizationType</key>
-			<string>None</string>
-			<key>AutocorrectionType</key>
-			<string>No</string>
-			<key>DefaultValue</key>
-			<string></string>
-			<key>IsSecure</key>
-			<false/>
-			<key>Key</key>
-			<string>name_preference</string>
-			<key>KeyboardType</key>
-			<string>Alphabet</string>
-			<key>Title</key>
-			<string>Name</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-		</dict>
-		<dict>
+        <dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>photos_are_private</string>
 			<key>Title</key>
-			<string>Enabled</string>
+			<string>Photos are private</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<real>0.5</real>
-			<key>Key</key>
-			<string>slider_preference</string>
-			<key>MaximumValue</key>
-			<integer>1</integer>
-			<key>MaximumValueImage</key>
-			<string></string>
-			<key>MinimumValue</key>
-			<integer>0</integer>
-			<key>MinimumValueImage</key>
-			<string></string>
 			<key>Type</key>
-			<string>PSSliderSpecifier</string>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Bug reporter</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>email</string>
+			<key>IASKMailComposeBccRecipents</key>
+			<array/>
+			<key>IASKMailComposeBody</key>
+			<string>Version 1.0. The bug is: XXXX</string>
+			<key>IASKMailComposeBodyIsHTML</key>
+			<string>YES</string>
+			<key>IASKMailComposeCcRecipents</key>
+			<array/>
+			<key>IASKMailComposeSubject</key>
+			<string>Bug on iOS OpenPhoto</string>
+			<key>IASKMailComposeToRecipents</key>
+			<array>
+				<string>bug@openphoto.me</string>
+			</array>
+			<key>Title</key>
+			<string>Ups! We will fix it</string>
+			<key>Type</key>
+			<string>IASKMailComposeSpecifier</string>
+		</dict>
+		<dict>
+			<key>Title</key>
+			<string>About</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTitleValueSpecifier</string>
+			<key>Title</key>
+			<string>Version</string>
+			<key>Key</key>
+			<string>version</string>
+			<key>DefaultValue</key>
+			<string>1.0</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>website</string>
+			<key>File</key>
+			<string>http://theopenphotoproject.org/</string>
+			<key>Title</key>
+			<string>Open Photo Project</string>
+			<key>Type</key>
+			<string>IASKOpenURLSpecifier</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

@@ -75,10 +75,9 @@
         UINavigationController *controller = [[[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         
-        //[viewController setShowCreditsFooter:NO];   // Uncomment to not display InAppSettingsKit credits for creators.
-        // But we encourage you not to uncomment. Thank you!
-
-        self.appSettingsViewController.showDoneButton = NO;        
+        [self.appSettingsViewController setShowCreditsFooter:NO];   
+        self.appSettingsViewController.showDoneButton = NO;   
+        
         controller.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
         return controller;
