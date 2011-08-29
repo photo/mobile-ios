@@ -19,7 +19,7 @@
 
 @synthesize detailsPictureTable;
 @synthesize statusBar;
-@synthesize imageToSend;
+@synthesize imageOriginal,imageFiltered;
 @synthesize titleTextField;
 @synthesize descriptionTextField;
 @synthesize permissionPicture;
@@ -40,12 +40,12 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.imageToSend = imageFromPicker;
-
+        self.imageOriginal = imageFromPicker;
+        
         // initialization of tag controller
         self.tagController = [[[TagViewController alloc] init]autorelease];
         [self.tagController setReadOnly];
-
+        
     }
     return self;
 }
@@ -97,7 +97,8 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     [imageTitle release];
     [imageDescription release];
     [statusBar release];
-    [imageToSend release];
+    [imageOriginal release];
+    [imageFiltered release];
     [statusBar release];
     [detailsPictureTable release];
     [titleTextField release];
@@ -126,14 +127,40 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     // check the size of the image
     if (![highResolutionPicture isOn]){
-        CGSize sz = CGSizeMake(imageToSend.size.width/2,imageToSend.size.height/2);
-        imageToSend = [ImageManipulation imageWithImage:imageToSend scaledToSize:sz];
+        CGSize sz = CGSizeMake(imageOriginal.size.width/2,imageOriginal.size.height/2);
+        self.imageOriginal = [ImageManipulation imageWithImage:imageOriginal scaledToSize:sz];
+        
+        if (self.imageFiltered != nil){ 
+            CGSize sz = CGSizeMake(imageFiltered.size.width/2,imageFiltered.size.height/2);
+            self.imageFiltered = [ImageManipulation imageWithImage:imageFiltered scaledToSize:sz];
+        }
     }
     
+    // parameters to upload
     NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",nil];
-    NSArray *objects = [NSArray arrayWithObjects:imageToSend, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil];
+    NSArray *objects;
+    
+    // set the correct image to upload depends if there is a filtered or not.
+    
+    if (self.imageFiltered != nil){
+        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil];
+    } else{
+        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil]; 
+    }
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    // save picture local
+    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
+        NSLog(@"Saving picture in the photo album");
+        UIImageWriteToSavedPhotosAlbum(self.imageOriginal, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        
+    }
+    
+    // save filtered picture local
+    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
+        UIImageWriteToSavedPhotosAlbum(self.imageFiltered, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    }
     
     // to send the request we add a thread.
     [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
@@ -154,7 +181,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     // set all details to send
     NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"]];
-   
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://current.openphoto.me/photo/upload.json"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
@@ -174,6 +201,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     [self dismissModalViewControllerAnimated:YES];
     [pool release];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    NSLog(@"Unable to save image to Photo Album: %@", [error localizedDescription]);
 }
 
 
@@ -297,7 +328,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-      
+    
     NSUInteger row = [indexPath row];
     
     NSLog(@"Value row = %d",row);
@@ -309,8 +340,8 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
         [self.navigationController pushViewController:filter animated:YES];
     }else if (row == 2){
         // tags
-         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-         [self.navigationController pushViewController:self.tagController animated:YES];
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        [self.navigationController pushViewController:self.tagController animated:YES];
     }
 }
 

@@ -50,7 +50,7 @@
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
-			<string>photos_save_camera_roll</string>
+			<string>photos_save_camera_roll_or_snapshot</string>
 			<key>Title</key>
 			<string>Save original to Library</string>
 			<key>Type</key>

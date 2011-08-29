@@ -19,7 +19,8 @@
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
     UIActivityIndicatorView *statusBar;
-    UIImage* imageToSend;
+    UIImage* imageOriginal;
+    UIImage* imageFiltered;
     UITableView *detailsPictureTable;
     UITextField *titleTextField;
     UITextField *descriptionTextField;
@@ -29,7 +30,8 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
-@property (nonatomic, retain) UIImage *imageToSend;
+@property (nonatomic, retain) UIImage *imageOriginal;
+@property (nonatomic, retain) UIImage *imageFiltered;
 @property (nonatomic, retain) UITextField *titleTextField;
 @property (nonatomic, retain) UITextField *descriptionTextField;
 @property (nonatomic, retain) UISwitch *permissionPicture;
