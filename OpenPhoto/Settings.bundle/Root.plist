@@ -11,7 +11,7 @@
 			<string>Account</string>
 		</dict>
 		<dict>
-            <key>DefaultValue</key>
+			<key>DefaultValue</key>
 			<string>http://current.openphoto.me</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
@@ -21,7 +21,7 @@
 			<string>account_server</string>
 		</dict>
 		<dict>
-            <key>DefaultValue</key>
+			<key>DefaultValue</key>
 			<string>hello@openphoto.me</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
@@ -31,7 +31,7 @@
 			<string>account_user</string>
 		</dict>
 		<dict>
-            <key>DefaultValue</key>
+			<key>DefaultValue</key>
 			<string>a342d455v567b654</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
@@ -39,14 +39,14 @@
 			<string>Token</string>
 			<key>Key</key>
 			<string>account_token</string>
-		</dict>        
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Photos</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
@@ -56,7 +56,7 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
@@ -65,8 +65,8 @@
 			<string>Save filtered to Library</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-		</dict> 
-        <dict>
+		</dict>
+		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
@@ -75,14 +75,14 @@
 			<string>High resolution</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
-		</dict> 
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
 			<string>Privacy</string>
 		</dict>
-        <dict>
+		<dict>
 			<key>DefaultValue</key>
 			<true/>
 			<key>Key</key>
@@ -104,7 +104,7 @@
 			<key>IASKMailComposeBccRecipents</key>
 			<array/>
 			<key>IASKMailComposeBody</key>
-			<string>Version 1.0. The bug is: XXXX</string>
+			<string>Version 1.0. The bug is ...</string>
 			<key>IASKMailComposeBodyIsHTML</key>
 			<string>YES</string>
 			<key>IASKMailComposeCcRecipents</key>
@@ -116,7 +116,7 @@
 				<string>bug@openphoto.me</string>
 			</array>
 			<key>Title</key>
-			<string>Ups! We will fix it</string>
+			<string>Opps! We will fix it</string>
 			<key>Type</key>
 			<string>IASKMailComposeSpecifier</string>
 		</dict>
