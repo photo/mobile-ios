@@ -266,7 +266,9 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             cell.textLabel.text=@"High resolution";
             highResolutionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             cell.accessoryView = highResolutionPicture;
-            [(UISwitch *)cell.accessoryView setOn:YES];
+            
+            // get from user if picture will be uploaded in high resolution or not
+            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"photos_high_resolution"]];
             break;
             
         case 5:
@@ -281,7 +283,9 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             cell.textLabel.text=@"Private";
             permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             cell.accessoryView = permissionPicture;
-            [(UISwitch *)cell.accessoryView setOn:NO];
+            
+            // get from user configuration if pictures should be private or not
+            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"photos_are_private"]];
             break;
             
         default:
