@@ -44,6 +44,12 @@
 	}
 	return appSettingsViewController;
 }
+- (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
+	if ([key isEqualToString:@"LogOutButton"]) {
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure want to log out" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[alert show];
+	} 
+}
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image

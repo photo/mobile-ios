@@ -20,25 +20,13 @@
 			<key>Key</key>
 			<string>account_server</string>
 		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>hello@openphoto.me</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
-			<key>Title</key>
-			<string>User</string>
+        <dict>
 			<key>Key</key>
-			<string>account_user</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>a342d455v567b654</string>
-			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>LogOutButton</string>
 			<key>Title</key>
-			<string>Token</string>
-			<key>Key</key>
-			<string>account_token</string>
+			<string>Log out</string>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
 		</dict>
 		<dict>
 			<key>Type</key>
