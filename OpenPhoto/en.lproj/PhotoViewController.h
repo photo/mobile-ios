@@ -27,6 +27,7 @@
     UISwitch *permissionPicture;
     UISwitch *highResolutionPicture;
     TagViewController *tagController;
+    UIImagePickerControllerSourceType sourceType;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -37,9 +38,10 @@
 @property (nonatomic, retain) UISwitch *permissionPicture;
 @property (nonatomic, retain) UISwitch *highResolutionPicture;
 @property (nonatomic, retain) TagViewController *tagController;
+@property (nonatomic) UIImagePickerControllerSourceType sourceType;     
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
 - (IBAction)upload:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UITableView *detailsPictureTable;

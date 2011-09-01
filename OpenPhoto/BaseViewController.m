@@ -142,8 +142,7 @@
     UIImagePickerController *pickerController = [[UIImagePickerController
                                                   alloc]
                                                  init];
-    pickerController.sourceType =
-    UIImagePickerControllerSourceTypePhotoLibrary;
+    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     pickerController.delegate = self;
     [self presentModalViewController:pickerController animated:YES];
     [pickerController release]; 
@@ -153,7 +152,7 @@
     UIImagePickerController *pickerController = [[UIImagePickerController
                                                   alloc]
                                                  init];
-    pickerController.sourceType =UIImagePickerControllerSourceTypeCamera;
+    pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     pickerController.delegate = self;
     [self presentModalViewController:pickerController animated:YES];
     [pickerController release];
@@ -165,7 +164,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
     
-    PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photo:pickedImage];
+    PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photo:pickedImage source:picker.sourceType];
     [picker pushViewController:controller animated:YES];
 }
 

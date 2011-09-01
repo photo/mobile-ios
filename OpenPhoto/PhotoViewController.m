@@ -25,6 +25,7 @@
 @synthesize permissionPicture;
 @synthesize highResolutionPicture;
 @synthesize tagController;
+@synthesize sourceType;
 
 
 static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
@@ -35,12 +36,13 @@ static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
 static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker source:(UIImagePickerControllerSourceType) pickerSourceType
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         self.imageOriginal = imageFromPicker;
+        self.sourceType = pickerSourceType;
         
         // initialization of tag controller
         self.tagController = [[[TagViewController alloc] init]autorelease];
@@ -150,16 +152,18 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    // save picture local
-    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
-        NSLog(@"Saving picture in the photo album");
-        UIImageWriteToSavedPhotosAlbum(self.imageOriginal, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+    // just save if it cames from the camera.
+    if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
+        // save picture local
+        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
+            NSLog(@"Saving picture in the photo album");
+            UIImageWriteToSavedPhotosAlbum([self.imageOriginal retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
         
-    }
-    
-    // save filtered picture local
-    if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
-        UIImageWriteToSavedPhotosAlbum(self.imageFiltered, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        // save filtered picture local
+        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
+            UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
     }
     
     // to send the request we add a thread.
@@ -204,7 +208,12 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    NSLog(@"Unable to save image to Photo Album: %@", [error localizedDescription]);
+    [image release];
+    if (error.localizedDescription != nil){
+        NSLog(@"Image could not be saved = %@", error.localizedDescription);
+    }else{
+        NSLog(@"Image saved");
+    }
 }
 
 
