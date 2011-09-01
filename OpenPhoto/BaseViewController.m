@@ -48,6 +48,7 @@
 	if ([key isEqualToString:@"LogOutButton"]) {
 		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure want to log out" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[alert show];
+        // TODO Remove the client id
 	} 
 }
 

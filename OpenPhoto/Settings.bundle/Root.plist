@@ -24,7 +24,7 @@
 			<key>Key</key>
 			<string>LogOutButton</string>
 			<key>Title</key>
-			<string>Log out</string>
+			<string>Log out                                           </string>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 		</dict>
