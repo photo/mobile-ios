@@ -200,14 +200,14 @@
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = "extThree20JSON+SBJSON";
 		};
-		CDC882CD1402D6E1005E5B3C /* PBXContainerItemProxy */ = {
+		CD761571140FDF52005AD992 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 662D81EF12630516005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.5";
 		};
-		CDC882CF1402D6E1005E5B3C /* PBXContainerItemProxy */ = {
+		CD761573140FDF52005AD992 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
@@ -474,9 +474,9 @@
 			isa = PBXGroup;
 			children = (
 				320A5A189C235877202780D4 /* libThree20Network.a */,
-				CDC882CE1402D6E1005E5B3C /* libThree20Network-Xcode3.2.5.a */,
+				CD761572140FDF52005AD992 /* libThree20Network-Xcode3.2.5.a */,
 				CDF445B513E1C4AB007E8F72 /* NetworkUnitTests.octest */,
-				CDC882D01402D6E1005E5B3C /* NetworkUnitTests-Xcode3.2.5.octest */,
+				CD761574140FDF52005AD992 /* NetworkUnitTests-Xcode3.2.5.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -881,6 +881,7 @@
 		CDF1C93E13E1C45C0018AD0B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = OpenPhoto;
 			};
 			buildConfigurationList = CDF1C94113E1C45C0018AD0B /* Build configuration list for PBXProject "OpenPhoto" */;
@@ -985,18 +986,18 @@
 			remoteRef = 320F2C48872C2E2C4DF86206 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CDC882CE1402D6E1005E5B3C /* libThree20Network-Xcode3.2.5.a */ = {
+		CD761572140FDF52005AD992 /* libThree20Network-Xcode3.2.5.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = "libThree20Network-Xcode3.2.5.a";
-			remoteRef = CDC882CD1402D6E1005E5B3C /* PBXContainerItemProxy */;
+			remoteRef = CD761571140FDF52005AD992 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CDC882D01402D6E1005E5B3C /* NetworkUnitTests-Xcode3.2.5.octest */ = {
+		CD761574140FDF52005AD992 /* NetworkUnitTests-Xcode3.2.5.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = "NetworkUnitTests-Xcode3.2.5.octest";
-			remoteRef = CDC882CF1402D6E1005E5B3C /* PBXContainerItemProxy */;
+			remoteRef = CD761573140FDF52005AD992 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CDF445AB13E1C4AB007E8F72 /* Three20UnitTests.octest */ = {
@@ -1329,6 +1330,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1346,6 +1348,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhotoTests/OpenPhotoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1419,6 +1422,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1431,6 +1435,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1448,6 +1453,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhotoTests/OpenPhotoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -1465,6 +1471,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhotoTests/OpenPhotoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
