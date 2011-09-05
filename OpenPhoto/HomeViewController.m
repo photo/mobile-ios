@@ -44,6 +44,18 @@
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     NSArray *photos = [response objectForKey:@"result"] ;
+    // do the download in a thread
+    // to send the request we add a thread.
+    [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
+                             toTarget:self 
+                           withObject:photos];
+    
+    
+}
+
+-(void) getHomeScreenPicturesOnDetachTread:(NSArray*) photos
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     NSString *key;
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
@@ -54,34 +66,30 @@
         key = [[NSString alloc]initWithString:@"path320x385xCR"];
     }
     
-    
     // Loop through each entry in the dictionary and create an array of MockPhoto
-/*
     if (photos != nil){
         for (NSDictionary *photo in photos){
-            
             NSLog(@"Photo URL = %@",[photo objectForKey:key]);
             UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
             [images addObject:[img autorelease]];
         } 
         
-        UIImageView *myAnimatedView = [UIImageView alloc];
-        CGRect myImageRect = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
-        [myAnimatedView initWithFrame:myImageRect];
-        myAnimatedView.animationImages = images;
-        myAnimatedView.animationDuration = 17; // seconds
-        myAnimatedView.animationRepeatCount = 0; // 0 = loops forever
-        [myAnimatedView startAnimating];
-        [self.view addSubview:myAnimatedView];
-        [myAnimatedView release]; 
-        
+        UIImageView *animationView = [UIImageView alloc];
+        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+        [animationView initWithFrame:imageSize];
+        animationView.animationImages = images;
+        animationView.animationDuration = 17; // seconds
+        animationView.animationRepeatCount = 0; // 0 = loops forever
+        [animationView startAnimating];
+        [self.view addSubview:animationView];
+        [animationView release]; 
     }
- */
     
     [key release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [pool release];
+    
 }
-
 
 #pragma mark - View lifecycle
 -(void) viewWillAppear:(BOOL)animated{
