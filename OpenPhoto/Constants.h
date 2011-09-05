@@ -10,11 +10,11 @@
 
 @interface Constants : NSObject
 
-extern NSString * const kOpenPhotoServer;
 extern NSString * const kAppInitialized;
 extern NSString * const kPhotosSaveCameraRollOrSnapshot;
 extern NSString * const kPhotosSaveFiltered;
 extern NSString * const kPhotosHighResolution;
 extern NSString * const kPhotosArePrivate;
+extern NSString * const kOpenPhotoServer;
 
 @end

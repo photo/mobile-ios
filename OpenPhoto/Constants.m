@@ -11,8 +11,6 @@
 @implementation Constants
 
 
-// Const for the server. In the future it will be inside the Settings
-NSString * const kOpenPhotoServer = @"http://current.openphoto.me";
 // Const for the app initialization variable
 NSString * const kAppInitialized = @"app_initialized";
 // Save original to Library - NSUserDefaults name
@@ -23,5 +21,7 @@ NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
 NSString * const kPhotosHighResolution=@"photos_high_resolution";
 // Privacy - NSUserDefaults name
 NSString * const kPhotosArePrivate=@"photos_are_private";
+// NSUserDefault variable name for the OpenPhoto Server
+NSString * const kOpenPhotoServer=@"account_server";
 
 @end

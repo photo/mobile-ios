@@ -33,6 +33,8 @@
      * set the initial configuration for the user properties
      */
     if (standardUserDefaults) {
+        // normally is not necessary to define the server, because user MUST do it, but we use it for the Default value
+        [standardUserDefaults setObject:@"http://current.openphoto.me" forKey:kOpenPhotoServer];
         // Save original to Library
         [standardUserDefaults setBool:YES forKey:kPhotosSaveCameraRollOrSnapshot];
         // Save filtered to Library

@@ -102,7 +102,7 @@
 - (void)sendRequest:(NSString*) request{
     // create the url to connect to OpenPhoto
     NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
-                                      kOpenPhotoServer, request];
+                                      [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
     
     NSLog(@"Request to be sent = [%@]",urlString);
     
