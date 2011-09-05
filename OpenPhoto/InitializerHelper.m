@@ -10,10 +10,6 @@
 
 @implementation InitializerHelper
 
-
-// Const for the server. In the future it will be inside the Settings
-NSString * const kAppInitialized = @"app_initialized";
-
 - (BOOL) isInitialized
 {
     // compare not just nil. It may be reset. So, we need to check for NO
@@ -38,13 +34,13 @@ NSString * const kAppInitialized = @"app_initialized";
      */
     if (standardUserDefaults) {
         // Save original to Library
-        [standardUserDefaults setBool:YES forKey:@"photos_save_camera_roll_or_snapshot"];
+        [standardUserDefaults setBool:YES forKey:kPhotosSaveCameraRollOrSnapshot];
         // Save filtered to Library
-        [standardUserDefaults setBool:YES forKey:@"photos_save_filtered"];
+        [standardUserDefaults setBool:YES forKey:kPhotosSaveFiltered];
         // High resolution
-        [standardUserDefaults setBool:YES forKey:@"photos_high_resolution"];
+        [standardUserDefaults setBool:YES forKey:kPhotosHighResolution];
         // Privacy
-        [standardUserDefaults setBool:YES forKey:@"photos_are_private"];
+        [standardUserDefaults setBool:YES forKey:kPhotosArePrivate];
         
         
         // set that the initialization is okay.

@@ -7,6 +7,7 @@
 //
 
 #include <Three20/Three20.h>
+#import "Constants.h"
 
 // protocol to return the response from the server.
 @protocol WebServiceDelegate <NSObject>

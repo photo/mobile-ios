@@ -99,6 +99,7 @@
 		CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */; };
 		CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465313E1C6DC007E8F72 /* HomeViewController.m */; };
 		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
+		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +431,8 @@
 		CDF4465313E1C6DC007E8F72 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		CDF59C5413E93D600019ED62 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		CDF59C5513E93D600019ED62 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		CDFF467C141559FE00D89578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -853,6 +856,8 @@
 				CDE3C6A613F02186008A4F09 /* ImageManipulation.m */,
 				CD8BB4401414198200D5650E /* InitializerHelper.h */,
 				CD8BB4411414198200D5650E /* InitializerHelper.m */,
+				CDFF467B141559FE00D89578 /* Constants.h */,
+				CDFF467C141559FE00D89578 /* Constants.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1236,6 +1241,7 @@
 				CD12AAB11405A9F0008B124A /* QSHttpClient.m in Sources */,
 				CD12AAB21405A9F0008B124A /* QSStrings.m in Sources */,
 				CD8BB4421414198200D5650E /* InitializerHelper.m in Sources */,
+				CDFF467D141559FE00D89578 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
