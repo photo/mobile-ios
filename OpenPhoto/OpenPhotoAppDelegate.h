@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "InitializerHelper.h"
 
 @class OpenPhotoViewController;
 

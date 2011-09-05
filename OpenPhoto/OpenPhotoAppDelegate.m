@@ -29,6 +29,15 @@
     [[TTURLCache sharedCache] setMaxPixelCount:10*640*960];
     
     
+    InitializerHelper *helper = [[InitializerHelper alloc]init];
+    if ([helper isInitialized] == NO){
+        [helper initialize];
+    }
+    [helper release];
+    
+    // check if user is authenticated or not
+    
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

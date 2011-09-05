@@ -96,7 +96,9 @@
 			<key>IASKMailComposeBodyIsHTML</key>
 			<string>YES</string>
 			<key>IASKMailComposeCcRecipents</key>
-			<array/>
+			<array>
+				<string>patrick.santana@openphoto.me</string>
+			</array>
 			<key>IASKMailComposeSubject</key>
 			<string>Bug on iOS OpenPhoto</string>
 			<key>IASKMailComposeToRecipents</key>

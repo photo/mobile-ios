@@ -14,8 +14,8 @@
 
 
 
-+ (BOOL) isInitialized;
-+ (void) initialize;
-+ (void) resetInitialization;
+- (BOOL) isInitialized;
+- (void) initialize;
+- (void) resetInitialization;
 
 @end
