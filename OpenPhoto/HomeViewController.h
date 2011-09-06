@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WebService.h"
+#import "Constants.h"
 
 @interface HomeViewController : UIViewController <WebServiceDelegate>{
-    WebService* service;
-    NSMutableArray *images;
+    WebService *service;
+    UIImageView *homeImageView;
 }
-@property (nonatomic, retain) WebService* service;
-@property (nonatomic, retain) NSMutableArray *images;
+@property (nonatomic, retain) WebService *service;
+@property (nonatomic, retain) UIImageView *homeImageView;
 @end

@@ -23,5 +23,9 @@ NSString * const kPhotosHighResolution=@"photos_high_resolution";
 NSString * const kPhotosArePrivate=@"photos_are_private";
 // NSUserDefault variable name for the OpenPhoto Server
 NSString * const kOpenPhotoServer=@"account_server";
+// NSUserDefault variable to hold user pictures
+NSString * const kHomeScreenPictures=@"home_pictures";
+// NSUserDefault variable with information about the last time that the pictures were refreshed
+NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
 
 @end

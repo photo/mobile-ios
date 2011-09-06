@@ -8,10 +8,15 @@
 
 #import "HomeViewController.h"
 
+// Private interface definition
+@interface HomeViewController() 
+- (void) showPictures;
+@end
+
+
 @implementation HomeViewController
 
-@synthesize service;
-@synthesize images;
+@synthesize service, homeImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,8 +32,9 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        self.images = [[NSMutableArray alloc] init];  
-        
+        self.homeImageView = [UIImageView alloc];
+        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+        [self.homeImageView initWithFrame:imageSize];
     }
     return self;
 }
@@ -68,21 +74,19 @@
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
     if (photos != nil){
+        NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
             NSLog(@"Photo URL = %@",[photo objectForKey:key]);
-            UIImage *img = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
-            [images addObject:[img autorelease]];
+            [images addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
         } 
         
-        UIImageView *animationView = [UIImageView alloc];
-        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
-        [animationView initWithFrame:imageSize];
-        animationView.animationImages = images;
-        animationView.animationDuration = 17; // seconds
-        animationView.animationRepeatCount = 0; // 0 = loops forever
-        [animationView startAnimating];
-        [self.view addSubview:animationView];
-        [animationView release]; 
+        // save the pictures into user defaults
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setObject:images forKey:kHomeScreenPictures];
+        
+        // save timestamp
+        [standardUserDefaults setObject: [NSDate date] forKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults synchronize];
     }
     
     [key release];
@@ -101,11 +105,54 @@
     [logo setFrame:positionLogo];
     [self.view addSubview:logo];
     
-    // load some pictures
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [service getHomePictures];  
+    // load some pictures if the timestamp is null or it is older than one hour
+    NSDate *now = [NSDate date];
+    NSDate *old = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPicturesTimestamp];
+    
+    if (old == nil || [now timeIntervalSinceDate:old] > 3600){
+        // one hour after the last update
+        NSLog(@"The last update of pictures was one hour ago");
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [service getHomePictures];  
+    }
+    
+    [self showPictures];
 }
 
+-(void) viewDidLoad{
+    [self.view addSubview:self.homeImageView];
+}
+
+- (void) showPictures{
+    // get the local pictures
+    NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
+    if (rawImages != nil){
+        NSMutableArray *images = [NSMutableArray array];
+        if ([rawImages count] > 0){
+            // user has pictures
+            for (NSData *rawImage in rawImages){
+                UIImage *img = [[UIImage alloc] initWithData:rawImage];
+                [images addObject:[img autorelease]];
+            }
+        }else{
+            // show message to start uploading pictures
+            UIImage *img = [UIImage imageNamed:@"upload.png"];
+            [images addObject:[img autorelease]];
+        }
+        
+        // show the pictures  
+        [self.homeImageView removeFromSuperview];
+        self.homeImageView = [UIImageView alloc];
+        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+        [self.homeImageView initWithFrame:imageSize];
+        self.homeImageView.animationImages = images;
+        self.homeImageView.animationDuration = 17; // seconds
+        self.homeImageView.animationRepeatCount = 0; // 0 = loops forever
+        [self.homeImageView startAnimating];
+        [self.view addSubview:self.homeImageView];
+        
+    }
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -115,7 +162,7 @@
 
 - (void) dealloc {
     [service release];
-    [images release];
+    [homeImageView release];
     [super dealloc];
 }
 

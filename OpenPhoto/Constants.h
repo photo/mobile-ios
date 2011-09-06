@@ -16,5 +16,7 @@ extern NSString * const kPhotosSaveFiltered;
 extern NSString * const kPhotosHighResolution;
 extern NSString * const kPhotosArePrivate;
 extern NSString * const kOpenPhotoServer;
+extern NSString * const kHomeScreenPictures;
+extern NSString * const kHomeScreenPicturesTimestamp;
 
 @end
