@@ -28,4 +28,17 @@ NSString * const kHomeScreenPictures=@"home_pictures";
 // NSUserDefault variable with information about the last time that the pictures were refreshed
 NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
 
+
+// Authentication - NSUserDefault - consumer key
+NSString * const kAuthenticationClientId=@"authentication_consumer_key";
+// Authentication - NSUserDefault - consumer shared secret
+NSString * const kAuthenticationClientSecret=@"authentication_consumer_shared_secret";
+// Authentication - NSUserDefault - access token
+NSString * const kAuthenticationOauthToken=@"authentication_access_token";
+// Authentication - NSUserDefault access token secret
+NSString * const kAuthenticationOauthTokenSecret=@"authentication_access_token_secret";
+
+
+
+
 @end

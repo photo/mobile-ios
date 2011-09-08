@@ -19,4 +19,9 @@ extern NSString * const kOpenPhotoServer;
 extern NSString * const kHomeScreenPictures;
 extern NSString * const kHomeScreenPicturesTimestamp;
 
+extern NSString * const kAuthenticationClientId;
+extern NSString * const kAuthenticationClientSecret;
+extern NSString * const kAuthenticationOauthToken;
+extern NSString * const kAuthenticationOauthTokenSecret;
+
 @end

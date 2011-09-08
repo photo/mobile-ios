@@ -13,8 +13,6 @@
 // this class helps with initializer routines
 @interface InitializerHelper : NSObject
 
-
-
 - (BOOL) isInitialized;
 - (void) initialize;
 - (void) resetInitialization;

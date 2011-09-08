@@ -38,5 +38,16 @@
 	</array>
 	<key>Versioning System</key>
 	<string>apple-generic</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>me.openphoto</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>openphoto</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
