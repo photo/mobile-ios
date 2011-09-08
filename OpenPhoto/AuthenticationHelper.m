@@ -18,8 +18,8 @@
      *
      * If it is nil or text INVALID, return that is INVALID = NO
      */
-    if (![[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationClientId] || 
-        [[[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationClientId] isEqualToString:@"INVALID"]){
+    if (![[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationValid] || 
+        [[[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationValid] isEqualToString:@"INVALID"]){
         return NO;
     }
     
@@ -27,12 +27,17 @@
     return YES;
 }
 
-- (void) invalidateClientId{
+- (void) invalidateAuthentication{
     // set the variable client id to INVALID
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationClientId];
     
-    // synchronize the keys
-    [standardUserDefaults synchronize];
-}
-@end
+    [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
+    [standardUserDefaults setNilValueForKey:kAuthenticationOAuthToken];
+    [standardUserDefaults setNilValueForKey:kAuthenticationOAuthSecret];
+    [standardUserDefaults setNilValueForKey:kAuthenticationConsumerKey];
+    [standardUserDefaults setNilValueForKey:kAuthenticationConsumerSecret];
+     
+     // synchronize the keys
+     [standardUserDefaults synchronize];
+     }
+     @end

@@ -29,14 +29,19 @@ NSString * const kHomeScreenPictures=@"home_pictures";
 NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
 
 
-// Authentication - NSUserDefault - consumer key
-NSString * const kAuthenticationClientId=@"authentication_consumer_key";
-// Authentication - NSUserDefault - consumer shared secret
-NSString * const kAuthenticationClientSecret=@"authentication_consumer_shared_secret";
-// Authentication - NSUserDefault - access token
-NSString * const kAuthenticationOauthToken=@"authentication_access_token";
-// Authentication - NSUserDefault access token secret
-NSString * const kAuthenticationOauthTokenSecret=@"authentication_access_token_secret";
+/*
+ * OAuth 1.0a
+ * ===================================
+ * There are 4 values for you to store: two tokens and two secrets
+ * one for the "app" and another for the "user"
+ * the two secrets are used to generate the signature but are not passed with the request
+ * the two tokens are passed with the request
+ */
+ NSString * const kAuthenticationValid=@"authentication_valid";
+ NSString * const kAuthenticationOAuthToken=@"authentication_oauth_token";
+ NSString * const kAuthenticationOAuthSecret=@"authentication_oauth_secret";
+ NSString * const kAuthenticationConsumerKey=@"authentication_consumer_key";
+ NSString * const kAuthenticationConsumerSecret=@"authentication_consumer_secret";
 
 
 

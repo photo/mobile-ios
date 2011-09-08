@@ -121,8 +121,8 @@
         
         NSString *oauthToken;
         NSString *oauthTokenSecret;
-        NSString *userToken;
-        NSString *userSecret;
+        NSString *consumerKey;
+        NSString *consumerSecret;
         
         // get the token and the verifier
         NSArray *queryElements = [responseBody componentsSeparatedByString:@"&"];
@@ -138,11 +138,11 @@
             if ([variableKey isEqualToString:@"oauth_token_secret"]){
                 oauthTokenSecret = value;
             }
-            if ([variableKey isEqualToString:@"user_token"]){
-                userToken = value;
+            if ([variableKey isEqualToString:@"oauth_consumer_key"]){
+                consumerKey = value;
             }
-            if ([variableKey isEqualToString:@"user_secret"]){
-                userSecret = value;
+            if ([variableKey isEqualToString:@"oauth_consumer_secret"]){
+                consumerSecret = value;
             }
         }
         
@@ -151,34 +151,16 @@
         NSURL *url2 = [NSURL URLWithString:@"http://jmathai.openphoto.me/v1/oauth/test"];
         
         
-           OAToken *token = [[OAToken alloc] initWithKey:@"oauth_token" secret:oauthTokenSecret];
-           OAConsumer *consumer = [[OAConsumer alloc] initWithKey:@"oauth_consumer_key" secret:userSecret];
- 
+        OAToken *token = [[OAToken alloc] initWithKey:oauthToken secret:oauthTokenSecret];
+        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumerKey secret:consumerSecret];
+        
         
         OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url2
                                                                        consumer:consumer
                                                                           token:token
                                                                           realm:nil
                                                               signatureProvider:nil];
-        
-        
-        OARequestParameter *poauthToken = [[OARequestParameter alloc] initWithName:@"oauth_token"
-                                                                             value:oauthToken];
-        OARequestParameter *poauthTokenSecret = [[OARequestParameter alloc] initWithName:@"oauth_token_secret"
-                                                                                   value:oauthTokenSecret];
-        OARequestParameter *puserToken = [[OARequestParameter alloc] initWithName:@"user_token"
-                                                                            value:userToken];
-        OARequestParameter *puserSecret = [[OARequestParameter alloc] initWithName:@"user_secret"
-                                                                             value:userSecret];
-        OARequestParameter *oauthProblem = [[OARequestParameter alloc] initWithName:@"oauth_problem"
-                                                                              value:@"consumer_key_unknown"];
-        
         [request setHTTPMethod:@"GET"];
-        NSArray *params = [NSArray arrayWithObjects:oauthProblem             
-                           ,puserToken,nil];
-        [request setParameters:params];
-        
-        
         [request prepare];
         OADataFetcher *fetcher = [[OADataFetcher alloc] init];
         [fetcher fetchDataWithRequest:request
@@ -205,9 +187,7 @@
 }
 
 - (void)requestTokenTicket2:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
-    
     NSLog(@"Error =   %@", [error userInfo]);
-    
 }
 
 
