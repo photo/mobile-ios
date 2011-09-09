@@ -28,7 +28,6 @@
      *
      * If it is nil or text INVALID, return that is INVALID = NO
      */
-    NSLog(@"Value isValid = %@",[[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationValid] );
     if (![[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationValid] || 
         [[[NSUserDefaults standardUserDefaults] stringForKey:kAuthenticationValid] isEqualToString:@"INVALID"]){
         return NO;
@@ -159,8 +158,12 @@
         // synchronize the keys
         [standardUserDefaults synchronize];        
         
+        NSLog(@"oauthToken = %@",oauthToken);
+        NSLog(@"oauthTokenSecret = %@",oauthTokenSecret);
+        NSLog(@"consumerKey = %@",consumerKey);
+        NSLog(@"consumerSecret = %@",consumerSecret);
         
-        [webService sendTestRequest:YES];
+        [webService sendTestRequest];
         
         NSLog(@"OAuth procedure finished");
     }

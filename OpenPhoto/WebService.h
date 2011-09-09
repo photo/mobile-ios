@@ -43,5 +43,5 @@
 -(NSURL*) getOAuthAccessUrl;
 -(NSURL*) getOAuthTestUrl;
 
--(void) sendTestRequest:(BOOL) alert;
+-(void) sendTestRequest;
 @end

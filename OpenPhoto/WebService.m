@@ -92,9 +92,10 @@
     return [NSURL URLWithString:url];  
 }
 
--(void) sendTestRequest:(BOOL) alert{
+-(void) sendTestRequest{
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
+
     
     // token to send. We get the details from the user defaults
     OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
@@ -119,35 +120,20 @@
     OADataFetcher *fetcher = [[OADataFetcher alloc] init];
     [fetcher fetchDataWithRequest:request
                          delegate:self
-                didFinishSelector:@selector(requestTest:didFinishWithData:withAlert:)
-                  didFailSelector:@selector(requestToken:didFailWithError:withAlert:)];
+                didFinishSelector:@selector(requestTest:didFinishWithData:)
+                  didFailSelector:@selector(requestToken:didFailWithError:)];
 }
 
-- (void)requestTest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data withAlert:(BOOL) alert{
+- (void)requestTest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
     if (ticket.didSucceed) {
         NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"succeed = %@",responseBody);
-        if (alert == YES){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication succed" message:responseBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
-        }
+        NSLog(@"Succeed = %@",responseBody);
     }else{
         NSLog(@"The test request didn't succeed");
-        if (alert == YES){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication error" message:@"Please, try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
-        }
     }
 }
-- (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error withAlert:(BOOL) alert{
+- (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
     NSLog(@"Error = %@", [error userInfo]);
-    if (alert == YES){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication error " message:[[error userInfo] description ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-        [alertView release];
-    }
 }
 
 
