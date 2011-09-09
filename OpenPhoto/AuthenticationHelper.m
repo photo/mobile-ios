@@ -158,11 +158,6 @@
         // synchronize the keys
         [standardUserDefaults synchronize];        
         
-        NSLog(@"oauthToken = %@",oauthToken);
-        NSLog(@"oauthTokenSecret = %@",oauthTokenSecret);
-        NSLog(@"consumerKey = %@",consumerKey);
-        NSLog(@"consumerSecret = %@",consumerSecret);
-        
         [webService sendTestRequest];
         
         NSLog(@"OAuth procedure finished");

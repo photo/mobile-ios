@@ -28,7 +28,6 @@
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*640*960];
     
-    
     InitializerHelper *helper = [[InitializerHelper alloc]init];
     if ([helper isInitialized] == NO){
         [helper initialize];

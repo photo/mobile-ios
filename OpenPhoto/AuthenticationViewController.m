@@ -10,13 +10,10 @@
 
 // Private interface definition
 @interface AuthenticationViewController() 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
-// validation
+- (void) saveUrl:(NSString *) text;
 - (BOOL) validateUrl: (NSString *) url;
+
 @end
 
 @implementation AuthenticationViewController
@@ -71,30 +68,24 @@
         // the same actin as click the button from keyboard
         if ( [self validateUrl:serverURL.text]==YES){
             
-            // save the url for the app
-            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-            [standardUserDefaults setValue:[serverURL.text stringByStandardizingPath] forKey:kOpenPhotoServer];
-            [standardUserDefaults synchronize];
+            // save the url method. It removes the last / if exists
+            [self saveUrl:serverURL.text];
             
-             // to the login in the website
+            // to the login in the website
             WebService* service = [[WebService alloc]init];
             [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
             [service release];   
         }
     }
-
+    
 }
-
 
 // Action if user clicks in DONE in the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {   
     if ([self validateUrl:textField.text] == YES){
         
-        // save the url for the app
-        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-        [standardUserDefaults setValue:[textField.text stringByStandardizingPath] forKey:kOpenPhotoServer];
-        [standardUserDefaults synchronize];
-        
+        // save the url method. It removes the last / if exists
+        [self saveUrl:textField.text];
         
         // to the login
         WebService* service = [[WebService alloc]init];
@@ -109,6 +100,10 @@
     return NO;
 }
 
+
+///////////////////////////////////
+// PRIVATES METHODS
+//////////////////////////////////
 - (BOOL) validateUrl: (NSString *) url {
     NSString *theURL =
     @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
@@ -127,33 +122,19 @@
     return YES;
 }
 
-///////////////////////////////////
-// PRIVATES METHODS
-//////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    [responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection failed: %@", [error description]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [connection release];    
-    // result
-    NSString *string = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+-(void) saveUrl:(NSString *) text{
+    // save the url for the app
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
-    // For Step 1: Result = oauth_token=token&type=unauthorized
-    NSLog(@"Result = %@",string);
-    
-    // it can be released
-    [responseData release];
+    // removes form the URL if it ends with "/"
+    NSURL *url = [NSURL URLWithString:text];
+    if ([[url lastPathComponent] isEqualToString:@"/"]){
+        [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kOpenPhotoServer];
+    }else{
+        [standardUserDefaults setValue:text forKey:kOpenPhotoServer];
+    }
+    [standardUserDefaults synchronize];  
 }
-
 
 - (void)dealloc {
     [serverURL release];

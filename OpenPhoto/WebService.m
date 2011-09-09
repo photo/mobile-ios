@@ -94,9 +94,7 @@
 
 -(void) sendTestRequest{
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
 
-    
     // token to send. We get the details from the user defaults
     OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
                                            secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
