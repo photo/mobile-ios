@@ -157,9 +157,6 @@
         
         // synchronize the keys
         [standardUserDefaults synchronize];        
-        
-        [webService sendTestRequest];
-        
         NSLog(@"OAuth procedure finished");
     }
 }
