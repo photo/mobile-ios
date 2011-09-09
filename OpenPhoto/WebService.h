@@ -20,7 +20,6 @@
 @end
 
 @interface WebService : NSObject{
-    NSMutableData *responseData;
     id <WebServiceDelegate> delegate;
 }
 

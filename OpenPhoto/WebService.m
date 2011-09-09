@@ -10,25 +10,11 @@
 
 // Private interface definition
 @interface WebService() 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 - (void)sendRequest:(NSString*) request;
 @end
 
 @implementation WebService
 @synthesize delegate;
-
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    return self;
-}
-
 
 - (void) getTags{
     [self sendRequest:@"/tags.json"];
@@ -93,44 +79,27 @@
 }
 
 -(void) sendTestRequest{
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-
-    // token to send. We get the details from the user defaults
-    OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
-                                           secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
-    
-    // consumer to send. We get the details from the user defaults
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
-                                                    secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-    
-    
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[self getOAuthTestUrl]
-                                                                   consumer:consumer
-                                                                      token:token
-                                                                      realm:nil
-                                                          signatureProvider:nil];
-    [request setHTTPMethod:@"GET"];
-    
-    // prepare the Authentication Header
-    [request prepare];
-    
-    // send the request
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:request
-                         delegate:self
-                didFinishSelector:@selector(requestTest:didFinishWithData:)
-                  didFailSelector:@selector(requestToken:didFailWithError:)];
+    [self sendRequest:@"/v1/oauth/test"];
 }
 
-- (void)requestTest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
+- (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
     if (ticket.didSucceed) {
-        NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"Succeed = %@",responseBody);
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Succeed = %@",jsonString);        
+        
+        // Create a dictionary from JSON string
+        // When there are newline characters in the JSON string, 
+        // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
+        jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        NSDictionary *results =  [jsonString JSONValue];
+        
+        // send the result to the delegate
+        [self.delegate receivedResponse:results];
     }else{
         NSLog(@"The test request didn't succeed");
     }
 }
-- (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
+- (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
     NSLog(@"Error = %@", [error userInfo]);
 }
 
@@ -138,35 +107,6 @@
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    [responseData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection failed: %@", [error description]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [connection release];    
-    // convert the responseDate to the json string
-    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    // it can be released
-    [responseData release];
-    
-    // Create a dictionary from JSON string
-    // When there are newline characters in the JSON string, 
-    // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
-    jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDictionary *results =  [jsonString JSONValue];
-    
-    // send the result to the delegate
-    [self.delegate receivedResponse:results];
-}
-
 - (void)sendRequest:(NSString*) request{
     // create the url to connect to OpenPhoto
     NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
@@ -176,11 +116,34 @@
     
     // transform in URL for the request
     NSURL *url = [NSURL URLWithString:urlString];
-    responseData = [[NSMutableData data] retain];
     
-    // send the message
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL: url];
-    [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    // token to send. We get the details from the user defaults
+    OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                           secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+    
+    // consumer to send. We get the details from the user defaults
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                    secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+    
+    
+    OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                        consumer:consumer
+                                                                           token:token
+                                                                           realm:nil
+                                                               signatureProvider:nil];
+    [oaUrlRequest setHTTPMethod:@"GET"];
+    
+    // prepare the Authentication Header
+    [oaUrlRequest prepare];
+    
+    // send the request
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:oaUrlRequest
+                         delegate:self
+                didFinishSelector:@selector(requestTicket:didFinishWithData:)
+                  didFailSelector:@selector(requestTicket:didFailWithError:)];
 }
 
 @end
