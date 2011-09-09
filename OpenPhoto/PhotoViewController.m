@@ -340,21 +340,31 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    
     NSUInteger row = [indexPath row];
-    
-    NSLog(@"Value row = %d",row);
     
     if ( row == 3){
         // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-        FilterViewController *filter = [[[FilterViewController alloc] initWithNibName:@"FilterViewController" bundle:nil]autorelease];
-        [self.navigationController pushViewController:filter animated:YES];
+        AFFeatherController *controller = [[AFFeatherController alloc]
+                                           initWithImage:self.imageOriginal];
+        controller.delegate = self;
+        
+        [self presentModalViewController:controller animated:YES];
+        [controller release];
     }else if (row == 2){
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
     }
+}
+
+- (void)feather:(AFFeatherController *)featherController finishedWithImage:(UIImage *)image{
+    NSLog(@"Image changed");
+    self.imageFiltered = image;
+}
+
+- (void)featherCanceled:(AFFeatherController *)featherController{
+    NSLog(@"Widget canceled");
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

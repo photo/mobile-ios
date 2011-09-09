@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "QSStrings.h"
 #import "Base64Utilities.h"
-#import "FilterViewController.h"
 #import "ImageManipulation.h"
 #import "TagViewController.h"
+#import "AFFeatherController.h"
 
 #define kNumbersRow     6
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
     UIActivityIndicatorView *statusBar;

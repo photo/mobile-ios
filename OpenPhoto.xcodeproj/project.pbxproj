@@ -42,8 +42,6 @@
 		CD12AAB11405A9F0008B124A /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12AA911405A9F0008B124A /* QSHttpClient.m */; };
 		CD12AAB21405A9F0008B124A /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12AA931405A9F0008B124A /* QSStrings.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
-		CD1EC1B613E886AF00AA0C0A /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */; };
-		CD1EC1B713E886AF00AA0C0A /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */; };
 		CD1EC1B913E8870500AA0C0A /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1EC1B813E8870500AA0C0A /* attention.png */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
@@ -91,6 +89,9 @@
 		CD9A026E14182479002DDCEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026C14182478002DDCEF /* Security.framework */; };
 		CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026D14182479002DDCEF /* StoreKit.framework */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
+		CDE5878B141A5FDA004191B4 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDE58789141A5FDA004191B4 /* AviarySDK-Core.bundle */; };
+		CDE5878C141A5FDA004191B4 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDE5878A141A5FDA004191B4 /* AviarySDK-Plugins.bundle */; };
+		CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5878D141A602D004191B4 /* libAviarySDK-universal.a */; };
 		CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94B13E1C45C0018AD0B /* UIKit.framework */; };
 		CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94D13E1C45C0018AD0B /* Foundation.framework */; };
 		CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94F13E1C45C0018AD0B /* CoreGraphics.framework */; };
@@ -373,9 +374,6 @@
 		CD12AA931405A9F0008B124A /* QSStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSStrings.m; sourceTree = "<group>"; };
 		CD12AA941405A9F0008B124A /* QSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSUtilities.h; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		CD1EC1B313E886AF00AA0C0A /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
-		CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
-		CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		CD1EC1B813E8870500AA0C0A /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
@@ -444,6 +442,11 @@
 		CD9A026D14182479002DDCEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
+		CDE58787141A5FD1004191B4 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherConstants.h; path = Aviary/Headers/AFFeatherConstants.h; sourceTree = "<group>"; };
+		CDE58788141A5FD1004191B4 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherController.h; path = Aviary/Headers/AFFeatherController.h; sourceTree = "<group>"; };
+		CDE58789141A5FDA004191B4 /* AviarySDK-Core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Core.bundle"; path = "Aviary/Resources/AviarySDK-Core.bundle"; sourceTree = "<group>"; };
+		CDE5878A141A5FDA004191B4 /* AviarySDK-Plugins.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Plugins.bundle"; path = "Aviary/Resources/AviarySDK-Plugins.bundle"; sourceTree = "<group>"; };
+		CDE5878D141A602D004191B4 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
 		CDF1C94713E1C45C0018AD0B /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF1C94B13E1C45C0018AD0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF1C94D13E1C45C0018AD0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -486,6 +489,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */,
 				CD9A026E14182479002DDCEF /* Security.framework in Frameworks */,
 				CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */,
 				CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */,
@@ -749,6 +753,18 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
+		CDE58786141A5FB2004191B4 /* Aviary */ = {
+			isa = PBXGroup;
+			children = (
+				CDE5878D141A602D004191B4 /* libAviarySDK-universal.a */,
+				CDE58789141A5FDA004191B4 /* AviarySDK-Core.bundle */,
+				CDE5878A141A5FDA004191B4 /* AviarySDK-Plugins.bundle */,
+				CDE58787141A5FD1004191B4 /* AFFeatherConstants.h */,
+				CDE58788141A5FD1004191B4 /* AFFeatherController.h */,
+			);
+			name = Aviary;
+			sourceTree = "<group>";
+		};
 		CDF1C93C13E1C45C0018AD0B = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +788,7 @@
 		CDF1C94A13E1C45C0018AD0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDE58786141A5FB2004191B4 /* Aviary */,
 				CD9A02211418237C002DDCEF /* OAuthConsumer */,
 				CD12AA611405A9F0008B124A /* QSUtilities */,
 				CD12AA151405A909008B124A /* InAppSettingsKit */,
@@ -905,9 +922,6 @@
 				CD775F7013E33BBE00FD1721 /* PhotoViewController.h */,
 				CD1F823813E337DD00C91729 /* PhotoViewController.m */,
 				CD1F823913E337DD00C91729 /* PhotoViewController.xib */,
-				CD1EC1B313E886AF00AA0C0A /* FilterViewController.h */,
-				CD1EC1B413E886AF00AA0C0A /* FilterViewController.m */,
-				CD1EC1B513E886AF00AA0C0A /* FilterViewController.xib */,
 			);
 			name = Photo;
 			sourceTree = "<group>";
@@ -1234,7 +1248,6 @@
 				CD6FA94513E40942007561EB /* tab-home.png in Resources */,
 				CD6FA94613E40942007561EB /* tab-settings.png in Resources */,
 				CD6FA94713E40942007561EB /* tab-tags.png in Resources */,
-				CD1EC1B713E886AF00AA0C0A /* FilterViewController.xib in Resources */,
 				CD1EC1B913E8870500AA0C0A /* attention.png in Resources */,
 				CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */,
 				CD72DA2413EDEE6E00546F06 /* Default@2x.png in Resources */,
@@ -1252,6 +1265,8 @@
 				CD7FA7761416AC2F00A39960 /* upload@2x.png in Resources */,
 				CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */,
 				CD9A02691418237C002DDCEF /* OATestServer.rb in Resources */,
+				CDE5878B141A5FDA004191B4 /* AviarySDK-Core.bundle in Resources */,
+				CDE5878C141A5FDA004191B4 /* AviarySDK-Plugins.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1309,7 +1324,6 @@
 				CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */,
 				CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */,
 				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,
-				CD1EC1B613E886AF00AA0C0A /* FilterViewController.m in Sources */,
 				CDF59C5613E93D600019ED62 /* WebService.m in Sources */,
 				CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */,
 				CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */,
@@ -1493,6 +1507,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Aviary\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1585,6 +1603,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Aviary\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1598,6 +1620,10 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Aviary\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
