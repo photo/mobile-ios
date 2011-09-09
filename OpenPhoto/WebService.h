@@ -8,6 +8,10 @@
 
 #include <Three20/Three20.h>
 #import "Constants.h"
+#import "OAMutableURLRequest.h"
+#import "OAPlaintextSignatureProvider.h"
+#import "OAToken.h"
+#import "OADataFetcher.h"
 
 // protocol to return the response from the server.
 @protocol WebServiceDelegate <NSObject>
@@ -36,4 +40,8 @@
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag;
 
 -(NSURL*) getOAuthInitialUrl;
+-(NSURL*) getOAuthAccessUrl;
+-(NSURL*) getOAuthTestUrl;
+
+-(void) sendTestRequest:(BOOL) alert;
 @end

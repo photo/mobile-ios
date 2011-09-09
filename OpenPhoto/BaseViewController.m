@@ -46,10 +46,18 @@
 }
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
 	if ([key isEqualToString:@"LogOutButton"]) {
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure want to log out" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
 		[alert show];
-        // TODO Remove the client id
 	} 
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+        NSLog(@"Invalidate user information");
+        AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
+        [helper invalidateAuthentication];
+        [helper release];
+    }
 }
 
 // Create a view controller and setup it's tab bar item with a title and image

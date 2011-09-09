@@ -10,10 +10,6 @@
 #import "InitializerHelper.h"
 #import "AuthenticationHelper.h"
 #import "AuthenticationViewController.h"
-#import "OAMutableURLRequest.h"
-#import "OAPlaintextSignatureProvider.h"
-#import "OAToken.h"
-#import "OADataFetcher.h"
 
 @class OpenPhotoViewController;
 

@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "WebService.h"
 
-@interface AuthenticationHelper : NSObject
+@interface AuthenticationHelper : NSObject{
+    WebService* webService;
+}
+@property (nonatomic, retain) WebService *webService;
 
 - (BOOL) isValid;
 - (void) invalidateAuthentication;
+- (void) startOAuthProcedure:(NSURL*) url;
 
 @end

@@ -33,9 +33,10 @@
 #import "TagViewController.h"
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
+#import "AuthenticationHelper.h"
 
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate>{
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, UIAlertViewDelegate>{
         IASKAppSettingsViewController *appSettingsViewController;
 }
 

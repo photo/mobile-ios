@@ -46,6 +46,9 @@
         // set that the initialization is okay.
         [standardUserDefaults setBool:YES forKey:kAppInitialized];
         
+        // for authentication
+        [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
+        
         // synchronize the keys
         [standardUserDefaults synchronize];
     }

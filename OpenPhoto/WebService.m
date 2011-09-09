@@ -70,8 +70,84 @@
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
     NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://"] autorelease];
     
-    NSLog(@"URL for OAuth initialization %@",url);
+    NSLog(@"URL for OAuth initialization = %@",url);
     return [NSURL URLWithString:url];
+}
+
+-(NSURL*) getOAuthAccessUrl{
+    // get the url
+    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/token/access"] autorelease];
+    
+    NSLog(@"URL for OAuth Access = %@",url);
+    return [NSURL URLWithString:url];  
+}
+
+-(NSURL*) getOAuthTestUrl{
+    // get the url
+    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/test"] autorelease];
+    
+    NSLog(@"URL for OAuth Test = %@",url);
+    return [NSURL URLWithString:url];  
+}
+
+-(void) sendTestRequest:(BOOL) alert{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    
+    // token to send. We get the details from the user defaults
+    OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                           secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+    
+    // consumer to send. We get the details from the user defaults
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                    secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+    
+    
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[self getOAuthTestUrl]
+                                                                   consumer:consumer
+                                                                      token:token
+                                                                      realm:nil
+                                                          signatureProvider:nil];
+    [request setHTTPMethod:@"GET"];
+    
+    // prepare the Authentication Header
+    [request prepare];
+    
+    // send the request
+    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+    [fetcher fetchDataWithRequest:request
+                         delegate:self
+                didFinishSelector:@selector(requestTest:didFinishWithData:withAlert:)
+                  didFailSelector:@selector(requestToken:didFailWithError:withAlert:)];
+}
+
+- (void)requestTest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data withAlert:(BOOL) alert{
+    if (ticket.didSucceed) {
+        NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"succeed = %@",responseBody);
+        if (alert == YES){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication succed" message:responseBody delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+    }else{
+        NSLog(@"The test request didn't succeed");
+        if (alert == YES){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication error" message:@"Please, try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alertView show];
+            [alertView release];
+        }
+    }
+}
+- (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error withAlert:(BOOL) alert{
+    NSLog(@"Error = %@", [error userInfo]);
+    if (alert == YES){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Test authentication error " message:[[error userInfo] description ] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
 }
 
 
