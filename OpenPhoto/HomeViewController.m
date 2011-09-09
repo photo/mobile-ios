@@ -128,7 +128,7 @@
     NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
     if (rawImages != nil){
         NSMutableArray *images = [NSMutableArray array];
-        if ([rawImages count] > 100000){
+        if ([rawImages count] > 0){
             // user has pictures
             for (NSData *rawImage in rawImages){
                 UIImage *img = [[UIImage alloc] initWithData:rawImage];
