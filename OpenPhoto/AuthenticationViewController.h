@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WebService.h"
 
-@interface AuthenticationViewController : UIViewController{
+@interface AuthenticationViewController : UIViewController<UITextFieldDelegate>{
     NSMutableData *responseData;
 }
+@property (retain, nonatomic) IBOutlet UITextField *serverURL;
 
 - (IBAction)login:(id)sender;
 

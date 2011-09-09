@@ -34,4 +34,6 @@
 
 // get pictures by tag
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag;
+
+-(NSURL*) getOAuthInitialUrl;
 @end

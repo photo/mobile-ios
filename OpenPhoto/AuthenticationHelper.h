@@ -12,5 +12,6 @@
 @interface AuthenticationHelper : NSObject
 
 - (BOOL) isValid;
+- (void) invalidateAuthentication;
 
 @end

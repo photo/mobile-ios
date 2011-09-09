@@ -14,10 +14,13 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
-- (void)sendRequest:(NSString*) request;
+
+// validation
+- (BOOL) validateUrl: (NSString *) url;
 @end
 
 @implementation AuthenticationViewController
+@synthesize serverURL;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,23 +49,82 @@
 
 - (void)viewDidUnload
 {
+    [self setServerURL:nil];
+    [serverURL release];
+    serverURL = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (IBAction)login:(id)sender {
-    NSString* launchUrl = @"http://jmathai.openphoto.me/v1/oauth/authorize?oauth_callback=openphoto://";
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:launchUrl]];
-
-    /**
-    NSMutableURLRequest *request = [NSMutableURLRequest 
-									requestWithURL:[NSURL URLWithString:launchUrl]];
     
-    [request setHTTPMethod:@"POST"];
-    [[NSURLConnection alloc] initWithRequest:request delegate:self];
-     
-     */
+    // check if the user typed something
+    if ( serverURL.text != nil &&
+        [serverURL.text isEqualToString:@"http://"]){
+        
+        // user should add URL
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL" message:@"Please, set the URL to the OpenPhoto Server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }else{
+        // the same actin as click the button from keyboard
+        if ( [self validateUrl:serverURL.text]==YES){
+            
+            // save the url for the app
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            [standardUserDefaults setValue:[serverURL.text stringByStandardizingPath] forKey:kOpenPhotoServer];
+            [standardUserDefaults synchronize];
+            
+             // to the login in the website
+            WebService* service = [[WebService alloc]init];
+            [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
+            [service release];   
+        }
+    }
+
+}
+
+
+// Action if user clicks in DONE in the keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {   
+    if ([self validateUrl:textField.text] == YES){
+        
+        // save the url for the app
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setValue:[textField.text stringByStandardizingPath] forKey:kOpenPhotoServer];
+        [standardUserDefaults synchronize];
+        
+        
+        // to the login
+        WebService* service = [[WebService alloc]init];
+        [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
+        [service release];   
+        
+        // return
+        [textField resignFirstResponder];
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (BOOL) validateUrl: (NSString *) url {
+    NSString *theURL =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL]; 
+    
+    // validate URL
+    if ( [urlTest evaluateWithObject:url] == NO){
+        // show alert to user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid URL" message:@"Please, try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 ///////////////////////////////////
@@ -93,4 +155,8 @@
 }
 
 
+- (void)dealloc {
+    [serverURL release];
+    [super dealloc];
+}
 @end

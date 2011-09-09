@@ -65,6 +65,14 @@
     [self sendRequest:loadGalleryRequest];
 }
 
+-(NSURL*) getOAuthInitialUrl{
+    // get the url
+    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://"] autorelease];
+    
+    NSLog(@"URL for OAuth initialization %@",url);
+    return [NSURL URLWithString:url];
+}
 
 
 ///////////////////////////////////
