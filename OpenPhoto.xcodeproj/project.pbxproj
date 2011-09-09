@@ -42,7 +42,6 @@
 		CD12AAB11405A9F0008B124A /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12AA911405A9F0008B124A /* QSHttpClient.m */; };
 		CD12AAB21405A9F0008B124A /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD12AA931405A9F0008B124A /* QSStrings.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
-		CD1EC1B913E8870500AA0C0A /* attention.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1EC1B813E8870500AA0C0A /* attention.png */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
 		CD2FF13513E2337E00F75A1E /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12B13E2337E00F75A1E /* appbar_blank.png */; };
@@ -374,7 +373,6 @@
 		CD12AA931405A9F0008B124A /* QSStrings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QSStrings.m; sourceTree = "<group>"; };
 		CD12AA941405A9F0008B124A /* QSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QSUtilities.h; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		CD1EC1B813E8870500AA0C0A /* attention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attention.png; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		CD2FF12B13E2337E00F75A1E /* appbar_blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appbar_blank.png; sourceTree = "<group>"; };
@@ -864,7 +862,6 @@
 				CD73F8721411748D00F2CAA5 /* InitialPicturesHome */,
 				CD804D1A13EDEFED00E5CEA9 /* Background.png */,
 				CD804D1B13EDEFED00E5CEA9 /* Background@2x.png */,
-				CD1EC1B813E8870500AA0C0A /* attention.png */,
 				CDF4460613E1C4EF007E8F72 /* Tab */,
 				CD2FF12B13E2337E00F75A1E /* appbar_blank.png */,
 				CD2FF12C13E2337E00F75A1E /* appbar_logo.png */,
@@ -1248,7 +1245,6 @@
 				CD6FA94513E40942007561EB /* tab-home.png in Resources */,
 				CD6FA94613E40942007561EB /* tab-settings.png in Resources */,
 				CD6FA94713E40942007561EB /* tab-tags.png in Resources */,
-				CD1EC1B913E8870500AA0C0A /* attention.png in Resources */,
 				CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */,
 				CD72DA2413EDEE6E00546F06 /* Default@2x.png in Resources */,
 				CD804D1913EDEF3D00E5CEA9 /* Default.png in Resources */,

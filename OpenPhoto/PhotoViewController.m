@@ -293,7 +293,7 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Filter";
+            cell.textLabel.text=@"Crop & effects";
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
             
