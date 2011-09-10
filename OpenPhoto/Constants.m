@@ -37,12 +37,18 @@ NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
  * the two secrets are used to generate the signature but are not passed with the request
  * the two tokens are passed with the request
  */
- NSString * const kAuthenticationValid=@"authentication_valid";
- NSString * const kAuthenticationOAuthToken=@"authentication_oauth_token";
- NSString * const kAuthenticationOAuthSecret=@"authentication_oauth_secret";
- NSString * const kAuthenticationConsumerKey=@"authentication_consumer_key";
- NSString * const kAuthenticationConsumerSecret=@"authentication_consumer_secret";
+NSString * const kAuthenticationValid=@"authentication_valid";
+NSString * const kAuthenticationOAuthToken=@"authentication_oauth_token";
+NSString * const kAuthenticationOAuthSecret=@"authentication_oauth_secret";
+NSString * const kAuthenticationConsumerKey=@"authentication_consumer_key";
+NSString * const kAuthenticationConsumerSecret=@"authentication_consumer_secret";
 
+
+/*
+ * Constants for Notification
+ */
+NSString * const kNotificationLoginAuthorize=@"loginAuthorized";        
+NSString * const kNotificationLoginNeeded=@"loginNeeded";     
 
 
 

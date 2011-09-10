@@ -13,6 +13,7 @@
 
 - (void) saveUrl:(NSString *) text;
 - (BOOL) validateUrl: (NSString *) url;
+- (void) eventHandler: (NSNotification *) notification;
 
 @end
 
@@ -23,7 +24,17 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        //register to listen for to remove the login screen.    
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationLoginAuthorize         
+                                                   object:nil ];
+        
+        //register to listen for to show the login screen.    
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationLoginNeeded       
+                                                   object:nil ];
     }
     return self;
 }
@@ -77,7 +88,6 @@
             [service release];   
         }
     }
-    
 }
 
 // Action if user clicks in DONE in the keyboard
@@ -134,6 +144,20 @@
         [standardUserDefaults setValue:text forKey:kOpenPhotoServer];
     }
     [standardUserDefaults synchronize];  
+}
+
+//event handler when event occurs
+-(void)eventHandler: (NSNotification *) notification
+{
+    NSLog(@"event triggered: %@", notification);
+    
+    if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
+        // we don't need the screen anymore
+        [self dismissModalViewControllerAnimated:YES];
+    }else if ([notification.name isEqualToString:kNotificationLoginNeeded]){
+        // show this screen 
+        [self presentModalViewController:self animated:YES];
+    }
 }
 
 - (void)dealloc {

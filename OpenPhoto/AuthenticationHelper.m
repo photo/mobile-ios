@@ -156,7 +156,11 @@
         [standardUserDefaults setValue:consumerSecret forKey:kAuthenticationConsumerSecret];
         
         // synchronize the keys
-        [standardUserDefaults synchronize];        
+        [standardUserDefaults synchronize];  
+        
+        // send notification to the system that it can shows the screen:
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAuthorized" object:nil ];
+        
         NSLog(@"OAuth procedure finished");
     }
 }

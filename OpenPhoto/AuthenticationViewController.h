@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WebService.h"
+#import "Constants.h"
 
 @interface AuthenticationViewController : UIViewController<UITextFieldDelegate>
 

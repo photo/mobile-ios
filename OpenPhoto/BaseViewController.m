@@ -57,6 +57,9 @@
         AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
         [helper invalidateAuthentication];
         [helper release];
+        
+        // send notification to the system that it can shows the screen:
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginNeeded" object:nil ];
     }
 }
 
