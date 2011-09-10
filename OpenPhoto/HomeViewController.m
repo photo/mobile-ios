@@ -11,6 +11,7 @@
 // Private interface definition
 @interface HomeViewController() 
 - (void) showPictures;
+- (void) refreshPictures: (NSNotification *) notification;
 @end
 
 
@@ -35,6 +36,13 @@
         self.homeImageView = [UIImageView alloc];
         CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
         [self.homeImageView initWithFrame:imageSize];
+        
+        // create notification to update the pictures
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(refreshPictures:)
+                                                     name:kNotificationRefreshPictures         
+                                                   object:nil ];
+        
     }
     return self;
 }
@@ -87,6 +95,9 @@
         // save timestamp
         [standardUserDefaults setObject: [NSDate date] forKey:kHomeScreenPicturesTimestamp];
         [standardUserDefaults synchronize];
+        
+        // can be updated
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
     }
     
     [key release];
@@ -123,6 +134,11 @@
     [self.view addSubview:self.homeImageView];
 }
 
+
+- (void) refreshPictures: (NSNotification *) notification{
+    [self showPictures];
+}
+
 - (void) showPictures{
     // get the local pictures
     NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
@@ -155,6 +171,7 @@
 }
 
 - (void) notifyUserNoInternet{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];

@@ -29,12 +29,6 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationLoginAuthorize         
                                                    object:nil ];
-        
-        //register to listen for to show the login screen.    
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(eventHandler:)
-                                                     name:kNotificationLoginNeeded       
-                                                   object:nil ];
     }
     return self;
 }
@@ -149,19 +143,16 @@
 //event handler when event occurs
 -(void)eventHandler: (NSNotification *) notification
 {
-    NSLog(@"event triggered: %@", notification);
-    
+    NSLog(@"###### Event triggered: %@", notification);
     if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
         [self dismissModalViewControllerAnimated:YES];
-    }else if ([notification.name isEqualToString:kNotificationLoginNeeded]){
-        // show this screen 
-        [self presentModalViewController:self animated:YES];
     }
 }
 
 - (void)dealloc {
     [serverURL release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 @end

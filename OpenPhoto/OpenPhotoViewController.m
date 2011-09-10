@@ -8,6 +8,11 @@
 
 #import "OpenPhotoViewController.h"
 
+// Private interface definition
+@interface OpenPhotoViewController() 
+- (void) eventHandler: (NSNotification *) notification;
+@end
+
 @implementation OpenPhotoViewController
 
 - (void)didReceiveMemoryWarning
@@ -30,6 +35,13 @@
                             [self viewControllerWithTabTitle:@"Photo" image:nil],
                             [self viewControllerWithTabTitle:@"Tags" image:[UIImage imageNamed:@"tab-tags.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-settings.png"]], nil];
+    
+    //register to listen for to show the login screen.    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(eventHandler:)
+                                                 name:kNotificationLoginNeeded       
+                                               object:nil ];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -48,6 +60,21 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) eventHandler: (NSNotification *) notification{
+    NSLog(@"###### Event triggered: %@", notification);
+    if ([notification.name isEqualToString:kNotificationLoginNeeded]){
+        // open the authentication screen
+        AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
+        [self presentModalViewController:controller animated:YES];
+        [controller release];
+    }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 @end

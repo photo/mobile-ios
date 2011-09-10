@@ -7,7 +7,6 @@
 //
 
 #import "OpenPhotoAppDelegate.h"
-
 #import "OpenPhotoViewController.h"
 
 @implementation OpenPhotoAppDelegate
@@ -38,7 +37,6 @@
     // open the default view controller
     self.window.rootViewController = self.viewController;
     
-    
     // now if it is not authenticated, show the screen in the TOP of the view controller
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
@@ -49,7 +47,6 @@
         [controller release];
     }
     [auth release];
-    
     
     [self.window makeKeyAndVisible];
     return YES;

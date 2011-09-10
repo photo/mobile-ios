@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "AuthenticationViewController.h"
 
 @interface OpenPhotoViewController : BaseViewController <UINavigationControllerDelegate>
 {

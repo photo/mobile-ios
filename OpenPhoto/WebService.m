@@ -11,7 +11,7 @@
 // Private interface definition
 @interface WebService() 
 - (void)sendRequest:(NSString*) request;
-- (void) validateNetwork;
+- (BOOL) validateNetwork;
 @end
 
 @implementation WebService
@@ -22,7 +22,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-    
+        
         // check for internet connection
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
         
@@ -33,6 +33,8 @@
         hostReachable = [[Reachability reachabilityWithHostName: @"www.openphoto.me"] retain];
         [hostReachable startNotifier];
         
+        self.internetActive = NO;
+        self.hostActive = NO;
     }
     return self;
 }
@@ -102,28 +104,6 @@
     [self sendRequest:@"/v1/oauth/test"];
 }
 
-- (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
-    if (ticket.didSucceed) {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"Succeed = %@",jsonString);        
-        
-        // Create a dictionary from JSON string
-        // When there are newline characters in the JSON string, 
-        // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
-        jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-        NSDictionary *results =  [jsonString JSONValue];
-        
-        // send the result to the delegate
-        [self.delegate receivedResponse:results];
-    }else{
-        NSLog(@"The test request didn't succeed");
-    }
-}
-- (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
-    NSLog(@"Error = %@", [error userInfo]);
-}
-
-
 - (void) checkNetworkStatus:(NSNotification *)notice
 {
     // called after network status changes
@@ -181,49 +161,78 @@
 // PRIVATES METHODS
 //////////////////////////////////
 - (void)sendRequest:(NSString*) request{
-    // create the url to connect to OpenPhoto
-    NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
-                                      [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
-    
-    NSLog(@"Request to be sent = [%@]",urlString);
-    
-    // transform in URL for the request
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
-    // token to send. We get the details from the user defaults
-    OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
-                                           secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
-    
-    // consumer to send. We get the details from the user defaults
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
-                                                    secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-    
-    
-    OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                        consumer:consumer
-                                                                           token:token
-                                                                           realm:nil
-                                                               signatureProvider:nil];
-    [oaUrlRequest setHTTPMethod:@"GET"];
-    
-    // prepare the Authentication Header
-    [oaUrlRequest prepare];
-    
-    // send the request
-    OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-    [fetcher fetchDataWithRequest:oaUrlRequest
-                         delegate:self
-                didFinishSelector:@selector(requestTicket:didFinishWithData:)
-                  didFailSelector:@selector(requestTicket:didFailWithError:)];
+    if ([self validateNetwork] == NO){
+        [self.delegate notifyUserNoInternet];
+    }else{
+        
+        // create the url to connect to OpenPhoto
+        NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
+                                          [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
+        
+        NSLog(@"Request to be sent = [%@]",urlString);
+        
+        // transform in URL for the request
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        
+        // token to send. We get the details from the user defaults
+        OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                               secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+        
+        // consumer to send. We get the details from the user defaults
+        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                        secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+        
+        
+        OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                            consumer:consumer
+                                                                               token:token
+                                                                               realm:nil
+                                                                   signatureProvider:nil];
+        [oaUrlRequest setHTTPMethod:@"GET"];
+        
+        // prepare the Authentication Header
+        [oaUrlRequest prepare];
+        
+        // send the request
+        OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+        [fetcher fetchDataWithRequest:oaUrlRequest
+                             delegate:self
+                    didFinishSelector:@selector(requestTicket:didFinishWithData:)
+                      didFailSelector:@selector(requestTicket:didFailWithError:)];
+    }
 }
 
-- (void) validateNetwork{
+- (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
+    if (ticket.didSucceed) {
+        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Succeed = %@",jsonString);        
+        
+        // Create a dictionary from JSON string
+        // When there are newline characters in the JSON string, 
+        // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
+        jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        NSDictionary *results =  [jsonString JSONValue];
+        
+        // send the result to the delegate
+        [self.delegate receivedResponse:results];
+    }else{
+        NSLog(@"The test request didn't succeed");
+    }
+}
+- (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
+    NSLog(@"Error to send request = %@", [error userInfo]);
+}
+
+
+- (BOOL) validateNetwork{
     // check for the network and if our server is reachable
     if (self.internetActive == NO || self.hostActive == NO){
-        [self.delegate notifyUserNoInternet];
+        return NO;
     }
+    
+    return YES;
 }
 
 

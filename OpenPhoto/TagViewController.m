@@ -87,32 +87,27 @@
 }
 
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
-    
-    // set the tile of the table
-    self.title=@"Tags"; 
     
     // load all tags
     [service getTags];
 }
 
-- (void)viewDidUnload
+- (void)viewDidLoad
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [super viewDidLoad];
+    // set the tile of the table
+    self.title=@"Tags";     
 }
-
-
 
 #pragma mark - Delegate for bring the tags from the server
 - (void) receivedResponse:(NSDictionary*) response{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     NSArray *tagsResult = [response objectForKey:@"result"] ;
     
     // Loop through each entry in the dictionary and create an array Tags
@@ -136,10 +131,13 @@
 }
 
 - (void) notifyUserNoInternet{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
     [alert release];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 #pragma mark - Table view data source

@@ -49,6 +49,9 @@
     
     // synchronize the keys
     [standardUserDefaults synchronize];
+    
+    // send notification to the system that it can shows the screen:
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginNeeded object:nil];
 }
 
 - (void) startOAuthProcedure:(NSURL*) url{
@@ -159,7 +162,7 @@
         [standardUserDefaults synchronize];  
         
         // send notification to the system that it can shows the screen:
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAuthorized" object:nil ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
         
         NSLog(@"OAuth procedure finished");
     }

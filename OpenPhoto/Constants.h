@@ -27,5 +27,6 @@ extern NSString * const kAuthenticationConsumerSecret;
 
 extern NSString * const kNotificationLoginAuthorize;        
 extern NSString * const kNotificationLoginNeeded;   
+extern NSString * const kNotificationRefreshPictures;
 
 @end

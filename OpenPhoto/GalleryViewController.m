@@ -26,6 +26,11 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
+        self.photoSource = [[MockPhotoSource alloc]
+                            initWithType:MockPhotoSourceNormal
+                            title:@"Gallery"
+                            photos:nil
+                            photos2:nil];
     }
     return self;
 }
@@ -47,7 +52,13 @@
     }else{
         [service loadGallery:25];
     }
-    
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // set the tile of the table
+    self.title=@"Gallery";     
 }
 
 // delegate
@@ -109,6 +120,7 @@
 }
 
 - (void) notifyUserNoInternet{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];

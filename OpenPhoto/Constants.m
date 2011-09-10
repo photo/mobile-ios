@@ -47,8 +47,9 @@ NSString * const kAuthenticationConsumerSecret=@"authentication_consumer_secret"
 /*
  * Constants for Notification
  */
-NSString * const kNotificationLoginAuthorize=@"loginAuthorized";        
-NSString * const kNotificationLoginNeeded=@"loginNeeded";     
+NSString * const kNotificationLoginAuthorize=@"notification_login_authorized";        
+NSString * const kNotificationLoginNeeded=@"notification_login_needed";     
+NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures";  
 
 
 
