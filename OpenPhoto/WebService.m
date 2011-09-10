@@ -101,7 +101,64 @@
 }
 
 -(void) sendTestRequest{
-    [self sendRequest:@"/v1/oauth/test"];
+    [self sendRequest:@"/hello.json?auth=1"];
+}
+
+-(void) uploadPicture:(NSDictionary*) values{
+    if ([self validateNetwork] == NO){
+        [self.delegate notifyUserNoInternet];
+    }else{
+        // send message to the site. it is pickedImage
+        NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
+        //Custom implementations, no built in base64 or HTTP escaping for iPhone
+        NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
+        NSString* imageEscaped = [Base64Utilities fullEscape:imageB64];
+        
+        
+        // set all details to send
+        NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"]];
+        
+        NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
+                                          [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
+        
+        NSLog(@"Request to be sent = [%@]",urlString);
+        
+        // transform in URL for the request
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        
+        // token to send. We get the details from the user defaults
+        OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                               secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+        
+        // consumer to send. We get the details from the user defaults
+        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                        secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+        
+        
+        OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                            consumer:consumer
+                                                                               token:token
+                                                                               realm:nil
+                                                                   signatureProvider:nil];
+        [oaUrlRequest setHTTPMethod:@"POST"];   
+        [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
+        
+        // prepare the Authentication Header
+        [oaUrlRequest prepare];
+        [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
+        
+
+        
+        // send the request
+        OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+        [fetcher fetchDataWithRequest:oaUrlRequest
+                             delegate:self
+                    didFinishSelector:@selector(requestTicket:didFinishWithData:)
+                      didFailSelector:@selector(requestTicket:didFailWithError:)];
+    }
+    
 }
 
 - (void) checkNetworkStatus:(NSNotification *)notice
@@ -113,19 +170,16 @@
     {
         case NotReachable:
         {
-            NSLog(@"The internet is down.");
             self.internetActive = NO; 
             break;
         }
         case ReachableViaWiFi:
         {
-            NSLog(@"The internet is working via WIFI.");
             self.internetActive = YES;
             break;
         }
         case ReachableViaWWAN:
         {
-            NSLog(@"The internet is working via WWAN.");
             self.internetActive = YES;
             break;
         }
@@ -137,19 +191,16 @@
     {
         case NotReachable:
         {
-            NSLog(@"A gateway to the host server is down.");
             self.hostActive = NO;
             break;
         }
         case ReachableViaWiFi:
         {
-            NSLog(@"A gateway to the host server is working via WIFI.");
             self.hostActive = YES;
             break;
         }
         case ReachableViaWWAN:
         {
-            NSLog(@"A gateway to the host server is working via WWAN.");
             self.hostActive = YES;
             break;
         }
@@ -218,7 +269,7 @@
         // send the result to the delegate
         [self.delegate receivedResponse:results];
     }else{
-        NSLog(@"The test request didn't succeed");
+        NSLog(@"The request didn't succeed");
     }
 }
 - (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{

@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QSStrings.h"
-#import "Base64Utilities.h"
 #import "ImageManipulation.h"
 #import "TagViewController.h"
 #import "AFFeatherController.h"
-
-#define kNumbersRow     6
+#import "Constants.h"
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
     IBOutlet UITextField *imageTitle;
@@ -28,6 +25,7 @@
     UISwitch *highResolutionPicture;
     TagViewController *tagController;
     UIImagePickerControllerSourceType sourceType;
+    WebService *service;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -38,7 +36,8 @@
 @property (nonatomic, retain) UISwitch *permissionPicture;
 @property (nonatomic, retain) UISwitch *highResolutionPicture;
 @property (nonatomic, retain) TagViewController *tagController;
-@property (nonatomic) UIImagePickerControllerSourceType sourceType;     
+@property (nonatomic) UIImagePickerControllerSourceType sourceType;    
+@property (nonatomic, retain) WebService *service;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;

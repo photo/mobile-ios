@@ -63,8 +63,6 @@
     [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
                              toTarget:self 
                            withObject:photos];
-    
-    
 }
 
 -(void) getHomeScreenPicturesOnDetachTread:(NSArray*) photos

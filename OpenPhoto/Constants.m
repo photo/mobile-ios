@@ -52,5 +52,17 @@ NSString * const kNotificationLoginNeeded=@"notification_login_needed";
 NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures";  
 
 
+/*
+ * Constants for the table in the upload screen
+ */
+int        const kNumbersRow=6;
+NSString * const kCellIdentifierTitle = @"cellIdentifierTitle";
+NSString * const kCellIdentifierDescription = @"cellIdentifierDescription";
+NSString * const kCellIdentifierTags=@"cellIdentifierTags";
+NSString * const kCellIdentifierFilter=@"cellIdentifierFilter";
+NSString * const kCellIdentifierPrivate=@"cellIdentifierPrivate";
+NSString * const kCellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
+
+
 
 @end

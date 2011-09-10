@@ -13,6 +13,8 @@
 #import "OAToken.h"
 #import "OADataFetcher.h"
 #import "Reachability.h"
+#import "QSStrings.h"
+#import "Base64Utilities.h"
 
 // for validation internet
 @class Reachability;
@@ -52,6 +54,9 @@
 
 // get pictures by tag
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag;
+
+// to upload the picture
+-(void) uploadPicture:(NSDictionary*) values;
 
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;

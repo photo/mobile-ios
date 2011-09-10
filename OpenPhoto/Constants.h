@@ -29,4 +29,12 @@ extern NSString * const kNotificationLoginAuthorize;
 extern NSString * const kNotificationLoginNeeded;   
 extern NSString * const kNotificationRefreshPictures;
 
+extern int        const kNumbersRow;
+extern NSString * const kCellIdentifierTitle;
+extern NSString * const kCellIdentifierDescription;
+extern NSString * const kCellIdentifierTags;
+extern NSString * const kCellIdentifierFilter;
+extern NSString * const kCellIdentifierPrivate;
+extern NSString * const kCellIdentifierHighResolutionPicture;
+
 @end

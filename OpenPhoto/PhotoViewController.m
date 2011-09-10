@@ -20,21 +20,9 @@
 @synthesize detailsPictureTable;
 @synthesize statusBar;
 @synthesize imageOriginal,imageFiltered;
-@synthesize titleTextField;
-@synthesize descriptionTextField;
-@synthesize permissionPicture;
-@synthesize highResolutionPicture;
-@synthesize tagController;
-@synthesize sourceType;
-
-
-static NSString *cellIdentifierTitle = @"cellIdentifierTitle";
-static NSString *cellIdentifierDescription = @"cellIdentifierDescription";
-static NSString *cellIdentifierTags=@"cellIdentifierTags";
-static NSString *cellIdentifierFilter=@"cellIdentifierFilter";
-static NSString *cellIdentifierPrivate=@"cellIdentifierPrivate";
-static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
-
+@synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture;
+@synthesize tagController, sourceType;
+@synthesize service;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker source:(UIImagePickerControllerSourceType) pickerSourceType
 {
@@ -48,6 +36,9 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
         self.tagController = [[[TagViewController alloc] init]autorelease];
         [self.tagController setReadOnly];
         
+        // to send the request via the web service class
+        self.service = [[WebService alloc]init];
+        [self.service setDelegate:self];
     }
     return self;
 }
@@ -93,21 +84,6 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)dealloc {
-    [imageTitle release];
-    [imageDescription release];
-    [statusBar release];
-    [imageOriginal release];
-    [imageFiltered release];
-    [statusBar release];
-    [detailsPictureTable release];
-    [titleTextField release];
-    [descriptionTextField release];
-    [permissionPicture release];
-    [highResolutionPicture release];
-    [super dealloc];
 }
 
 - (IBAction)upload:(id)sender {
@@ -175,39 +151,15 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-    // send message to the site. it is pickedImage
-    NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
-    //Custom implementations, no built in base64 or HTTP escaping for iPhone
-    NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
-    NSString* imageEscaped = [Base64Utilities pictureEscape:imageB64];
-    
-    
-    // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"]];
-    
-    NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
-                                      [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
-    [request setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
-    
-    
-    NSURLResponse *response;
-    NSError *error = nil;
-    
-    NSData *XMLResponse= [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-	NSString *jsonString = [[NSString alloc] initWithData:XMLResponse encoding:NSUTF8StringEncoding];
-    NSLog(@"Result = %@",jsonString);   
-    
+    [self.service uploadPicture:values];   
+    [pool release];
+}
+
+// delegate
+-(void) receivedResponse:(NSDictionary *)response{
     [statusBar stopAnimating];
     statusBar.hidden = YES;
-    
     [self dismissModalViewControllerAnimated:YES];
-    [pool release];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -217,6 +169,14 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     }else{
         NSLog(@"Image saved");
     }
+}
+
+- (void) notifyUserNoInternet{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    // problem with internet, show message to user
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 
@@ -236,10 +196,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
     switch (row) {
         case 0:
             // title
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierTitle];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierTitle];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierTitle] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle] autorelease];
                 titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 titleTextField.adjustsFontSizeToFitWidth = YES;
                 titleTextField.textColor = [UIColor grayColor];
@@ -254,10 +214,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             break;
         case 1:
             // description
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierDescription];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierDescription];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierDescription] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierDescription] autorelease];
                 
                 descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 descriptionTextField.adjustsFontSizeToFitWidth = YES;
@@ -274,10 +234,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             break;
         case 2:
             // tags
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierTags];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierTags];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierTags] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTags] autorelease];
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
@@ -286,10 +246,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             break;
         case 3:
             // filter: disclosure button
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierFilter];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierFilter];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierFilter] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierFilter] autorelease];
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
@@ -299,10 +259,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             
         case 4:
             // high resolution picture
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierHighResolutionPicture];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierHighResolutionPicture];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierHighResolutionPicture] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierHighResolutionPicture] autorelease];
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
@@ -316,10 +276,10 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
             
         case 5:
             // private flag
-            cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifierPrivate];
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPrivate];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifierPrivate] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierPrivate] autorelease];
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
@@ -370,6 +330,22 @@ static NSString *cellIdentifierHighResolutionPicture=@"cellHighResolutionPicture
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)dealloc {
+    [imageTitle release];
+    [imageDescription release];
+    [statusBar release];
+    [imageOriginal release];
+    [imageFiltered release];
+    [statusBar release];
+    [detailsPictureTable release];
+    [titleTextField release];
+    [descriptionTextField release];
+    [permissionPicture release];
+    [highResolutionPicture release];
+    [self.service release];
+    [super dealloc];
 }
 
 @end

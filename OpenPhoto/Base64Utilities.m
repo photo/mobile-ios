@@ -20,15 +20,6 @@
     return self;
 }
 
-
-+ (NSString*) pictureEscape:(NSString*) string{
-    NSMutableString *escaped = [NSMutableString stringWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];   
-    [escaped replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [escaped length])];
-    [escaped replaceOccurrencesOfString:@"/" withString:@"%2F" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [escaped length])];
-    
-    return escaped;
-}
-
 + (NSString*) fullEscape:(NSString*) string{
     NSMutableString *escaped = [NSMutableString stringWithString:[string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];   
     [escaped replaceOccurrencesOfString:@"+" withString:@"%2B" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [escaped length])];

@@ -12,7 +12,6 @@
     
 }
 
-+ (NSString*) pictureEscape:(NSString*) string;
 + (NSString*) fullEscape:(NSString*) string;
 
 @end
