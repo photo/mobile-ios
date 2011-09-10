@@ -12,19 +12,34 @@
 #import "OAPlaintextSignatureProvider.h"
 #import "OAToken.h"
 #import "OADataFetcher.h"
+#import "Reachability.h"
+
+// for validation internet
+@class Reachability;
 
 // protocol to return the response from the server.
 @protocol WebServiceDelegate <NSObject>
 @required
 - (void) receivedResponse:(NSDictionary*) response;
+- (void) notifyUserNoInternet;
 @end
 
 @interface WebService : NSObject{
     id <WebServiceDelegate> delegate;
+    
+    // for internet checks
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+    
+    BOOL internetActive, hostActive;
 }
 
 // protocol that will send the response
 @property (retain) id delegate;
+
+// properties
+@property (nonatomic) BOOL  internetActive;
+@property (nonatomic) BOOL  hostActive;
 
 // get all tags. It brings how many images have this tag.
 - (void) getTags; 
@@ -43,4 +58,8 @@
 -(NSURL*) getOAuthTestUrl;
 
 -(void) sendTestRequest;
+
+// for network status
+ - (void) checkNetworkStatus:(NSNotification *)notice;
+
 @end

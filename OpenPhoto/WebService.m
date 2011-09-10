@@ -11,11 +11,31 @@
 // Private interface definition
 @interface WebService() 
 - (void)sendRequest:(NSString*) request;
+- (void) validateNetwork;
 @end
 
 @implementation WebService
 @synthesize delegate;
+@synthesize internetActive, hostActive;
 
+
+- (id)init {
+    self = [super init];
+    if (self) {
+    
+        // check for internet connection
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+        
+        internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+        [internetReachable startNotifier];
+        
+        // check if a pathway to a random host exists
+        hostReachable = [[Reachability reachabilityWithHostName: @"www.openphoto.me"] retain];
+        [hostReachable startNotifier];
+        
+    }
+    return self;
+}
 - (void) getTags{
     [self sendRequest:@"/tags.json"];
 }
@@ -104,6 +124,59 @@
 }
 
 
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    
+    {
+        case NotReachable:
+        {
+            NSLog(@"The internet is down.");
+            self.internetActive = NO; 
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"The internet is working via WIFI.");
+            self.internetActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"The internet is working via WWAN.");
+            self.internetActive = YES;
+            break;
+        }
+    }
+    
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)  
+    {
+        case NotReachable:
+        {
+            NSLog(@"A gateway to the host server is down.");
+            self.hostActive = NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"A gateway to the host server is working via WIFI.");
+            self.hostActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"A gateway to the host server is working via WWAN.");
+            self.hostActive = YES;
+            break;
+        }
+    }
+}
+
+
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
@@ -144,6 +217,21 @@
                          delegate:self
                 didFinishSelector:@selector(requestTicket:didFinishWithData:)
                   didFailSelector:@selector(requestTicket:didFailWithError:)];
+}
+
+- (void) validateNetwork{
+    // check for the network and if our server is reachable
+    if (self.internetActive == NO || self.hostActive == NO){
+        [self.delegate notifyUserNoInternet];
+    }
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [internetReachable release];
+    [hostReachable release];
+    [super dealloc];
 }
 
 @end

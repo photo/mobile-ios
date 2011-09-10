@@ -91,6 +91,8 @@
 		CDE5878B141A5FDA004191B4 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDE58789141A5FDA004191B4 /* AviarySDK-Core.bundle */; };
 		CDE5878C141A5FDA004191B4 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDE5878A141A5FDA004191B4 /* AviarySDK-Plugins.bundle */; };
 		CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5878D141A602D004191B4 /* libAviarySDK-universal.a */; };
+		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
+		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
 		CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94B13E1C45C0018AD0B /* UIKit.framework */; };
 		CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94D13E1C45C0018AD0B /* Foundation.framework */; };
 		CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94F13E1C45C0018AD0B /* CoreGraphics.framework */; };
@@ -445,6 +447,9 @@
 		CDE58789141A5FDA004191B4 /* AviarySDK-Core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Core.bundle"; path = "Aviary/Resources/AviarySDK-Core.bundle"; sourceTree = "<group>"; };
 		CDE5878A141A5FDA004191B4 /* AviarySDK-Plugins.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Plugins.bundle"; path = "Aviary/Resources/AviarySDK-Plugins.bundle"; sourceTree = "<group>"; };
 		CDE5878D141A602D004191B4 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
+		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		CDE5892C141B90F7004191B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		CDE5892E141B911A004191B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CDF1C94713E1C45C0018AD0B /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF1C94B13E1C45C0018AD0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF1C94D13E1C45C0018AD0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -487,6 +492,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */,
 				CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */,
 				CD9A026E14182479002DDCEF /* Security.framework in Frameworks */,
 				CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */,
@@ -800,6 +806,7 @@
 				CDF4462D13E1C5A8007E8F72 /* extThree20JSON.xcodeproj */,
 				CDF1C94B13E1C45C0018AD0B /* UIKit.framework */,
 				CD9A026C14182478002DDCEF /* Security.framework */,
+				CDE5892E141B911A004191B4 /* SystemConfiguration.framework */,
 				CD9A026D14182479002DDCEF /* StoreKit.framework */,
 				CDF1C94D13E1C45C0018AD0B /* Foundation.framework */,
 				CDF1C94F13E1C45C0018AD0B /* CoreGraphics.framework */,
@@ -954,6 +961,8 @@
 		CDF4464E13E1C6BB007E8F72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CDE5892B141B90F7004191B4 /* Reachability.h */,
+				CDE5892C141B90F7004191B4 /* Reachability.m */,
 				CD9A020514180457002DDCEF /* AuthenticationHelper.h */,
 				CD9A020614180457002DDCEF /* AuthenticationHelper.m */,
 				CDF4464F13E1C6CF007E8F72 /* Base64Utilities.h */,
@@ -1360,6 +1369,7 @@
 				CD9A02661418237C002DDCEF /* OARequestParameter.m in Sources */,
 				CD9A02681418237C002DDCEF /* OAServiceTicket.m in Sources */,
 				CD9A026A1418237C002DDCEF /* OAToken.m in Sources */,
+				CDE5892D141B90F7004191B4 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
