@@ -492,20 +492,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */,
-				CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */,
-				CD9A026E14182479002DDCEF /* Security.framework in Frameworks */,
-				CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */,
-				CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */,
 				CDF4463913E1C5BA007E8F72 /* libextThree20JSON+SBJSON.a in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
 				320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */,
 				320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */,
 				320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */,
-				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
 				320A5A189C235877202780D5 /* libThree20Network.a in Frameworks */,
 				320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */,
+				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
+				CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */,
+				CDE5878F141A605E004191B4 /* libAviarySDK-universal.a in Frameworks */,
+				CD9A026E14182479002DDCEF /* Security.framework in Frameworks */,
+				CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */,
+				CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */,
 				CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */,
 				CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */,
 				CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */,
@@ -1491,7 +1491,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					three20/Build/Products/three20,
+					../three20/Build/Products/three20,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
@@ -1562,7 +1562,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					three20/Build/Products/three20,
+					../three20/Build/Products/three20,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_LDFLAGS = (
@@ -1588,7 +1588,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)/../three20",
 					"$(BUILT_PRODUCTS_DIR)/../../three20",
-					three20/Build/Products/three20,
+					../three20/Build/Products/three20,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

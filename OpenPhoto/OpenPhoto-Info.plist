@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBuildDate</key>
-	<string>Mon Aug 22 23:13:26 CEST 2011</string>
+	<string>Mon Sep 12 22:14:27 CEST 2011</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -21,11 +21,22 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>.8</string>
+	<string>.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>me.openphoto</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>openphoto</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>7</string>
+	<string>8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
@@ -38,16 +49,5 @@
 	</array>
 	<key>Versioning System</key>
 	<string>apple-generic</string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>me.openphoto</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>openphoto</string>
-			</array>
-		</dict>
-	</array>
 </dict>
 </plist>
