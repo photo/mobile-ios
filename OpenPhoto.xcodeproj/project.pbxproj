@@ -57,13 +57,17 @@
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
-		CD6FA94413E40942007561EB /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA93F13E40942007561EB /* tab-gallery.png */; };
-		CD6FA94513E40942007561EB /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94013E40942007561EB /* tab-home.png */; };
-		CD6FA94613E40942007561EB /* tab-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94113E40942007561EB /* tab-settings.png */; };
-		CD6FA94713E40942007561EB /* tab-tags.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6FA94213E40942007561EB /* tab-tags.png */; };
 		CD72DA2413EDEE6E00546F06 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD72DA2313EDEE6E00546F06 /* Default@2x.png */; };
-		CD7FA7751416AC2F00A39960 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7FA7731416AC2F00A39960 /* upload.png */; };
-		CD7FA7761416AC2F00A39960 /* upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7FA7741416AC2F00A39960 /* upload@2x.png */; };
+		CD7623BA141FB45600551D72 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623B8141FB45600551D72 /* upload.png */; };
+		CD7623BB141FB45600551D72 /* upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623B9141FB45600551D72 /* upload@2x.png */; };
+		CD7623C4141FB46600551D72 /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BC141FB46600551D72 /* tab-gallery.png */; };
+		CD7623C5141FB46600551D72 /* tab-gallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BD141FB46600551D72 /* tab-gallery@2x.png */; };
+		CD7623C6141FB46600551D72 /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BE141FB46600551D72 /* tab-home.png */; };
+		CD7623C7141FB46600551D72 /* tab-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BF141FB46600551D72 /* tab-home@2x.png */; };
+		CD7623C8141FB46600551D72 /* tab-settings.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C0141FB46600551D72 /* tab-settings.png */; };
+		CD7623C9141FB46600551D72 /* tab-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C1141FB46600551D72 /* tab-settings@2x.png */; };
+		CD7623CA141FB46600551D72 /* tab-tags.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C2141FB46600551D72 /* tab-tags.png */; };
+		CD7623CB141FB46600551D72 /* tab-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C3141FB46600551D72 /* tab-tags@2x.png */; };
 		CD804D1913EDEF3D00E5CEA9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CD804D1813EDEF3D00E5CEA9 /* Default.png */; };
 		CD804D1C13EDEFED00E5CEA9 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD804D1A13EDEFED00E5CEA9 /* Background.png */; };
 		CD804D1D13EDEFED00E5CEA9 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD804D1B13EDEFED00E5CEA9 /* Background@2x.png */; };
@@ -392,14 +396,18 @@
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
 		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		CD6FA93F13E40942007561EB /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-gallery.png"; sourceTree = "<group>"; };
-		CD6FA94013E40942007561EB /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-home.png"; sourceTree = "<group>"; };
-		CD6FA94113E40942007561EB /* tab-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-settings.png"; sourceTree = "<group>"; };
-		CD6FA94213E40942007561EB /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-tags.png"; sourceTree = "<group>"; };
 		CD72DA2313EDEE6E00546F06 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		CD7623B8141FB45600551D72 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = OpenPhoto/images/initialPicturesHome/upload.png; sourceTree = SOURCE_ROOT; };
+		CD7623B9141FB45600551D72 /* upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload@2x.png"; path = "OpenPhoto/images/initialPicturesHome/upload@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD7623BC141FB46600551D72 /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-gallery.png"; path = "OpenPhoto/images/tabs/tab-gallery.png"; sourceTree = SOURCE_ROOT; };
+		CD7623BD141FB46600551D72 /* tab-gallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-gallery@2x.png"; path = "OpenPhoto/images/tabs/tab-gallery@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD7623BE141FB46600551D72 /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-home.png"; path = "OpenPhoto/images/tabs/tab-home.png"; sourceTree = SOURCE_ROOT; };
+		CD7623BF141FB46600551D72 /* tab-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-home@2x.png"; path = "OpenPhoto/images/tabs/tab-home@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD7623C0141FB46600551D72 /* tab-settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-settings.png"; path = "OpenPhoto/images/tabs/tab-settings.png"; sourceTree = SOURCE_ROOT; };
+		CD7623C1141FB46600551D72 /* tab-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-settings@2x.png"; path = "OpenPhoto/images/tabs/tab-settings@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD7623C2141FB46600551D72 /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags.png"; path = "OpenPhoto/images/tabs/tab-tags.png"; sourceTree = SOURCE_ROOT; };
+		CD7623C3141FB46600551D72 /* tab-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags@2x.png"; path = "OpenPhoto/images/tabs/tab-tags@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD775F6F13E33BBE00FD1721 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PhotoViewController.h; sourceTree = "<group>"; };
-		CD7FA7731416AC2F00A39960 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = upload.png; sourceTree = "<group>"; };
-		CD7FA7741416AC2F00A39960 /* upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upload@2x.png"; sourceTree = "<group>"; };
 		CD804D1813EDEF3D00E5CEA9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		CD804D1A13EDEFED00E5CEA9 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		CD804D1B13EDEFED00E5CEA9 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
@@ -698,8 +706,8 @@
 		CD73F8721411748D00F2CAA5 /* InitialPicturesHome */ = {
 			isa = PBXGroup;
 			children = (
-				CD7FA7731416AC2F00A39960 /* upload.png */,
-				CD7FA7741416AC2F00A39960 /* upload@2x.png */,
+				CD7623B8141FB45600551D72 /* upload.png */,
+				CD7623B9141FB45600551D72 /* upload@2x.png */,
 			);
 			name = InitialPicturesHome;
 			sourceTree = "<group>";
@@ -891,10 +899,14 @@
 		CDF4460613E1C4EF007E8F72 /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				CD6FA93F13E40942007561EB /* tab-gallery.png */,
-				CD6FA94013E40942007561EB /* tab-home.png */,
-				CD6FA94113E40942007561EB /* tab-settings.png */,
-				CD6FA94213E40942007561EB /* tab-tags.png */,
+				CD7623BC141FB46600551D72 /* tab-gallery.png */,
+				CD7623BD141FB46600551D72 /* tab-gallery@2x.png */,
+				CD7623BE141FB46600551D72 /* tab-home.png */,
+				CD7623BF141FB46600551D72 /* tab-home@2x.png */,
+				CD7623C0141FB46600551D72 /* tab-settings.png */,
+				CD7623C1141FB46600551D72 /* tab-settings@2x.png */,
+				CD7623C2141FB46600551D72 /* tab-tags.png */,
+				CD7623C3141FB46600551D72 /* tab-tags@2x.png */,
 			);
 			name = Tab;
 			sourceTree = "<group>";
@@ -1250,10 +1262,6 @@
 				CD2FF13D13E2337E00F75A1E /* Icon@2x.png in Resources */,
 				CD2FF13E13E2337E00F75A1E /* logo.png in Resources */,
 				CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */,
-				CD6FA94413E40942007561EB /* tab-gallery.png in Resources */,
-				CD6FA94513E40942007561EB /* tab-home.png in Resources */,
-				CD6FA94613E40942007561EB /* tab-settings.png in Resources */,
-				CD6FA94713E40942007561EB /* tab-tags.png in Resources */,
 				CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */,
 				CD72DA2413EDEE6E00546F06 /* Default@2x.png in Resources */,
 				CD804D1913EDEF3D00E5CEA9 /* Default.png in Resources */,
@@ -1266,12 +1274,20 @@
 				CD12AA511405A927008B124A /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				CD12AA521405A927008B124A /* IASKSpecifierValuesView.xib in Resources */,
 				CD6834CE1406596200468742 /* Settings.bundle in Resources */,
-				CD7FA7751416AC2F00A39960 /* upload.png in Resources */,
-				CD7FA7761416AC2F00A39960 /* upload@2x.png in Resources */,
 				CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */,
 				CD9A02691418237C002DDCEF /* OATestServer.rb in Resources */,
 				CDE5878B141A5FDA004191B4 /* AviarySDK-Core.bundle in Resources */,
 				CDE5878C141A5FDA004191B4 /* AviarySDK-Plugins.bundle in Resources */,
+				CD7623BA141FB45600551D72 /* upload.png in Resources */,
+				CD7623BB141FB45600551D72 /* upload@2x.png in Resources */,
+				CD7623C4141FB46600551D72 /* tab-gallery.png in Resources */,
+				CD7623C5141FB46600551D72 /* tab-gallery@2x.png in Resources */,
+				CD7623C6141FB46600551D72 /* tab-home.png in Resources */,
+				CD7623C7141FB46600551D72 /* tab-home@2x.png in Resources */,
+				CD7623C8141FB46600551D72 /* tab-settings.png in Resources */,
+				CD7623C9141FB46600551D72 /* tab-settings@2x.png in Resources */,
+				CD7623CA141FB46600551D72 /* tab-tags.png in Resources */,
+				CD7623CB141FB46600551D72 /* tab-tags@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
