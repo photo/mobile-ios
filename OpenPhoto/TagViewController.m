@@ -108,30 +108,31 @@
 #pragma mark - Delegate for bring the tags from the server
 - (void) receivedResponse:(NSDictionary*) response{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSArray *tagsResult = [response objectForKey:@"result"] ;
+    NSArray *tagsResult = [response objectForKey:@"result"];
     
-    // Loop through each entry in the dictionary and create an array Tags
-    for (NSDictionary *tagDetails in tagsResult){
-        // tag name       
-        NSString *name = [tagDetails objectForKey:@"id"];
-        name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
-        // how many images
-        NSString *qtd = [tagDetails objectForKey:@"count"];
-        
-        // create a tag and add to the list
-        Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
-        [tags addObject:tag];
-        
-        // we don't need it anymore.
-        [tag release];
-    }
+    if ([tagsResult class] != [NSNull class]) {
+        // Loop through each entry in the dictionary and create an array Tags
+        for (NSDictionary *tagDetails in tagsResult){
+            // tag name       
+            NSString *name = [tagDetails objectForKey:@"id"];
+            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            // how many images
+            NSString *qtd = [tagDetails objectForKey:@"count"];
+            
+            // create a tag and add to the list
+            Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
+            [tags addObject:tag];
+            
+            // we don't need it anymore.
+            [tag release];
+        }}
     
     [self.tableView reloadData];
 }
 
 - (void) notifyUserNoInternet{
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];

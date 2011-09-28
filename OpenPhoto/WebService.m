@@ -39,11 +39,11 @@
     return self;
 }
 - (void) getTags{
-    [self sendRequest:@"/tags.json"];
+    [self sendRequest:@"/tags/list.json"];
 }
 
 - (void) getHomePictures{
-    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos.json?sortBy=dateUploaded,DESC&pageSize=4&returnSizes="];
+    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos/list.json?sortBy=dateUploaded,DESC&pageSize=4&returnSizes="];
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
@@ -58,17 +58,17 @@
 
 - (void) loadGallery:(int) pageSize{
     NSMutableString *loadGalleryRequest = [NSMutableString stringWithFormat: @"%@%@%@", 
-                                           @"/photos/pageSize-", 
+                                           @"/photos/list.json?pageSize=", 
                                            [NSString stringWithFormat:@"%d", pageSize],
-                                           @".json?returnSizes=200x200,640x960"];
-    [self sendRequest:loadGalleryRequest];
+                                           @"&returnSizes=200x200,640x960"];
+     [self sendRequest:loadGalleryRequest];
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag{
     NSMutableString *loadGalleryRequest = [NSMutableString stringWithFormat: @"%@%@%@%@%@", 
-                                           @"/photos/pageSize-", 
+                                           @"/photos/list.json?pageSize=", 
                                            [NSString stringWithFormat:@"%d", pageSize],
-                                           @".json?returnSizes=200x200,640x960",
+                                           @"&returnSizes=200x200,640x960",
                                            @"&tags=",tag];
     [self sendRequest:loadGalleryRequest];
 }
@@ -149,7 +149,7 @@
         [oaUrlRequest prepare];
         [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
         
-
+        
         
         // send the request
         OADataFetcher *fetcher = [[OADataFetcher alloc] init];
@@ -269,19 +269,19 @@
         // send the result to the delegate
         [self.delegate receivedResponse:results];
     }else{
-        NSLog(@"The request didn't succeed");
+        NSLog(@"The request didn't succeed=%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }
 }
 - (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
-    NSLog(@"Error to send request = %@", [error userInfo]);
+    NSLog(@"Error to send request = %@; error code=%@", [error userInfo],[error code]);
 }
 
 
 - (BOOL) validateNetwork{
     // check for the network and if our server is reachable
-    if (self.internetActive == NO || self.hostActive == NO){
-        return NO;
-    }
+//    if (self.internetActive == NO || self.hostActive == NO){
+//        return NO;
+//    }
     
     return YES;
 }

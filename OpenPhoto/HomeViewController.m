@@ -58,6 +58,7 @@
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     NSArray *photos = [response objectForKey:@"result"] ;
+    
     // do the download in a thread
     // to send the request we add a thread.
     [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
@@ -83,7 +84,12 @@
         NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
             NSLog(@"Photo URL = %@",[photo objectForKey:key]);
-            [images addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
+            NSNumber *totalRows = [photo objectForKey:@"totalRows"];
+            if ([totalRows intValue]>0){
+                [images addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
+            }
+            [totalRows release];
+            
         } 
         
         // save the pictures into user defaults
