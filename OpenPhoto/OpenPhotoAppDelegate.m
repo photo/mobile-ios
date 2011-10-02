@@ -29,6 +29,7 @@
     
     // to start the TestFlight SDK
     [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
+    [TestFlight passCheckpoint:@"Started App"];
     
     InitializerHelper *helper = [[InitializerHelper alloc]init];
     if ([helper isInitialized] == NO){
@@ -59,8 +60,6 @@
 {
     NSLog(@"handleOpenUrl = %@",url);
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
-    
-    [TestFlight passCheckpoint:@"User will start OAuth Procedure"]; 
     
     if ([auth isValid] == NO){
         [auth startOAuthProcedure:url];
