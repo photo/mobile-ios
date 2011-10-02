@@ -27,6 +27,9 @@
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*640*960];
     
+    // to start the TestFlight SDK
+    [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
+    
     InitializerHelper *helper = [[InitializerHelper alloc]init];
     if ([helper isInitialized] == NO){
         [helper initialize];
@@ -56,6 +59,8 @@
 {
     NSLog(@"handleOpenUrl = %@",url);
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
+    
+    [TestFlight passCheckpoint:@"User will start OAuth Procedure"]; 
     
     if ([auth isValid] == NO){
         [auth startOAuthProcedure:url];

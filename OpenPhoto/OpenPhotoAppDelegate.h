@@ -10,6 +10,7 @@
 #import "InitializerHelper.h"
 #import "AuthenticationHelper.h"
 #import "AuthenticationViewController.h"
+#import "TestFlight.h" 
 
 @class OpenPhotoViewController;
 
