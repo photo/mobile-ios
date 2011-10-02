@@ -1,9 +1,9 @@
-[submodule "QSUtilities"]
-	path = QSUtilities
-	url = git://github.com/mikeho/QSUtilities.git
 [submodule "three20"]
 	path = three20
 	url = git://github.com/facebook/three20.git
-[submodule "InAppSettingsKit"]
-	path = InAppSettingsKit
+[submodule "Frameworks/QSUtilities"]
+	path = Frameworks/QSUtilities
+	url = git://github.com/mikeho/QSUtilities.git
+[submodule "Frameworks/InAppSettingsKit"]
+	path = Frameworks/InAppSettingsKit
 	url = https://github.com/futuretap/InAppSettingsKit.git
