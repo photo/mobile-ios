@@ -27,9 +27,11 @@
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:10*640*960];
     
+#ifdef TEST_FLIGHT_ENABLED
     // to start the TestFlight SDK
     [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
     [TestFlight passCheckpoint:@"Started App"];
+#endif
     
     InitializerHelper *helper = [[InitializerHelper alloc]init];
     if ([helper isInitialized] == NO){
