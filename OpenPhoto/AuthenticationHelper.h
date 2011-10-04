@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Constants.h"
 #import "WebService.h"
 
 @interface AuthenticationHelper : NSObject{

@@ -106,6 +106,11 @@
     
     [key release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Home pictures"];
+#endif
+    
     [pool release];
     
 }

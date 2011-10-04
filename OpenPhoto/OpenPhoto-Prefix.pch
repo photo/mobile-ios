@@ -11,8 +11,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
-    #import "TestFlight.h" 
+    #import "TestFlight.h"
+    #import "Constants.h"
 #endif
 
-
-#define TEST_FLIGHT_ENABLED

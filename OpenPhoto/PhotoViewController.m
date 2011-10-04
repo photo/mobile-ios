@@ -151,7 +151,12 @@
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [self.service uploadPicture:values];   
+    [self.service uploadPicture:values];
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Picture uploaded"];
+#endif
+    
     [pool release];
 }
 

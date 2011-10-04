@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "WebService.h"
-#import "Constants.h"
 
 @interface HomeViewController : UIViewController <WebServiceDelegate>{
     WebService *service;

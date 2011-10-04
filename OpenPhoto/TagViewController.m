@@ -129,6 +129,11 @@
         }}
     
     [self.tableView reloadData];
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Tags received from the website"];
+#endif
+
 }
 
 - (void) notifyUserNoInternet{

@@ -63,12 +63,17 @@
 }
 
 - (void) eventHandler: (NSNotification *) notification{
-    NSLog(@"###### Event triggered: %@", notification);
     if ([notification.name isEqualToString:kNotificationLoginNeeded]){
         // open the authentication screen
         AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
         [self presentModalViewController:controller animated:YES];
         [controller release];
+        
+#ifdef TEST_FLIGHT_ENABLED
+        NSLog(@"###### Event triggered: %@", notification);
+        [TestFlight passCheckpoint:@"Event for Notification Login Needed"];
+#endif
+        
     }
 }
 

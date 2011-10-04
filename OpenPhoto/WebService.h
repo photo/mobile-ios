@@ -7,7 +7,6 @@
 //
 
 #include <Three20/Three20.h>
-#import "Constants.h"
 #import "OAMutableURLRequest.h"
 #import "OAPlaintextSignatureProvider.h"
 #import "OAToken.h"

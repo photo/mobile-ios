@@ -10,7 +10,6 @@
 #import "ImageManipulation.h"
 #import "TagViewController.h"
 #import "AFFeatherController.h"
-#import "Constants.h"
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
     IBOutlet UITextField *imageTitle;

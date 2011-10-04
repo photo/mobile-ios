@@ -62,6 +62,11 @@
 {
     NSLog(@"handleOpenUrl = %@",url);
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
+
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Started OAuth Procedure"];
+#endif
+
     
     if ([auth isValid] == NO){
         [auth startOAuthProcedure:url];

@@ -117,6 +117,11 @@
     
     [mockPhotos autorelease];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Gallery Loaded"];
+#endif
+    
 }
 
 - (void) notifyUserNoInternet{
