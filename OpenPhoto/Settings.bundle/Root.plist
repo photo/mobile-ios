@@ -92,7 +92,7 @@
 			<key>IASKMailComposeBccRecipents</key>
 			<array/>
 			<key>IASKMailComposeBody</key>
-			<string>Version 1.0. The bug is ...</string>
+			<string>Version 1.1. The bug is ...</string>
 			<key>IASKMailComposeBodyIsHTML</key>
 			<string>YES</string>
 			<key>IASKMailComposeCcRecipents</key>
@@ -124,7 +124,7 @@
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>1.0</string>
+			<string>1.1</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
