@@ -66,38 +66,41 @@
     NSArray *photos = [response objectForKey:@"result"] ;
     NSMutableArray *mockPhotos = [[NSMutableArray alloc] init];
     
-    // Loop through each entry in the dictionary and create an array of MockPhoto
-    for (NSDictionary *photo in photos){
-        // Get title/description of the image
+    // result can be null
+    if ([photos class] != [NSNull class]) {
         
-        NSString *title = [photo objectForKey:@"title"];
-        NSString *description = [photo objectForKey:@"description"];
-        
-        NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-        NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
-        
-        float width = [[photo objectForKey:@"width"] floatValue];
-        float height = [[photo objectForKey:@"height"] floatValue];
-        
-        // calculate the real size of the image. It will keep the aspect ratio.
-        float realWidth = 0;
-        float realHeight = 0;
-        
-        if(width/height >= 1) { 
-            // portrait or square
-            realWidth = 640;
-            realHeight = height/width*640;
-        } else { 
-            // landscape
-            realHeight = 960;
-            realWidth = width/height*960;
-        }
-        
-        [mockPhotos addObject: [[[MockPhoto alloc]
-                                 initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
-                                 smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
-                                 size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
-    } 
+        // Loop through each entry in the dictionary and create an array of MockPhoto
+        for (NSDictionary *photo in photos){
+            // Get title/description of the image
+            
+            NSString *title = [photo objectForKey:@"title"];
+            NSString *description = [photo objectForKey:@"description"];
+            
+            NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
+            NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
+            
+            float width = [[photo objectForKey:@"width"] floatValue];
+            float height = [[photo objectForKey:@"height"] floatValue];
+            
+            // calculate the real size of the image. It will keep the aspect ratio.
+            float realWidth = 0;
+            float realHeight = 0;
+            
+            if(width/height >= 1) { 
+                // portrait or square
+                realWidth = 640;
+                realHeight = height/width*640;
+            } else { 
+                // landscape
+                realHeight = 960;
+                realWidth = width/height*960;
+            }
+            
+            [mockPhotos addObject: [[[MockPhoto alloc]
+                                     initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
+                                     smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
+                                     size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
+        } }
     
     self.photoSource = [[MockPhotoSource alloc]
                         initWithType:MockPhotoSourceNormal
@@ -125,7 +128,7 @@
 }
 
 - (void) notifyUserNoInternet{
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
