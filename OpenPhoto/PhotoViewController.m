@@ -59,9 +59,18 @@
 {   statusBar.hidden = YES;  
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // if user wants to cancel the upload
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
+    self.navigationItem.rightBarButtonItem = anotherButton;
+    
     [super viewDidLoad];
 }
 
+- (void) cancelUploadButton
+{
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 
 - (void)viewDidUnload
