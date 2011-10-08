@@ -38,6 +38,7 @@
 		CD22C9A81439123000E98B0B /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A11439123000E98B0B /* QSFileManager.m */; };
 		CD22C9A91439123000E98B0B /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A31439123000E98B0B /* QSHttpClient.m */; };
 		CD22C9AA1439123000E98B0B /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A51439123000E98B0B /* QSStrings.m */; };
+		CD2409B21440B2AD0013D1BA /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7A125114391506001A88E0 /* libAviarySDK-universal.a */; };
 		CD2FF13513E2337E00F75A1E /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12B13E2337E00F75A1E /* appbar_blank.png */; };
 		CD2FF13613E2337E00F75A1E /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12C13E2337E00F75A1E /* appbar_logo.png */; };
 		CD2FF13813E2337E00F75A1E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12E13E2337E00F75A1E /* Icon-72.png */; };
@@ -62,7 +63,6 @@
 		CD7623C9141FB46600551D72 /* tab-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C1141FB46600551D72 /* tab-settings@2x.png */; };
 		CD7623CA141FB46600551D72 /* tab-tags.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C2141FB46600551D72 /* tab-tags.png */; };
 		CD7623CB141FB46600551D72 /* tab-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C3141FB46600551D72 /* tab-tags@2x.png */; };
-		CD7A125214391506001A88E0 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7A125114391506001A88E0 /* libAviarySDK-universal.a */; };
 		CD7A125514391511001A88E0 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD7A125314391511001A88E0 /* AviarySDK-Core.bundle */; };
 		CD7A125614391511001A88E0 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD7A125414391511001A88E0 /* AviarySDK-Plugins.bundle */; };
 		CD7A128114391542001A88E0 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7A125B14391542001A88E0 /* IASKAppSettingsViewController.m */; };
@@ -503,6 +503,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2409B21440B2AD0013D1BA /* libAviarySDK-universal.a in Frameworks */,
 				CDF4463913E1C5BA007E8F72 /* libextThree20JSON+SBJSON.a in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
@@ -520,7 +521,6 @@
 				CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */,
 				CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */,
 				CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */,
-				CD7A125214391506001A88E0 /* libAviarySDK-universal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1547,7 +1547,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Aviary\"",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
@@ -1645,7 +1644,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Aviary\"",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
@@ -1664,7 +1662,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Aviary\"",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
