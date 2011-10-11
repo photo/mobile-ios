@@ -68,4 +68,8 @@
 // for network status
  - (void) checkNetworkStatus:(NSNotification *)notice;
 
+// method to check if the answer was correct or not
++ (BOOL) isMessageValid:(NSDictionary *)response;
++ (NSString*) getResponseMessage:(NSDictionary *)response;
+
 @end

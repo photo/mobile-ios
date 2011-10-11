@@ -61,7 +61,7 @@
                                            @"/photos/list.json?pageSize=", 
                                            [NSString stringWithFormat:@"%d", pageSize],
                                            @"&returnSizes=200x200,640x960"];
-     [self sendRequest:loadGalleryRequest];
+    [self sendRequest:loadGalleryRequest];
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag{
@@ -207,6 +207,15 @@
     }
 }
 
++ (BOOL) isMessageValid:(NSDictionary *)response{
+    return YES;
+}
+
++ (NSString*) getResponseMessage:(NSDictionary *)response{
+    NSString* message = [[NSString alloc]init];
+    return [message autorelease];
+}
+
 
 ///////////////////////////////////
 // PRIVATES METHODS
@@ -279,9 +288,9 @@
 
 - (BOOL) validateNetwork{
     // check for the network and if our server is reachable
-//    if (self.internetActive == NO || self.hostActive == NO){
-//        return NO;
-//    }
+    //    if (self.internetActive == NO || self.hostActive == NO){
+    //        return NO;
+    //    }
     
     return YES;
 }

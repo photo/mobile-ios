@@ -107,6 +107,19 @@
 
 #pragma mark - Delegate for bring the tags from the server
 - (void) receivedResponse:(NSDictionary*) response{
+    // check if message is valid
+    if (![WebService isMessageValid:response]){
+        NSString* message = [WebService getResponseMessage:response];
+        NSLog(@"Invalid response = %@",message);
+        
+        // show alert to user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        return;
+    }
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     NSArray *tagsResult = [response objectForKey:@"result"];
     

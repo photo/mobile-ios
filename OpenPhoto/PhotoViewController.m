@@ -173,6 +173,18 @@
 -(void) receivedResponse:(NSDictionary *)response{
     [statusBar stopAnimating];
     statusBar.hidden = YES;
+    
+    // check if message is valid
+    if (![WebService isMessageValid:response]){
+        NSString* message = [WebService getResponseMessage:response];
+        NSLog(@"Invalid response = %@",message);
+        
+        // show alert to user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
     [self dismissModalViewControllerAnimated:YES];
 }
 
