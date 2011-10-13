@@ -234,6 +234,16 @@
         [self.delegate notifyUserNoInternet];
     }else{
         
+        // don't send the request if the server is not defined
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer] == nil){
+            NSLog(@"Url is not defined, request can not be sent");
+            // set the variable client id to INVALID
+            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+            [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
+            [standardUserDefaults synchronize];
+            return;
+        }
+        
         // create the url to connect to OpenPhoto
         NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
