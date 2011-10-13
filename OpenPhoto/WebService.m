@@ -208,12 +208,21 @@
 }
 
 + (BOOL) isMessageValid:(NSDictionary *)response{
+    // get the content of code
+    NSString* code = [response objectForKey:@"code"];
+    NSInteger icode = [code integerValue];
+    
+    // is it different than 200
+    if (icode != 200)
+        return NO;
+    
+    // another kind of message
     return YES;
 }
 
 + (NSString*) getResponseMessage:(NSDictionary *)response{
-    NSString* message = [[NSString alloc]init];
-    return [message autorelease];
+    // get content of message in the response
+    return [response objectForKey:@"message"];
 }
 
 
