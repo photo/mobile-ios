@@ -40,7 +40,7 @@
         // High resolution
         [standardUserDefaults setBool:YES forKey:kPhotosHighResolution];
         // Privacy
-        [standardUserDefaults setBool:YES forKey:kPhotosArePrivate];
+        [standardUserDefaults setBool:NO forKey:kPhotosArePrivate];
         
         
         // set that the initialization is okay.
