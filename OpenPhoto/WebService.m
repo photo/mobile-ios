@@ -307,9 +307,9 @@
 
 - (BOOL) validateNetwork{
     // check for the network and if our server is reachable
-    //    if (self.internetActive == NO || self.hostActive == NO){
-    //        return NO;
-    //    }
+    if (self.internetActive == NO || self.hostActive == NO){
+          return NO;
+        }
     
     return YES;
 }
