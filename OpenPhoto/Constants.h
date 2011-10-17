@@ -28,6 +28,8 @@ extern NSString * const kAuthenticationConsumerSecret;
 extern NSString * const kNotificationLoginAuthorize;        
 extern NSString * const kNotificationLoginNeeded;   
 extern NSString * const kNotificationRefreshPictures;
+extern NSString * const kNotificationOpenGallery;
+
 
 extern int        const kNumbersRow;
 extern NSString * const kCellIdentifierTitle;

@@ -186,7 +186,10 @@
         [alert release];
     }
     
+    // open gallery
     [self dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{

@@ -135,6 +135,11 @@
     [self.tabBar addSubview:button];
 }
 
+
+-(void) setCustomSelectedIndex:(NSInteger) selectedIndex{
+    [self.tabBarController setSelectedIndex:selectedIndex];
+}
+
 -(void)buttonEvent{
     // check if user has camera
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
@@ -188,8 +193,7 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     } 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return YES;
 }
 
