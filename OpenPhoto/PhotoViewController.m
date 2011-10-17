@@ -61,8 +61,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     // if user wants to cancel the upload
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
-    self.navigationItem.rightBarButtonItem = anotherButton;
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
+    self.navigationItem.rightBarButtonItem = cancelButton;
+    [cancelButton release];
     
     [super viewDidLoad];
 }

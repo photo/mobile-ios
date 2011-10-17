@@ -26,10 +26,10 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        self.photoSource = [[PhotoSource alloc]
+        self.photoSource = [[[PhotoSource alloc]
                             initWithTitle:@"Gallery"
                             photos:nil
-                            photos2:nil];
+                            photos2:nil] autorelease];
     }
     return self;
 }
@@ -86,10 +86,13 @@
             // Get title/description of the image
             
             NSString *title = [photo objectForKey:@"title"];
-            NSString *description = [photo objectForKey:@"description"];
             
+#ifdef DEVELOPMENT_ENABLED      
+            NSString *description = [photo objectForKey:@"description"];            
             NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
+
             NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
+#endif            
             
             float width = [[photo objectForKey:@"width"] floatValue];
             float height = [[photo objectForKey:@"height"] floatValue];
@@ -114,10 +117,10 @@
                                      size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } }
     
-    self.photoSource = [[PhotoSource alloc]
+    self.photoSource = [[[PhotoSource alloc]
                         initWithTitle:@"Gallery"
                         photos:photos
-                        photos2:nil];
+                        photos2:nil] autorelease];
     
     // this is for the loading
     //  photos2:nil
@@ -129,7 +132,7 @@
     //          nil]
     // ];
     
-    [photos autorelease];
+    [photos release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
 #ifdef TEST_FLIGHT_ENABLED

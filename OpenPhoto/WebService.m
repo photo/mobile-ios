@@ -30,7 +30,7 @@
         [internetReachable startNotifier];
         
         // check if a pathway to a random host exists
-        hostReachable = [[Reachability reachabilityWithHostName: @"www.openphoto.me"] retain];
+        hostReachable = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
         [hostReachable startNotifier];
         
         self.internetActive = NO;
@@ -121,7 +121,9 @@
         NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
         
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Request to be sent = [%@]",urlString);
+#endif
         
         // transform in URL for the request
         NSURL *url = [NSURL URLWithString:urlString];
@@ -156,6 +158,11 @@
                              delegate:self
                     didFinishSelector:@selector(requestTicket:didFinishWithData:)
                       didFailSelector:@selector(requestTicket:didFailWithError:)];
+        
+        [token release];
+        [consumer release];
+        [oaUrlRequest release];
+        [fetcher release];
     }
     
 }
@@ -246,8 +253,10 @@
         // create the url to connect to OpenPhoto
         NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
-        
+    
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Request to be sent = [%@]",urlString);
+#endif
         
         // transform in URL for the request
         NSURL *url = [NSURL URLWithString:urlString];
@@ -261,7 +270,7 @@
         // consumer to send. We get the details from the user defaults
         OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
                                                         secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-  
+        
         OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
                                                                             consumer:consumer
                                                                                token:token
@@ -278,13 +287,20 @@
                              delegate:self
                     didFinishSelector:@selector(requestTicket:didFinishWithData:)
                       didFailSelector:@selector(requestTicket:didFailWithError:)];
+        
+        [token release];
+        [consumer release];
+        [oaUrlRequest release];
+        [fetcher release];
     }
 }
 
 - (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
     if (ticket.didSucceed) {
         NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"Succeed = %@",jsonString);        
+#ifdef DEVELOPMENT_ENABLED        
+        NSLog(@"Succeed = %@",jsonString);       
+#endif        
         
         // Create a dictionary from JSON string
         // When there are newline characters in the JSON string, 
@@ -294,6 +310,7 @@
         
         // send the result to the delegate
         [self.delegate receivedResponse:results];
+        [jsonString release];
     }else{
         NSLog(@"The request didn't succeed=%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }
@@ -305,9 +322,13 @@
 
 - (BOOL) validateNetwork{
     // check for the network and if our server is reachable
-    if (self.internetActive == NO || self.hostActive == NO){
-        NSLog(@"Values for internetActive = %@ and hostActive = %@",(self.internetActive ? @"YES" : @"NO") , (self.hostActive ? @"YES" : @"NO"));
-        return NO;
+    if (self.internetActive == NO ){
+        // re-check network
+        [self checkNetworkStatus:nil];
+        if (self.internetActive == NO){
+            NSLog(@"Values for internetActive = %@ and hostActive = %@",(self.internetActive ? @"YES" : @"NO") , (self.hostActive ? @"YES" : @"NO"));
+            return NO;
+        }
     }
     
     return YES;

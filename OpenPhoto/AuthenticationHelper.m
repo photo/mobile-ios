@@ -130,6 +130,13 @@
                          delegate:self
                 didFinishSelector:@selector(requestTokenAccess:didFinishWithData:)
                   didFailSelector:@selector(requestToken:didFailWithError:)];
+    
+    [token release];
+    [consumer release];
+    [request release];
+    [parameterToken release];
+    [parameterVerifier release];
+    [fetcher release];
 }
 
 
@@ -171,6 +178,8 @@
         
         // synchronize the keys
         [standardUserDefaults synchronize];  
+
+        [responseBody release];
         
         // send notification to the system that it can shows the screen:
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];

@@ -41,4 +41,7 @@ extern NSString * const kCellIdentifierHighResolutionPicture;
 // while using TestFlight, this variable will permit the app to save/send data
 #define TEST_FLIGHT_ENABLED
 
+// a lot of logs, don't use in production env.
+#define DEVELOPMENT_ENABLED
+
 @end
