@@ -54,7 +54,7 @@
     for (id object in self.tags) {
         Tag *tag = (Tag*) object;
         if (tag.selected == YES){
-            [array addObject:tag.tagName];   
+            [array addObject:tag.tagName];  
         }
     }
     
@@ -64,14 +64,13 @@
 // this method return the tag's name but in the format to send to openphoto server
 - (NSString *) getSelectedTagsInJsonFormat{  
     NSMutableString *result = [NSMutableString string];
-    [result appendFormat:@"["];
     
     NSArray *array = [self getSelectedTags];
     int counter = 1;
     
     if (array != nil && [array count]>0){
         for (id string in array) {
-            [result appendFormat:@"%@%@%@",@"'",string,@"'"];
+            [result appendFormat:@"%@",string];
             
             // add the ,
             if ( counter < [array count]){
@@ -81,8 +80,7 @@
             counter++;
         }
     }
-    
-    [result appendFormat:@"]"];
+
     return result;
 }
 
