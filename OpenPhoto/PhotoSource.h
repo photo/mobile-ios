@@ -1,12 +1,12 @@
 #import <Three20/Three20.h>
+#import "Three20Core/NSArrayAdditions.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface MockPhotoSource : TTURLRequestModel <TTPhotoSource> {
+@interface PhotoSource : TTURLRequestModel <TTPhotoSource> {
     NSString* _title;
     NSMutableArray* _photos;
     NSArray* _tempPhotos;
-    NSTimer* _fakeLoadTimer;
 }
 
 - (id)initWithTitle:(NSString*)title

@@ -26,7 +26,7 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        self.photoSource = [[MockPhotoSource alloc]
+        self.photoSource = [[PhotoSource alloc]
                             initWithTitle:@"Gallery"
                             photos:nil
                             photos2:nil];
@@ -114,7 +114,7 @@
                                      size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } }
     
-    self.photoSource = [[MockPhotoSource alloc]
+    self.photoSource = [[PhotoSource alloc]
                         initWithTitle:@"Gallery"
                         photos:photos
                         photos2:nil];
@@ -122,7 +122,7 @@
     // this is for the loading
     //  photos2:nil
     // photos2:[[NSArray alloc] initWithObjects:
-    //          [[[MockPhoto alloc]
+    //          [[[Photo alloc]
     //            initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
     //            smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
     //            size:CGSizeMake(800, 533)] autorelease],

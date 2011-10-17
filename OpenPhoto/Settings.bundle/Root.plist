@@ -24,7 +24,7 @@
 			<key>Key</key>
 			<string>LogOutButton</string>
 			<key>Title</key>
-			<string>Log out                                           </string>
+			<string>Log out</string>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 		</dict>
@@ -92,7 +92,7 @@
 			<key>IASKMailComposeBccRecipents</key>
 			<array/>
 			<key>IASKMailComposeBody</key>
-			<string>Version 1.1. The bug is ...</string>
+			<string>Version 1.2. The bug is ...</string>
 			<key>IASKMailComposeBodyIsHTML</key>
 			<string>YES</string>
 			<key>IASKMailComposeCcRecipents</key>
@@ -114,7 +114,7 @@
 			<key>Key</key>
 			<string>TestFlighFeed</string>
 			<key>Title</key>
-            <string>Submit Feedback                           </string>
+            <string>Submit Feedback</string>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 		</dict>
@@ -132,7 +132,7 @@
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>1.1</string>
+			<string>1.2</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>

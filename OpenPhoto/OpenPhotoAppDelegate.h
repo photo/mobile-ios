@@ -11,7 +11,6 @@
 #import "AuthenticationHelper.h"
 #import "AuthenticationViewController.h"
 
-
 @class OpenPhotoViewController;
 
 @interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate>

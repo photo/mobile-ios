@@ -306,6 +306,7 @@
 - (BOOL) validateNetwork{
     // check for the network and if our server is reachable
     if (self.internetActive == NO || self.hostActive == NO){
+        NSLog(@"Values for internetActive = %@ and hostActive = %@",(self.internetActive ? @"YES" : @"NO") , (self.hostActive ? @"YES" : @"NO"));
         return NO;
     }
     

@@ -77,6 +77,8 @@
     [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
                              toTarget:self 
                            withObject:photos];
+    
+    
 }
 
 -(void) getHomeScreenPicturesOnDetachTread:(NSArray*) photos
@@ -96,7 +98,6 @@
     if (photos != nil){
         NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
-            NSLog(@"Photo URL = %@",[photo objectForKey:key]);
             NSNumber *totalRows = [photo objectForKey:@"totalRows"];
             if ([totalRows intValue]>0){
                 [images addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
@@ -142,13 +143,21 @@
     NSDate *now = [NSDate date];
     NSDate *old = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPicturesTimestamp];
     
-    if (old == nil || [now timeIntervalSinceDate:old] > 3600){
-        // one hour after the last update
-        NSLog(@"The last update of pictures was one hour ago");
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [service getHomePictures];  
+    // if there is internet. Because it is the first screen, it is possible that the internet is not reachability yet
+    if (service.internetActive == YES && service.hostActive == YES){
+        if (old == nil){
+            NSLog(@"First time that the application is running.");
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            [service getHomePictures];  
+        }else if ([now timeIntervalSinceDate:old] > 5){
+            // one hour after the last update
+            NSLog(@"The last update of pictures was one hour ago");
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            [service getHomePictures];  
+        }
+    }else{
+        NSLog(@"Internet is not reacheable yet");
     }
-    
     [self showPictures];
 }
 
@@ -184,7 +193,7 @@
         CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
         [self.homeImageView initWithFrame:imageSize];
         self.homeImageView.animationImages = images;
-        self.homeImageView.animationDuration = 17; // seconds
+        self.homeImageView.animationDuration = 4; // seconds
         self.homeImageView.animationRepeatCount = 0; // 0 = loops forever
         [self.homeImageView startAnimating];
         [self.view addSubview:self.homeImageView];

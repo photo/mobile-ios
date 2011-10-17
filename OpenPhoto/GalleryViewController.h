@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #include <Three20/Three20.h>
-#import "MockPhotoSource.h"
+#import "PhotoSource.h"
 #import "WebService.h"
 
 @class PhotoSet;
