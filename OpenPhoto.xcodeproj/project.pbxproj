@@ -95,6 +95,13 @@
 		CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */; };
 		CD9A026E14182479002DDCEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026C14182478002DDCEF /* Security.framework */; };
 		CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026D14182479002DDCEF /* StoreKit.framework */; };
+		CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAE085F144C7C7300625C95 /* TSAlertView.m */; };
+		CDAE0867144C7C7300625C95 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */; };
+		CDAE0868144C7C7300625C95 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0861144C7C7300625C95 /* TSAlertViewBackground2.png */; };
+		CDAE0869144C7C7300625C95 /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0862144C7C7300625C95 /* TSAlertViewButtonBackground.png */; };
+		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
+		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
+		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -456,6 +463,14 @@
 		CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
 		CD9A026C14182478002DDCEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CD9A026D14182479002DDCEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CDAE085E144C7C7300625C95 /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAlertView.h; sourceTree = "<group>"; };
+		CDAE085F144C7C7300625C95 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
+		CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewBackground.png; sourceTree = "<group>"; };
+		CDAE0861144C7C7300625C95 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewBackground2.png; sourceTree = "<group>"; };
+		CDAE0862144C7C7300625C95 /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
+		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
+		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
+		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -780,6 +795,22 @@
 			path = OAuthConsumer;
 			sourceTree = "<group>";
 		};
+		CDAE085D144C7C7300625C95 /* TSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CDAE085E144C7C7300625C95 /* TSAlertView.h */,
+				CDAE085F144C7C7300625C95 /* TSAlertView.m */,
+				CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */,
+				CDAE0861144C7C7300625C95 /* TSAlertViewBackground2.png */,
+				CDAE0862144C7C7300625C95 /* TSAlertViewButtonBackground.png */,
+				CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */,
+				CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */,
+				CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */,
+			);
+			name = TSAlertView;
+			path = Frameworks/TSAlertView/TSAlertView;
+			sourceTree = "<group>";
+		};
 		CDE58786141A5FB2004191B4 /* Aviary */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +846,7 @@
 		CDF1C94A13E1C45C0018AD0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDAE085D144C7C7300625C95 /* TSAlertView */,
 				CD22C96D1439118B00E98B0B /* TestFlight */,
 				CDE58786141A5FB2004191B4 /* Aviary */,
 				CD9A02211418237C002DDCEF /* OAuthConsumer */,
@@ -1304,6 +1336,12 @@
 				CD7A129314391542001A88E0 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */,
 				CD7A129414391542001A88E0 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */,
 				CD7A129514391542001A88E0 /* IASKSpecifierValuesView.xib in Resources */,
+				CDAE0867144C7C7300625C95 /* TSAlertViewBackground.png in Resources */,
+				CDAE0868144C7C7300625C95 /* TSAlertViewBackground2.png in Resources */,
+				CDAE0869144C7C7300625C95 /* TSAlertViewButtonBackground.png in Resources */,
+				CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */,
+				CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,6 +1440,7 @@
 				CD7A128D14391542001A88E0 /* IASKSlider.m in Sources */,
 				CD7A128E14391542001A88E0 /* IASKSwitch.m in Sources */,
 				CD7A128F14391542001A88E0 /* IASKTextField.m in Sources */,
+				CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

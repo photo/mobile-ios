@@ -10,8 +10,9 @@
 #import "Tag.h"
 #import "WebService.h"
 #import "GalleryViewController.h"
+#import "TSAlertView.h"
 
-@interface TagViewController : UITableViewController<WebServiceDelegate>{
+@interface TagViewController : UITableViewController<WebServiceDelegate, TSAlertViewDelegate>{
     NSMutableArray *tags;
     WebService *service;
     BOOL readOnly;

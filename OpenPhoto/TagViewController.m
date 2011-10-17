@@ -103,6 +103,40 @@
     [super viewDidLoad];
     // set the tile of the table
     self.title=@"Tags";     
+    
+    // wanna add new tag name
+    if (readOnly == TRUE){
+        UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];          
+        self.navigationItem.rightBarButtonItem = addNewTagButton;
+        [addNewTagButton release];
+    }
+    
+}
+
+-(void) addNewTag{
+    NSLog(@"Add new tag");
+    TSAlertView* av = [[TSAlertView alloc] initWithTitle:@"Enter new tag name" message:nil delegate:self
+                                       cancelButtonTitle:@"Cancel"
+                                       otherButtonTitles:@"OK",nil];
+    av.style = TSAlertViewStyleInput;
+    [av show];
+    [av release];
+}
+
+// after animation
+- (void) alertView: (TSAlertView *) alertView didDismissWithButtonIndex: (NSInteger) buttonIndex{
+    // cancel
+    if( buttonIndex == 0 || alertView.inputTextField.text == nil || alertView.inputTextField.text.length==0)
+        return;
+    
+    // add the new tag in the list and select it
+    Tag *newTag = [[Tag alloc]initWithTagName:alertView.inputTextField.text Quantity:0];
+    newTag.selected = YES;
+    [tags addObject:newTag];
+    
+    // we don't need it anymore.
+    [newTag release];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Delegate for bring the tags from the server
@@ -146,7 +180,7 @@
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Tags received from the website"];
 #endif
-
+    
 }
 
 - (void) notifyUserNoInternet{
@@ -187,6 +221,11 @@
     cell.textLabel.text=tag.tagName;
     if (readOnly == NO){
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
+    }else{
+        // check if it selected or not
+        if(tag.selected == YES){
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
     }
     
     return cell;
@@ -207,7 +246,7 @@
         [galleryController release];
     }
     
-    if (readOnly == TRUE){
+    if (readOnly == YES){
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         NSUInteger row = [indexPath row];
         Tag *tag = [tags objectAtIndex:row];
