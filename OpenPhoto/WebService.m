@@ -76,7 +76,7 @@
 -(NSURL*) getOAuthInitialUrl{
     // get the url
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
-    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://"] autorelease];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&mobile=1"] autorelease];
     
     NSLog(@"URL for OAuth initialization = %@",url);
     return [NSURL URLWithString:url];
@@ -132,10 +132,9 @@
         OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
                                                secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
         
-        // consumer to send. We get the details from the user defaults
+        //consumer to send. We get the details from the user defaults
         OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
                                                         secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-        
         
         OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
                                                                             consumer:consumer
@@ -213,7 +212,7 @@
     NSInteger icode = [code integerValue];
     
     // is it different than 200
-    if (icode != 200)
+    if (icode != 200 && icode != 202)
         return NO;
     
     // another kind of message
@@ -262,8 +261,7 @@
         // consumer to send. We get the details from the user defaults
         OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
                                                         secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-        
-        
+  
         OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
                                                                             consumer:consumer
                                                                                token:token
@@ -301,7 +299,7 @@
     }
 }
 - (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
-    NSLog(@"Error to send request = %@; error code=%@", [error userInfo],[error code]);
+    NSLog(@"Error to send request = %@", error);
 }
 
 

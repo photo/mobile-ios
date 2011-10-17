@@ -10,11 +10,6 @@
 - (void)fakeLoadReady {
     _fakeLoadTimer = nil;
     
-    if (_type & MockPhotoSourceLoadError) {
-        [_delegates perform: @selector(model:didFailLoadWithError:)
-                 withObject: self
-                 withObject: nil];
-    } else {
         NSMutableArray* newPhotos = [NSMutableArray array];
         
         for (int i = 0; i < _photos.count; ++i) {
@@ -39,16 +34,14 @@
         }
         
         [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title photos:(NSArray*)photos
+- (id)initWithTitle:(NSString*)title photos:(NSArray*)photos
            photos2:(NSArray*)photos2 {
     if (self = [super init]) {
-        _type = type;
         _title = [title copy];
         _photos = photos2 ? [photos mutableCopy] : [[NSMutableArray alloc] init];
         _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
@@ -62,7 +55,7 @@
             }
         }
         
-        if (!(_type & MockPhotoSourceDelayed || photos2)) {
+        if (!(photos2)) {
             [self performSelector:@selector(fakeLoadReady)];
         }
     }
@@ -70,7 +63,7 @@
 }
 
 - (id)init {
-    return [self initWithType:MockPhotoSourceNormal title:nil photos:nil photos2:nil];
+    return [self initWithTitle:nil photos:nil photos2:nil];
 }
 
 - (void)dealloc {
@@ -112,7 +105,7 @@
 
 - (NSInteger)numberOfPhotos {
     if (_tempPhotos) {
-        return _photos.count + (_type & MockPhotoSourceVariableCount ? 0 : _tempPhotos.count);
+        return _photos.count + _tempPhotos.count;
     } else {
         return _photos.count;
     }
@@ -139,7 +132,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation MockPhoto
+@implementation Photo
 
 @synthesize photoSource = _photoSource, size = _size, index = _index, caption = _caption;
 

@@ -27,8 +27,7 @@
         [service setDelegate:self];
         
         self.photoSource = [[MockPhotoSource alloc]
-                            initWithType:MockPhotoSourceNormal
-                            title:@"Gallery"
+                            initWithTitle:@"Gallery"
                             photos:nil
                             photos2:nil];
     }
@@ -76,14 +75,14 @@
         return;
     }
     
-    NSArray *photos = [response objectForKey:@"result"] ;
-    NSMutableArray *mockPhotos = [[NSMutableArray alloc] init];
+    NSArray *responsePhotos = [response objectForKey:@"result"] ;
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
     
     // result can be null
-    if ([photos class] != [NSNull class]) {
+    if ([responsePhotos class] != [NSNull class]) {
         
         // Loop through each entry in the dictionary and create an array of MockPhoto
-        for (NSDictionary *photo in photos){
+        for (NSDictionary *photo in responsePhotos){
             // Get title/description of the image
             
             NSString *title = [photo objectForKey:@"title"];
@@ -109,16 +108,15 @@
                 realWidth = width/height*960;
             }
             
-            [mockPhotos addObject: [[[MockPhoto alloc]
+            [photos addObject: [[[Photo alloc]
                                      initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
                                      smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
                                      size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } }
     
     self.photoSource = [[MockPhotoSource alloc]
-                        initWithType:MockPhotoSourceNormal
-                        title:@"Gallery"
-                        photos:mockPhotos
+                        initWithTitle:@"Gallery"
+                        photos:photos
                         photos2:nil];
     
     // this is for the loading
@@ -131,7 +129,7 @@
     //          nil]
     // ];
     
-    [mockPhotos autorelease];
+    [photos autorelease];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
 #ifdef TEST_FLIGHT_ENABLED

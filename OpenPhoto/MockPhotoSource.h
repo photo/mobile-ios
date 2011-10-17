@@ -2,31 +2,21 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-typedef enum {
-    MockPhotoSourceNormal = 0,
-    MockPhotoSourceDelayed = 1,
-    MockPhotoSourceVariableCount = 2,
-    MockPhotoSourceLoadError = 4,
-} MockPhotoSourceType;
-
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 @interface MockPhotoSource : TTURLRequestModel <TTPhotoSource> {
-    MockPhotoSourceType _type;
     NSString* _title;
     NSMutableArray* _photos;
     NSArray* _tempPhotos;
     NSTimer* _fakeLoadTimer;
 }
 
-- (id)initWithType:(MockPhotoSourceType)type title:(NSString*)title
+- (id)initWithTitle:(NSString*)title
             photos:(NSArray*)photos photos2:(NSArray*)photos2;
 
 @end
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-@interface MockPhoto : NSObject <TTPhoto> {
+@interface Photo : NSObject <TTPhoto> {
     id<TTPhotoSource> _photoSource;
     NSString* _thumbURL;
     NSString* _smallURL;
