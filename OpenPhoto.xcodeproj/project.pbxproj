@@ -1552,7 +1552,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick Santana";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -1570,6 +1570,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F035457-C6A7-446E-92BD-DC4956A2FADA";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1578,7 +1579,7 @@
 		CD3C79F413EC6FC9006ED46C /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_VERSION = "";
