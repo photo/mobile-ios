@@ -45,20 +45,8 @@
 	return appSettingsViewController;
 }
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
-	if ([key isEqualToString:@"LogOutButton"]) {
-		UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
-		[alert show];
-	} else if ([key isEqualToString:@"TestFlighFeed"]){
+    if ([key isEqualToString:@"TestFlighFeed"]){
         [TestFlight openFeedbackView];
-    }
-}
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1){
-        NSLog(@"Invalidate user information");
-        AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
-        [helper invalidateAuthentication];
-        [helper release];
     }
 }
 

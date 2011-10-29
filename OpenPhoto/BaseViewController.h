@@ -36,7 +36,7 @@
 #import "AuthenticationHelper.h"
 
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, UIAlertViewDelegate>{
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate>{
         IASKAppSettingsViewController *appSettingsViewController;
 }
 

@@ -20,14 +20,6 @@
 			<key>Key</key>
 			<string>account_server</string>
 		</dict>
-        <dict>
-			<key>Key</key>
-			<string>LogOutButton</string>
-			<key>Title</key>
-			<string>Log out</string>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
