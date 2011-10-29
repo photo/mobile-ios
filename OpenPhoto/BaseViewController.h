@@ -34,13 +34,14 @@
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
 #import "AuthenticationHelper.h"
+#import "OpenPhotoIASKAppSettingsViewController.h"
 
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate>{
-        IASKAppSettingsViewController *appSettingsViewController;
+        OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 }
 
-@property (nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
+@property (nonatomic, retain) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*)title image:(UIImage*)image;

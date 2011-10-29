@@ -37,9 +37,9 @@
 
 @synthesize appSettingsViewController;
 
-- (IASKAppSettingsViewController*)appSettingsViewController {
+- (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
 	if (!appSettingsViewController) {
-		appSettingsViewController = [[IASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+		appSettingsViewController = [[OpenPhotoIASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
 		appSettingsViewController.delegate = self;
 	}
 	return appSettingsViewController;
