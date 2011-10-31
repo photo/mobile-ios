@@ -97,10 +97,12 @@
     if (photos != nil){
         NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
-            NSNumber *totalRows = [photo objectForKey:@"totalRows"];
-            if ([totalRows intValue]>0){
-                [images addObject:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]]];
-            }
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]];
+            
+            if (data != nil)
+                [images addObject:data];
+            else
+                NSLog(@"Object photo not found %@",[NSString stringWithFormat:@"%@", [photo objectForKey:key]] );
         } 
         
         // save the pictures into user defaults
@@ -117,21 +119,23 @@
     
     [key release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        
+    
     [pool release];
     
 }
 
-#pragma mark - View lifecycle
--(void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];  
-    
+- (void) viewDidLoad{
     // load the logo
     UIImageView *logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appbar_logo.png"]];
     CGRect positionLogo = CGRectMake(0, 0, 320, 46);
     [logo setFrame:positionLogo];
     [self.view addSubview:logo];
     [logo release];
+}
+
+#pragma mark - View lifecycle
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];  
     
     // load some pictures if the timestamp is null or it is older than one hour
     NSDate *now = [NSDate date];
@@ -148,12 +152,15 @@
             NSLog(@"The last update of pictures was one hour ago");
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             [service getHomePictures];  
+        }else{
+            NSLog(@"It is not necessary to get the home pictures");
         }
     }else{
         NSLog(@"Internet is not reacheable yet");
         // can be updated
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
     }
+    
     
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Home pictures"];
@@ -183,7 +190,6 @@
         }
         
         // show the pictures  
-        
         // remove from superview if it is there
         if([self.homeImageView superview])
             [self.homeImageView removeFromSuperview];
@@ -192,7 +198,7 @@
         CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
         self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
         self.homeImageView.animationImages = images;
-        self.homeImageView.animationDuration = 4; // seconds
+        self.homeImageView.animationDuration = 20; // seconds
         self.homeImageView.animationRepeatCount = 0; // 0 = loops forever
         [self.homeImageView startAnimating];
         [self.view addSubview:self.homeImageView];

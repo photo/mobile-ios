@@ -24,16 +24,9 @@ static UpdateUtilities* instance = nil;
 }
 
 - (BOOL) needsUpdate{
-    NSLog(@"Version from user %@",[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled]);
+    NSLog(@"Version from user: %@",[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled]);
     
-    
-    NSLog(@"First = %@\n", ([[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] == nil ? @"YES" : @"NO"));
-    NSLog(@"Second = %@\n", ( ![[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] isEqualToString:[self getVersion]] ? @"YES" : @"NO"));
-    
-    NSLog(@"Final = %@\n", ( [[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] == nil
-                              || ![[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] isEqualToString:[self getVersion]] ? @"YES" : @"NO"));
-    
-    // check if the user version saved in the user default
+   // check if the user version saved in the user default
     if ([[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] == nil
          || ![[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] isEqualToString:[self getVersion]]){
         return YES;
