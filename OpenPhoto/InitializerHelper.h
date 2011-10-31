@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 OpenPhoto. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 // this class helps with initializer routines
 @interface InitializerHelper : NSObject

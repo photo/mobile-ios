@@ -65,5 +65,12 @@ NSString * const kCellIdentifierPrivate=@"cellIdentifierPrivate";
 NSString * const kCellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
 
 
+/*
+ * Constants for the Updater
+ */
+NSString * const kVersionApplicationInstalled=@"version_application_installed";
+ 
+
+
 
 @end

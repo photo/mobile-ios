@@ -39,6 +39,8 @@ extern NSString * const kCellIdentifierFilter;
 extern NSString * const kCellIdentifierPrivate;
 extern NSString * const kCellIdentifierHighResolutionPicture;
 
+extern NSString * const kVersionApplicationInstalled;
+
 
 // while using TestFlight, this variable will permit the app to save/send data
 #define TEST_FLIGHT_ENABLED

@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 OpenPhoto. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "WebService.h"
 
 @interface AuthenticationHelper : NSObject{

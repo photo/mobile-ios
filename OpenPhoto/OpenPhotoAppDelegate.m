@@ -33,6 +33,14 @@
     [TestFlight passCheckpoint:@"Started App"];
 #endif
     
+    UpdateUtilities *updater = [UpdateUtilities instance];
+    if ([updater needsUpdate] == YES){
+        NSLog(@"App needs to be updated");
+        NSLog(@"Version to install %@", [updater getVersion]);
+        [updater update];
+    }
+    
+    
     InitializerHelper *helper = [[InitializerHelper alloc]init];
     if ([helper isInitialized] == NO){
         [helper initialize];

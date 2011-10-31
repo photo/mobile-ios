@@ -128,6 +128,7 @@
 		CDF4464713E1C655007E8F72 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464613E1C655007E8F72 /* PhotoSource.m */; };
 		CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */; };
 		CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465313E1C6DC007E8F72 /* HomeViewController.m */; };
+		CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */; };
 		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
 /* End PBXBuildFile section */
@@ -510,6 +511,8 @@
 		CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Utilities.m; sourceTree = "<group>"; };
 		CDF4465213E1C6DC007E8F72 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		CDF4465313E1C6DC007E8F72 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		CDF462A9145EAA3200AB3992 /* UpdateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUtilities.h; sourceTree = "<group>"; };
+		CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUtilities.m; sourceTree = "<group>"; };
 		CDF59C5413E93D600019ED62 /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		CDF59C5513E93D600019ED62 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -1038,6 +1041,8 @@
 				CD8BB4411414198200D5650E /* InitializerHelper.m */,
 				CDFF467B141559FE00D89578 /* Constants.h */,
 				CDFF467C141559FE00D89578 /* Constants.m */,
+				CDF462A9145EAA3200AB3992 /* UpdateUtilities.h */,
+				CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1447,6 +1452,7 @@
 				CD7A128F14391542001A88E0 /* IASKTextField.m in Sources */,
 				CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */,
 				CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */,
+				CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
