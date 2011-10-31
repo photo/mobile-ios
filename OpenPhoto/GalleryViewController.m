@@ -27,9 +27,8 @@
         [service setDelegate:self];
         
         self.photoSource = [[[PhotoSource alloc]
-                            initWithTitle:@"Gallery"
-                            photos:nil
-                            photos2:nil] autorelease];
+                             initWithTitle:@"Gallery"
+                             photos:nil size:0] autorelease];
     }
     return self;
 }
@@ -47,9 +46,9 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if (self.tagName != nil){
-        [service loadGallery:25 withTag:self.tagName];
+        [service loadGallery:25 withTag:self.tagName onPage:1];
     }else{
-        [service loadGallery:25];
+        [service loadGallery:25 onPage:1];
     }
 }
 
@@ -77,20 +76,28 @@
     
     NSArray *responsePhotos = [response objectForKey:@"result"] ;
     NSMutableArray *photos = [[NSMutableArray alloc] init];
-    
+    BOOL first=YES;
+    int totalRows=0;
+
     // result can be null
     if ([responsePhotos class] != [NSNull class]) {
         
         // Loop through each entry in the dictionary and create an array of MockPhoto
         for (NSDictionary *photo in responsePhotos){
-            // Get title/description of the image
             
+            // for the first, get how many pictures is in the server
+            if (first == YES){
+                totalRows = [[photo objectForKey:@"totalRows"] intValue];
+                first = NO;
+            }
+            
+            // Get title/description of the image
             NSString *title = [photo objectForKey:@"title"];
             
 #ifdef DEVELOPMENT_ENABLED      
             NSString *description = [photo objectForKey:@"description"];            
             NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-
+            
             NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
 #endif            
             
@@ -112,25 +119,15 @@
             }
             
             [photos addObject: [[[Photo alloc]
-                                     initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
-                                     smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
-                                     size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
-        } }
+                                 initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
+                                 smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
+                                 size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
+        } 
+    }
     
     self.photoSource = [[[PhotoSource alloc]
-                        initWithTitle:@"Gallery"
-                        photos:photos
-                        photos2:nil] autorelease];
-    
-    // this is for the loading
-    //  photos2:nil
-    // photos2:[[NSArray alloc] initWithObjects:
-    //          [[[Photo alloc]
-    //            initWithURL:@"http://farm4.static.flickr.com/3280/2949707060_e639b539c5_o.jpg"
-    //            smallURL:@"http://farm4.static.flickr.com/3280/2949707060_8139284ba5_t.jpg"
-    //            size:CGSizeMake(800, 533)] autorelease],
-    //          nil]
-    // ];
+                         initWithTitle:@"Gallery"
+                         photos:photos size:totalRows] autorelease];
     
     [photos release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

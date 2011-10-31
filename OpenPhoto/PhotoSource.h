@@ -6,11 +6,9 @@
 @interface PhotoSource : TTURLRequestModel <TTPhotoSource> {
     NSString* _title;
     NSMutableArray* _photos;
-    NSArray* _tempPhotos;
+    int numberOfPhotos;
 }
-
-- (id)initWithTitle:(NSString*)title
-            photos:(NSArray*)photos photos2:(NSArray*)photos2;
+- (id)initWithTitle:(NSString*)title photos:(NSArray*)photos size:(int) size;
 
 @end
 

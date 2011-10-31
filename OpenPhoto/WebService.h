@@ -47,14 +47,14 @@
 // get all tags. It brings how many images have this tag.
 - (void) getTags; 
 
-// get home pictures. It will bring 3 pictures from the last shared. 
+// get home pictures. It will bring 4 pictures from the last shared. 
 - (void) getHomePictures; 
 
 // get 25 pictures
-- (void) loadGallery:(int) pageSize;
+- (void) loadGallery:(int) pageSize onPage:(int) page;
 
 // get pictures by tag
--(void) loadGallery:(int) pageSize withTag:(NSString*) tag;
+-(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
 
 // to upload the picture
 -(void) uploadPicture:(NSDictionary*) values;

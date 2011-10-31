@@ -3,46 +3,18 @@
 @implementation PhotoSource
 
 @synthesize title = _title;
+@synthesize numberOfPhotos = _numberOfPhotos;
 
-///////////////////////////////////////////////////////////////////////////////////////////////////
-// private
-
-- (void)fakeLoadReady {   
-    NSMutableArray* newPhotos = [NSMutableArray array];
-    
-    for (int i = 0; i < _photos.count; ++i) {
-        id<TTPhoto> photo = [_photos objectAtIndex:i];
-        if ((NSNull*)photo != [NSNull null]) {
-            [newPhotos addObject:photo];
-        }
-    }
-    
-    [newPhotos addObjectsFromArray:_tempPhotos];
-    TT_RELEASE_SAFELY(_tempPhotos);
-    
-    [_photos release];
-    _photos = [newPhotos retain];
-    
-    for (int i = 0; i < _photos.count; ++i) {
-        id<TTPhoto> photo = [_photos objectAtIndex:i];
-        if ((NSNull*)photo != [NSNull null]) {
-            photo.photoSource = self;
-            photo.index = i;
-        }
-    }
-    
-    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
-}
+int number = 0;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithTitle:(NSString*)title photos:(NSArray*)photos
-            photos2:(NSArray*)photos2 {
+- (id)initWithTitle:(NSString*)title photos:(NSArray*)photos size:(int) size{
     if (self = [super init]) {
         _title = [title copy];
-        _photos = photos2 ? [photos mutableCopy] : [[NSMutableArray alloc] init];
-        _tempPhotos = photos2 ? [photos2 retain] : [photos retain];
+        _photos =  [photos mutableCopy];
+        _numberOfPhotos = size;
         
         for (int i = 0; i < _photos.count; ++i) {
             id<TTPhoto> photo = [_photos objectAtIndex:i];
@@ -51,21 +23,16 @@
                 photo.index = i;
             }
         }
-        
-        if (!(photos2)) {
-            [self performSelector:@selector(fakeLoadReady)];
-        }
     }
     return self;
 }
 
 - (id)init {
-    return [self initWithTitle:nil photos:nil photos2:nil];
+    return [self initWithTitle:nil photos:nil size:0];
 }
 
 - (void)dealloc {
     TT_RELEASE_SAFELY(_photos);
-    TT_RELEASE_SAFELY(_tempPhotos);
     TT_RELEASE_SAFELY(_title);
     [super dealloc];
 }
@@ -79,24 +46,22 @@
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
     if (cachePolicy & TTURLRequestCachePolicyNetwork) {
         [_delegates perform:@selector(modelDidStartLoad:) withObject:self];
-        
-        TT_RELEASE_SAFELY(_photos);
+        number = number+25;
+        NSLog(@"loading");
+        [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
     }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // TTPhotoSource
 
 - (NSInteger)numberOfPhotos {
-    if (_tempPhotos) {
-        return _photos.count + _tempPhotos.count;
-    } else {
-        return _photos.count;
-    }
+    return _numberOfPhotos;
 }
 
 - (NSInteger)maxPhotoIndex {
-    return _photos.count-1;
+    return number;
 }
 
 - (id<TTPhoto>)photoAtIndex:(NSInteger)photoIndex {
