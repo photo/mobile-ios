@@ -28,7 +28,7 @@
         
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
-                             photos:nil size:0] autorelease];
+                             photos:nil size:0 tag:nil] autorelease];
     }
     return self;
 }
@@ -127,7 +127,7 @@
     
     self.photoSource = [[[PhotoSource alloc]
                          initWithTitle:@"Gallery"
-                         photos:photos size:totalRows] autorelease];
+                         photos:photos size:totalRows tag:self.tagName] autorelease];
     
     [photos release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

@@ -1,14 +1,24 @@
 #import <Three20/Three20.h>
 #import "Three20Core/NSArrayAdditions.h"
+#import "WebService.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface PhotoSource : TTURLRequestModel <TTPhotoSource> {
     NSString* _title;
-    NSMutableArray* _photos;
+    NSMutableArray* photos;
     int numberOfPhotos;
+    int currentPage;
+    NSString* tagName;
+    WebService* service;
 }
-- (id)initWithTitle:(NSString*)title photos:(NSArray*)photos size:(int) size;
+
+@property (nonatomic, copy) NSString* tagName;
+@property (nonatomic, retain) WebService *service;
+@property (nonatomic, retain) NSMutableArray* photos;
+@property (nonatomic) int currentPage;
+
+- (id)initWithTitle:(NSString*)title photos:(NSArray*)listPhotos size:(int) size tag:(NSString*) tag;
 
 @end
 
