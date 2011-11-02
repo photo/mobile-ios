@@ -38,6 +38,7 @@ extern NSString * const kCellIdentifierTags;
 extern NSString * const kCellIdentifierFilter;
 extern NSString * const kCellIdentifierPrivate;
 extern NSString * const kCellIdentifierHighResolutionPicture;
+extern NSString * const kCellIdentifierGpsPosition;
 
 extern NSString * const kVersionApplicationInstalled;
 

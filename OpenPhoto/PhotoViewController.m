@@ -20,7 +20,7 @@
 @synthesize detailsPictureTable;
 @synthesize statusBar;
 @synthesize imageOriginal,imageFiltered;
-@synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture;
+@synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture, gpsPosition;
 @synthesize tagController, sourceType;
 @synthesize service;
 
@@ -122,6 +122,11 @@
             CGSize sz = CGSizeMake(imageFiltered.size.width/2,imageFiltered.size.height/2);
             self.imageFiltered = [ImageManipulation imageWithImage:imageFiltered scaledToSize:sz];
         }
+    }
+    
+    // get gps position
+    if ([gpsPosition isOn]){
+        
     }
     
     // parameters to upload
@@ -321,6 +326,23 @@
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"photos_are_private"]];
             break;
             
+        case 6:
+            // gps position
+            // private flag
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierGpsPosition];
+            if (cell == nil)
+            {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierGpsPosition] autorelease];
+            }
+            
+            cell.textLabel.text=@"GPS Position";
+            gpsPosition = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = gpsPosition;
+            
+            // get from user configuration if pictures should be private or not
+            [(UISwitch *)cell.accessoryView setOn:NO];
+            break;
+            
         default:
             break;
     }
@@ -374,6 +396,7 @@
     [descriptionTextField release];
     [permissionPicture release];
     [highResolutionPicture release];
+    [gpsPosition release];
     [self.service release];
     [super dealloc];
 }

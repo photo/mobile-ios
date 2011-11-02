@@ -25,6 +25,7 @@
     TagViewController *tagController;
     UIImagePickerControllerSourceType sourceType;
     WebService *service;
+        UISwitch *gpsPosition;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -37,7 +38,7 @@
 @property (nonatomic, retain) TagViewController *tagController;
 @property (nonatomic) UIImagePickerControllerSourceType sourceType;    
 @property (nonatomic, retain) WebService *service;
-
+@property (nonatomic, retain) UISwitch *gpsPosition;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
 - (IBAction)upload:(id)sender;

@@ -56,13 +56,14 @@ NSString * const kNotificationOpenGallery=@"notification_open_gallery";
 /*
  * Constants for the table in the upload screen
  */
-int        const kNumbersRow=6;
+int        const kNumbersRow=7;
 NSString * const kCellIdentifierTitle = @"cellIdentifierTitle";
 NSString * const kCellIdentifierDescription = @"cellIdentifierDescription";
 NSString * const kCellIdentifierTags=@"cellIdentifierTags";
 NSString * const kCellIdentifierFilter=@"cellIdentifierFilter";
 NSString * const kCellIdentifierPrivate=@"cellIdentifierPrivate";
 NSString * const kCellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
+NSString * const kCellIdentifierGpsPosition=@"cellIdentifierGpsPosition";
 
 
 /*
