@@ -10,8 +10,10 @@
 #import "ImageManipulation.h"
 #import "TagViewController.h"
 #import "AFFeatherController.h"
+#import "CoreLocationController.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, CoreLocationControllerDelegate>{
+    
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
     UIActivityIndicatorView *statusBar;
@@ -25,7 +27,9 @@
     TagViewController *tagController;
     UIImagePickerControllerSourceType sourceType;
     WebService *service;
-        UISwitch *gpsPosition;
+    UISwitch *gpsPosition;
+    CoreLocationController *coreLocationController;
+    CLLocation *location;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -39,6 +43,7 @@
 @property (nonatomic) UIImagePickerControllerSourceType sourceType;    
 @property (nonatomic, retain) WebService *service;
 @property (nonatomic, retain) UISwitch *gpsPosition;
+@property (nonatomic, retain) CLLocation *location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
 - (IBAction)upload:(id)sender;

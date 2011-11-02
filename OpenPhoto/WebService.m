@@ -118,7 +118,7 @@
         
         
         // set all details to send
-        NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"]];
+        NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@&latitude=%@&longitude=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"],[values objectForKey:@"latitude"],[values objectForKey:@"longitude"]];
         
         NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];

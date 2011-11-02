@@ -22,7 +22,7 @@
 @synthesize imageOriginal,imageFiltered;
 @synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture, gpsPosition;
 @synthesize tagController, sourceType;
-@synthesize service;
+@synthesize service, location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker source:(UIImagePickerControllerSourceType) pickerSourceType
 {
@@ -65,6 +65,9 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
     [cancelButton release];
     
+    coreLocationController = [[CoreLocationController alloc] init];
+    coreLocationController.delegate = self;
+
     [super viewDidLoad];
 }
 
@@ -86,8 +89,8 @@
     [self setStatusBar:nil];
     [self setDetailsPictureTable:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
+    [coreLocationController release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -113,6 +116,14 @@
         defaultPermission = @"0";
     }
     
+    NSString *latitude =@"";
+    NSString *longitude=@"";
+    
+    if (self.location != nil){
+        latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    }
+    
     // check the size of the image
     if (![highResolutionPicture isOn]){
         CGSize sz = CGSizeMake(imageOriginal.size.width/2,imageOriginal.size.height/2);
@@ -124,21 +135,16 @@
         }
     }
     
-    // get gps position
-    if ([gpsPosition isOn]){
-        
-    }
-    
     // parameters to upload
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",@"latitude",@"longitude",nil];
     NSArray *objects;
     
     // set the correct image to upload depends if there is a filtered or not.
     
     if (self.imageFiltered != nil){
-        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil];
+        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil];
     } else{
-        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat], nil]; 
+        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil]; 
     }
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -161,6 +167,9 @@
     [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
                              toTarget:self 
                            withObject:values];
+    
+    // stop gps position
+    [coreLocationController.locMgr stopUpdatingLocation];
 }
 
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values
@@ -336,8 +345,9 @@
             }
             
             cell.textLabel.text=@"GPS Position";
-            gpsPosition = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = gpsPosition;
+            self.gpsPosition = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            [self.gpsPosition addTarget:self action:@selector(switchedGpsPosition) forControlEvents:UIControlEventValueChanged];	
+            cell.accessoryView = self.gpsPosition;
             
             // get from user configuration if pictures should be private or not
             [(UISwitch *)cell.accessoryView setOn:NO];
@@ -370,6 +380,17 @@
     }
 }
 
+-(void) switchedGpsPosition{
+    // get gps position
+    if ([self.gpsPosition isOn]){
+        [coreLocationController.locMgr startUpdatingLocation];
+        NSLog(@"Start Updating Location");
+    }else{
+        // stop gps position
+        [coreLocationController.locMgr stopUpdatingLocation];
+    }
+}
+
 - (void)feather:(AFFeatherController *)featherController finishedWithImage:(UIImage *)image{
     NSLog(@"Image changed");
     self.imageFiltered = image;
@@ -382,6 +403,14 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)locationUpdate:(CLLocation *)position{
+    self.location = position;
+}
+
+- (void)locationError:(NSError *)error {
+    NSLog(@"Location %@", [error description]);
 }
 
 - (void)dealloc {
@@ -398,6 +427,8 @@
     [highResolutionPicture release];
     [gpsPosition release];
     [self.service release];
+    [coreLocationController release];
+    [location release];
     [super dealloc];
 }
 
