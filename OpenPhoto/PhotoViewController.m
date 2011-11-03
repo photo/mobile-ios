@@ -11,6 +11,7 @@
 @interface PhotoViewController()
 // all details 
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values;
+-(void) uploadPicture:(NSDictionary*) values;
 @end
 
 
@@ -22,7 +23,7 @@
 @synthesize imageOriginal,imageFiltered;
 @synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture, gpsPosition;
 @synthesize tagController, sourceType;
-@synthesize service, location;
+@synthesize location, service;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker source:(UIImagePickerControllerSourceType) pickerSourceType
 {
@@ -67,7 +68,7 @@
     
     coreLocationController = [[CoreLocationController alloc] init];
     coreLocationController.delegate = self;
-
+    
     [super viewDidLoad];
 }
 
@@ -89,7 +90,7 @@
     [self setStatusBar:nil];
     [self setDetailsPictureTable:nil];
     [super viewDidUnload];
-
+    
     [coreLocationController release];
 }
 
@@ -175,7 +176,7 @@
 -(void) uploadPictureOnDetachTread:(NSDictionary*) values
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [self.service uploadPicture:values];
+    [self uploadPicture:values];
     
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Picture uploaded"];
@@ -183,29 +184,6 @@
     
     [pool release];
 }
-
-// delegate
--(void) receivedResponse:(NSDictionary *)response{
-    [statusBar stopAnimating];
-    statusBar.hidden = YES;
-    
-    // check if message is valid
-    if (![WebService isMessageValid:response]){
-        NSString* message = [WebService getResponseMessage:response];
-        NSLog(@"Invalid response = %@",message);
-        
-        // show alert to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-    
-    // open gallery
-    [self dismissModalViewControllerAnimated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
-    
-}
-
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     [image release];
     if (error.localizedDescription != nil){
@@ -412,6 +390,139 @@
 - (void)locationError:(NSError *)error {
     NSLog(@"Location %@", [error description]);
 }
+
+// For upload
+-(void) uploadPicture:(NSDictionary*) values{
+    if (service.internetActive == YES && service.hostActive == YES){
+        // send message to the site. it is pickedImage
+        NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
+        //Custom implementations, no built in base64 or HTTP escaping for iPhone
+        NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
+        NSString* imageEscaped = [Base64Utilities fullEscape:imageB64];
+        
+        
+        // set all details to send
+        NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@&latitude=%@&longitude=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"],[values objectForKey:@"latitude"],[values objectForKey:@"longitude"]];
+        
+        NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
+                                          [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+        
+        // transform in URL for the request
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        
+        // token to send. We get the details from the user defaults
+        OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                               secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+        
+        //consumer to send. We get the details from the user defaults
+        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                        secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+        
+        OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                            consumer:consumer
+                                                                               token:token
+                                                                               realm:nil
+                                                                   signatureProvider:nil];
+        [oaUrlRequest setHTTPMethod:@"POST"];   
+        [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
+        
+        // prepare the Authentication Header
+        [oaUrlRequest prepare];
+        [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
+        
+        
+        responseData = [[NSMutableData data] retain];
+        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self];
+        [connection start];
+        
+        HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
+        
+        [token release];
+        [consumer release];
+        [oaUrlRequest release];
+    }
+    
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	expectedLength = [response expectedContentLength];
+	currentLength = 0;
+	HUD.mode = MBProgressHUDModeDeterminate;
+    [responseData setLength:0]; 
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	currentLength += [data length];
+	HUD.progress = currentLength / (float)expectedLength;
+    [responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+    // progress bar
+	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"19-check.png"]] autorelease];
+    HUD.mode = MBProgressHUDModeCustomView;
+	[HUD hide:YES afterDelay:2];
+    
+    // finish details
+    [connection release];
+    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    // it can be released
+    [responseData release];
+    
+#ifdef DEVELOPMENT_ENABLED        
+    NSLog(@"Succeed = %@",jsonString);       
+#endif        
+    
+    // Create a dictionary from JSON string
+    // When there are newline characters in the JSON string, 
+    // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
+    jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSDictionary *response =  [jsonString JSONValue];   
+    
+    [statusBar stopAnimating];
+    statusBar.hidden = YES;
+    
+    // check if message is valid
+    if (![WebService isMessageValid:response]){
+        NSString* message = [WebService getResponseMessage:response];
+        NSLog(@"Invalid response = %@",message);
+        
+        // show alert to user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    
+    // open gallery
+    [self dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	[HUD hide:YES];
+}
+
+#pragma mark -
+#pragma mark MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    // Remove HUD from screen when the HUD was hidded
+    [HUD removeFromSuperview];
+    [HUD release];
+	HUD = nil;
+}
+
+-(void) receivedResponse:(NSDictionary *)response{
+    
+    
+}
+
 
 - (void)dealloc {
     [imageTitle release];

@@ -15,7 +15,7 @@
 #import "QSStrings.h"
 #import "Base64Utilities.h"
 #import "extThree20JSON/extThree20JSON.h"
-//#import "extThree20JSON/NSString+SBJSON.h"
+
 
 // for validation internet
 @class Reachability;
@@ -66,7 +66,7 @@
 -(void) sendTestRequest;
 
 // for network status
- - (void) checkNetworkStatus:(NSNotification *)notice;
+- (void) checkNetworkStatus:(NSNotification *)notice;
 
 // method to check if the answer was correct or not
 + (BOOL) isMessageValid:(NSDictionary *)response;

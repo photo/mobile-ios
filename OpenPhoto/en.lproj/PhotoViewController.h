@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ImageManipulation.h"
 #import "TagViewController.h"
+#import "MBProgressHUD.h"
 #import "AFFeatherController.h"
 #import "CoreLocationController.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, CoreLocationControllerDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, CoreLocationControllerDelegate, MBProgressHUDDelegate>{
     
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
@@ -26,10 +27,18 @@
     UISwitch *highResolutionPicture;
     TagViewController *tagController;
     UIImagePickerControllerSourceType sourceType;
-    WebService *service;
     UISwitch *gpsPosition;
     CoreLocationController *coreLocationController;
     CLLocation *location;
+    
+    // for uploading
+    MBProgressHUD *HUD;
+    long long expectedLength;
+	long long currentLength;
+    
+    // to check if there is connection
+    WebService *service;
+    NSMutableData *responseData;
 }
 
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
@@ -41,9 +50,9 @@
 @property (nonatomic, retain) UISwitch *highResolutionPicture;
 @property (nonatomic, retain) TagViewController *tagController;
 @property (nonatomic) UIImagePickerControllerSourceType sourceType;    
-@property (nonatomic, retain) WebService *service;
 @property (nonatomic, retain) UISwitch *gpsPosition;
 @property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, retain) WebService *service;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
 - (IBAction)upload:(id)sender;

@@ -54,6 +54,9 @@
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD578A661461E8B700D4EFC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD578A651461E8B700D4EFC9 /* CoreLocation.framework */; };
 		CD578A691461E99400D4EFC9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD578A681461E99400D4EFC9 /* CoreLocationController.m */; };
+		CD578ABF146358A700D4EFC9 /* 19-check.png in Resources */ = {isa = PBXBuildFile; fileRef = CD578ABD146358A700D4EFC9 /* 19-check.png */; };
+		CD578AC0146358A700D4EFC9 /* 19-check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD578ABE146358A700D4EFC9 /* 19-check@2x.png */; };
+		CD578AC314635F1600D4EFC9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD578AC214635F1600D4EFC9 /* MBProgressHUD.m */; };
 		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
 		CD72DA2413EDEE6E00546F06 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD72DA2313EDEE6E00546F06 /* Default@2x.png */; };
 		CD7623BA141FB45600551D72 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623B8141FB45600551D72 /* upload.png */; };
@@ -406,6 +409,10 @@
 		CD578A651461E8B700D4EFC9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CD578A671461E99400D4EFC9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CD578A681461E99400D4EFC9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		CD578ABD146358A700D4EFC9 /* 19-check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-check.png"; path = "OpenPhoto/images/19-check.png"; sourceTree = SOURCE_ROOT; };
+		CD578ABE146358A700D4EFC9 /* 19-check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-check@2x.png"; path = "OpenPhoto/images/19-check@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD578AC114635F1600D4EFC9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		CD578AC214635F1600D4EFC9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CD72DA2313EDEE6E00546F06 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		CD7623B8141FB45600551D72 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = OpenPhoto/images/initialPicturesHome/upload.png; sourceTree = SOURCE_ROOT; };
@@ -686,6 +693,15 @@
 			path = Frameworks/QSUtilities/GTM;
 			sourceTree = SOURCE_ROOT;
 		};
+		CD578AB51463510E00D4EFC9 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CD578AC114635F1600D4EFC9 /* MBProgressHUD.h */,
+				CD578AC214635F1600D4EFC9 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		CD73F8721411748D00F2CAA5 /* InitialPicturesHome */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,6 +874,7 @@
 		CDF1C94A13E1C45C0018AD0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD578AB51463510E00D4EFC9 /* MBProgressHUD */,
 				CDAE085D144C7C7300625C95 /* TSAlertView */,
 				CD22C96D1439118B00E98B0B /* TestFlight */,
 				CDE58786141A5FB2004191B4 /* Aviary */,
@@ -935,6 +952,8 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD578ABD146358A700D4EFC9 /* 19-check.png */,
+				CD578ABE146358A700D4EFC9 /* 19-check@2x.png */,
 				CD73F8721411748D00F2CAA5 /* InitialPicturesHome */,
 				CD804D1A13EDEFED00E5CEA9 /* Background.png */,
 				CD804D1B13EDEFED00E5CEA9 /* Background@2x.png */,
@@ -1361,6 +1380,8 @@
 				CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */,
+				CD578ABF146358A700D4EFC9 /* 19-check.png in Resources */,
+				CD578AC0146358A700D4EFC9 /* 19-check@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,6 +1484,7 @@
 				CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */,
 				CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */,
 				CD578A691461E99400D4EFC9 /* CoreLocationController.m in Sources */,
+				CD578AC314635F1600D4EFC9 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

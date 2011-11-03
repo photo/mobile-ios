@@ -10,3 +10,6 @@
 [submodule "Frameworks/TSAlertView"]
 	path = Frameworks/TSAlertView
 	url = git://github.com/TomSwift/TSAlertView.git
+[submodule "Frameworks/MBProgressHUD"]
+	path = Frameworks/MBProgressHUD
+	url = https://github.com/jdg/MBProgressHUD.git

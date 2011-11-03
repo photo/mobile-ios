@@ -157,8 +157,6 @@
         }
     }else{
         NSLog(@"Internet is not reacheable yet");
-        // can be updated
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
     }
     
     
