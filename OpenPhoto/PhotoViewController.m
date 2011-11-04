@@ -438,8 +438,7 @@
         
         
         responseData = [[NSMutableData data] retain];
-        NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self];
-        [connection start];
+        [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
         
         HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
         
@@ -450,6 +449,7 @@
     
 }
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"didReceiveResponse");
 	expectedLength = [response expectedContentLength];
 	currentLength = 0;
 	HUD.mode = MBProgressHUDModeDeterminate;
@@ -457,12 +457,14 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSLog(@"didReceiveData");
 	currentLength += [data length];
 	HUD.progress = currentLength / (float)expectedLength;
     [responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"connectionDidFinishLoading");   
     
     // progress bar
 	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"19-check.png"]] autorelease];
@@ -505,6 +507,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Connection failed: %@", [error description]);
 	[HUD hide:YES];
 }
 
@@ -519,7 +522,7 @@
 }
 
 -(void) receivedResponse:(NSDictionary *)response{
-    
+    NSLog(@"receivedResponse");
     
 }
 

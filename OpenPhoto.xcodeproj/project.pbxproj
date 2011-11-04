@@ -39,7 +39,6 @@
 		CD22C9A81439123000E98B0B /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A11439123000E98B0B /* QSFileManager.m */; };
 		CD22C9A91439123000E98B0B /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A31439123000E98B0B /* QSHttpClient.m */; };
 		CD22C9AA1439123000E98B0B /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A51439123000E98B0B /* QSStrings.m */; };
-		CD2409B21440B2AD0013D1BA /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7A125114391506001A88E0 /* libAviarySDK-universal.a */; };
 		CD2FF13513E2337E00F75A1E /* appbar_blank.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12B13E2337E00F75A1E /* appbar_blank.png */; };
 		CD2FF13613E2337E00F75A1E /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12C13E2337E00F75A1E /* appbar_logo.png */; };
 		CD2FF13813E2337E00F75A1E /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2FF12E13E2337E00F75A1E /* Icon-72.png */; };
@@ -69,8 +68,6 @@
 		CD7623C9141FB46600551D72 /* tab-settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C1141FB46600551D72 /* tab-settings@2x.png */; };
 		CD7623CA141FB46600551D72 /* tab-tags.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C2141FB46600551D72 /* tab-tags.png */; };
 		CD7623CB141FB46600551D72 /* tab-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623C3141FB46600551D72 /* tab-tags@2x.png */; };
-		CD7A125514391511001A88E0 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD7A125314391511001A88E0 /* AviarySDK-Core.bundle */; };
-		CD7A125614391511001A88E0 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD7A125414391511001A88E0 /* AviarySDK-Plugins.bundle */; };
 		CD7A128114391542001A88E0 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7A125B14391542001A88E0 /* IASKAppSettingsViewController.m */; };
 		CD7A128214391542001A88E0 /* IASKAppSettingsWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7A125D14391542001A88E0 /* IASKAppSettingsWebViewController.m */; };
 		CD7A128314391542001A88E0 /* IASKSpecifierValuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7A125F14391542001A88E0 /* IASKSpecifierValuesViewController.m */; };
@@ -108,6 +105,10 @@
 		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
+		CDC8993A146364E900C50A00 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC89939146364E900C50A00 /* libAviarySDK-universal.a */; };
+		CDC8993D146364F400C50A00 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993B146364F400C50A00 /* AviarySDK-Core.bundle */; };
+		CDC8993E146364F400C50A00 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993C146364F400C50A00 /* AviarySDK-Plugins.bundle */; };
+		CDC899401463657200C50A00 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC8993F1463657200C50A00 /* CoreText.framework */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -426,11 +427,6 @@
 		CD7623C2141FB46600551D72 /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags.png"; path = "OpenPhoto/images/tabs/tab-tags.png"; sourceTree = SOURCE_ROOT; };
 		CD7623C3141FB46600551D72 /* tab-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags@2x.png"; path = "OpenPhoto/images/tabs/tab-tags@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD775F6F13E33BBE00FD1721 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PhotoViewController.h; sourceTree = "<group>"; };
-		CD7A125114391506001A88E0 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Frameworks/Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
-		CD7A125314391511001A88E0 /* AviarySDK-Core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Core.bundle"; path = "Frameworks/Aviary/Resources/AviarySDK-Core.bundle"; sourceTree = "<group>"; };
-		CD7A125414391511001A88E0 /* AviarySDK-Plugins.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Plugins.bundle"; path = "Frameworks/Aviary/Resources/AviarySDK-Plugins.bundle"; sourceTree = "<group>"; };
-		CD7A12571439151C001A88E0 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherConstants.h; path = Frameworks/Aviary/Headers/AFFeatherConstants.h; sourceTree = "<group>"; };
-		CD7A12581439151C001A88E0 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherController.h; path = Frameworks/Aviary/Headers/AFFeatherController.h; sourceTree = "<group>"; };
 		CD7A125A14391542001A88E0 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD7A125B14391542001A88E0 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD7A125C14391542001A88E0 /* IASKAppSettingsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsWebViewController.h; sourceTree = "<group>"; };
@@ -487,6 +483,12 @@
 		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
 		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		CDC89937146364E000C50A00 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherConstants.h; path = Frameworks/Aviary/Headers/AFFeatherConstants.h; sourceTree = "<group>"; };
+		CDC89938146364E000C50A00 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherController.h; path = Frameworks/Aviary/Headers/AFFeatherController.h; sourceTree = "<group>"; };
+		CDC89939146364E900C50A00 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Frameworks/Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
+		CDC8993B146364F400C50A00 /* AviarySDK-Core.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Core.bundle"; path = "Frameworks/Aviary/Resources/AviarySDK-Core.bundle"; sourceTree = "<group>"; };
+		CDC8993C146364F400C50A00 /* AviarySDK-Plugins.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "AviarySDK-Plugins.bundle"; path = "Frameworks/Aviary/Resources/AviarySDK-Plugins.bundle"; sourceTree = "<group>"; };
+		CDC8993F1463657200C50A00 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -536,8 +538,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC899401463657200C50A00 /* CoreText.framework in Frameworks */,
 				CD578A661461E8B700D4EFC9 /* CoreLocation.framework in Frameworks */,
-				CD2409B21440B2AD0013D1BA /* libAviarySDK-universal.a in Frameworks */,
 				CDF4463913E1C5BA007E8F72 /* libextThree20JSON+SBJSON.a in Frameworks */,
 				3201088596B4756681693705 /* libThree20UICommon.a in Frameworks */,
 				320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */,
@@ -555,6 +557,7 @@
 				CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */,
 				CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */,
 				CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */,
+				CDC8993A146364E900C50A00 /* libAviarySDK-universal.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,11 +845,11 @@
 		CDE58786141A5FB2004191B4 /* Aviary */ = {
 			isa = PBXGroup;
 			children = (
-				CD7A12571439151C001A88E0 /* AFFeatherConstants.h */,
-				CD7A12581439151C001A88E0 /* AFFeatherController.h */,
-				CD7A125314391511001A88E0 /* AviarySDK-Core.bundle */,
-				CD7A125414391511001A88E0 /* AviarySDK-Plugins.bundle */,
-				CD7A125114391506001A88E0 /* libAviarySDK-universal.a */,
+				CDC8993B146364F400C50A00 /* AviarySDK-Core.bundle */,
+				CDC8993C146364F400C50A00 /* AviarySDK-Plugins.bundle */,
+				CDC89939146364E900C50A00 /* libAviarySDK-universal.a */,
+				CDC89937146364E000C50A00 /* AFFeatherConstants.h */,
+				CDC89938146364E000C50A00 /* AFFeatherController.h */,
 			);
 			name = Aviary;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				CDF1C94D13E1C45C0018AD0B /* Foundation.framework */,
 				CDF1C94F13E1C45C0018AD0B /* CoreGraphics.framework */,
 				CD578A651461E8B700D4EFC9 /* CoreLocation.framework */,
+				CDC8993F1463657200C50A00 /* CoreText.framework */,
 				CD12AAB81405AB10008B124A /* MessageUI.framework */,
 				CDF1C96C13E1C45C0018AD0B /* SenTestingKit.framework */,
 				320AF8492C47A4D819F7C450 /* QuartzCore.framework */,
@@ -1366,8 +1370,6 @@
 				CD7623CA141FB46600551D72 /* tab-tags.png in Resources */,
 				CD7623CB141FB46600551D72 /* tab-tags@2x.png in Resources */,
 				CD22C99A143911FD00E98B0B /* OATestServer.rb in Resources */,
-				CD7A125514391511001A88E0 /* AviarySDK-Core.bundle in Resources */,
-				CD7A125614391511001A88E0 /* AviarySDK-Plugins.bundle in Resources */,
 				CD7A129014391542001A88E0 /* IASKAppSettingsView.xib in Resources */,
 				CD7A129114391542001A88E0 /* IASKAppSettingsWebView.xib in Resources */,
 				CD7A129214391542001A88E0 /* IASKPSSliderSpecifierViewCell.xib in Resources */,
@@ -1382,6 +1384,8 @@
 				CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */,
 				CD578ABF146358A700D4EFC9 /* 19-check.png in Resources */,
 				CD578AC0146358A700D4EFC9 /* 19-check@2x.png in Resources */,
+				CDC8993D146364F400C50A00 /* AviarySDK-Core.bundle in Resources */,
+				CDC8993E146364F400C50A00 /* AviarySDK-Plugins.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
