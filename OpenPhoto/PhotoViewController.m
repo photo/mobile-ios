@@ -408,6 +408,9 @@
         [oaUrlRequest prepare];
         
         HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
+        HUD.mode = MBProgressHUDModeDeterminate;
+        HUD.labelText = @"Sending";
+        currentLength = 0;
         responseData = [[NSMutableData data] retain];
         [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
         
@@ -417,7 +420,17 @@
     }
 }
 
-
+- (void) connection:(NSURLConnection*) connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
+    expectedLength = totalBytesExpectedToWrite;
+    currentLength += totalBytesWritten;
+    
+	HUD.progress = totalBytesWritten / (float)expectedLength;
+    
+    if (HUD.progress == 1.0){
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        HUD.labelText = @"Finalization";
+    }
+}
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Connection Failed: %@", [error description]);
@@ -425,7 +438,6 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"connection didReceiveResponse");
     [responseData setLength:0]; 
     HUD.mode = MBProgressHUDModeDeterminate;
     expectedLength = [response expectedContentLength];
@@ -433,17 +445,10 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"connection didReceiveData");
-    currentLength += [data length];
-	HUD.progress = currentLength / (float)expectedLength;
-    
-    NSLog(@"Data received %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
-    
     [responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");
     [connection release];
     
     // convert the responseDate to the json string
