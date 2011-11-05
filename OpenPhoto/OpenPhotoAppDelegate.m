@@ -34,10 +34,12 @@
 #endif
     
     UpdateUtilities *updater = [UpdateUtilities instance];
+    [updater updateSystemVersion];
     if ([updater needsUpdate] == YES){
         NSLog(@"App needs to be updated");
         NSLog(@"Version to install %@", [updater getVersion]);
         [updater update];
+        [updater updateSystemVersion];
     }
     
     

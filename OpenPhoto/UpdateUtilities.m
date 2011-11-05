@@ -9,14 +9,25 @@
 #import "UpdateUtilities.h"
 
 @implementation UpdateUtilities
+@synthesize service;
 
 static UpdateUtilities* instance = nil;
 
 +(UpdateUtilities*) instance{
     if ( instance == nil ) {
-		instance = [[UpdateUtilities alloc] init];				
+		instance = [[UpdateUtilities alloc] init];	
 	}
 	return instance;	    
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        // create service and the delegate
+        self.service = [[WebService alloc]init];
+        [service setDelegate:self];
+    }
+    return self;
 }
 
 - (NSString*) getVersion{
@@ -46,6 +57,40 @@ static UpdateUtilities* instance = nil;
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults synchronize];  
+}
+
+-(void) updateSystemVersion{
+    // get system version
+    [self.service getSystemVersion];    
+}
+
+// delegate
+-(void) receivedResponse:(NSDictionary *)response{
+    // check if message is valid
+    /* TODO: Actual code has a problem 
+    if (![WebService isMessageValid:response]){
+        NSString* message = [WebService getResponseMessage:response];
+        NSLog(@"Invalid response = %@",message);
+        
+        // show alert to user
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        
+        return;
+    }
+
+    
+    NSArray *details = [response objectForKey:@"result"] ;
+    NSLog(@"Detail %@",details);    
+
+          */
+}
+
+
+- (void) dealloc {
+    [service release];
+    [super dealloc];
 }
 
 

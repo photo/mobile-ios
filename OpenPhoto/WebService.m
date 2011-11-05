@@ -10,7 +10,7 @@
 
 // Private interface definition
 @interface WebService() 
-- (void)sendRequest:(NSString*) request;
+- (void)sendRequest:(NSString*) request httpMethodGet:(BOOL) get;
 - (BOOL) validateNetwork;
 @end
 
@@ -39,7 +39,7 @@
     return self;
 }
 - (void) getTags{
-    [self sendRequest:@"/tags/list.json"];
+    [self sendRequest:@"/tags/list.json" httpMethodGet:YES];
 }
 
 - (void) getHomePictures{
@@ -53,7 +53,7 @@
         [homePicturesRequest appendString:@"320x385xCR"];
     }
     
-    [self sendRequest:homePicturesRequest];
+    [self sendRequest:homePicturesRequest httpMethodGet:YES];
 }
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
@@ -62,7 +62,7 @@
                                            [NSString stringWithFormat:@"%d", pageSize],
                                            @"&page=",[NSString stringWithFormat:@"%d", page], 
                                            @"&returnSizes=200x200,640x960"];
-    [self sendRequest:loadGalleryRequest];
+    [self sendRequest:loadGalleryRequest httpMethodGet:YES];
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page {
@@ -72,11 +72,11 @@
                                            @"&page=",[NSString stringWithFormat:@"%d", page],
                                            @"&returnSizes=200x200,640x960",
                                            @"&tags=",tag];
-    [self sendRequest:loadGalleryRequest];
+    [self sendRequest:loadGalleryRequest httpMethodGet:YES];
 }
 
 -(void) getSystemVersion{
-    [self sendRequest:@"/system/version.json"];
+    [self sendRequest:@"/system/version.json" httpMethodGet:NO];
 }
 
 -(NSURL*) getOAuthInitialUrl{
@@ -107,7 +107,7 @@
 }
 
 -(void) sendTestRequest{
-    [self sendRequest:@"/hello.json?auth=1"];
+    [self sendRequest:@"/hello.json?auth=1" httpMethodGet:YES];
 }
 
 
@@ -179,7 +179,7 @@
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
-- (void)sendRequest:(NSString*) request{
+- (void)sendRequest:(NSString*) request httpMethodGet:(BOOL) get{
     if ([self validateNetwork] == NO){
         [self.delegate notifyUserNoInternet];
     }else{
@@ -220,7 +220,12 @@
                                                                                token:token
                                                                                realm:nil
                                                                    signatureProvider:nil];
-        [oaUrlRequest setHTTPMethod:@"GET"];
+        
+        if (get == YES)
+            [oaUrlRequest setHTTPMethod:@"GET"];
+        else
+            [oaUrlRequest setHTTPMethod:@"POST"];
+        
         
         // prepare the Authentication Header
         [oaUrlRequest prepare];

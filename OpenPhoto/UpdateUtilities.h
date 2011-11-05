@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AuthenticationHelper.h"
+#import "WebService.h"
 
 @interface UpdateUtilities : NSObject{
-    
+    WebService *service;
 }
+@property (nonatomic, retain) WebService *service;
 
 // singleton
 +(UpdateUtilities*) instance;
@@ -20,5 +22,6 @@
 - (NSString*) getVersion;
 - (BOOL) needsUpdate;
 - (void) update;
+- (void) updateSystemVersion;
 
 @end
