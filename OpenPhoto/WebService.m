@@ -75,6 +75,10 @@
     [self sendRequest:loadGalleryRequest];
 }
 
+-(void) getSystemVersion{
+    [self sendRequest:@"/system/version.json"];
+}
+
 -(NSURL*) getOAuthInitialUrl{
     // get the url
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];

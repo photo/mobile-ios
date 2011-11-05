@@ -56,6 +56,8 @@
 // get pictures by tag
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
 
+// get details from the system
+-(void) getSystemVersion;
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;
 -(NSURL*) getOAuthTestUrl;
