@@ -9,17 +9,12 @@
 #import "PhotoViewController.h"
 
 @interface PhotoViewController()
-// all details 
--(void) uploadPictureOnDetachTread:(NSDictionary*) values;
 -(void) uploadPicture:(NSDictionary*) values;
 @end
-
-
 
 @implementation PhotoViewController
 
 @synthesize detailsPictureTable;
-@synthesize statusBar;
 @synthesize imageOriginal,imageFiltered;
 @synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture, gpsPosition;
 @synthesize tagController, sourceType;
@@ -44,20 +39,14 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 
-
 #pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{   statusBar.hidden = YES;  
+- (void)viewDidLoad{  
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
@@ -72,25 +61,18 @@
     [super viewDidLoad];
 }
 
-- (void) cancelUploadButton
-{
+- (void) cancelUploadButton{
     [self dismissModalViewControllerAnimated:YES];
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload{
+    [super viewDidUnload];
     [imageTitle release];
     imageTitle = nil;
     [imageDescription release];
     imageDescription = nil;
-    [statusBar release];
-    statusBar = nil;
-    
-    [self setStatusBar:nil];
     [self setDetailsPictureTable:nil];
-    [super viewDidUnload];
-    
     [coreLocationController release];
 }
 
@@ -100,90 +82,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)upload:(id)sender {
-    statusBar.hidden = NO;
-    [statusBar startAnimating];
-    
-    // title
-    NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
-    
-    // description
-    NSString *description = (descriptionTextField.text.length > 0 ? descriptionTextField.text : @"");
-    
-    // default permission for the pictures is PUBLIC
-    NSString *defaultPermission = @"1";
-    
-    if ([permissionPicture isOn]){
-        defaultPermission = @"0";
-    }
-    
-    NSString *latitude =@"";
-    NSString *longitude=@"";
-    
-    if (self.location != nil){
-        latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-        longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-    }
-    
-    // check the size of the image
-    if (![highResolutionPicture isOn]){
-        CGSize sz = CGSizeMake(imageOriginal.size.width/2,imageOriginal.size.height/2);
-        self.imageOriginal = [ImageManipulation imageWithImage:imageOriginal scaledToSize:sz];
-        
-        if (self.imageFiltered != nil){ 
-            CGSize sz = CGSizeMake(imageFiltered.size.width/2,imageFiltered.size.height/2);
-            self.imageFiltered = [ImageManipulation imageWithImage:imageFiltered scaledToSize:sz];
-        }
-    }
-    
-    // parameters to upload
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",@"latitude",@"longitude",nil];
-    NSArray *objects;
-    
-    // set the correct image to upload depends if there is a filtered or not.
-    
-    if (self.imageFiltered != nil){
-        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil];
-    } else{
-        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil]; 
-    }
-    
-    NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-    
-    // just save if it cames from the camera.
-    if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
-        // save picture local
-        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
-            NSLog(@"Saving picture in the photo album");
-            UIImageWriteToSavedPhotosAlbum([self.imageOriginal retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-        }
-        
-        // save filtered picture local
-        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
-            UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-        }
-    }
-    
-    // to send the request we add a thread.
-    [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
-                             toTarget:self 
-                           withObject:values];
-    
-    // stop gps position
-    [coreLocationController.locMgr stopUpdatingLocation];
-}
 
--(void) uploadPictureOnDetachTread:(NSDictionary*) values
-{
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [self uploadPicture:values];
-    
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Picture uploaded"];
-#endif
-    
-    [pool release];
-}
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     [image release];
     if (error.localizedDescription != nil){
@@ -391,6 +290,75 @@
     NSLog(@"Location %@", [error description]);
 }
 
+
+- (IBAction)upload:(id)sender {
+    // title
+    NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
+    
+    // description
+    NSString *description = (descriptionTextField.text.length > 0 ? descriptionTextField.text : @"");
+    
+    // default permission for the pictures is PUBLIC
+    NSString *defaultPermission = @"1";
+    
+    if ([permissionPicture isOn]){
+        defaultPermission = @"0";
+    }
+    
+    NSString *latitude =@"";
+    NSString *longitude=@"";
+    
+    if (self.location != nil){
+        latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    }
+    
+    // check the size of the image
+    if (![highResolutionPicture isOn]){
+        CGSize sz = CGSizeMake(imageOriginal.size.width/2,imageOriginal.size.height/2);
+        self.imageOriginal = [ImageManipulation imageWithImage:imageOriginal scaledToSize:sz];
+        
+        if (self.imageFiltered != nil){ 
+            CGSize sz = CGSizeMake(imageFiltered.size.width/2,imageFiltered.size.height/2);
+            self.imageFiltered = [ImageManipulation imageWithImage:imageFiltered scaledToSize:sz];
+        }
+    }
+    
+    // parameters to upload
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",@"latitude",@"longitude",nil];
+    NSArray *objects;
+    
+    // set the correct image to upload depends if there is a filtered or not.
+    
+    if (self.imageFiltered != nil){
+        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil];
+    } else{
+        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil]; 
+    }
+    
+    NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    // just save if it cames from the camera.
+    if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
+        // save picture local
+        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
+            NSLog(@"Saving picture in the photo album");
+            UIImageWriteToSavedPhotosAlbum([self.imageOriginal retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
+        
+        // save filtered picture local
+        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
+            UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }
+    }
+    
+    // send the pictures in a asynchronus way
+    [self uploadPicture:values];
+    
+    // stop gps position
+    [coreLocationController.locMgr stopUpdatingLocation];
+}
+
 // For upload
 -(void) uploadPicture:(NSDictionary*) values{
     if (service.internetActive == YES && service.hostActive == YES){
@@ -408,7 +376,7 @@
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
         
 #ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Request to be sent = [%@]",urlString);
+        NSLog(@"Url upload = [%@]",urlString);
 #endif
         
         // transform in URL for the request
@@ -436,59 +404,63 @@
         [oaUrlRequest prepare];
         [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
         
-        
-        responseData = [[NSMutableData data] retain];
-        [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
+        // prepare the request for body        
+        [oaUrlRequest prepare];
         
         HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
+        responseData = [[NSMutableData data] retain];
+        [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
         
         [token release];
         [consumer release];
         [oaUrlRequest release];
     }
-    
 }
+
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Connection Failed: %@", [error description]);
+    [HUD hide:YES];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"didReceiveResponse");
-	expectedLength = [response expectedContentLength];
-	currentLength = 0;
-	HUD.mode = MBProgressHUDModeDeterminate;
+    NSLog(@"connection didReceiveResponse");
     [responseData setLength:0]; 
+    HUD.mode = MBProgressHUDModeDeterminate;
+    expectedLength = [response expectedContentLength];
+	currentLength = 0;
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSLog(@"didReceiveData");
-	currentLength += [data length];
+    NSLog(@"connection didReceiveData");
+    currentLength += [data length];
 	HUD.progress = currentLength / (float)expectedLength;
+    
+    NSLog(@"Data received %@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
+    
     [responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"connectionDidFinishLoading");   
-    
-    // progress bar
-	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"19-check.png"]] autorelease];
-    HUD.mode = MBProgressHUDModeCustomView;
-	[HUD hide:YES afterDelay:2];
-    
-    // finish details
+    NSLog(@"connectionDidFinishLoading");
     [connection release];
+    
+    // convert the responseDate to the json string
     NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
     // it can be released
     [responseData release];
     
 #ifdef DEVELOPMENT_ENABLED        
-    NSLog(@"Succeed = %@",jsonString);       
-#endif        
+    NSLog(@"jsonString = %@",jsonString);       
+#endif 
     
     // Create a dictionary from JSON string
     // When there are newline characters in the JSON string, 
     // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
     jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDictionary *response =  [jsonString JSONValue];   
-    
-    [statusBar stopAnimating];
-    statusBar.hidden = YES;
+    NSDictionary *response =  [jsonString JSONValue]; 
+    [jsonString release];
     
     // check if message is valid
     if (![WebService isMessageValid:response]){
@@ -501,14 +473,18 @@
         [alert release];
     }
     
-    // open gallery
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Picture uploaded"];
+#endif
+    
+    // progress bar
+    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Uploaded";
+    [HUD hide:YES afterDelay:2];
+    
     [self dismissModalViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection failed: %@", [error description]);
-	[HUD hide:YES];
 }
 
 #pragma mark -
@@ -518,22 +494,14 @@
     // Remove HUD from screen when the HUD was hidded
     [HUD removeFromSuperview];
     [HUD release];
-	HUD = nil;
+    HUD = nil;
 }
-
--(void) receivedResponse:(NSDictionary *)response{
-    NSLog(@"receivedResponse");
-    
-}
-
 
 - (void)dealloc {
     [imageTitle release];
     [imageDescription release];
-    [statusBar release];
     [imageOriginal release];
     [imageFiltered release];
-    [statusBar release];
     [detailsPictureTable release];
     [titleTextField release];
     [descriptionTextField release];

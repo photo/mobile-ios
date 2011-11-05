@@ -56,9 +56,6 @@
 // get pictures by tag
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
 
-// to upload the picture
--(void) uploadPicture:(NSDictionary*) values;
-
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;
 -(NSURL*) getOAuthTestUrl;

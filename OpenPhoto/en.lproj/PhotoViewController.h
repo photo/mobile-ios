@@ -12,12 +12,12 @@
 #import "MBProgressHUD.h"
 #import "AFFeatherController.h"
 #import "CoreLocationController.h"
+#import "ASIHTTPRequest.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, CoreLocationControllerDelegate, MBProgressHUDDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate,NSURLConnectionDelegate, CoreLocationControllerDelegate, MBProgressHUDDelegate>{
     
     IBOutlet UITextField *imageTitle;
     IBOutlet UITextView *imageDescription;
-    UIActivityIndicatorView *statusBar;
     UIImage* imageOriginal;
     UIImage* imageFiltered;
     UITableView *detailsPictureTable;
@@ -41,7 +41,6 @@
     NSMutableData *responseData;
 }
 
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *statusBar;
 @property (nonatomic, retain) UIImage *imageOriginal;
 @property (nonatomic, retain) UIImage *imageFiltered;
 @property (nonatomic, retain) UITextField *titleTextField;
