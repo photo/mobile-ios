@@ -127,8 +127,6 @@ BOOL isLoading = NO;
     NSMutableArray *localPhotos = [[NSMutableArray alloc] init];
     int photoId=self.photos.count;
     
-    bool isFirst = YES;
-    
     // result can be null
     if ([responsePhotos class] != [NSNull class]) {
         
@@ -143,7 +141,6 @@ BOOL isLoading = NO;
 #ifdef DEVELOPMENT_ENABLED      
             NSString *description = [photo objectForKey:@"description"];            
             NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-            
             NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (localTitle.length > 0 ? localTitle : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
 #endif            
             
@@ -169,11 +166,9 @@ BOOL isLoading = NO;
                            size:CGSizeMake(realWidth, realHeight) caption:localTitle] autorelease];
             obj.index=photoId;
             obj.photoSource = self;
-            if (isFirst == YES){
-                isFirst = NO;
-            }else{
-                [localPhotos addObject:obj];
-            }
+            // add to array
+            [localPhotos addObject:obj];
+            
         } 
     }
     [self.photos addObjectsFromArray:localPhotos];
