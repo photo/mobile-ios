@@ -27,7 +27,8 @@ NSString * const kOpenPhotoServer=@"account_server";
 NSString * const kHomeScreenPictures=@"home_pictures";
 // NSUserDefault variable with information about the last time that the pictures were refreshed
 NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
-
+// NSUserDefault variable with information about the server
+NSString * const kServerDetails=@"server_details";
 
 /*
  * OAuth 1.0a
