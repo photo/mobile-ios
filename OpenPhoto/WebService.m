@@ -76,7 +76,7 @@
 }
 
 -(void) getSystemVersion{
-    [self sendRequest:@"/system/version.json" httpMethodGet:NO];
+    [self sendRequest:@"/system/version.json" httpMethodGet:YES];
 }
 
 -(NSURL*) getOAuthInitialUrl{

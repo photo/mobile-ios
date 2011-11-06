@@ -67,7 +67,6 @@ static UpdateUtilities* instance = nil;
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     // check if message is valid
-    /* TODO: Actual code has a problem 
     if (![WebService isMessageValid:response]){
         NSString* message = [WebService getResponseMessage:response];
         NSLog(@"Invalid response = %@",message);
@@ -83,8 +82,6 @@ static UpdateUtilities* instance = nil;
     
     NSArray *details = [response objectForKey:@"result"] ;
     NSLog(@"Detail %@",details);    
-
-          */
 }
 
 
