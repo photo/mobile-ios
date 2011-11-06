@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "OpenPhoto/PhotoSource.m"
-         timestampString = "341807041.680858"
+         timestampString = "342293007.840385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "133"
-         endingLineNumber = "133"
+         startingLineNumber = "131"
+         endingLineNumber = "131"
          landmarkName = "-receivedResponse:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "OpenPhoto/PhotoSource.m"
-         timestampString = "341807041.680858"
+         timestampString = "342293007.840385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "179"
-         endingLineNumber = "179"
+         startingLineNumber = "174"
+         endingLineNumber = "174"
          landmarkName = "-receivedResponse:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -51,11 +51,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "OpenPhoto/PhotoSource.m"
-         timestampString = "341807041.680858"
+         timestampString = "342293007.840385"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "170"
-         endingLineNumber = "170"
+         startingLineNumber = "167"
+         endingLineNumber = "167"
          landmarkName = "-receivedResponse:"
          landmarkType = "5">
       </FileBreakpoint>
