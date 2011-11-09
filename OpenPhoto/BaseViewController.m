@@ -132,7 +132,7 @@
     // check if user has camera
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         
-        UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Upload your picture" delegate:self cancelButtonTitle:@"Cancel Button" destructiveButtonTitle:nil otherButtonTitles:@"Camera roll", @"Snapshot", nil];
+        UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Upload your picture" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera roll", @"Snapshot", nil];
         menu.actionSheetStyle = UIActionSheetStyleBlackOpaque;
         [menu showInView:self.view];
         [menu release];
