@@ -78,30 +78,6 @@
 			<key>Title</key>
 			<string>Bug reporter</string>
 		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<string>email</string>
-			<key>IASKMailComposeBccRecipents</key>
-			<array/>
-			<key>IASKMailComposeBody</key>
-			<string>Version 1.2. The bug is ...</string>
-			<key>IASKMailComposeBodyIsHTML</key>
-			<string>YES</string>
-			<key>IASKMailComposeCcRecipents</key>
-			<array>
-				<string>ios@openphoto.me</string>
-			</array>
-			<key>IASKMailComposeSubject</key>
-			<string>Bug on iOS OpenPhoto</string>
-			<key>IASKMailComposeToRecipents</key>
-			<array>
-				<string>bugs@openphoto.me</string>
-			</array>
-			<key>Title</key>
-			<string>Opps! We will fix it</string>
-			<key>Type</key>
-			<string>IASKMailComposeSpecifier</string>
-		</dict>
         <dict>
 			<key>Key</key>
 			<string>TestFlighFeed</string>
