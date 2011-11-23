@@ -14,7 +14,7 @@
 			<key>DefaultValue</key>
 			<string>http://current.openphoto.me</string>
 			<key>Type</key>
-			<string>PSTextFieldSpecifier</string>
+			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
 			<string>Server</string>
 			<key>Key</key>
@@ -98,9 +98,7 @@
 			<key>Title</key>
 			<string>Version</string>
 			<key>Key</key>
-			<string>version</string>
-			<key>DefaultValue</key>
-			<string>1.2</string>
+			<string>version_application_installed</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
