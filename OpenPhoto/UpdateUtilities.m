@@ -31,7 +31,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"BETA-1.3";
+    return @"1.3.1";
 }
 
 - (BOOL) needsUpdate{
@@ -48,11 +48,6 @@ static UpdateUtilities* instance = nil;
 }
 
 - (void) update{
-    // remove token details
-    AuthenticationHelper *authentication = [[AuthenticationHelper alloc]init];
-    [authentication invalidateAuthentication];
-    [authentication release];
-    
     // save the version in the user default
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];

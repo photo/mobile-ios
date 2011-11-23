@@ -49,6 +49,10 @@
         // for authentication
         [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
         
+        // clean images saved localy
+        [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
+        
         // synchronize the keys
         [standardUserDefaults synchronize];
     }
@@ -62,6 +66,10 @@
     // set the variable initialized to NO
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setBool:NO forKey:kAppInitialized];
+   
+    // clean images saved localy
+    [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
     
     // synchronize the keys
     [standardUserDefaults synchronize];
