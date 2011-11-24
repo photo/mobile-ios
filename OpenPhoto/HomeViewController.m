@@ -154,6 +154,7 @@
             [service getHomePictures];  
         }else{
             NSLog(@"It is not necessary to get the home pictures");
+            [self.homeImageView startAnimating];
         }
     }else{
         NSLog(@"Internet is not reacheable yet");
@@ -166,6 +167,10 @@
 #endif
 }
 
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];  
+    [self.homeImageView stopAnimating];
+}
 
 - (void) refreshPictures: (NSNotification *) notification{
     [self showPictures];

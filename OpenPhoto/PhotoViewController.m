@@ -292,6 +292,10 @@
 
 
 - (IBAction)upload:(id)sender {
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Upload button clicked");
+#endif
+    
     // title
     NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
     
@@ -352,22 +356,41 @@
         }
     }
     
-    // send the pictures in a asynchronus way
-    [self uploadPicture:values];
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Will start uploading");
+#endif
+    
+    HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.labelText=@"Preparing";
+    
+    if (service.internetActive == YES && service.hostActive == YES){
+        // send the pictures in a asynchronus way
+        [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
+                                 toTarget:self 
+                               withObject:values];
+    }else{
+        NSLog(@"Error, no internet connection");
+    }
     
     // stop gps position
     [coreLocationController.locMgr stopUpdatingLocation];
 }
 
 // For upload
--(void) uploadPicture:(NSDictionary*) values{
+-(void) uploadPictureOnDetachTread:(NSDictionary*) values{
+    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Inside method upload");
+#endif
     if (service.internetActive == YES && service.hostActive == YES){
         // send message to the site. it is pickedImage
         NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
         //Custom implementations, no built in base64 or HTTP escaping for iPhone
         NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
         NSString* imageEscaped = [Base64Utilities fullEscape:imageB64];
-        
         
         // set all details to send
         NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@&latitude=%@&longitude=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"],[values objectForKey:@"latitude"],[values objectForKey:@"longitude"]];
@@ -399,25 +422,32 @@
                                                                    signatureProvider:nil];
         [oaUrlRequest setHTTPMethod:@"POST"];   
         [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
-        
-        // prepare the Authentication Header
-        [oaUrlRequest prepare];
         [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
         
         // prepare the request for body        
         [oaUrlRequest prepare];
         
-        HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
-        HUD.mode = MBProgressHUDModeDeterminate;
-        HUD.labelText = @"Sending";
-        currentLength = 0;
-        responseData = [[NSMutableData data] retain];
-        [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Token created, request ready to be sent");
+#endif        
+        [self performSelectorOnMainThread:@selector(uploadPicture:) withObject:oaUrlRequest waitUntilDone:YES];
         
         [token release];
         [consumer release];
         [oaUrlRequest release];
+        [pool release];
     }
+}
+
+-(void) uploadPicture:(OAMutableURLRequest*) oaUrlRequest{
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Sending request");
+#endif
+    HUD.mode = MBProgressHUDModeDeterminate;
+    HUD.labelText = @"Sending";
+    currentLength = 0;
+    responseData = [[NSMutableData data] retain];
+    [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
 }
 
 - (void) connection:(NSURLConnection*) connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
