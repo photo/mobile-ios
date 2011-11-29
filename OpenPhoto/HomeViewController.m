@@ -11,6 +11,7 @@
 // Private interface definition
 @interface HomeViewController() 
 - (void) showPictures;
+- (void) checkRefreshPictures: (NSNotification *) notification;
 - (void) refreshPictures: (NSNotification *) notification;
 @end
 
@@ -38,6 +39,12 @@
         
         // create notification to update the pictures
         [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(checkRefreshPictures:)
+                                                     name:kNotificationCheckRefreshPictures         
+                                                   object:nil ];
+        
+        //   create notification to update the pictures without checking timer
+        [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(refreshPictures:)
                                                      name:kNotificationRefreshPictures         
                                                    object:nil ];
@@ -56,6 +63,8 @@
 
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     // check if message is valid
     if (![WebService isMessageValid:response]){
         NSString* message = [WebService getResponseMessage:response];
@@ -71,11 +80,20 @@
     
     NSArray *photos = [response objectForKey:@"result"] ;
     
-    // do the download in a thread
-    // to send the request we add a thread.
-    [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
-                             toTarget:self 
-                           withObject:photos];
+    // check if user has photos
+    if ([photos class] != [NSNull class]) {
+        // do the download in a thread
+        // to send the request we add a thread.
+        [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
+                                 toTarget:self 
+                               withObject:photos];
+    }else{
+        // no picture - save timestamp
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setObject: [NSDate date] forKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults synchronize];
+        [self showPictures];
+    }
     
     
 }
@@ -94,7 +112,7 @@
     }
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
-    if (photos != nil){
+    if (photos != nil && [photos count]>0){
         NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]];
@@ -114,12 +132,10 @@
         [standardUserDefaults synchronize];
         
         // can be updated
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCheckRefreshPictures object:nil ];
     }
     
     [key release];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    
     [pool release];
     
 }
@@ -158,7 +174,7 @@
         }
     }else{
         NSLog(@"Internet is not reacheable yet");
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationCheckRefreshPictures object:nil ];
     }
     
     
@@ -172,41 +188,54 @@
     [self.homeImageView stopAnimating];
 }
 
-- (void) refreshPictures: (NSNotification *) notification{
+- (void) checkRefreshPictures: (NSNotification *) notification{
     [self showPictures];
 }
 
+- (void) refreshPictures: (NSNotification *) notification{
+    // clean images saved localy
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [service getHomePictures]; 
+}
+
+
 - (void) showPictures{
+    NSMutableArray *images = [NSMutableArray array];
+    
     // get the local pictures
     NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
     if (rawImages != nil){
-        NSMutableArray *images = [NSMutableArray array];
+        
         if ([rawImages count] > 0){
             // user has pictures
             for (NSData *rawImage in rawImages){
                 UIImage *img = [[UIImage alloc] initWithData:rawImage];
                 [images addObject:[img autorelease]];
             }
-        }else{
-            // show message to start uploading pictures
-            UIImage *img = [UIImage imageNamed:@"upload.png"];
-            [images addObject:img];
         }
-        
-        // show the pictures  
-        // remove from superview if it is there
-        if([self.homeImageView superview])
-            [self.homeImageView removeFromSuperview];
-        
-        
-        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
-        self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
-        self.homeImageView.animationImages = images;
-        self.homeImageView.animationDuration = 20; // seconds
-        self.homeImageView.animationRepeatCount = 0; // 0 = loops forever
-        [self.homeImageView startAnimating];
-        [self.view addSubview:self.homeImageView];
+    }else{
+        // show message to start uploading pictures
+        UIImage *img = [UIImage imageNamed:@"upload.png"];
+        [images addObject:img];
     }
+    
+    // show the pictures  
+    // remove from superview if it is there
+    if([self.homeImageView superview])
+        [self.homeImageView removeFromSuperview];
+    
+    
+    CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+    self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
+    self.homeImageView.animationImages = images;
+    self.homeImageView.animationDuration = 20; // seconds
+    self.homeImageView.animationRepeatCount = 0; // 0 = loops forever
+    [self.homeImageView startAnimating];
+    [self.view addSubview:self.homeImageView];
 }
 
 - (void) notifyUserNoInternet{

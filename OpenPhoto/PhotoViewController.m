@@ -519,6 +519,7 @@
     [HUD hide:YES afterDelay:2];
     
     [self dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
 }
 

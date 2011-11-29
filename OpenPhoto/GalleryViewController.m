@@ -75,12 +75,13 @@
     }
     
     NSArray *responsePhotos = [response objectForKey:@"result"] ;
-    NSMutableArray *photos = [[NSMutableArray alloc] init];
-    BOOL first=YES;
-    int totalRows=0;
-
+    
     // result can be null
     if ([responsePhotos class] != [NSNull class]) {
+        
+        NSMutableArray *photos = [[NSMutableArray alloc] init];
+        BOOL first=YES;
+        int totalRows=0;
         
         // Loop through each entry in the dictionary and create an array of MockPhoto
         for (NSDictionary *photo in responsePhotos){
@@ -123,13 +124,14 @@
                                  smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
                                  size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } 
+        
+        
+        self.photoSource = [[[PhotoSource alloc]
+                             initWithTitle:@"Gallery"
+                             photos:photos size:totalRows tag:self.tagName] autorelease];
+        
+        [photos release];
     }
-    
-    self.photoSource = [[[PhotoSource alloc]
-                         initWithTitle:@"Gallery"
-                         photos:photos size:totalRows tag:self.tagName] autorelease];
-    
-    [photos release];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
 #ifdef TEST_FLIGHT_ENABLED

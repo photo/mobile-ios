@@ -50,8 +50,8 @@
         [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
         
         // clean images saved localy
-        [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
-        [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
         
         // synchronize the keys
         [standardUserDefaults synchronize];
@@ -68,8 +68,8 @@
     [standardUserDefaults setBool:NO forKey:kAppInitialized];
    
     // clean images saved localy
-    [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
-    [standardUserDefaults setNilValueForKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     
     // synchronize the keys
     [standardUserDefaults synchronize];
