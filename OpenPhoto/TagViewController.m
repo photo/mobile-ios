@@ -153,7 +153,7 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     NSArray *tagsResult = [response objectForKey:@"result"];
-    
+    [tags removeAllObjects];
     if ([tagsResult class] != [NSNull class]) {
         // Loop through each entry in the dictionary and create an array Tags
         for (NSDictionary *tagDetails in tagsResult){

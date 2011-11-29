@@ -10,7 +10,7 @@
 
 // Private interface definition
 @interface WebService() 
-- (void)sendRequest:(NSString*) request httpMethodGet:(BOOL) get;
+- (void)sendRequest:(NSString*) request;
 - (BOOL) validateNetwork;
 @end
 
@@ -39,7 +39,7 @@
     return self;
 }
 - (void) getTags{
-    [self sendRequest:@"/tags/list.json" httpMethodGet:YES];
+    [self sendRequest:@"/tags/list.json"];
 }
 
 - (void) getHomePictures{
@@ -53,7 +53,7 @@
         [homePicturesRequest appendString:@"320x385xCR"];
     }
     
-    [self sendRequest:homePicturesRequest httpMethodGet:YES];
+    [self sendRequest:homePicturesRequest];
 }
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
@@ -62,7 +62,7 @@
                                            [NSString stringWithFormat:@"%d", pageSize],
                                            @"&page=",[NSString stringWithFormat:@"%d", page], 
                                            @"&returnSizes=200x200,640x960"];
-    [self sendRequest:loadGalleryRequest httpMethodGet:YES];
+    [self sendRequest:loadGalleryRequest];
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page {
@@ -72,11 +72,11 @@
                                            @"&page=",[NSString stringWithFormat:@"%d", page],
                                            @"&returnSizes=200x200,640x960",
                                            @"&tags=",tag];
-    [self sendRequest:loadGalleryRequest httpMethodGet:YES];
+    [self sendRequest:loadGalleryRequest];
 }
 
 -(void) getSystemVersion{
-    [self sendRequest:@"/system/version.json" httpMethodGet:YES];
+    [self sendRequest:@"/system/version.json"];
 }
 
 -(NSURL*) getOAuthInitialUrl{
@@ -107,7 +107,7 @@
 }
 
 -(void) sendTestRequest{
-    [self sendRequest:@"/hello.json?auth=1" httpMethodGet:YES];
+    [self sendRequest:@"/hello.json?auth=1"];
 }
 
 
@@ -179,20 +179,27 @@
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
-- (void)sendRequest:(NSString*) request httpMethodGet:(BOOL) get{
+- (void)sendRequest:(NSString*) request{
     if ([self validateNetwork] == NO){
         [self.delegate notifyUserNoInternet];
     }else{
-        
-        // don't send the request if the server is not defined
-        if ([[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer] == nil){
-            NSLog(@"Url is not defined, request can not be sent");
-            // set the variable client id to INVALID
-            NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-            [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
-            [standardUserDefaults synchronize];
-            return;
-        }
+        [NSThread detachNewThreadSelector:@selector(sendRequestOnDetachTread:) 
+                                 toTarget:self 
+                               withObject:request];
+    }
+}
+
+-(void)sendRequestOnDetachTread:(NSString*) request{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // don't send the request if the server is not defined
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer] == nil){
+        NSLog(@"Url is not defined, request can not be sent");
+        // set the variable client id to INVALID
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
+        [standardUserDefaults synchronize];
+    }else{
         
         // create the url to connect to OpenPhoto
         NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
@@ -220,12 +227,7 @@
                                                                                token:token
                                                                                realm:nil
                                                                    signatureProvider:nil];
-        
-        if (get == YES)
-            [oaUrlRequest setHTTPMethod:@"GET"];
-        else
-            [oaUrlRequest setHTTPMethod:@"POST"];
-        
+        [oaUrlRequest setHTTPMethod:@"GET"];
         
         // prepare the Authentication Header
         [oaUrlRequest prepare];
@@ -242,6 +244,9 @@
         [oaUrlRequest release];
         [fetcher release];
     }
+    
+    [pool release];
+    
 }
 
 - (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
@@ -257,13 +262,18 @@
         jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
         NSDictionary *results =  [jsonString JSONValue];
         
-        // send the result to the delegate
-        [self.delegate receivedResponse:results];
+        [self performSelectorOnMainThread:@selector(deliveryResult:) withObject:results waitUntilDone:YES];
         [jsonString release];
     }else{
         NSLog(@"The request didn't succeed=%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }
 }
+
+- (void) deliveryResult:(NSDictionary*) results{
+    // send the result to the delegate
+    [self.delegate receivedResponse:results];
+}
+
 - (void)requestTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error{
     NSLog(@"Error to send request = %@", error);
 }
