@@ -518,9 +518,12 @@
     HUD.labelText = @"Uploaded";
     [HUD hide:YES afterDelay:2];
     
-    [self dismissModalViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationOpenGallery object:nil ];
+        
+    OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
+    [appDelegate openGallery];
+                                                    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark -

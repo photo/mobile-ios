@@ -50,6 +50,8 @@ static UpdateUtilities* instance = nil;
 - (void) update{
     // save the version in the user default
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults synchronize];  
 }

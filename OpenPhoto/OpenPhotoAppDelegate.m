@@ -68,6 +68,12 @@
     return YES;
 }
 
+
+- (void) openGallery{
+    NSLog(@"Opening the Gallery. User just uploaded a picture");
+    [self.viewController setSelectedIndex:1];
+}
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
     NSLog(@"handleOpenUrl = %@",url);

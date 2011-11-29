@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "AFFeatherController.h"
 #import "CoreLocationController.h"
+#import "OpenPhotoAppDelegate.h"
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate,NSURLConnectionDelegate, CoreLocationControllerDelegate, MBProgressHUDDelegate>{
     

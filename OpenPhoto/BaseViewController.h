@@ -49,6 +49,4 @@
 // Create a custom UIButton and add it to the center of our tab bar
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage;
 
--(void) setCustomSelectedIndex:(NSInteger) selectedIndex;
-
 @end

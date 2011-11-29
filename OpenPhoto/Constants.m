@@ -52,7 +52,6 @@ NSString * const kNotificationLoginAuthorize=@"notification_login_authorized";
 NSString * const kNotificationLoginNeeded=@"notification_login_needed";     
 NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures"; 
 NSString * const kNotificationCheckRefreshPictures=@"notification_check_refresh_pictures"; 
-NSString * const kNotificationOpenGallery=@"notification_open_gallery";
 
 
 /*

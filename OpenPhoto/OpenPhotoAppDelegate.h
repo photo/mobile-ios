@@ -20,4 +20,7 @@
 
 @property (nonatomic, retain) IBOutlet OpenPhotoViewController *viewController;
 
+
+// this method will be used to open the gallery after the user upload a picture
+-(void) openGallery;
 @end

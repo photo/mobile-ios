@@ -41,12 +41,6 @@
                                              selector:@selector(eventHandler:)
                                                  name:kNotificationLoginNeeded       
                                                object:nil ];
-    
-    //notification to open the gallery
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(eventHandler:)
-                                                 name:kNotificationOpenGallery       
-                                               object:nil ];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -68,7 +62,9 @@
 }
 
 - (void) eventHandler: (NSNotification *) notification{
+#ifdef DEVELOPMENT_ENABLED    
     NSLog(@"###### Event triggered: %@", notification);
+#endif
     
     if ([notification.name isEqualToString:kNotificationLoginNeeded]){
         // open the authentication screen
@@ -79,8 +75,6 @@
 #ifdef TEST_FLIGHT_ENABLED
         [TestFlight passCheckpoint:@"Event for Notification Login Needed"];
 #endif
-    }else if ([notification.name isEqualToString:kNotificationOpenGallery]){
-        [self setCustomSelectedIndex:1];
     }
 }
 
