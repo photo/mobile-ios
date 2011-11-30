@@ -1695,7 +1695,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F035457-C6A7-446E-92BD-DC4956A2FADA";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C00656B5-96DB-444A-83AE-B349F7FB9F43";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1743,7 +1743,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Santana (B89XC69329)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1767,6 +1767,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4F6FA28F-FD5F-40F7-BAE0-1D9865FDA9E9";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1820,6 +1821,7 @@
 		CDF1C98113E1C45D0018AD0B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick Santana";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_VERSION = "";
@@ -1831,6 +1833,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C00656B5-96DB-444A-83AE-B349F7FB9F43";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
