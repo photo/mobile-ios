@@ -49,5 +49,7 @@
 	</array>
 	<key>Versioning System</key>
 	<string>apple-generic</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 </dict>
 </plist>

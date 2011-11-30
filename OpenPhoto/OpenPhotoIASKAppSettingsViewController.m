@@ -10,6 +10,13 @@
 
 @implementation OpenPhotoIASKAppSettingsViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+
+    }
+    return self;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -19,8 +26,7 @@
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log out" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton)];          
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
-}	
-	
+}		
     
 - (void) logoutButton{
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
@@ -35,4 +41,5 @@
         [helper release];
     }
 }
+
 @end

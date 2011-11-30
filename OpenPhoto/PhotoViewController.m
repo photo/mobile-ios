@@ -123,13 +123,13 @@
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle] autorelease];
                 titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 titleTextField.adjustsFontSizeToFitWidth = YES;
-                titleTextField.textColor = [UIColor grayColor];
+                titleTextField.textColor = [UIColor redColor];
                 
                 titleTextField.placeholder = @"title";
                 titleTextField.keyboardType = UIKeyboardTypeDefault;
                 titleTextField.returnKeyType = UIReturnKeyDone;
                 titleTextField.delegate = self;
-                titleTextField.backgroundColor = [UIColor whiteColor];
+               // titleTextField.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:titleTextField];
             }
             break;
@@ -142,14 +142,14 @@
                 
                 descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 descriptionTextField.adjustsFontSizeToFitWidth = YES;
-                descriptionTextField.textColor = [UIColor grayColor];
+                descriptionTextField.textColor = [UIColor redColor];
                 
                 descriptionTextField.placeholder = @"description";
                 descriptionTextField.keyboardType = UIKeyboardTypeDefault;
                 descriptionTextField.returnKeyType = UIReturnKeyDone;
                 descriptionTextField.delegate = self;
                 
-                descriptionTextField.backgroundColor = [UIColor whiteColor];
+               // descriptionTextField.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:descriptionTextField];                
             }
             break;
@@ -221,9 +221,9 @@
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierGpsPosition] autorelease];
             }
             
-            cell.textLabel.text=@"GPS Position";
+            cell.textLabel.text=@"Current Location";
             self.gpsPosition = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            [self.gpsPosition addTarget:self action:@selector(switchedGpsPosition) forControlEvents:UIControlEventValueChanged];	
+            [self.gpsPosition addTarget:self action:@selector(switchedCurrentLocation) forControlEvents:UIControlEventValueChanged];	
             cell.accessoryView = self.gpsPosition;
             
             // get from user configuration if pictures should be private or not
@@ -257,7 +257,7 @@
     }
 }
 
--(void) switchedGpsPosition{
+-(void) switchedCurrentLocation{
     // get gps position
     if ([self.gpsPosition isOn]){
         [coreLocationController.locMgr startUpdatingLocation];

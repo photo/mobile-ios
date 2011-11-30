@@ -44,7 +44,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"Icon-Small-50.png"] highlightImage:nil];
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"IconCentralButton.png"] highlightImage:nil];
     [super viewWillAppear:animated];
 }
 
