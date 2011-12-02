@@ -135,13 +135,13 @@ BOOL isLoading = NO;
             // index photo
             photoId++;
             
-            // Get title/description of the image
-            NSString *localTitle = [photo objectForKey:@"title"];
+            // Get title of the image
+            NSString *title = [photo objectForKey:@"title"];
+            if ([title class] == [NSNull class])
+                title = @"";
             
-#ifdef DEVELOPMENT_ENABLED      
-            NSString *description = [photo objectForKey:@"description"];            
-            NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-            NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (localTitle.length > 0 ? localTitle : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
+#ifdef DEVELOPMENT_ENABLED                
+            NSLog(@"Photo Add More url [%@] with tile [%@]", [photo objectForKey:@"path200x200"],title);
 #endif            
             
             float width = [[photo objectForKey:@"width"] floatValue];
@@ -163,7 +163,7 @@ BOOL isLoading = NO;
             Photo* obj = [[[Photo alloc]
                            initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
                            smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
-                           size:CGSizeMake(realWidth, realHeight) caption:localTitle] autorelease];
+                           size:CGSizeMake(realWidth, realHeight) caption:title] autorelease];
             obj.index=photoId;
             obj.photoSource = self;
             // add to array

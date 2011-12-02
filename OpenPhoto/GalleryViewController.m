@@ -92,14 +92,13 @@
                 first = NO;
             }
             
-            // Get title/description of the image
+            // Get title of the image
             NSString *title = [photo objectForKey:@"title"];
+            if ([title class] == [NSNull class])
+                title = @"";
             
 #ifdef DEVELOPMENT_ENABLED      
-            NSString *description = [photo objectForKey:@"description"];            
-            NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
-            
-            NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, title,description);
+            NSLog(@"Photo Thumb url [%@] with tile [%@]", [photo objectForKey:@"path200x200"], title);
 #endif            
             
             float width = [[photo objectForKey:@"width"] floatValue];
