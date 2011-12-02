@@ -99,7 +99,7 @@
             NSString *description = [photo objectForKey:@"description"];            
             NSString *photoURLString = [NSString stringWithFormat:@"http://%@%@", [photo objectForKey:@"host"], [photo objectForKey:@"path200x200"]];
             
-            NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, (title.length > 0 ? title : @"Untitled"),(description.length > 0 ? description : @"Untitled"));
+            NSLog(@"Photo url [%@] with tile [%@] and description [%@]", photoURLString, title,description);
 #endif            
             
             float width = [[photo objectForKey:@"width"] floatValue];
