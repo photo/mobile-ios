@@ -53,7 +53,11 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
-    [standardUserDefaults synchronize];  
+    [standardUserDefaults synchronize]; 
+    
+    AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
+    [helper invalidateAuthentication];
+    [helper release];
 }
 
 -(void) updateSystemVersion{

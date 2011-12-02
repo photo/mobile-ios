@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AuthenticationHelper.h"
 #import "WebService.h"
+#import "AuthenticationHelper.h"
 
 @interface UpdateUtilities : NSObject{
     WebService *service;

@@ -1705,6 +1705,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Patrick Santana";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_VERSION = "";
@@ -1716,6 +1717,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5F3683C-F90B-4CC1-AC84-AC4B1C61D105";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -1803,6 +1805,7 @@
 		CDF1C98013E1C45D0018AD0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrick Santana (B89XC69329)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_VERSION = "";
@@ -1814,6 +1817,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "66CBCA8F-223B-4096-A773-814C7C48CBED";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1833,7 +1837,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C00656B5-96DB-444A-83AE-B349F7FB9F43";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5F3683C-F90B-4CC1-AC84-AC4B1C61D105";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

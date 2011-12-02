@@ -46,6 +46,8 @@
     [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthSecret];
     [standardUserDefaults setValue:@"" forKey:kAuthenticationConsumerKey];
     [standardUserDefaults setValue:@"" forKey:kAuthenticationConsumerSecret];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     
     // synchronize the keys
     [standardUserDefaults synchronize];
