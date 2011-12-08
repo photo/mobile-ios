@@ -1717,7 +1717,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5F3683C-F90B-4CC1-AC84-AC4B1C61D105";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9EBCF690-1A3E-407F-B097-94D602F0D0CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad Hoc";
@@ -1817,7 +1817,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "66CBCA8F-223B-4096-A773-814C7C48CBED";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A6043EB6-4B1B-4DD5-9C62-794F6C8D18E4";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1837,7 +1837,7 @@
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5F3683C-F90B-4CC1-AC84-AC4B1C61D105";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9EBCF690-1A3E-407F-B097-94D602F0D0CF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
