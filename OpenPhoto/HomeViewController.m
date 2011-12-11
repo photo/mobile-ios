@@ -214,6 +214,10 @@
             // user has pictures
             for (NSData *rawImage in rawImages){
                 UIImage *img = [[UIImage alloc] initWithData:rawImage];
+                
+                
+                
+                
                 [images addObject:[img autorelease]];
             }
         }
