@@ -21,6 +21,8 @@
         self.title=@"Gallery";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
+        self.statusBarStyle = UIStatusBarStyleBlackOpaque;
+        self.navigationBarStyle=UIBarStyleBlackOpaque;
         
         // create service and the delegate
         self.service = [[WebService alloc]init];

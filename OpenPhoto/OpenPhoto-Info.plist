@@ -24,6 +24,8 @@
 	<string>3.8</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

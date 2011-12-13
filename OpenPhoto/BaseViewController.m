@@ -62,8 +62,8 @@
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         return navController;
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
@@ -71,8 +71,8 @@
         
         
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         
         return navController;
     }else if (title == @"Settings"){
@@ -82,7 +82,7 @@
         [self.appSettingsViewController setShowCreditsFooter:NO];   
         self.appSettingsViewController.showDoneButton = NO;   
         
-        controller.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        controller.navigationBar.barStyle=UIBarStyleBlackOpaque;
         
         return controller;
     }
