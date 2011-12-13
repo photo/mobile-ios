@@ -52,8 +52,7 @@
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
-{
-    
+{  
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
         HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
@@ -64,6 +63,7 @@
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         return navController;
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
@@ -72,7 +72,6 @@
         
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
         return navController;

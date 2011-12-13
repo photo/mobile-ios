@@ -65,6 +65,8 @@
     
     [self.window makeKeyAndVisible];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];	
+    
     return YES;
 }
 
