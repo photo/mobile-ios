@@ -34,7 +34,7 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+        CGRect imageSize = CGRectMake(0, 46, 320, 367);
         self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
         
         // create notification to update the pictures
@@ -105,10 +105,10 @@
     NSString *key;
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
-        key = [[NSString alloc]initWithString:@"path640x770xCR"];
+        key = [[NSString alloc]initWithString:@"path640x734xCR"];
     }else{
         // not retina display
-        key = [[NSString alloc]initWithString:@"path320x385xCR"];
+        key = [[NSString alloc]initWithString:@"path320x367xCR"];
     }
     
     // Loop through each entry in the dictionary and create an array of MockPhoto
@@ -143,7 +143,7 @@
 - (void) viewDidLoad{
     // load the logo
     UIImageView *logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appbar_logo.png"]];
-    CGRect positionLogo = CGRectMake(0, 0, 320, 46);
+    CGRect positionLogo = CGRectMake(0, 0, 320, 44);
     [logo setFrame:positionLogo];
     [self.view addSubview:logo];
     [logo release];
@@ -233,7 +233,7 @@
         [self.homeImageView removeFromSuperview];
     
     
-    CGRect imageSize = CGRectMake(0, 46, 320, 431); // 431 because we have the TAB BAR 
+    CGRect imageSize = CGRectMake(0, 46, 320, 367);
     self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
     self.homeImageView.animationImages = images;
     self.homeImageView.animationDuration = 20; // seconds

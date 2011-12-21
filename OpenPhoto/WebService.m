@@ -47,10 +47,10 @@
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
-        [homePicturesRequest appendString:@"640x770xCR"];
+        [homePicturesRequest appendString:@"640x734xCR"];
     }else{
         // not retina display
-        [homePicturesRequest appendString:@"320x385xCR"];
+        [homePicturesRequest appendString:@"320x367xCR"];
     }
     
     [self sendRequest:homePicturesRequest];

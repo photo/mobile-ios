@@ -53,6 +53,9 @@
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {  
+    // image for the navigator
+    UIImage *backgroundImage = [UIImage imageNamed:@"appbar_without_logo.png"];    
+    
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
         HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
@@ -64,6 +67,7 @@
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+        [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         return navController;
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
@@ -73,6 +77,7 @@
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+        [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         return navController;
     }else if (title == @"Settings"){
@@ -83,6 +88,7 @@
         self.appSettingsViewController.showDoneButton = NO;   
         
         controller.navigationBar.barStyle=UIBarStyleBlackOpaque;
+        [controller.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
         
         return controller;
     }
