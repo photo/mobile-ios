@@ -47,9 +47,9 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if (self.tagName != nil){
-        [service loadGallery:25 withTag:self.tagName onPage:1];
+        [service loadGallery:24 withTag:self.tagName onPage:1];
     }else{
-        [service loadGallery:25 onPage:1];
+        [service loadGallery:24 onPage:1];
     }
 }
 
