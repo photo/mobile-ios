@@ -45,7 +45,7 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
+       
     if (self.tagName != nil){
         [service loadGallery:24 withTag:self.tagName onPage:1];
     }else{
@@ -124,11 +124,10 @@
                                  smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
                                  size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } 
-        
-        
+              
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
-                             photos:photos size:totalRows tag:self.tagName] autorelease];
+                             photos:photos size:totalRows tag:self.tagName] autorelease] ;
         
         [photos release];
     }

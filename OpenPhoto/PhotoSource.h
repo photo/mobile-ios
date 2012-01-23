@@ -9,6 +9,7 @@
     NSMutableArray* photos;
     int numberOfPhotos;
     int currentPage;
+    int actualMaxPhotoIndex;
     NSString* tagName;
     WebService* service;
 }
@@ -16,7 +17,7 @@
 @property (nonatomic, copy) NSString* tagName;
 @property (nonatomic, retain) WebService *service;
 @property (nonatomic, retain) NSMutableArray* photos;
-@property (nonatomic) int currentPage;
+@property (nonatomic) int currentPage,actualMaxPhotoIndex;
 
 - (id)initWithTitle:(NSString*)title photos:(NSArray*)listPhotos size:(int) size tag:(NSString*) tag;
 

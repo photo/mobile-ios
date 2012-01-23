@@ -6,10 +6,10 @@
 @synthesize tagName = _tagName;
 @synthesize numberOfPhotos = _numberOfPhotos;
 @synthesize currentPage = _currentPage;
+@synthesize actualMaxPhotoIndex;
 @synthesize service;
 @synthesize photos;
 
-int actualMaxPhotoIndex = 0;
 BOOL isLoading = NO;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +23,8 @@ BOOL isLoading = NO;
         _tagName = tag;
         
         // the first page
-        _currentPage = 1;
+        _currentPage = 1;        
+        self.actualMaxPhotoIndex = 24;
         
         // create service and the delegate
         self.service = [[WebService alloc]init];
@@ -64,7 +65,7 @@ BOOL isLoading = NO;
 - (void)load:(TTURLRequestCachePolicy)cachePolicy more:(BOOL)more {
     if (cachePolicy & TTURLRequestCachePolicyNetwork) {
         _currentPage++;
-        actualMaxPhotoIndex = actualMaxPhotoIndex+25;
+        self.actualMaxPhotoIndex = self.actualMaxPhotoIndex+24;
         
         if (self.photos != nil && _title != nil && _currentPage > 1){
             isLoading = YES;
@@ -193,7 +194,7 @@ BOOL isLoading = NO;
 }
 
 - (NSInteger)maxPhotoIndex {
-    return actualMaxPhotoIndex-1;
+    return self.actualMaxPhotoIndex-1;
 }
 
 - (id<TTPhoto>)photoAtIndex:(NSInteger)photoIndex {
