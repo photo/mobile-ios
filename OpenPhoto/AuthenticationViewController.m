@@ -60,10 +60,11 @@
 }
 
 - (IBAction)login:(id)sender {
+    NSLog(@"Url Login %@",serverURL.text);
     
     // check if the user typed something
     if ( serverURL.text != nil &&
-        [serverURL.text isEqualToString:@"http://"]){
+        [serverURL.text isEqualToString:@"username.openphoto.me"]){
         
         // user should add URL
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL" message:@"Please, set the URL to the OpenPhoto Server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -88,8 +89,14 @@
 #endif
 }
 
+- (IBAction)getNewAccount:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://openphoto.me"]];
+}
+
 // Action if user clicks in DONE in the keyboard
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {   
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {  
+        NSLog(@"Url %@",serverURL.text);
+    
     if ([self validateUrl:textField.text] == YES){
         
         // save the url method. It removes the last / if exists
@@ -113,8 +120,10 @@
 // PRIVATES METHODS
 //////////////////////////////////
 - (BOOL) validateUrl: (NSString *) url {
+    
+   
     NSString *theURL =
-    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    @"((http|https)://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
     NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL]; 
     
     // validate URL
@@ -134,12 +143,21 @@
     // save the url for the app
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
+    
+    NSURL *url;
+    if ([text rangeOfString:@"http://"].location == NSNotFound) {
+        NSLog(@"URL does not contain http://");
+        NSString *urlString = [[NSString alloc] initWithFormat:@"http://%@",text];
+        url = [NSURL URLWithString:urlString];
+    }else{
+        url = [NSURL URLWithString:text];
+    }
+       
     // removes form the URL if it ends with "/"
-    NSURL *url = [NSURL URLWithString:text];
     if ([[url lastPathComponent] isEqualToString:@"/"]){
         [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kOpenPhotoServer];
     }else{
-        [standardUserDefaults setValue:text forKey:kOpenPhotoServer];
+        [standardUserDefaults setValue:[url relativeString] forKey:kOpenPhotoServer];
     }
     [standardUserDefaults synchronize];  
 }

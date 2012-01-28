@@ -13,5 +13,6 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *serverURL;
 - (IBAction)login:(id)sender;
+- (IBAction)getNewAccount:(id)sender;
 
 @end

@@ -93,6 +93,14 @@
 		CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */; };
 		CD9A026E14182479002DDCEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026C14182478002DDCEF /* Security.framework */; };
 		CD9A026F14182479002DDCEF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9A026D14182479002DDCEF /* StoreKit.framework */; };
+		CD9D6FC214D48716008E2078 /* register-background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBA14D48716008E2078 /* register-background.png */; };
+		CD9D6FC314D48716008E2078 /* register-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBB14D48716008E2078 /* register-background@2x.png */; };
+		CD9D6FC414D48716008E2078 /* register-button-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBC14D48716008E2078 /* register-button-login.png */; };
+		CD9D6FC514D48716008E2078 /* register-button-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */; };
+		CD9D6FC614D48716008E2078 /* register-button-new-account.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBE14D48716008E2078 /* register-button-new-account.png */; };
+		CD9D6FC714D48716008E2078 /* register-button-new-account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */; };
+		CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC014D48716008E2078 /* register-input-server.png */; };
+		CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC114D48716008E2078 /* register-input-server@2x.png */; };
 		CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAE085F144C7C7300625C95 /* TSAlertView.m */; };
 		CDAE0867144C7C7300625C95 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */; };
 		CDAE0868144C7C7300625C95 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0861144C7C7300625C95 /* TSAlertViewBackground2.png */; };
@@ -481,6 +489,14 @@
 		CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
 		CD9A026C14182478002DDCEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CD9A026D14182479002DDCEF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CD9D6FBA14D48716008E2078 /* register-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-background.png"; path = "OpenPhoto/images/register-background.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FBB14D48716008E2078 /* register-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-background@2x.png"; path = "OpenPhoto/images/register-background@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FBC14D48716008E2078 /* register-button-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-login.png"; path = "OpenPhoto/images/register-button-login.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-login@2x.png"; path = "OpenPhoto/images/register-button-login@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FBE14D48716008E2078 /* register-button-new-account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-new-account.png"; path = "OpenPhoto/images/register-button-new-account.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-new-account@2x.png"; path = "OpenPhoto/images/register-button-new-account@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FC014D48716008E2078 /* register-input-server.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server.png"; path = "OpenPhoto/images/register-input-server.png"; sourceTree = SOURCE_ROOT; };
+		CD9D6FC114D48716008E2078 /* register-input-server@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server@2x.png"; path = "OpenPhoto/images/register-input-server@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDAE085E144C7C7300625C95 /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAlertView.h; sourceTree = "<group>"; };
 		CDAE085F144C7C7300625C95 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
 		CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewBackground.png; sourceTree = "<group>"; };
@@ -1023,6 +1039,14 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD9D6FBA14D48716008E2078 /* register-background.png */,
+				CD9D6FBB14D48716008E2078 /* register-background@2x.png */,
+				CD9D6FBC14D48716008E2078 /* register-button-login.png */,
+				CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */,
+				CD9D6FBE14D48716008E2078 /* register-button-new-account.png */,
+				CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */,
+				CD9D6FC014D48716008E2078 /* register-input-server.png */,
+				CD9D6FC114D48716008E2078 /* register-input-server@2x.png */,
 				CDC7F3AF14A2546700EC7414 /* upload.png */,
 				CDC7F3B014A2546700EC7414 /* upload@2x.png */,
 				CDC7F3AB14A2517D00EC7414 /* appbar_without_logo.png */,
@@ -1455,6 +1479,14 @@
 				CDC7F3AE14A2517D00EC7414 /* appbar_without_logo@2x.png in Resources */,
 				CDC7F3B114A2546700EC7414 /* upload.png in Resources */,
 				CDC7F3B214A2546700EC7414 /* upload@2x.png in Resources */,
+				CD9D6FC214D48716008E2078 /* register-background.png in Resources */,
+				CD9D6FC314D48716008E2078 /* register-background@2x.png in Resources */,
+				CD9D6FC414D48716008E2078 /* register-button-login.png in Resources */,
+				CD9D6FC514D48716008E2078 /* register-button-login@2x.png in Resources */,
+				CD9D6FC614D48716008E2078 /* register-button-new-account.png in Resources */,
+				CD9D6FC714D48716008E2078 /* register-button-new-account@2x.png in Resources */,
+				CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */,
+				CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
