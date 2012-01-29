@@ -50,8 +50,6 @@
 		CD45C1B91486C27D00CAE2FB /* BackgroundUpload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1B71486C27D00CAE2FB /* BackgroundUpload@2x.png */; };
 		CD45C1BC1486C6B800CAE2FB /* IconCentralButton.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */; };
 		CD45C1BD1486C6B800CAE2FB /* IconCentralButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BB1486C6B700CAE2FB /* IconCentralButton@2x.png */; };
-		CD45C1C01486CF2B00CAE2FB /* appbar_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BE1486CF2900CAE2FB /* appbar_logo.png */; };
-		CD45C1C11486CF2B00CAE2FB /* appbar_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BF1486CF2A00CAE2FB /* appbar_logo@2x.png */; };
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD578A661461E8B700D4EFC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD578A651461E8B700D4EFC9 /* CoreLocation.framework */; };
@@ -108,10 +106,6 @@
 		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
-		CDC7F3AD14A2517D00EC7414 /* appbar_without_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F3AB14A2517D00EC7414 /* appbar_without_logo.png */; };
-		CDC7F3AE14A2517D00EC7414 /* appbar_without_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F3AC14A2517D00EC7414 /* appbar_without_logo@2x.png */; };
-		CDC7F3B114A2546700EC7414 /* upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F3AF14A2546700EC7414 /* upload.png */; };
-		CDC7F3B214A2546700EC7414 /* upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC7F3B014A2546700EC7414 /* upload@2x.png */; };
 		CDC8993A146364E900C50A00 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC89939146364E900C50A00 /* libAviarySDK-universal.a */; };
 		CDC8993D146364F400C50A00 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993B146364F400C50A00 /* AviarySDK-Core.bundle */; };
 		CDC8993E146364F400C50A00 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993C146364F400C50A00 /* AviarySDK-Plugins.bundle */; };
@@ -131,6 +125,13 @@
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
+		CDE86B8814D597DD0036EC48 /* appbar_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8614D597DD0036EC48 /* appbar_empty.png */; };
+		CDE86B8914D597DD0036EC48 /* appbar_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8714D597DD0036EC48 /* appbar_empty@2x.png */; };
+		CDE86B8E14D597EA0036EC48 /* home-openphoto-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8A14D597EA0036EC48 /* home-openphoto-bar.png */; };
+		CDE86B8F14D597EA0036EC48 /* home-openphoto-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8B14D597EA0036EC48 /* home-openphoto-bar@2x.png */; };
+		CDE86B9014D597EA0036EC48 /* home-upload-now.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8C14D597EA0036EC48 /* home-upload-now.png */; };
+		CDE86B9114D597EA0036EC48 /* home-upload-now@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8D14D597EA0036EC48 /* home-upload-now@2x.png */; };
+		CDE86B9414D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */; };
 		CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94B13E1C45C0018AD0B /* UIKit.framework */; };
 		CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94D13E1C45C0018AD0B /* Foundation.framework */; };
 		CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94F13E1C45C0018AD0B /* CoreGraphics.framework */; };
@@ -423,8 +424,6 @@
 		CD45C1B71486C27D00CAE2FB /* BackgroundUpload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BackgroundUpload@2x.png"; path = "OpenPhoto/images/BackgroundUpload@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconCentralButton.png; path = OpenPhoto/images/IconCentralButton.png; sourceTree = SOURCE_ROOT; };
 		CD45C1BB1486C6B700CAE2FB /* IconCentralButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconCentralButton@2x.png"; path = "OpenPhoto/images/IconCentralButton@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD45C1BE1486CF2900CAE2FB /* appbar_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_logo.png; path = OpenPhoto/images/appbar_logo.png; sourceTree = SOURCE_ROOT; };
-		CD45C1BF1486CF2A00CAE2FB /* appbar_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appbar_logo@2x.png"; path = "OpenPhoto/images/appbar_logo@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD4DF4DB13F3C1F000A31234 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		CD4DF4DC13F3C1F000A31234 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
@@ -505,10 +504,6 @@
 		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
 		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
-		CDC7F3AB14A2517D00EC7414 /* appbar_without_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_without_logo.png; path = OpenPhoto/images/appbar_without_logo.png; sourceTree = SOURCE_ROOT; };
-		CDC7F3AC14A2517D00EC7414 /* appbar_without_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appbar_without_logo@2x.png"; path = "OpenPhoto/images/appbar_without_logo@2x.png"; sourceTree = SOURCE_ROOT; };
-		CDC7F3AF14A2546700EC7414 /* upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upload.png; path = OpenPhoto/images/upload.png; sourceTree = SOURCE_ROOT; };
-		CDC7F3B014A2546700EC7414 /* upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload@2x.png"; path = "OpenPhoto/images/upload@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDC89937146364E000C50A00 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherConstants.h; path = Frameworks/Aviary/Headers/AFFeatherConstants.h; sourceTree = "<group>"; };
 		CDC89938146364E000C50A00 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherController.h; path = Frameworks/Aviary/Headers/AFFeatherController.h; sourceTree = "<group>"; };
 		CDC89939146364E900C50A00 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Frameworks/Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
@@ -544,6 +539,14 @@
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		CDE5892C141B90F7004191B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CDE5892E141B911A004191B4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CDE86B8614D597DD0036EC48 /* appbar_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appbar_empty.png; path = OpenPhoto/images/appbar_empty.png; sourceTree = SOURCE_ROOT; };
+		CDE86B8714D597DD0036EC48 /* appbar_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appbar_empty@2x.png"; path = "OpenPhoto/images/appbar_empty@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE86B8A14D597EA0036EC48 /* home-openphoto-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-openphoto-bar.png"; path = "OpenPhoto/images/home-openphoto-bar.png"; sourceTree = SOURCE_ROOT; };
+		CDE86B8B14D597EA0036EC48 /* home-openphoto-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-openphoto-bar@2x.png"; path = "OpenPhoto/images/home-openphoto-bar@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE86B8C14D597EA0036EC48 /* home-upload-now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-upload-now.png"; path = "OpenPhoto/images/home-upload-now.png"; sourceTree = SOURCE_ROOT; };
+		CDE86B8D14D597EA0036EC48 /* home-upload-now@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-upload-now@2x.png"; path = "OpenPhoto/images/home-upload-now@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE86B9214D59DE00036EC48 /* OpenPhotoTTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoTTThumbsViewController.h; sourceTree = "<group>"; };
+		CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoTTThumbsViewController.m; sourceTree = "<group>"; };
 		CDF1C94713E1C45C0018AD0B /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDF1C94B13E1C45C0018AD0B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDF1C94D13E1C45C0018AD0B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1039,6 +1042,12 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDE86B8A14D597EA0036EC48 /* home-openphoto-bar.png */,
+				CDE86B8B14D597EA0036EC48 /* home-openphoto-bar@2x.png */,
+				CDE86B8C14D597EA0036EC48 /* home-upload-now.png */,
+				CDE86B8D14D597EA0036EC48 /* home-upload-now@2x.png */,
+				CDE86B8614D597DD0036EC48 /* appbar_empty.png */,
+				CDE86B8714D597DD0036EC48 /* appbar_empty@2x.png */,
 				CD9D6FBA14D48716008E2078 /* register-background.png */,
 				CD9D6FBB14D48716008E2078 /* register-background@2x.png */,
 				CD9D6FBC14D48716008E2078 /* register-button-login.png */,
@@ -1047,12 +1056,6 @@
 				CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */,
 				CD9D6FC014D48716008E2078 /* register-input-server.png */,
 				CD9D6FC114D48716008E2078 /* register-input-server@2x.png */,
-				CDC7F3AF14A2546700EC7414 /* upload.png */,
-				CDC7F3B014A2546700EC7414 /* upload@2x.png */,
-				CDC7F3AB14A2517D00EC7414 /* appbar_without_logo.png */,
-				CDC7F3AC14A2517D00EC7414 /* appbar_without_logo@2x.png */,
-				CD45C1BE1486CF2900CAE2FB /* appbar_logo.png */,
-				CD45C1BF1486CF2A00CAE2FB /* appbar_logo@2x.png */,
 				CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */,
 				CD45C1BB1486C6B700CAE2FB /* IconCentralButton@2x.png */,
 				CD45C1B61486C27D00CAE2FB /* BackgroundUpload.png */,
@@ -1125,6 +1128,8 @@
 				CDF4464613E1C655007E8F72 /* PhotoSource.m */,
 				CDF4464113E1C62E007E8F72 /* GalleryViewController.h */,
 				CDF4464213E1C62E007E8F72 /* GalleryViewController.m */,
+				CDE86B9214D59DE00036EC48 /* OpenPhotoTTThumbsViewController.h */,
+				CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -1473,12 +1478,6 @@
 				CD45C1B91486C27D00CAE2FB /* BackgroundUpload@2x.png in Resources */,
 				CD45C1BC1486C6B800CAE2FB /* IconCentralButton.png in Resources */,
 				CD45C1BD1486C6B800CAE2FB /* IconCentralButton@2x.png in Resources */,
-				CD45C1C01486CF2B00CAE2FB /* appbar_logo.png in Resources */,
-				CD45C1C11486CF2B00CAE2FB /* appbar_logo@2x.png in Resources */,
-				CDC7F3AD14A2517D00EC7414 /* appbar_without_logo.png in Resources */,
-				CDC7F3AE14A2517D00EC7414 /* appbar_without_logo@2x.png in Resources */,
-				CDC7F3B114A2546700EC7414 /* upload.png in Resources */,
-				CDC7F3B214A2546700EC7414 /* upload@2x.png in Resources */,
 				CD9D6FC214D48716008E2078 /* register-background.png in Resources */,
 				CD9D6FC314D48716008E2078 /* register-background@2x.png in Resources */,
 				CD9D6FC414D48716008E2078 /* register-button-login.png in Resources */,
@@ -1487,6 +1486,12 @@
 				CD9D6FC714D48716008E2078 /* register-button-new-account@2x.png in Resources */,
 				CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */,
 				CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */,
+				CDE86B8814D597DD0036EC48 /* appbar_empty.png in Resources */,
+				CDE86B8914D597DD0036EC48 /* appbar_empty@2x.png in Resources */,
+				CDE86B8E14D597EA0036EC48 /* home-openphoto-bar.png in Resources */,
+				CDE86B8F14D597EA0036EC48 /* home-openphoto-bar@2x.png in Resources */,
+				CDE86B9014D597EA0036EC48 /* home-upload-now.png in Resources */,
+				CDE86B9114D597EA0036EC48 /* home-upload-now@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1598,6 +1603,7 @@
 				CDC8995F146570ED00C50A00 /* ASIHTTPRequest.m in Sources */,
 				CDC89960146570ED00C50A00 /* ASIInputStream.m in Sources */,
 				CDC89961146570ED00C50A00 /* ASINetworkQueue.m in Sources */,
+				CDE86B9414D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -54,7 +54,7 @@
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {  
     // image for the navigator
-    UIImage *backgroundImage = [UIImage imageNamed:@"appbar_without_logo.png"];    
+    UIImage *backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];  
     
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
@@ -68,17 +68,17 @@
         navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+        [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
         return navController;
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         
-        
         UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
         navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
         [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        
+        [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
         return navController;
     }else if (title == @"Settings"){
         UINavigationController *controller = [[[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController] autorelease];
@@ -89,7 +89,7 @@
         
         controller.navigationBar.barStyle=UIBarStyleBlackOpaque;
         [controller.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        
+        [controller.navigationBar setBackgroundColor:[UIColor blackColor]];
         return controller;
     }
     

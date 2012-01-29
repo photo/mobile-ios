@@ -10,10 +10,11 @@
 #include <Three20/Three20.h>
 #import "PhotoSource.h"
 #import "WebService.h"
+#import "OpenPhotoTTThumbsViewController.h"
 
 @class PhotoSet;
 
-@interface GalleryViewController : TTThumbsViewController <WebServiceDelegate>{
+@interface GalleryViewController : OpenPhotoTTThumbsViewController <WebServiceDelegate>{
     WebService* service;
     NSString *tagName;
 }

@@ -25,7 +25,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.view.backgroundColor = [UIColor whiteColor];
+        self.view.backgroundColor = [UIColor blackColor];
         self.tabBarItem.image=[UIImage imageNamed:@"tab-home.png"];
         self.tabBarItem.title=@"Home";
         self.title=@"Open Photo";
@@ -143,7 +143,7 @@
 
 - (void) viewDidLoad{
     // load the logo
-    UIImageView *logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"appbar_logo.png"]];
+    UIImageView *logo = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home-openphoto-bar.png"]];
     CGRect positionLogo = CGRectMake(0, 0, 320, 44);
     [logo setFrame:positionLogo];
     [self.view addSubview:logo];
@@ -227,7 +227,7 @@
             }
     }else{
         // show message to start uploading pictures
-        UIImage *img = [UIImage imageNamed:@"upload.png"];
+        UIImage *img = [UIImage imageNamed:@"home-upload-now.png"];
         [images addObject:img];
     }
     
@@ -237,7 +237,7 @@
         [self.homeImageView removeFromSuperview];
     
     
-    CGRect imageSize = CGRectMake(0, 46, 320, 367);
+    CGRect imageSize = CGRectMake(0, 45, 320, 367);
     self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
     self.homeImageView.animationImages = images;
     self.homeImageView.animationDuration = 20; // seconds

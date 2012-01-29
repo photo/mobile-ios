@@ -23,6 +23,9 @@
         self.wantsFullScreenLayout = YES;
         self.statusBarStyle = UIStatusBarStyleBlackOpaque;
         
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+        
+        
         // create service and the delegate
         self.service = [[WebService alloc]init];
         [service setDelegate:self];

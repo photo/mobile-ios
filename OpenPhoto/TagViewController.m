@@ -16,6 +16,9 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+        
         // create the service
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
@@ -79,7 +82,7 @@
             counter++;
         }
     }
-
+    
     return result;
 }
 
