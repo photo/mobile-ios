@@ -106,7 +106,7 @@
 			<key>File</key>
 			<string>http://theopenphotoproject.org/</string>
 			<key>Title</key>
-			<string>Open Photo Project</string>
+			<string>The OpenPhoto Project</string>
 			<key>Type</key>
 			<string>IASKOpenURLSpecifier</string>
 		</dict>
