@@ -118,7 +118,7 @@
 					<object class="IBUIButton" id="604203393">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{71, 405}, {179, 35}}</string>
+						<string key="NSFrame">{{73, 405}, {171, 35}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
@@ -250,10 +250,10 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="631354329"/>
-							<reference ref="604203393"/>
 							<reference ref="519461955"/>
 							<reference ref="97581516"/>
 							<reference ref="207019938"/>
+							<reference ref="604203393"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -359,7 +359,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="register-background.png">{320, 460}</string>
 			<string key="register-button-login.png">{281, 36}</string>
-			<string key="register-button-new-account.png">{165, 30}</string>
+			<string key="register-button-new-account.png">{166, 30}</string>
 			<string key="register-input-server.png">{277, 36}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">931</string>

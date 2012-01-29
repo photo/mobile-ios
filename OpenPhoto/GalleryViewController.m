@@ -45,7 +45,7 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-       
+    
     if (self.tagName != nil){
         [service loadGallery:24 withTag:self.tagName onPage:1];
     }else{
@@ -93,13 +93,14 @@
                 first = NO;
             }
             
+            
             // Get title of the image
             NSString *title = [photo objectForKey:@"title"];
             if ([title class] == [NSNull class])
                 title = @"";
             
 #ifdef DEVELOPMENT_ENABLED      
-            NSLog(@"Photo Thumb url [%@] with tile [%@]", [photo objectForKey:@"path200x200"], title);
+            NSLog(@"Photo Thumb url [%@] with title [%@]", [photo objectForKey:@"path200x200"], title);
 #endif            
             
             float width = [[photo objectForKey:@"width"] floatValue];
@@ -124,10 +125,13 @@
                                  smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
                                  size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
         } 
-              
-        self.photoSource = [[[PhotoSource alloc]
-                             initWithTitle:@"Gallery"
-                             photos:photos size:totalRows tag:self.tagName] autorelease] ;
+        
+        
+        if (totalRows != 0){
+            self.photoSource = [[[PhotoSource alloc]
+                                 initWithTitle:@"Gallery"
+                                 photos:photos size:totalRows tag:self.tagName] autorelease] ;
+        }
         
         [photos release];
     }

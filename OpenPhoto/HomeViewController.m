@@ -81,7 +81,7 @@
     NSArray *photos = [response objectForKey:@"result"] ;
     
     // check if user has photos
-    if ([photos class] != [NSNull class]) {
+    if ([photos class] != [NSNull class] && [photos count]>0 && [[[photos objectAtIndex:0] objectForKey:@"totalRows"] intValue] >0) {
         // do the download in a thread
         // to send the request we add a thread.
         [NSThread detachNewThreadSelector:@selector(getHomeScreenPicturesOnDetachTread:) 
@@ -111,8 +111,9 @@
         key = [[NSString alloc]initWithString:@"path320x367xCR"];
     }
     
-    // Loop through each entry in the dictionary and create an array of MockPhoto
-    if (photos != nil && [photos count]>0){
+    // Loop through each entry in the dictionary and create an array of MockPhoto. We will always have the 
+    // information about totalPages, totalRows, that why photos should be > than 1
+    if (photos != nil && [photos count]>0 && [[[photos objectAtIndex:0] objectForKey:@"totalRows"] intValue] >0) {
         NSMutableArray *images = [NSMutableArray array];
         for (NSDictionary *photo in photos){
             NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", [photo objectForKey:key]]]];
@@ -153,23 +154,31 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];  
     
-    // load some pictures if the timestamp is null or it is older than one hour
+    // load some pictures if the timestamp is null or it is older than one 30 minutes
     NSDate *now = [NSDate date];
     NSDate *old = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPicturesTimestamp];
     
     // if there is internet. Because it is the first screen, it is possible that the internet is not reachability yet
     if (service.internetActive == YES && service.hostActive == YES){
         if (old == nil){
-            NSLog(@"First time that the application is running.");
+            NSLog(@"First time that the application is running or it was explicity requested to show new pictures");
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             [service getHomePictures];  
-        }else if ([now timeIntervalSinceDate:old] > 3600){
-            // one hour after the last update
+        }else if ([now timeIntervalSinceDate:old] > 1800){
+            // 30 minutes after the last update
             NSLog(@"The last update of pictures was one hour ago");
             [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             [service getHomePictures];  
         }else{
             NSLog(@"It is not necessary to get the home pictures");
+            
+            // normaly we shouldn't refresh, but let's check if there is no picture localy. In this case, we go to the internet again
+            NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
+            if (rawImages == nil || [rawImages count] == 0){
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+                [service getHomePictures];  
+            }
+                
             [self.homeImageView startAnimating];
         }
     }else{
@@ -197,6 +206,8 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
+    // synchronize the keys
+    [standardUserDefaults synchronize];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [service getHomePictures]; 
@@ -208,19 +219,12 @@
     
     // get the local pictures
     NSMutableArray *rawImages = [[NSUserDefaults standardUserDefaults] objectForKey:kHomeScreenPictures];
-    if (rawImages != nil){
-        
-        if ([rawImages count] > 0){
+    if (rawImages != nil && [rawImages count] > 0){
             // user has pictures
             for (NSData *rawImage in rawImages){
                 UIImage *img = [[UIImage alloc] initWithData:rawImage];
-                
-                
-                
-                
                 [images addObject:[img autorelease]];
             }
-        }
     }else{
         // show message to start uploading pictures
         UIImage *img = [UIImage imageNamed:@"upload.png"];

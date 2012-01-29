@@ -31,7 +31,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"1.3.1";
+    return @"1.3.2";
 }
 
 - (BOOL) needsUpdate{
@@ -53,11 +53,7 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
-    [standardUserDefaults synchronize]; 
-    
-    AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
-    [helper invalidateAuthentication];
-    [helper release];
+    [standardUserDefaults synchronize];   
 }
 
 -(void) updateSystemVersion{
