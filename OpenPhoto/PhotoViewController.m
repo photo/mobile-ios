@@ -9,7 +9,7 @@
 #import "PhotoViewController.h"
 
 @interface PhotoViewController()
--(void) uploadPicture:(NSDictionary*) values;
+-(void) uploadPicture:(OAMutableURLRequest*) oaUrlRequest;
 @end
 
 @implementation PhotoViewController
