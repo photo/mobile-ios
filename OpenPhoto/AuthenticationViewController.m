@@ -95,7 +95,7 @@
 
 // Action if user clicks in DONE in the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {  
-        NSLog(@"Url %@",serverURL.text);
+    NSLog(@"Url %@",serverURL.text);
     
     if ([self validateUrl:textField.text] == YES){
         
@@ -115,13 +115,31 @@
     return NO;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    if ( [textField.text isEqualToString:@"username.openphoto.me"]){
+        // get the actual range
+        UITextRange *selectedRange = [textField selectedTextRange];       
+        
+        //Calculate the new position, - for left and + for right
+        UITextPosition *fromPosition = [textField positionFromPosition:selectedRange.start offset:-21];  
+        UITextPosition *toPosition = [textField positionFromPosition:selectedRange.start offset:-13];
+        
+        //Construct a new range and set  in the textfield
+        UITextRange *newRange = [textField textRangeFromPosition:fromPosition toPosition:toPosition];
+        textField.selectedTextRange = newRange;
+    }
+    
+}
+
+
 
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
 - (BOOL) validateUrl: (NSString *) url {
     
-   
+    
     NSString *theURL =
     @"((http|https)://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
     NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL]; 
@@ -152,7 +170,7 @@
     }else{
         url = [NSURL URLWithString:text];
     }
-       
+    
     // removes form the URL if it ends with "/"
     if ([[url lastPathComponent] isEqualToString:@"/"]){
         [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kOpenPhotoServer];

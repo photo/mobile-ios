@@ -34,7 +34,7 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
-        CGRect imageSize = CGRectMake(0, 46, 320, 367);
+        CGRect imageSize = CGRectMake(0, 44, 320, 367);
         self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
         
         // create notification to update the pictures
@@ -237,7 +237,7 @@
         [self.homeImageView removeFromSuperview];
     
     
-    CGRect imageSize = CGRectMake(0, 45, 320, 367);
+    CGRect imageSize = CGRectMake(0, 44, 320, 367);
     self.homeImageView = [[UIImageView alloc] initWithFrame:imageSize];
     self.homeImageView.animationImages = images;
     self.homeImageView.animationDuration = 20; // seconds
