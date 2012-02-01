@@ -1,3 +1,56 @@
+0.8.2 - December 20, 2011
+Promoted 0.8.2 BETA 4 to stable
+
+Known Issues:
+Under some circumstances Session End events may not be sent until the next launch.
+With large log files Session End events may take a long time to show up.
+
+Tested compiled library with
+Xcode 4.3
+Xcode 4.2
+Xcode 4.1
+Xcode 3.2.6
+
+0.8.2 BETA 4 - December 12, 2011
+Prevented "The string argument is NULL" from occuring during finishedHandshake in rare cases
+Resolved issue where background data may not be sent
+
+0.8.2 BETA 3 - December 8, 2011
+Added auto-release pools to background setup and tear down 
+Added C++ specific code to TFLog declaration
+
+0.8.2 BETA 2 - December 5, 2011
+Fixed the "pointer being freed was not allocated" bug
+
+0.8.1 - November 18, 2011
+Implemented TFLog logging system, see README for more information
+Fixed an issue where Session End events may not be sent until next launch
+Fixed an issue where duplicate events could be sent
+Fixed an issue with Session End events not being sent from some iPod touch models
+
+Tested compiled library with
+Xcode 4.2
+Xcode 4.1
+Xcode 3.2.6
+
+0.8 - November 8, 2011
+Added SIGTRAP as a signal type that we catch
+Removed all Objective-c from crash reporting
+Removed the use of non signal safe functions from signal handling
+Created a signal safe way to get symbols from a stack trace
+Changed the keyboardType for Long Answer Questions and Feedback to allow for international character input
+Changed TESTFLIGHT_SDK_VERSION string to be an NSString
+Changed cache folder from Library/Caches/TestFlight to Library/Caches/com.testflight.testflightsdk
+Fixed issue with saving data when device is offline
+Fixed compability issues with iOS 3
+Added calling into the rootViewController shouldAutorotateToInterfaceOrientation if a rootViewController is set
+Made the comments in TestFlight.h compatible with Appledoc
+
+Tested compiled library with
+Xcode 4.2
+Xcode 4.1
+Xcode 3.2
+
 0.7.2 - September 29, 2011
 Changed TESTFLIGHT_SDK_VERSION string to be an NSString
 Fixed an issue where exiting an application while the SDK is active caused modal views to be dismissed
