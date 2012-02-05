@@ -82,7 +82,7 @@
 -(NSURL*) getOAuthInitialUrl{
     // get the url
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
-    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&mobile=1&name=OpenPhoto%20IPhone%20App"] autorelease];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&mobile=1&generate_passphrase=true&name=OpenPhoto%20IPhone%20App"] autorelease];
     
     NSLog(@"URL for OAuth initialization = %@",url);
     return [NSURL URLWithString:url];
