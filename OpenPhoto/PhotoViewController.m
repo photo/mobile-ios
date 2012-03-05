@@ -9,23 +9,24 @@
 #import "PhotoViewController.h"
 
 @interface PhotoViewController()
--(void) uploadPicture:(OAMutableURLRequest*) oaUrlRequest;
+-(void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete;
 @end
 
 @implementation PhotoViewController
 
 @synthesize detailsPictureTable;
-@synthesize imageOriginal,imageFiltered;
-@synthesize titleTextField, descriptionTextField, permissionPicture, highResolutionPicture, gpsPosition;
+@synthesize urlImageOriginal, imageOriginal, imageFiltered;
+@synthesize titleTextField, permissionPicture, shareFacebook, shareTwitter;
 @synthesize tagController, sourceType;
-@synthesize location, service;
+@synthesize service;
+@synthesize fileNameToDelete;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photo:(UIImage *) imageFromPicker source:(UIImagePickerControllerSourceType) pickerSourceType
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photoUrl:(NSURL *) url photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.imageOriginal = imageFromPicker;
+        self.urlImageOriginal = url;
+        self.imageOriginal = image;
         self.sourceType = pickerSourceType;
         
         // initialization of tag controller
@@ -55,9 +56,6 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
     [cancelButton release];
     
-    coreLocationController = [[CoreLocationController alloc] init];
-    coreLocationController.delegate = self;
-    
     [super viewDidLoad];
 }
 
@@ -70,27 +68,14 @@
     [super viewDidUnload];
     [imageTitle release];
     imageTitle = nil;
-    [imageDescription release];
-    imageDescription = nil;
     [self setDetailsPictureTable:nil];
-    [coreLocationController release];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
-    [image release];
-    if (error.localizedDescription != nil){
-        NSLog(@"Image could not be saved = %@", error.localizedDescription);
-    }else{
-        NSLog(@"Image saved");
-    }
-}
 
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
@@ -102,14 +87,11 @@
 
 
 #pragma mark - Table
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return kNumbersRow;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
     
     
@@ -129,31 +111,11 @@
                 titleTextField.keyboardType = UIKeyboardTypeDefault;
                 titleTextField.returnKeyType = UIReturnKeyDone;
                 titleTextField.delegate = self;
-               // titleTextField.backgroundColor = [UIColor whiteColor];
+                // titleTextField.backgroundColor = [UIColor whiteColor];
                 [cell addSubview:titleTextField];
             }
             break;
         case 1:
-            // description
-            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierDescription];
-            if (cell == nil)
-            {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierDescription] autorelease];
-                
-                descriptionTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
-                descriptionTextField.adjustsFontSizeToFitWidth = YES;
-                descriptionTextField.textColor = [UIColor redColor];
-                
-                descriptionTextField.placeholder = @"description";
-                descriptionTextField.keyboardType = UIKeyboardTypeDefault;
-                descriptionTextField.returnKeyType = UIReturnKeyDone;
-                descriptionTextField.delegate = self;
-                
-               // descriptionTextField.backgroundColor = [UIColor whiteColor];
-                [cell addSubview:descriptionTextField];                
-            }
-            break;
-        case 2:
             // tags
             cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierTags];
             if (cell == nil)
@@ -165,37 +127,8 @@
             cell.textLabel.text=@"Tags";
             cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
-        case 3:
-            // filter: disclosure button
-            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierFilter];
-            if (cell == nil)
-            {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierFilter] autorelease];
-                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
-            }
             
-            cell.textLabel.text=@"Crop & effects";
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-            break;
-            
-        case 4:
-            // high resolution picture
-            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierHighResolutionPicture];
-            if (cell == nil)
-            {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierHighResolutionPicture] autorelease];
-                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
-            }
-            
-            cell.textLabel.text=@"High resolution";
-            highResolutionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = highResolutionPicture;
-            
-            // get from user if picture will be uploaded in high resolution or not
-            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"photos_high_resolution"]];
-            break;
-            
-        case 5:
+        case 2:
             // private flag
             cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPrivate];
             if (cell == nil)
@@ -209,25 +142,54 @@
             cell.accessoryView = permissionPicture;
             
             // get from user configuration if pictures should be private or not
-            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"photos_are_private"]];
+            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosArePrivate]];
             break;
             
-        case 6:
-            // gps position
-            // private flag
-            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierGpsPosition];
+        case 3:
+            // Facebook
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierShareFacebook];
             if (cell == nil)
             {
-                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierGpsPosition] autorelease];
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierShareFacebook] autorelease];
+                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Current Location";
-            self.gpsPosition = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            [self.gpsPosition addTarget:self action:@selector(switchedCurrentLocation) forControlEvents:UIControlEventValueChanged];	
-            cell.accessoryView = self.gpsPosition;
+            cell.textLabel.text=@"Facebook";
+            shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = shareFacebook;
             
-            // get from user configuration if pictures should be private or not
-            [(UISwitch *)cell.accessoryView setOn:NO];
+            // get from user if picture will be uploaded in high resolution or not
+            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareFacebook]];
+            break;
+            
+        case 4:
+            // Twitter
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierShareTwitter];
+            if (cell == nil)
+            {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierShareTwitter] autorelease];
+                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
+            }
+            
+            cell.textLabel.text=@"Twitter";
+            shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = shareTwitter;
+            
+            // get from user if picture will be uploaded in high resolution or not
+            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareTwitter]];
+            break;
+            
+        case 5:
+            // filter Aviary
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierFilter];
+            if (cell == nil)
+            {
+                cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierFilter] autorelease];
+                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
+            }
+            
+            cell.textLabel.text=@"Crop & effects";
+            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             break;
             
         default:
@@ -244,7 +206,7 @@
     if ( row == 3){
         // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-        AFFeatherController *controller = [[AFFeatherController alloc]
+        AFFeatherController *controller = [[AFFeatherController alloc] 
                                            initWithImage:self.imageOriginal];
         controller.delegate = self;
         
@@ -254,17 +216,6 @@
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
-    }
-}
-
--(void) switchedCurrentLocation{
-    // get gps position
-    if ([self.gpsPosition isOn]){
-        [coreLocationController.locMgr startUpdatingLocation];
-        NSLog(@"Start Updating Location");
-    }else{
-        // stop gps position
-        [coreLocationController.locMgr stopUpdatingLocation];
     }
 }
 
@@ -282,76 +233,54 @@
     return YES;
 }
 
-- (void)locationUpdate:(CLLocation *)position{
-    self.location = position;
-}
-
-- (void)locationError:(NSError *)error {
-    NSLog(@"Location %@", [error description]);
-}
-
-
 - (IBAction)upload:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Upload button clicked");
+    NSLog(@"Upload button clicked. Create all information for the request");
 #endif
+    
+    
+    // show the progress bar and create a block    
+    HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
+    HUD.mode = MBProgressHUDModeIndeterminate;
+    HUD.labelText=@"Preparing";
+    HUD.delegate = self;
     
     // title
     NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
     
-    // description
-    NSString *description = (descriptionTextField.text.length > 0 ? descriptionTextField.text : @"");
-    
     // default permission for the pictures is PUBLIC
-    NSString *defaultPermission = @"1";
+    NSString *permission = @"1";
     
     if ([permissionPicture isOn]){
-        defaultPermission = @"0";
+        permission = @"0";
     }
     
-    NSString *latitude =@"";
-    NSString *longitude=@"";
+    // TODO Check if Facebook is on
     
-    if (self.location != nil){
-        latitude = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-        longitude = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
-    }
+    // TODO Check if Twitter is on    
     
-    // check the size of the image
-    if (![highResolutionPicture isOn]){
-        CGSize sz = CGSizeMake(imageOriginal.size.width/2,imageOriginal.size.height/2);
-        self.imageOriginal = [ImageManipulation imageWithImage:imageOriginal scaledToSize:sz];
-        
-        if (self.imageFiltered != nil){ 
-            CGSize sz = CGSizeMake(imageFiltered.size.width/2,imageFiltered.size.height/2);
-            self.imageFiltered = [ImageManipulation imageWithImage:imageFiltered scaledToSize:sz];
-        }
-    }
+    // TODO, if iOS 5 you can get this data + name
+    //filename
+    NSString *filename= [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:self.urlImageOriginal],[AssetsLibraryUtilities getAssetsUrlExtension:self.urlImageOriginal]];
+    self.fileNameToDelete = filename;
     
     // parameters to upload
-    NSArray *keys = [NSArray arrayWithObjects:@"image", @"title", @"description", @"permission",@"exifCameraMake",@"exifCameraModel",@"tags",@"latitude",@"longitude",nil];
+    NSArray *keys = [NSArray arrayWithObjects:@"image", @"hasFilter", @"title", @"permission",@"tags",@"filename",nil];
     NSArray *objects;
     
     // set the correct image to upload depends if there is a filtered or not.
-    
     if (self.imageFiltered != nil){
-        objects = [NSArray arrayWithObjects:self.imageFiltered, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil];
+        objects = [NSArray arrayWithObjects:self.imageFiltered, [NSNumber numberWithBool:YES], title, permission, [tagController getSelectedTagsInJsonFormat],filename, nil];
     } else{
-        objects = [NSArray arrayWithObjects:self.imageOriginal, title, description, defaultPermission, @"Apple",[[UIDevice currentDevice] model],[tagController getSelectedTagsInJsonFormat],latitude,longitude, nil]; 
+        objects = [NSArray arrayWithObjects:self.urlImageOriginal, [NSNumber numberWithBool:NO],title, permission, [tagController getSelectedTagsInJsonFormat],filename, nil]; 
     }
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    // just save if it cames from the camera.
+    // just save if it cames from the camera and the user filtered.
     if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
-        // save picture local
-        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES){
-            NSLog(@"Saving picture in the photo album");
-            UIImageWriteToSavedPhotosAlbum([self.imageOriginal retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-        }
-        
         // save filtered picture local
-        if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"photos_save_camera_roll_or_snapshot"] == YES && self.imageFiltered != nil){
+        if ( [[NSUserDefaults standardUserDefaults] boolForKey:kPhotosSaveCameraRollOrSnapshot] == YES && self.imageFiltered != nil){
             UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
     }
@@ -360,133 +289,185 @@
     NSLog(@"Will start uploading");
 #endif
     
-    HUD = [[MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES] retain];
-    HUD.mode = MBProgressHUDModeIndeterminate;
-    HUD.labelText=@"Preparing";
-    
-    if (service.internetActive == YES && service.hostActive == YES){
-        // send the pictures in a asynchronus way
-        [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) 
-                                 toTarget:self 
-                               withObject:values];
-    }else{
-        NSLog(@"Error, no internet connection");
-    }
-    
-    // stop gps position
-    [coreLocationController.locMgr stopUpdatingLocation];
+    // send the pictures in a asynchronus way
+    [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) toTarget:self withObject:values];
 }
 
 // For upload
--(void) uploadPictureOnDetachTread:(NSDictionary*) values{
-    
+-(void) uploadPictureOnDetachTread:(NSDictionary*) values{    
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Inside method upload");
+    NSLog(@"Pool created. Start the procedure to send the request");
 #endif
     if (service.internetActive == YES && service.hostActive == YES){
-        // send message to the site. it is pickedImage
-        NSData *imageData = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
-        //Custom implementations, no built in base64 or HTTP escaping for iPhone
-        NSString *imageB64   = [QSStrings encodeBase64WithData:imageData]; 
-        NSString* imageEscaped = [Base64Utilities fullEscape:imageB64];
         
-        // set all details to send
-        NSString *uploadCall = [NSString stringWithFormat:@"photo=%@&title=%@&description=%@&permission=%@&exifCameraMake=%@&exifCameraModel=%@&tags=%@&latitude=%@&longitude=%@",imageEscaped,[values objectForKey:@"title"],[values objectForKey:@"description"],[values objectForKey:@"permission"],[values objectForKey:@"exifCameraMake"],[values objectForKey:@"exifCameraModel"], [values objectForKey:@"tags"],[values objectForKey:@"latitude"],[values objectForKey:@"longitude"]];
+        // data to send to OpenPhoto
+        __block NSData *data = nil;
         
-        NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@/photo/upload.json", 
-                                          [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
+        // check if it a filtered image or a URL
+        BOOL hasFilter = [[values objectForKey:@"hasFilter"] boolValue];
         
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Url upload = [%@]",urlString);
-#endif
+        if (hasFilter){
+            // it has filter, so we have to create a NSSdata
+            data = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
+            [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:nil];
+        }else{
+            // the photo is inside AssetLibrary
+            NSLog(@"URL %@",[values objectForKey:@"image"]);
+            
+            NSURL *assetURL = [values objectForKey:@"image"];
+            
+            // name of local file
+            NSDate *now = [NSDate date];
+            double uniqueId = [now timeIntervalSince1970];
+            
+            NSString *formDataFileName = [[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"%if", uniqueId]] retain];
+            
+            NSLog(@"File used for transfer = %@, it will be deleted",formDataFileName  );
+            
+            // get the image data using the Assets Library
+            ALAssetsLibraryAssetForURLResultBlock resultBlock = 
+            ^(ALAsset *asset) {
+                ALAssetRepresentation *representation = [asset defaultRepresentation];
+                NSOutputStream *mediaStream = [NSOutputStream outputStreamToFileAtPath:formDataFileName append:YES];
+                [mediaStream open];
+                
+                NSUInteger bufferSize = 8192;
+                NSUInteger read = 0, offset = 0, written = 0;
+                uint8_t	   *buff = (uint8_t *)malloc(sizeof(uint8_t)*bufferSize);
+                NSError	   *err = nil;
+                
+                do {
+                    read = [representation getBytes:buff fromOffset:offset length:bufferSize error:&err];
+                    written = [mediaStream write:buff maxLength:read];
+                    offset += read;
+                    if (err != nil) {
+                        NSLog(@"Error to save the file" );
+                        [mediaStream close];
+                        free(buff);
+                        return;
+                    }
+                    if (read != written) {
+                        [mediaStream close];
+                        free(buff);
+                        return;
+                    }
+                } while (read != 0);
+                free(buff);
+                [mediaStream close];
+                
+                
+                // set the data in the local NSData            
+                data = [[NSData alloc] initWithContentsOfFile:formDataFileName];
+                [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:formDataFileName];
+            };
+            
+            ALAssetsLibrary *assetLib = [[[ALAssetsLibrary alloc] init] autorelease];
+            [assetLib assetForURL:assetURL resultBlock:resultBlock failureBlock:^(NSError *error) {
+                NSLog(@"Error from assertURL %@",[error localizedDescription]);
+            }];
+        }
         
-        // transform in URL for the request
-        NSURL *url = [NSURL URLWithString:urlString];
-        
-        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-        
-        // token to send. We get the details from the user defaults
-        OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
-                                               secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
-        
-        //consumer to send. We get the details from the user defaults
-        OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
-                                                        secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
-        
-        OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
-                                                                            consumer:consumer
-                                                                               token:token
-                                                                               realm:nil
-                                                                   signatureProvider:nil];
-        [oaUrlRequest setHTTPMethod:@"POST"];   
-        [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
-        [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
-        
-        // prepare the request for body        
-        [oaUrlRequest prepare];
-        
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Token created, request ready to be sent");
-#endif        
-        [self performSelectorOnMainThread:@selector(uploadPicture:) withObject:oaUrlRequest waitUntilDone:YES];
-        
-        [token release];
-        [consumer release];
-        [oaUrlRequest release];
-        [pool release];
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection" message:@"Please, check your connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [HUD hide:YES];
     }
+    [pool release];
 }
 
--(void) uploadPicture:(OAMutableURLRequest*) oaUrlRequest{
+-(void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete{
+    // TODO in the case of filtered imaged, we should set @"Apple",[[UIDevice currentDevice] model],
+    
+    // set all details to send
+    NSString *uploadCall = [NSString stringWithFormat:@"title=%@&permission=%@&tags=%@",[values objectForKey:@"title"],[values objectForKey:@"permission"], [values objectForKey:@"tags"]];
+    
+    
+    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/photo/upload.json", [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Sending request");
+    NSLog(@"Url upload = [%@]. Execute OAuth and Multipart",urlString);
 #endif
-    HUD.mode = MBProgressHUDModeDeterminate;
+    
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    // token to send. We get the details from the user defaults
+    OAToken *token = [[OAToken alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
+                                           secret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]];
+    
+    //consumer to send. We get the details from the user defaults
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey] 
+                                                    secret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret] ];
+    
+    OAMutableURLRequest *oaUrlRequest = [[OAMutableURLRequest alloc] initWithURL:url
+                                                                        consumer:consumer
+                                                                           token:token
+                                                                           realm:nil
+                                                               signatureProvider:nil];
+    [oaUrlRequest setHTTPMethod:@"POST"]; 
+    [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
+    [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
+    
+    // prepare the request. This will be used to get the Authorization header and add in the multipart component        
+    [oaUrlRequest prepare];
+    
+    
+    /*
+     *
+     *   Using ASIHTTPRequest for Multipart. The authentication come from the OAMutableURLRequest
+     *
+     */
+    ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    
+    // set the authorization header to be used in the OAuth            
+    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
+    [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+    
+    // set the parameter already added in the signature
+    [asiRequest addPostValue:[values objectForKey:@"title"] forKey:@"title"];
+    [asiRequest addPostValue:[values objectForKey:@"permission"] forKey:@"permission"];
+    [asiRequest addPostValue:[values objectForKey:@"tags"] forKey:@"tags"];
+    
+    // add the file in the multipart. This file is stored locally for perfomance reason. We don't have to load it
+    // in memory. If it is a picture with filter, we just send without giving the name 
+    // and content type
+    [asiRequest addData:data withFileName:fileName andContentType:@"image/png" forKey:@"photo"];
+    
+    // we set the delegate to get information enough for updating the progress bar
+    [asiRequest setDelegate:self];
+    [asiRequest setDidFinishSelector:@selector(requestDone:) ];
+    [asiRequest setDidFailSelector:@selector(requestFailed:) ];
+    
+    
+    HUD.mode = MBProgressHUDModeIndeterminate;
     HUD.labelText = @"Sending";
-    currentLength = 0;
-    responseData = [[NSMutableData data] retain];
-    [[NSURLConnection alloc] initWithRequest:oaUrlRequest delegate:self startImmediately:YES];
-}
-
-- (void) connection:(NSURLConnection*) connection didSendBodyData:(NSInteger)bytesWritten totalBytesWritten:(NSInteger)totalBytesWritten totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite{
-    expectedLength = totalBytesExpectedToWrite;
-    currentLength += totalBytesWritten;
     
-	HUD.progress = totalBytesWritten / (float)expectedLength;
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Token created, request ready to be sent");
+#endif
+    [asiRequest setDownloadProgressDelegate:self];
+    [asiRequest setShowAccurateProgress:YES];
+    [asiRequest startAsynchronous];
     
-    if (HUD.progress == 1.0){
-        HUD.mode = MBProgressHUDModeIndeterminate;
-        HUD.labelText = @"Finalization";
-    }
+    [token release];
+    [consumer release];
+    [oaUrlRequest release];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"Connection Failed: %@", [error description]);
-    [HUD hide:YES];
+- (void)setProgress:(float)newProgress {
+    [HUD setProgress:newProgress];
+    NSLog(@"Progress value: %f",[HUD progress]);
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    [responseData setLength:0]; 
-    HUD.mode = MBProgressHUDModeDeterminate;
-    expectedLength = [response expectedContentLength];
-	currentLength = 0;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [responseData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    [connection release];
-    
+- (void)requestDone:(ASIHTTPRequest *)request{
+    NSLog(@"Request was done currectly to upload picture");
     // convert the responseDate to the json string
-    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    // it can be released
-    [responseData release];
+    NSString *jsonString = [request responseString];
     
-#ifdef DEVELOPMENT_ENABLED        
+#ifdef DEVELOPMENT_ENABLED  
     NSLog(@"jsonString = %@",jsonString);       
 #endif 
     
@@ -512,6 +493,16 @@
     [TestFlight passCheckpoint:@"Picture uploaded"];
 #endif
     
+    // ATTENTION: remove the file form the local system. It was used only to create the multipart
+    if (    self.fileNameToDelete  != nil){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
+            BOOL __unused removeResult = NO;
+            NSError *error = nil;
+            removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
+        }  
+    }
+    
     // progress bar
     HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
     HUD.mode = MBProgressHUDModeCustomView;
@@ -519,11 +510,53 @@
     [HUD hide:YES afterDelay:2];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
-        
+    
     OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
     [appDelegate openGallery];
-                                                    
+    
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request{
+     NSLog(@"Request failed to upload picture");
+    
+    // progress bar
+    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Error";
+    [HUD hide:YES afterDelay:2];
+    
+    
+    NSError *error = [request error];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Request failed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+    
+    // ATTENTION: remove the file form the local system. It was used only to create the multipart
+    if (    self.fileNameToDelete  != nil){
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
+            BOOL __unused removeResult = NO;
+            NSError *error = nil;
+            removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
+        }  
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+    
+    OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
+    [appDelegate openGallery];
+    
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
+    [image release];
+    if (error.localizedDescription != nil){
+        NSLog(@"Image could not be saved = %@", error.localizedDescription);
+    }else{
+        NSLog(@"Image saved");
+    }
 }
 
 #pragma mark -
@@ -538,18 +571,17 @@
 
 - (void)dealloc {
     [imageTitle release];
-    [imageDescription release];
+    [urlImageOriginal release];
     [imageOriginal release];
     [imageFiltered release];
     [detailsPictureTable release];
     [titleTextField release];
-    [descriptionTextField release];
     [permissionPicture release];
-    [highResolutionPicture release];
-    [gpsPosition release];
+    [shareTwitter release];
+    [shareFacebook release];
     [self.service release];
-    [coreLocationController release];
-    [location release];
+    [fileNameToDelete release];
+    
     [super dealloc];
 }
 

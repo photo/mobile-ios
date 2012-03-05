@@ -37,8 +37,11 @@
         [standardUserDefaults setBool:YES forKey:kPhotosSaveCameraRollOrSnapshot];
         // Save filtered to Library
         [standardUserDefaults setBool:YES forKey:kPhotosSaveFiltered];
-        // High resolution
-        [standardUserDefaults setBool:YES forKey:kPhotosHighResolution];
+        // Post on Twitter
+        [standardUserDefaults setBool:YES forKey:kPhotosShareTwitter];
+        // Post on Facebook
+        [standardUserDefaults setBool:YES forKey:kPhotosShareFacebook];
+        
         // Privacy
         [standardUserDefaults setBool:NO forKey:kPhotosArePrivate];
         

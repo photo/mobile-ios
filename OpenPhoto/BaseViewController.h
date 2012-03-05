@@ -35,13 +35,21 @@
 #import "IASKSettingsStoreFile.h"
 #import "AuthenticationHelper.h"
 #import "OpenPhotoIASKAppSettingsViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "LocationController.h"
+#import <ImageIO/ImageIO.h>
 
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate>{
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, LocationControllerDelegate>{
         OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+    	LocationController	*locationController;
+    
+@private
+	CLLocation			*_location;
 }
 
 @property (nonatomic, retain) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+@property (nonatomic,retain) LocationController *locationController;
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*)title image:(UIImage*)image;

@@ -252,7 +252,7 @@
 - (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
     if (ticket.didSucceed) {
         NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-#ifdef DEVELOPMENT_ENABLED        
+#ifdef DEVELOPMENT_ENABLED_JSON_RETURN        
         NSLog(@"Succeed = %@",jsonString);       
 #endif        
         

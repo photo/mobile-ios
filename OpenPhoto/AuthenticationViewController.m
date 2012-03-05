@@ -138,8 +138,6 @@
 // PRIVATES METHODS
 //////////////////////////////////
 - (BOOL) validateUrl: (NSString *) url {
-    
-    
     NSString *theURL =
     @"((http|https)://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
     NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL]; 

@@ -28,14 +28,16 @@
 #import "BaseViewController.h"
 
 
+// private
 @interface BaseViewController()
 - (void) openTypePhotoLibrary;    
 - (void) openTypeCamera;
+- (NSMutableDictionary*)currentLocation;
 @end
 
 @implementation BaseViewController
 
-@synthesize appSettingsViewController;
+@synthesize appSettingsViewController,locationController;
 
 - (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
 	if (!appSettingsViewController) {
@@ -44,10 +46,17 @@
 	}
 	return appSettingsViewController;
 }
+
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
     if ([key isEqualToString:@"TestFlighFeed"]){
         [TestFlight openFeedbackView];
     }
+}
+
+- (void)viewDidLoad {
+	_location = nil;
+    self.locationController = [[[LocationController alloc] init] autorelease];
+	locationController.delegate = self;
 }
 
 // Create a view controller and setup it's tab bar item with a title and image
@@ -162,14 +171,93 @@
     [pickerController release];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-didFinishPickingMediaWithInfo:(NSDictionary *)info
-{       
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+        [locationController.locationManager startUpdatingLocation];
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
     
-    PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photo:pickedImage source:picker.sourceType];
-    [picker pushViewController:controller animated:YES];
+    // used for get EXIF information, in case of saved images
+    NSURL *referenceUrl = [info objectForKey:UIImagePickerControllerReferenceURL];
+    
+    if (referenceUrl){
+        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photoUrl:referenceUrl photo:pickedImage source:picker.sourceType];
+        [picker pushViewController:controller animated:YES];
+    }else{
+        // in this case, the user used the Snapshot. We will temporary save in the Library. 
+        // If the Settings is to not do that, we will delete this.
+        NSMutableDictionary *exif = nil;
+		ALAssetsLibrary	*aLAssetsLibrary = [[[ALAssetsLibrary alloc] init] autorelease];
+		
+        // check if metadata is available
+		if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
+			exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
+            
+            
+            NSDictionary *gpsDict = [self currentLocation];
+            if ([gpsDict count] > 0) {
+                NSLog(@"There is location");
+                [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
+            }
+      	}
+        
+		[aLAssetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
+			if (error) {
+				NSLog(@"The photo you took could not be saved!");
+			} else {
+                PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photoUrl:newUrl photo:pickedImage source:picker.sourceType];
+                [picker pushViewController:controller animated:YES]; 
+			}
+		}];
+    }
+    
+                [locationController.locationManager stopUpdatingLocation];
+}
+
+//Creates an EXIF field for the current geo location.
+- (NSMutableDictionary*)currentLocation {
+    NSMutableDictionary *locDict = [[NSMutableDictionary alloc] init];
+	
+	if (_location != nil) {
+		CLLocationDegrees exifLatitude = _location.coordinate.latitude;
+		CLLocationDegrees exifLongitude = _location.coordinate.longitude;
+        
+		[locDict setObject:_location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
+		
+		if (exifLatitude < 0.0) {
+			exifLatitude = exifLatitude*(-1);
+			[locDict setObject:@"S" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+		} else {
+			[locDict setObject:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+		}
+		[locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        
+		if (exifLongitude < 0.0) {
+			exifLongitude=exifLongitude*(-1);
+			[locDict setObject:@"W" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+		} else {
+			[locDict setObject:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+		}
+		[locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString*) kCGImagePropertyGPSLongitude];
+	}
+	
+    return [locDict autorelease];
+    
+}
+
+/**
+ * Callback triggered by Core Location telling us the geo location has been updated.
+ * Record the new location.
+ */
+- (void)locationUpdate:(CLLocation*)location {
+	if (_location != nil)
+		[_location release];
+	_location = [location retain];
+}
+
+/**
+ * We ignore any errors from Core Location.
+ */
+- (void)locationError:(NSError*)error {
 }
 
 // user can open the photo library or the camera. Ask him.
@@ -189,6 +277,9 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
 - (void)dealloc {
     [appSettingsViewController release];
 	appSettingsViewController = nil;
+    [locationController release];
+	[_location release];
+    
     [super dealloc];
 }
 

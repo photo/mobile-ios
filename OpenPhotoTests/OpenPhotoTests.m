@@ -10,23 +10,30 @@
 
 @implementation OpenPhotoTests
 
-- (void)setUp
-{
+- (void)setUp{
     [super setUp];
-    
-    // Set-up code here.
 }
 
-- (void)tearDown
-{
-    // Tear-down code here.
-    
+- (void)tearDown{
     [super tearDown];
 }
 
-- (void)testExample
-{
-    STFail(@"Unit tests are not implemented yet in OpenPhotoTests");
+- (void)testAssetLibrary{
+    NSString *asset=@"assets-library://asset/asset.JPG?id=1000000003&ext=JPG";
+    NSURL *url = [NSURL URLWithString:asset];
+    NSLog(@"Asset url = %@",asset);
+    
+    // get the extension
+    NSString *extension = [AssetsLibraryUtilities getAssetsUrlExtension:url];
+    if (! [extension isEqualToString:@"JPG"]){
+        STFail(@"Extension should be JGP");
+    }
+    
+    // get the id
+    NSString *id = [AssetsLibraryUtilities getAssetsUrlId:url];
+    if (! [id isEqualToString:@"1000000003"]){
+        STFail(@"Extension should be 1000000003");
+    }
 }
 
 @end
