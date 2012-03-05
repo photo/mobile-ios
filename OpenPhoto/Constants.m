@@ -17,8 +17,10 @@ NSString * const kAppInitialized = @"app_initialized";
 NSString * const kPhotosSaveCameraRollOrSnapshot=@"photos_save_camera_roll_or_snapshot";
 // Save filtered to Library - NSUserDefaults name
 NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
-// High resolution - NSUserDefaults name
-NSString * const kPhotosHighResolution=@"photos_high_resolution";
+// Facebook - NSUserDefaults name
+NSString * const kPhotosShareFacebook=@"photos_share_facebook";
+// Twitter - NSUserDefaults name
+NSString * const kPhotosShareTwitter=@"photos_share_twitter";
 // Privacy - NSUserDefaults name
 NSString * const kPhotosArePrivate=@"photos_are_private";
 // NSUserDefault variable name for the OpenPhoto Server
@@ -57,14 +59,13 @@ NSString * const kNotificationCheckRefreshPictures=@"notification_check_refresh_
 /*
  * Constants for the table in the upload screen
  */
-int        const kNumbersRow=7;
+int        const kNumbersRow=6;
 NSString * const kCellIdentifierTitle = @"cellIdentifierTitle";
-NSString * const kCellIdentifierDescription = @"cellIdentifierDescription";
 NSString * const kCellIdentifierTags=@"cellIdentifierTags";
 NSString * const kCellIdentifierFilter=@"cellIdentifierFilter";
 NSString * const kCellIdentifierPrivate=@"cellIdentifierPrivate";
-NSString * const kCellIdentifierHighResolutionPicture=@"cellHighResolutionPicture";
-NSString * const kCellIdentifierGpsPosition=@"cellIdentifierGpsPosition";
+NSString * const kCellIdentifierShareFacebook=@"cellIdentifierShareToFacebook";
+NSString * const kCellIdentifierShareTwitter=@"cellIdentifierShareToTwitter";
 
 
 /*

@@ -13,7 +13,8 @@
 extern NSString * const kAppInitialized;
 extern NSString * const kPhotosSaveCameraRollOrSnapshot;
 extern NSString * const kPhotosSaveFiltered;
-extern NSString * const kPhotosHighResolution;
+extern NSString * const kPhotosShareFacebook;
+extern NSString * const kPhotosShareTwitter;
 extern NSString * const kPhotosArePrivate;
 extern NSString * const kOpenPhotoServer;
 extern NSString * const kHomeScreenPictures;
@@ -33,12 +34,11 @@ extern NSString * const kNotificationCheckRefreshPictures;
 
 extern int        const kNumbersRow;
 extern NSString * const kCellIdentifierTitle;
-extern NSString * const kCellIdentifierDescription;
 extern NSString * const kCellIdentifierTags;
 extern NSString * const kCellIdentifierFilter;
 extern NSString * const kCellIdentifierPrivate;
-extern NSString * const kCellIdentifierHighResolutionPicture;
-extern NSString * const kCellIdentifierGpsPosition;
+extern NSString * const kCellIdentifierShareFacebook;
+extern NSString * const kCellIdentifierShareTwitter;
 
 extern NSString * const kVersionApplicationInstalled;
 
@@ -48,5 +48,8 @@ extern NSString * const kVersionApplicationInstalled;
 
 // a lot of logs, don't use in production env.
 #define DEVELOPMENT_ENABLED
+
+// log the return information from the server
+//#define DEVELOPMENT_ENABLED_JSON_RETURN
 
 @end

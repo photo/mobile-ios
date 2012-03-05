@@ -7,6 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "AssetsLibraryUtilities.h"
 
 @interface OpenPhotoTests : SenTestCase
 
