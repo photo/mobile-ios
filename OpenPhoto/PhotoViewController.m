@@ -202,7 +202,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     
-    if ( row == 3){
+    if ( row == 5){
         // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         AFFeatherController *controller = [[AFFeatherController alloc] 
@@ -211,7 +211,7 @@
         
         [self presentModalViewController:controller animated:YES];
         [controller release];
-    }else if (row == 2){
+    }else if (row == 1){
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
