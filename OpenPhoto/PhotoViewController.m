@@ -103,15 +103,14 @@
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle] autorelease];
-                titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
-                titleTextField.adjustsFontSizeToFitWidth = YES;
-                titleTextField.textColor = [UIColor redColor];
+                self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                self.titleTextField.adjustsFontSizeToFitWidth = YES;
+                self.titleTextField.textColor = [UIColor redColor];
                 
-                titleTextField.placeholder = @"title";
-                titleTextField.keyboardType = UIKeyboardTypeDefault;
-                titleTextField.returnKeyType = UIReturnKeyDone;
-                titleTextField.delegate = self;
-                // titleTextField.backgroundColor = [UIColor whiteColor];
+                self.titleTextField.placeholder = @"title";
+                self.titleTextField.keyboardType = UIKeyboardTypeDefault;
+                self.titleTextField.returnKeyType = UIReturnKeyDone;
+                self.titleTextField.delegate = self;
                 [cell addSubview:titleTextField];
             }
             break;
@@ -138,8 +137,8 @@
             }
             
             cell.textLabel.text=@"Private";
-            permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = permissionPicture;
+            self.permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = self.permissionPicture;
             
             // get from user configuration if pictures should be private or not
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosArePrivate]];
@@ -155,8 +154,8 @@
             }
             
             cell.textLabel.text=@"Facebook";
-            shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = shareFacebook;
+            self.shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = self.shareFacebook;
             
             // get from user if picture will be uploaded in high resolution or not
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareFacebook]];
@@ -172,8 +171,8 @@
             }
             
             cell.textLabel.text=@"Twitter";
-            shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = shareTwitter;
+            self.shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            cell.accessoryView = self.shareTwitter;
             
             // get from user if picture will be uploaded in high resolution or not
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareTwitter]];
@@ -246,7 +245,7 @@
     HUD.delegate = self;
     
     // title
-    NSString *title = (titleTextField.text.length > 0 ? titleTextField.text : @"");
+    NSString *title = (self.titleTextField.text.length > 0 ? self.titleTextField.text : @"");
     
     // default permission for the pictures is PUBLIC
     NSString *permission = @"1";
@@ -284,98 +283,91 @@
             UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
     }
-    
+      
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Will start uploading");
-#endif
-    
-    // send the pictures in a asynchronus way
-    [NSThread detachNewThreadSelector:@selector(uploadPictureOnDetachTread:) toTarget:self withObject:values];
-}
-
-// For upload
--(void) uploadPictureOnDetachTread:(NSDictionary*) values{    
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Pool created. Start the procedure to send the request");
+    NSLog(@"Start the procedure to send the request");
 #endif
     if (service.internetActive == YES && service.hostActive == YES){
         
-        // data to send to OpenPhoto
-        __block NSData *data = nil;
-        
-        // check if it a filtered image or a URL
-        BOOL hasFilter = [[values objectForKey:@"hasFilter"] boolValue];
-        
-        if (hasFilter){
-            // it has filter, so we have to create a NSSdata
-            data = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
-            [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:nil];
-        }else{
-            // the photo is inside AssetLibrary
-            NSLog(@"URL %@",[values objectForKey:@"image"]);
+        // create a queue to use GCD and upload the image
+        dispatch_queue_t downloadQueue = dispatch_queue_create("uploader_queue", NULL);
+        dispatch_async(downloadQueue, ^{
+            // data to send to OpenPhoto
+            __block NSData *data = nil;
             
-            NSURL *assetURL = [values objectForKey:@"image"];
+            // check if it a filtered image or a URL
+            BOOL hasFilter = [[values objectForKey:@"hasFilter"] boolValue];
             
-            // name of local file
-            NSDate *now = [NSDate date];
-            double uniqueId = [now timeIntervalSince1970];
-            
-            NSString *formDataFileName = [[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"%if", uniqueId]] retain];
-            
-            NSLog(@"File used for transfer = %@, it will be deleted",formDataFileName  );
-            
-            // get the image data using the Assets Library
-            ALAssetsLibraryAssetForURLResultBlock resultBlock = 
-            ^(ALAsset *asset) {
-                ALAssetRepresentation *representation = [asset defaultRepresentation];
-                NSOutputStream *mediaStream = [NSOutputStream outputStreamToFileAtPath:formDataFileName append:YES];
-                [mediaStream open];
+            if (hasFilter){
+                // it has filter, so we have to create a NSSdata
+                data = UIImageJPEGRepresentation([values objectForKey:@"image"] ,0.7);
+                [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:nil];
+            }else{
+                // the photo is inside AssetLibrary
+                NSLog(@"URL %@",[values objectForKey:@"image"]);
                 
-                NSUInteger bufferSize = 8192;
-                NSUInteger read = 0, offset = 0, written = 0;
-                uint8_t	   *buff = (uint8_t *)malloc(sizeof(uint8_t)*bufferSize);
-                NSError	   *err = nil;
+                NSURL *assetURL = [values objectForKey:@"image"];
                 
-                do {
-                    read = [representation getBytes:buff fromOffset:offset length:bufferSize error:&err];
-                    written = [mediaStream write:buff maxLength:read];
-                    offset += read;
-                    if (err != nil) {
-                        NSLog(@"Error to save the file" );
-                        [mediaStream close];
-                        free(buff);
-                        return;
-                    }
-                    if (read != written) {
-                        [mediaStream close];
-                        free(buff);
-                        return;
-                    }
-                } while (read != 0);
-                free(buff);
-                [mediaStream close];
+                // name of local file
+                NSDate *now = [NSDate date];
+                double uniqueId = [now timeIntervalSince1970];
                 
+                NSString *formDataFileName = [[NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"%if", uniqueId]] retain];
                 
-                // set the data in the local NSData            
-                data = [[NSData alloc] initWithContentsOfFile:formDataFileName];
-                [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:formDataFileName];
-            };
-            
-            ALAssetsLibrary *assetLib = [[[ALAssetsLibrary alloc] init] autorelease];
-            [assetLib assetForURL:assetURL resultBlock:resultBlock failureBlock:^(NSError *error) {
-                NSLog(@"Error from assertURL %@",[error localizedDescription]);
-            }];
-        }
-        
+                NSLog(@"File used for transfer = %@, it will be deleted",formDataFileName  );
+                
+                // get the image data using the Assets Library
+                ALAssetsLibraryAssetForURLResultBlock resultBlock = 
+                ^(ALAsset *asset) {
+                    ALAssetRepresentation *representation = [asset defaultRepresentation];
+                    NSOutputStream *mediaStream = [NSOutputStream outputStreamToFileAtPath:formDataFileName append:YES];
+                    [mediaStream open];
+                    
+                    NSUInteger bufferSize = 8192;
+                    NSUInteger read = 0, offset = 0, written = 0;
+                    uint8_t	   *buff = (uint8_t *)malloc(sizeof(uint8_t)*bufferSize);
+                    NSError	   *err = nil;
+                    
+                    do {
+                        read = [representation getBytes:buff fromOffset:offset length:bufferSize error:&err];
+                        written = [mediaStream write:buff maxLength:read];
+                        offset += read;
+                        if (err != nil) {
+                            NSLog(@"Error to save the file" );
+                            [mediaStream close];
+                            free(buff);
+                            return;
+                        }
+                        if (read != written) {
+                            [mediaStream close];
+                            free(buff);
+                            return;
+                        }
+                    } while (read != 0);
+                    free(buff);
+                    [mediaStream close];
+                    
+                    
+                    // set the data in the local NSData            
+                    data = [[NSData alloc] initWithContentsOfFile:formDataFileName];
+                    [self uploadPicture:data metadata:values filename:[values objectForKey:@"filename"] fileToDelete:formDataFileName];
+                };
+                
+                ALAssetsLibrary *assetLib = [[[ALAssetsLibrary alloc] init] autorelease];
+                [assetLib assetForURL:assetURL resultBlock:resultBlock failureBlock:^(NSError *error) {
+                    NSLog(@"Error from assertURL %@",[error localizedDescription]);
+                }];
+                
+            }
+        });
+        dispatch_release(downloadQueue );
     }else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet Connection" message:@"Please, check your connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];
         [HUD hide:YES];
+        [self dismissModalViewControllerAnimated:YES];
     }
-    [pool release];
 }
 
 -(void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete{
@@ -420,7 +412,7 @@
      *   Using ASIHTTPRequest for Multipart. The authentication come from the OAMutableURLRequest
      *
      */
-    ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+  __block  ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
     
     // set the authorization header to be used in the OAuth            
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -436,118 +428,125 @@
     // and content type
     [asiRequest addData:data withFileName:fileName andContentType:@"image/png" forKey:@"photo"];
     
-    // we set the delegate to get information enough for updating the progress bar
-    [asiRequest setDelegate:self];
-    [asiRequest setDidFinishSelector:@selector(requestDone:) ];
-    [asiRequest setDidFailSelector:@selector(requestFailed:) ];
-    
-    
-    HUD.mode = MBProgressHUDModeIndeterminate;
-    HUD.labelText = @"Sending";
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Token created, request ready to be sent");
 #endif
-    [asiRequest setDownloadProgressDelegate:self];
-    [asiRequest setShowAccurateProgress:YES];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        HUD.mode = MBProgressHUDModeIndeterminate;
+        HUD.labelText = @"Sending";
+        
+    });
+    
+    [asiRequest setCompletionBlock:^{
+        NSLog(@"Request done");
+        // convert the responseDate to the json string
+        NSString *jsonString = [asiRequest responseString];
+        
+#ifdef DEVELOPMENT_ENABLED  
+        NSLog(@"jsonString = %@",jsonString);       
+#endif 
+        
+        // Create a dictionary from JSON string
+        // When there are newline characters in the JSON string, 
+        // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
+        jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+        NSDictionary *response =  [jsonString JSONValue]; 
+        
+        // check if message is valid
+        if (![WebService isMessageValid:response]){
+            NSString* message = [WebService getResponseMessage:response];
+            NSLog(@"Invalid response = %@",message);
+            
+            // show alert to user
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+                [alert release];
+            });
+        }
+       
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"Picture uploaded"];
+#endif
+    
+        
+        // ATTENTION: remove the file form the local system. It was used only to create the multipart
+        if (    self.fileNameToDelete  != nil){
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
+                BOOL __unused removeResult = NO;
+                NSError *error = nil;
+                removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
+            }  
+        }
+        
+        // progress bar
+        dispatch_async(dispatch_get_main_queue(), ^{
+            HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+            HUD.mode = MBProgressHUDModeCustomView;
+            HUD.labelText = @"Uploaded";
+            [HUD hide:YES afterDelay:2];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+            
+            OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
+            [appDelegate openGallery];
+            
+            [self dismissModalViewControllerAnimated:YES];
+        });
+
+        
+    }];
+    
+    [asiRequest setFailedBlock:^{
+        // convert the responseDate to the json string
+        NSString *jsonString = [asiRequest responseString];
+        
+#ifdef DEVELOPMENT_ENABLED  
+        NSLog(@"Request failed to upload picture = %@",jsonString);       
+#endif 
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // progress bar
+            HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+            HUD.mode = MBProgressHUDModeCustomView;
+            HUD.labelText = @"Error";
+            [HUD hide:YES afterDelay:2];
+            
+            
+            NSError *error = [asiRequest error];
+            NSLog(@"Error to upload = %@",[error localizedDescription]);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Request failed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            
+            // ATTENTION: remove the file form the local system. It was used only to create the multipart
+            if (    self.fileNameToDelete  != nil){
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
+                    BOOL __unused removeResult = NO;
+                    NSError *error = nil;
+                    removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
+                }  
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+            
+            OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
+            [appDelegate openGallery];
+            
+            [self dismissModalViewControllerAnimated:YES];
+        });
+
+    }];
+    
     [asiRequest startAsynchronous];
     
     [token release];
     [consumer release];
     [oaUrlRequest release];
-}
-
-- (void)setProgress:(float)newProgress {
-    [HUD setProgress:newProgress];
-    NSLog(@"Progress value: %f",[HUD progress]);
-}
-
-- (void)requestDone:(ASIHTTPRequest *)request{
-    NSLog(@"Request was done currectly to upload picture");
-    // convert the responseDate to the json string
-    NSString *jsonString = [request responseString];
-    
-#ifdef DEVELOPMENT_ENABLED  
-    NSLog(@"jsonString = %@",jsonString);       
-#endif 
-    
-    // Create a dictionary from JSON string
-    // When there are newline characters in the JSON string, 
-    // the error "Unescaped control character '0x9'" will be thrown. This removes those characters.
-    jsonString =  [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSDictionary *response =  [jsonString JSONValue]; 
-    [jsonString release];
-    
-    // check if message is valid
-    if (![WebService isMessageValid:response]){
-        NSString* message = [WebService getResponseMessage:response];
-        NSLog(@"Invalid response = %@",message);
-        
-        // show alert to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }
-    
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Picture uploaded"];
-#endif
-    
-    // ATTENTION: remove the file form the local system. It was used only to create the multipart
-    if (    self.fileNameToDelete  != nil){
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
-            BOOL __unused removeResult = NO;
-            NSError *error = nil;
-            removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
-        }  
-    }
-    
-    // progress bar
-    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = @"Uploaded";
-    [HUD hide:YES afterDelay:2];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
-    
-    OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
-    [appDelegate openGallery];
-    
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request{
-     NSLog(@"Request failed to upload picture");
-    
-    // progress bar
-    HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-    HUD.mode = MBProgressHUDModeCustomView;
-    HUD.labelText = @"Error";
-    [HUD hide:YES afterDelay:2];
-    
-    
-    NSError *error = [request error];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Request failed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-    
-    // ATTENTION: remove the file form the local system. It was used only to create the multipart
-    if (    self.fileNameToDelete  != nil){
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
-            BOOL __unused removeResult = NO;
-            NSError *error = nil;
-            removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
-        }  
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
-    
-    OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
-    [appDelegate openGallery];
-    
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -571,16 +570,16 @@
 
 - (void)dealloc {
     [imageTitle release];
-    [urlImageOriginal release];
-    [imageOriginal release];
-    [imageFiltered release];
-    [detailsPictureTable release];
-    [titleTextField release];
-    [permissionPicture release];
-    [shareTwitter release];
-    [shareFacebook release];
+    [self.urlImageOriginal release];
+    [self.imageOriginal release];
+    [self.imageFiltered release];
+    [self.detailsPictureTable release];
+    [self.titleTextField release];
+    [self.permissionPicture release];
+    [self.shareTwitter release];
+    [self.shareFacebook release];
     [self.service release];
-    [fileNameToDelete release];
+    [self.fileNameToDelete release];
     
     [super dealloc];
 }
