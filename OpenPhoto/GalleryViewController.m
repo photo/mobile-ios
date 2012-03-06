@@ -146,6 +146,10 @@
     
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return YES;
+}
+
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
