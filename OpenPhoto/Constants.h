@@ -50,6 +50,6 @@ extern NSString * const kVersionApplicationInstalled;
 #define DEVELOPMENT_ENABLED
 
 // log the return information from the server
-//#define DEVELOPMENT_ENABLED_JSON_RETURN
+#define DEVELOPMENT_ENABLED_JSON_RETURN
 
 @end
