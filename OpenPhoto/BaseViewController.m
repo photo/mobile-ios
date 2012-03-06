@@ -37,7 +37,7 @@
 
 @implementation BaseViewController
 
-@synthesize appSettingsViewController,locationController;
+@synthesize appSettingsViewController,location;
 
 - (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
 	if (!appSettingsViewController) {
@@ -53,11 +53,18 @@
     }
 }
 
+
 - (void)viewDidLoad {
-	_location = nil;
-    self.locationController = [[[LocationController alloc] init] autorelease];
-	locationController.delegate = self;
+    coreLocationController = [[CoreLocationController alloc] init];
+    coreLocationController.delegate = self;
 }
+
+/*
+ - (void)viewDidUnload{
+ [super viewDidUnload];
+ [coreLocationController release];
+ }
+ */
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
@@ -138,6 +145,9 @@
 }
 
 -(void)buttonEvent{
+    // start localtion
+    [coreLocationController.locMgr startUpdatingLocation];
+    
     // check if user has camera
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         
@@ -150,6 +160,20 @@
         [self openTypePhotoLibrary];
     }
 }
+
+
+// user can open the photo library or the camera. Ask him.
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [self openTypePhotoLibrary];
+    } else if (buttonIndex == 1) {
+        [self openTypeCamera];
+    } else{
+        // it was cancel, shutdown the location
+        [coreLocationController.locMgr stopUpdatingLocation];
+    }
+}
+
 
 -(void) openTypePhotoLibrary{
     UIImagePickerController *pickerController = [[UIImagePickerController
@@ -172,7 +196,6 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-        [locationController.locationManager startUpdatingLocation];
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
     
@@ -193,11 +216,14 @@
 			exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
             
             
-            NSDictionary *gpsDict = [self currentLocation];
+            NSDictionary *gpsDict  = [self currentLocation];
             if ([gpsDict count] > 0) {
                 NSLog(@"There is location");
                 [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
+            }else{
+                NSLog(@"No location found");
             }
+            
       	}
         
 		[aLAssetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
@@ -210,18 +236,26 @@
 		}];
     }
     
-                [locationController.locationManager stopUpdatingLocation];
+    // stop location
+    [coreLocationController.locMgr stopUpdatingLocation];  
+    
 }
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissModalViewControllerAnimated:YES];
+    [coreLocationController.locMgr stopUpdatingLocation];    
+}
+
 
 //Creates an EXIF field for the current geo location.
 - (NSMutableDictionary*)currentLocation {
     NSMutableDictionary *locDict = [[NSMutableDictionary alloc] init];
 	
-	if (_location != nil) {
-		CLLocationDegrees exifLatitude = _location.coordinate.latitude;
-		CLLocationDegrees exifLongitude = _location.coordinate.longitude;
+	if (self.location != nil) {
+		CLLocationDegrees exifLatitude = self.location.coordinate.latitude;
+		CLLocationDegrees exifLongitude = self.location.coordinate.longitude;
         
-		[locDict setObject:_location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
+		[locDict setObject:self.location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
 		
 		if (exifLatitude < 0.0) {
 			exifLatitude = exifLatitude*(-1);
@@ -244,29 +278,13 @@
     
 }
 
-/**
- * Callback triggered by Core Location telling us the geo location has been updated.
- * Record the new location.
- */
-- (void)locationUpdate:(CLLocation*)location {
-	if (_location != nil)
-		[_location release];
-	_location = [location retain];
+- (void)locationUpdate:(CLLocation *)position{
+    self.location = position;
+    NSLog(@"Position %@", position);
 }
 
-/**
- * We ignore any errors from Core Location.
- */
-- (void)locationError:(NSError*)error {
-}
-
-// user can open the photo library or the camera. Ask him.
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [self openTypePhotoLibrary];
-    } else if (buttonIndex == 1) {
-        [self openTypeCamera];
-    } 
+- (void)locationError:(NSError *)error {
+    NSLog(@"Location %@", [error description]);
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
@@ -277,8 +295,8 @@
 - (void)dealloc {
     [appSettingsViewController release];
 	appSettingsViewController = nil;
-    [locationController release];
-	[_location release];
+    [coreLocationController release];
+    [location release];
     
     [super dealloc];
 }
