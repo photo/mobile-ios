@@ -58,7 +58,6 @@
 		CD65458914F3082600CC5F5B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458814F3082600CC5F5B /* ImageIO.framework */; };
 		CD65458B14F3086100CC5F5B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */; };
 		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
-		CD73B1EA14F00E74001EF388 /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD73B1E914F00E74001EF388 /* LocationController.m */; };
 		CD7623C4141FB46600551D72 /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BC141FB46600551D72 /* tab-gallery.png */; };
 		CD7623C5141FB46600551D72 /* tab-gallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BD141FB46600551D72 /* tab-gallery@2x.png */; };
 		CD7623C6141FB46600551D72 /* tab-home.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BE141FB46600551D72 /* tab-home.png */; };
@@ -440,8 +439,6 @@
 		CD65458814F3082600CC5F5B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		CD73B1E814F00E74001EF388 /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
-		CD73B1E914F00E74001EF388 /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
 		CD7623BC141FB46600551D72 /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-gallery.png"; path = "OpenPhoto/images/tabs/tab-gallery.png"; sourceTree = SOURCE_ROOT; };
 		CD7623BD141FB46600551D72 /* tab-gallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-gallery@2x.png"; path = "OpenPhoto/images/tabs/tab-gallery@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD7623BE141FB46600551D72 /* tab-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-home.png"; path = "OpenPhoto/images/tabs/tab-home.png"; sourceTree = SOURCE_ROOT; };
@@ -1170,8 +1167,6 @@
 		CDF4464E13E1C6BB007E8F72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CD73B1E814F00E74001EF388 /* LocationController.h */,
-				CD73B1E914F00E74001EF388 /* LocationController.m */,
 				CDE5892B141B90F7004191B4 /* Reachability.h */,
 				CDE5892C141B90F7004191B4 /* Reachability.m */,
 				CD9A020514180457002DDCEF /* AuthenticationHelper.h */,
@@ -1622,7 +1617,6 @@
 				CDC89960146570ED00C50A00 /* ASIInputStream.m in Sources */,
 				CDC89961146570ED00C50A00 /* ASINetworkQueue.m in Sources */,
 				CDE86B9414D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m in Sources */,
-				CD73B1EA14F00E74001EF388 /* LocationController.m in Sources */,
 				CDAD499515049372009F4607 /* AssetsLibraryUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
