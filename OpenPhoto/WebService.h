@@ -8,13 +8,10 @@
 
 #include <Three20/Three20.h>
 #import "OAMutableURLRequest.h"
-#import "OAPlaintextSignatureProvider.h"
 #import "OAToken.h"
 #import "OADataFetcher.h"
 #import "Reachability.h"
-#import "QSStrings.h"
-#import "Base64Utilities.h"
-#import "extThree20JSON/extThree20JSON.h"
+#import "extThree20JSON/NSString+SBJSON.h"
 
 
 // for validation internet

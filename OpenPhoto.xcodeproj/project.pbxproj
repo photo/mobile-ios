@@ -18,6 +18,8 @@
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
+		CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B751506BC0100BFC316 /* CoreLocationController.m */; };
+		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
 		CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD22C96E143911A500E98B0B /* libTestFlight.a */; };
@@ -53,7 +55,6 @@
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD578A661461E8B700D4EFC9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD578A651461E8B700D4EFC9 /* CoreLocation.framework */; };
-		CD578A691461E99400D4EFC9 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD578A681461E99400D4EFC9 /* CoreLocationController.m */; };
 		CD578AC314635F1600D4EFC9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD578AC214635F1600D4EFC9 /* MBProgressHUD.m */; };
 		CD65458914F3082600CC5F5B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458814F3082600CC5F5B /* ImageIO.framework */; };
 		CD65458B14F3086100CC5F5B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */; };
@@ -155,7 +156,6 @@
 		CDF4464313E1C62E007E8F72 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464013E1C62E007E8F72 /* BaseViewController.m */; };
 		CDF4464413E1C62E007E8F72 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464213E1C62E007E8F72 /* GalleryViewController.m */; };
 		CDF4464713E1C655007E8F72 /* PhotoSource.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4464613E1C655007E8F72 /* PhotoSource.m */; };
-		CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */; };
 		CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF4465313E1C6DC007E8F72 /* HomeViewController.m */; };
 		CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */; };
 		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
@@ -374,6 +374,11 @@
 		CD0CA689145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoIASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CD199B741506BC0100BFC316 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
+		CD199B751506BC0100BFC316 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		CD199B771506E12400BFC316 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
+		CD199B781506E12500BFC316 /* SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHA1.m; sourceTree = "<group>"; };
+		CD199BB81506FDA600BFC316 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		CD22C96E143911A500E98B0B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Frameworks/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
@@ -432,8 +437,6 @@
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
 		CD578A651461E8B700D4EFC9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		CD578A671461E99400D4EFC9 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
-		CD578A681461E99400D4EFC9 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD578AC114635F1600D4EFC9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD578AC214635F1600D4EFC9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD65458814F3082600CC5F5B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -581,8 +584,6 @@
 		CDF4464213E1C62E007E8F72 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		CDF4464513E1C655007E8F72 /* PhotoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSource.h; sourceTree = "<group>"; };
 		CDF4464613E1C655007E8F72 /* PhotoSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSource.m; sourceTree = "<group>"; };
-		CDF4464F13E1C6CF007E8F72 /* Base64Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Utilities.h; sourceTree = "<group>"; };
-		CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Utilities.m; sourceTree = "<group>"; };
 		CDF4465213E1C6DC007E8F72 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		CDF4465313E1C6DC007E8F72 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		CDF462A9145EAA3200AB3992 /* UpdateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUtilities.h; sourceTree = "<group>"; };
@@ -1125,6 +1126,7 @@
 		CDF4463B13E1C5F1007E8F72 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
+				CD199BB81506FDA600BFC316 /* PhotoViewController.h */,
 				CD775F7013E33BBE00FD1721 /* PhotoViewController.h */,
 				CD1F823813E337DD00C91729 /* PhotoViewController.m */,
 				CD1F823913E337DD00C91729 /* PhotoViewController.xib */,
@@ -1167,12 +1169,12 @@
 		CDF4464E13E1C6BB007E8F72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CD199B741506BC0100BFC316 /* CoreLocationController.h */,
+				CD199B751506BC0100BFC316 /* CoreLocationController.m */,
 				CDE5892B141B90F7004191B4 /* Reachability.h */,
 				CDE5892C141B90F7004191B4 /* Reachability.m */,
 				CD9A020514180457002DDCEF /* AuthenticationHelper.h */,
 				CD9A020614180457002DDCEF /* AuthenticationHelper.m */,
-				CDF4464F13E1C6CF007E8F72 /* Base64Utilities.h */,
-				CDF4465013E1C6CF007E8F72 /* Base64Utilities.m */,
 				CDE3C6A513F02186008A4F09 /* ImageManipulation.h */,
 				CDE3C6A613F02186008A4F09 /* ImageManipulation.m */,
 				CD8BB4401414198200D5650E /* InitializerHelper.h */,
@@ -1181,10 +1183,10 @@
 				CDFF467C141559FE00D89578 /* Constants.m */,
 				CDF462A9145EAA3200AB3992 /* UpdateUtilities.h */,
 				CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */,
-				CD578A671461E99400D4EFC9 /* CoreLocationController.h */,
-				CD578A681461E99400D4EFC9 /* CoreLocationController.m */,
 				CDAD499315049372009F4607 /* AssetsLibraryUtilities.h */,
 				CDAD499415049372009F4607 /* AssetsLibraryUtilities.m */,
+				CD199B771506E12400BFC316 /* SHA1.h */,
+				CD199B781506E12500BFC316 /* SHA1.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1559,7 +1561,6 @@
 				CDF4464313E1C62E007E8F72 /* BaseViewController.m in Sources */,
 				CDF4464413E1C62E007E8F72 /* GalleryViewController.m in Sources */,
 				CDF4464713E1C655007E8F72 /* PhotoSource.m in Sources */,
-				CDF4465113E1C6CF007E8F72 /* Base64Utilities.m in Sources */,
 				CDF4465413E1C6DC007E8F72 /* HomeViewController.m in Sources */,
 				CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */,
 				CDF59C5613E93D600019ED62 /* WebService.m in Sources */,
@@ -1606,7 +1607,6 @@
 				CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */,
 				CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */,
 				CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */,
-				CD578A691461E99400D4EFC9 /* CoreLocationController.m in Sources */,
 				CD578AC314635F1600D4EFC9 /* MBProgressHUD.m in Sources */,
 				CDC8995A146570ED00C50A00 /* ASIAuthenticationDialog.m in Sources */,
 				CDC8995B146570ED00C50A00 /* ASIDataCompressor.m in Sources */,
@@ -1618,6 +1618,8 @@
 				CDC89961146570ED00C50A00 /* ASINetworkQueue.m in Sources */,
 				CDE86B9414D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m in Sources */,
 				CDAD499515049372009F4607 /* AssetsLibraryUtilities.m in Sources */,
+				CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */,
+				CD199B791506E12500BFC316 /* SHA1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

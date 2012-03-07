@@ -3,10 +3,12 @@
 //  OpenPhotoTests
 //
 //  Created by Patrick Santana on 28/07/11.
-//  Copyright 2011 Moogu bvba. All rights reserved.
+//  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
 #import "OpenPhotoTests.h"
+#import "NewAccountService.h"
+
 
 @implementation OpenPhotoTests
 
@@ -34,6 +36,11 @@
     if (! [id isEqualToString:@"1000000003"]){
         STFail(@"Extension should be 1000000003");
     }
+}
+
+-(void) testSHA1{
+    NSString *result = [SHA1 sha1:@"openphoto project"];
+    STAssertTrue([@"069aa3984c0c8d27ee405bc5e63024ac43f44615" isEqualToString:result], @"Incorrect SHA1");
 }
 
 @end
