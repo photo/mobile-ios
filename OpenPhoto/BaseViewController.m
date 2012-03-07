@@ -59,13 +59,6 @@
     coreLocationController.delegate = self;
 }
 
-/*
- - (void)viewDidUnload{
- [super viewDidUnload];
- [coreLocationController release];
- }
- */
-
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {  
@@ -116,8 +109,6 @@
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
     [self dismissModalViewControllerAnimated:YES];
-	
-	// your code here to reconfigure the app for changed settings
 }
 
 // Create a custom UIButton and add it to the center of our tab bar
