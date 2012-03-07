@@ -269,9 +269,9 @@
     
     // set the correct image to upload depends if there is a filtered or not.
     if (self.imageFiltered != nil){
-        objects = [NSArray arrayWithObjects:self.imageFiltered, [NSNumber numberWithBool:YES], title, permission, [tagController getSelectedTagsInJsonFormat],filename, nil];
+        objects = [NSArray arrayWithObjects:self.imageFiltered, [NSNumber numberWithBool:YES], [QSStrings htmlEntities:title], permission, [tagController getSelectedTagsInJsonFormat],filename, nil];
     } else{
-        objects = [NSArray arrayWithObjects:self.urlImageOriginal, [NSNumber numberWithBool:NO],title, permission, [tagController getSelectedTagsInJsonFormat],filename, nil]; 
+        objects = [NSArray arrayWithObjects:self.urlImageOriginal, [NSNumber numberWithBool:NO],[QSStrings htmlEntities:title], permission, [tagController getSelectedTagsInJsonFormat],filename, nil]; 
     }
     
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -283,7 +283,7 @@
             UIImageWriteToSavedPhotosAlbum([self.imageFiltered retain], self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
         }
     }
-      
+    
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Start the procedure to send the request");
 #endif
@@ -376,6 +376,7 @@
     // set all details to send
     NSString *uploadCall = [NSString stringWithFormat:@"title=%@&permission=%@&tags=%@",[values objectForKey:@"title"],[values objectForKey:@"permission"], [values objectForKey:@"tags"]];
     
+    NSLog(@"Title %@",[values objectForKey:@"title"]);
     
     NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/photo/upload.json", [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer]];
     NSURL *url = [NSURL URLWithString:urlString];
@@ -412,7 +413,7 @@
      *   Using ASIHTTPRequest for Multipart. The authentication come from the OAMutableURLRequest
      *
      */
-  __block  ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    __block  ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
     
     // set the authorization header to be used in the OAuth            
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -466,11 +467,11 @@
                 [alert release];
             });
         }
-       
+        
 #ifdef TEST_FLIGHT_ENABLED
         [TestFlight passCheckpoint:@"Picture uploaded"];
 #endif
-    
+        
         
         // ATTENTION: remove the file form the local system. It was used only to create the multipart
         if (    self.fileNameToDelete  != nil){
@@ -496,7 +497,7 @@
             
             [self dismissModalViewControllerAnimated:YES];
         });
-
+        
         
     }];
     
@@ -539,7 +540,7 @@
             
             [self dismissModalViewControllerAnimated:YES];
         });
-
+        
     }];
     
     [asiRequest startAsynchronous];
