@@ -450,7 +450,6 @@
 		CD7623C1141FB46600551D72 /* tab-settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-settings@2x.png"; path = "OpenPhoto/images/tabs/tab-settings@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD7623C2141FB46600551D72 /* tab-tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags.png"; path = "OpenPhoto/images/tabs/tab-tags.png"; sourceTree = SOURCE_ROOT; };
 		CD7623C3141FB46600551D72 /* tab-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-tags@2x.png"; path = "OpenPhoto/images/tabs/tab-tags@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD775F6F13E33BBE00FD1721 /* en */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = en; path = en.lproj/PhotoViewController.h; sourceTree = "<group>"; };
 		CD7A125A14391542001A88E0 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD7A125B14391542001A88E0 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD7A125C14391542001A88E0 /* IASKAppSettingsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsWebViewController.h; sourceTree = "<group>"; };
@@ -1127,7 +1126,6 @@
 			isa = PBXGroup;
 			children = (
 				CD199BB81506FDA600BFC316 /* PhotoViewController.h */,
-				CD775F7013E33BBE00FD1721 /* PhotoViewController.h */,
 				CD1F823813E337DD00C91729 /* PhotoViewController.m */,
 				CD1F823913E337DD00C91729 /* PhotoViewController.xib */,
 			);
@@ -1682,14 +1680,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CD775F7013E33BBE00FD1721 /* PhotoViewController.h */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CD775F6F13E33BBE00FD1721 /* en */,
-			);
-			name = PhotoViewController.h;
-			sourceTree = "<group>";
-		};
 		CDF1C95413E1C45C0018AD0B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
