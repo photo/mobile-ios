@@ -7,8 +7,6 @@
 //
 
 #import "OpenPhotoTests.h"
-#import "NewAccountService.h"
-
 
 @implementation OpenPhotoTests
 
