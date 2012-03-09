@@ -57,7 +57,7 @@
 }
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
-    NSMutableString *loadGalleryRequest = [NSMutableString stringWithFormat: @"%@%@%@%@%@", 
+    NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@", 
                                            @"/photos/list.json?pageSize=", 
                                            [NSString stringWithFormat:@"%d", pageSize],
                                            @"&page=",[NSString stringWithFormat:@"%d", page], 
@@ -66,7 +66,7 @@
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page {
-    NSMutableString *loadGalleryRequest = [NSMutableString stringWithFormat: @"%@%@%@%@%@%@%@", 
+    NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@%@%@", 
                                            @"/photos/list.json?pageSize=", 
                                            [NSString stringWithFormat:@"%d", pageSize],
                                            @"&page=",[NSString stringWithFormat:@"%d", page],
@@ -82,7 +82,7 @@
 -(NSURL*) getOAuthInitialUrl{
     // get the url
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
-    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&mobile=1&generate_passphrase=true&name=OpenPhoto%20IPhone%20App"] autorelease];
+    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&name=OpenPhoto%20IPhone%20App"] autorelease];
     
     NSLog(@"URL for OAuth initialization = %@",url);
     return [NSURL URLWithString:url];
@@ -200,9 +200,8 @@
         [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
         [standardUserDefaults synchronize];
     }else{
-        
         // create the url to connect to OpenPhoto
-        NSMutableString *urlString =     [NSMutableString stringWithFormat: @"%@%@", 
+        NSString *urlString =     [NSString stringWithFormat: @"%@%@", 
                                           [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
         
 #ifdef DEVELOPMENT_ENABLED
