@@ -45,9 +45,4 @@
 // this method will be used to open the gallery after the user upload a picture
 -(void) openGallery;
 
-// for core data
-- (NSURL *)applicationDocumentsDirectory;
-- (void)saveContext;
-
-
 @end

@@ -17,7 +17,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
+
 
 @interface Photos : NSManagedObject
 
@@ -25,5 +28,8 @@
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * urlSmall;
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSNumber * height;
+@property (nonatomic, retain) NSNumber * width;
+@property (nonatomic, retain) NSString * id;
 
 @end
