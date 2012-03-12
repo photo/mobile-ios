@@ -1252,7 +1252,7 @@
 		CDF1C93E13E1C45C0018AD0B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = OpenPhoto;
 			};
 			buildConfigurationList = CDF1C94113E1C45C0018AD0B /* Build configuration list for PBXProject "OpenPhoto" */;
