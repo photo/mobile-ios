@@ -7,13 +7,20 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "Photos.h"
 
 @interface OpenPhotoCoreDataTests : SenTestCase <NSFetchedResultsControllerDelegate> {
-    NSFetchedResultsController *fetchedResultsController;
+  
+@private
     NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSFetchedResultsController *fetchedResultsController;
 }
 
 @property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end

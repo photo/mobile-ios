@@ -1,5 +1,5 @@
 //
-//  Photos.m
+//  Photos+OpenPhoto.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 12/03/12.
@@ -18,18 +18,10 @@
 //  limitations under the License.
 
 
-
 #import "Photos.h"
 
+@interface Photos (OpenPhoto)
 
-@implementation Photos
-
-@dynamic title;
-@dynamic url;
-@dynamic urlSmall;
-@dynamic date;
-@dynamic height;
-@dynamic width;
-@dynamic id;
-
++ (Photos *) photoWithOpenPhotoInfo:(NSDictionary *) openphotoInfo 
+            inManagedObjectContext:(NSManagedObjectContext *)context;
 @end
