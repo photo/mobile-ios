@@ -13,5 +13,6 @@
     #import <Foundation/Foundation.h>
     #import "TestFlight.h"
     #import "Constants.h"
+    #import <CoreData/CoreData.h>
 #endif
 

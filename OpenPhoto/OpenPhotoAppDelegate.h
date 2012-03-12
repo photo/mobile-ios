@@ -25,13 +25,29 @@
 
 @class OpenPhotoViewController;
 
-@interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate>
+@interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate>{
+
+@private
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+}
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
 @property (nonatomic, retain) IBOutlet OpenPhotoViewController *viewController;
+
+// for core data
+@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 
 // this method will be used to open the gallery after the user upload a picture
 -(void) openGallery;
+
+// for core data
+- (NSURL *)applicationDocumentsDirectory;
+- (void)saveContext;
+
+
 @end

@@ -126,6 +126,7 @@
 		CDC89965146574F900C50A00 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC89964146574F900C50A00 /* MobileCoreServices.framework */; };
 		CDC899671465750E00C50A00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC899661465750E00C50A00 /* libz.dylib */; };
 		CDC899711465A0A300C50A00 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC899701465A0A300C50A00 /* 37x-Checkmark.png */; };
+		CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -160,6 +161,9 @@
 		CDF462AB145EAA3200AB3992 /* UpdateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF462AA145EAA3200AB3992 /* UpdateUtilities.m */; };
 		CDF59C5613E93D600019ED62 /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF59C5513E93D600019ED62 /* WebService.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
+		CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
+		CDFFAD60150E0C1C00B87229 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD5F150E0C1C00B87229 /* Photos.m */; };
+		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -543,6 +547,7 @@
 		CDC89964146574F900C50A00 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CDC899661465750E00C50A00 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CDC899701465A0A300C50A00 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Frameworks/MBProgressHUD/Demo/Images/37x-Checkmark.png"; sourceTree = SOURCE_ROOT; };
+		CDDCA45A150E092F00EE1DB0 /* OpenPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenPhoto.xcdatamodel; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -591,6 +596,11 @@
 		CDF59C5513E93D600019ED62 /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CDFF467C141559FE00D89578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CDFFAD5E150E0C1C00B87229 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photos.h; sourceTree = "<group>"; };
+		CDFFAD5F150E0C1C00B87229 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photos.m; sourceTree = "<group>"; };
+		CDFFAD64150E0FCE00B87229 /* OpenPhotoCoreDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoCoreDataTests.h; sourceTree = "<group>"; };
+		CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoCoreDataTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -598,6 +608,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */,
 				CD65458B14F3086100CC5F5B /* AssetsLibrary.framework in Frameworks */,
 				CD65458914F3082600CC5F5B /* ImageIO.framework in Frameworks */,
 				CDC899671465750E00C50A00 /* libz.dylib in Frameworks */,
@@ -925,6 +936,16 @@
 			name = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
+		CDDCA458150E090F00EE1DB0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
+				CDFFAD5E150E0C1C00B87229 /* Photos.h */,
+				CDFFAD5F150E0C1C00B87229 /* Photos.m */,
+			);
+			name = CoreData;
+			sourceTree = "<group>";
+		};
 		CDE58786141A5FB2004191B4 /* Aviary */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +1007,7 @@
 				CDF4462D13E1C5A8007E8F72 /* extThree20JSON.xcodeproj */,
 				CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */,
 				CD65458814F3082600CC5F5B /* ImageIO.framework */,
+				CDFFAD5C150E0BFA00B87229 /* CoreData.framework */,
 				CDF1C94B13E1C45C0018AD0B /* UIKit.framework */,
 				CD9A026C14182478002DDCEF /* Security.framework */,
 				CDE5892E141B911A004191B4 /* SystemConfiguration.framework */,
@@ -1007,6 +1029,7 @@
 		CDF1C95113E1C45C0018AD0B /* OpenPhoto */ = {
 			isa = PBXGroup;
 			children = (
+				CDDCA458150E090F00EE1DB0 /* CoreData */,
 				CD9A0208141804B9002DDCEF /* Authentication */,
 				CDF59C5313E93D190019ED62 /* Server */,
 				CDF4463D13E1C5F8007E8F72 /* Home */,
@@ -1046,6 +1069,8 @@
 			children = (
 				CDF1C97913E1C45D0018AD0B /* OpenPhotoTests.h */,
 				CDF1C97B13E1C45D0018AD0B /* OpenPhotoTests.m */,
+				CDFFAD64150E0FCE00B87229 /* OpenPhotoCoreDataTests.h */,
+				CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */,
 			);
 			path = OpenPhotoTests;
 			sourceTree = "<group>";
@@ -1618,6 +1643,8 @@
 				CDAD499515049372009F4607 /* AssetsLibraryUtilities.m in Sources */,
 				CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */,
 				CD199B791506E12500BFC316 /* SHA1.m in Sources */,
+				CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */,
+				CDFFAD60150E0C1C00B87229 /* Photos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,6 +1653,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDF1C97C13E1C45D0018AD0B /* OpenPhotoTests.m in Sources */,
+				CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1956,6 +1984,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CDDCA45A150E092F00EE1DB0 /* OpenPhoto.xcdatamodel */,
+			);
+			currentVersion = CDDCA45A150E092F00EE1DB0 /* OpenPhoto.xcdatamodel */;
+			path = OpenPhoto.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CDF1C93E13E1C45C0018AD0B /* Project object */;
 }
