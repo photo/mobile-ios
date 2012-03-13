@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "Photos.h"
+#import "Photos+OpenPhoto.h"
 
 @interface OpenPhotoCoreDataTests : SenTestCase <NSFetchedResultsControllerDelegate> {
   

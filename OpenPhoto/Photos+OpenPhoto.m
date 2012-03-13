@@ -28,12 +28,7 @@
     
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
-    request.predicate= [NSPredicate predicateWithFormat:@"id=%@",[openphotoInfo objectForKey:@"id"]];
-    
-    // sort, it is not necessary. Remove this when we get the getAllPhotos
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
-    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    
+    request.predicate= [NSPredicate predicateWithFormat:@"id=%@",[openphotoInfo objectForKey:@"id"]];   
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -46,7 +41,7 @@
         // it is not inserted, so we create a new one
         photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:context];
         // set all details
-
+        
         // needs to save
         if (![context save:&error]) {
             NSLog(@"Couldn't save: %@", [error localizedDescription]);
@@ -55,11 +50,19 @@
         photo = [matches lastObject];
     }
     
-    
-
-    
-    
     return photo;   
 }
 
++ (NSArray *) getPhotosInManagedObjectContext:(NSManagedObjectContext *)context{
+    // bring by id
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    // return photos on core data
+    return matches; 
+}
 @end
