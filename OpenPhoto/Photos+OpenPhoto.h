@@ -24,4 +24,7 @@
 
 + (Photos *) photoWithOpenPhotoInfo:(NSDictionary *) openphotoInfo 
             inManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (NSArray *) getPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

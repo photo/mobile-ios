@@ -43,7 +43,7 @@
 -(void) testCount{
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
-   
+    
     // sort, it is not necessary. Remove this when we get the getAllPhotos
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -59,8 +59,18 @@
         STFail(@"We should have at least one Photo");
     }
     
-    NSLog(@"Count = %i",[matches count]);
+    NSLog(@"Count = %i",[matches count]);   
+}
+
+
+- (void) testGetall{
+    NSArray *result= [Photos getPhotosInManagedObjectContext:self.managedObjectContext];
     
+    if (!result){
+        STFail(@"method getPhotosInManagedObjectContext should return some objects");
+    }
+    
+    NSLog(@"Count getPhotosInManagedObjectContext = %i",[result count]);   
 }
 
 
