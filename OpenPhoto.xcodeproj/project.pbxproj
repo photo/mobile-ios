@@ -98,8 +98,6 @@
 		CD9D6FC314D48716008E2078 /* register-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBB14D48716008E2078 /* register-background@2x.png */; };
 		CD9D6FC414D48716008E2078 /* register-button-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBC14D48716008E2078 /* register-button-login.png */; };
 		CD9D6FC514D48716008E2078 /* register-button-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */; };
-		CD9D6FC614D48716008E2078 /* register-button-new-account.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBE14D48716008E2078 /* register-button-new-account.png */; };
-		CD9D6FC714D48716008E2078 /* register-button-new-account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */; };
 		CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC014D48716008E2078 /* register-input-server.png */; };
 		CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC114D48716008E2078 /* register-input-server@2x.png */; };
 		CDAD499515049372009F4607 /* AssetsLibraryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAD499415049372009F4607 /* AssetsLibraryUtilities.m */; };
@@ -505,8 +503,6 @@
 		CD9D6FBB14D48716008E2078 /* register-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-background@2x.png"; path = "OpenPhoto/images/register-background@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FBC14D48716008E2078 /* register-button-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-login.png"; path = "OpenPhoto/images/register-button-login.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-login@2x.png"; path = "OpenPhoto/images/register-button-login@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD9D6FBE14D48716008E2078 /* register-button-new-account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-new-account.png"; path = "OpenPhoto/images/register-button-new-account.png"; sourceTree = SOURCE_ROOT; };
-		CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-new-account@2x.png"; path = "OpenPhoto/images/register-button-new-account@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FC014D48716008E2078 /* register-input-server.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server.png"; path = "OpenPhoto/images/register-input-server.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FC114D48716008E2078 /* register-input-server@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server@2x.png"; path = "OpenPhoto/images/register-input-server@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDAD499315049372009F4607 /* AssetsLibraryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsLibraryUtilities.h; sourceTree = "<group>"; };
@@ -1095,8 +1091,6 @@
 				CD9D6FBB14D48716008E2078 /* register-background@2x.png */,
 				CD9D6FBC14D48716008E2078 /* register-button-login.png */,
 				CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */,
-				CD9D6FBE14D48716008E2078 /* register-button-new-account.png */,
-				CD9D6FBF14D48716008E2078 /* register-button-new-account@2x.png */,
 				CD9D6FC014D48716008E2078 /* register-input-server.png */,
 				CD9D6FC114D48716008E2078 /* register-input-server@2x.png */,
 				CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */,
@@ -1527,8 +1521,6 @@
 				CD9D6FC314D48716008E2078 /* register-background@2x.png in Resources */,
 				CD9D6FC414D48716008E2078 /* register-button-login.png in Resources */,
 				CD9D6FC514D48716008E2078 /* register-button-login@2x.png in Resources */,
-				CD9D6FC614D48716008E2078 /* register-button-new-account.png in Resources */,
-				CD9D6FC714D48716008E2078 /* register-button-new-account@2x.png in Resources */,
 				CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */,
 				CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */,
 				CDE86B8814D597DD0036EC48 /* appbar_empty.png in Resources */,
