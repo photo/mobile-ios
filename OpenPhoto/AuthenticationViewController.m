@@ -100,10 +100,6 @@
 #endif
 }
 
-- (IBAction)getNewAccount:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://openphoto.me"]];
-}
-
 // Action if user clicks in DONE in the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {  
     NSLog(@"Url %@",serverURL.text);
