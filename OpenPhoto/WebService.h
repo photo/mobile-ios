@@ -22,7 +22,7 @@
 #import "OAToken.h"
 #import "OADataFetcher.h"
 #import "Reachability.h"
-#import "extThree20JSON/NSString+SBJSON.h"
+#import "extThree20JSON/extThree20JSON.h"
 
 
 // for validation internet
