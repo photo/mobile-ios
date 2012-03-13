@@ -17,7 +17,7 @@
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 #import "AssetsLibraryUtilities.h"
-#import "extThree20JSON/NSString+SBJSON.h"
+#import "extThree20JSON/extThree20JSON.h"
 #import "QSUtilities.h"
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, MBProgressHUDDelegate>{
