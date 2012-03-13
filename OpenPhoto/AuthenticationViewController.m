@@ -124,19 +124,24 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     
-    if ( [textField.text isEqualToString:@"username.openphoto.me"]){
-        // get the actual range
-        UITextRange *selectedRange = [textField selectedTextRange];       
-        
-        //Calculate the new position, - for left and + for right
-        UITextPosition *fromPosition = [textField positionFromPosition:selectedRange.start offset:-21];  
-        UITextPosition *toPosition = [textField positionFromPosition:selectedRange.start offset:-13];
-        
-        //Construct a new range and set  in the textfield
-        UITextRange *newRange = [textField textRangeFromPosition:fromPosition toPosition:toPosition];
-        textField.selectedTextRange = newRange;
-    }
-    
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+        // move the view a little bit up
+        [self.view setCenter:CGPointMake([self.view  center].x, [self.view  center].y - 40)];
+    }completion:^(BOOL finished){
+        if ( [textField.text isEqualToString:@"username.openphoto.me"]){
+            // get the actual range
+            UITextRange *selectedRange = [textField selectedTextRange];       
+            
+            //Calculate the new position, - for left and + for right
+            UITextPosition *fromPosition = [textField positionFromPosition:selectedRange.start offset:-21];  
+            UITextPosition *toPosition = [textField positionFromPosition:selectedRange.start offset:-13];
+            
+            //Construct a new range and set  in the textfield
+            UITextRange *newRange = [textField textRangeFromPosition:fromPosition toPosition:toPosition];
+            textField.selectedTextRange = newRange;
+        }
+
+    }];
 }
 
 
