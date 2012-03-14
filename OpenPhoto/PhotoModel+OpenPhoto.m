@@ -117,8 +117,13 @@
         NSLog(@"Error to get all photos on managed object context = %@",[error localizedDescription]);
     }
     
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (PhotoModel *model in matches) {
+        [result addObject:[self toPhoto:model]];
+    }
+    
     // return photos on core data
-    return matches; 
+    return [result autorelease]; 
 }
 
 + (void) deleteAllPhotosInManagedObjectContext:(NSManagedObjectContext *)context{
