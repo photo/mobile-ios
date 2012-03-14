@@ -101,6 +101,9 @@
         // Loop through each entry in the dictionary and create an array of MockPhoto
         for (NSDictionary *photo in responsePhotos){
             
+            [PhotoModel photoWithOpenPhotoInfo:photo inManagedObjectContext:[AppDelegate managedObjectContext]];
+            
+            
             // for the first, get how many pictures is in the server
             if (first == YES){
                 totalRows = [[photo objectForKey:@"totalRows"] intValue];

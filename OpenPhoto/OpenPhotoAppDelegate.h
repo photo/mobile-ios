@@ -23,6 +23,11 @@
 #import "AuthenticationViewController.h"
 #import "UpdateUtilities.h"
 
+
+// easy way to get app delegate
+#define AppDelegate (OpenPhotoAppDelegate*) [[UIApplication sharedApplication] delegate]
+
+
 @class OpenPhotoViewController;
 
 @interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate>{

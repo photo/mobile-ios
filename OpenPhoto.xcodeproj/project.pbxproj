@@ -597,9 +597,9 @@
 		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CDFFAD64150E0FCE00B87229 /* OpenPhotoCoreDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoCoreDataTests.h; sourceTree = "<group>"; };
 		CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoCoreDataTests.m; sourceTree = "<group>"; };
-		CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "PhotoModel+OpenPhoto.h"; sourceTree = "<group>"; };
+		CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoModel+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoModel+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDFFAD77150E432E00B87229 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PhotoModel.h; sourceTree = "<group>"; };
+		CDFFAD77150E432E00B87229 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		CDFFAD78150E432E00B87229 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
