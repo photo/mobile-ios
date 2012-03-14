@@ -1,5 +1,5 @@
 //
-//  Photos.m
+//  PhotoModel.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 12/03/12.
@@ -19,10 +19,10 @@
 
 
 
-#import "Photos.h"
+#import "PhotoModel.h"
 
 
-@implementation Photos
+@implementation PhotoModel
 
 @dynamic title;
 @dynamic url;

@@ -162,8 +162,8 @@
 		CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
 		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
 		CDFFAD67150E2BA000B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
-		CDFFAD76150E40BA00B87229 /* Photos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD75150E40BA00B87229 /* Photos+OpenPhoto.m */; };
-		CDFFAD79150E432E00B87229 /* Photos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD78150E432E00B87229 /* Photos.m */; };
+		CDFFAD76150E40BA00B87229 /* PhotoModel+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */; };
+		CDFFAD79150E432E00B87229 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD78150E432E00B87229 /* PhotoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -597,10 +597,10 @@
 		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		CDFFAD64150E0FCE00B87229 /* OpenPhotoCoreDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoCoreDataTests.h; sourceTree = "<group>"; };
 		CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoCoreDataTests.m; sourceTree = "<group>"; };
-		CDFFAD74150E40BA00B87229 /* Photos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photos+OpenPhoto.h"; sourceTree = "<group>"; };
-		CDFFAD75150E40BA00B87229 /* Photos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photos+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDFFAD77150E432E00B87229 /* Photos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photos.h; sourceTree = "<group>"; };
-		CDFFAD78150E432E00B87229 /* Photos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photos.m; sourceTree = "<group>"; };
+		CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; path = "PhotoModel+OpenPhoto.h"; sourceTree = "<group>"; };
+		CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoModel+OpenPhoto.m"; sourceTree = "<group>"; };
+		CDFFAD77150E432E00B87229 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PhotoModel.h; sourceTree = "<group>"; };
+		CDFFAD78150E432E00B87229 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -941,10 +941,10 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CDFFAD77150E432E00B87229 /* Photos.h */,
-				CDFFAD78150E432E00B87229 /* Photos.m */,
-				CDFFAD74150E40BA00B87229 /* Photos+OpenPhoto.h */,
-				CDFFAD75150E40BA00B87229 /* Photos+OpenPhoto.m */,
+				CDFFAD77150E432E00B87229 /* PhotoModel.h */,
+				CDFFAD78150E432E00B87229 /* PhotoModel.m */,
+				CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */,
+				CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1643,8 +1643,8 @@
 				CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */,
 				CD199B791506E12500BFC316 /* SHA1.m in Sources */,
 				CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */,
-				CDFFAD76150E40BA00B87229 /* Photos+OpenPhoto.m in Sources */,
-				CDFFAD79150E432E00B87229 /* Photos.m in Sources */,
+				CDFFAD76150E40BA00B87229 /* PhotoModel+OpenPhoto.m in Sources */,
+				CDFFAD79150E432E00B87229 /* PhotoModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

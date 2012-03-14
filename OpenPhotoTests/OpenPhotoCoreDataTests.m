@@ -28,7 +28,7 @@
 }
 
 -(void) testInsertIntoPhoto{
-    Photos *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+    PhotoModel *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
     photo.url=@"http://test.com";
     photo.urlSmall=@"http://test2.com";
     photo.date = [NSDate date];
@@ -64,7 +64,7 @@
 
 
 - (void) testGetall{
-    NSArray *result= [Photos getPhotosInManagedObjectContext:self.managedObjectContext];
+    NSArray *result= [PhotoModel getPhotosInManagedObjectContext:self.managedObjectContext];
     
     if (!result){
         STFail(@"method getPhotosInManagedObjectContext should return some objects");
@@ -74,9 +74,9 @@
 }
 
 - (void) testDelete{
-    [Photos deleteAllPhotosInManagedObjectContext:self.managedObjectContext];
+    [PhotoModel deleteAllPhotosInManagedObjectContext:self.managedObjectContext];
     
-    NSArray *result= [Photos getPhotosInManagedObjectContext:self.managedObjectContext];
+    NSArray *result= [PhotoModel getPhotosInManagedObjectContext:self.managedObjectContext];
     
     if (!result){
         STFail(@"method testDelete should return empty objects");
