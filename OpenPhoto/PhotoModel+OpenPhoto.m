@@ -89,9 +89,8 @@
     }else{
         photo = [matches lastObject];
         
-        // check if smallUrl, Url and title continue the same. It is possible that is was changed due a new image generation
-        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url]|| ![photo.title isEqualToString:title] ){
-            NSLog(@"Object model photo was changed, update fields on database");
+        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url] || ![photo.title isEqualToString:title] ){           
+            NSLog(@" ==============  Object model photo was changed, update fields on database");
             photo.urlSmall = urlSmall;
             photo.url = url;
             photo.title = title;

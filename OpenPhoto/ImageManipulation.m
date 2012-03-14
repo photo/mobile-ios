@@ -21,19 +21,9 @@
 
 @implementation ImageManipulation
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
 + (UIImage*)imageWithImage:(UIImage*)image 
-              scaledToSize:(CGSize)newSize;
-{
+              scaledToSize:(CGSize)newSize{
+    
     UIGraphicsBeginImageContext( newSize );
     [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();

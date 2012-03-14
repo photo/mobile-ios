@@ -17,11 +17,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <Foundation/Foundation.h>
 #include <Three20/Three20.h>
 #import "PhotoSource.h"
 #import "WebService.h"
 #import "OpenPhotoTTThumbsViewController.h"
+#import "PhotoModel+OpenPhoto.h"
 
 @class PhotoSet;
 

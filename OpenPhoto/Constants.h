@@ -17,8 +17,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <Foundation/Foundation.h>
-
 @interface Constants : NSObject
 
 extern NSString * const kAppInitialized;

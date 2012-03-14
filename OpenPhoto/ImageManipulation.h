@@ -17,10 +17,8 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <UIKit/UIKit.h>
 
 @interface ImageManipulation : NSObject
-
 
 + (UIImage*) imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
