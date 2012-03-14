@@ -1,5 +1,5 @@
 //
-//  Photos+OpenPhoto.h
+//  PhotoModel+OpenPhoto.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 12/03/12.
@@ -18,17 +18,21 @@
 //  limitations under the License.
 
 
-#import "Photos.h"
+#import "PhotoModel.h"
+#import "PhotoSource.h"
 
-@interface Photos (OpenPhoto)
+@interface PhotoModel (OpenPhoto)
 
-+ (Photos *) photoWithOpenPhotoInfo:(NSDictionary *) openphotoInfo 
++ (PhotoModel *) photoWithOpenPhotoInfo:(NSDictionary *) openphotoInfo 
             inManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (NSArray *) getPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
 
 + (void) deleteAllPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
 
+// this method is used to set the photos inside the gallery. It returns an array of Photo object
 + (NSArray *) getPhotosFromOpenPhotoService:(NSArray *) openPhotoResult inManagedObjectContext:(NSManagedObjectContext *)context;
 
+// convert the model photo object from core data to Photo object for Galerry
++ (Photo *) toPhoto:(PhotoModel *) model;
 @end

@@ -1,5 +1,5 @@
 //
-//  Photos.h
+//  PhotoModel.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 12/03/12.
@@ -22,7 +22,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Photos : NSManagedObject
+@interface PhotoModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
