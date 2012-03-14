@@ -73,6 +73,22 @@
     NSLog(@"Count getPhotosInManagedObjectContext = %i",[result count]);   
 }
 
+- (void) testDelete{
+    [Photos deleteAllPhotosInManagedObjectContext:self.managedObjectContext];
+    
+    NSArray *result= [Photos getPhotosInManagedObjectContext:self.managedObjectContext];
+    
+    if (!result){
+        STFail(@"method testDelete should return empty objects");
+    }
+    
+    NSLog(@"Count testDelete = %i",[result count]);  
+    
+    if ([result count] != 0){
+        STFail(@"It should contain 0 objects in the Photos, but it contains %i",[result count]);
+    }
+}
+
 
 
 //////// CORE DATA
@@ -111,7 +127,6 @@
                                   initWithManagedObjectModel:[self managedObjectModel]];
     if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                  configuration:nil URL:storeUrl options:nil error:&error]) {
-        /*Error for store creation should be handled in here*/
         NSLog(@"Error %@",[error localizedDescription]);
     }
     

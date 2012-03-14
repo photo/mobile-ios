@@ -33,6 +33,10 @@
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
+    if (error){
+        NSLog(@"Error getting a photo on managed object context = %@",[error localizedDescription]);
+    }
+    
     
     // matches should never be null and also never more than 1
     if (!matches || [matches count] > 1){
@@ -44,7 +48,7 @@
         
         // needs to save
         if (![context save:&error]) {
-            NSLog(@"Couldn't save: %@", [error localizedDescription]);
+            NSLog(@"Couldn't save Photo inside core data: %@", [error localizedDescription]);
         }
     }else{
         photo = [matches lastObject];
@@ -62,7 +66,38 @@
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
     
+    if (error){
+        NSLog(@"Error to get all photos on managed object context = %@",[error localizedDescription]);
+    }
     // return photos on core data
     return matches; 
 }
+
++ (void) deleteAllPhotosInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *allPhotos = [[NSFetchRequest alloc] init];
+    [allPhotos setEntity:[NSEntityDescription entityForName:@"Photos" inManagedObjectContext:context]];
+    [allPhotos setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *photos = [context executeFetchRequest:allPhotos error:&error];
+    if (error){
+        NSLog(@"Error getting photos to delete all from managed object context = %@",[error localizedDescription]);
+    }
+    
+    // now we can release the object
+    [allPhotos release];
+    
+    for (NSManagedObject *photo in photos) {
+        [context deleteObject:photo];
+    }
+    NSError *saveError = nil;
+    if (![context save:&saveError]){
+        NSLog(@"Error delete all photos from managed object context = %@",[error localizedDescription]);
+    }   
+}
+
++ (NSArray *) getPhotosFromOpenPhotoService:(NSArray *) openPhotoResult inManagedObjectContext:(NSManagedObjectContext *)context{
+    return nil;
+}
+
 @end
