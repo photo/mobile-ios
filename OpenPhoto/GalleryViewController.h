@@ -22,6 +22,7 @@
 #import "WebService.h"
 #import "OpenPhotoTTThumbsViewController.h"
 #import "PhotoModel+OpenPhoto.h"
+#import "MBProgressHUD.h"
 
 @class PhotoSet;
 
