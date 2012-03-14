@@ -27,4 +27,8 @@
 
 + (NSArray *) getPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
 
++ (void) deleteAllPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (NSArray *) getPhotosFromOpenPhotoService:(NSArray *) openPhotoResult inManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
