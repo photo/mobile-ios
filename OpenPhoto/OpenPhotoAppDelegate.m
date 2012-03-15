@@ -9,6 +9,12 @@
 #import "OpenPhotoAppDelegate.h"
 #import "OpenPhotoViewController.h"
 
+
+
+@interface OpenPhotoAppDelegate()
+-(void) shareTwitterOrFacebook:(NSString *) message;
+@end
+
 @implementation OpenPhotoAppDelegate
 
 @synthesize window = _window;
@@ -65,7 +71,14 @@
     
     [self.window makeKeyAndVisible];
     
-   
+    
+    //register to share data.    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(eventHandler:)
+                                                 name:kNotificationShareInformationToFacebookOrTwitter         
+                                               object:nil ];
+    
+    
     return YES;
 }
 
@@ -75,6 +88,21 @@
     [self.viewController setSelectedIndex:1];
 }
 
+
+//event handler when event occurs
+-(void)eventHandler: (NSNotification *) notification
+{
+    if ([notification.name isEqualToString:kNotificationShareInformationToFacebookOrTwitter]){
+        [self performSelector:@selector(shareTwitterOrFacebook:) withObject:notification afterDelay:1.0f];
+    }
+}
+
+- (void) shareTwitterOrFacebook:(NSString*) message{
+    NSString *someText = @"ShareKit is awesome.Shared from iOS App.";   
+    SHKItem *item = [SHKItem text:someText];
+    [SHKTwitter shareItem:item]; 
+  //  [SHKFacebook shareText:@"ShareKit is awesome.Shared from iOS App."]; 
+}
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
     NSLog(@"handleOpenUrl = %@",url);
@@ -189,7 +217,8 @@
     [_viewController release];
     [managedObjectContext release];
     [managedObjectModel release];
-    [persistentStoreCoordinator release];    
+    [persistentStoreCoordinator release];   
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 

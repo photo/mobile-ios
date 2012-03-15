@@ -22,7 +22,10 @@
 #import "AuthenticationHelper.h"
 #import "AuthenticationViewController.h"
 #import "UpdateUtilities.h"
-
+#import "SHKItem.h"
+#import "SHKTwitter.h"
+#import "SHKFacebook.h"
+#import "SHK.h"
 
 // easy way to get app delegate
 #define AppDelegate (OpenPhotoAppDelegate*) [[UIApplication sharedApplication] delegate]
