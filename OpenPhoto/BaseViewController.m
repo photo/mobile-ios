@@ -32,6 +32,7 @@
 - (void) openTypePhotoLibrary;    
 - (void) openTypeCamera;
 - (NSMutableDictionary*)currentLocation;
+- (UINavigationController*) getUINavigationController:(UIViewController *) controller;
 @end
 
 @implementation BaseViewController
@@ -61,8 +62,7 @@
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {  
-    // image for the navigator
-    UIImage *backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];  
+    
     
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
@@ -71,41 +71,41 @@
         return controller;
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
-        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-        [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
-        return navController;
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
+        return [self getUINavigationController:controller];
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
-        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-        [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
-        return navController;
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];       
+        return [self getUINavigationController:controller];
     }else if (title == @"Settings"){
-        UINavigationController *controller = [[[UINavigationController alloc] initWithRootViewController:self.appSettingsViewController] autorelease];
-        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        
         [self.appSettingsViewController setShowCreditsFooter:NO];   
-        self.appSettingsViewController.showDoneButton = NO;   
+        self.appSettingsViewController.showDoneButton = NO; 
         
-        controller.navigationBar.barStyle=UIBarStyleBlackOpaque;
-        [controller.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-        [controller.navigationBar setBackgroundColor:[UIColor blackColor]];
+        UINavigationController *controller = [self getUINavigationController:self.appSettingsViewController];
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:4] autorelease];
         return controller;
     }
     
     UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
-    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:2] autorelease];
     return viewController;
 }
 
+- (UINavigationController*) getUINavigationController:(UIViewController *) controller {
+    UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+    navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        UIImage *backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];  
+        [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    }
+    [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
+    
+    return navController;
+}
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
     [self dismissModalViewControllerAnimated:YES];
 }
