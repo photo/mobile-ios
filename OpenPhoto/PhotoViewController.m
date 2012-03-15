@@ -265,10 +265,6 @@
         permission = @"0";
     }
     
-    // TODO Check if Facebook is on
-    
-    // TODO Check if Twitter is on    
-    
     // TODO, if iOS 5 you can get this data + name
     //filename
     NSString *filename= [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:self.urlImageOriginal],[AssetsLibraryUtilities getAssetsUrlExtension:self.urlImageOriginal]];
@@ -473,43 +469,55 @@
             
             // show alert to user
             dispatch_async(dispatch_get_main_queue(), ^{
+                
+                HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+                HUD.mode = MBProgressHUDModeCustomView;
+                HUD.labelText = @"Error";
+                [HUD hide:YES];
+                
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
                 [alert release];
+                
+                
             });
-        }
-        
+        }else{
+            
 #ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Picture uploaded"];
+            [TestFlight passCheckpoint:@"Picture uploaded"];
 #endif
-        
-        
-        // ATTENTION: remove the file form the local system. It was used only to create the multipart
-        if (    self.fileNameToDelete  != nil){
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
-                BOOL __unused removeResult = NO;
-                NSError *error = nil;
-                removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
-            }  
-        }
-        
-        // progress bar
-        dispatch_async(dispatch_get_main_queue(), ^{
-            HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
-            HUD.mode = MBProgressHUDModeCustomView;
-            HUD.labelText = @"Uploaded";
-            [HUD hide:YES afterDelay:2];
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
             
-            OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
-            [appDelegate openGallery];
+            // ATTENTION: remove the file form the local system. It was used only to create the multipart
+            if (    self.fileNameToDelete  != nil){
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                if ([fileManager fileExistsAtPath:    self.fileNameToDelete ]) {
+                    BOOL __unused removeResult = NO;
+                    NSError *error = nil;
+                    removeResult = [fileManager removeItemAtPath:    self.fileNameToDelete  error:&error];
+                }  
+            }
             
-            [self dismissModalViewControllerAnimated:YES];
-        });
-        
-        
+            // progress bar
+            dispatch_async(dispatch_get_main_queue(), ^{
+                HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]] autorelease];
+                HUD.mode = MBProgressHUDModeCustomView;
+                HUD.labelText = @"Uploaded";
+                [HUD hide:YES afterDelay:2];           
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
+                [AppDelegate openGallery];
+                [self dismissModalViewControllerAnimated:YES];
+                
+                /* prepare NSDictionary with details of sharing if Twitter or Facebook was checked
+                if ([shareTwitter isOn] || [shareFacebook isOn]){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:nil ];
+                }
+                 */
+                
+            });
+            
+        } 
     }];
     
     [asiRequest setFailedBlock:^{

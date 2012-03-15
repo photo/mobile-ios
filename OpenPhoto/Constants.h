@@ -40,6 +40,7 @@ extern NSString * const kNotificationLoginAuthorize;
 extern NSString * const kNotificationLoginNeeded;   
 extern NSString * const kNotificationRefreshPictures;
 extern NSString * const kNotificationCheckRefreshPictures;
+extern NSString * const kNotificationShareInformationToFacebookOrTwitter;
 
 extern int        const kNumbersRow;
 extern NSString * const kCellIdentifierTitle;
