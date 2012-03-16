@@ -19,11 +19,53 @@
 
 #import "OpenPhotoTTThumbsViewController.h"
 
+@interface OpenPhotoTTThumbsViewController()
+- (OpenPhotoTTPhotoViewController*)createPhotoViewController;
+@end
+
 @implementation OpenPhotoTTThumbsViewController
 
 - (void)loadView {
     [super loadView];
     self.tableView.sectionHeaderHeight = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (void)thumbsTableViewCell:(TTThumbsTableViewCell*)cell didSelectPhoto:(id<TTPhoto>)photo {
+    [_delegate thumbsViewController:self didSelectPhoto:photo];
+    
+    BOOL shouldNavigate = YES;
+    if ([_delegate respondsToSelector:@selector(thumbsViewController:shouldNavigateToPhoto:)]) {
+        shouldNavigate = [_delegate thumbsViewController:self shouldNavigateToPhoto:photo];
+    }
+    
+    if (shouldNavigate) {
+        NSString* URL = [self URLForPhoto:photo];
+        if (URL) {
+            TTOpenURLFromView(URL, self.view);
+            
+        } else {
+            OpenPhotoTTPhotoViewController* controller = [self createPhotoViewController];
+            controller.centerPhoto = photo;
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (OpenPhotoTTPhotoViewController*)createPhotoViewController {
+    return [[[OpenPhotoTTPhotoViewController alloc] init] autorelease];
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+- (NSString*)URLForPhoto:(id<TTPhoto>)photo {
+    if ([photo respondsToSelector:@selector(URLValueWithName:)]) {
+        return [photo URLValueWithName:@"OpenPhotoTTPhotoViewController"];
+        
+    } else {
+        return nil;
+    }
 }
 
 @end

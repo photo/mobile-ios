@@ -51,7 +51,11 @@
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 
-// this method will be used to open the gallery after the user upload a picture
--(void) openGallery;
+// this method will be used to open a specific tab
+// 0 = Home
+// 1 = Gallery
+// 3 = Tag
+// 4 = Settings
+-(void) openTab:(int) position;
 
 @end

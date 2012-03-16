@@ -530,7 +530,9 @@
                 [HUD hide:YES afterDelay:2];           
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
-                [AppDelegate openGallery];
+                // open gallery
+                [AppDelegate openTab:1];
+                
                 [self dismissModalViewControllerAnimated:YES];
                 
                 // prepare NSDictionary with details of sharing if Twitter or Facebook was checked

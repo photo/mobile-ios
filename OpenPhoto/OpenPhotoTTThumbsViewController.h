@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #include <Three20/Three20.h>
+#import "OpenPhotoTTPhotoViewController.h"
 
 @interface OpenPhotoTTThumbsViewController : TTThumbsViewController
 
