@@ -105,7 +105,7 @@
     
     if ( [[dictionary objectForKey:@"type"] isEqualToString:@"Twitter"]){
         // send a tweet
-         [SHKTwitter shareItem:item];
+        [SHKTwitter shareItem:item];
     }else{
         // facebook
         [SHKFacebook shareItem:item];
@@ -114,19 +114,24 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
-    NSLog(@"handleOpenUrl = %@",url);
-    AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
+    NSLog(@"Application should handleOpenUrl = %@",url);
     
+    if ([[url scheme] isEqualToString:@"openphoto"]){
+        AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
+        
 #ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Started OAuth Procedure"];
+        [TestFlight passCheckpoint:@"Started OAuth Procedure"];
 #endif
-    
-    
-    if ([auth isValid] == NO){
-        [auth startOAuthProcedure:url];
+        
+        if ([auth isValid] == NO){
+            [auth startOAuthProcedure:url];
+        }
+        
+        [auth release];
+    }else if ([[url scheme] hasPrefix:[NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)]]){
+        return [SHKFacebook handleOpenURL:url];
     }
     
-    [auth release];
     return YES;
 }
 
