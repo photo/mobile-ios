@@ -153,7 +153,7 @@
             self.permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             cell.accessoryView = self.permissionPicture;
             
-            if([self.permissionPicture respondsToSelector:@selector(setOnTintColor)]){
+            if([self.permissionPicture respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
                 [self.permissionPicture setOnTintColor:[UIColor redColor]];
             }
@@ -173,7 +173,7 @@
             
             cell.textLabel.text=@"Facebook";
             self.shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            if([self.shareFacebook respondsToSelector:@selector(setOnTintColor)]){
+            if([self.shareFacebook respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
                 [self.shareFacebook setOnTintColor:[UIColor redColor]];
             }
@@ -193,7 +193,7 @@
             
             cell.textLabel.text=@"Twitter";
             self.shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            if([self.shareTwitter respondsToSelector:@selector(setOnTintColor)]){
+            if([self.shareTwitter respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
                 [self.shareTwitter setOnTintColor:[UIColor redColor]];
             }
