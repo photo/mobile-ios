@@ -28,10 +28,6 @@ NSString * const kAppInitialized = @"app_initialized";
 NSString * const kPhotosSaveCameraRollOrSnapshot=@"photos_save_camera_roll_or_snapshot";
 // Save filtered to Library - NSUserDefaults name
 NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
-// Facebook - NSUserDefaults name
-NSString * const kPhotosShareFacebook=@"photos_share_facebook";
-// Twitter - NSUserDefaults name
-NSString * const kPhotosShareTwitter=@"photos_share_twitter";
 // Privacy - NSUserDefaults name
 NSString * const kPhotosArePrivate=@"photos_are_private";
 // NSUserDefault variable name for the OpenPhoto Server
