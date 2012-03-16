@@ -2,22 +2,4 @@
 <Bucket
    type = "1"
    version = "1.0">
-   <SymbolicBreakpoints>
-      <SymbolicBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         symbolName = "malloc_error_break "
-         moduleName = "">
-         <Actions>
-            <BreakpointActionProxy
-               ActionType = "Xcode.BreakpointAction.Log">
-               <ActionContent
-                  message = ""
-                  conveyanceType = "0">
-               </ActionContent>
-            </BreakpointActionProxy>
-         </Actions>
-      </SymbolicBreakpoint>
-   </SymbolicBreakpoints>
 </Bucket>

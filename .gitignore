@@ -14,6 +14,8 @@ xcuserdata
 profile
 *.moved-aside
 
+OpenPhoto.xcodeproj/xcuserdata
+
 # osx noise
 .DS_Store
 profile
