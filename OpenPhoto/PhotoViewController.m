@@ -585,8 +585,8 @@
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationRefreshPictures object:nil ];
             
-            OpenPhotoAppDelegate *appDelegate = (OpenPhotoAppDelegate*) [[UIApplication sharedApplication]delegate];
-            [appDelegate openGallery];
+            // open gallery
+            [AppDelegate openTab:1];
             
             [self dismissModalViewControllerAnimated:YES];
         });
