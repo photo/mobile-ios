@@ -145,6 +145,7 @@
 		CD7A129414391542001A88E0 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7A127F14391542001A88E0 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
 		CD7A129514391542001A88E0 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7A128014391542001A88E0 /* IASKSpecifierValuesView.xib */; };
 		CD8BB4421414198200D5650E /* InitializerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8BB4411414198200D5650E /* InitializerHelper.m */; };
+		CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD97D1001513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m */; };
 		CD9A020714180457002DDCEF /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020614180457002DDCEF /* AuthenticationHelper.m */; };
 		CD9A020C141804E3002DDCEF /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020A141804E3002DDCEF /* AuthenticationViewController.m */; };
 		CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */; };
@@ -661,6 +662,8 @@
 		CD7A128014391542001A88E0 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IASKSpecifierValuesView.xib; sourceTree = "<group>"; };
 		CD8BB4401414198200D5650E /* InitializerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitializerHelper.h; sourceTree = "<group>"; };
 		CD8BB4411414198200D5650E /* InitializerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializerHelper.m; sourceTree = "<group>"; };
+		CD97D0FF1513DC92000FFF68 /* OpenPhotoTTPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoTTPhotoViewController.h; sourceTree = "<group>"; };
+		CD97D1001513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoTTPhotoViewController.m; sourceTree = "<group>"; };
 		CD9A020514180457002DDCEF /* AuthenticationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationHelper.h; sourceTree = "<group>"; };
 		CD9A020614180457002DDCEF /* AuthenticationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationHelper.m; sourceTree = "<group>"; };
 		CD9A0209141804E3002DDCEF /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
@@ -1626,6 +1629,8 @@
 				CDF4464213E1C62E007E8F72 /* GalleryViewController.m */,
 				CDE86B9214D59DE00036EC48 /* OpenPhotoTTThumbsViewController.h */,
 				CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */,
+				CD97D0FF1513DC92000FFF68 /* OpenPhotoTTPhotoViewController.h */,
+				CD97D1001513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -2159,6 +2164,7 @@
 				CD4E1109151208CC00718923 /* NSObject+SBJSON.m in Sources */,
 				CD4E110A151208CC00718923 /* NSString+SBJSON.m in Sources */,
 				CD4E110B151208CC00718923 /* SBJSON.m in Sources */,
+				CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

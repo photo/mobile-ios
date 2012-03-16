@@ -46,6 +46,9 @@
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1){
+        // move the screen to tab 0
+        [AppDelegate openTab:0];
+        
         NSLog(@"Invalidate user information");
         AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
         [helper invalidateAuthentication];
