@@ -25,6 +25,7 @@
 #import "SHKItem.h"
 #import "SHKTwitter.h"
 #import "SHKFacebook.h"
+#import "SHKConfiguration.h"
 #import "SHK.h"
 
 // easy way to get app delegate

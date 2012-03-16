@@ -32,6 +32,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>openphoto</string>
+				<string>fb287591524644675</string>
 			</array>
 		</dict>
 	</array>
