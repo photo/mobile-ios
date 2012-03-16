@@ -21,6 +21,8 @@
 
 @interface PhotoViewController()
 -(void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete;
+-(void) switchedFacebook;
+-(void) switchedTwitter;
 @end
 
 @implementation PhotoViewController
@@ -151,6 +153,11 @@
             self.permissionPicture = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             cell.accessoryView = self.permissionPicture;
             
+            if([self.permissionPicture respondsToSelector:@selector(setOnTintColor)]){
+                //iOS 5.0
+                [self.permissionPicture setOnTintColor:[UIColor redColor]];
+            }
+            
             // get from user configuration if pictures should be private or not
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosArePrivate]];
             break;
@@ -166,10 +173,13 @@
             
             cell.textLabel.text=@"Facebook";
             self.shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
-            cell.accessoryView = self.shareFacebook;
-            
-            // get from user if picture will be uploaded in high resolution or not
-            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareFacebook]];
+            if([self.shareFacebook respondsToSelector:@selector(setOnTintColor)]){
+                //iOS 5.0
+                [self.shareFacebook setOnTintColor:[UIColor redColor]];
+            }
+            [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];  
+            [self.shareFacebook setOn:NO];
+            cell.accessoryView = self.shareFacebook;            
             break;
             
         case 4:
@@ -183,10 +193,12 @@
             
             cell.textLabel.text=@"Twitter";
             self.shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
+            if([self.shareTwitter respondsToSelector:@selector(setOnTintColor)]){
+                //iOS 5.0
+                [self.shareTwitter setOnTintColor:[UIColor redColor]];
+            }
+            [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];  
             cell.accessoryView = self.shareTwitter;
-            
-            // get from user if picture will be uploaded in high resolution or not
-            [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosShareTwitter]];
             break;
             
         case 5:
@@ -226,6 +238,18 @@
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
+    }
+}
+
+-(void) switchedFacebook{
+    if ([self.shareFacebook isOn]){
+        [self.shareTwitter setOn:NO animated:YES];
+    }
+}
+
+-(void) switchedTwitter{
+    if ([self.shareTwitter isOn]){
+        [self.shareFacebook setOn:NO animated:YES];
     }
 }
 
@@ -509,12 +533,17 @@
                 [AppDelegate openGallery];
                 [self dismissModalViewControllerAnimated:YES];
                 
-                /* prepare NSDictionary with details of sharing if Twitter or Facebook was checked
+                // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
                 if ([shareTwitter isOn] || [shareFacebook isOn]){
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:nil ];
-                }
-                 */
-                
+                    NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
+                    
+                    // parameters from upload
+                    NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
+                    NSArray *objects = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"url"]], [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[shareTwitter isOn] ? @"Twitter" : @"Facebook", nil];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
+                    
+                }               
             });
             
         } 

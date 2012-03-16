@@ -97,12 +97,21 @@
     }
 }
 
-- (void) shareTwitterOrFacebook:(NSString*) message{
-    NSString *someText = @"ShareKit is awesome.Shared from iOS App.";   
-    SHKItem *item = [SHKItem text:someText];
-    [SHKTwitter shareItem:item]; 
-  //  [SHKFacebook shareText:@"ShareKit is awesome.Shared from iOS App."]; 
+- (void) shareTwitterOrFacebook:(NSNotification*) notification{   
+    NSDictionary *dictionary = [notification object];
+    
+    // create the item
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:[dictionary objectForKey:@"url"]] title:[dictionary objectForKey:@"title"]];
+    
+    if ( [[dictionary objectForKey:@"type"] isEqualToString:@"Twitter"]){
+        // send a tweet
+         [SHKTwitter shareItem:item];
+    }else{
+        // facebook
+        [SHKFacebook shareItem:item];
+    }
 }
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
     NSLog(@"handleOpenUrl = %@",url);
