@@ -26,6 +26,10 @@
                  inManagedObjectContext:(NSManagedObjectContext *)context{
     PhotoModel *photo = nil;
     
+    
+    if ([openphotoInfo objectForKey:@"id"] == nil){
+        return photo;
+    }
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
     request.predicate= [NSPredicate predicateWithFormat:@"id=%@",[NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]]];   
