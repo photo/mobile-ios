@@ -41,9 +41,12 @@
         self.service = [[WebService alloc]init];
         [service setDelegate:self];
         
+        
+        NSArray *photos = [PhotoModel getPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+        
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
-                             photos:nil size:0 tag:nil] autorelease];
+                             photos:photos size:[photos count] tag:nil] autorelease];
     }
     return self;
 }
@@ -98,11 +101,10 @@
         BOOL first=YES;
         int totalRows=0;
         
-        // Loop through each entry in the dictionary and create an array of MockPhoto
+        // Load in core data
+        [PhotoModel getPhotosFromOpenPhotoService:responsePhotos inManagedObjectContext:[AppDelegate managedObjectContext]]; 
+
         for (NSDictionary *photo in responsePhotos){
-            
-            //      [PhotoModel photoWithOpenPhotoInfo:photo inManagedObjectContext:[AppDelegate managedObjectContext]];
-            
             
             // for the first, get how many pictures is in the server
             if (first == YES){

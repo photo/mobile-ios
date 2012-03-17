@@ -11,15 +11,14 @@
 
 @implementation OpenPhotoTTPhotoViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-	[super viewWillAppear:animated];
-    
+- (void)didRefreshModel {
+    [super didRefreshModel];
     // add share button
     UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareButton)];          
     self.navigationItem.rightBarButtonItem = shareButton;
-    [shareButton release];
-}		
+    [shareButton release];    
+}
+
 
 - (void) shareButton{
     NSLog(@"User wants to share this photo");
