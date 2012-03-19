@@ -182,7 +182,11 @@
 		CDC899671465750E00C50A00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC899661465750E00C50A00 /* libz.dylib */; };
 		CDC899711465A0A300C50A00 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC899701465A0A300C50A00 /* 37x-Checkmark.png */; };
 		CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */; };
-		CDE20F6715178336002C80F8 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE20F6615178336002C80F8 /* NSString+HTML.m */; };
+		CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE20FB415178BF8002C80F8 /* NSString+HTML.m */; };
+		CDE20FBA15178C8D002C80F8 /* button-disclosure-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB615178C8D002C80F8 /* button-disclosure-form.png */; };
+		CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */; };
+		CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB815178C8D002C80F8 /* button-upload-form.png */; };
+		CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -719,8 +723,12 @@
 		CDC899661465750E00C50A00 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CDC899701465A0A300C50A00 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Frameworks/MBProgressHUD/Demo/Images/37x-Checkmark.png"; sourceTree = SOURCE_ROOT; };
 		CDDCA45A150E092F00EE1DB0 /* OpenPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenPhoto.xcdatamodel; sourceTree = "<group>"; };
-		CDE20F6515178336002C80F8 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		CDE20F6615178336002C80F8 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		CDE20FB315178BF8002C80F8 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		CDE20FB415178BF8002C80F8 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		CDE20FB615178C8D002C80F8 /* button-disclosure-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form.png"; path = "OpenPhoto/images/button-disclosure-form.png"; sourceTree = SOURCE_ROOT; };
+		CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form@2x.png"; path = "OpenPhoto/images/button-disclosure-form@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE20FB815178C8D002C80F8 /* button-upload-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form.png"; path = "OpenPhoto/images/button-upload-form.png"; sourceTree = SOURCE_ROOT; };
+		CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "OpenPhoto/images/button-upload-form@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1546,6 +1554,10 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDE20FB615178C8D002C80F8 /* button-disclosure-form.png */,
+				CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */,
+				CDE20FB815178C8D002C80F8 /* button-upload-form.png */,
+				CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */,
 				CDE86B8A14D597EA0036EC48 /* home-openphoto-bar.png */,
 				CDE86B8B14D597EA0036EC48 /* home-openphoto-bar@2x.png */,
 				CDE86B8C14D597EA0036EC48 /* home-upload-now.png */,
@@ -1660,8 +1672,8 @@
 		CDF4464E13E1C6BB007E8F72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				CDE20F6515178336002C80F8 /* NSString+HTML.h */,
-				CDE20F6615178336002C80F8 /* NSString+HTML.m */,
+				CDE20FB315178BF8002C80F8 /* NSString+HTML.h */,
+				CDE20FB415178BF8002C80F8 /* NSString+HTML.m */,
 				CD199B741506BC0100BFC316 /* CoreLocationController.h */,
 				CD199B751506BC0100BFC316 /* CoreLocationController.m */,
 				CDE5892B141B90F7004191B4 /* Reachability.h */,
@@ -2001,6 +2013,10 @@
 				CD4E10941512048A00718923 /* ShareKit.bundle in Resources */,
 				CD4E10D91512070800718923 /* FBConnect.bundle in Resources */,
 				CD4E10EA151207C600718923 /* FBDialog.bundle in Resources */,
+				CDE20FBA15178C8D002C80F8 /* button-disclosure-form.png in Resources */,
+				CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */,
+				CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */,
+				CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2170,7 +2186,7 @@
 				CD4E110A151208CC00718923 /* NSString+SBJSON.m in Sources */,
 				CD4E110B151208CC00718923 /* SBJSON.m in Sources */,
 				CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */,
-				CDE20F6715178336002C80F8 /* NSString+HTML.m in Sources */,
+				CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
