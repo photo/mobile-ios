@@ -69,20 +69,20 @@
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
     NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@", 
-                                           @"/photos/list.json?pageSize=", 
-                                           [NSString stringWithFormat:@"%d", pageSize],
-                                           @"&page=",[NSString stringWithFormat:@"%d", page], 
-                                           @"&returnSizes=200x200,640x960"];
+                                    @"/photos/list.json?pageSize=", 
+                                    [NSString stringWithFormat:@"%d", pageSize],
+                                    @"&page=",[NSString stringWithFormat:@"%d", page], 
+                                    @"&returnSizes=200x200,640x960"];
     [self sendRequest:loadGalleryRequest];
 }
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page {
     NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@%@%@", 
-                                           @"/photos/list.json?pageSize=", 
-                                           [NSString stringWithFormat:@"%d", pageSize],
-                                           @"&page=",[NSString stringWithFormat:@"%d", page],
-                                           @"&returnSizes=200x200,640x960",
-                                           @"&tags=",tag];
+                                    @"/photos/list.json?pageSize=", 
+                                    [NSString stringWithFormat:@"%d", pageSize],
+                                    @"&page=",[NSString stringWithFormat:@"%d", page],
+                                    @"&returnSizes=200x200,640x960",
+                                    @"&tags=",tag];
     [self sendRequest:loadGalleryRequest];
 }
 
@@ -92,11 +92,20 @@
 
 -(NSURL*) getOAuthInitialUrl{
     // get the url
-    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
-    NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/authorize?oauth_callback=openphoto://&name=OpenPhoto%20IPhone%20App"] autorelease];
+    NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString *path = @"/v1/oauth/authorize?oauth_callback=openphoto://&name=";
+    NSString *appName = [[UIDevice currentDevice] name];
+    NSString *fullPath = [[[NSString alloc]initWithFormat:@"%@%@%@",server,path,[appName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ] autorelease];
     
-    NSLog(@"URL for OAuth initialization = %@",url);
-    return [NSURL URLWithString:url];
+    NSLog(@"URL for OAuth initialization = %@",fullPath);
+    NSURL *url = [NSURL URLWithString:fullPath];
+    
+    if (!url){
+        NSLog(@"URL is invalid, use the default.");
+        return [NSURL URLWithString:[[[NSString alloc]initWithFormat:@"%@%@%@",server,path,@"OpenPhoto%20IPhone%20App"] autorelease]];
+    }
+    
+    return url;
 }
 
 -(NSURL*) getOAuthAccessUrl{
@@ -213,7 +222,7 @@
     }else{
         // create the url to connect to OpenPhoto
         NSString *urlString =     [NSString stringWithFormat: @"%@%@", 
-                                          [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
+                                   [[NSUserDefaults standardUserDefaults] stringForKey:kOpenPhotoServer], request];
         
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Request to be sent = [%@]",urlString);
