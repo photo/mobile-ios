@@ -106,8 +106,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell;
-    
-    
+       
     NSUInteger row = [indexPath row];
     switch (row) {
         case 0:
@@ -137,7 +136,8 @@
             }
             
             cell.textLabel.text=@"Tags";
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            // customised disclosure button
+            [cell setAccessoryView:[self makeDetailDisclosureButton]];     
             break;
             
         case 2:
@@ -211,7 +211,8 @@
             }
             
             cell.textLabel.text=@"Crop & effects";
-            cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            // customised disclosure button
+            [cell setAccessoryView:[self makeDetailDisclosureButton]];            
             break;
             
         default:
@@ -221,6 +222,34 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
+
+- (UIButton *) makeDetailDisclosureButton{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    // set the image
+    UIImage *image = [UIImage imageNamed:@"button-disclosure-form.png"];
+    [button setImage:image forState:UIControlStateNormal];
+
+    CGRect frame = CGRectMake(0.0, 0.0, image.size.width, image.size.height);
+    button.frame = frame;
+
+    // action
+    [button addTarget: self
+               action: @selector(accessoryButtonTapped:withEvent:)
+     forControlEvents: UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+- (void) accessoryButtonTapped: (UIControl *) button withEvent: (UIEvent *) event{
+    NSIndexPath * indexPath = [self.detailsPictureTable indexPathForRowAtPoint: [[[event touchesForView: button] anyObject] locationInView: self.detailsPictureTable]];
+    if ( indexPath == nil )
+        return;
+    
+    [self.detailsPictureTable.delegate tableView: self.detailsPictureTable accessoryButtonTappedForRowWithIndexPath: indexPath];
+}
+
+
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
