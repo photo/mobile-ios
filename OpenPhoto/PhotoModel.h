@@ -2,7 +2,7 @@
 //  PhotoModel.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 12/03/12.
+//  Created by Patrick Santana on 20/03/12.
 //  Copyright 2012 OpenPhoto
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,17 +16,20 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
+#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
 
 @interface PhotoModel : NSManagedObject
 
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSNumber * height;
+@property (nonatomic, retain) NSString * identification;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * urlSmall;
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSNumber * height;
 @property (nonatomic, retain) NSNumber * width;
-@property (nonatomic, retain) NSString * id;
 
 @end

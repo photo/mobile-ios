@@ -63,7 +63,7 @@
     // synchronize the keys
     [standardUserDefaults synchronize];
     
-    // remove images from core data
+    // reset core data
     [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     
     // TODO remove credentials. Need API for it.   

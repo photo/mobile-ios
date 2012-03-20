@@ -187,6 +187,11 @@
 		CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */; };
 		CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB815178C8D002C80F8 /* button-upload-form.png */; };
 		CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */; };
+		CDE210FB1518CC84002C80F8 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE210FA1518CC84002C80F8 /* Tags.m */; };
+		CDE211041518CD25002C80F8 /* Uploads+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */; };
+		CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */; };
+		CDE2110A1518CDFE002C80F8 /* Uploads.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211091518CDFD002C80F8 /* Uploads.m */; };
+		CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE2110C1518D3C4002C80F8 /* PhotoModel.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -225,7 +230,6 @@
 		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
 		CDFFAD67150E2BA000B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
 		CDFFAD76150E40BA00B87229 /* PhotoModel+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */; };
-		CDFFAD79150E432E00B87229 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD78150E432E00B87229 /* PhotoModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -729,6 +733,16 @@
 		CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form@2x.png"; path = "OpenPhoto/images/button-disclosure-form@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE20FB815178C8D002C80F8 /* button-upload-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form.png"; path = "OpenPhoto/images/button-upload-form.png"; sourceTree = SOURCE_ROOT; };
 		CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "OpenPhoto/images/button-upload-form@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE210F91518CC84002C80F8 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
+		CDE210FA1518CC84002C80F8 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
+		CDE211021518CD23002C80F8 /* Uploads+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Uploads+OpenPhoto.h"; sourceTree = "<group>"; };
+		CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Uploads+OpenPhoto.m"; sourceTree = "<group>"; };
+		CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+OpenPhoto.h"; sourceTree = "<group>"; };
+		CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+OpenPhoto.m"; sourceTree = "<group>"; };
+		CDE211081518CDFD002C80F8 /* Uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploads.h; sourceTree = "<group>"; };
+		CDE211091518CDFD002C80F8 /* Uploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploads.m; sourceTree = "<group>"; };
+		CDE2110B1518D3C3002C80F8 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		CDE2110C1518D3C4002C80F8 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -782,8 +796,6 @@
 		CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoCoreDataTests.m; sourceTree = "<group>"; };
 		CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PhotoModel+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PhotoModel+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDFFAD77150E432E00B87229 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
-		CDFFAD78150E432E00B87229 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1421,10 +1433,18 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CDFFAD77150E432E00B87229 /* PhotoModel.h */,
-				CDFFAD78150E432E00B87229 /* PhotoModel.m */,
+				CDE2110B1518D3C3002C80F8 /* PhotoModel.h */,
+				CDE2110C1518D3C4002C80F8 /* PhotoModel.m */,
 				CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */,
 				CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */,
+				CDE210F91518CC84002C80F8 /* Tags.h */,
+				CDE210FA1518CC84002C80F8 /* Tags.m */,
+				CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */,
+				CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */,
+				CDE211081518CDFD002C80F8 /* Uploads.h */,
+				CDE211091518CDFD002C80F8 /* Uploads.m */,
+				CDE211021518CD23002C80F8 /* Uploads+OpenPhoto.h */,
+				CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -2119,7 +2139,6 @@
 				CD199B791506E12500BFC316 /* SHA1.m in Sources */,
 				CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */,
 				CDFFAD76150E40BA00B87229 /* PhotoModel+OpenPhoto.m in Sources */,
-				CDFFAD79150E432E00B87229 /* PhotoModel.m in Sources */,
 				CD4E106F1512048A00718923 /* DefaultSHKConfigurator.m in Sources */,
 				CD4E10701512048A00718923 /* LegacySHKConfigurator.m in Sources */,
 				CD4E10711512048A00718923 /* SHKConfiguration.m in Sources */,
@@ -2187,6 +2206,11 @@
 				CD4E110B151208CC00718923 /* SBJSON.m in Sources */,
 				CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */,
 				CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */,
+				CDE210FB1518CC84002C80F8 /* Tags.m in Sources */,
+				CDE211041518CD25002C80F8 /* Uploads+OpenPhoto.m in Sources */,
+				CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */,
+				CDE2110A1518CDFE002C80F8 /* Uploads.m in Sources */,
+				CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

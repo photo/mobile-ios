@@ -1,5 +1,5 @@
 //
-//  PhotoModel.m
+//  Tags.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,17 +18,12 @@
 //  limitations under the License.
 //
 
-#import "PhotoModel.h"
+#import "Tags.h"
 
 
-@implementation PhotoModel
+@implementation Tags
 
-@dynamic date;
-@dynamic height;
-@dynamic identification;
-@dynamic title;
-@dynamic url;
-@dynamic urlSmall;
-@dynamic width;
+@dynamic name;
+@dynamic counter;
 
 @end
