@@ -37,7 +37,29 @@
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log out" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton)];          
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
-}		
+}
+
+// extend the framework to let Switch be red color.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
+
+    if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
+        if (!cell) {
+            cell = (IASKPSToggleSwitchSpecifierViewCell*) [[[NSBundle mainBundle] loadNibNamed:@"IASKPSToggleSwitchSpecifierViewCell" 
+                                                                                         owner:self 
+                                                                                       options:nil] objectAtIndex:0];
+        }
+        
+        if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
+            //iOS 5.0
+            [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor:[UIColor redColor]];
+        }
+    }
+
+    return cell;
+}
     
 - (void) logoutButton{
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
