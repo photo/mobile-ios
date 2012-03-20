@@ -19,6 +19,9 @@
 
 #import "IASKAppSettingsViewController.h"
 #import "AuthenticationHelper.h"
+#import "IASKPSToggleSwitchSpecifierViewCell.h"
+#import "IASKSpecifier.h"
+#import "IASKSettingsReader.h"
 
 @interface OpenPhotoIASKAppSettingsViewController : IASKAppSettingsViewController <UIAlertViewDelegate> {
 }
