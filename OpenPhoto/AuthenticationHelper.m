@@ -63,6 +63,11 @@
     // synchronize the keys
     [standardUserDefaults synchronize];
     
+    // remove images from core data
+    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+    
+    // TODO remove credentials. Need API for it.   
+    
     // send notification to the system that it can shows the screen:
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginNeeded object:nil];
 }
@@ -164,7 +169,7 @@
          */
         NSString *oauthToken;
         NSString *oauthTokenSecret;
-
+        
         
         // parse the data
         NSArray *queryElements = [responseBody componentsSeparatedByString:@"&"];
@@ -191,7 +196,7 @@
         
         // synchronize the keys
         [standardUserDefaults synchronize];  
-
+        
         [responseBody release];
         
         // send notification to the system that it can shows the screen:
