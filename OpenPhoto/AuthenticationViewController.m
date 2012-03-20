@@ -124,7 +124,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
         // move the view a little bit up
         [self.view setCenter:CGPointMake([self.view  center].x, [self.view  center].y - 40)];
     }completion:^(BOOL finished){
