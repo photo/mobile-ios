@@ -47,6 +47,12 @@
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
                              photos:photos size:[photos count] tag:nil] autorelease];
+        
+        // clean table when log out    
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationLoginNeeded       
+                                                   object:nil ];
     }
     return self;
 }
@@ -103,7 +109,7 @@
         
         // Load in core data
         [PhotoModel getPhotosFromOpenPhotoService:responsePhotos inManagedObjectContext:[AppDelegate managedObjectContext]]; 
-
+        
         for (NSDictionary *photo in responsePhotos){
             
             // for the first, get how many pictures is in the server
@@ -174,9 +180,24 @@
     [alert release];
 }
 
+
+- (void) eventHandler: (NSNotification *) notification{
+#ifdef DEVELOPMENT_ENABLED    
+    NSLog(@"###### Event triggered: %@", notification);
+#endif
+    
+    if ([notification.name isEqualToString:kNotificationLoginNeeded]){
+        self.photoSource = [[[PhotoSource alloc]
+                             initWithTitle:@"Gallery"
+                             photos:nil size:0 tag:nil] autorelease];
+    }
+}
+
+
 - (void) dealloc {
     [service release];
     [tagName release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
 

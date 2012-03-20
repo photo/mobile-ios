@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #import "WebService.h"
+#import "PhotoModel+OpenPhoto.h"
 
 @interface AuthenticationHelper : NSObject{
     WebService* webService;
