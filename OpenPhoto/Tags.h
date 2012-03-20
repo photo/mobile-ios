@@ -1,5 +1,5 @@
 //
-//  PhotoModel.m
+//  Tags.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,17 +18,13 @@
 //  limitations under the License.
 //
 
-#import "PhotoModel.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 
-@implementation PhotoModel
+@interface Tags : NSManagedObject
 
-@dynamic date;
-@dynamic height;
-@dynamic identification;
-@dynamic title;
-@dynamic url;
-@dynamic urlSmall;
-@dynamic width;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSDecimalNumber * counter;
 
 @end

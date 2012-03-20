@@ -216,12 +216,40 @@
     }
     NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
                                                stringByAppendingPathComponent: @"OpenPhotoCoreData.sqlite"]];
+    
+    // automatic update
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
                                   initWithManagedObjectModel:[self managedObjectModel]];
     if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                 configuration:nil URL:storeUrl options:nil error:&error]) {
-        /*Error for store creation should be handled in here*/
+                                                 configuration:nil URL:storeUrl options:options error:&error]) {
+        NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@. Create the persistent file again.", error, [error userInfo]);
+        
+        // let's recreate it
+        [managedObjectContext reset];
+        [managedObjectContext lock];
+        
+        // delete file
+        if ([[NSFileManager defaultManager] fileExistsAtPath:storeUrl.path]) {
+            if (![[NSFileManager defaultManager] removeItemAtPath:storeUrl.path error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            } 
+        }
+        
+        [persistentStoreCoordinator release];
+        persistentStoreCoordinator = nil;
+        
+        NSPersistentStoreCoordinator *r = [self persistentStoreCoordinator];
+        [managedObjectContext unlock];
+        
+        return r;
+
     }
     
     return persistentStoreCoordinator;

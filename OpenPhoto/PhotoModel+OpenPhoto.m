@@ -16,6 +16,7 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
 
 #import "PhotoModel+OpenPhoto.h"
@@ -32,7 +33,7 @@
     }
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
-    request.predicate= [NSPredicate predicateWithFormat:@"id=%@",[NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]]];   
+    request.predicate= [NSPredicate predicateWithFormat:@"identification=%@",[NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]]];   
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -75,11 +76,11 @@
             realWidth = width/height*960;
         }
         
-        photo.width     = [NSNumber numberWithFloat:realWidth];
-        photo.height    = [NSNumber numberWithFloat:realHeight];
-        photo.urlSmall  = urlSmall;
-        photo.url       = url;
-        photo.id        = [NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]];
+        photo.width          = [NSNumber numberWithFloat:realWidth];
+        photo.height         = [NSNumber numberWithFloat:realHeight];
+        photo.urlSmall       = urlSmall;
+        photo.url            = url;
+        photo.identification = [NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]];
         
         // get the date since 1970
         double d            = [[openphotoInfo objectForKey:@"dateTaken"] doubleValue];

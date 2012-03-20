@@ -1,5 +1,5 @@
 //
-//  PhotoModel.m
+//  Uploads.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,17 +18,20 @@
 //  limitations under the License.
 //
 
-#import "PhotoModel.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 
-@implementation PhotoModel
+@interface Uploads : NSManagedObject
 
-@dynamic date;
-@dynamic height;
-@dynamic identification;
-@dynamic title;
-@dynamic url;
-@dynamic urlSmall;
-@dynamic width;
+@property (nonatomic, retain) NSDate * creation;
+@property (nonatomic, retain) NSString * path;
+@property (nonatomic, retain) NSNumber * permissionPrivate;
+@property (nonatomic, retain) NSNumber * facebook;
+@property (nonatomic, retain) NSNumber * twitter;
+@property (nonatomic, retain) NSString * status;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * tags;
+@property (nonatomic, retain) NSString * source;
 
 @end

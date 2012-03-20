@@ -1,5 +1,5 @@
 //
-//  PhotoModel.m
+//  Uploads.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,17 +18,19 @@
 //  limitations under the License.
 //
 
-#import "PhotoModel.h"
+#import "Uploads.h"
 
 
-@implementation PhotoModel
+@implementation Uploads
 
-@dynamic date;
-@dynamic height;
-@dynamic identification;
+@dynamic creation;
+@dynamic path;
+@dynamic permissionPrivate;
+@dynamic facebook;
+@dynamic twitter;
+@dynamic status;
 @dynamic title;
-@dynamic url;
-@dynamic urlSmall;
-@dynamic width;
+@dynamic tags;
+@dynamic source;
 
 @end
