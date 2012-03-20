@@ -44,9 +44,15 @@
         
         NSArray *photos = [PhotoModel getPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         
-        self.photoSource = [[[PhotoSource alloc]
-                             initWithTitle:@"Gallery"
-                             photos:photos size:[photos count] tag:nil] autorelease];
+        if (photos == nil || [photos count] == 0){
+            self.photoSource = [[[PhotoSource alloc]
+                                 initWithTitle:@"Gallery"
+                                 photos:nil size:0 tag:nil] autorelease];
+        }else {
+            self.photoSource = [[[PhotoSource alloc]
+                                 initWithTitle:@"Gallery"
+                                 photos:photos size:[photos count] tag:nil] autorelease];
+        }
         
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
