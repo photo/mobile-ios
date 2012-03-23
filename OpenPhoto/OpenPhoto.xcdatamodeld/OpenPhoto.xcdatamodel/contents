@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="NewestPhotos" representedClassName="NewestPhotos" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Photos" representedClassName="PhotoModel" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
@@ -14,7 +21,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Uploads" representedClassName="Uploads" syncable="YES">
-        <attribute name="creation" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="permissionPrivate" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -26,7 +33,8 @@
     </entity>
     <elements>
         <element name="Photos" positionX="160" positionY="192" width="128" height="150"/>
-        <element name="Uploads" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Uploads" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

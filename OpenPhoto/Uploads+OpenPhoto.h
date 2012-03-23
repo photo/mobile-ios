@@ -22,4 +22,13 @@
 
 @interface Uploads (OpenPhoto)
 
+// constant
+extern NSString * const kUploadStatusTypeCreated;
+extern NSString * const kUploadStatusTypeFailed;
+extern NSString * const kUploadStatusTypeUploaded;
+extern NSString * const kUploadStatusTypeUploading;
+
++ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
++ (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context;
++ (void) deleteAllUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
 @end

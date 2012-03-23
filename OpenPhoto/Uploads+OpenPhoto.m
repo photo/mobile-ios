@@ -22,4 +22,83 @@
 
 @implementation Uploads (OpenPhoto)
 
+//
+// Constast for Upload Status
+//
+NSString * const kUploadStatusTypeCreated = @"Created";
+NSString * const kUploadStatusTypeFailed = @"Failed";
+NSString * const kUploadStatusTypeUploaded = @"Uploaded";
+NSString * const kUploadStatusTypeUploading = @"Uploading";
+
+
++ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Uploads"];
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (error){
+        NSLog(@"Error to get all uploads on managed object context = %@",[error localizedDescription]);
+    }
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (Uploads *model in matches) {
+        [result addObject:model];
+    }
+    
+    // return an array of Uploads
+    return [result autorelease]; 
+}
+
++ (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Uploads"];
+    
+    // status not Uploaded
+    request.predicate= [NSPredicate predicateWithFormat:@"status != %@", kUploadStatusTypeUploaded];   
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (error){
+        NSLog(@"Error to get all uploads on managed object context = %@",[error localizedDescription]);
+    }
+    
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (Uploads *model in matches) {
+        [result addObject:model];
+    }
+    
+    // return an array of Uploads
+    return [result autorelease]; 
+}
+
++ (void) deleteAllUploadsInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *allUploads = [[NSFetchRequest alloc] init];
+    [allUploads setEntity:[NSEntityDescription entityForName:@"Uploads" inManagedObjectContext:context]];
+    [allUploads setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *uploads = [context executeFetchRequest:allUploads error:&error];
+    if (error){
+        NSLog(@"Error getting Uploads to delete all from managed object context = %@",[error localizedDescription]);
+    }
+    
+    // now we can release the object
+    [allUploads release];
+    
+    for (NSManagedObject *upload in uploads) {
+        [context deleteObject:upload];
+    }
+    NSError *saveError = nil;
+    if (![context save:&saveError]){
+        NSLog(@"Error delete all uploads from managed object context = %@",[error localizedDescription]);
+    }   
+}
+
 @end
