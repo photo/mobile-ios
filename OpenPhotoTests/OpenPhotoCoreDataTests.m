@@ -89,6 +89,82 @@
     }
 }
 
+- (void) testUploads{
+    // delete all
+    [Uploads deleteAllUploadsInManagedObjectContext:self.managedObjectContext];
+    
+    // add models with status created, failed, uploaded, uploading
+    Uploads *upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload.facebook = NO;
+    upload.permissionPrivate = NO;
+    upload.source=UIImagePickerControllerMediaMetadata;
+    upload.twitter=NO;
+    upload.title=@"Testing";
+    upload.date = [NSDate date];
+    upload.status=kUploadStatusTypeCreated;
+    
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+    
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload.facebook = NO;
+    upload.permissionPrivate = NO;
+    upload.source=UIImagePickerControllerMediaMetadata;
+    upload.twitter=NO;
+    upload.title=@"Testing";
+    upload.date = [NSDate date];
+    upload.status=kUploadStatusTypeFailed;
+    
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+    
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload.facebook = NO;
+    upload.permissionPrivate = NO;
+    upload.source=UIImagePickerControllerMediaMetadata;
+    upload.twitter=NO;
+    upload.title=@"Testing";
+    upload.date = [NSDate date];
+    upload.status=kUploadStatusTypeUploaded;
+    
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+    
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload.facebook = NO;
+    upload.permissionPrivate = NO;
+    upload.source=UIImagePickerControllerMediaMetadata;
+    upload.twitter=NO;
+    upload.title=@"Testing";
+    upload.date = [NSDate date];
+    upload.status=kUploadStatusTypeUploading;
+    
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+    
+    
+    
+    //
+    // TESTS
+    //
+    
+    // check if there is 4 entites
+    if (  [[Uploads getUploadsInManagedObjectContext:self.managedObjectContext] count] !=4 ){
+        STFail(@"We should have only 4 items in this list");
+    }
+    
+    // check if there 3 that is not in the state Uploaded
+    if (  [[Uploads getUploadsNotUploadedInManagedObjectContext:self.managedObjectContext] count] !=3 ){
+        STFail(@"We should have only 3 items in this list");
+    }
+    
+}
+
 
 
 //////// CORE DATA
@@ -122,16 +198,45 @@
     }
     NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
                                                stringByAppendingPathComponent: @"OpenPhotoCoreDataTest.sqlite"]];
+    
+    // automatic update
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+    
+    
     NSError *error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
                                   initWithManagedObjectModel:[self managedObjectModel]];
     if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                 configuration:nil URL:storeUrl options:nil error:&error]) {
-        NSLog(@"Error %@",[error localizedDescription]);
+                                                 configuration:nil URL:storeUrl options:options error:&error]) {
+        NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@. Create the persistent file again.", error, [error userInfo]);
+        
+        // let's recreate it
+        [managedObjectContext reset];
+        [managedObjectContext lock];
+        
+        // delete file
+        if ([[NSFileManager defaultManager] fileExistsAtPath:storeUrl.path]) {
+            if (![[NSFileManager defaultManager] removeItemAtPath:storeUrl.path error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            } 
+        }
+        
+        [persistentStoreCoordinator release];
+        persistentStoreCoordinator = nil;
+        
+        NSPersistentStoreCoordinator *r = [self persistentStoreCoordinator];
+        [managedObjectContext unlock];
+        
+        return r;
+        
     }
     
     return persistentStoreCoordinator;
 }
+
 
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
