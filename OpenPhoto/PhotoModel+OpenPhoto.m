@@ -33,7 +33,7 @@
     }
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
-    request.predicate= [NSPredicate predicateWithFormat:@"identification=%@",[NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]]];   
+    request.predicate= [NSPredicate predicateWithFormat:@"identification==%@",[NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]]];   
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
