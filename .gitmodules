@@ -19,3 +19,6 @@
 [submodule "Frameworks/ShareKit"]
 	path = Frameworks/ShareKit
 	url = git://github.com/ShareKit/ShareKit.git
+[submodule "Frameworks/EGOTableViewPullRefresh"]
+	path = Frameworks/EGOTableViewPullRefresh
+	url = https://github.com/enormego/EGOTableViewPullRefresh.git
