@@ -10,7 +10,7 @@
 
 @interface MainHomeViewController ()
 
-@property (nonatomic,retain,readwrite) NewestPhotosViewController *newestPhotosViewController;
+@property (nonatomic,retain,readwrite) NewestPhotosViewR2Controller *newestPhotosViewController;
 @property (nonatomic,retain,readwrite)  ActivityFeedViewController *activityFeedViewController;
 - (void)didChangeSegmentControl:(UISegmentedControl *)control;
 @end
@@ -26,7 +26,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.newestPhotosViewController = [[NewestPhotosViewController alloc]init];
+        self.newestPhotosViewController = [[NewestPhotosViewR2Controller alloc]init];
         self.activityFeedViewController = [[ActivityFeedViewController alloc]init];
     }
     return self;
