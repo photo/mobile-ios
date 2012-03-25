@@ -22,6 +22,25 @@
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
+		CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B358151B208D0077A615 /* MainHomeViewController.m */; };
+		CD22B35B151B208D0077A615 /* MainHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD22B359151B208D0077A615 /* MainHomeViewController.xib */; };
+		CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B369151B58DF0077A615 /* EGORefreshTableHeaderView.m */; };
+		CD22B374151B58DF0077A615 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36B151B58DF0077A615 /* blackArrow.png */; };
+		CD22B375151B58DF0077A615 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36C151B58DF0077A615 /* blackArrow@2x.png */; };
+		CD22B376151B58DF0077A615 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36D151B58DF0077A615 /* blueArrow.png */; };
+		CD22B377151B58DF0077A615 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36E151B58DF0077A615 /* blueArrow@2x.png */; };
+		CD22B378151B58DF0077A615 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36F151B58DF0077A615 /* grayArrow.png */; };
+		CD22B379151B58DF0077A615 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B370151B58DF0077A615 /* grayArrow@2x.png */; };
+		CD22B37A151B58DF0077A615 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B371151B58DF0077A615 /* whiteArrow.png */; };
+		CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B372151B58DF0077A615 /* whiteArrow@2x.png */; };
+		CD22B385151B745E0077A615 /* NewestPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */; };
+		CD22B388151B77140077A615 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B387151B77140077A615 /* NewestPhotos.m */; };
+		CD22B38B151B7DD30077A615 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B38A151B7DD30077A615 /* CoreDataTableViewController.m */; };
+		CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B38D151B89290077A615 /* OpenPhotoService.m */; };
+		CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */; };
+		CD22B394151CCAD10077A615 /* Uploads.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B393151CCAD00077A615 /* Uploads.m */; };
+		CD22B399151F035D0077A615 /* NewestPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B397151F035C0077A615 /* NewestPhotosViewController.m */; };
+		CD22B39A151F035D0077A615 /* NewestPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */; };
 		CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD22C96E143911A500E98B0B /* libTestFlight.a */; };
 		CD22C9A71439123000E98B0B /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C99F1439123000E98B0B /* GTMNSString+HTML.m */; };
 		CD22C9A81439123000E98B0B /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A11439123000E98B0B /* QSFileManager.m */; };
@@ -190,8 +209,17 @@
 		CDE210FB1518CC84002C80F8 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE210FA1518CC84002C80F8 /* Tags.m */; };
 		CDE211041518CD25002C80F8 /* Uploads+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */; };
 		CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */; };
-		CDE2110A1518CDFE002C80F8 /* Uploads.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211091518CDFD002C80F8 /* Uploads.m */; };
 		CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE2110C1518D3C4002C80F8 /* PhotoModel.m */; };
+		CDE211161518DEC5002C80F8 /* button-activity-active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE2110E1518DEC3002C80F8 /* button-activity-active.png */; };
+		CDE211171518DEC5002C80F8 /* button-activity-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE2110F1518DEC4002C80F8 /* button-activity-active@2x.png */; };
+		CDE211181518DEC5002C80F8 /* button-activity-deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211101518DEC4002C80F8 /* button-activity-deactive.png */; };
+		CDE211191518DEC5002C80F8 /* button-activity-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211111518DEC4002C80F8 /* button-activity-deactive@2x.png */; };
+		CDE2111A1518DEC5002C80F8 /* button-newest-photos-active.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211121518DEC4002C80F8 /* button-newest-photos-active.png */; };
+		CDE2111B1518DEC5002C80F8 /* button-newest-photos-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211131518DEC4002C80F8 /* button-newest-photos-active@2x.png */; };
+		CDE2111C1518DEC5002C80F8 /* button-newest-photos-deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211141518DEC4002C80F8 /* button-newest-photos-deactive.png */; };
+		CDE2111D1518DEC5002C80F8 /* button-newest-photos-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211151518DEC4002C80F8 /* button-newest-photos-deactive@2x.png */; };
+		CDE211211518E03E002C80F8 /* NewestPhotosViewR2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */; };
+		CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -451,6 +479,34 @@
 		CD199BB81506FDA600BFC316 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
+		CD22B357151B208D0077A615 /* MainHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeViewController.h; sourceTree = "<group>"; };
+		CD22B358151B208D0077A615 /* MainHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeViewController.m; sourceTree = "<group>"; };
+		CD22B359151B208D0077A615 /* MainHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHomeViewController.xib; sourceTree = "<group>"; };
+		CD22B368151B58DF0077A615 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		CD22B369151B58DF0077A615 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		CD22B36B151B58DF0077A615 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		CD22B36C151B58DF0077A615 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		CD22B36D151B58DF0077A615 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		CD22B36E151B58DF0077A615 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		CD22B36F151B58DF0077A615 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		CD22B370151B58DF0077A615 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		CD22B371151B58DF0077A615 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		CD22B372151B58DF0077A615 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewestPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
+		CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewestPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
+		CD22B386151B77140077A615 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
+		CD22B387151B77140077A615 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
+		CD22B389151B7DD30077A615 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		CD22B38A151B7DD30077A615 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		CD22B38C151B89290077A615 /* OpenPhotoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoService.h; sourceTree = "<group>"; };
+		CD22B38D151B89290077A615 /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
+		CD22B38F151C6B7A0077A615 /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
+		CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
+		CD22B392151CCAD00077A615 /* Uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploads.h; sourceTree = "<group>"; };
+		CD22B393151CCAD00077A615 /* Uploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploads.m; sourceTree = "<group>"; };
+		CD22B396151F035C0077A615 /* NewestPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotosViewController.h; sourceTree = "<group>"; };
+		CD22B397151F035C0077A615 /* NewestPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotosViewController.m; sourceTree = "<group>"; };
+		CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotosViewController.xib; sourceTree = "<group>"; };
 		CD22C96E143911A500E98B0B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Frameworks/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
 		CD22C96F143911A500E98B0B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Frameworks/TestFlight/TestFlight.h; sourceTree = "<group>"; };
 		CD22C99D1439123000E98B0B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -739,10 +795,20 @@
 		CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Uploads+OpenPhoto.m"; sourceTree = "<group>"; };
 		CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDE211081518CDFD002C80F8 /* Uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploads.h; sourceTree = "<group>"; };
-		CDE211091518CDFD002C80F8 /* Uploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploads.m; sourceTree = "<group>"; };
 		CDE2110B1518D3C3002C80F8 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		CDE2110C1518D3C4002C80F8 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		CDE2110E1518DEC3002C80F8 /* button-activity-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-activity-active.png"; path = "OpenPhoto/images/button-activity-active.png"; sourceTree = SOURCE_ROOT; };
+		CDE2110F1518DEC4002C80F8 /* button-activity-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-activity-active@2x.png"; path = "OpenPhoto/images/button-activity-active@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE211101518DEC4002C80F8 /* button-activity-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-activity-deactive.png"; path = "OpenPhoto/images/button-activity-deactive.png"; sourceTree = SOURCE_ROOT; };
+		CDE211111518DEC4002C80F8 /* button-activity-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-activity-deactive@2x.png"; path = "OpenPhoto/images/button-activity-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE211121518DEC4002C80F8 /* button-newest-photos-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-active.png"; path = "OpenPhoto/images/button-newest-photos-active.png"; sourceTree = SOURCE_ROOT; };
+		CDE211131518DEC4002C80F8 /* button-newest-photos-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-active@2x.png"; path = "OpenPhoto/images/button-newest-photos-active@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE211141518DEC4002C80F8 /* button-newest-photos-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-deactive.png"; path = "OpenPhoto/images/button-newest-photos-deactive.png"; sourceTree = SOURCE_ROOT; };
+		CDE211151518DEC4002C80F8 /* button-newest-photos-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-deactive@2x.png"; path = "OpenPhoto/images/button-newest-photos-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDE2111E1518E03E002C80F8 /* NewestPhotosViewR2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotosViewR2Controller.h; sourceTree = "<group>"; };
+		CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotosViewR2Controller.m; sourceTree = "<group>"; };
+		CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedViewController.h; sourceTree = "<group>"; };
+		CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedViewController.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -937,6 +1003,62 @@
 				CD22C9A61439123000E98B0B /* QSUtilities.h */,
 			);
 			path = QSUtilities;
+			sourceTree = "<group>";
+		};
+		CD22B365151B58DF0077A615 /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				CD22B366151B58DF0077A615 /* Classes */,
+				CD22B36A151B58DF0077A615 /* Resources */,
+			);
+			name = EGOTableViewPullRefresh;
+			path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh;
+			sourceTree = SOURCE_ROOT;
+		};
+		CD22B366151B58DF0077A615 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CD22B367151B58DF0077A615 /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		CD22B367151B58DF0077A615 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD22B368151B58DF0077A615 /* EGORefreshTableHeaderView.h */,
+				CD22B369151B58DF0077A615 /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD22B36A151B58DF0077A615 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CD22B36B151B58DF0077A615 /* blackArrow.png */,
+				CD22B36C151B58DF0077A615 /* blackArrow@2x.png */,
+				CD22B36D151B58DF0077A615 /* blueArrow.png */,
+				CD22B36E151B58DF0077A615 /* blueArrow@2x.png */,
+				CD22B36F151B58DF0077A615 /* grayArrow.png */,
+				CD22B370151B58DF0077A615 /* grayArrow@2x.png */,
+				CD22B371151B58DF0077A615 /* whiteArrow.png */,
+				CD22B372151B58DF0077A615 /* whiteArrow@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CD22B395151F01000077A615 /* CodeForRelease2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				CDE2111E1518E03E002C80F8 /* NewestPhotosViewR2Controller.h */,
+				CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */,
+				CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */,
+				CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */,
+				CD22B357151B208D0077A615 /* MainHomeViewController.h */,
+				CD22B358151B208D0077A615 /* MainHomeViewController.m */,
+				CD22B359151B208D0077A615 /* MainHomeViewController.xib */,
+			);
+			name = CodeForRelease2.0;
 			sourceTree = "<group>";
 		};
 		CD22C96D1439118B00E98B0B /* TestFlight */ = {
@@ -1441,10 +1563,14 @@
 				CDE210FA1518CC84002C80F8 /* Tags.m */,
 				CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */,
 				CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */,
-				CDE211081518CDFD002C80F8 /* Uploads.h */,
-				CDE211091518CDFD002C80F8 /* Uploads.m */,
+				CD22B392151CCAD00077A615 /* Uploads.h */,
+				CD22B393151CCAD00077A615 /* Uploads.m */,
 				CDE211021518CD23002C80F8 /* Uploads+OpenPhoto.h */,
 				CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */,
+				CD22B386151B77140077A615 /* NewestPhotos.h */,
+				CD22B387151B77140077A615 /* NewestPhotos.m */,
+				CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */,
+				CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1490,6 +1616,7 @@
 				CDAE085D144C7C7300625C95 /* TSAlertView */,
 				CD22C96D1439118B00E98B0B /* TestFlight */,
 				CDE58786141A5FB2004191B4 /* Aviary */,
+				CD22B365151B58DF0077A615 /* EGOTableViewPullRefresh */,
 				CD12AA611405A9F0008B124A /* QSUtilities */,
 				CD12AA151405A909008B124A /* InAppSettingsKit */,
 				3201088596B4756681693700 /* Three20UICommon.xcodeproj */,
@@ -1574,6 +1701,14 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDE2110E1518DEC3002C80F8 /* button-activity-active.png */,
+				CDE2110F1518DEC4002C80F8 /* button-activity-active@2x.png */,
+				CDE211101518DEC4002C80F8 /* button-activity-deactive.png */,
+				CDE211111518DEC4002C80F8 /* button-activity-deactive@2x.png */,
+				CDE211121518DEC4002C80F8 /* button-newest-photos-active.png */,
+				CDE211131518DEC4002C80F8 /* button-newest-photos-active@2x.png */,
+				CDE211141518DEC4002C80F8 /* button-newest-photos-deactive.png */,
+				CDE211151518DEC4002C80F8 /* button-newest-photos-deactive@2x.png */,
 				CDE20FB615178C8D002C80F8 /* button-disclosure-form.png */,
 				CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */,
 				CDE20FB815178C8D002C80F8 /* button-upload-form.png */,
@@ -1673,8 +1808,12 @@
 		CDF4463D13E1C5F8007E8F72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CD22B395151F01000077A615 /* CodeForRelease2.0 */,
 				CDF4465213E1C6DC007E8F72 /* HomeViewController.h */,
 				CDF4465313E1C6DC007E8F72 /* HomeViewController.m */,
+				CD22B396151F035C0077A615 /* NewestPhotosViewController.h */,
+				CD22B397151F035C0077A615 /* NewestPhotosViewController.m */,
+				CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1692,6 +1831,8 @@
 		CDF4464E13E1C6BB007E8F72 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CD22B389151B7DD30077A615 /* CoreDataTableViewController.h */,
+				CD22B38A151B7DD30077A615 /* CoreDataTableViewController.m */,
 				CDE20FB315178BF8002C80F8 /* NSString+HTML.h */,
 				CDE20FB415178BF8002C80F8 /* NSString+HTML.m */,
 				CD199B741506BC0100BFC316 /* CoreLocationController.h */,
@@ -1719,6 +1860,10 @@
 		CDF59C5313E93D190019ED62 /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				CD22B38C151B89290077A615 /* OpenPhotoService.h */,
+				CD22B38D151B89290077A615 /* OpenPhotoService.m */,
+				CD22B38F151C6B7A0077A615 /* OpenPhotoServiceFactory.h */,
+				CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */,
 				CDF59C5413E93D600019ED62 /* WebService.h */,
 				CDF59C5513E93D600019ED62 /* WebService.m */,
 			);
@@ -2037,6 +2182,24 @@
 				CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */,
 				CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */,
 				CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */,
+				CDE211161518DEC5002C80F8 /* button-activity-active.png in Resources */,
+				CDE211171518DEC5002C80F8 /* button-activity-active@2x.png in Resources */,
+				CDE211181518DEC5002C80F8 /* button-activity-deactive.png in Resources */,
+				CDE211191518DEC5002C80F8 /* button-activity-deactive@2x.png in Resources */,
+				CDE2111A1518DEC5002C80F8 /* button-newest-photos-active.png in Resources */,
+				CDE2111B1518DEC5002C80F8 /* button-newest-photos-active@2x.png in Resources */,
+				CDE2111C1518DEC5002C80F8 /* button-newest-photos-deactive.png in Resources */,
+				CDE2111D1518DEC5002C80F8 /* button-newest-photos-deactive@2x.png in Resources */,
+				CD22B35B151B208D0077A615 /* MainHomeViewController.xib in Resources */,
+				CD22B374151B58DF0077A615 /* blackArrow.png in Resources */,
+				CD22B375151B58DF0077A615 /* blackArrow@2x.png in Resources */,
+				CD22B376151B58DF0077A615 /* blueArrow.png in Resources */,
+				CD22B377151B58DF0077A615 /* blueArrow@2x.png in Resources */,
+				CD22B378151B58DF0077A615 /* grayArrow.png in Resources */,
+				CD22B379151B58DF0077A615 /* grayArrow@2x.png in Resources */,
+				CD22B37A151B58DF0077A615 /* whiteArrow.png in Resources */,
+				CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */,
+				CD22B39A151F035D0077A615 /* NewestPhotosViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2209,8 +2372,18 @@
 				CDE210FB1518CC84002C80F8 /* Tags.m in Sources */,
 				CDE211041518CD25002C80F8 /* Uploads+OpenPhoto.m in Sources */,
 				CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */,
-				CDE2110A1518CDFE002C80F8 /* Uploads.m in Sources */,
 				CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */,
+				CDE211211518E03E002C80F8 /* NewestPhotosViewR2Controller.m in Sources */,
+				CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */,
+				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
+				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
+				CD22B385151B745E0077A615 /* NewestPhotos+OpenPhoto.m in Sources */,
+				CD22B388151B77140077A615 /* NewestPhotos.m in Sources */,
+				CD22B38B151B7DD30077A615 /* CoreDataTableViewController.m in Sources */,
+				CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */,
+				CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */,
+				CD22B394151CCAD10077A615 /* Uploads.m in Sources */,
+				CD22B399151F035D0077A615 /* NewestPhotosViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

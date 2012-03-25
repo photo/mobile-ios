@@ -2,26 +2,14 @@
 //  NewestPhotosViewController.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 20/03/12.
+//  Created by Patrick Santana on 25/03/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
-#import "EGORefreshTableHeaderView.h"
 
-@interface NewestPhotosViewController : UITableViewController  <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>{
-	
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    
-    //  Reloading var should really be your tableviews datasource
-    //  Putting it here for demo purposes 
-    BOOL _reloading;
-    NSArray *newestPhotos;
-    NSArray *uploads;
-}
+#import <UIKit/UIKit.h>
 
-@property (nonatomic, retain) NSArray *newestPhotos;
-@property (nonatomic, retain) NSArray *uploads;    
+@interface NewestPhotosViewController : UIViewController
 
-- (void)reloadTableViewDataSource;
-- (void)doneLoadingTableViewData;
+@property (retain, nonatomic) IBOutlet UITableView *table;
+
 @end
-

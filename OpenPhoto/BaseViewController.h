@@ -28,6 +28,7 @@
 #import "QSStrings.h"
 #import "PhotoViewController.h"
 #import "HomeViewController.h"
+#import "NewestPhotosViewController.h"
 #import "TagViewController.h"
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
