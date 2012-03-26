@@ -19,11 +19,13 @@
 //
 
 #import "NewestPhotos.h"
+#import "PhotoModel+OpenPhoto.h"
 
 @interface NewestPhotos (OpenPhoto)
 
 
 + (NSArray *) getNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
 + (void) deleteAllNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
++ (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end
