@@ -21,7 +21,7 @@
 #import "NewestPhotosTableViewController.h"
 
 @interface NewestPhotosTableViewController ()
-
+- (void) loadNewestPhotosIntoCoreData;
 @end
 
 @implementation NewestPhotosTableViewController
@@ -31,13 +31,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // set the frame size
-        CGRect frame = self.view.frame;
-        frame.origin.x=0;
-        frame.origin.y=0;
-        frame.size.height = 365;
-        frame.size.width    = 308;    
-        self.view.frame = frame;
         
         // transparent background
         self.tableView.backgroundColor = [UIColor clearColor];
@@ -47,17 +40,19 @@
         UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
         self.view.backgroundColor = background;
         [background release];
+        
+        // clean table when log out    
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationLoginNeeded       
+                                                   object:nil ];
     }
     return self;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    // set details for uploads
-    
-    // set details for newestPhotos
-    
+    [super viewWillAppear:animated];   
+    [self loadNewestPhotosIntoCoreData];
 }
 
 - (void)viewDidLoad
@@ -72,7 +67,7 @@
         // set background
         view.backgroundColor = [UIColor clearColor];
         view.opaque = NO;
-       
+        
 		[self.tableView addSubview:view];
 		_refreshHeaderView = view;
 		[view release];
@@ -81,6 +76,12 @@
 	
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    // set details for uploads
+    self.uploads = [Uploads getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    
+    // set details for newestPhotos
+    self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
 }
 
 
@@ -92,7 +93,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [uploads count] + [newestPhotos count];
+    return [self.uploads count] + [self.newestPhotos count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -104,9 +105,32 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell.
-    cell.textLabel.text=@"Twitter";
+    
+    NewestPhotos *photo = [self.newestPhotos objectAtIndex:indexPath.row];
+  
+    if (photo.title != nil)
+    cell.textLabel.text=photo.title;
 	
+    
+    //Load images from web asynchronously with GCD 
+    if(!photo.photoData){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                photo.photoData = data;
+                UIImage *thumbnail = [UIImage imageWithData:data];
+                cell.imageView.image = thumbnail;
+                [self.tableView beginUpdates];
+                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                      withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView endUpdates]; 
+                
+            });
+        });
+    }
+    else
+        cell.imageView.image = [UIImage imageWithData:photo.photoData];
+    
     return cell;
 }
 
@@ -114,17 +138,12 @@
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
-- (void)reloadTableViewDataSource{
-	
-	//  should be calling your tableviews data source model to reload
-	//  put here just for demo
-	_reloading = YES;
-	
-}
-
 - (void)doneLoadingTableViewData{
-	
 	//  model should call this when its done loading
+    self.uploads = [Uploads getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
+    [self.tableView reloadData];
+    
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 	
@@ -151,22 +170,18 @@
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-	
-	[self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-	
+    // via GCD, get the newest photos and save it on database
+    [self loadNewestPhotosIntoCoreData];    
 }
 
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-	
-	return _reloading; // should return if data source model is reloading
-	
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+{
+	return _reloading; // should return if data source model is reloading	
 }
 
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-	
-	return [NSDate date]; // should return date data source was last changed
-	
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
+{	
+	return [NSDate date]; // should return date data source was last changed	
 }
 
 
@@ -182,13 +197,47 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void) eventHandler: (NSNotification *) notification{   
+    if ([notification.name isEqualToString:kNotificationLoginNeeded]){
+        self.newestPhotos = [NSArray array];
+        self.uploads = [NSArray array];
+    }
+}
+
 - (void)dealloc 
 {    
     [_refreshHeaderView release];
     [newestPhotos release];
     [uploads release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
     [super dealloc];
 }
 
 
+
+#pragma mark -
+#pragma mark Population core data
+-(void) loadNewestPhotosIntoCoreData{
+    // set reloading in the table
+    _reloading = YES;
+    
+    // get factory for OpenPhoto Service
+    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+    [service retain];
+    
+    dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
+    dispatch_async(loadNewestPhotos, ^{
+        // call the method and get the details
+        NSArray *result = [service fetchNewestPhotosMaxResult:5];
+        
+        [service release];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // let NewestPhotos treat the objects
+            [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
+            [self doneLoadingTableViewData];
+        });
+    });
+    dispatch_release(loadNewestPhotos);
+}
 @end

@@ -19,6 +19,9 @@
 //
 
 #import "EGORefreshTableHeaderView.h"
+#import "NewestPhotos+OpenPhoto.h"
+#import "Uploads+OpenPhoto.h"
+#import "OpenPhotoServiceFactory.h"
 
 @interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>{
     
@@ -35,7 +38,6 @@
 @property (nonatomic, retain) NSArray *newestPhotos;
 @property (nonatomic, retain) NSArray *uploads; 
 
-- (void)reloadTableViewDataSource;
 - (void)doneLoadingTableViewData;
 
 @end

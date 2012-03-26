@@ -65,5 +65,58 @@
     } 
 }
 
++ (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context{
+    if ([rawNewestPhotos count]>0){
+        for (NSDictionary *raw in rawNewestPhotos){
+            // check if object exists
+            NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NewestPhotos"];
+            request.predicate= [NSPredicate predicateWithFormat:@"key==%@",[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]]];   
+            [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+            
+            NSError *error = nil;
+            NSArray *matches = [context executeFetchRequest:request error:&error];
+            
+            if (error){
+                NSLog(@"Error getting a newest photo on managed object context = %@",[error localizedDescription]);
+            }
+            
+            if (!matches || [matches count] > 0){
+                NSLog(@"Object already exist");
+            }else {
+                NewestPhotos *newest = [NSEntityDescription insertNewObjectForEntityForName:@"NewestPhotos" 
+                                                                     inManagedObjectContext:context];
+                
+                // get details URL
+                if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+                    // retina display
+                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path640x734xCR"]];
+                }else{
+                    // not retina display
+                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path320x367xCR"]];
+                }
+                
+                NSString *title = [raw objectForKey:@"title"];
+                if ([title class] == [NSNull class])
+                    newest.title = @"";
+                else
+                    newest.title =title;
+                
+                
+                newest.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];
+                
+                // get the date since 1970
+                double d            = [[raw objectForKey:@"dateTaken"] doubleValue];
+                NSTimeInterval date =  d;
+                newest.date          = [NSDate dateWithTimeIntervalSince1970:date];            
+            }
+        }
+        
+        // save context
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Couldn't save: %@", [error localizedDescription]);
+        }
+    }
+}
 
 @end
