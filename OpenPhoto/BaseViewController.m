@@ -32,7 +32,7 @@
 - (void) openTypePhotoLibrary;    
 - (void) openTypeCamera;
 - (NSMutableDictionary*)currentLocation;
-- (UINavigationController*) getUINavigationController:(UIViewController *) controller;
+- (UINavigationController*) getUINavigationController:(UIViewController *) controller forHomeScreen:(BOOL) home;
 @end
 
 @implementation BaseViewController
@@ -62,27 +62,25 @@
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {  
-    
-    
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
-//      HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
-        NewestPhotosViewController *controller = [[[NewestPhotosViewController alloc]init]autorelease];
+        //      HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
+        NewestPhotosTableViewController *controller = [[[NewestPhotosTableViewController alloc]init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
-        return controller;
+        return [self getUINavigationController:controller forHomeScreen:YES];
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
-        return [self getUINavigationController:controller];
+        return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Tags"){
         TagViewController *controller = [[[TagViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];       
-        return [self getUINavigationController:controller];
+        return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Settings"){
         [self.appSettingsViewController setShowCreditsFooter:NO];   
         self.appSettingsViewController.showDoneButton = NO; 
         
-        UINavigationController *controller = [self getUINavigationController:self.appSettingsViewController];
+        UINavigationController *controller = [self getUINavigationController:self.appSettingsViewController forHomeScreen:NO];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:4] autorelease];
         return controller;
     }
@@ -92,7 +90,7 @@
     return viewController;
 }
 
-- (UINavigationController*) getUINavigationController:(UIViewController *) controller {
+- (UINavigationController*) getUINavigationController:(UIViewController *) controller forHomeScreen:(BOOL) home{
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
     navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
@@ -100,13 +98,19 @@
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0
-        UIImage *backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];  
+        UIImage *backgroundImage;
+        if ( home == YES){
+            backgroundImage = [UIImage imageNamed:@"home-openphoto-bar.png"];
+        }else {
+            backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];
+        }  
         [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
     [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
     
     return navController;
 }
+
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
     [self dismissModalViewControllerAnimated:YES];
 }

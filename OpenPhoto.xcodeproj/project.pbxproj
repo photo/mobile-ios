@@ -39,8 +39,6 @@
 		CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B38D151B89290077A615 /* OpenPhotoService.m */; };
 		CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */; };
 		CD22B394151CCAD10077A615 /* Uploads.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B393151CCAD00077A615 /* Uploads.m */; };
-		CD22B399151F035D0077A615 /* NewestPhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B397151F035C0077A615 /* NewestPhotosViewController.m */; };
-		CD22B39A151F035D0077A615 /* NewestPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */; };
 		CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD22C96E143911A500E98B0B /* libTestFlight.a */; };
 		CD22C9A71439123000E98B0B /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C99F1439123000E98B0B /* GTMNSString+HTML.m */; };
 		CD22C9A81439123000E98B0B /* QSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A11439123000E98B0B /* QSFileManager.m */; };
@@ -200,6 +198,7 @@
 		CDC89965146574F900C50A00 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC89964146574F900C50A00 /* MobileCoreServices.framework */; };
 		CDC899671465750E00C50A00 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC899661465750E00C50A00 /* libz.dylib */; };
 		CDC899711465A0A300C50A00 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = CDC899701465A0A300C50A00 /* 37x-Checkmark.png */; };
+		CDCB02DB15208837009C08D8 /* NewestPhotosTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCB02DA15208837009C08D8 /* NewestPhotosTableViewController.m */; };
 		CDDCA45B150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */; };
 		CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE20FB415178BF8002C80F8 /* NSString+HTML.m */; };
 		CDE20FBA15178C8D002C80F8 /* button-disclosure-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB615178C8D002C80F8 /* button-disclosure-form.png */; };
@@ -218,7 +217,6 @@
 		CDE2111B1518DEC5002C80F8 /* button-newest-photos-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211131518DEC4002C80F8 /* button-newest-photos-active@2x.png */; };
 		CDE2111C1518DEC5002C80F8 /* button-newest-photos-deactive.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211141518DEC4002C80F8 /* button-newest-photos-deactive.png */; };
 		CDE2111D1518DEC5002C80F8 /* button-newest-photos-deactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE211151518DEC4002C80F8 /* button-newest-photos-deactive@2x.png */; };
-		CDE211211518E03E002C80F8 /* NewestPhotosViewR2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */; };
 		CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
@@ -504,9 +502,6 @@
 		CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
 		CD22B392151CCAD00077A615 /* Uploads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Uploads.h; sourceTree = "<group>"; };
 		CD22B393151CCAD00077A615 /* Uploads.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Uploads.m; sourceTree = "<group>"; };
-		CD22B396151F035C0077A615 /* NewestPhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotosViewController.h; sourceTree = "<group>"; };
-		CD22B397151F035C0077A615 /* NewestPhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotosViewController.m; sourceTree = "<group>"; };
-		CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotosViewController.xib; sourceTree = "<group>"; };
 		CD22C96E143911A500E98B0B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Frameworks/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
 		CD22C96F143911A500E98B0B /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Frameworks/TestFlight/TestFlight.h; sourceTree = "<group>"; };
 		CD22C99D1439123000E98B0B /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
@@ -782,6 +777,8 @@
 		CDC89964146574F900C50A00 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CDC899661465750E00C50A00 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		CDC899701465A0A300C50A00 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Frameworks/MBProgressHUD/Demo/Images/37x-Checkmark.png"; sourceTree = SOURCE_ROOT; };
+		CDCB02D915208837009C08D8 /* NewestPhotosTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotosTableViewController.h; sourceTree = "<group>"; };
+		CDCB02DA15208837009C08D8 /* NewestPhotosTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotosTableViewController.m; sourceTree = "<group>"; };
 		CDDCA45A150E092F00EE1DB0 /* OpenPhoto.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OpenPhoto.xcdatamodel; sourceTree = "<group>"; };
 		CDE20FB315178BF8002C80F8 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		CDE20FB415178BF8002C80F8 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
@@ -805,8 +802,6 @@
 		CDE211131518DEC4002C80F8 /* button-newest-photos-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-active@2x.png"; path = "OpenPhoto/images/button-newest-photos-active@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE211141518DEC4002C80F8 /* button-newest-photos-deactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-deactive.png"; path = "OpenPhoto/images/button-newest-photos-deactive.png"; sourceTree = SOURCE_ROOT; };
 		CDE211151518DEC4002C80F8 /* button-newest-photos-deactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-newest-photos-deactive@2x.png"; path = "OpenPhoto/images/button-newest-photos-deactive@2x.png"; sourceTree = SOURCE_ROOT; };
-		CDE2111E1518E03E002C80F8 /* NewestPhotosViewR2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotosViewR2Controller.h; sourceTree = "<group>"; };
-		CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotosViewR2Controller.m; sourceTree = "<group>"; };
 		CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedViewController.h; sourceTree = "<group>"; };
 		CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedViewController.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
@@ -1050,8 +1045,6 @@
 		CD22B395151F01000077A615 /* CodeForRelease2.0 */ = {
 			isa = PBXGroup;
 			children = (
-				CDE2111E1518E03E002C80F8 /* NewestPhotosViewR2Controller.h */,
-				CDE2111F1518E03E002C80F8 /* NewestPhotosViewR2Controller.m */,
 				CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */,
 				CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */,
 				CD22B357151B208D0077A615 /* MainHomeViewController.h */,
@@ -1811,9 +1804,8 @@
 				CD22B395151F01000077A615 /* CodeForRelease2.0 */,
 				CDF4465213E1C6DC007E8F72 /* HomeViewController.h */,
 				CDF4465313E1C6DC007E8F72 /* HomeViewController.m */,
-				CD22B396151F035C0077A615 /* NewestPhotosViewController.h */,
-				CD22B397151F035C0077A615 /* NewestPhotosViewController.m */,
-				CD22B398151F035C0077A615 /* NewestPhotosViewController.xib */,
+				CDCB02D915208837009C08D8 /* NewestPhotosTableViewController.h */,
+				CDCB02DA15208837009C08D8 /* NewestPhotosTableViewController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2199,7 +2191,6 @@
 				CD22B379151B58DF0077A615 /* grayArrow@2x.png in Resources */,
 				CD22B37A151B58DF0077A615 /* whiteArrow.png in Resources */,
 				CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */,
-				CD22B39A151F035D0077A615 /* NewestPhotosViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2373,7 +2364,6 @@
 				CDE211041518CD25002C80F8 /* Uploads+OpenPhoto.m in Sources */,
 				CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */,
 				CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */,
-				CDE211211518E03E002C80F8 /* NewestPhotosViewR2Controller.m in Sources */,
 				CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */,
 				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
 				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
@@ -2383,7 +2373,7 @@
 				CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */,
 				CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */,
 				CD22B394151CCAD10077A615 /* Uploads.m in Sources */,
-				CD22B399151F035D0077A615 /* NewestPhotosViewController.m in Sources */,
+				CDCB02DB15208837009C08D8 /* NewestPhotosTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
