@@ -10,4 +10,8 @@
 
 @interface NewestPhotos (OpenPhoto)
 
+
++ (NSArray *) getNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
++ (void) deleteAllNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end
