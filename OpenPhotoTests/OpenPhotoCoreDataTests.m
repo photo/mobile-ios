@@ -147,8 +147,6 @@
         NSLog(@"Couldn't save: %@", [error localizedDescription]);
     }
     
-    
-    
     //
     // TESTS
     //
@@ -161,6 +159,37 @@
     // check if there 3 that is not in the state Uploaded
     if (  [[Uploads getUploadsNotUploadedInManagedObjectContext:self.managedObjectContext] count] !=3 ){
         STFail(@"We should have only 3 items in this list");
+    }
+    
+}
+
+- (void) testNewestPhotos{
+    // delete all
+    [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:self.managedObjectContext];
+    
+    
+    // check size should be 0
+    if (  [[NewestPhotos getNewestPhotosInManagedObjectContext:self.managedObjectContext] count] !=0 ){
+        STFail(@"We should have no items in this list");
+    }
+    
+    // add one example
+    NewestPhotos *photo = [NSEntityDescription insertNewObjectForEntityForName:@"NewestPhotos" 
+                                                        inManagedObjectContext:self.managedObjectContext];
+    photo.date = [NSDate date];    
+    photo.photoUrl = @"http://test.com";
+    photo.title =@"Title";
+    photo.key=@"Key";
+    
+   
+    NSError *error;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+    
+    // test if there is ONE item in the list
+    if (  [[NewestPhotos getNewestPhotosInManagedObjectContext:self.managedObjectContext] count] !=1 ){
+        STFail(@"We should have only 1 item in this list");
     }
     
 }

@@ -33,6 +33,16 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // load the pictures from database
+    
+    // load the uploades from database
+    
+}
+
 - (void)viewDidUnload
 {
     [self setTable:nil];
