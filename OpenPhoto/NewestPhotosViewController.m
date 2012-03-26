@@ -19,7 +19,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // transparent background
+        self.table.backgroundColor = [UIColor clearColor];
+        self.table.opaque = NO;
+        self.table.backgroundView = nil;
     }
     return self;
 }
