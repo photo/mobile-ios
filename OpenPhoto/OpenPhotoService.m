@@ -89,10 +89,10 @@ static OpenPhotoService* _instance = nil;
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
-        [request appendString:@"640x734xCR"];
+        [request appendString:@"610x530xCR"];
     }else{
         // not retina display
-        [request appendString:@"320x367xCR"];
+        [request appendString:@"305x265xCR"];
     }
     
     return [self sendSynchronousRequest:request]; 

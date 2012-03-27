@@ -89,18 +89,30 @@
                 // get details URL
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
                     // retina display
-                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path640x734xCR"]];
+                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
                 }else{
                     // not retina display
-                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path320x367xCR"]];
+                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
                 }
                 
                 NSString *title = [raw objectForKey:@"title"];
                 if ([title class] == [NSNull class])
-                    newest.title = @"";
+                    newest.title = [NSString stringWithFormat:@"%@",[raw objectForKey:@"filenameOriginal"]];
                 else
                     newest.title = title;
-                
+
+                NSArray *tagsResult = [raw objectForKey:@"tags"];
+                NSMutableString *tags = [NSMutableString string];
+                if ([tagsResult class] != [NSNull class]) {
+                    int i = 1;
+                    for (NSString *tagDetails in tagsResult){
+                        [tags appendString:[tagDetails stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+                        if ( i < [tagsResult count])
+                            [tags appendString:@", "];
+                        
+                        i++;
+                    }}
+                newest.tags=tags;
                 
                 newest.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];
                 

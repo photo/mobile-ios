@@ -24,5 +24,8 @@
 @interface NewestPhotoCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UIImageView *photo;
+@property (retain, nonatomic) IBOutlet UILabel *date;
+@property (retain, nonatomic) IBOutlet UILabel *tags;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UILabel *label;
 @end

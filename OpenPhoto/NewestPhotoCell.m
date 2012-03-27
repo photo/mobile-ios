@@ -23,6 +23,9 @@
 
 @implementation NewestPhotoCell
 @synthesize photo;
+@synthesize date;
+@synthesize tags;
+@synthesize activity;
 @synthesize label;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -44,6 +47,9 @@
 - (void)dealloc {
     [label release];
     [photo release];
+    [activity release];
+    [date release];
+    [tags release];
     [super dealloc];
 }
 @end

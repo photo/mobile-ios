@@ -5,6 +5,7 @@
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Photos" representedClassName="PhotoModel" syncable="YES">
@@ -32,9 +33,9 @@
         <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
+        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Photos" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
         <element name="Uploads" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

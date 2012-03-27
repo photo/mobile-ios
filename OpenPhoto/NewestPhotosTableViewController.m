@@ -97,21 +97,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-         /* 
-    static NSString *CellIdentifier = @"NewestPhotosCell";
-    
-    //  NewestPhotosCell *cell = (NewestPhotosCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-    if (self.cell == nil) {
-        //     self.cell = [[[NewestPhotosCell alloc] initWithStyle:UITableViewCellStyleDefault 
-    reuseIdentifier:CellIdentifier]            autorelease];
-    }
-    
-    
-
-     */
-
-    
     static NSString *CellIdentifier = @"photoCell";
     
     NewestPhotoCell *cell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -123,23 +108,56 @@
     
     NewestPhotos *photo = [self.newestPhotos objectAtIndex:indexPath.row];
     
-    if (photo.title != nil)
-        [cell label].text=photo.title;
+    // title
+    [cell label].text=photo.title;
     
+    // days or hours
+    NSMutableString *dateText = [[NSMutableString alloc]initWithString:@"This photo was taken "];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
+      
+    NSInteger days = interval/86400;
+    if (days >= 2){
+        // lets show in days
+        [dateText appendFormat:@"%i days ago",days];
+    }else{
+        // lets show in hours
+        NSInteger hours = interval / 3600;
+        if (hours<1){
+            [dateText appendString:@"less than one hour ago"];
+        }else {
+            if (hours == 1){
+                [dateText appendString:@"one hour ago"];
+            }else {
+                [dateText appendFormat:@"%i hours ago",hours];
+            }
+        }
+    }
+    
+    [cell date].text=dateText;
+    [dateText release];
+    
+    // tags
+    [cell tags].text=photo.tags;
     
     //Load images from web asynchronously with GCD 
-    if(!photo.photoData){
-        //   [cell.activity startAnimating];
-        //   [cell.activity setHidden:FALSE];
-        //   [cell.activity setHidesWhenStopped:YES];
+    if(!photo.photoData && photo.photoUrl){
+        cell.photo.hidden = YES;
+        [cell.activity startAnimating];
+        cell.activity.hidden = NO;
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
+            NSLog(@"URL do download is = %@",photo.photoUrl);
             dispatch_sync(dispatch_get_main_queue(), ^{
                 photo.photoData = data;
                 UIImage *thumbnail = [UIImage imageWithData:data];
+                
+                // set details on cell
+                [cell.activity stopAnimating];
+                cell.activity.hidden = YES;
+                cell.photo.hidden = NO;               
                 cell.photo.image = thumbnail;
-                //     [cell.activity stopAnimating];
+                
                 [self.tableView beginUpdates];
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                       withRowAnimation:UITableViewRowAnimationNone];
@@ -155,7 +173,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 314;
+    return 365;
 }
 
 
@@ -234,7 +252,7 @@
     [newestPhotos release];
     [uploads release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
+    
     [super dealloc];
 }
 

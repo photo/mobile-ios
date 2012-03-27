@@ -50,6 +50,10 @@
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
     if ([key isEqualToString:@"TestFlighFeed"]){
         [TestFlight openFeedbackView];
+    }else if ([key isEqualToString:@"CleanCache"]){
+        [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+        [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+        [Uploads deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     }
 }
 
