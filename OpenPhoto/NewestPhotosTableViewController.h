@@ -23,6 +23,9 @@
 #import "Uploads+OpenPhoto.h"
 #import "OpenPhotoServiceFactory.h"
 
+#import "NewestPhotoCell.h"
+#import "UploadCell.h"
+
 @interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>{
     
     EGORefreshTableHeaderView *_refreshHeaderView;
