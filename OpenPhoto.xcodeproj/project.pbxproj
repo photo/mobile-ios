@@ -34,7 +34,6 @@
 		CD22B37A151B58DF0077A615 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B371151B58DF0077A615 /* whiteArrow.png */; };
 		CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B372151B58DF0077A615 /* whiteArrow@2x.png */; };
 		CD22B385151B745E0077A615 /* NewestPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */; };
-		CD22B388151B77140077A615 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B387151B77140077A615 /* NewestPhotos.m */; };
 		CD22B38B151B7DD30077A615 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B38A151B7DD30077A615 /* CoreDataTableViewController.m */; };
 		CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B38D151B89290077A615 /* OpenPhotoService.m */; };
 		CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */; };
@@ -182,6 +181,7 @@
 		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
+		CDB4588C1522052E000CA108 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB4588B1522052E000CA108 /* NewestPhotos.m */; };
 		CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */; };
 		CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3886A1521AF2D0072CC66 /* UploadCell.m */; };
 		CDC3886D1521AF410072CC66 /* NewestPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3886C1521AF410072CC66 /* NewestPhotoCell.xib */; };
@@ -496,8 +496,6 @@
 		CD22B372151B58DF0077A615 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NewestPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
 		CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NewestPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
-		CD22B386151B77140077A615 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
-		CD22B387151B77140077A615 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
 		CD22B389151B7DD30077A615 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		CD22B38A151B7DD30077A615 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		CD22B38C151B89290077A615 /* OpenPhotoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoService.h; sourceTree = "<group>"; };
@@ -751,6 +749,8 @@
 		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
 		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		CDB4588A1522052E000CA108 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
+		CDB4588B1522052E000CA108 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
 		CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
 		CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotoCell.m; sourceTree = "<group>"; };
 		CDC388691521AF2D0072CC66 /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
@@ -1570,8 +1570,8 @@
 				CD22B393151CCAD00077A615 /* Uploads.m */,
 				CDE211021518CD23002C80F8 /* Uploads+OpenPhoto.h */,
 				CDE211031518CD23002C80F8 /* Uploads+OpenPhoto.m */,
-				CD22B386151B77140077A615 /* NewestPhotos.h */,
-				CD22B387151B77140077A615 /* NewestPhotos.m */,
+				CDB4588A1522052E000CA108 /* NewestPhotos.h */,
+				CDB4588B1522052E000CA108 /* NewestPhotos.m */,
 				CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */,
 				CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */,
 			);
@@ -2386,7 +2386,6 @@
 				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
 				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
 				CD22B385151B745E0077A615 /* NewestPhotos+OpenPhoto.m in Sources */,
-				CD22B388151B77140077A615 /* NewestPhotos.m in Sources */,
 				CD22B38B151B7DD30077A615 /* CoreDataTableViewController.m in Sources */,
 				CD22B38E151B89290077A615 /* OpenPhotoService.m in Sources */,
 				CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */,
@@ -2394,6 +2393,7 @@
 				CDCB02DB15208837009C08D8 /* NewestPhotosTableViewController.m in Sources */,
 				CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */,
 				CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */,
+				CDB4588C1522052E000CA108 /* NewestPhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
