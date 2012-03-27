@@ -24,11 +24,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE
 //
+#import "NewestPhotosTableViewController.h"
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"
 #import "HomeViewController.h"
-#import "NewestPhotosTableViewController.h"
 #import "TagViewController.h"
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"

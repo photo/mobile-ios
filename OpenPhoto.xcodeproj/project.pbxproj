@@ -182,6 +182,10 @@
 		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
+		CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */; };
+		CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3886A1521AF2D0072CC66 /* UploadCell.m */; };
+		CDC3886D1521AF410072CC66 /* NewestPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3886C1521AF410072CC66 /* NewestPhotoCell.xib */; };
+		CDC3886F1521AF530072CC66 /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3886E1521AF520072CC66 /* UploadCell.xib */; };
 		CDC8993A146364E900C50A00 /* libAviarySDK-universal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDC89939146364E900C50A00 /* libAviarySDK-universal.a */; };
 		CDC8993D146364F400C50A00 /* AviarySDK-Core.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993B146364F400C50A00 /* AviarySDK-Core.bundle */; };
 		CDC8993E146364F400C50A00 /* AviarySDK-Plugins.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDC8993C146364F400C50A00 /* AviarySDK-Plugins.bundle */; };
@@ -747,6 +751,12 @@
 		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
 		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
+		CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotoCell.m; sourceTree = "<group>"; };
+		CDC388691521AF2D0072CC66 /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
+		CDC3886A1521AF2D0072CC66 /* UploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCell.m; sourceTree = "<group>"; };
+		CDC3886C1521AF410072CC66 /* NewestPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotoCell.xib; sourceTree = "<group>"; };
+		CDC3886E1521AF520072CC66 /* UploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCell.xib; sourceTree = "<group>"; };
 		CDC89937146364E000C50A00 /* AFFeatherConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherConstants.h; path = Frameworks/Aviary/Headers/AFFeatherConstants.h; sourceTree = "<group>"; };
 		CDC89938146364E000C50A00 /* AFFeatherController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFFeatherController.h; path = Frameworks/Aviary/Headers/AFFeatherController.h; sourceTree = "<group>"; };
 		CDC89939146364E900C50A00 /* libAviarySDK-universal.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libAviarySDK-universal.a"; path = "Frameworks/Aviary/libAviarySDK-universal.a"; sourceTree = "<group>"; };
@@ -1806,6 +1816,12 @@
 				CDF4465313E1C6DC007E8F72 /* HomeViewController.m */,
 				CDCB02D915208837009C08D8 /* NewestPhotosTableViewController.h */,
 				CDCB02DA15208837009C08D8 /* NewestPhotosTableViewController.m */,
+				CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */,
+				CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */,
+				CDC3886C1521AF410072CC66 /* NewestPhotoCell.xib */,
+				CDC388691521AF2D0072CC66 /* UploadCell.h */,
+				CDC3886A1521AF2D0072CC66 /* UploadCell.m */,
+				CDC3886E1521AF520072CC66 /* UploadCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -2191,6 +2207,8 @@
 				CD22B379151B58DF0077A615 /* grayArrow@2x.png in Resources */,
 				CD22B37A151B58DF0077A615 /* whiteArrow.png in Resources */,
 				CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */,
+				CDC3886D1521AF410072CC66 /* NewestPhotoCell.xib in Resources */,
+				CDC3886F1521AF530072CC66 /* UploadCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2374,6 +2392,8 @@
 				CD22B391151C6B7A0077A615 /* OpenPhotoServiceFactory.m in Sources */,
 				CD22B394151CCAD10077A615 /* Uploads.m in Sources */,
 				CDCB02DB15208837009C08D8 /* NewestPhotosTableViewController.m in Sources */,
+				CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */,
+				CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

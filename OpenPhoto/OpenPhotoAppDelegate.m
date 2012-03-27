@@ -39,6 +39,11 @@
     [TestFlight passCheckpoint:@"Started App"];
 #endif
     
+    // in development phase we use the UID of user
+#ifdef DEVELOPMENT_ENABLED
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
+    
     UpdateUtilities *updater = [UpdateUtilities instance];
     if ([updater needsUpdate] == YES){
         NSLog(@"App needs to be updated");
