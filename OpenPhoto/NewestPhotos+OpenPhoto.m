@@ -99,7 +99,7 @@
                 if ([title class] == [NSNull class])
                     newest.title = @"";
                 else
-                    newest.title =title;
+                    newest.title = title;
                 
                 
                 newest.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];

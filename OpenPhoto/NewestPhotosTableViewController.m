@@ -73,7 +73,7 @@
 		[view release];
 		
 	}
-	
+    
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
     
@@ -97,29 +97,49 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+         /* 
+    static NSString *CellIdentifier = @"NewestPhotosCell";
     
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    //  NewestPhotosCell *cell = (NewestPhotosCell*) [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    if (self.cell == nil) {
+        //     self.cell = [[[NewestPhotosCell alloc] initWithStyle:UITableViewCellStyleDefault 
+    reuseIdentifier:CellIdentifier]            autorelease];
     }
     
     
+
+     */
+
+    
+    static NSString *CellIdentifier = @"photoCell";
+    
+    NewestPhotoCell *cell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"NewestPhotoCell" owner:nil options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
+    }
+    
     NewestPhotos *photo = [self.newestPhotos objectAtIndex:indexPath.row];
-  
+    
     if (photo.title != nil)
-    cell.textLabel.text=photo.title;
-	
+        [cell label].text=photo.title;
+    
     
     //Load images from web asynchronously with GCD 
     if(!photo.photoData){
+        //   [cell.activity startAnimating];
+        //   [cell.activity setHidden:FALSE];
+        //   [cell.activity setHidesWhenStopped:YES];
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 photo.photoData = data;
                 UIImage *thumbnail = [UIImage imageWithData:data];
-                cell.imageView.image = thumbnail;
+                cell.photo.image = thumbnail;
+                //     [cell.activity stopAnimating];
                 [self.tableView beginUpdates];
                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                       withRowAnimation:UITableViewRowAnimationNone];
@@ -127,11 +147,15 @@
                 
             });
         });
+    }else{
+        cell.photo.image = [UIImage imageWithData:photo.photoData];
     }
-    else
-        cell.imageView.image = [UIImage imageWithData:photo.photoData];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 314;
 }
 
 
