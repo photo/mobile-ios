@@ -171,6 +171,10 @@ static OpenPhotoService* _instance = nil;
     }
 }
 
+- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete
+{
+}
+
 - (void) validateCredentials{
     
     // validate if the singleton has all details for the account
@@ -198,6 +202,15 @@ static OpenPhotoService* _instance = nil;
     
     // another kind of message
     return YES;
+}
+
++ (BOOL) isCredentialsValid
+{
+    return YES;
+}
+
++ (void) removeCredentials
+{
 }
 
 @end
