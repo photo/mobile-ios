@@ -34,6 +34,11 @@
                           consumerSecret:(NSString *) consumerSecret;
 
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult;
+- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete;
+
+
 
 + (BOOL) isMessageValid:(NSDictionary *)response;
++ (BOOL) isCredentialsValid;
++ (void) removeCredentials;
 @end
