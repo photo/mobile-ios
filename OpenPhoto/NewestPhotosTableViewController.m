@@ -97,83 +97,111 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"photoCell";
+    static NSString *photoCellIdentifier = @"photoCell";
+    static NSString *uploadCellIdentifier = @"uploadCell";
     
-    NewestPhotoCell *cell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell == nil) {
-        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"NewestPhotoCell" owner:nil options:nil];
-        cell = [topLevelObjects objectAtIndex:0];
-    }
-    
-    NewestPhotos *photo = [self.newestPhotos objectAtIndex:indexPath.row];
-    
-    // title
-    [cell label].text=photo.title;
-    
-    // days or hours
-    NSMutableString *dateText = [[NSMutableString alloc]initWithString:@"This photo was taken "];
-    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
-    
-    NSInteger days = interval/86400;
-    if (days >= 2){
-        // lets show in days
-        [dateText appendFormat:@"%i days ago",days];
+    // first decide if we have to show a upload cell or photo cell
+    if ([self.uploads count] > 0 && indexPath.row < [self.uploads count]){
+        // in this case, we have uploads and the cell must be a upload cell
+        UploadCell *uploadCell= (UploadCell *)[tableView dequeueReusableCellWithIdentifier:uploadCellIdentifier];
+        
+        if (uploadCell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"UploadCell" owner:nil options:nil];
+            uploadCell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        return uploadCell;
     }else{
-        // lets show in hours
-        NSInteger hours = interval / 3600;
-        if (hours<1){
-            [dateText appendString:@"less than one hour ago"];
-        }else {
-            if (hours == 1){
-                [dateText appendString:@"one hour ago"];
+        int newestPhotosIndex = indexPath.row;
+        if ([self.uploads count] > 0 && indexPath.row >= [self.uploads count]){
+            // in this case, we have uploads but the cell to show is a photo cell
+            newestPhotosIndex = indexPath.row - [self.uploads count];
+        }    
+        
+        
+        
+        
+        NewestPhotoCell *newestPhotoCell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:photoCellIdentifier];
+        
+        if (newestPhotoCell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"NewestPhotoCell" owner:nil options:nil];
+            newestPhotoCell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        NewestPhotos *photo = [self.newestPhotos objectAtIndex:newestPhotosIndex];
+        
+        // title
+        [newestPhotoCell label].text=photo.title;
+        
+        // days or hours
+        NSMutableString *dateText = [[NSMutableString alloc]initWithString:@"This photo was taken "];
+        NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
+        
+        NSInteger days = interval/86400;
+        if (days >= 2){
+            // lets show in days
+            [dateText appendFormat:@"%i days ago",days];
+        }else{
+            // lets show in hours
+            NSInteger hours = interval / 3600;
+            if (hours<1){
+                [dateText appendString:@"less than one hour ago"];
             }else {
-                [dateText appendFormat:@"%i hours ago",hours];
+                if (hours == 1){
+                    [dateText appendString:@"one hour ago"];
+                }else {
+                    [dateText appendFormat:@"%i hours ago",hours];
+                }
             }
         }
-    }
-    
-    [cell date].text=dateText;
-    [dateText release];
-    
-    // tags
-    [cell tags].text=photo.tags;
-    
-    //Load images from web asynchronously with GCD 
-    if(!photo.photoData && photo.photoUrl){
-        cell.photo.hidden = YES;
-        [cell.activity startAnimating];
-        cell.activity.hidden = NO;
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
-            NSLog(@"URL do download is = %@",photo.photoUrl);
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                photo.photoData = data;
-                UIImage *thumbnail = [UIImage imageWithData:data];
-                
-                // set details on cell
-                [cell.activity stopAnimating];
-                cell.activity.hidden = YES;
-                cell.photo.hidden = NO;               
-                cell.photo.image = thumbnail;
-                
-                [self.tableView beginUpdates];
-                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                                      withRowAnimation:UITableViewRowAnimationNone];
-                [self.tableView endUpdates]; 
-                
+        [newestPhotoCell date].text=dateText;
+        [dateText release];
+        
+        // tags
+        [newestPhotoCell tags].text=photo.tags;
+        
+        //Load images from web asynchronously with GCD 
+        if(!photo.photoData && photo.photoUrl){
+            newestPhotoCell.photo.hidden = YES;
+            [newestPhotoCell.activity startAnimating];
+            newestPhotoCell.activity.hidden = NO;
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
+                NSLog(@"URL do download is = %@",photo.photoUrl);
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    photo.photoData = data;
+                    UIImage *thumbnail = [UIImage imageWithData:data];
+                    
+                    // set details on cell
+                    [newestPhotoCell.activity stopAnimating];
+                    newestPhotoCell.activity.hidden = YES;
+                    newestPhotoCell.photo.hidden = NO;               
+                    newestPhotoCell.photo.image = thumbnail;
+                    
+                    [self.tableView beginUpdates];
+                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                          withRowAnimation:UITableViewRowAnimationNone];
+                    [self.tableView endUpdates]; 
+                    
+                });
             });
-        });
-    }else{
-        cell.photo.image = [UIImage imageWithData:photo.photoData];
+        }else{
+            newestPhotoCell.photo.image = [UIImage imageWithData:photo.photoData];
+        }
+        
+        return newestPhotoCell;
     }
-    
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 365;
+    if ([self.uploads count] > 0 && indexPath.row < [self.uploads count]){
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }else{
+        return 365;
+    }
+    
 }
 
 
