@@ -27,11 +27,11 @@
     [[TTURLRequestQueue mainQueue] setMaxContentLength:0];
     
     // Configure the in-memory image cache to keep approximately
-    // 10 images in memory, assuming that each picture's dimensions
-    // are 320x480. Note that your images can have whatever dimensions
+    // 20 images in memory, assuming that each picture's dimensions
+    // are 640x960. Note that your images can have whatever dimensions
     // you want, I am just setting this to a reasonable value
     // since the default is unlimited.
-    [[TTURLCache sharedCache] setMaxPixelCount:10*640*960];
+    [[TTURLCache sharedCache] setMaxPixelCount:20*640*960];
     
 #ifdef TEST_FLIGHT_ENABLED
     // to start the TestFlight SDK

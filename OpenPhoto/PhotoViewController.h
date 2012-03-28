@@ -17,20 +17,13 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import "ImageManipulation.h"
 #import "TagViewController.h"
-#import "MBProgressHUD.h"
 #import "AFFeatherController.h"
-#import "CoreLocationController.h"
-#import "OpenPhotoAppDelegate.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import "ASIFormDataRequest.h"
-#import "ASIHTTPRequest.h"
 #import "AssetsLibraryUtilities.h"
 #import "QSUtilities.h"
-#import "NSString+SBJSON.h"
+#import "UploadPhotos+OpenPhoto.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate, MBProgressHUDDelegate>{
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
     
     IBOutlet UITextField *imageTitle;
     
@@ -47,16 +40,6 @@
     
     TagViewController *tagController;
     UIImagePickerControllerSourceType sourceType;
-    
-    // for uploading
-    MBProgressHUD *HUD;
-    
-    // to check if there is connection
-    WebService *service;
-    
-    
-    // filename to delete
-    NSString *fileNameToDelete;
 }
 
 
@@ -73,9 +56,6 @@
 
 @property (nonatomic, retain) TagViewController *tagController;
 @property (nonatomic) UIImagePickerControllerSourceType sourceType;    
-@property (nonatomic, retain) WebService *service;
-
-@property (nonatomic, retain) NSString *fileNameToDelete;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photoUrl:(NSURL *) url photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
 - (IBAction)upload:(id)sender;

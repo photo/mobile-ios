@@ -53,7 +53,7 @@
     }else if ([key isEqualToString:@"CleanCache"]){
         [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-        [Uploads deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+        [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     }
 }
 

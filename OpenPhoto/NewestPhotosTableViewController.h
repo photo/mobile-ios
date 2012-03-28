@@ -20,7 +20,7 @@
 
 #import "EGORefreshTableHeaderView.h"
 #import "NewestPhotos+OpenPhoto.h"
-#import "Uploads+OpenPhoto.h"
+#import "UploadPhotos+OpenPhoto.h"
 #import "OpenPhotoServiceFactory.h"
 
 #import "NewestPhotoCell.h"
