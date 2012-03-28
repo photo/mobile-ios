@@ -1,5 +1,5 @@
 //
-//  Uploads+OpenPhoto.m
+//  UploadPhotos+OpenPhoto.m
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,9 +18,9 @@
 //  limitations under the License.
 //
 
-#import "Uploads+OpenPhoto.h"
+#import "UploadPhotos+OpenPhoto.h"
 
-@implementation Uploads (OpenPhoto)
+@implementation UploadPhotos (OpenPhoto)
 
 //
 // Constast for Upload Status
@@ -30,9 +30,16 @@ NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
 
+//
+// Constansts for the Source
+//
+NSString * const kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary=@"SourceTypePhotoLibrary";
+NSString * const kUploadSourceUIImagePickerControllerSourceTypeCamera=@"SourceTypeCamera";
+NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=@"SourceTypeSavedPhotosAlbum";
 
-+ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Uploads"];
+
++ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UploadPhotos"];
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -45,7 +52,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
     }
     
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (Uploads *model in matches) {
+    for (UploadPhotos *model in matches) {
         [result addObject:model];
     }
     
@@ -54,7 +61,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
 }
 
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context{
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Uploads"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UploadPhotos"];
     
     // status not Uploaded
     request.predicate= [NSPredicate predicateWithFormat:@"status != %@", kUploadStatusTypeUploaded];   
@@ -70,7 +77,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
     }
     
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (Uploads *model in matches) {
+    for (UploadPhotos *model in matches) {
         [result addObject:model];
     }
     
@@ -80,7 +87,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
 
 + (void) deleteAllUploadsInManagedObjectContext:(NSManagedObjectContext *)context{
     NSFetchRequest *allUploads = [[NSFetchRequest alloc] init];
-    [allUploads setEntity:[NSEntityDescription entityForName:@"Uploads" inManagedObjectContext:context]];
+    [allUploads setEntity:[NSEntityDescription entityForName:@"UploadPhotos" inManagedObjectContext:context]];
     [allUploads setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
     NSError *error = nil;

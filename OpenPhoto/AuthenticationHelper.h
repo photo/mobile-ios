@@ -20,7 +20,7 @@
 #import "WebService.h"
 #import "PhotoModel+OpenPhoto.h"
 #import "NewestPhotos+OpenPhoto.h"
-#import "Uploads+OpenPhoto.h"
+#import "UploadPhotos+OpenPhoto.h"
 
 @interface AuthenticationHelper : NSObject{
     WebService* webService;

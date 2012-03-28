@@ -78,7 +78,7 @@
 	[_refreshHeaderView refreshLastUpdatedDate];
     
     // set details for uploads
-    self.uploads = [Uploads getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.uploads = [UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     
     // set details for newestPhotos
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
@@ -182,7 +182,7 @@
 
 - (void)doneLoadingTableViewData{
 	//  model should call this when its done loading
-    self.uploads = [Uploads getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.uploads = [UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
     [self.tableView reloadData];
     
@@ -281,5 +281,13 @@
         });
     });
     dispatch_release(loadNewestPhotos);
+}
+
+- (void) notifyUserNoInternet{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    // problem with internet, show message to user
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 @end

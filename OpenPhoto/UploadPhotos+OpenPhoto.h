@@ -1,5 +1,5 @@
 //
-//  Uploads+OpenPhoto.h
+//  UploadPhotos+OpenPhoto.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -18,15 +18,18 @@
 //  limitations under the License.
 //
 
-#import "Uploads.h"
+#import "UploadPhotos.h"
 
-@interface Uploads (OpenPhoto)
+@interface UploadPhotos (OpenPhoto)
 
 // constant
 extern NSString * const kUploadStatusTypeCreated;
 extern NSString * const kUploadStatusTypeFailed;
 extern NSString * const kUploadStatusTypeUploaded;
 extern NSString * const kUploadStatusTypeUploading;
+extern NSString * const kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
+extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeCamera;
+extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
 
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context;

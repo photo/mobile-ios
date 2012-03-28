@@ -21,21 +21,23 @@
         <attribute name="counter" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Uploads" representedClassName="Uploads" syncable="YES">
+    <entity name="UploadPhotos" representedClassName="UploadPhotos" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="facebook" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filtered" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="filteredImage" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="permissionPrivate" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="135"/>
         <element name="Photos" positionX="160" positionY="192" width="128" height="150"/>
         <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="Uploads" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>

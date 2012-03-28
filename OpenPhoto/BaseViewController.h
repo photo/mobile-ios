@@ -36,6 +36,8 @@
 #import "OpenPhotoIASKAppSettingsViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
+#import "CoreLocationController.h"
+
 
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate>{
