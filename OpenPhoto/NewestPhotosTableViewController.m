@@ -114,7 +114,7 @@
     // days or hours
     NSMutableString *dateText = [[NSMutableString alloc]initWithString:@"This photo was taken "];
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
-      
+    
     NSInteger days = interval/86400;
     if (days >= 2){
         // lets show in days

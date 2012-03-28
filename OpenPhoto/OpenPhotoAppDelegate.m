@@ -91,7 +91,10 @@
 - (void) openTab:(int) position{
     NSLog(@"Opening the tab with position id = %i",position);
     if (position == 0 || position == 1 || position == 3 || position == 4){
-    [self.viewController setSelectedIndex:position];
+        UIViewController *controller = self.window.rootViewController;
+        if ([controller isKindOfClass:[OpenPhotoViewController class]]){
+            [((OpenPhotoViewController*) controller) setSelectedIndex:position];
+        }
     }else{
         NSException *exception = [NSException exceptionWithName: @"IncorrectPosition"
                                                          reason: [NSString stringWithFormat:@"Position %i is not support to open the tab. Please, select 0,1,3 or 4",position]
