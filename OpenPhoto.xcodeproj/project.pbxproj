@@ -19,6 +19,10 @@
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
 		CD152DB315239BF000001DDE /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD152DB215239BF000001DDE /* UploadPhotos.m */; };
+		CD152DFB1523B2A300001DDE /* upload-cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF71523B2A300001DDE /* upload-cancel.png */; };
+		CD152DFC1523B2A300001DDE /* upload-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF81523B2A300001DDE /* upload-cancel@2x.png */; };
+		CD152DFD1523B2A300001DDE /* upload-retry.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF91523B2A300001DDE /* upload-retry.png */; };
+		CD152DFE1523B2A300001DDE /* upload-retry@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DFA1523B2A300001DDE /* upload-retry@2x.png */; };
 		CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B751506BC0100BFC316 /* CoreLocationController.m */; };
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
@@ -476,6 +480,10 @@
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CD152DB115239BF000001DDE /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
 		CD152DB215239BF000001DDE /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
+		CD152DF71523B2A300001DDE /* upload-cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel.png"; path = "OpenPhoto/images/upload-cancel.png"; sourceTree = SOURCE_ROOT; };
+		CD152DF81523B2A300001DDE /* upload-cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel@2x.png"; path = "OpenPhoto/images/upload-cancel@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD152DF91523B2A300001DDE /* upload-retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-retry.png"; path = "OpenPhoto/images/upload-retry.png"; sourceTree = SOURCE_ROOT; };
+		CD152DFA1523B2A300001DDE /* upload-retry@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-retry@2x.png"; path = "OpenPhoto/images/upload-retry@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD199B741506BC0100BFC316 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CD199B751506BC0100BFC316 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD199B771506E12400BFC316 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
@@ -1704,6 +1712,10 @@
 		CDF1C97413E1C45C0018AD0B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD152DF71523B2A300001DDE /* upload-cancel.png */,
+				CD152DF81523B2A300001DDE /* upload-cancel@2x.png */,
+				CD152DF91523B2A300001DDE /* upload-retry.png */,
+				CD152DFA1523B2A300001DDE /* upload-retry@2x.png */,
 				CDE2110E1518DEC3002C80F8 /* button-activity-active.png */,
 				CDE2110F1518DEC4002C80F8 /* button-activity-active@2x.png */,
 				CDE211101518DEC4002C80F8 /* button-activity-deactive.png */,
@@ -2209,6 +2221,10 @@
 				CD22B37B151B58DF0077A615 /* whiteArrow@2x.png in Resources */,
 				CDC3886D1521AF410072CC66 /* NewestPhotoCell.xib in Resources */,
 				CDC3886F1521AF530072CC66 /* UploadCell.xib in Resources */,
+				CD152DFB1523B2A300001DDE /* upload-cancel.png in Resources */,
+				CD152DFC1523B2A300001DDE /* upload-cancel@2x.png in Resources */,
+				CD152DFD1523B2A300001DDE /* upload-retry.png in Resources */,
+				CD152DFE1523B2A300001DDE /* upload-retry@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
