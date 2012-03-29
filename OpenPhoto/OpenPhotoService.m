@@ -23,6 +23,7 @@
 - (NSArray *) sendSynchronousRequest:(NSString *) request;
 - (void) validateCredentials;
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url;
+- (NSString *) contentTypeForImageData:(NSData *)data;
 
 @property (nonatomic, retain, readwrite) NSString *server;
 @property (nonatomic, retain, readwrite) NSString *oAuthKey;
@@ -154,7 +155,7 @@ static OpenPhotoService* _instance = nil;
     }
 }
 
-- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values
+- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
 {
     [self validateCredentials];
     
@@ -199,7 +200,7 @@ static OpenPhotoService* _instance = nil;
     // add the file in the multipart. This file is stored locally for perfomance reason. We don't have to load it
     // in memory. If it is a picture with filter, we just send without giving the name 
     // and content type
-    [asiRequest addData:data withFileName:@"test_name.jpg" andContentType:@"image/jpg" forKey:@"photo"];
+    [asiRequest addData:data  withFileName:fileName andContentType:[self contentTypeForImageData:data] forKey:@"photo"];
     [asiRequest startSynchronous];
     
     // check the valid result
@@ -216,6 +217,24 @@ static OpenPhotoService* _instance = nil;
                                                        userInfo: nil];
         @throw exception;
     }  
+}
+
+- (NSString *) contentTypeForImageData:(NSData *)data {
+    uint8_t c;
+    [data getBytes:&c length:1];
+    
+    switch (c) {
+        case 0xFF:
+            return @"image/jpeg";
+        case 0x89:
+            return @"image/png";
+        case 0x47:
+            return @"image/gif";
+        case 0x49:
+        case 0x4D:
+            return @"image/tiff";
+    }
+    return nil;
 }
 
 - (void) validateCredentials{
