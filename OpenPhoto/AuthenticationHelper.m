@@ -67,6 +67,7 @@
     [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [[AppDelegate managedObjectContext] reset];    
     
     // TODO remove credentials. Need API for it.   
     

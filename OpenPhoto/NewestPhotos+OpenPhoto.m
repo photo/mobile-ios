@@ -52,17 +52,17 @@
     if (error){
         NSLog(@"Error getting newest photos to delete all from managed object context = %@",[error localizedDescription]);
     }
-    
-    // now we can release the object
-    [fetchRequest release];
-    
+       
     for (NSManagedObject *photo in photos) {
         [context deleteObject:photo];
     }
     NSError *saveError = nil;
     if (![context save:&saveError]){
         NSLog(@"Error delete all newest photos from managed object context = %@",[error localizedDescription]);
-    } 
+    }
+    
+    // now we can release the object
+    [fetchRequest release];
 }
 
 + (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context{

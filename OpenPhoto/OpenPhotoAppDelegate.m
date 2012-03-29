@@ -222,8 +222,7 @@
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
     }
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
-                                               stringByAppendingPathComponent: @"OpenPhotoCoreData.sqlite"]];
+    NSURL *storeUrl = [self getStoreUrl];
     
     // automatic update
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -267,6 +266,10 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+- (NSURL *) getStoreUrl{
+    return [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
+                                    stringByAppendingPathComponent: @"OpenPhotoCoreData.sqlite"]];
+}
 
 - (void)dealloc
 {
