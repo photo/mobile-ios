@@ -20,8 +20,17 @@
 }
 
 // test upload form
--(void) uploadPhoto{
+-(void) testUploadPhoto{
     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-    [service fetchNewestPhotosMaxResult:5];
+    
+    NSArray *keys = [NSArray arrayWithObjects: @"title", @"permission",@"tags",nil];
+    NSArray *objects = [NSArray arrayWithObjects:@"Image from iPhone unit test", [NSNumber numberWithBool:YES], @"", nil];   
+    NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    
+    // load a test image
+    NSData *image = UIImageJPEGRepresentation([UIImage imageNamed:@"unit_test_image.jpg"], 0.7);
+    
+    // send image
+    [service uploadPicture:image metadata:values];
 }
 @end

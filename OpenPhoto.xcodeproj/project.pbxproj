@@ -178,6 +178,7 @@
 		CD9D6FC514D48716008E2078 /* register-button-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */; };
 		CD9D6FC814D48716008E2078 /* register-input-server.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC014D48716008E2078 /* register-input-server.png */; };
 		CD9D6FC914D48716008E2078 /* register-input-server@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9D6FC114D48716008E2078 /* register-input-server@2x.png */; };
+		CDA75EE91524AFB90067881D /* unit_test_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDA75EE81524AFB90067881D /* unit_test_image.jpg */; };
 		CDAD499515049372009F4607 /* AssetsLibraryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAD499415049372009F4607 /* AssetsLibraryUtilities.m */; };
 		CDAE0866144C7C7300625C95 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAE085F144C7C7300625C95 /* TSAlertView.m */; };
 		CDAE0867144C7C7300625C95 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0860144C7C7300625C95 /* TSAlertViewBackground.png */; };
@@ -750,6 +751,7 @@
 		CD9D6FBD14D48716008E2078 /* register-button-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-button-login@2x.png"; path = "OpenPhoto/images/register-button-login@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FC014D48716008E2078 /* register-input-server.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server.png"; path = "OpenPhoto/images/register-input-server.png"; sourceTree = SOURCE_ROOT; };
 		CD9D6FC114D48716008E2078 /* register-input-server@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "register-input-server@2x.png"; path = "OpenPhoto/images/register-input-server@2x.png"; sourceTree = SOURCE_ROOT; };
+		CDA75EE81524AFB90067881D /* unit_test_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = unit_test_image.jpg; sourceTree = "<group>"; };
 		CDAD499315049372009F4607 /* AssetsLibraryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsLibraryUtilities.h; sourceTree = "<group>"; };
 		CDAD499415049372009F4607 /* AssetsLibraryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsLibraryUtilities.m; sourceTree = "<group>"; };
 		CDAE085E144C7C7300625C95 /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAlertView.h; sourceTree = "<group>"; };
@@ -1710,6 +1712,7 @@
 				CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */,
 				CD04BF2815247C7900D844ED /* OpenPhotoServiceTests.h */,
 				CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */,
+				CDA75EE81524AFB90067881D /* unit_test_image.jpg */,
 			);
 			path = OpenPhotoTests;
 			sourceTree = "<group>";
@@ -2239,6 +2242,7 @@
 			files = (
 				CDF1C97813E1C45D0018AD0B /* InfoPlist.strings in Resources */,
 				CDF1C97A13E1C45D0018AD0B /* OpenPhotoTests.h in Resources */,
+				CDA75EE91524AFB90067881D /* unit_test_image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
