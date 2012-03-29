@@ -25,10 +25,39 @@
 
 + (NSString *) getFileNameForDictionary:(NSDictionary *) dictionary
 {
-    return nil;
+    if ([(NSNumber*) [dictionary objectForKey:@"filtered"] boolValue]){
+        // filtered
+        CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
+        
+        // get type of the file
+        NSData *data = [dictionary objectForKey:@"filteredImage"];
+        NSString *extension = [ContentTypeUtilities contentTypeExtensionForImageData:data];
+        
+        return [[NSString alloc] initWithFormat:@"%@.%@",(NSString *) newUniqueIdString,extension];
+    }else{
+        // no filter, image is located on Library
+        NSURL *url = [NSURL URLWithString:[dictionary objectForKey:@"url"]];
+        return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];
+    }
 }
+
+
+
 + (NSData *) getNSDataForDictionary:(NSDictionary *) dictionary
 {
+    BOOL isFiltered = [(NSNumber*) [dictionary objectForKey:@"filtered"] boolValue] ;
+    
+    if (isFiltered){
+        // filtered        
+    }else{
+    // no filter, image is located on Library
+        
+    }
+    
     return nil;
 }
+
+
+
 @end

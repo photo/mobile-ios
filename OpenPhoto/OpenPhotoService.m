@@ -171,7 +171,7 @@
     // add the file in the multipart. This file is stored locally for perfomance reason. We don't have to load it
     // in memory. If it is a picture with filter, we just send without giving the name 
     // and content type
-    [asiRequest addData:data  withFileName:fileName andContentType:[self contentTypeForImageData:data] forKey:@"photo"];
+    [asiRequest addData:data  withFileName:fileName andContentType:[ContentTypeUtilities contentTypeForImageData:data] forKey:@"photo"];
     [asiRequest startSynchronous];
     
     // check the valid result
@@ -188,24 +188,6 @@
                                                        userInfo: nil];
         @throw exception;
     }  
-}
-
-- (NSString *) contentTypeForImageData:(NSData *)data {
-    uint8_t c;
-    [data getBytes:&c length:1];
-    
-    switch (c) {
-        case 0xFF:
-            return @"image/jpeg";
-        case 0x89:
-            return @"image/png";
-        case 0x47:
-            return @"image/gif";
-        case 0x49:
-        case 0x4D:
-            return @"image/tiff";
-    }
-    return nil;
 }
 
 - (void) validateCredentials{
