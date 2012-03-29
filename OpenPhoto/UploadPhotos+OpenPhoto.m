@@ -96,9 +96,6 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
         NSLog(@"Error getting Uploads to delete all from managed object context = %@",[error localizedDescription]);
     }
     
-    // now we can release the object
-    [allUploads release];
-    
     for (NSManagedObject *upload in uploads) {
         [context deleteObject:upload];
     }
@@ -106,6 +103,9 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     if (![context save:&saveError]){
         NSLog(@"Error delete all uploads from managed object context = %@",[error localizedDescription]);
     }   
+    
+    // now we can release the object
+    [allUploads release];
 }
 
 + (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context{

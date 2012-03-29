@@ -34,37 +34,8 @@
 @end
 
 @implementation OpenPhotoService
-static OpenPhotoService* _instance = nil; 
+
 @synthesize server=_server, oAuthKey=_oAuthKey, oAuthSecret=_oAuthSecret, consumerKey = _consumerKey, consumerSecret=_consumerSecret;
-
-+ (OpenPhotoService*) singletonForServer:(NSString *) server 
-                                oAuthKey:(NSString *) oAuthKey 
-                             oAuthSecret:(NSString *) oAuthSecret 
-                             consumerKey:(NSString *) consumerKey 
-                          consumerSecret:(NSString *) consumerSecret{
-    @synchronized([OpenPhotoService class])
-    {
-        if (!_instance){
-            [[self alloc]initForServer:server   oAuthKey:oAuthKey oAuthSecret:oAuthSecret consumerKey:consumerKey consumerSecret:consumerSecret];
-        }
-        
-        return _instance;
-    }
-    
-    return nil;
-}
-
-+(id)alloc
-{
-	@synchronized([OpenPhotoService class])
-	{
-		NSAssert(_instance == nil, @"Attempted to allocate a second instance of a singleton.");
-		_instance = [super alloc];
-		return _instance;
-	}
-    
-	return nil;
-}
 
 -(id)initForServer:(NSString *) server 
           oAuthKey:(NSString *) oAuthKey 
@@ -74,7 +45,7 @@ static OpenPhotoService* _instance = nil;
     
 	self = [super init];
     
-	if (self != nil) {
+	if (self) {
         // set the objects
         self.server = server;
         self.oAuthKey = oAuthKey;
@@ -289,15 +260,6 @@ static OpenPhotoService* _instance = nil;
     
     // another kind of message
     return YES;
-}
-
-+ (BOOL) isCredentialsValid
-{
-    return YES;
-}
-
-+ (void) removeCredentials
-{
 }
 
 @end
