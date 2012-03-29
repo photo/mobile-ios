@@ -37,7 +37,7 @@
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult;
 
 // in the dictionary, we expect: title, permission and tags
-- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values;
+- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName;
 
 
 

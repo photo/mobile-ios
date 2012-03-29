@@ -24,13 +24,15 @@
     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
     
     NSArray *keys = [NSArray arrayWithObjects: @"title", @"permission",@"tags",nil];
-    NSArray *objects = [NSArray arrayWithObjects:@"Image from iPhone unit test", [NSNumber numberWithBool:YES], @"", nil];   
+    NSArray *objects = [NSArray arrayWithObjects:@"", [NSNumber numberWithBool:YES], @"", nil];   
     NSDictionary *values = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
     // load a test image
-    NSData *image = UIImageJPEGRepresentation([UIImage imageNamed:@"unit_test_image.jpg"], 0.7);
-    
+    NSString *filePath = [[NSBundle bundleForClass:[OpenPhotoServiceTests class]] pathForResource:@"unit_test_image"  ofType:@"jpg"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];  
+        
     // send image
-    [service uploadPicture:image metadata:values];
+    [service uploadPicture:data metadata:values fileName:@"unit_test.jpg"];
 }
+
 @end
