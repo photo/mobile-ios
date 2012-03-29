@@ -108,4 +108,18 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     }   
 }
 
++ (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UploadPhotos"];
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
+        [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+       
+    NSError *error = nil;
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    if (error){
+        NSLog(@"Error to get how many uploading = %@",[error localizedDescription]);
+    }
+    
+    return [result count];
+}
+
 @end

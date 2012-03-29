@@ -301,8 +301,7 @@
     
     // permissionPrivate
     uploadInfo.permissionPrivate = ([permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-    
-    
+        
     // source
     if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
@@ -317,8 +316,7 @@
     
     // title
     uploadInfo.title = [QSStrings htmlEntities:(self.titleTextField.text.length > 0 ? self.titleTextField.text : @"")];
-    
-    
+        
     // path    
     if (self.imageFiltered != nil){
         uploadInfo.filtered = [NSNumber numberWithBool:YES];

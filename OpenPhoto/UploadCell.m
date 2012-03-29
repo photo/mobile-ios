@@ -22,6 +22,11 @@
 #import "UploadCell.h"
 
 @implementation UploadCell
+@synthesize thumb;
+@synthesize status;
+@synthesize btnRetry;
+@synthesize btnCancel;
+@synthesize activity;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -39,4 +44,19 @@
     // Configure the view for the selected state
 }
 
+- (void)dealloc {
+    [thumb release];
+    [status release];
+    [btnRetry release];
+    [btnCancel release];
+    [activity release];
+    [super dealloc];
+}
+- (IBAction)refresh:(id)sender {
+    NSLog(@"Pressed refresh button");
+}
+
+- (IBAction)cancel:(id)sender {
+    NSLog(@"Pressed cancel button");
+}
 @end

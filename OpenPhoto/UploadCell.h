@@ -23,4 +23,13 @@
 
 @interface UploadCell : UITableViewCell
 
+@property (retain, nonatomic) IBOutlet UIImageView *thumb;
+@property (retain, nonatomic) IBOutlet UILabel *status;
+@property (retain, nonatomic) IBOutlet UIButton *btnRetry;
+@property (retain, nonatomic) IBOutlet UIButton *btnCancel;
+@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+
+- (IBAction)refresh:(id)sender;
+- (IBAction)cancel:(id)sender;
+
 @end
