@@ -111,8 +111,8 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
 + (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UploadPhotos"];
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
-        [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
-       
+    [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
     if (error){
@@ -120,6 +120,15 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     }
     
     return [result count];
+}
+
+- (NSDictionary *) toDictionary
+{
+    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"url", @"permission", @"source", @"status", @"tags", @"title", @"twitter", @"filtered", @"filteredImage", nil];  
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.url,self.permissionPrivate,self.source,self.status,self.tags,self.twitter,self.filtered,self.filteredImage, nil];  
+    
+    // return the dictionary
+    return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
 
 @end

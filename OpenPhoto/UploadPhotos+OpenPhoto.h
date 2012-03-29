@@ -19,6 +19,7 @@
 //
 
 #import "UploadPhotos.h"
+#import "SHA1.h"
 
 @interface UploadPhotos (OpenPhoto)
 
@@ -35,4 +36,6 @@ extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhoto
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context;
 + (void) deleteAllUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
 + (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context;
+
+- (NSDictionary *) toDictionary;
 @end
