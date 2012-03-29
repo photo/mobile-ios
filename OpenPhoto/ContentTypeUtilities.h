@@ -1,5 +1,5 @@
 //
-//  UploadPhotosHelper.h
+//  ContentTypeUtilities.h
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 29/03/12.
@@ -18,15 +18,10 @@
 //  limitations under the License.
 //
 
-#import "AssetsLibraryUtilities.h"
-#import "ContentTypeUtilities.h"
+#import <Foundation/Foundation.h>
 
-@interface UploadPhotosHelper : NSObject
+@interface ContentTypeUtilities : NSObject
 
-
-// get the file name based on the dictionary created by the UploadPhotos+OpenPhoto
-+ (NSString *) getFileNameForDictionary:(NSDictionary *) dictionary;
-// get the file to upload based on the dictionary created by the UploadPhotos+OpenPhoto
-+ (NSData *) getNSDataForDictionary:(NSDictionary *) dictionary;
-
++ (NSString *) contentTypeForImageData:(NSData *)data;
++ (NSString *) contentTypeExtensionForImageData:(NSData *)data;
 @end

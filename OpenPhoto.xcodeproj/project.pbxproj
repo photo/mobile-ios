@@ -19,6 +19,7 @@
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07A1524EB6500E7D405 /* UploadPhotosHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F0791524EB6500E7D405 /* UploadPhotosHelper.m */; };
+		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
 		CD152DB315239BF000001DDE /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD152DB215239BF000001DDE /* UploadPhotos.m */; };
 		CD152DFB1523B2A300001DDE /* upload-cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF71523B2A300001DDE /* upload-cancel.png */; };
@@ -484,6 +485,8 @@
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD11F0781524EB6500E7D405 /* UploadPhotosHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotosHelper.h; sourceTree = "<group>"; };
 		CD11F0791524EB6500E7D405 /* UploadPhotosHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotosHelper.m; sourceTree = "<group>"; };
+		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
+		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CD152DB115239BF000001DDE /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
 		CD152DB215239BF000001DDE /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
@@ -1886,6 +1889,8 @@
 				CDAD499415049372009F4607 /* AssetsLibraryUtilities.m */,
 				CD199B771506E12400BFC316 /* SHA1.h */,
 				CD199B781506E12500BFC316 /* SHA1.m */,
+				CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */,
+				CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -2425,6 +2430,7 @@
 				CDB4588C1522052E000CA108 /* NewestPhotos.m in Sources */,
 				CD152DB315239BF000001DDE /* UploadPhotos.m in Sources */,
 				CD11F07A1524EB6500E7D405 /* UploadPhotosHelper.m in Sources */,
+				CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

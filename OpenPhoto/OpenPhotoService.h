@@ -23,6 +23,7 @@
 #import "OAToken.h"
 #import "NSString+SBJSON.h"
 #import "ASIFormDataRequest.h"
+#import "ContentTypeUtilities.h"
 
 @interface OpenPhotoService : NSObject{
     
