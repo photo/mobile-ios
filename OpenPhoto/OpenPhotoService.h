@@ -22,6 +22,7 @@
 #import "OAMutableURLRequest.h"
 #import "OAToken.h"
 #import "NSString+SBJSON.h"
+#import "ASIFormDataRequest.h"
 
 @interface OpenPhotoService : NSObject{
     
@@ -34,7 +35,9 @@
                           consumerSecret:(NSString *) consumerSecret;
 
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult;
-- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values filename:(NSString*) fileName fileToDelete:(NSString*) fileToDelete;
+
+// in the dictionary, we expect: title, permission and tags
+- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values;
 
 
 
