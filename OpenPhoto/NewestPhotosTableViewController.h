@@ -21,6 +21,7 @@
 #import "EGORefreshTableHeaderView.h"
 #import "NewestPhotos+OpenPhoto.h"
 #import "UploadPhotos+OpenPhoto.h"
+#import "UploadPhotosHelper.h"
 #import "OpenPhotoServiceFactory.h"
 
 #import "NewestPhotoCell.h"
@@ -35,11 +36,11 @@
     BOOL _reloading;
     
     NSArray *newestPhotos;
-    NSArray *uploads;
+    NSMutableArray *uploads;
 }
 
 @property (nonatomic, retain) NSArray *newestPhotos;
-@property (nonatomic, retain) NSArray *uploads; 
+@property (nonatomic, retain) NSMutableArray *uploads; 
 
 - (void)doneLoadingTableViewData;
 

@@ -142,14 +142,51 @@
                 // start progress bar and update screen
                 [uploadCell.activity startAnimating];
                 
+                NSDictionary *dictionary = [upload toDictionary];
+                
                 // create gcd and start upload
                 dispatch_queue_t uploadQueue = dispatch_queue_create("uploader_queue", NULL);
                 dispatch_async(uploadQueue, ^{
-                    // if it fails for any reason, set status FAILED in the main thread
                     
-                    // if it is processed change the status UPLOADED
-                    
-                    // update the screen
+                    @try{
+
+                        // prepare the data to upload
+                        NSString *filename = [UploadPhotosHelper getFileNameForDictionary:dictionary];
+                        NSData *data = [UploadPhotosHelper getNSDataForDictionary:dictionary];
+                        
+                        // create the service and send the request
+                        OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                        [service uploadPicture:data metadata:dictionary fileName:filename];
+                        
+                        // update the screen
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                        // if it is processed change the status UPLOADED
+                            uploadCell.status.text = kUploadStatusTypeUploaded;
+                            upload.status = kUploadStatusTypeUploaded;
+                            
+                            // reload list
+                            [self.uploads removeObjectAtIndex:indexPath.row];
+                            
+                            // table needs update
+                            [self.tableView reloadData]; 
+                        });
+                    }@catch (NSException* e) {
+                        // if it fails for any reason, set status FAILED in the main thread
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            upload.status = kUploadStatusTypeFailed;
+                            uploadCell.status.text = kUploadStatusTypeFailed;
+                            [self.tableView beginUpdates];
+                            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                                  withRowAnimation:UITableViewRowAnimationFade];
+                            [self.tableView endUpdates]; 
+                            
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
+                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            [alert show];
+                            [alert release];
+                        });
+                        
+                    }
                 });
                 dispatch_release(uploadQueue);
             }else{
@@ -335,14 +372,12 @@
     
     // get factory for OpenPhoto Service
     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-    [service retain];
     
     dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
     dispatch_async(loadNewestPhotos, ^{
         // call the method and get the details
         NSArray *result = [service fetchNewestPhotosMaxResult:5];
         
-        [service release];
         dispatch_async(dispatch_get_main_queue(), ^{
             // let NewestPhotos treat the objects
             [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
