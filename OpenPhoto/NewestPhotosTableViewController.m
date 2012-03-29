@@ -110,6 +110,52 @@
             uploadCell = [topLevelObjects objectAtIndex:0];
         }
         
+        UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
+        
+        // set thumb
+        
+        // set status
+        uploadCell.status.text = upload.status;
+        
+        // decide if we show retry/cancel
+        if (![upload.status isEqualToString:kUploadStatusTypeFailed]) {
+            uploadCell.btnRetry.hidden  = YES;
+            uploadCell.btnCancel.hidden = YES;
+        }
+        
+        // set ativity icon
+        if (![upload.status isEqualToString:kUploadStatusTypeUploading]) {
+            [uploadCell.activity stopAnimating];
+        }
+        
+        // start upload
+        if ([upload.status isEqualToString:kUploadStatusTypeCreated]){
+            // check if there is internet
+            
+            // if not, set as failed
+            
+            // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
+            if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 0 ){
+                uploadCell.status.text = kUploadStatusTypeUploading;
+                upload.status = kUploadStatusTypeUploading;
+                
+                // start progress bar and update screen
+                [uploadCell.activity startAnimating];
+                
+                // create gcd and start upload
+                dispatch_queue_t uploadQueue = dispatch_queue_create("uploader_queue", NULL);
+                dispatch_async(uploadQueue, ^{
+                    // if it fails for any reason, set status FAILED in the main thread
+                    
+                    // if it is processed change the status UPLOADED
+                    
+                    // update the screen
+                });
+                dispatch_release(uploadQueue);
+            }else{
+                NSLog(@"Number max of uploading reached");
+            }
+        }
         return uploadCell;
     }else{
         int newestPhotosIndex = indexPath.row;
@@ -117,9 +163,6 @@
             // in this case, we have uploads but the cell to show is a photo cell
             newestPhotosIndex = indexPath.row - [self.uploads count];
         }    
-        
-        
-        
         
         NewestPhotoCell *newestPhotoCell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:photoCellIdentifier];
         
@@ -201,7 +244,6 @@
     }else{
         return 365;
     }
-    
 }
 
 
@@ -257,7 +299,6 @@
 
 - (void)viewDidUnload
 {
-    
     [super viewDidUnload];
 	_refreshHeaderView=nil;
 }

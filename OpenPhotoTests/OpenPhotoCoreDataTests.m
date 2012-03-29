@@ -91,10 +91,10 @@
 
 - (void) testUploads{
     // delete all
-    [Uploads deleteAllUploadsInManagedObjectContext:self.managedObjectContext];
+    [UploadPhotos deleteAllUploadsInManagedObjectContext:self.managedObjectContext];
     
     // add models with status created, failed, uploaded, uploading
-    Uploads *upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    UploadPhotos *upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
     upload.permissionPrivate = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
@@ -108,7 +108,7 @@
         NSLog(@"Couldn't save: %@", [error localizedDescription]);
     }
     
-    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
     upload.permissionPrivate = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
@@ -121,7 +121,7 @@
         NSLog(@"Couldn't save: %@", [error localizedDescription]);
     }
     
-    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
     upload.permissionPrivate = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
@@ -134,8 +134,7 @@
         NSLog(@"Couldn't save: %@", [error localizedDescription]);
     }
     
-    upload = [NSEntityDescription insertNewObjectForEntityForName:@"Uploads" inManagedObjectContext:self.managedObjectContext];
-    upload.facebook = NO;
+    upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.permissionPrivate = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
     upload.twitter=NO;
@@ -152,12 +151,12 @@
     //
     
     // check if there is 4 entites
-    if (  [[Uploads getUploadsInManagedObjectContext:self.managedObjectContext] count] !=4 ){
+    if (  [[UploadPhotos getUploadsInManagedObjectContext:self.managedObjectContext] count] !=4 ){
         STFail(@"We should have only 4 items in this list");
     }
     
     // check if there 3 that is not in the state Uploaded
-    if (  [[Uploads getUploadsNotUploadedInManagedObjectContext:self.managedObjectContext] count] !=3 ){
+    if (  [[UploadPhotos getUploadsNotUploadedInManagedObjectContext:self.managedObjectContext] count] !=3 ){
         STFail(@"We should have only 3 items in this list");
     }
     
