@@ -78,7 +78,7 @@
 	[_refreshHeaderView refreshLastUpdatedDate];
     
     // set details for uploads
-    self.uploads = [UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]]];
     
     // set details for newestPhotos
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
@@ -289,7 +289,7 @@
 
 - (void)doneLoadingTableViewData{
 	//  model should call this when its done loading
-    self.uploads = [UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]]];
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
     [self.tableView reloadData];
     
