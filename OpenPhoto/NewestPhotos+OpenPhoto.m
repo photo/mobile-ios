@@ -58,7 +58,7 @@
     }
     NSError *saveError = nil;
     if (![context save:&saveError]){
-        NSLog(@"Error delete all newest photos from managed object context = %@",[error localizedDescription]);
+        NSLog(@"Error delete all newest photos from managed object context = %@",[saveError localizedDescription]);
     }
     
     // now we can release the object

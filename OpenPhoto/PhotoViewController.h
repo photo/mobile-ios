@@ -22,6 +22,8 @@
 #import "AssetsLibraryUtilities.h"
 #import "QSUtilities.h"
 #import "UploadPhotos+OpenPhoto.h"
+#import "ContentTypeUtilities.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
     

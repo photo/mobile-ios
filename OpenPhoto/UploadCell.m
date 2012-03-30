@@ -27,6 +27,7 @@
 @synthesize btnRetry;
 @synthesize btnCancel;
 @synthesize activity;
+@synthesize originalObject;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -50,13 +51,28 @@
     [btnRetry release];
     [btnCancel release];
     [activity release];
+    [self.originalObject release];
     [super dealloc];
 }
 - (IBAction)refresh:(id)sender {
     NSLog(@"Pressed refresh button");
+    // change status object originalObject
+    self.originalObject.status=kUploadStatusTypeCreated;
+    
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error on refresh cell = %@",[saveError localizedDescription]);
+    }
 }
 
 - (IBAction)cancel:(id)sender {
     NSLog(@"Pressed cancel button");
+    // delete object originalObject
+    [[AppDelegate managedObjectContext] deleteObject:self.originalObject];
+    
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
+    }
 }
 @end

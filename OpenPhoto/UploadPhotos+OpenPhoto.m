@@ -101,7 +101,7 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     }
     NSError *saveError = nil;
     if (![context save:&saveError]){
-        NSLog(@"Error delete all uploads from managed object context = %@",[error localizedDescription]);
+        NSLog(@"Error delete all uploads from managed object context = %@",[saveError localizedDescription]);
     }   
     
     // now we can release the object
@@ -124,10 +124,9 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
 
 - (NSDictionary *) toDictionary
 {
-    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"url", @"permission", @"source", @"status", @"tags", @"title", @"twitter", @"filtered", @"filteredImage", nil];  
-    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.url,self.permissionPrivate,self.source,self.status,self.tags,self.twitter,self.filtered,self.filteredImage, nil];  
+    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"source", @"status", @"title", @"twitter", @"image", @"fileName", nil];  
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permissionPrivate,self.source,self.status,self.title,self.twitter,self.image,self.fileName, nil];  
     
-    // return the dictionary
     return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
 

@@ -23,7 +23,6 @@
 - (NSArray *) sendSynchronousRequest:(NSString *) request;
 - (void) validateCredentials;
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url;
-- (NSString *) contentTypeForImageData:(NSData *)data;
 
 @property (nonatomic, retain, readwrite) NSString *server;
 @property (nonatomic, retain, readwrite) NSString *oAuthKey;
