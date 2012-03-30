@@ -124,7 +124,6 @@
                 first = NO;
             }
             
-            
             // Get title of the image
             NSString *title = [photo objectForKey:@"title"];
             if ([title class] == [NSNull class])
