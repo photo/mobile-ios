@@ -26,7 +26,7 @@
 #import "NewestPhotoCell.h"
 #import "UploadCell.h"
 
-@interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource>{
+@interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource,UploadCellDelegate>{
     
     EGORefreshTableHeaderView *_refreshHeaderView;
     

@@ -35,6 +35,7 @@ extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhoto
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context;
 + (void) deleteAllUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
++ (void) deleteUploadedInManagedObjectContext:(NSManagedObjectContext *)context;
 + (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context;
 
 - (NSDictionary *) toDictionary;
