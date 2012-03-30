@@ -305,7 +305,7 @@
     uploadInfo.twitter = ([shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // permissionPrivate
-    uploadInfo.permissionPrivate = ([permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    uploadInfo.permission = (![permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // source
     if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){

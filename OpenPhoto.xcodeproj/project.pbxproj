@@ -19,7 +19,7 @@
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
-		CD11F10D152584D800E7D405 /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F10C152584D800E7D405 /* UploadPhotos.m */; };
+		CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F1D81525B84100E7D405 /* UploadPhotos.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
 		CD152DFB1523B2A300001DDE /* upload-cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF71523B2A300001DDE /* upload-cancel.png */; };
 		CD152DFC1523B2A300001DDE /* upload-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF81523B2A300001DDE /* upload-cancel@2x.png */; };
@@ -484,8 +484,8 @@
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
-		CD11F10B152584D800E7D405 /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
-		CD11F10C152584D800E7D405 /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
+		CD11F1D71525B84100E7D405 /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
+		CD11F1D81525B84100E7D405 /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CD152DF71523B2A300001DDE /* upload-cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel.png"; path = "OpenPhoto/images/upload-cancel.png"; sourceTree = SOURCE_ROOT; };
 		CD152DF81523B2A300001DDE /* upload-cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel@2x.png"; path = "OpenPhoto/images/upload-cancel@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -1582,8 +1582,8 @@
 				CDE210FA1518CC84002C80F8 /* Tags.m */,
 				CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */,
 				CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */,
-				CD11F10B152584D800E7D405 /* UploadPhotos.h */,
-				CD11F10C152584D800E7D405 /* UploadPhotos.m */,
+				CD11F1D71525B84100E7D405 /* UploadPhotos.h */,
+				CD11F1D81525B84100E7D405 /* UploadPhotos.m */,
 				CDE211021518CD23002C80F8 /* UploadPhotos+OpenPhoto.h */,
 				CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */,
 				CDB4588A1522052E000CA108 /* NewestPhotos.h */,
@@ -2424,7 +2424,7 @@
 				CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */,
 				CDB4588C1522052E000CA108 /* NewestPhotos.m in Sources */,
 				CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */,
-				CD11F10D152584D800E7D405 /* UploadPhotos.m in Sources */,
+				CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

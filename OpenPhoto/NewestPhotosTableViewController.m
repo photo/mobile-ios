@@ -78,12 +78,20 @@
 	[_refreshHeaderView refreshLastUpdatedDate];
     
     // set details for uploads
-    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]]];
+    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     
     // set details for newestPhotos
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
+    
+    // when loads for the first time, delete all UPLOADED uploads
+    [UploadPhotos deleteUploadedInManagedObjectContext:[AppDelegate managedObjectContext]];
 }
 
+
+- (void) updateNeededForUploadDataSource{
+    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
+    [self.tableView reloadData];
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -138,7 +146,7 @@
             // if not, set as failed
             
             // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
-            if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 0 ){
+            if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
                 uploadCell.status.text = kUploadStatusTypeUploading;
                 upload.status = kUploadStatusTypeUploading;
                 
@@ -166,6 +174,8 @@
                             // if it is processed change the status UPLOADED
                             uploadCell.status.text = kUploadStatusTypeUploaded;
                             upload.status = kUploadStatusTypeUploaded;
+                            // while we do not delete this photo, save space removing the image
+                            upload.image = nil;
                             
                             // reload list
                             [self.uploads removeObjectAtIndex:indexPath.row];
@@ -293,7 +303,7 @@
 
 - (void)doneLoadingTableViewData{
 	//  model should call this when its done loading
-    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsInManagedObjectContext:[AppDelegate managedObjectContext]]];
+    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
     [self.tableView reloadData];
     

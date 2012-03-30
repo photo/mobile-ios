@@ -28,6 +28,7 @@
 @synthesize btnCancel;
 @synthesize activity;
 @synthesize originalObject;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -63,6 +64,8 @@
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error on refresh cell = %@",[saveError localizedDescription]);
     }
+    
+    [self.delegate updateNeededForUploadDataSource];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -74,5 +77,8 @@
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
     }
+    
+    
+    [self.delegate updateNeededForUploadDataSource];
 }
 @end

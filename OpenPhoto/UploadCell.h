@@ -21,7 +21,16 @@
 
 #import "UploadPhotos.h"
 
-@interface UploadCell : UITableViewCell
+
+@protocol UploadCellDelegate <NSObject>
+@required
+- (void) updateNeededForUploadDataSource;
+@end
+
+
+@interface UploadCell : UITableViewCell{
+    id <UploadCellDelegate> delegate;
+}
 
 @property (retain, nonatomic) IBOutlet UIImageView *thumb;
 @property (retain, nonatomic) IBOutlet UILabel *status;
@@ -29,6 +38,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnCancel;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) UploadPhotos *originalObject;
+
+// protocol that will send the response
+@property (retain) id delegate;
 
 - (IBAction)refresh:(id)sender;
 - (IBAction)cancel:(id)sender;

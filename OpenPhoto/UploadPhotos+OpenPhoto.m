@@ -108,6 +108,31 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     [allUploads release];
 }
 
++ (void) deleteUploadedInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *onlyUploadedRequest = [[NSFetchRequest alloc] init];
+    [onlyUploadedRequest setEntity:[NSEntityDescription entityForName:@"UploadPhotos" inManagedObjectContext:context]];
+    // status Uploaded
+    onlyUploadedRequest.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploaded];   
+    [onlyUploadedRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *uploads = [context executeFetchRequest:onlyUploadedRequest error:&error];
+    if (error){
+        NSLog(@"Error to get the uploads with status UPLOADED %@",[error localizedDescription]);
+    }
+    
+    for (NSManagedObject *upload in uploads) {
+        [context deleteObject:upload];
+    }
+    NSError *saveError = nil;
+    if (![context save:&saveError]){
+        NSLog(@"Error delete uploads with status UPLOADED from managed object context = %@",[saveError localizedDescription]);
+    }   
+    
+    // now we can release the object
+    [onlyUploadedRequest release];
+}
+
 + (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"UploadPhotos"];
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
@@ -125,7 +150,7 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
 - (NSDictionary *) toDictionary
 {
     NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"source", @"status", @"title", @"twitter", @"image", @"fileName",@"tags", nil];  
-    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permissionPrivate,self.source,self.status,self.title,self.twitter,self.image,self.fileName,self.tags, nil];  
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permission,self.source,self.status,self.title,self.twitter,self.image,self.fileName,self.tags, nil];  
     
     return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
