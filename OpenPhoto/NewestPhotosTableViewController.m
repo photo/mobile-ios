@@ -124,6 +124,16 @@
         uploadCell.originalObject = upload;
         
         // set thumb
+        CGSize itemSize = CGSizeMake(35, 35);
+        UIGraphicsBeginImageContext(itemSize);
+        
+        UIImage *image =  [UIImage imageWithData:upload.image];
+        [image drawInRect:CGRectMake(0, 0, 35, 35)];
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData* imageData1 =[NSData dataWithData:UIImagePNGRepresentation (image)]; 
+        uploadCell.imageView.image = [UIImage imageWithData:imageData1];   
         
         // set status
         uploadCell.status.text = upload.status;
@@ -186,18 +196,21 @@
                     }@catch (NSException* e) {
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
+                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            [alert show];
+                            [alert release];
+                            
                             upload.status = kUploadStatusTypeFailed;
                             uploadCell.status.text = kUploadStatusTypeFailed;
+                            uploadCell.btnRetry.hidden  = NO;
+                            uploadCell.btnCancel.hidden = NO;
                             
                             [self.tableView beginUpdates];
                             [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                                   withRowAnimation:UITableViewRowAnimationFade];
                             [self.tableView endUpdates]; 
                             
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
-                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                            [alert show];
-                            [alert release];
                         });
                         
                     }
