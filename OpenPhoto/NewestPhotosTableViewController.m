@@ -160,7 +160,7 @@
                         // create the service and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
                         [service uploadPicture:data metadata:dictionary fileName:filename];
-                        
+                        [service release];
                         // update the screen
                         dispatch_async(dispatch_get_main_queue(), ^{
                             // if it is processed change the status UPLOADED
@@ -380,7 +380,7 @@
     dispatch_async(loadNewestPhotos, ^{
         // call the method and get the details
         NSArray *result = [service fetchNewestPhotosMaxResult:5];
-        
+        [service release];
         dispatch_async(dispatch_get_main_queue(), ^{
             // let NewestPhotos treat the objects
             [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
