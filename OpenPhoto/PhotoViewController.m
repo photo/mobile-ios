@@ -22,9 +22,14 @@
 @interface PhotoViewController()
 -(void) switchedFacebook;
 -(void) switchedTwitter;
+
+- (NSString *) getFileNameFilterImage:(BOOL) filtered data:(NSData*)data url:(NSURL*) url;
+
 @end
 
 @implementation PhotoViewController
+
+
 
 @synthesize detailsPictureTable;
 @synthesize urlImageOriginal, imageOriginal, imageFiltered;
@@ -285,7 +290,7 @@
 #endif
     
     UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
-                                                         inManagedObjectContext:[AppDelegate managedObjectContext]];
+                                                              inManagedObjectContext:[AppDelegate managedObjectContext]];
     //
     // add all details in the database
     //
@@ -297,11 +302,11 @@
     uploadInfo.facebook = ([shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // twitter
-        uploadInfo.twitter = ([shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    uploadInfo.twitter = ([shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // permissionPrivate
     uploadInfo.permissionPrivate = ([permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-        
+    
     // source
     if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
@@ -310,38 +315,83 @@
     }else if (self.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
     }
-        
+    
     // tags
     uploadInfo.tags=[tagController getSelectedTagsInJsonFormat];
     
     // title
     uploadInfo.title = [QSStrings htmlEntities:(self.titleTextField.text.length > 0 ? self.titleTextField.text : @"")];
-        
-    // path    
+    
+    // fileName and data    
     if (self.imageFiltered != nil){
-        uploadInfo.filtered = [NSNumber numberWithBool:YES];
-        uploadInfo.filteredImage = UIImageJPEGRepresentation(self.imageFiltered,0.7);
+        uploadInfo.image = UIImageJPEGRepresentation(self.imageFiltered,0.7);
+        uploadInfo.fileName = [self getFileNameFilterImage:YES data:uploadInfo.image url:nil];
     }else {
-        uploadInfo.filtered = [NSNumber numberWithBool:NO];
-        uploadInfo.url = [self.urlImageOriginal path];
-    }    
-    
-    // status
-    uploadInfo.status=kUploadStatusTypeCreated;
-
-    // save
-    NSError *uploadError = nil;
-    if (![[AppDelegate managedObjectContext] save:&uploadError]){
-        NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
-    }   
-
+        // Get image from Assets Library
+        // the result block
+        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+        {
+            ALAssetRepresentation *rep = [myasset defaultRepresentation];
+#ifdef DEVELOPMENT_ENABLED            
+            NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
+#endif           
+            uint8_t* buffer = malloc([rep size]);
+            
+            NSError* error = NULL;
+            NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
+            NSData *data = nil;
+            
+            if (bytes == [rep size])
+            {
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Data ready to send to openphoto. Saved on database");
+                NSLog(@"Asset %@ loaded from Asset Library OK", self.urlImageOriginal);
 #endif
-    
-    // go to home
-    [AppDelegate openTab:0];
-    [self dismissModalViewControllerAnimated:YES];
+                data = [[NSData dataWithBytes:buffer length:bytes] retain];
+            }
+            else
+            {
+                NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], self.urlImageOriginal);
+            }
+            
+            free(buffer);
+            
+            // show alert to user
+            dispatch_async(dispatch_get_main_queue(), ^{
+                uploadInfo.image = data;
+                uploadInfo.fileName = [self getFileNameFilterImage:NO data:data url:self.urlImageOriginal];
+                
+                // status
+                uploadInfo.status=kUploadStatusTypeCreated;
+                
+                // save
+                NSError *uploadError = nil;
+                if (![[AppDelegate managedObjectContext] save:&uploadError]){
+                    NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
+                }   
+                
+#ifdef DEVELOPMENT_ENABLED
+                NSLog(@"Data ready to send to openphoto. Saved on database");
+#endif
+                // go to home
+                [AppDelegate openTab:0];
+                [self dismissModalViewControllerAnimated:YES];
+            });
+            
+        };
+        
+        //
+        ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror)
+        {
+            NSLog(@"Error '%@' getting asset from library", [myerror localizedDescription]);
+        };
+        
+        // schedules the asset read
+        ALAssetsLibrary* assetslibrary = [[[ALAssetsLibrary alloc] init] autorelease];
+        
+        [assetslibrary assetForURL:self.urlImageOriginal
+                       resultBlock:resultblock
+                      failureBlock:failureblock];
+    }    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -350,6 +400,23 @@
         NSLog(@"Image could not be saved = %@", error.localizedDescription);
     }else{
         NSLog(@"Image saved");
+    }
+}
+
+- (NSString *) getFileNameFilterImage:(BOOL) filtered data:(NSData*)data url:(NSURL*) url
+{
+    if (filtered){
+        // filtered
+        CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
+        
+        // get type of the file
+        NSString *extension = [ContentTypeUtilities contentTypeExtensionForImageData:data];
+        
+        return [[NSString alloc] initWithFormat:@"%@.%@",(NSString *) newUniqueIdString,extension];
+    }else{
+        // no filter, image is located on Library
+        return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];
     }
 }
 

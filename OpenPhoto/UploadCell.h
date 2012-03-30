@@ -19,7 +19,7 @@
 //
 
 
-#import <UIKit/UIKit.h>
+#import "UploadPhotos.h"
 
 @interface UploadCell : UITableViewCell
 
@@ -28,6 +28,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnRetry;
 @property (retain, nonatomic) IBOutlet UIButton *btnCancel;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (retain, nonatomic) UploadPhotos *originalObject;
 
 - (IBAction)refresh:(id)sender;
 - (IBAction)cancel:(id)sender;

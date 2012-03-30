@@ -21,7 +21,6 @@
 #import "EGORefreshTableHeaderView.h"
 #import "NewestPhotos+OpenPhoto.h"
 #import "UploadPhotos+OpenPhoto.h"
-#import "UploadPhotosHelper.h"
 #import "OpenPhotoServiceFactory.h"
 
 #import "NewestPhotoCell.h"

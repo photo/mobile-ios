@@ -112,6 +112,9 @@
         
         UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
         
+        // set the upload photo object in the cell for restart or cancel
+        uploadCell.originalObject = upload;
+        
         // set thumb
         
         // set status
@@ -149,10 +152,10 @@
                 dispatch_async(uploadQueue, ^{
                     
                     @try{
-
+                        
                         // prepare the data to upload
-                        NSString *filename = [UploadPhotosHelper getFileNameForDictionary:dictionary];
-                        NSData *data = [UploadPhotosHelper getNSDataForDictionary:dictionary];
+                        NSString *filename = [dictionary objectForKey:@"fileName"];
+                        NSData *data = [dictionary objectForKey:@"image"];
                         
                         // create the service and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
@@ -160,7 +163,7 @@
                         
                         // update the screen
                         dispatch_async(dispatch_get_main_queue(), ^{
-                        // if it is processed change the status UPLOADED
+                            // if it is processed change the status UPLOADED
                             uploadCell.status.text = kUploadStatusTypeUploaded;
                             upload.status = kUploadStatusTypeUploaded;
                             
@@ -175,6 +178,7 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             upload.status = kUploadStatusTypeFailed;
                             uploadCell.status.text = kUploadStatusTypeFailed;
+                            
                             [self.tableView beginUpdates];
                             [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                                   withRowAnimation:UITableViewRowAnimationFade];
@@ -313,7 +317,6 @@
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 	
 }
-
 
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
