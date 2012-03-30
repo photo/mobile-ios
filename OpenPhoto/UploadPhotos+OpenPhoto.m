@@ -124,8 +124,8 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
 
 - (NSDictionary *) toDictionary
 {
-    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"source", @"status", @"title", @"twitter", @"image", @"fileName", nil];  
-    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permissionPrivate,self.source,self.status,self.title,self.twitter,self.image,self.fileName, nil];  
+    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"source", @"status", @"title", @"twitter", @"image", @"fileName",@"tags", nil];  
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permissionPrivate,self.source,self.status,self.title,self.twitter,self.image,self.fileName,self.tags, nil];  
     
     return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
