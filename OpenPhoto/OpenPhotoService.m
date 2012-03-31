@@ -125,7 +125,7 @@
     }
 }
 
-- (void) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
+- (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
 {
     [self validateCredentials];
     
@@ -187,6 +187,8 @@
                                                        userInfo: nil];
         @throw exception;
     }  
+    
+    return response;
 }
 
 - (void) validateCredentials{

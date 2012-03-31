@@ -42,7 +42,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"1.4";
+    return @"2.0";
 }
 
 - (BOOL) needsUpdate{
@@ -65,6 +65,12 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults synchronize];   
+    
+    // reset core data
+    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [[AppDelegate managedObjectContext] reset];   
 }
 
 -(void) updateSystemVersion{
