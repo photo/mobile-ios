@@ -89,6 +89,7 @@
 
 
 - (void) updateNeededForUploadDataSource{
+    NSLog(@"Delegate invoked");
     self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     [self.tableView reloadData];
 }
@@ -122,6 +123,9 @@
         
         // set the upload photo object in the cell for restart or cancel
         uploadCell.originalObject = upload;
+        
+        // delegation
+        uploadCell.delegate = self;
         
         // set thumb
         CGSize itemSize = CGSizeMake(35, 35);
@@ -177,8 +181,9 @@
                         
                         // create the service and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                        [service uploadPicture:data metadata:dictionary fileName:filename];
+                        NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
                         [service release];
+                        
                         // update the screen
                         dispatch_async(dispatch_get_main_queue(), ^{
                             // if it is processed change the status UPLOADED
@@ -187,11 +192,27 @@
                             // while we do not delete this photo, save space removing the image
                             upload.image = nil;
                             
+                            // check if it needs share for twitter or facebook
+                            // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
+                            if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
+                                NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
+                                
+                                // parameters from upload
+                                NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
+                                NSArray *objects = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"url"]], [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
+                                
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
+                                
+                            }  
+                            
                             // reload list
                             [self.uploads removeObjectAtIndex:indexPath.row];
                             
                             // table needs update
                             [self.tableView reloadData]; 
+                            
+                            // update the table with newest photos
+                            [self loadNewestPhotosIntoCoreData];
                         });
                     }@catch (NSException* e) {
                         // if it fails for any reason, set status FAILED in the main thread
