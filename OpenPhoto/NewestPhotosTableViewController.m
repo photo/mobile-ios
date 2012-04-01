@@ -217,8 +217,16 @@
                     }@catch (NSException* e) {
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
-                                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            
+                            // check if it is duplicated
+                            UIAlertView *alert;
+                            if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
+                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"You already uploaded this photo."
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            }else {
+                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
+                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            }
                             [alert show];
                             [alert release];
                             
