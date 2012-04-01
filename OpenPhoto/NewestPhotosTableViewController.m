@@ -323,14 +323,19 @@
             // set details of private or not
             if ([photo.permission boolValue] == NO)
                 newestPhotoCell.private.hidden=NO;
+            else
+                newestPhotoCell.private.hidden=YES;
+
             
             // set details geoposition
             if (photo.latitude != nil && photo.longitude != nil){
-                // enable button
+                // show button
                 newestPhotoCell.geoPositionButton.hidden=NO;
                 
                 // set the latitude and longitude
                 newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+            }else {
+                newestPhotoCell.geoPositionButton.hidden=YES;
             }
         }
         
