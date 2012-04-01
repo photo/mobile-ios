@@ -317,6 +317,8 @@
             });
         }else{
             newestPhotoCell.photo.image = [UIImage imageWithData:photo.photoData];
+            [newestPhotoCell.photo.layer setCornerRadius:5.0f];
+            newestPhotoCell.photo.layer.masksToBounds = YES;
         }
         
         return newestPhotoCell;

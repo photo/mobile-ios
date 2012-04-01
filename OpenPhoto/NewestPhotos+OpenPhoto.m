@@ -119,7 +119,23 @@
                 // get the date since 1970
                 double d            = [[raw objectForKey:@"dateUploaded"] doubleValue];
                 NSTimeInterval date =  d;
-                newest.date          = [NSDate dateWithTimeIntervalSince1970:date];            
+                newest.date          = [NSDate dateWithTimeIntervalSince1970:date];    
+                
+                // permission
+                if ([[raw objectForKey:@"permission"] isEqualToString:@"1"])
+                    newest.permission = [NSNumber numberWithBool:YES];
+                else 
+                    newest.permission = [NSNumber numberWithBool:NO];
+                
+                // latitude
+                NSString *latitude = [raw objectForKey:@"latitude"];
+                if ([latitude class] != [NSNull class] && ![latitude isEqualToString:@""])
+                    newest.latitude = latitude;
+                
+                // longitude
+                NSString *longitude = [raw objectForKey:@"longitude"];
+                if ([longitude class] != [NSNull class] && ![longitude isEqualToString:@""])
+                newest.longitude = longitude;
             }
         }
         

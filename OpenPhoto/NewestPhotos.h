@@ -2,7 +2,7 @@
 //  NewestPhotos.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 27/03/12.
+//  Created by Patrick Santana on 01/04/12.
 //  Copyright 2012 OpenPhoto
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,10 @@
 @property (nonatomic, retain) NSString * key;
 @property (nonatomic, retain) NSData * photoData;
 @property (nonatomic, retain) NSString * photoUrl;
-@property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * tags;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * permission;
+@property (nonatomic, retain) NSString * latitude;
+@property (nonatomic, retain) NSString * longitude;
 
 @end
