@@ -102,7 +102,6 @@
 								<string key="NSFrame">{{5, 5}, {310, 270}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -170,7 +169,7 @@
 							<object class="IBUIImageView" id="393127652">
 								<reference key="NSNextResponder" ref="774582805"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{5, 243}, {33, 28}}</string>
+								<string key="NSFrame">{{5, 244}, {33, 28}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1000200858"/>
@@ -186,7 +185,7 @@
 							<object class="IBUIButton" id="1000200858">
 								<reference key="NSNextResponder" ref="774582805"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{275, 239}, {37, 37}}</string>
+								<string key="NSFrame">{{280, 239}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1022937370"/>
@@ -473,8 +472,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="home_geoposition.png">{31, 32}</string>
-			<string key="home_private.png">{17, 21}</string>
+			<string key="home_geoposition.png">{26, 27}</string>
+			<string key="home_private.png">{25, 25}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
