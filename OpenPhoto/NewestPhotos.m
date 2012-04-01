@@ -2,7 +2,7 @@
 //  NewestPhotos.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 27/03/12.
+//  Created by Patrick Santana on 01/04/12.
 //  Copyright 2012 OpenPhoto
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +18,7 @@
 //  limitations under the License.
 //
 
+
 #import "NewestPhotos.h"
 
 
@@ -27,7 +28,10 @@
 @dynamic key;
 @dynamic photoData;
 @dynamic photoUrl;
-@dynamic title;
 @dynamic tags;
+@dynamic title;
+@dynamic permission;
+@dynamic latitude;
+@dynamic longitude;
 
 @end

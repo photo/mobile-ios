@@ -21,11 +21,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewestPhotoCell : UITableViewCell
+@interface NewestPhotoCell : UITableViewCell{
+    NSString *geoPosition;
+}
 
 @property (retain, nonatomic) IBOutlet UIImageView *photo;
 @property (retain, nonatomic) IBOutlet UILabel *date;
 @property (retain, nonatomic) IBOutlet UILabel *tags;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (retain, nonatomic) IBOutlet UIImageView *private;
+@property (retain, nonatomic) IBOutlet UIButton *geoPositionButton;
 @property (retain, nonatomic) IBOutlet UILabel *label;
+
+@property (nonatomic, copy) NSString *geoPosition;
+
+
+
+
+- (IBAction)openGeoPosition:(id)sender;
 @end

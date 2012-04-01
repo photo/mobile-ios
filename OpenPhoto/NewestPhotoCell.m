@@ -26,7 +26,10 @@
 @synthesize date;
 @synthesize tags;
 @synthesize activity;
+@synthesize private;
+@synthesize geoPositionButton;
 @synthesize label;
+@synthesize geoPosition;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -40,7 +43,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -50,6 +53,16 @@
     [activity release];
     [date release];
     [tags release];
+    [private release];
+    [geoPositionButton release];
+    [geoPosition release];
     [super dealloc];
+}
+- (IBAction)openGeoPosition:(id)sender {
+    if (self.geoPosition != nil){
+        NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
+                         [self.geoPosition stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    }
 }
 @end
