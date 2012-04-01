@@ -319,6 +319,19 @@
             newestPhotoCell.photo.image = [UIImage imageWithData:photo.photoData];
             [newestPhotoCell.photo.layer setCornerRadius:5.0f];
             newestPhotoCell.photo.layer.masksToBounds = YES;
+            
+            // set details of private or not
+            if ([photo.permission boolValue] == NO)
+                newestPhotoCell.private.hidden=NO;
+            
+            // set details geoposition
+            if (photo.latitude != nil && photo.longitude != nil){
+                // enable button
+                newestPhotoCell.geoPositionButton.hidden=NO;
+                
+                // set the latitude and longitude
+                newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+            }
         }
         
         return newestPhotoCell;
