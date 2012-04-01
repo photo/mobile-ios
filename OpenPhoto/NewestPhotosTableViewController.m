@@ -329,9 +329,10 @@
             newestPhotoCell.photo.layer.masksToBounds = YES;
             
             [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-            [newestPhotoCell.photo.superview.layer setShadowOpacity:0.8];
-            [newestPhotoCell.photo.superview.layer setShadowRadius:3.0];
+            [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
+            [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
             [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+            
             
             // set details of private or not
             if ([photo.permission boolValue] == NO)
