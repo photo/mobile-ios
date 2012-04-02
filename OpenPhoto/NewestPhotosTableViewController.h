@@ -26,6 +26,8 @@
 #import "NewestPhotoCell.h"
 #import "UploadCell.h"
 
+#import "Reachability.h"
+
 @interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource,UploadCellDelegate>{
     
     EGORefreshTableHeaderView *_refreshHeaderView;
@@ -36,10 +38,17 @@
     
     NSArray *newestPhotos;
     NSMutableArray *uploads;
+    
+    // for internet checks
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+    BOOL internetActive, hostActive;
 }
 
 @property (nonatomic, retain) NSArray *newestPhotos;
 @property (nonatomic, retain) NSMutableArray *uploads; 
+@property (nonatomic) BOOL  internetActive;
+@property (nonatomic) BOOL  hostActive;
 
 - (void)doneLoadingTableViewData;
 
