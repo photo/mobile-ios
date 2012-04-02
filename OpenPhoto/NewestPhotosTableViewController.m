@@ -79,6 +79,10 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];   
     [self loadNewestPhotosIntoCoreData];
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Home pictures"];
+#endif
 }
 
 - (void)viewDidLoad
@@ -220,6 +224,10 @@
                             upload.status = kUploadStatusTypeUploaded;
                             // while we do not delete this photo, save space removing the image
                             upload.image = nil;
+                            
+#ifdef TEST_FLIGHT_ENABLED
+                            [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
+#endif
                             
                             // check if it needs share for twitter or facebook
                             // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
