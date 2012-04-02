@@ -68,7 +68,7 @@
         [self checkNetworkStatus:nil]; 
         
         
-        CGRect imageSize = CGRectMake(0, 44, 320, 367);
+        CGRect imageSize = CGRectMake(0, 70, 320, 367);
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
         self.noPhotoImageView.hidden = YES;
@@ -413,7 +413,7 @@
     
     // if no picture, show image to upload
     if (  [self.uploads count] + [self.newestPhotos count] == 0  ) {
-        [self.view addSubview:noPhotoImageView];
+        [self.navigationController.view addSubview:noPhotoImageView];
         self.noPhotoImageView.hidden = NO;
     }else{
         [self.noPhotoImageView removeFromSuperview];
