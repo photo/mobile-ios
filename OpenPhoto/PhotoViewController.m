@@ -330,6 +330,10 @@
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Data ready to send to openphoto. Saved on database");
 #endif
+        
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"Edited imaged saved on database to upload"];
+#endif
         // go to home
         [AppDelegate openTab:0];
         [self dismissModalViewControllerAnimated:YES];
@@ -378,6 +382,10 @@
                 
 #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Data ready to send to openphoto. Saved on database");
+#endif
+                
+#ifdef TEST_FLIGHT_ENABLED
+                [TestFlight passCheckpoint:@"Image saved on database to upload"];
 #endif
                 // go to home
                 [AppDelegate openTab:0];

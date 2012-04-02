@@ -70,6 +70,10 @@
     if (buttonIndex == 1){
         // move the screen to tab 0
         [AppDelegate openTab:0];
+
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"User log out"];
+#endif
         
         NSLog(@"Invalidate user information");
         AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
