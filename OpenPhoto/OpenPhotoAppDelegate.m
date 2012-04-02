@@ -81,13 +81,10 @@
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
     if ([auth isValid]== NO){       
-        UserViewController *controller = [[UserViewController alloc]init ];        
-        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;       
-        
-        [self.window.rootViewController presentModalViewController:navController animated:YES];
-        [controller release];        
+        // open the authentication screen
+        AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
+        [self.window.rootViewController presentModalViewController:controller animated:YES];
+        [controller release];       
     }
     [auth release];  
     [self.window makeKeyAndVisible];

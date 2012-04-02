@@ -43,12 +43,16 @@
     Reachability* internetReachable;
     Reachability* hostReachable;
     BOOL internetActive, hostActive;
+    
+    UIImageView *noPhotoImageView;
 }
 
 @property (nonatomic, retain) NSArray *newestPhotos;
 @property (nonatomic, retain) NSMutableArray *uploads; 
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
+
+@property (nonatomic, retain) UIImageView *noPhotoImageView;
 
 - (void)doneLoadingTableViewData;
 

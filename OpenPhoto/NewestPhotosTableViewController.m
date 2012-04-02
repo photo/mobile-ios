@@ -27,6 +27,7 @@
 @implementation NewestPhotosTableViewController
 @synthesize uploads, newestPhotos;
 @synthesize internetActive,hostActive;
+@synthesize noPhotoImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -65,6 +66,12 @@
         
         // do the first network check
         [self checkNetworkStatus:nil]; 
+        
+        
+        CGRect imageSize = CGRectMake(0, 44, 320, 367);
+        self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
+        self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
+        self.noPhotoImageView.hidden = YES;
     }
     return self;
 }
@@ -104,8 +111,7 @@
     
     // when loads for the first time, delete all UPLOADED uploads
     [UploadPhotos deleteUploadedInManagedObjectContext:[AppDelegate managedObjectContext]];
- 
-    //[self checkNetworkStatus:nil]; 
+    
 }
 
 
@@ -403,6 +409,16 @@
     
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    
+    
+    // if no picture, show image to upload
+    if (  [self.uploads count] + [self.newestPhotos count] == 0  ) {
+        [self.view addSubview:noPhotoImageView];
+        self.noPhotoImageView.hidden = NO;
+    }else{
+        [self.noPhotoImageView removeFromSuperview];
+        
+    }
 }
 
 
@@ -466,7 +482,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [internetReachable release];
     [hostReachable release];
-
+    [self.noPhotoImageView release];
+    
     [super dealloc];
 }
 
