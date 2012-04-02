@@ -1,4 +1,4 @@
-Thanks for downloading the TestFlight SDK 1.0beta1!
+Thanks for downloading the TestFlight SDK 1.0!
 
 This document is also available on the web at https://www.testflightapp.com/sdk/doc
 
