@@ -55,6 +55,9 @@
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     
+    // check if core data is okay
+    NSLog(@"Core data is null %i",[self managedObjectContext] != nil);
+    
     UpdateUtilities *updater = [UpdateUtilities instance];
     if ([updater needsUpdate] == YES){
         NSLog(@"App needs to be updated");
@@ -77,24 +80,24 @@
     // now if it is not authenticated, show the screen in the TOP of the view controller
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
-    if ([auth isValid]== NO){
-        // open the authentication screen
-        AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
-        [self.window.rootViewController presentModalViewController:controller animated:YES];
-        [controller release];
+    if ([auth isValid]== NO){       
+        UserViewController *controller = [[UserViewController alloc]init ];        
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;       
+        
+        [self.window.rootViewController presentModalViewController:navController animated:YES];
+        [controller release];        
     }
-    [auth release];
-    
+    [auth release];  
     [self.window makeKeyAndVisible];
-    
     
     //register to share data.    
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(eventHandler:)
                                                  name:kNotificationShareInformationToFacebookOrTwitter         
                                                object:nil ];
-    
-    
+
     return YES;
 }
 

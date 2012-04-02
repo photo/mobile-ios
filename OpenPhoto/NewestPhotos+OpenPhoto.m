@@ -67,8 +67,17 @@
 
 + (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context{
     if ([rawNewestPhotos count]>0){
+        BOOL checkTotalRows = YES;
         for (NSDictionary *raw in rawNewestPhotos){
             // check if object exists
+            if (checkTotalRows){
+                if ([[raw objectForKey:@"totalRows"] intValue] == 0){
+                    return;
+                }else{
+                    checkTotalRows  = NO;
+                }
+            }
+            
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NewestPhotos"];
             request.predicate= [NSPredicate predicateWithFormat:@"key==%@",[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]]];   
             [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
