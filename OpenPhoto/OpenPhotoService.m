@@ -191,20 +191,17 @@
     return response;
 }
 
-- (void) validateCredentials{
-    
-    // validate if the singleton has all details for the account
-    
-    
-    // if not
-    /*
-     // throw exception
-     NSException *exception = [NSException exceptionWithName: @"unathorized access"
-     reason: @"Credentials is not configured correct"
-     userInfo: nil];
-     @throw exception;
-     */
-    
+- (void) validateCredentials{    
+    // validate if the service has all details for the account
+    if (self.oAuthKey == nil ||
+        self.oAuthSecret == nil ||
+        self.consumerKey == nil ||
+        self.consumerSecret == nil){
+        NSException *exception = [NSException exceptionWithName: @"unathorized access"
+                                                         reason: @"Credentials is not configured correct"
+                                                       userInfo: nil];
+        @throw exception; 
+    }
 }
 
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url
