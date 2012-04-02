@@ -326,6 +326,13 @@
     if (self.imageFiltered != nil){
         uploadInfo.image = UIImageJPEGRepresentation(self.imageFiltered,0.7);
         uploadInfo.fileName = [self getFileNameFilterImage:YES data:uploadInfo.image url:nil];
+        uploadInfo.status=kUploadStatusTypeCreated;
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Data ready to send to openphoto. Saved on database");
+#endif
+        // go to home
+        [AppDelegate openTab:0];
+        [self dismissModalViewControllerAnimated:YES];
     }else {
         // Get image from Assets Library
         // the result block
