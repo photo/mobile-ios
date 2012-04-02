@@ -52,11 +52,11 @@
         [self.activityFeedViewController.view removeFromSuperview];
     
     [self.currentImageView addSubview:self.newestPhotosViewController.view]; 
-
+    
     [self.segmentedControl addTarget:self
                               action:@selector(didChangeSegmentControl:)
                     forControlEvents:UIControlEventValueChanged];
-
+    
     // start with the newest photos
     self.segmentedControl.selectedSegmentIndex = 0;
 }
