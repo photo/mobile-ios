@@ -54,9 +54,6 @@
 // get all tags. It brings how many images have this tag.
 - (void) getTags; 
 
-// get home pictures. It will bring 4 pictures from the last shared. 
-- (void) getHomePictures; 
-
 // get 25 pictures
 - (void) loadGallery:(int) pageSize onPage:(int) page;
 
