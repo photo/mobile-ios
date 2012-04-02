@@ -68,7 +68,6 @@
 {  
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
-        //      HomeViewController *controller = [[[HomeViewController alloc]init ]autorelease];
         NewestPhotosTableViewController *controller = [[[NewestPhotosTableViewController alloc]init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
         return [self getUINavigationController:controller forHomeScreen:YES];
