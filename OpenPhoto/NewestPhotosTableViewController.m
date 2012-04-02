@@ -26,6 +26,7 @@
 
 @implementation NewestPhotosTableViewController
 @synthesize uploads, newestPhotos;
+@synthesize internetActive,hostActive;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,6 +47,24 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationLoginNeeded       
                                                    object:nil ];
+        
+        
+        // check for internet connection
+        // no internet assume
+        self.internetActive = NO;
+        self.hostActive = NO;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+        
+        internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+        [internetReachable startNotifier];
+        
+        // check if a pathway to a random host exists
+        hostReachable = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
+        [hostReachable startNotifier];
+        
+        // do the first network check
+        [self checkNetworkStatus:nil]; 
     }
     return self;
 }
@@ -85,6 +104,8 @@
     
     // when loads for the first time, delete all UPLOADED uploads
     [UploadPhotos deleteUploadedInManagedObjectContext:[AppDelegate managedObjectContext]];
+ 
+    //[self checkNetworkStatus:nil]; 
 }
 
 
@@ -156,11 +177,13 @@
         // start upload
         if ([upload.status isEqualToString:kUploadStatusTypeCreated]){
             // check if there is internet
-            
-            // if not, set as failed
-            
-            // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
-            if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
+            if (self.internetActive == NO ){
+                // if not, set as failed
+                [self notifyUserNoInternet];
+                uploadCell.status.text = kUploadStatusTypeFailed;
+                upload.status = kUploadStatusTypeFailed;
+            }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
+                // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
                 uploadCell.status.text = kUploadStatusTypeUploading;
                 upload.status = kUploadStatusTypeUploading;
                 
@@ -222,10 +245,10 @@
                             UIAlertView *alert;
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"You already uploaded this photo."
-                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                             }else {
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
-                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                             }
                             [alert show];
                             [alert release];
@@ -303,26 +326,29 @@
             [newestPhotoCell.activity startAnimating];
             newestPhotoCell.activity.hidden = NO;
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
-                NSLog(@"URL do download is = %@",photo.photoUrl);
-                dispatch_sync(dispatch_get_main_queue(), ^{
-                    photo.photoData = data;
-                    UIImage *thumbnail = [UIImage imageWithData:data];
-                    
-                    // set details on cell
-                    [newestPhotoCell.activity stopAnimating];
-                    newestPhotoCell.activity.hidden = YES;
-                    newestPhotoCell.photo.hidden = NO;               
-                    newestPhotoCell.photo.image = thumbnail;
-                    
-                    [self.tableView beginUpdates];
-                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                                          withRowAnimation:UITableViewRowAnimationNone];
-                    [self.tableView endUpdates]; 
-                    
+            if ( self.internetActive == YES ){
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
+                    NSLog(@"URL do download is = %@",photo.photoUrl);
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        photo.photoData = data;
+                        UIImage *thumbnail = [UIImage imageWithData:data];
+                        
+                        // set details on cell
+                        [newestPhotoCell.activity stopAnimating];
+                        newestPhotoCell.activity.hidden = YES;
+                        newestPhotoCell.photo.hidden = NO;               
+                        newestPhotoCell.photo.image = thumbnail;
+                        
+                        [self.tableView beginUpdates];
+                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                              withRowAnimation:UITableViewRowAnimationNone];
+                        [self.tableView endUpdates]; 
+                        
+                    });
                 });
-            });
+            }
         }else{
             newestPhotoCell.photo.image = [UIImage imageWithData:photo.photoData];
             [newestPhotoCell.photo.layer setCornerRadius:5.0f];
@@ -339,7 +365,7 @@
                 newestPhotoCell.private.hidden=NO;
             else
                 newestPhotoCell.private.hidden=YES;
-
+            
             
             // set details geoposition
             if (photo.latitude != nil && photo.longitude != nil){
@@ -377,7 +403,6 @@
     
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-	
 }
 
 
@@ -436,10 +461,12 @@
 - (void)dealloc 
 {    
     [_refreshHeaderView release];
-    [newestPhotos release];
-    [uploads release];
+    [self.newestPhotos release];
+    [self.uploads release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    [internetReachable release];
+    [hostReachable release];
+
     [super dealloc];
 }
 
@@ -451,21 +478,73 @@
     // set reloading in the table
     _reloading = YES;
     
-    // get factory for OpenPhoto Service
-    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-    
-    dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
-    dispatch_async(loadNewestPhotos, ^{
-        // call the method and get the details
-        NSArray *result = [service fetchNewestPhotosMaxResult:5];
-        [service release];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // let NewestPhotos treat the objects
-            [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
-            [self doneLoadingTableViewData];
+    // if there isn't netwok
+    if ( self.internetActive == NO ){
+        [self notifyUserNoInternet];
+       	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
+    }else {
+        // get factory for OpenPhoto Service
+        OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+        
+        dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
+        dispatch_async(loadNewestPhotos, ^{
+            // call the method and get the details
+            NSArray *result = [service fetchNewestPhotosMaxResult:5];
+            [service release];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // let NewestPhotos treat the objects
+                [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
+                [self doneLoadingTableViewData];
+            });
         });
-    });
-    dispatch_release(loadNewestPhotos);
+        dispatch_release(loadNewestPhotos);
+    }
+}
+
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    
+    {
+        case NotReachable:
+        {
+            self.internetActive = NO; 
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.internetActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            self.internetActive = YES;
+            break;
+        }
+    }
+    
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)  
+    {
+        case NotReachable:
+        {
+            self.hostActive = NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.hostActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            self.hostActive = YES;
+            break;
+        }
+    }
 }
 
 - (void) notifyUserNoInternet{
