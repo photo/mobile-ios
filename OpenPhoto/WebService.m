@@ -50,26 +50,13 @@
     return self;
 }
 - (void) getTags{
-    [self sendRequest:@"/tags/list.json"];
+    [self sendRequest:@"/v1/tags/list.json"];
 }
 
-- (void) getHomePictures{
-    NSMutableString *homePicturesRequest = [NSMutableString stringWithFormat: @"%@",@"/photos/list.json?sortBy=dateUploaded,DESC&pageSize=4&returnSizes="];
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-        // retina display
-        [homePicturesRequest appendString:@"640x734xCR"];
-    }else{
-        // not retina display
-        [homePicturesRequest appendString:@"320x367xCR"];
-    }
-    
-    [self sendRequest:homePicturesRequest];
-}
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
     NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@", 
-                                    @"/photos/list.json?pageSize=", 
+                                    @"/v1/photos/list.json?pageSize=", 
                                     [NSString stringWithFormat:@"%d", pageSize],
                                     @"&page=",[NSString stringWithFormat:@"%d", page], 
                                     @"&returnSizes=200x200,640x960"];
@@ -78,7 +65,7 @@
 
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page {
     NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@%@%@", 
-                                    @"/photos/list.json?pageSize=", 
+                                    @"/v1/photos/list.json?pageSize=", 
                                     [NSString stringWithFormat:@"%d", pageSize],
                                     @"&page=",[NSString stringWithFormat:@"%d", page],
                                     @"&returnSizes=200x200,640x960",
@@ -87,7 +74,7 @@
 }
 
 -(void) getSystemVersion{
-    [self sendRequest:@"/system/version.json"];
+    [self sendRequest:@"/v1/system/version.json"];
 }
 
 -(NSURL*) getOAuthInitialUrl{
@@ -127,7 +114,7 @@
 }
 
 -(void) sendTestRequest{
-    [self sendRequest:@"/hello.json?auth=1"];
+    [self sendRequest:@"/v1/hello.json?auth=1"];
 }
 
 
