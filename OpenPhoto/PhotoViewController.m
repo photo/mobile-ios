@@ -320,7 +320,10 @@
     uploadInfo.tags=[tagController getSelectedTagsInJsonFormat];
     
     // title
-    uploadInfo.title = [QSStrings htmlEntities:(self.titleTextField.text.length > 0 ? self.titleTextField.text : @"")];
+    uploadInfo.title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Title photo %@",uploadInfo.title);
+#endif    
     
     // fileName and data    
     if (self.imageFiltered != nil){

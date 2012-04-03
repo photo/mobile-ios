@@ -129,6 +129,8 @@
 {
     [self validateCredentials];
     
+    
+    
     // set all details to send
     NSString *uploadCall = [NSString stringWithFormat:@"title=%@&permission=%@&tags=%@",[values objectForKey:@"title"],[values objectForKey:@"permission"], [values objectForKey:@"tags"]];
     
@@ -137,9 +139,9 @@
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url upload = [%@]. Execute OAuth and Multipart",urlString);
-    NSLog(@"Title %@",[values objectForKey:@"title"]);
-    NSLog(@"Permission %@",[values objectForKey:@"permission"]);
-    NSLog(@"Tags %@",[values objectForKey:@"tags"]);
+    NSLog(@"Title = %@",[values objectForKey:@"title"]);
+    NSLog(@"Permission = %@",[values objectForKey:@"permission"]);
+    NSLog(@"Tags = %@",[values objectForKey:@"tags"]);
 #endif
     
     OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];                                                              
@@ -147,9 +149,16 @@
     [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
     [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
     
-    // prepare the request. This will be used to get the Authorization header and add in the multipart component        
-    [oaUrlRequest prepare];
-    
+    @try {
+        // prepare the request. This will be used to get the Authorization header and add in the multipart component        
+        [oaUrlRequest prepare];
+    }
+    @catch (NSException *exception) {
+        NSException *newException = [NSException exceptionWithName: @"Incorrect Parameters"
+                                                            reason: @"Couldn't upload your photo. Please, change photo's title."
+                                                          userInfo: nil];
+        @throw newException;
+    }
     
     /*
      *
