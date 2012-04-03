@@ -260,6 +260,9 @@
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"You already uploaded this photo."
                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                            }else if([[e description] hasPrefix:@"Error: 403 - oauth_problem=signature_invalid"]) {
+                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"Signature invalid. Please, check photo's title. We do not support special characters yet."
+                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                             }else {
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -508,19 +511,30 @@
         [self notifyUserNoInternet];
        	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
     }else {
-        // get factory for OpenPhoto Service
-        OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-        
         dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
         dispatch_async(loadNewestPhotos, ^{
             // call the method and get the details
-            NSArray *result = [service fetchNewestPhotosMaxResult:5];
-            [service release];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // let NewestPhotos treat the objects
-                [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
-                [self doneLoadingTableViewData];
-            });
+            @try {
+                // get factory for OpenPhoto Service
+                OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                NSArray *result = [service fetchNewestPhotosMaxResult:5];
+                [service release];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // let NewestPhotos treat the objects
+                    [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
+                    [self doneLoadingTableViewData];
+                });
+            }@catch (NSException *exception) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We couldn't get your newest photos from the server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+                    [alert release];
+                    
+                    // refresh table  
+                    [self doneLoadingTableViewData];
+                });   
+            }
         });
         dispatch_release(loadNewestPhotos);
     }
