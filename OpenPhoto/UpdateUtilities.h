@@ -33,6 +33,5 @@
 - (NSString*) getVersion;
 - (BOOL) needsUpdate;
 - (void) update;
-- (void) updateSystemVersion;
 
 @end

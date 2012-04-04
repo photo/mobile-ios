@@ -108,7 +108,7 @@
     // add models with status created, failed, uploaded, uploading
     UploadPhotos *upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
-    upload.permissionPrivate = NO;
+    upload.permission = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
     upload.twitter=NO;
     upload.title=@"Testing";
@@ -122,7 +122,7 @@
     
     upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
-    upload.permissionPrivate = NO;
+    upload.permission = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
     upload.twitter=NO;
     upload.title=@"Testing";
@@ -135,7 +135,7 @@
     
     upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
     upload.facebook = NO;
-    upload.permissionPrivate = NO;
+    upload.permission = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
     upload.twitter=NO;
     upload.title=@"Testing";
@@ -147,7 +147,7 @@
     }
     
     upload = [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" inManagedObjectContext:self.managedObjectContext];
-    upload.permissionPrivate = NO;
+    upload.permission = NO;
     upload.source=UIImagePickerControllerMediaMetadata;
     upload.twitter=NO;
     upload.title=@"Testing";

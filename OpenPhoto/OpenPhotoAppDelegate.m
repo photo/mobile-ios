@@ -24,12 +24,16 @@
 
 @interface OpenPhotoAppDelegate()
 -(void) shareTwitterOrFacebook:(NSString *) message;
+-(void) prepareConnectionInformation;
+-(void) checkNetworkStatus:(NSNotification *) notice;
 @end
 
 @implementation OpenPhotoAppDelegate
 
 @synthesize window = _window;
 @synthesize viewController = _viewController;
+@synthesize internetActive = _internetActive;
+@synthesize hostActive = _hostActive;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -55,15 +59,13 @@
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     
-    // check if core data is okay
-    NSLog(@"Core data is null %i",[self managedObjectContext] != nil);
+    [self prepareConnectionInformation];
     
     UpdateUtilities *updater = [UpdateUtilities instance];
     if ([updater needsUpdate] == YES){
         NSLog(@"App needs to be updated");
         NSLog(@"Version to install %@", [updater getVersion]);
         [updater update];
-        [updater updateSystemVersion];
     }
     
     
@@ -97,7 +99,6 @@
 
     return YES;
 }
-
 
 - (void) openTab:(int) position{
     NSLog(@"Opening the tab with position id = %i",position);
@@ -282,6 +283,77 @@
                                     stringByAppendingPathComponent: @"OpenPhotoCoreData.sqlite"]];
 }
 
+
+//////// Internet details
+#pragma mark -
+#pragma mark Internet details
+- (void) prepareConnectionInformation
+{
+    // check for internet connection
+    // no internet assume
+    self.internetActive = NO;
+    self.hostActive = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+    [internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    hostReachable = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
+    [hostReachable startNotifier];
+    
+    // do the first network check
+    [self checkNetworkStatus:nil]; 
+}
+
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    
+    {
+        case NotReachable:
+        {
+            self.internetActive = NO; 
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.internetActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            self.internetActive = YES;
+            break;
+        }
+    }
+    
+    
+    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
+    switch (hostStatus)  
+    {
+        case NotReachable:
+        {
+            self.hostActive = NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            self.hostActive = YES;
+            break;
+        }
+        case ReachableViaWWAN:
+        {
+            self.hostActive = YES;
+            break;
+        }
+    }
+}
+
+
 - (void)dealloc
 {
     [_window release];
@@ -289,6 +361,8 @@
     [managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];   
+    [internetReachable release];
+    [hostReachable release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

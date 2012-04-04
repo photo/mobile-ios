@@ -200,6 +200,20 @@
     return response;
 }
 
+// get all tags. It brings how many images have this tag.
+- (NSArray*)  getTags
+{
+    return [self sendSynchronousRequest:@"/v1/tags/list.json"]; 
+}
+
+// get details from the system
+- (NSArray*)  getSystemVersion
+{
+    return [self sendSynchronousRequest:@"/v1/system/version.json"];    
+}
+
+
+
 - (void) validateCredentials{    
     // validate if the service has all details for the account
     if (self.oAuthKey == nil ||

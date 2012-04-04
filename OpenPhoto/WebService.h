@@ -51,18 +51,11 @@
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
 
-// get all tags. It brings how many images have this tag.
-- (void) getTags; 
-
 // get 25 pictures
 - (void) loadGallery:(int) pageSize onPage:(int) page;
 
 // get pictures by tag
 -(void) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
-
-// get details from the system
--(void) getSystemVersion;
-
 
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;

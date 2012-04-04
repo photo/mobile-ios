@@ -45,7 +45,7 @@
         self.sourceType = pickerSourceType;
         
         // initialization of tag controller
-        self.tagController = [[[TagViewController alloc] init]autorelease];
+        self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
     }
     return self;
@@ -448,6 +448,7 @@
     [self.permissionPicture release];
     [self.shareTwitter release];
     [self.shareFacebook release];
+    [self.tagController release];
     
     [super dealloc];
 }

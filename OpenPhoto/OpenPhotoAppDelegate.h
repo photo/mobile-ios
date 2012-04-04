@@ -27,6 +27,7 @@
 #import "SHKFacebook.h"
 #import "SHKConfiguration.h"
 #import "SHK.h"
+#import "Reachability.h"
 
 // easy way to get app delegate
 #define AppDelegate (OpenPhotoAppDelegate*) [[UIApplication sharedApplication] delegate]
@@ -40,6 +41,13 @@
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
+  
+    // for internet checks
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+
+@public
+    BOOL internetActive, hostActive;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -50,12 +58,15 @@
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+// for internet check
+@property (nonatomic) BOOL  internetActive;
+@property (nonatomic) BOOL  hostActive;
 
 // this method will be used to open a specific tab
 // 0 = Home
 // 1 = Gallery
 // 3 = Tag
 // 4 = Settings
--(void) openTab:(int) position;
+- (void) openTab:(int) position;
 
 @end
