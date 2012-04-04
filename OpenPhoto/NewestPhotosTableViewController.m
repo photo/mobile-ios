@@ -165,16 +165,16 @@
         uploadCell.delegate = self;
         
         // set thumb
-        CGSize itemSize = CGSizeMake(35, 35);
+        CGSize itemSize = CGSizeMake(70, 70);
         UIGraphicsBeginImageContext(itemSize);
         
         UIImage *image =  [UIImage imageWithData:upload.image];
-        [image drawInRect:CGRectMake(0, 0, 35, 35)];
+        [image drawInRect:CGRectMake(0, 0, 70, 70)];
         image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
         NSData* imageData1 =[NSData dataWithData:UIImagePNGRepresentation (image)]; 
-        uploadCell.imageView.image = [UIImage imageWithData:imageData1];   
+        uploadCell.thumb.image = [UIImage imageWithData:imageData1];   
         
         // set status
         uploadCell.status.text = upload.status;
@@ -230,6 +230,11 @@
                             upload.status = kUploadStatusTypeUploaded;
                             // while we do not delete this photo, save space removing the image
                             upload.image = nil;
+                            
+                            NSError *saveError = nil;
+                            if (![[AppDelegate managedObjectContext] save:&saveError]){
+                                NSLog(@"Error on change status of Upload = %@",[saveError localizedDescription]);
+                            }
                             
 #ifdef TEST_FLIGHT_ENABLED
                             [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
