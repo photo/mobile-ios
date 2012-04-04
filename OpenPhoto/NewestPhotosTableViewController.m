@@ -22,11 +22,11 @@
 
 @interface NewestPhotosTableViewController ()
 - (void) loadNewestPhotosIntoCoreData;
+- (void)doneLoadingTableViewData;
 @end
 
 @implementation NewestPhotosTableViewController
 @synthesize uploads, newestPhotos;
-@synthesize internetActive,hostActive;
 @synthesize noPhotoImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,25 +48,6 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationLoginNeeded       
                                                    object:nil ];
-        
-        
-        // check for internet connection
-        // no internet assume
-        self.internetActive = NO;
-        self.hostActive = NO;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
-        
-        internetReachable = [[Reachability reachabilityForInternetConnection] retain];
-        [internetReachable startNotifier];
-        
-        // check if a pathway to a random host exists
-        hostReachable = [[Reachability reachabilityWithHostName: @"www.apple.com"] retain];
-        [hostReachable startNotifier];
-        
-        // do the first network check
-        [self checkNetworkStatus:nil]; 
-        
         
         CGRect imageSize = CGRectMake(0, 70, 320, 367);
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
@@ -193,7 +174,7 @@
         // start upload
         if ([upload.status isEqualToString:kUploadStatusTypeCreated]){
             // check if there is internet
-            if (self.internetActive == NO ){
+            if ([AppDelegate internetActive] == NO ){
                 // if not, set as failed
                 [self notifyUserNoInternet];
                 uploadCell.status.text = kUploadStatusTypeFailed;
@@ -354,7 +335,7 @@
             [newestPhotoCell.activity startAnimating];
             newestPhotoCell.activity.hidden = NO;
             
-            if ( self.internetActive == YES ){
+            if ( [AppDelegate internetActive] == YES ){
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
@@ -502,8 +483,6 @@
     [self.newestPhotos release];
     [self.uploads release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [internetReachable release];
-    [hostReachable release];
     [self.noPhotoImageView release];
     [coreLocationController release];
     [super dealloc];
@@ -518,7 +497,7 @@
     _reloading = YES;
     
     // if there isn't netwok
-    if ( self.internetActive == NO ){
+    if ( [AppDelegate internetActive] == NO ){
         [self notifyUserNoInternet];
        	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
     }else {
@@ -548,52 +527,6 @@
             }
         });
         dispatch_release(loadNewestPhotos);
-    }
-}
-
-- (void) checkNetworkStatus:(NSNotification *)notice
-{
-    // called after network status changes
-    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
-    switch (internetStatus)
-    
-    {
-        case NotReachable:
-        {
-            self.internetActive = NO; 
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.internetActive = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            self.internetActive = YES;
-            break;
-        }
-    }
-    
-    
-    NetworkStatus hostStatus = [hostReachable currentReachabilityStatus];
-    switch (hostStatus)  
-    {
-        case NotReachable:
-        {
-            self.hostActive = NO;
-            break;
-        }
-        case ReachableViaWiFi:
-        {
-            self.hostActive = YES;
-            break;
-        }
-        case ReachableViaWWAN:
-        {
-            self.hostActive = YES;
-            break;
-        }
     }
 }
 

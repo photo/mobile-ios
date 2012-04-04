@@ -49,10 +49,6 @@
     }
     return self;
 }
-- (void) getTags{
-    [self sendRequest:@"/v1/tags/list.json"];
-}
-
 
 - (void) loadGallery:(int) pageSize onPage:(int) page {
     NSString *loadGalleryRequest = [NSString stringWithFormat: @"%@%@%@%@%@", 
@@ -71,10 +67,6 @@
                                     @"&returnSizes=200x200,640x960",
                                     @"&tags=",tag];
     [self sendRequest:loadGalleryRequest];
-}
-
--(void) getSystemVersion{
-    [self sendRequest:@"/v1/system/version.json"];
 }
 
 -(NSURL*) getOAuthInitialUrl{

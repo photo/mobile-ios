@@ -18,18 +18,23 @@
 //  limitations under the License.
 
 #import "Tag.h"
-#import "WebService.h"
 #import "GalleryViewController.h"
 #import "TSAlertView.h"
+#import "OpenPhotoServiceFactory.h"
+#import "MBProgressHUD.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface TagViewController : UITableViewController<WebServiceDelegate, TSAlertViewDelegate>{
+@interface TagViewController : UITableViewController<TSAlertViewDelegate, EGORefreshTableHeaderDelegate>{
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    //  Reloading var should really be your tableviews datasource
+    //  Putting it here for demo purposes 
+    BOOL _reloading;
+    
     NSMutableArray *tags;
-    WebService *service;
-    BOOL readOnly;
 }
 
 @property (nonatomic, retain) NSMutableArray *tags;
-@property (nonatomic, retain) WebService *service;
 
 -(void) setReadOnly;
 -(NSArray*) getSelectedTags;

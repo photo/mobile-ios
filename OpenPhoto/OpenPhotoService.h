@@ -40,6 +40,12 @@
 // in the dictionary, we expect: title, permission and tags
 - (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName;
 
+// get all tags. It brings how many images have this tag.
+- (NSArray*)  getTags; 
+
+// get details from the system
+- (NSArray*)  getSystemVersion;
+
 + (BOOL) isMessageValid:(NSDictionary *)response;
 
 @end
