@@ -128,7 +128,6 @@
         // move the view a little bit up
         [self.view setCenter:CGPointMake([self.view  center].x, [self.view  center].y - 40)];
     }completion:^(BOOL finished){
-        
         if([textField respondsToSelector:@selector(selectedTextRange)]){
 
             //iOS >=5.0            
@@ -143,6 +142,8 @@
                 //Construct a new range and set  in the textfield
                 UITextRange *newRange = [textField textRangeFromPosition:fromPosition toPosition:toPosition];
                 textField.selectedTextRange = newRange;
+                
+
             }
         }
     }];
