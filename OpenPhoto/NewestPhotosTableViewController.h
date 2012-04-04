@@ -27,6 +27,8 @@
 #import "UploadCell.h"
 
 #import "Reachability.h"
+#import "CoreLocationController.h"
+
 
 @interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource,UploadCellDelegate>{
     
@@ -45,6 +47,9 @@
     BOOL internetActive, hostActive;
     
     UIImageView *noPhotoImageView;
+    
+    // ask the user about location int the home screen
+    CoreLocationController *coreLocationController;
 }
 
 @property (nonatomic, retain) NSArray *newestPhotos;

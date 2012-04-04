@@ -72,6 +72,8 @@
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
         self.noPhotoImageView.hidden = YES;
+        
+        coreLocationController = [[CoreLocationController alloc] init];
     }
     return self;
 }
@@ -83,6 +85,10 @@
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Home pictures"];
 #endif
+    
+    // ask if your enable location
+    [coreLocationController.locMgr startUpdatingLocation];    
+    [coreLocationController.locMgr stopUpdatingLocation];  
 }
 
 - (void)viewDidLoad
@@ -494,7 +500,7 @@
     [internetReachable release];
     [hostReachable release];
     [self.noPhotoImageView release];
-    
+    [coreLocationController release];
     [super dealloc];
 }
 
