@@ -86,7 +86,7 @@
     [TestFlight passCheckpoint:@"Home pictures"];
 #endif
     
-    // ask if your enable location
+    // ask if user wants to enable location
     [coreLocationController.locMgr startUpdatingLocation];    
     [coreLocationController.locMgr stopUpdatingLocation];  
 }
