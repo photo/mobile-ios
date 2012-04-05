@@ -43,6 +43,8 @@
         self.view.backgroundColor = background;
         [background release];
         
+        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(eventHandler:)

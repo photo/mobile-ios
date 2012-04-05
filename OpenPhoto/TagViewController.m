@@ -41,6 +41,9 @@
         
         // set the read only by default as NO 
         self.readOnly = NO;
+        
+        // color separator
+        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     }
     return self;
 }
@@ -119,7 +122,7 @@
         [self loadTags];     
     }
     
-   
+    
 }
 
 - (void)viewDidLoad
@@ -328,7 +331,7 @@
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
-    
+
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
