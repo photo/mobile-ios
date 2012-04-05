@@ -105,7 +105,7 @@
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle] autorelease];
                 self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
-                self.titleTextField.textColor = [UIColor redColor];
+                self.titleTextField.textColor = UIColorFromRGB(0xE6501E);
                 
                 self.titleTextField.placeholder = @"title";
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
