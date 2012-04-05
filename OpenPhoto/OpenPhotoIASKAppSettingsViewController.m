@@ -66,7 +66,7 @@
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
-
+    
     // change the color for the Switch
     if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
         if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
@@ -76,14 +76,16 @@
     }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
         // change the color for the text 
         cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E);
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     }else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {
         // change the color for the text 
-        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E);     
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E); 
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     } 
     
     return cell;
 }
-    
+
 - (void) logoutButton{
     UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
     [alert show];
@@ -93,7 +95,7 @@
     if (buttonIndex == 1){
         // move the screen to tab 0
         [AppDelegate openTab:0];
-
+        
 #ifdef TEST_FLIGHT_ENABLED
         [TestFlight passCheckpoint:@"User log out"];
 #endif
