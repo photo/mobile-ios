@@ -51,7 +51,7 @@
                                                      name:kNotificationLoginNeeded       
                                                    object:nil ];
         
-        CGRect imageSize = CGRectMake(0, 70, 320, 367);
+        CGRect imageSize = CGRectMake(0, 63, 320, 367);
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
         self.noPhotoImageView.hidden = YES;
