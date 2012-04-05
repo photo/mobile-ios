@@ -54,6 +54,11 @@
         [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+        NSError *saveError = nil;
+        if (![[AppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error on clean cache = %@",[saveError localizedDescription]);
+        }
+
     }
 }
 
