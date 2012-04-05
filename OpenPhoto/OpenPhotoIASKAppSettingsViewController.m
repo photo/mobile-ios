@@ -39,25 +39,48 @@
     [logoutButton release];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    // Get the text
+    NSString *text = [super tableView:tableView titleForHeaderInSection:section];
+    
+    // create the parent view that will hold header Label
+	UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(10.0, 0.0, 300.0, 44.0)];
+	
+	// create the button object
+	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	headerLabel.backgroundColor = [UIColor clearColor];
+	headerLabel.textColor = UIColorFromRGB(0xE6501E);
+	headerLabel.font = [UIFont boldSystemFontOfSize:18];
+	headerLabel.frame = CGRectMake(18.0, 0.0, 300.0, 44.0);
+    
+    
+	headerLabel.text = text;
+	[customView addSubview:headerLabel];
+    
+	return customView;
+}
+
 // extend the framework to let Switch be red color.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
     IASKSpecifier *specifier  = [self.settingsReader specifierForIndexPath:indexPath];
 
+    // change the color for the Switch
     if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
-        if (!cell) {
-            cell = (IASKPSToggleSwitchSpecifierViewCell*) [[[NSBundle mainBundle] loadNibNamed:@"IASKPSToggleSwitchSpecifierViewCell" 
-                                                                                         owner:self 
-                                                                                       options:nil] objectAtIndex:0];
-        }
-        
         if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
             //iOS 5.0
             [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor:[UIColor redColor]];
         }
-    }
-
+    }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
+        // change the color for the text 
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E);
+    }else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {
+        // change the color for the text 
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E);     
+    } 
+    
     return cell;
 }
     
