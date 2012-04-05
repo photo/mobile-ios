@@ -209,7 +209,11 @@
     Tag *tag = [self.tags objectAtIndex:row];
     cell.textLabel.text=tag.tagName;
     if (self.readOnly == NO){
+        
+        // details quantity
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
+        cell.detailTextLabel.textColor = UIColorFromRGB(0xE6501E);
+        
         cell.accessoryType = UITableViewCellAccessoryNone;
     }else{
         // check if it selected or not
