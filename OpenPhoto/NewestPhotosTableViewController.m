@@ -241,10 +241,16 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
                                 
                             }  
-                            
+  
+#ifdef DEVELOPMENT_ENABLED 
+                            NSLog(@"Let's remove object from table");
+#endif
                             // reload list
                             [self.uploads removeObjectAtIndex:indexPath.row];
-                            
+
+#ifdef DEVELOPMENT_ENABLED 
+                            NSLog(@"Let's reload data");
+#endif                            
                             // table needs update
                             [self.tableView reloadData]; 
                             
@@ -255,6 +261,9 @@
                             [self loadNewestPhotosIntoCoreData];
                         });
                     }@catch (NSException* e) {
+                        
+                        NSLog(@"Error %@",e);
+                        
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
