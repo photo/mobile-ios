@@ -90,7 +90,9 @@
             }
             
             if (!matches || [matches count] > 0){
+#ifdef DEVELOPMENT_ENABLED              
                 NSLog(@"Object already exist");
+#endif
             }else {
                 NewestPhotos *newest = [NSEntityDescription insertNewObjectForEntityForName:@"NewestPhotos" 
                                                                      inManagedObjectContext:context];
