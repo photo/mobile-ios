@@ -206,7 +206,9 @@
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
                         NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
                         [service release];
-                        
+#ifdef DEVELOPMENT_ENABLED                        
+                        NSLog(@"Photo uploaded correctly");
+#endif
                         // update the screen
                         dispatch_async(dispatch_get_main_queue(), ^{
                             // if it is processed change the status UPLOADED
@@ -223,10 +225,13 @@
 #ifdef TEST_FLIGHT_ENABLED
                             [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
 #endif
-                            
+#ifdef DEVELOPMENT_ENABLED 
+                            NSLog(@"Checking Twitter or Facebook");
+#endif
                             // check if it needs share for twitter or facebook
                             // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
                             if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
+                                NSLog(@"User needs to share it");
                                 NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
                                 
                                 // parameters from upload
@@ -244,6 +249,9 @@
                             [self.tableView reloadData]; 
                             
                             // update the table with newest photos
+#ifdef DEVELOPMENT_ENABLED 
+                            NSLog(@"Let's request load newest photos");
+#endif
                             [self loadNewestPhotosIntoCoreData];
                         });
                     }@catch (NSException* e) {
@@ -342,7 +350,10 @@
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
+                    
+#ifdef DEVELOPMENT_ENABLED 
                     NSLog(@"URL do download is = %@",photo.photoUrl);
+#endif
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         photo.photoData = data;
                         UIImage *thumbnail = [UIImage imageWithData:data];
