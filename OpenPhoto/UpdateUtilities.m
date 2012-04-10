@@ -46,7 +46,9 @@ static UpdateUtilities* instance = nil;
 }
 
 - (BOOL) needsUpdate{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Version from user: %@",[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled]);
+#endif
     
    // check if the user version saved in the user default
     if ([[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] == nil
