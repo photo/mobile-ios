@@ -67,6 +67,9 @@
     self = [self init];
     if (self) {
         self.tagName = tag;
+        self.photoSource = [[[PhotoSource alloc]
+                             initWithTitle:@"Gallery"
+                             photos:nil size:0 tag:nil] autorelease];
     }
     return self;
 }
