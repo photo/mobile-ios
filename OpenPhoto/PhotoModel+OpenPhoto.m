@@ -94,8 +94,10 @@
     }else{
         photo = [matches lastObject];
         
-        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url] || ![photo.title isEqualToString:title] ){           
+        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url] || ![photo.title isEqualToString:title] ){  
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@" ==============  Object model photo was changed, update fields on database");
+#endif
             photo.urlSmall = urlSmall;
             photo.url = url;
             photo.title = title;
@@ -112,7 +114,7 @@
 + (NSArray *) getPhotosInManagedObjectContext:(NSManagedObjectContext *)context{
     // bring by id
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Photos"];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     NSError *error = nil;
