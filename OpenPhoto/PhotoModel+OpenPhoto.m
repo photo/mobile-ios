@@ -50,6 +50,7 @@
     // small url and url
     NSString *urlSmall  = [NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"path200x200"]];
     NSString *url       = [NSString stringWithFormat:@"%@", [openphotoInfo objectForKey:@"path640x960"]];
+    NSString *pageUrl   = [NSString stringWithFormat:@"%@", [openphotoInfo objectForKey:@"url"]];
     
     // matches should never be null and also never more than 1
     if (!matches || [matches count] > 1){
@@ -80,8 +81,9 @@
         photo.height         = [NSNumber numberWithFloat:realHeight];
         photo.urlSmall       = urlSmall;
         photo.url            = url;
+        photo.pageUrl        = pageUrl;
         photo.identification = [NSString stringWithFormat:@"%@",[openphotoInfo objectForKey:@"id"]];
-        
+          
         // get the date since 1970
         double d            = [[openphotoInfo objectForKey:@"dateTaken"] doubleValue];
         NSTimeInterval date =  d;
@@ -94,12 +96,13 @@
     }else{
         photo = [matches lastObject];
         
-        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url] || ![photo.title isEqualToString:title] ){  
+        if (![photo.urlSmall isEqualToString:urlSmall] || ![photo.url isEqualToString:url] || ![photo.title isEqualToString:title] || ![photo.pageUrl isEqualToString:pageUrl]  ){  
 #ifdef DEVELOPMENT_ENABLED
             NSLog(@" ==============  Object model photo was changed, update fields on database");
 #endif
             photo.urlSmall = urlSmall;
             photo.url = url;
+            photo.pageUrl = pageUrl;
             photo.title = title;
             
             if (![context save:&error]) {
@@ -183,7 +186,7 @@
              initWithURL:model.url
              smallURL:model.urlSmall
              size:CGSizeMake([model.width floatValue], [model.height floatValue]) 
-             caption:model.title] autorelease];
+             caption:model.title page:model.pageUrl] autorelease];
 }
 
 @end

@@ -178,7 +178,7 @@ BOOL isLoading = NO;
             Photo* obj = [[[Photo alloc]
                            initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
                            smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
-                           size:CGSizeMake(realWidth, realHeight) caption:title] autorelease];
+                           size:CGSizeMake(realWidth, realHeight) caption:title page:[NSString stringWithFormat:@"%@",[photo objectForKey:@"url"]]] autorelease];
             obj.index=photoId;
             obj.photoSource = self;
             // add to array
@@ -230,17 +230,17 @@ BOOL isLoading = NO;
 
 @implementation Photo
 
-@synthesize photoSource = _photoSource, size = _size, index = _index, caption = _caption;
+@synthesize photoSource = _photoSource, size = _size, index = _index, caption = _caption, pageUrl = _pageUrl;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // NSObject
 
-- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size {
-    return [self initWithURL:URL smallURL:smallURL size:size caption:nil];
+- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size page:(NSString*) page{
+    return [self initWithURL:URL smallURL:smallURL size:size caption:nil page:page];
 }
 
 - (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size
-          caption:(NSString*)caption {
+          caption:(NSString*)caption page:(NSString*) page{
     if (self = [super init]) {
         _photoSource = nil;
         _URL = [URL copy];
@@ -249,6 +249,7 @@ BOOL isLoading = NO;
         _size = size;
         _caption = [caption copy];
         _index = NSIntegerMax;
+        self.pageUrl = page;
     }
     return self;
 }

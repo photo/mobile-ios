@@ -247,8 +247,9 @@
                                   initWithManagedObjectModel:[self managedObjectModel]];
     if(![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                  configuration:nil URL:storeUrl options:options error:&error]) {
-        NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@. Create the persistent file again.", error, [error userInfo]);
-        
+        NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@.", error, [error userInfo]);
+        NSLog(@"Create the persistent file again.");
+ 
         // let's recreate it
         [managedObjectContext reset];
         [managedObjectContext lock];
