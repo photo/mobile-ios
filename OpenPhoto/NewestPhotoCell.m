@@ -22,14 +22,14 @@
 #import "NewestPhotoCell.h"
 
 @implementation NewestPhotoCell
-@synthesize photo;
-@synthesize date;
-@synthesize tags;
-@synthesize activity;
-@synthesize private;
-@synthesize geoPositionButton;
-@synthesize label;
-@synthesize geoPosition;
+@synthesize photo=_photo;
+@synthesize date=_date;
+@synthesize tags=_tags;
+@synthesize activity=_activity;
+@synthesize private=_private;
+@synthesize geoPositionButton=_geoPositionButton;
+@synthesize label=_label;
+@synthesize geoPosition=_geoPosition;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,14 +48,14 @@
 }
 
 - (void)dealloc {
-    [label release];
-    [photo release];
-    [activity release];
-    [date release];
-    [tags release];
-    [private release];
-    [geoPositionButton release];
-    [geoPosition release];
+    [self.label release];
+    [self.photo release];
+    [self.activity release];
+    [self.date release];
+    [self.tags release];
+    [self.private release];
+    [self.geoPositionButton release];
+    [self.geoPosition release];
     [super dealloc];
 }
 - (IBAction)openGeoPosition:(id)sender {

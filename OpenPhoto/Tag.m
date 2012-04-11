@@ -21,7 +21,7 @@
 
 @implementation Tag
 
-@synthesize tagName,quantity,selected;
+@synthesize tagName=_tagName,quantity=_quantity,selected=_selected;
 
 - (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd{
     self = [super init];
@@ -39,7 +39,7 @@
 
 ///////////////// 
 -(void) dealloc{
-    [tagName release];
+    [self.tagName release];
     [super dealloc];
 }
 

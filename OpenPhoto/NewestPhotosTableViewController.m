@@ -26,8 +26,8 @@
 @end
 
 @implementation NewestPhotosTableViewController
-@synthesize uploads, newestPhotos;
-@synthesize noPhotoImageView;
+@synthesize uploads=_uploads, newestPhotos=_newestPhotos;
+@synthesize noPhotoImageView=_noPhotoImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

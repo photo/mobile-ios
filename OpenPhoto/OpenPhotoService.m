@@ -220,7 +220,7 @@
         self.oAuthSecret == nil ||
         self.consumerKey == nil ||
         self.consumerSecret == nil){
-        NSException *exception = [NSException exceptionWithName: @"unathorized access"
+        NSException *exception = [NSException exceptionWithName: @"Unathorized Access"
                                                          reason: @"Credentials is not configured correct"
                                                        userInfo: nil];
         @throw exception; 
