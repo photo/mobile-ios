@@ -20,7 +20,7 @@
 #import "GalleryViewController.h"
 
 @implementation GalleryViewController
-@synthesize service, tagName;
+@synthesize service=_service, tagName=_tagName;
 
 - (id)init{
     self = [super init];
@@ -39,7 +39,7 @@
         
         // create service and the delegate
         self.service = [[WebService alloc]init];
-        [service setDelegate:self];
+        [self.service setDelegate:self];
         
         
         NSArray *photos = [PhotoModel getPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
@@ -79,9 +79,9 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     if (self.tagName != nil){
-        [service loadGallery:24 withTag:self.tagName onPage:1];
+        [self.service loadGallery:24 withTag:self.tagName onPage:1];
     }else{
-        [service loadGallery:24 onPage:1];
+        [self.service loadGallery:24 onPage:1];
     }
 }
 
@@ -203,8 +203,8 @@
 
 
 - (void) dealloc {
-    [service release];
-    [tagName release];
+    [self.service release];
+    [self.tagName release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

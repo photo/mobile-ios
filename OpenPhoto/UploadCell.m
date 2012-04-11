@@ -22,13 +22,13 @@
 #import "UploadCell.h"
 
 @implementation UploadCell
-@synthesize thumb;
-@synthesize status;
-@synthesize btnRetry;
-@synthesize btnCancel;
-@synthesize activity;
-@synthesize originalObject;
-@synthesize delegate;
+@synthesize thumb=_thumb;
+@synthesize status=_status;
+@synthesize btnRetry=_btnRetry;
+@synthesize btnCancel=_btnCancel;
+@synthesize activity=_activity;
+@synthesize originalObject = _originalObject;
+@synthesize delegate=_delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -42,16 +42,14 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)dealloc {
-    [thumb release];
-    [status release];
-    [btnRetry release];
-    [btnCancel release];
-    [activity release];
+    [self.thumb release];
+    [self.status release];
+    [self.btnRetry release];
+    [self.btnCancel release];
+    [self.activity release];
     [self.originalObject release];
     [super dealloc];
 }

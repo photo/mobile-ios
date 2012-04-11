@@ -29,7 +29,7 @@
 @end
 
 @implementation AuthenticationViewController
-@synthesize serverURL;
+@synthesize serverURL = _serverURL;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -63,19 +63,19 @@
 - (void)viewDidUnload
 {
     [self setServerURL:nil];
-    [serverURL release];
-    serverURL = nil;
+    [self.serverURL release];
+    self.serverURL = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 - (IBAction)login:(id)sender {
-    NSLog(@"Url Login %@",serverURL.text);
+    NSLog(@"Url Login %@",self.serverURL.text);
     
     // check if the user typed something
-    if ( serverURL.text != nil &&
-        [serverURL.text isEqualToString:@"username.openphoto.me"]){
+    if ( self.serverURL.text != nil &&
+        [self.serverURL.text isEqualToString:@"username.openphoto.me"]){
         
         // user should add URL
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL" message:@"Please, set the URL to the OpenPhoto Server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -83,10 +83,10 @@
         [alert release];
     }else{
         // the same actin as click the button from keyboard
-        if ( [self validateUrl:serverURL.text]==YES){
+        if ( [self validateUrl:self.serverURL.text]==YES){
             
             // save the url method. It removes the last / if exists
-            [self saveUrl:serverURL.text];
+            [self saveUrl:self.serverURL.text];
             
             // to the login in the website
             WebService* service = [[WebService alloc]init];
@@ -102,7 +102,7 @@
 
 // Action if user clicks in DONE in the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {  
-    NSLog(@"Url %@",serverURL.text);
+    NSLog(@"Url %@",self.serverURL.text);
     
     if ([self validateUrl:textField.text] == YES){
         
@@ -206,7 +206,7 @@
 }
 
 - (void)dealloc {
-    [serverURL release];
+    [self.serverURL release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

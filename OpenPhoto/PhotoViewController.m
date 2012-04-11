@@ -29,12 +29,10 @@
 
 @implementation PhotoViewController
 
-
-
-@synthesize detailsPictureTable;
-@synthesize urlImageOriginal, imageOriginal, imageFiltered;
-@synthesize titleTextField, permissionPicture, shareFacebook, shareTwitter;
-@synthesize tagController, sourceType;
+@synthesize detailsPictureTable=_detailsPictureTable;
+@synthesize urlImageOriginal=_urlImageOriginal, imageOriginal=_imageOriginal, imageFiltered=_imageFiltered;
+@synthesize titleTextField=_titleTextField, permissionPicture=_permissionPicture, shareFacebook=_shareFacebook, shareTwitter=_shareTwitter;
+@synthesize tagController=_tagController, sourceType=_sourceType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photoUrl:(NSURL *) url photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -111,7 +109,7 @@
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
                 self.titleTextField.returnKeyType = UIReturnKeyDone;
                 self.titleTextField.delegate = self;
-                [cell addSubview:titleTextField];
+                [cell addSubview:self.titleTextField];
             }
             break;
         case 1:
@@ -299,13 +297,13 @@
     uploadInfo.date = [NSDate date];
     
     // facebook
-    uploadInfo.facebook = ([shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    uploadInfo.facebook = ([self.shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // twitter
-    uploadInfo.twitter = ([shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    uploadInfo.twitter = ([self.shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // permissionPrivate
-    uploadInfo.permission = (![permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    uploadInfo.permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     
     // source
     if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
@@ -317,7 +315,7 @@
     }
     
     // tags
-    uploadInfo.tags=[tagController getSelectedTagsInJsonFormat];
+    uploadInfo.tags=[self.tagController getSelectedTagsInJsonFormat];
     
     // title
     uploadInfo.title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
