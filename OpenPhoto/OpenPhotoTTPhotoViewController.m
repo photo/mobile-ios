@@ -28,7 +28,7 @@
     Photo *specificPhoto = [photoSourceDetails photoAtIndex:self.centerPhotoIndex];
     
     // create the item to share
-    SHKItem *item = [SHKItem URL:[NSURL URLWithString:[specificPhoto URLForVersion:TTPhotoVersionLarge] ] title:specificPhoto.caption];
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:[specificPhoto pageUrl]] title:specificPhoto.caption];
     
     // Get the ShareKit action sheet
     SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];

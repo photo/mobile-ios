@@ -18,6 +18,7 @@
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
+		CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F1D81525B84100E7D405 /* UploadPhotos.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
@@ -225,7 +226,6 @@
 		CDE210FB1518CC84002C80F8 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE210FA1518CC84002C80F8 /* Tags.m */; };
 		CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */; };
 		CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */; };
-		CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE2110C1518D3C4002C80F8 /* PhotoModel.m */; };
 		CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
@@ -479,6 +479,8 @@
 		CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceTests.m; sourceTree = "<group>"; };
 		CD0CA689145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoIASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
+		CD10EA3A1535D9AB007BCD54 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD11F1D71525B84100E7D405 /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
@@ -821,8 +823,6 @@
 		CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UploadPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
 		CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDE2110B1518D3C3002C80F8 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
-		CDE2110C1518D3C4002C80F8 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedViewController.h; sourceTree = "<group>"; };
 		CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedViewController.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
@@ -1567,8 +1567,8 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CDE2110B1518D3C3002C80F8 /* PhotoModel.h */,
-				CDE2110C1518D3C4002C80F8 /* PhotoModel.m */,
+				CD10EA3A1535D9AB007BCD54 /* PhotoModel.h */,
+				CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */,
 				CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */,
 				CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */,
 				CDE210F91518CC84002C80F8 /* Tags.h */,
@@ -2397,7 +2397,6 @@
 				CDE210FB1518CC84002C80F8 /* Tags.m in Sources */,
 				CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */,
 				CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */,
-				CDE2110D1518D3C4002C80F8 /* PhotoModel.m in Sources */,
 				CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */,
 				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
 				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
@@ -2411,6 +2410,7 @@
 				CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */,
 				CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */,
 				CD90B8201528953800832AB4 /* NewestPhotos.m in Sources */,
+				CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

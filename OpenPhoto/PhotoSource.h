@@ -47,11 +47,14 @@
     CGSize _size;
     NSInteger _index;
     NSString* _caption;
+    NSString* pageUrl;
 }
 
-- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size;
+@property (nonatomic, copy) NSString *pageUrl;
+
+- (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size page:(NSString*) page;
 
 - (id)initWithURL:(NSString*)URL smallURL:(NSString*)smallURL size:(CGSize)size
-          caption:(NSString*)caption;
+          caption:(NSString*)caption page:(NSString*) page;
 
 @end

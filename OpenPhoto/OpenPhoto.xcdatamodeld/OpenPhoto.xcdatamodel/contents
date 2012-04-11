@@ -15,6 +15,7 @@
         <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="identification" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="pageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlSmall" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,7 +39,7 @@
     </entity>
     <elements>
         <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="180"/>
-        <element name="Photos" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Photos" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
         <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="195"/>
     </elements>

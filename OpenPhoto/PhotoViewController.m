@@ -107,7 +107,7 @@
                 
                 self.titleTextField.placeholder = @"title";
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
-                self.titleTextField.returnKeyType = UIReturnKeyDone;
+                self.titleTextField.returnKeyType = UIReturnKeyNext;
                 self.titleTextField.delegate = self;
                 [cell addSubview:self.titleTextField];
             }

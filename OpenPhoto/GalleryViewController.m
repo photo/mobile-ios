@@ -156,7 +156,7 @@
             [photos addObject: [[[Photo alloc]
                                  initWithURL:[NSString stringWithFormat:@"%@", [photo objectForKey:@"path640x960"]]
                                  smallURL:[NSString stringWithFormat:@"%@",[photo objectForKey:@"path200x200"]] 
-                                 size:CGSizeMake(realWidth, realHeight) caption:title] autorelease]];
+                                 size:CGSizeMake(realWidth, realHeight) caption:title page:[NSString stringWithFormat:@"%@",[photo objectForKey:@"url"]] ] autorelease]];
         } 
         
         
