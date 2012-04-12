@@ -21,6 +21,7 @@
 #import "PhotoModel+OpenPhoto.h"
 #import "NewestPhotos+OpenPhoto.h"
 #import "UploadPhotos+OpenPhoto.h"
+#import "OpenPhotoServiceFactory.h"
 
 @interface AuthenticationHelper : NSObject{
     WebService* webService;

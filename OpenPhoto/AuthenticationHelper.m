@@ -49,9 +49,20 @@
 }
 
 - (void) invalidateAuthentication{
-    // set the variable client id to INVALID
+    
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
+    // remove the credentials from the server in case of internet
+    if ([AppDelegate internetActive]){
+        @try {
+            OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+            [service removeCredentialsForKey:[standardUserDefaults objectForKey:kAuthenticationConsumerKey ]];
+        }@catch (NSException *exception) {
+            NSLog(@"Error to remove the credentials from server %@",exception.description);
+        }
+    }
+
+    // set the variable client id to INVALID
     [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
     [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthToken];
     [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthSecret];
@@ -62,7 +73,7 @@
     
     // synchronize the keys
     [standardUserDefaults synchronize];
-    
+
     // reset core data
     [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
