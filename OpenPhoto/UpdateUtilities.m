@@ -42,7 +42,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"2.0";
+    return @"2.0.2";
 }
 
 - (BOOL) needsUpdate{
@@ -72,7 +72,7 @@ static UpdateUtilities* instance = nil;
     [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [[AppDelegate managedObjectContext] reset];   
+    [[AppDelegate managedObjectContext] reset]; 
 }
 
 - (void) dealloc {

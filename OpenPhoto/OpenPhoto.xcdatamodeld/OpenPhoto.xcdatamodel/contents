@@ -2,6 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="NewestPhotos" representedClassName="NewestPhotos" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateUploaded" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,7 +39,7 @@
         <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Photos" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
         <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="195"/>
