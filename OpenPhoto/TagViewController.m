@@ -236,7 +236,7 @@
     
     if (tag.quantity >0 && self.readOnly == NO){
         // open the gallery with a tag that contains at least one picture.
-        GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:tag.tagName];
+        GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:[tag.tagName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         [self.navigationController pushViewController:galleryController animated:YES];
         [galleryController release];
     }
