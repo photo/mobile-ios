@@ -27,7 +27,7 @@
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"NewestPhotos"];
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     NSError *error = nil;
@@ -127,8 +127,8 @@
                 
                 newest.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];
                 
-                // get the date since 1970
-                double d            = [[raw objectForKey:@"dateUploaded"] doubleValue];
+                // get the date taken since 1970
+                double d            = [[raw objectForKey:@"dateTaken"] doubleValue];
                 NSTimeInterval date =  d;
                 newest.date          = [NSDate dateWithTimeIntervalSince1970:date];    
                 
@@ -147,6 +147,11 @@
                 NSString *longitude = [raw objectForKey:@"longitude"];
                 if ([longitude class] != [NSNull class] && ![longitude isEqualToString:@""])
                 newest.longitude = longitude;
+                
+                // get the date since 1970
+                double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
+                NSTimeInterval dateUpload =  dUpload;
+                newest.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];  
             }
         }
         

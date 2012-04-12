@@ -246,18 +246,18 @@
                                     shareDetails = [responsePhoto objectForKey:@"url"];
                                 }
                                 
-                                 NSArray *objects= [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", shareDetails], [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
+                                NSArray *objects= [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", shareDetails], [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
                                 
                                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
                                 
                             }  
-  
+                            
 #ifdef DEVELOPMENT_ENABLED 
                             NSLog(@"Let's remove object from table");
 #endif
                             // reload list
                             [self.uploads removeObjectAtIndex:indexPath.row];
-
+                            
 #ifdef DEVELOPMENT_ENABLED 
                             NSLog(@"Let's reload data");
 #endif                            
@@ -336,9 +336,15 @@
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
         
         NSInteger days = interval/86400;
-        if (days >= 2){
-            // lets show in days
-            [dateText appendFormat:@"%i days ago",days];
+        if (days >= 2 ){
+            if (days > 365){
+                // show in years 
+                [dateText appendFormat:days/365 == 1 ? [NSString stringWithFormat:@"%i year ago",days/365] : [NSString stringWithFormat:@"%i years ago",days/365]];
+            }else{
+                // lets show in days
+                [dateText appendFormat:@"%i days ago",days];
+            }
+            
         }else{
             // lets show in hours
             NSInteger hours = interval / 3600;
