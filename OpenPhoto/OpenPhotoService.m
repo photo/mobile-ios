@@ -20,7 +20,7 @@
 #import "OpenPhotoService.h"
 @interface OpenPhotoService()
 
-- (NSArray *) sendSynchronousRequest:(NSString *) request;
+- (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method;
 - (void) validateCredentials;
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url;
 
@@ -67,12 +67,12 @@
         [request appendString:@"305x265xCR"];
     }
     
-    return [self sendSynchronousRequest:request]; 
+    return [self sendSynchronousRequest:request httpMethod:@"GET"]; 
 }
 
 
 
-- (NSArray *) sendSynchronousRequest:(NSString *) request{
+- (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
     [self validateCredentials];
     
     // create the url to connect to OpenPhoto
@@ -80,32 +80,48 @@
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Request to be sent = [%@]",urlString);
+    NSLog(@"Request http method = [%@]",method);
+    
 #endif
     
     // transform in URL for the request
     NSURL *url = [NSURL URLWithString:urlString];
     
     OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
-    [oaUrlRequest setHTTPMethod:@"GET"];
+    [oaUrlRequest setHTTPMethod:method];
     
     // prepare the Authentication Header
     [oaUrlRequest prepare];
     
-    
-    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    NSString *requestAnswer = nil;
     // set the authorization header to be used in the OAuth            
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
-    [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
     
-    // send the request synchronous
-    [asiHttpRequest startSynchronous];
+    if ([method isEqualToString:@"GET"]){
+        // GET
+        ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+        [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        // send the request synchronous
+        [asiHttpRequest startSynchronous];
+        
+        // parse response
+        requestAnswer =  [asiHttpRequest responseString] ;  
+    }else{
+        // POST
+        ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+        [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        [asiRequest startSynchronous];
+        
+        // parse response
+        requestAnswer = [asiRequest responseString];
+    }
     
-    // check the valid result
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Response = %@",[asiHttpRequest responseString]);
+    NSLog(@"Response = %@",requestAnswer);
 #endif
-    NSDictionary *response =  [[asiHttpRequest responseString] JSONValue];    
     
+    NSDictionary *response = [requestAnswer JSONValue];
+    // check the valid result
     if (![OpenPhotoService isMessageValid:response]){
         // invalid message
         NSException *exception = [NSException exceptionWithName: @"Incorrect request"
@@ -128,8 +144,6 @@
 - (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
 {
     [self validateCredentials];
-    
-    
     
     // set all details to send
     NSString *uploadCall = [NSString stringWithFormat:@"title=%@&permission=%@&tags=%@",[values objectForKey:@"title"],[values objectForKey:@"permission"], [values objectForKey:@"tags"]];
@@ -203,16 +217,18 @@
 // get all tags. It brings how many images have this tag.
 - (NSArray*)  getTags
 {
-    return [self sendSynchronousRequest:@"/v1/tags/list.json"]; 
+    return [self sendSynchronousRequest:@"/v1/tags/list.json" httpMethod:@"GET"]; 
 }
 
 // get details from the system
 - (NSArray*)  getSystemVersion
 {
-    return [self sendSynchronousRequest:@"/v1/system/version.json"];    
+    return [self sendSynchronousRequest:@"/v1/system/version.json" httpMethod:@"GET"];    
 }
 
-
+- (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey{
+    return [self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"];
+}
 
 - (void) validateCredentials{    
     // validate if the service has all details for the account

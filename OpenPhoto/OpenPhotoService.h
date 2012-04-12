@@ -46,6 +46,9 @@
 // get details from the system
 - (NSArray*)  getSystemVersion;
 
+// remove credentials form the server when log out
+- (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey;
+
 + (BOOL) isMessageValid:(NSDictionary *)response;
 
 @end
