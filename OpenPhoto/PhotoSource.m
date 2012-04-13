@@ -20,7 +20,7 @@
 @synthesize tagName = _tagName;
 @synthesize numberOfPhotos = _numberOfPhotos;
 @synthesize currentPage = _currentPage;
-@synthesize actualMaxPhotoIndex;
+@synthesize actualMaxPhotoIndex = _actualMaxPhotoIndex;
 @synthesize service;
 @synthesize photos;
 
@@ -110,9 +110,9 @@ BOOL isLoading = NO;
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     if ([values objectForKey:@"tag"] == nil){
-        [service loadGallery:25 onPage:[[values objectForKey:@"page"] intValue] ];
+        [service loadGallery:24 onPage:[[values objectForKey:@"page"] intValue] ];
     }else{
-        [service loadGallery:25 withTag:[values objectForKey:@"tag"]  onPage:[[values objectForKey:@"page"] intValue] ];
+        [service loadGallery:24 withTag:[values objectForKey:@"tag"]  onPage:[[values objectForKey:@"page"] intValue] ];
     } 
     
     [pool release];
@@ -146,10 +146,7 @@ BOOL isLoading = NO;
     if ([responsePhotos class] != [NSNull class]) {
         
         // Loop through each entry in the dictionary and create an array of MockPhoto
-        for (NSDictionary *photo in responsePhotos){
-            // index photo
-            photoId++;
-            
+        for (NSDictionary *photo in responsePhotos){           
             // Get title of the image
             NSString *title = [photo objectForKey:@"title"];
             if ([title class] == [NSNull class])
@@ -183,7 +180,8 @@ BOOL isLoading = NO;
             obj.photoSource = self;
             // add to array
             [localPhotos addObject:obj];
-            
+            // index photo
+            photoId++;
         } 
     }
     [self.photos addObjectsFromArray:localPhotos];
