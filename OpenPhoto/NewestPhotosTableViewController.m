@@ -368,6 +368,9 @@
         //Load images from web asynchronously with GCD 
         if(!photo.photoData && photo.photoUrl != nil){
             newestPhotoCell.photo.hidden = YES;
+            newestPhotoCell.private.hidden = YES;
+            newestPhotoCell.geoPositionButton.hidden=YES;
+            
             [newestPhotoCell.activity startAnimating];
             newestPhotoCell.activity.hidden = NO;
             
