@@ -68,11 +68,8 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults synchronize];   
     
-    // reset core data
-    [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [[AppDelegate managedObjectContext] reset]; 
+    //clean up database
+    [AppDelegate cleanDatabase]; 
         
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){

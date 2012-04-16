@@ -68,5 +68,5 @@
 // 3 = Tag
 // 4 = Settings
 - (void) openTab:(int) position;
-
+- (void) cleanDatabase;
 @end

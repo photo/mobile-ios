@@ -96,7 +96,7 @@
                                              selector:@selector(eventHandler:)
                                                  name:kNotificationShareInformationToFacebookOrTwitter         
                                                object:nil ];
-
+    
     return YES;
 }
 
@@ -249,7 +249,7 @@
                                                  configuration:nil URL:storeUrl options:options error:&error]) {
         NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@.", error, [error userInfo]);
         NSLog(@"Create the persistent file again.");
- 
+        
         // let's recreate it
         [managedObjectContext reset];
         [managedObjectContext lock];
@@ -269,7 +269,7 @@
         [managedObjectContext unlock];
         
         return r;
-
+        
     }
     
     return persistentStoreCoordinator;
@@ -282,6 +282,33 @@
 - (NSURL *) getStoreUrl{
     return [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
                                     stringByAppendingPathComponent: @"OpenPhotoCoreData.sqlite"]];
+}
+
+- (void) cleanDatabase{
+    // let's recreate it
+    if (managedObjectContext != nil){
+        [managedObjectContext reset];
+        [managedObjectContext lock];
+    }
+    
+    // delete file
+    NSURL *storeUrl = [self getStoreUrl];
+    NSError *error = nil;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:storeUrl.path]) {
+        if (![[NSFileManager defaultManager] removeItemAtPath:storeUrl.path error:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        } 
+    }
+    
+    [persistentStoreCoordinator release];
+    persistentStoreCoordinator = nil;
+    
+    if (managedObjectContext != nil){
+        [managedObjectContext unlock];
+        [managedObjectContext release];
+        managedObjectContext = nil;
+    }
 }
 
 
