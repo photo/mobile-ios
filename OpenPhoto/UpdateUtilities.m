@@ -69,10 +69,15 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults synchronize];   
     
     // reset core data
-    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     [[AppDelegate managedObjectContext] reset]; 
+        
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+    }
 }
 
 - (void) dealloc {

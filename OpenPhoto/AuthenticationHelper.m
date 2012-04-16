@@ -79,8 +79,11 @@
     [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
     [[AppDelegate managedObjectContext] reset];    
-    
-    // TODO remove credentials. Need API for it.   
+
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+    }
     
     // send notification to the system that it can shows the screen:
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginNeeded object:nil];
