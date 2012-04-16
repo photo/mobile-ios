@@ -19,6 +19,7 @@
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */; };
+		CD10EB08153719D7007BCD54 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10EB07153719D7007BCD54 /* NewestPhotos.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F1D81525B84100E7D405 /* UploadPhotos.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
@@ -174,7 +175,6 @@
 		CD90B81B152894BE00832AB4 /* home_geoposition@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD90B817152894BE00832AB4 /* home_geoposition@2x.png */; };
 		CD90B81C152894BE00832AB4 /* home_private.png in Resources */ = {isa = PBXBuildFile; fileRef = CD90B818152894BE00832AB4 /* home_private.png */; };
 		CD90B81D152894BE00832AB4 /* home_private@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD90B819152894BE00832AB4 /* home_private@2x.png */; };
-		CD90B8201528953800832AB4 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD90B81F1528953800832AB4 /* NewestPhotos.m */; };
 		CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD97D1001513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m */; };
 		CD9A020714180457002DDCEF /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020614180457002DDCEF /* AuthenticationHelper.m */; };
 		CD9A020C141804E3002DDCEF /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020A141804E3002DDCEF /* AuthenticationViewController.m */; };
@@ -481,6 +481,8 @@
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD10EA3A1535D9AB007BCD54 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		CD10EB06153719D7007BCD54 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
+		CD10EB07153719D7007BCD54 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD11F1D71525B84100E7D405 /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
@@ -744,8 +746,6 @@
 		CD90B817152894BE00832AB4 /* home_geoposition@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_geoposition@2x.png"; path = "OpenPhoto/images/home_geoposition@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD90B818152894BE00832AB4 /* home_private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_private.png; path = OpenPhoto/images/home_private.png; sourceTree = SOURCE_ROOT; };
 		CD90B819152894BE00832AB4 /* home_private@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_private@2x.png"; path = "OpenPhoto/images/home_private@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD90B81E1528953800832AB4 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
-		CD90B81F1528953800832AB4 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
 		CD97D0FF1513DC92000FFF68 /* OpenPhotoTTPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoTTPhotoViewController.h; sourceTree = "<group>"; };
 		CD97D1001513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoTTPhotoViewController.m; sourceTree = "<group>"; };
 		CD9A020514180457002DDCEF /* AuthenticationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationHelper.h; sourceTree = "<group>"; };
@@ -1579,8 +1579,8 @@
 				CD11F1D81525B84100E7D405 /* UploadPhotos.m */,
 				CDE211021518CD23002C80F8 /* UploadPhotos+OpenPhoto.h */,
 				CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */,
-				CD90B81E1528953800832AB4 /* NewestPhotos.h */,
-				CD90B81F1528953800832AB4 /* NewestPhotos.m */,
+				CD10EB06153719D7007BCD54 /* NewestPhotos.h */,
+				CD10EB07153719D7007BCD54 /* NewestPhotos.m */,
 				CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */,
 				CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */,
 			);
@@ -2409,8 +2409,8 @@
 				CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */,
 				CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */,
 				CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */,
-				CD90B8201528953800832AB4 /* NewestPhotos.m in Sources */,
 				CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */,
+				CD10EB08153719D7007BCD54 /* NewestPhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
