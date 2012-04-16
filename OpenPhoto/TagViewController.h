@@ -22,15 +22,8 @@
 #import "TSAlertView.h"
 #import "OpenPhotoServiceFactory.h"
 #import "MBProgressHUD.h"
-#import "EGORefreshTableHeaderView.h"
 
-@interface TagViewController : UITableViewController<TSAlertViewDelegate, EGORefreshTableHeaderDelegate>{
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    
-    //  Reloading var should really be your tableviews datasource
-    //  Putting it here for demo purposes 
-    BOOL _reloading;
-    
+@interface TagViewController : UITableViewController<TSAlertViewDelegate>{   
     NSMutableArray *tags;
 }
 

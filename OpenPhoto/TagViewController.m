@@ -51,7 +51,6 @@
 -(void) dealloc
 {
     [self.tags release];
-    [_refreshHeaderView release];
     [super dealloc];
 }
 - (void) setReadOnly
@@ -106,10 +105,15 @@
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];          
+    self.navigationItem.rightBarButtonItem = refreshButton;
+    [refreshButton release];
+    
+    
     // wanna add new tag name
     if (self.readOnly == YES){
         UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];          
-        self.navigationItem.rightBarButtonItem = addNewTagButton;
+        self.navigationItem.leftBarButtonItem = addNewTagButton;
         [addNewTagButton release];
         
         if ([self.tags count] == 0 ){
@@ -131,24 +135,6 @@
     
     // set the tile of the table
     self.title=@"Tags"; 
-    
-    if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height) arrowImageName:@"OpenPhotobrownRoundedArrow.png" textColor:UIColorFromRGB(0xC8BEA0)];
-		view.delegate = self;
-        
-        // set background
-        view.backgroundColor = [UIColor clearColor];
-        view.opaque = NO;
-        
-		[self.tableView addSubview:view];
-		_refreshHeaderView = view;
-		[view release];
-		
-	}
-    
-	//  update the last update date
-	[_refreshHeaderView refreshLastUpdatedDate];
 }
 
 -(void) addNewTag
@@ -267,10 +253,9 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         [alert release];
-        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
     }else {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.labelText = @"Loading  ";
+        hud.labelText = @"Loading";
         
         dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
         dispatch_async(loadTags, ^{
@@ -309,8 +294,6 @@
 #endif
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     
-                    // refresh table  
-                    [self doneLoadingTableViewData];
                 });
             }@catch (NSException *exception) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -318,10 +301,6 @@
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:exception.description delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                     [alert show];
                     [alert release];
-                    
-                    // refresh table  
-                    [self doneLoadingTableViewData];
-                    
                 });   
             }
         });
@@ -330,49 +309,10 @@
     
 }
 
-- (void)doneLoadingTableViewData
-{
-    _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-}
-
-#pragma mark -
-#pragma mark UIScrollViewDelegate Methods
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
-}
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-    // via GCD, get tall tags
-    [self loadTags];    
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-	return _reloading; // should return if data source model is reloading	
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{	
-	return [NSDate date]; // should return date data source was last changed	
-}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    _refreshHeaderView=nil;
 }
 
 @end
