@@ -101,6 +101,8 @@
         // GET
         ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
         [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        [asiHttpRequest setUserAgent:@"OpenPhoto iOS"];
+        
         // send the request synchronous
         [asiHttpRequest startSynchronous];
         
@@ -110,6 +112,8 @@
         // POST
         ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
         [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        [asiRequest setUserAgent:@"OpenPhoto iOS"];
+        
         [asiRequest startSynchronous];
         
         // parse response
@@ -125,7 +129,7 @@
     if (![OpenPhotoService isMessageValid:response]){
         // invalid message
         NSException *exception = [NSException exceptionWithName: @"Incorrect request"
-                                                         reason: [NSString stringWithFormat:@"Error: %@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
+                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
                                                        userInfo: nil];
         @throw exception;
     }             
@@ -145,34 +149,31 @@
 {
     [self validateCredentials];
     
-    // set all details to send
-    NSString *uploadCall = [NSString stringWithFormat:@"title=%@&permission=%@&tags=%@",[values objectForKey:@"title"],[values objectForKey:@"permission"], [values objectForKey:@"tags"]];
-    
     NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/photo/upload.json", self.server];
     NSURL *url = [NSURL URLWithString:urlString];
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url upload = [%@]. Execute OAuth and Multipart",urlString);
-    NSLog(@"Title = %@",[values objectForKey:@"title"]);
+    NSLog(@"Title = %@",[values objectForKey:@"title"] );
     NSLog(@"Permission = %@",[values objectForKey:@"permission"]);
     NSLog(@"Tags = %@",[values objectForKey:@"tags"]);
 #endif
     
     OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];                                                              
     [oaUrlRequest setHTTPMethod:@"POST"]; 
-    [oaUrlRequest setValue:[NSString stringWithFormat:@"%d",[uploadCall length]] forHTTPHeaderField:@"Content-length"];
-    [oaUrlRequest setHTTPBody:[uploadCall dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO]];
     
-    @try {
-        // prepare the request. This will be used to get the Authorization header and add in the multipart component        
-        [oaUrlRequest prepare];
-    }
-    @catch (NSException *exception) {
-        NSException *newException = [NSException exceptionWithName: @"Incorrect Parameters"
-                                                            reason: @"Couldn't upload your photo. Please, change photo's title."
-                                                          userInfo: nil];
-        @throw newException;
-    }
+    OARequestParameter *titleParam = [[OARequestParameter alloc] initWithName:@"title"
+                                                                        value:[values objectForKey:@"title"]];  
+    OARequestParameter *permissionParam = [[OARequestParameter alloc] initWithName:@"permission"
+                                                                             value:[NSString stringWithFormat:@"%@",[values objectForKey:@"permission"]]];
+    
+    OARequestParameter *tagParam = [[OARequestParameter alloc] initWithName:@"tags"
+                                                                      value:[values objectForKey:@"tags"]];
+    NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagParam, nil];
+    [oaUrlRequest setParameters:params];
+    
+    // prepare the request. This will be used to get the Authorization header and add in the multipart component        
+    [oaUrlRequest prepare];
     
     /*
      *
@@ -180,6 +181,7 @@
      *
      */
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    [asiRequest setUserAgent:@"OpenPhoto iOS"];
     
     // set the authorization header to be used in the OAuth            
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -194,11 +196,24 @@
     // in memory. If it is a picture with filter, we just send without giving the name 
     // and content type
     [asiRequest addData:data  withFileName:fileName andContentType:[ContentTypeUtilities contentTypeForImageData:data] forKey:@"photo"];
+    // timeout 4 minutes. TODO. Needs improvements.
+    [asiRequest setTimeOutSeconds:240];
     [asiRequest startSynchronous];
+    
+    NSError *error = [asiRequest error];
+    if (error) {
+        NSLog(@"Error: %@", error);
+        NSException *exception = [NSException exceptionWithName: @"Response error"
+                                                         reason: [error localizedDescription]
+                                                       userInfo: nil];
+        @throw exception;
+    }
     
     // check the valid result
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Response = %@",[asiRequest responseString]);
+    NSLog(@"responseStatusMessage = %@", [asiRequest responseStatusMessage]);
+    NSLog(@"responseStatusCode = %i", [asiRequest responseStatusCode]);
 #endif 
     
     NSDictionary *response =  [[asiRequest responseString] JSONValue]; 
@@ -206,7 +221,7 @@
     if (![OpenPhotoService isMessageValid:response]){
         // invalid message
         NSException *exception = [NSException exceptionWithName: @"Incorrect request"
-                                                         reason: [NSString stringWithFormat:@"Error: %@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
+                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
                                                        userInfo: nil];
         @throw exception;
     }  
