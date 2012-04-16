@@ -241,20 +241,9 @@
                                 
                                 // parameters from upload
                                 NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
-                                NSString *shareDetails;
-                                
-                                if ([upload.twitter boolValue]){
-                                    //twitter: share the link
-                                    shareDetails = [responsePhoto objectForKey:@"pathOriginal"]; 
-                                }else {
-                                    //facebook: share the url
-                                    shareDetails = [responsePhoto objectForKey:@"url"];
-                                }
-                                
-                                NSArray *objects= [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@", shareDetails], [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
-                                
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
-                                
+                                NSString *shareDetails = [responsePhoto objectForKey:@"url"];                              
+                                NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
                             }  
                             
 #ifdef DEVELOPMENT_ENABLED 
