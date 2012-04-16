@@ -19,6 +19,10 @@
 
 #import "GalleryViewController.h"
 
+@interface GalleryViewController()
+- (void) loadImages;
+@end
+
 @implementation GalleryViewController
 @synthesize service=_service, tagName=_tagName;
 
@@ -78,11 +82,22 @@
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadImages)];          
+    self.navigationItem.rightBarButtonItem = refreshButton;
+    [refreshButton release];
+    
+    [self loadImages];
+}
+
+- (void) loadImages{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading";
+    
     if (self.tagName != nil){
         [self.service loadGallery:24 withTag:self.tagName onPage:1];
     }else{
         [self.service loadGallery:24 onPage:1];
-    }
+    }    
 }
 
 - (void)viewDidLoad
@@ -94,6 +109,8 @@
 
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    
     // check if message is valid
     if (![WebService isMessageValid:response]){
         NSString* message = [WebService getResponseMessage:response];
@@ -181,7 +198,9 @@
 }
 
 - (void) notifyUserNoInternet{
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     // problem with internet, show message to user
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [alert show];
