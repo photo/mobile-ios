@@ -105,15 +105,12 @@
     // Uncomment the following line to preserve selection between presentations.
     self.clearsSelectionOnViewWillAppear = NO;
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];          
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];
     
     
     // wanna add new tag name
     if (self.readOnly == YES){
         UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];          
-        self.navigationItem.leftBarButtonItem = addNewTagButton;
+        self.navigationItem.rightBarButtonItem = addNewTagButton;
         [addNewTagButton release];
         
         if ([self.tags count] == 0 ){
@@ -122,17 +119,18 @@
             [self loadTags];
         }
     }else{
+        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];          
+        self.navigationItem.rightBarButtonItem = refreshButton;
+        [refreshButton release];
+        
         // load all tags
         [self loadTags];     
     }
-    
-    
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
+    [super viewDidLoad];   
     // set the tile of the table
     self.title=@"Tags"; 
 }

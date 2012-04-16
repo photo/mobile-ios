@@ -65,6 +65,8 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
     [cancelButton release];
     
+    
+    self.title = @"Upload";
     [super viewDidLoad];
 }
 
