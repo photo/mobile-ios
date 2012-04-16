@@ -507,6 +507,7 @@
     if ([notification.name isEqualToString:kNotificationLoginNeeded]){
         self.newestPhotos = [NSArray array];
         self.uploads = [NSArray array];
+        [self.tableView reloadData];
     }
 }
 
