@@ -167,6 +167,9 @@
         if (![upload.status isEqualToString:kUploadStatusTypeFailed]) {
             uploadCell.btnRetry.hidden  = YES;
             uploadCell.btnCancel.hidden = YES;
+        }else{
+            uploadCell.btnRetry.hidden  = NO;
+            uploadCell.btnCancel.hidden = NO;
         }
         
         // set ativity icon
@@ -182,6 +185,8 @@
                 [self notifyUserNoInternet];
                 uploadCell.status.text = kUploadStatusTypeFailed;
                 upload.status = kUploadStatusTypeFailed;
+                uploadCell.btnRetry.hidden  = NO;
+                uploadCell.btnCancel.hidden = NO;
             }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
                 // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
                 uploadCell.status.text = kUploadStatusTypeUploading;
