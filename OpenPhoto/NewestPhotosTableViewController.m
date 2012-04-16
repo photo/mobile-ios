@@ -287,9 +287,6 @@
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"You already uploaded this photo."
                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                            }else if([[e description] hasPrefix:@"Error: 403 - oauth_problem=signature_invalid"]) {
-                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"Signature invalid. Please, check photo's title. We do not support special characters yet."
-                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                             }else {
                                 alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
                                                                   delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
