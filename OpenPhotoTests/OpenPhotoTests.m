@@ -53,4 +53,11 @@
     STAssertTrue([@"069aa3984c0c8d27ee405bc5e63024ac43f44615" isEqualToString:result], @"Incorrect SHA1");
 }
 
+-(void) testSHA1File{
+    NSString *filePath = [[NSBundle bundleForClass:[OpenPhotoTests class]] pathForResource:@"unit_test_image"  ofType:@"jpg"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];  
+
+    NSString *result = [SHA1 sha1File:data];
+    STAssertTrue([@"bfdf353630e91bab5647dba3b7d44a9bc9305588" isEqualToString:result], @"Incorrect SHA1");
+}
 @end

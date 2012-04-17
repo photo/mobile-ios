@@ -22,5 +22,6 @@
 @interface SHA1 : NSObject
 
 + (NSString*) sha1:(NSString*) input;
++ (NSString*) sha1File:(NSData *) data;
 
 @end

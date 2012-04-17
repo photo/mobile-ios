@@ -60,8 +60,18 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
+    PhotoModel *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Photos" inManagedObjectContext:self.managedObjectContext];
+    photo.url=@"http://test.com";
+    photo.urlSmall=@"http://test2.com";
+    photo.date = [NSDate date];
+    photo.title = @"This is the title";
     
-    NSError *error = nil;
+    NSError *error= nil;
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Couldn't save: %@", [error localizedDescription]);
+    }
+
+    
     NSArray *matches = [self.managedObjectContext executeFetchRequest:request error:&error];
     
     if (!matches)
