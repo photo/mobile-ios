@@ -445,7 +445,7 @@
     
     // if no picture, show image to upload
     if (  [self.uploads count] + [self.newestPhotos count] == 0  ) {
-        [self.navigationController.view addSubview:noPhotoImageView];
+        [self.navigationController.view addSubview:self.noPhotoImageView];
         self.noPhotoImageView.hidden = NO;
     }else{
         [self.noPhotoImageView removeFromSuperview];
