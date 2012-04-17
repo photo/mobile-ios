@@ -27,6 +27,7 @@
 #import "UploadCell.h"
 
 #import "CoreLocationController.h"
+#import "SHA1.h"
 
 
 @interface NewestPhotosTableViewController : UITableViewController <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource,UploadCellDelegate>{

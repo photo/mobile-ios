@@ -207,65 +207,61 @@
                         NSString *filename = [dictionary objectForKey:@"fileName"];
                         NSData *data = [dictionary objectForKey:@"image"];
                         
-                        // create the service and send the request
+                        // create the service, check photo exists and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                        NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
-                        [service release];
-#ifdef DEVELOPMENT_ENABLED                        
-                        NSLog(@"Photo uploaded correctly");
-#endif
-                        // update the screen
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            // if it is processed change the status UPLOADED
-                            uploadCell.status.text = kUploadStatusTypeUploaded;
-                            upload.status = kUploadStatusTypeUploaded;
-                            // while we do not delete this photo, save space removing the image
-                            upload.image = nil;
-                            
-                            NSError *saveError = nil;
-                            if (![[AppDelegate managedObjectContext] save:&saveError]){
-                                NSLog(@"Error on change status of Upload = %@",[saveError localizedDescription]);
-                            }
-                            
-#ifdef TEST_FLIGHT_ENABLED
-                            [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
-#endif
-#ifdef DEVELOPMENT_ENABLED 
-                            NSLog(@"Checking Twitter or Facebook");
-#endif
-                            // check if it needs share for twitter or facebook
-                            // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
-                            if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
-                                NSLog(@"User needs to share it");
-                                NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
-                                
-                                // parameters from upload
-                                NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
-                                NSString *shareDetails = [responsePhoto objectForKey:@"url"];                              
-                                NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
-                            }  
-                            
-#ifdef DEVELOPMENT_ENABLED 
-                            NSLog(@"Let's remove object from table");
-#endif
-                            // reload list
-                            [self.uploads removeObjectAtIndex:indexPath.row];
-                            
-#ifdef DEVELOPMENT_ENABLED 
-                            NSLog(@"Let's reload data");
-#endif                            
-                            // table needs update
-                            [self.tableView reloadData]; 
-                            
-                            // update the table with newest photos
-#ifdef DEVELOPMENT_ENABLED 
-                            NSLog(@"Let's request load newest photos");
-#endif
-                            [self loadNewestPhotosIntoCoreData];
-                        });
-                    }@catch (NSException* e) {
                         
+                        // before check if the photo already exist
+                        if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
+                            @throw  [NSException exceptionWithName: @"Failed to upload" reason: @"You already uploaded this photo." userInfo: nil];
+                        }else{
+                            NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
+                            [service release];
+#ifdef DEVELOPMENT_ENABLED                        
+                            NSLog(@"Photo uploaded correctly");
+#endif
+                            // update the screen
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // if it is processed change the status UPLOADED
+                                uploadCell.status.text = kUploadStatusTypeUploaded;
+                                upload.status = kUploadStatusTypeUploaded;
+                                // while we do not delete this photo, save space removing the image
+                                upload.image = nil;
+                                
+                                NSError *saveError = nil;
+                                if (![[AppDelegate managedObjectContext] save:&saveError]){
+                                    NSLog(@"Error on change status of Upload = %@",[saveError localizedDescription]);
+                                }
+                                
+#ifdef TEST_FLIGHT_ENABLED
+                                [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
+#endif
+#ifdef DEVELOPMENT_ENABLED 
+                                NSLog(@"Checking Twitter or Facebook");
+#endif
+                                // check if it needs share for twitter or facebook
+                                // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
+                                if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
+                                    NSLog(@"User needs to share it");
+                                    NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
+                                    
+                                    // parameters from upload
+                                    NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
+                                    NSString *shareDetails = [responsePhoto objectForKey:@"url"];                              
+                                    NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
+                                }  
+                                
+                                // reload list
+                                [self.uploads removeObjectAtIndex:indexPath.row];
+                                
+                                // table needs update
+                                [self.tableView reloadData]; 
+                                
+                                // update the table with newest photos
+                                [self loadNewestPhotosIntoCoreData];
+                            });
+                        }
+                    }@catch (NSException* e) {
                         NSLog(@"Error %@",e);
                         
                         // if it fails for any reason, set status FAILED in the main thread
@@ -294,10 +290,10 @@
                             [self.tableView endUpdates]; 
                             
                         });
-                        
                     }
                 });
                 dispatch_release(uploadQueue);
+                
             }else{
                 NSLog(@"Number max of uploading reached");
             }
@@ -438,13 +434,13 @@
 #pragma mark Data Source Loading / Reloading Methods
 
 - (void)doneLoadingTableViewData{
-	//  model should call this when its done loading
+    //  model should call this when its done loading
     self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
     [self.tableView reloadData];
     
-	_reloading = NO;
-	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    _reloading = NO;
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
     
     
     // if no picture, show image to upload
@@ -462,15 +458,15 @@
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-	
-	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
     
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-	
-	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-	
+    
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    
 }
 
 #pragma mark -
@@ -483,19 +479,19 @@
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
 {
-	return _reloading; // should return if data source model is reloading	
+    return _reloading; // should return if data source model is reloading	
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
 {	
-	return [NSDate date]; // should return date data source was last changed	
+    return [NSDate date]; // should return date data source was last changed	
 }
 
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-	_refreshHeaderView=nil;
+    _refreshHeaderView=nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -533,7 +529,7 @@
     // if there isn't netwok
     if ( [AppDelegate internetActive] == NO ){
         [self notifyUserNoInternet];
-       	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
     }else {
         dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
         dispatch_async(loadNewestPhotos, ^{
