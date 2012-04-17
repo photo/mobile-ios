@@ -70,8 +70,6 @@
     return [self sendSynchronousRequest:request httpMethod:@"GET"]; 
 }
 
-
-
 - (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
     [self validateCredentials];
     
@@ -243,6 +241,20 @@
 
 - (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey{
     return [self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"];
+}
+
+- (BOOL) isPhotoAlreadyOnServer:(NSString *) sha1{
+    NSArray *result = [self sendSynchronousRequest:[NSString stringWithFormat:@"/v1/photos/list.json?hash=%@",sha1] httpMethod:@"GET"];
+    
+    // result can be null
+    if ([result class] != [NSNull class]) {
+        NSDictionary *photo = [result  objectAtIndex:0];
+        int  totalRows = [[photo objectForKey:@"totalRows"] intValue];
+        return (totalRows > 0);
+    }
+    
+    
+    return NO;
 }
 
 - (void) validateCredentials{    

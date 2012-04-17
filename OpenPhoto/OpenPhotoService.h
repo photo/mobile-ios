@@ -49,6 +49,9 @@
 // remove credentials form the server when log out
 - (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey;
 
+// check via SHA1 is photo is already in the server
+- (BOOL) isPhotoAlreadyOnServer:(NSString *) sha1;
+
 + (BOOL) isMessageValid:(NSDictionary *)response;
 
 @end

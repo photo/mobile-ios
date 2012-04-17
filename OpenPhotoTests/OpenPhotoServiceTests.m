@@ -31,6 +31,16 @@
     }
 }
 
+- (void) testCheckPhotoOnServer{
+    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+    if ([service isPhotoAlreadyOnServer:@"asdfasdfasdflasfd67786a"])
+        STFail(@"Photo should not exist");
+ 
+    if (![service isPhotoAlreadyOnServer:@"bfdf353630e91bab5647dba3b7d44a9bc9305588"])
+        STFail(@"Photo should exist");
+    
+}
+
 // test upload form
 -(void) testUploadPhoto{
     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
@@ -42,9 +52,15 @@
     // load a test image
     NSString *filePath = [[NSBundle bundleForClass:[OpenPhotoServiceTests class]] pathForResource:@"unit_test_image"  ofType:@"jpg"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];  
-        
+    
     // send image
-    [service uploadPicture:data metadata:values fileName:@"unit_test.jpg"];
+    @try {
+        [service uploadPicture:data metadata:values fileName:@"unit_test.jpg"];
+        STFail(@"It should fail");
+    }
+    @catch (NSException *exception) {
+    }
+    
 }
 
 @end
