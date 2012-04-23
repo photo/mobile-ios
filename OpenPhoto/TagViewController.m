@@ -122,7 +122,7 @@
         UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];          
         self.navigationItem.rightBarButtonItem = refreshButton;
         [refreshButton release];
-        
+      
         // load all tags
         [self loadTags];     
     }
@@ -248,8 +248,8 @@
     // if there isn't netwok
     if ( [AppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't reach the server. Please, check your internet connection" duration:5000];
+        [alert showAlert];
         [alert release];
     }else {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -306,11 +306,4 @@
     }
     
 }
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
 @end

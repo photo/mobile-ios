@@ -61,15 +61,15 @@
 	label.text = self.message;
 	label.shadowColor = [UIColor blackColor];
 	label.shadowOffset = CGSizeMake(0, 1);
-
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
-    button.frame = CGRectMake(0, 0, 320, textSize.height + 10);
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    button.frame = CGRectMake(0, 64, 320, textSize.height + 10);
+    button.alpha = 0;
     label.center = CGPointMake(button.frame.size.width / 2, button.frame.size.height / 2);
 	[button addSubview:label];
 	[label release];
-
+    
     // get the windows
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
 	[window addSubview:button];
@@ -77,14 +77,12 @@
     // set the property view
     self.viewAlert = button;
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-        // move the view down
-        [self.viewAlert setCenter:CGPointMake([self.viewAlert  center].x, [self.viewAlert  center].y + 20)];
+        self.viewAlert.alpha = 1;
     }completion:^(BOOL finished){
         [UIView animateWithDuration:0.3 delay:2 options:UIViewAnimationCurveEaseOut animations:^{
-            // move the view back and change alpha
-            [self.viewAlert setCenter:CGPointMake([self.viewAlert  center].x, [self.viewAlert  center].y - 25)];
-            self.viewAlert.alpha = 0.1;
+            self.viewAlert.alpha = 0;
         }completion:^(BOOL finished){
+            [self.viewAlert removeFromSuperview];
         }];
     }];    
 }
