@@ -47,16 +47,16 @@
     // you want, I am just setting this to a reasonable value
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:20*640*960];
+
+    // in development phase we use the UID of user
+#ifdef DEVELOPMENT_ENABLED
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#endif
     
 #ifdef TEST_FLIGHT_ENABLED
     // to start the TestFlight SDK
     [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
     [TestFlight passCheckpoint:@"Started App"];
-#endif
-    
-    // in development phase we use the UID of user
-#ifdef DEVELOPMENT_ENABLED
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     
     [self prepareConnectionInformation];
