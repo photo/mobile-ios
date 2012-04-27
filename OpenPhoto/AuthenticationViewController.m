@@ -94,10 +94,6 @@
             [service release];   
         }
     }
-    
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"User click login"];
-#endif
 }
 
 // Action if user clicks in DONE in the keyboard

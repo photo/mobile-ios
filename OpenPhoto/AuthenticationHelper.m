@@ -220,7 +220,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
         
 #ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"OAuthentication finished"];
+        [TestFlight passCheckpoint:@"OAuth - finished"];
 #endif
         
         

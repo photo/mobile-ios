@@ -310,11 +310,21 @@
     // source
     if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"Image from Cameral Roll"];
+#endif        
     }else if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeCamera;
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"Image from Snapshot"];
+#endif
     }else if (self.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum){
         uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
+#ifdef TEST_FLIGHT_ENABLED
+        [TestFlight passCheckpoint:@"Image from Cameral Roll"];
+#endif        
     }
+     
     
     // tags
     uploadInfo.tags=[self.tagController getSelectedTagsInJsonFormat];
@@ -335,7 +345,7 @@
 #endif
         
 #ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Edited imaged saved on database to upload"];
+        [TestFlight passCheckpoint:@"Saved edited image"];
 #endif
         // go to home
         [AppDelegate openTab:0];
@@ -388,7 +398,7 @@
 #endif
                 
 #ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Image saved on database to upload"];
+                [TestFlight passCheckpoint:@"Saved image"];
 #endif
                 // go to home
                 [AppDelegate openTab:0];
