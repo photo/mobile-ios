@@ -66,7 +66,7 @@
     [self loadNewestPhotosIntoCoreData];
     
 #ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Home pictures"];
+    [TestFlight passCheckpoint:@"Newest Photos Loaded"];
 #endif
     
     // ask if user wants to enable location
@@ -233,16 +233,26 @@
                                 }
                                 
 #ifdef TEST_FLIGHT_ENABLED
-                                [TestFlight passCheckpoint:@"Image upload to OpenPhoto Server"];
+                                [TestFlight passCheckpoint:@"Image uploaded"];
 #endif
-#ifdef DEVELOPMENT_ENABLED 
-                                NSLog(@"Checking Twitter or Facebook");
-#endif
+                                
                                 // check if it needs share for twitter or facebook
                                 // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
                                 if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
-                                    NSLog(@"User needs to share it");
+#ifdef DEVELOPMENT_ENABLED
+                                    NSLog(@"User wants to share uploaded photo");
+#endif
                                     NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
+                                    
+#ifdef TEST_FLIGHT_ENABLED
+                                    
+                                    if ([upload.twitter boolValue]){
+                                        [TestFlight passCheckpoint:@"Twitter"];
+                                    }else{
+                                        // facebook
+                                        [TestFlight passCheckpoint:@"Facebook"];
+                                    }
+#endif
                                     
                                     // parameters from upload
                                     NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];

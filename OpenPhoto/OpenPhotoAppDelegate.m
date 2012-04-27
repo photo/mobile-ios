@@ -56,7 +56,7 @@
 #ifdef TEST_FLIGHT_ENABLED
     // to start the TestFlight SDK
     [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
-    [TestFlight passCheckpoint:@"Started App"];
+    [TestFlight passCheckpoint:@"App Loaded"];
 #endif
     
     [self prepareConnectionInformation];
@@ -147,7 +147,7 @@
         AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
         
 #ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Started OAuth Procedure"];
+        [TestFlight passCheckpoint:@"OAuth - starting"];
 #endif
         
         if ([auth isValid] == NO){
