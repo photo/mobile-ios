@@ -81,7 +81,10 @@ NSString * const kCellIdentifierShareTwitter=@"cellIdentifierShareToTwitter";
  */
 NSString * const kVersionApplicationInstalled=@"version_application_installed";
  
-
+/*
+ * Constants for Statistic
+ */
+NSString * const kValidateNotAllowedLocation=@"validate_not_allowed_location";
 
 
 @end

@@ -58,7 +58,6 @@
         if (![[AppDelegate managedObjectContext] save:&saveError]){
             NSLog(@"Error on clean cache = %@",[saveError localizedDescription]);
         }
-
     }
 }
 
@@ -288,6 +287,26 @@
 
 - (void)locationError:(NSError *)error {
     NSLog(@"Location %@", [error description]);
+    
+    if ([error code] == kCLErrorDenied){
+        // validate if we had checked once if user allowed location
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        if (standardUserDefaults) {
+            
+            if (![[NSUserDefaults standardUserDefaults] boolForKey:kValidateNotAllowedLocation] || 
+                [[NSUserDefaults standardUserDefaults] boolForKey:kValidateNotAllowedLocation] == NO){
+                // validated
+                [standardUserDefaults setBool:YES forKey:kValidateNotAllowedLocation];
+                
+                // synchronize the keys
+                [standardUserDefaults synchronize];
+                
+#ifdef TEST_FLIGHT_ENABLED
+                [TestFlight passCheckpoint:@"Not allowed location"];
+#endif                 
+            }
+        }
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
@@ -297,7 +316,7 @@
 
 - (void)dealloc {
     [appSettingsViewController release];
-	appSettingsViewController = nil;
+    appSettingsViewController = nil;
     [coreLocationController release];
     [location release];
     
