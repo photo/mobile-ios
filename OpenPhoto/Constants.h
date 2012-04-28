@@ -50,6 +50,8 @@ extern NSString * const kCellIdentifierShareTwitter;
 
 extern NSString * const kVersionApplicationInstalled;
 
+extern NSString * const kValidateNotAllowedLocation;
+
 
 // while using TestFlight, this variable will permit the app to save/send data
 #define TEST_FLIGHT_ENABLED
