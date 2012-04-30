@@ -78,8 +78,8 @@
         [self.serverURL.text isEqualToString:@"username.openphoto.me"]){
         
         // user should add URL
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"URL" message:@"Please, set the URL to the OpenPhoto Server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set the URL to the OpenPhoto Server." duration:5000];
+        [alert showAlert];
         [alert release];
     }else{
         // the same actin as click the button from keyboard
@@ -158,8 +158,8 @@
     // validate URL
     if ( [urlTest evaluateWithObject:url] == NO){
         // show alert to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid URL" message:@"Please, try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Invalid URL, please try again." duration:5000];
+        [alert showAlert];
         [alert release];
         
         return NO;

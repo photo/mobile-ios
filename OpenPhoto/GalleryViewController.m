@@ -117,8 +117,8 @@
         NSLog(@"Invalid response = %@",message);
         
         // show alert to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[[NSString alloc]initWithFormat:@"Error: %@",message] duration:5000];
+        [alert showAlert];
         [alert release];
         
         return;
@@ -201,9 +201,9 @@
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-    // problem with internet, show message to user
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
+    // problem with internet, show message to user    
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't reach the server. Please, check your internet connection" duration:5000];
+    [alert showAlert];
     [alert release];
 }
 

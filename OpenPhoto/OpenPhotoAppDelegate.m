@@ -101,7 +101,10 @@
 }
 
 - (void) openTab:(int) position{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Opening the tab with position id = %i",position);
+#endif
+    
     if (position == 0 || position == 1 || position == 3 || position == 4){
         UIViewController *controller = self.window.rootViewController;
         if ([controller isKindOfClass:[OpenPhotoViewController class]]){

@@ -230,9 +230,9 @@
 }
 
 - (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
-    NSLog(@"Error = %@", [error userInfo]);
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Authentication failed" message:@"Please, try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    NSLog(@"Error = %@", [error userInfo]);    
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Authentication failed: please, try again." duration:5000];
+    [alert showAlertOnTop];
     [alert release];
 }
 
