@@ -296,8 +296,8 @@
             }@catch (NSException *exception) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:exception.description delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    [alert show];
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[[NSString alloc]initWithFormat:@"Error: %@",exception.description] duration:5000];
+                    [alert showAlert];
                     [alert release];
                 });   
             }

@@ -110,7 +110,10 @@
 
 
 - (void) updateNeededForUploadDataSource{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Delegate invoked");
+#endif
+    
     self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     [self.tableView reloadData];
 }
@@ -278,15 +281,15 @@
                         dispatch_async(dispatch_get_main_queue(), ^{
                             
                             // check if it is duplicated
-                            UIAlertView *alert;
+                            NSString *alertMessage;
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
-                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:@"You already uploaded this photo."
-                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                alertMessage = [[NSString alloc] initWithFormat:@"Failed to upload: You already uploaded this photo."];
                             }else {
-                                alert = [[UIAlertView alloc] initWithTitle:@"Failed to upload" message:[e description]
-                                                                  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                alertMessage = [[NSString alloc] initWithFormat:@"Failed to upload: %@",[e description]];
                             }
-                            [alert show];
+                            
+                            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
+                            [alert showAlert];
                             [alert release];
                             
                             upload.status = kUploadStatusTypeFailed;
@@ -442,8 +445,8 @@
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
-
-- (void)doneLoadingTableViewData{
+- (void)doneLoadingTableViewData
+{
     //  model should call this when its done loading
     self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
     self.newestPhotos = [NewestPhotos getNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];  
@@ -467,16 +470,14 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-    
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{	
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];    
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{  
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    
 }
 
 #pragma mark -
@@ -517,7 +518,7 @@
     }
 }
 
-- (void)dealloc 
+- (void) dealloc 
 {    
     [_refreshHeaderView release];
     [self.newestPhotos release];
@@ -532,7 +533,8 @@
 
 #pragma mark -
 #pragma mark Population core data
--(void) loadNewestPhotosIntoCoreData{
+- (void) loadNewestPhotosIntoCoreData
+{
     // set reloading in the table
     _reloading = YES;
     
@@ -556,9 +558,9 @@
                     [self doneLoadingTableViewData];
                 });
             }@catch (NSException *exception) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"We couldn't get your newest photos from the server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                    [alert show];
+                dispatch_async(dispatch_get_main_queue(), ^{                  
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"We couldn't get your newest photos from the server" duration:5000];
+                    [alert showAlert];
                     [alert release];
                     
                     // refresh table  
@@ -572,9 +574,9 @@
 
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // problem with internet, show message to user
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet error" message:@"Couldn't reach the server. Please, check your internet connection" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [alert show];
+    // problem with internet, show message to user    
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't reach the server. Please, check your internet connection" duration:5000];
+    [alert showAlert];
     [alert release];
 }
 @end

@@ -46,6 +46,11 @@
     
 	return self;
 }
+
+- (void) showAlertOnTop{
+    // todo 
+    
+}
 - (void)showAlert{  
     [self.viewAlert removeFromSuperview];
     

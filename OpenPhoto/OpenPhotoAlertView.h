@@ -23,5 +23,6 @@
     
 // init with text and duration
 - (id) initWithMessage:(NSString *) text duration:(NSInteger) time;
-- (void)showAlert;
+- (void) showAlert;
+- (void) showAlertOnTop;
 @end

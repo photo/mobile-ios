@@ -54,7 +54,9 @@
     [super dealloc];
 }
 - (IBAction)refresh:(id)sender {
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Pressed refresh button");
+#endif
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
     
@@ -67,7 +69,9 @@
 }
 
 - (IBAction)cancel:(id)sender {
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Pressed cancel button");
+#endif
     // delete object originalObject
     [[AppDelegate managedObjectContext] deleteObject:self.originalObject];
     

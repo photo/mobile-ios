@@ -131,8 +131,8 @@ BOOL isLoading = NO;
         NSLog(@"Invalid response = %@",message);
         
         // show alert to user
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Response Error" message:message delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[[NSString alloc]initWithFormat:@"Error: %@",message] duration:5000];
+        [alert showAlert];
         [alert release];
         
         return;
