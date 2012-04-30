@@ -22,7 +22,6 @@
 #import "TSAlertView.h"
 #import "OpenPhotoServiceFactory.h"
 #import "MBProgressHUD.h"
-#import "OpenPhotoAlertView.h"
 
 @interface TagViewController : UITableViewController<TSAlertViewDelegate>{   
     NSMutableArray *tags;

@@ -15,5 +15,6 @@
 #import "TestFlight.h"
 #import "Constants.h"
 #import "OpenPhotoAppDelegate.h"
+#import "OpenPhotoAlertView.h"
 #endif
 

@@ -46,9 +46,7 @@
     
 	return self;
 }
-- (void)showAlert{
-    NSLog(@"Showing alert");
-    
+- (void)showAlert{  
     [self.viewAlert removeFromSuperview];
     
     UIFont *font = [UIFont systemFontOfSize:12];
@@ -63,7 +61,7 @@
 	label.shadowOffset = CGSizeMake(0, 1);
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     button.frame = CGRectMake(0, 64, 320, textSize.height + 10);
     button.alpha = 0;
     label.center = CGPointMake(button.frame.size.width / 2, button.frame.size.height / 2);
