@@ -94,7 +94,8 @@
     /*
      * This is the step where the User allowed the iOS App to use the OpenPhoto service in his behalf.
      * The URL will be like that: openphoto://?oauth_consumer_key=e826d2647851aac26948b7a56044fc&oauth_consumer_secret=ba0c75dfa9&oauth_token=ba27ffebfbc07251a5fbf3529492d7&oauth_token_secret=5a9dc1c212&oauth_verifier=6b741d57c1
-     * the openphoto is the callback that makes iOS to open our app
+     * the openphoto is the callback that makes iOS to open our app, we also use openphoto-test in case of 
+     * TestFlight users.
      */
     
     // get the token and the verifier from the URL

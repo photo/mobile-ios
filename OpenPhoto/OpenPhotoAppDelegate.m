@@ -47,7 +47,7 @@
     // you want, I am just setting this to a reasonable value
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:20*640*960];
-
+    
     // in development phase we use the UID of user
 #ifdef DEVELOPMENT_ENABLED
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
@@ -143,7 +143,9 @@
 {
     NSLog(@"Application should handleOpenUrl = %@",url);
     
-    if ([[url scheme] isEqualToString:@"openphoto"]){
+    // the "openphoto-test" is used for TestFlight tester 
+    if ([[url scheme] isEqualToString:@"openphoto"] ||
+        [[url scheme] isEqualToString:@"openphoto-test"]){
         AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
         
 #ifdef TEST_FLIGHT_ENABLED
