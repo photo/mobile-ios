@@ -18,11 +18,10 @@
 //  limitations under the License.
 //
 
-
-#import <UIKit/UIKit.h>
-
 @interface NewestPhotoCell : UITableViewCell{
     NSString *geoPosition;
+    NSString *imageUrl;
+    UITableViewController *newestPhotosTableViewController;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *photo;
@@ -32,11 +31,13 @@
 @property (retain, nonatomic) IBOutlet UIImageView *private;
 @property (retain, nonatomic) IBOutlet UIButton *geoPositionButton;
 @property (retain, nonatomic) IBOutlet UILabel *label;
+@property (retain, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic, copy) NSString *geoPosition;
-
-
-
+@property (nonatomic, copy) NSString *imageUrl;
+@property (nonatomic, retain) UITableViewController *newestPhotosTableViewController;
 
 - (IBAction)openGeoPosition:(id)sender;
+- (IBAction)sharePhoto:(id)sender;
+
 @end

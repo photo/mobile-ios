@@ -370,6 +370,7 @@
             newestPhotoCell.photo.hidden = YES;
             newestPhotoCell.private.hidden = YES;
             newestPhotoCell.geoPositionButton.hidden=YES;
+            newestPhotoCell.shareButton.hidden=YES;
             
             [newestPhotoCell.activity startAnimating];
             newestPhotoCell.activity.hidden = NO;
@@ -391,6 +392,7 @@
                         newestPhotoCell.activity.hidden = YES;
                         newestPhotoCell.photo.hidden = NO;               
                         newestPhotoCell.photo.image = thumbnail;
+                        newestPhotoCell.shareButton.hidden=NO;
                         
                         [self.tableView beginUpdates];
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
@@ -427,6 +429,15 @@
                 newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
             }else {
                 newestPhotoCell.geoPositionButton.hidden=YES;
+            }
+            
+            // share details
+            if (photo.photoUrl != nil){
+                newestPhotoCell.shareButton.hidden=NO;
+                newestPhotoCell.imageUrl = photo.photoUrl;
+                newestPhotoCell.newestPhotosTableViewController = self;
+            }else{
+                newestPhotoCell.shareButton.hidden=YES;
             }
         }
         
