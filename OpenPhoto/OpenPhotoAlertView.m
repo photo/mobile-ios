@@ -26,6 +26,9 @@
     NSString *message;
     NSInteger  duration;
 }
+
+- (void)showOnTop:(BOOL) top;
+
 @property (nonatomic, retain) UIView *viewAlert;
 @property (nonatomic, retain) NSString *message;
 @property (assign) NSInteger duration;
@@ -48,10 +51,15 @@
 }
 
 - (void) showAlertOnTop{
-    // todo 
-    
+    [self showOnTop:YES];    
 }
-- (void)showAlert{  
+
+- (void)showAlert{ 
+    [self showOnTop:NO];    
+}
+
+
+- (void)showOnTop:(BOOL) top{
     [self.viewAlert removeFromSuperview];
     
     UIFont *font = [UIFont systemFontOfSize:12];
@@ -67,7 +75,13 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
 	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
-    button.frame = CGRectMake(0, 64, 320, textSize.height + 10);
+    
+    if (!top){
+        button.frame = CGRectMake(0, 64, 320, textSize.height + 10);
+    }else{
+        button.frame = CGRectMake(0, 20, 320, textSize.height + 10);
+    }
+    
     button.alpha = 0;
     label.center = CGPointMake(button.frame.size.width / 2, button.frame.size.height / 2);
 	[button addSubview:label];
