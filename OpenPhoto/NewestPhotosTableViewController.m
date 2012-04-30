@@ -283,9 +283,9 @@
                             // check if it is duplicated
                             NSString *alertMessage;
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
-                                alertMessage = [[NSString alloc] initWithFormat:@"Failed to upload: You already uploaded this photo."];
+                                alertMessage = [[NSString alloc] initWithFormat:@"Failed! You already uploaded this photo."];
                             }else {
-                                alertMessage = [[NSString alloc] initWithFormat:@"Failed to upload: %@",[e description]];
+                                alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
                             }
                             
                             OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
@@ -559,7 +559,7 @@
                 });
             }@catch (NSException *exception) {
                 dispatch_async(dispatch_get_main_queue(), ^{                  
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"We couldn't get your newest photos from the server" duration:5000];
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
                     [alert showAlert];
                     [alert release];
                     
@@ -575,7 +575,7 @@
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user    
-    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't reach the server. Please, check your internet connection" duration:5000];
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
     [alert showAlert];
     [alert release];
 }

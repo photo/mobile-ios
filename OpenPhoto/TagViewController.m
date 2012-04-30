@@ -248,7 +248,7 @@
     // if there isn't netwok
     if ( [AppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't reach the server. Please, check your internet connection" duration:5000];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
         [alert showAlert];
         [alert release];
     }else {
@@ -296,7 +296,7 @@
             }@catch (NSException *exception) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[[NSString alloc]initWithFormat:@"Error: %@",exception.description] duration:5000];
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                     [alert showAlert];
                     [alert release];
                 });   
