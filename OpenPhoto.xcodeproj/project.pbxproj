@@ -139,6 +139,8 @@
 		CD65458914F3082600CC5F5B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458814F3082600CC5F5B /* ImageIO.framework */; };
 		CD65458B14F3086100CC5F5B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */; };
 		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
+		CD6D372415505EDF00E412AB /* home_share.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6D372215505EDF00E412AB /* home_share.png */; };
+		CD6D372515505EDF00E412AB /* home_share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD6D372315505EDF00E412AB /* home_share@2x.png */; };
 		CD705140153099C50037E5BB /* OpenPhotobrownRoundedArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD70513E153099C50037E5BB /* OpenPhotobrownRoundedArrow.png */; };
 		CD705141153099C50037E5BB /* OpenPhotobrownRoundedArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD70513F153099C50037E5BB /* OpenPhotobrownRoundedArrow@2x.png */; };
 		CD7623C4141FB46600551D72 /* tab-gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7623BC141FB46600551D72 /* tab-gallery.png */; };
@@ -695,6 +697,8 @@
 		CD65458814F3082600CC5F5B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		CD6D372215505EDF00E412AB /* home_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = home_share.png; path = OpenPhoto/images/home_share.png; sourceTree = SOURCE_ROOT; };
+		CD6D372315505EDF00E412AB /* home_share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_share@2x.png"; path = "OpenPhoto/images/home_share@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD70513E153099C50037E5BB /* OpenPhotobrownRoundedArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OpenPhotobrownRoundedArrow.png; path = OpenPhoto/images/OpenPhotobrownRoundedArrow.png; sourceTree = SOURCE_ROOT; };
 		CD70513F153099C50037E5BB /* OpenPhotobrownRoundedArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "OpenPhotobrownRoundedArrow@2x.png"; path = "OpenPhoto/images/OpenPhotobrownRoundedArrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD7623BC141FB46600551D72 /* tab-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-gallery.png"; path = "OpenPhoto/images/tabs/tab-gallery.png"; sourceTree = SOURCE_ROOT; };
@@ -1729,6 +1733,8 @@
 				CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */,
 				CDE20FB815178C8D002C80F8 /* button-upload-form.png */,
 				CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */,
+				CD6D372215505EDF00E412AB /* home_share.png */,
+				CD6D372315505EDF00E412AB /* home_share@2x.png */,
 				CD90B816152894BE00832AB4 /* home_geoposition.png */,
 				CD90B817152894BE00832AB4 /* home_geoposition@2x.png */,
 				CD90B818152894BE00832AB4 /* home_private.png */,
@@ -2230,6 +2236,8 @@
 				CD90B81D152894BE00832AB4 /* home_private@2x.png in Resources */,
 				CD705140153099C50037E5BB /* OpenPhotobrownRoundedArrow.png in Resources */,
 				CD705141153099C50037E5BB /* OpenPhotobrownRoundedArrow@2x.png in Resources */,
+				CD6D372415505EDF00E412AB /* home_share.png in Resources */,
+				CD6D372515505EDF00E412AB /* home_share@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
