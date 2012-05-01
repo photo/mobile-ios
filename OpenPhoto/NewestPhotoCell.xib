@@ -232,9 +232,10 @@
 							<object class="IBUIButton" id="385029385">
 								<reference key="NSNextResponder" ref="774582805"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{284, 329}, {29, 29}}</string>
+								<string key="NSFrame">{{280, 5}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -248,7 +249,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="301156185"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">132-ghost.png</string>
+									<string key="NSResourceName">home_share.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -563,9 +564,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="132-ghost.png">{20, 24}</string>
 			<string key="home_geoposition.png">{26, 27}</string>
 			<string key="home_private.png">{25, 25}</string>
+			<string key="home_share.png">{26, 27}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
