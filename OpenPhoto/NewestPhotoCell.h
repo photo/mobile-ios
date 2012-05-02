@@ -20,7 +20,7 @@
 
 @interface NewestPhotoCell : UITableViewCell{
     NSString *geoPosition;
-    NSString *imageUrl;
+    NSString *photoPageUrl;
     UITableViewController *newestPhotosTableViewController;
 }
 
@@ -34,7 +34,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic, copy) NSString *geoPosition;
-@property (nonatomic, copy) NSString *imageUrl;
+@property (nonatomic, copy) NSString *photoPageUrl;
 @property (nonatomic, retain) UITableViewController *newestPhotosTableViewController;
 
 - (IBAction)openGeoPosition:(id)sender;

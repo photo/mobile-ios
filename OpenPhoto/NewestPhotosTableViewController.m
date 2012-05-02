@@ -392,8 +392,7 @@
                         newestPhotoCell.activity.hidden = YES;
                         newestPhotoCell.photo.hidden = NO;               
                         newestPhotoCell.photo.image = thumbnail;
-                        newestPhotoCell.shareButton.hidden=NO;
-                        
+
                         [self.tableView beginUpdates];
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                               withRowAnimation:UITableViewRowAnimationNone];
@@ -432,9 +431,9 @@
             }
             
             // share details
-            if (photo.photoUrl != nil){
+            if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
                 newestPhotoCell.shareButton.hidden=NO;
-                newestPhotoCell.imageUrl = photo.photoUrl;
+                newestPhotoCell.photoPageUrl = photo.photoPageUrl;
                 newestPhotoCell.newestPhotosTableViewController = self;
             }else{
                 newestPhotoCell.shareButton.hidden=YES;

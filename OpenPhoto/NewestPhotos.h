@@ -2,7 +2,7 @@
 //  NewestPhotos.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 12/04/12.
+//  Created by Patrick Santana on 01/05/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @interface NewestPhotos : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) NSDate * dateUploaded;
 @property (nonatomic, retain) NSString * key;
 @property (nonatomic, retain) NSString * latitude;
 @property (nonatomic, retain) NSString * longitude;
@@ -21,6 +22,6 @@
 @property (nonatomic, retain) NSString * photoUrl;
 @property (nonatomic, retain) NSString * tags;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSDate * dateUploaded;
+@property (nonatomic, retain) NSString * photoPageUrl;
 
 @end
