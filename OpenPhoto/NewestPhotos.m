@@ -2,7 +2,7 @@
 //  NewestPhotos.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 12/04/12.
+//  Created by Patrick Santana on 01/05/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -12,6 +12,7 @@
 @implementation NewestPhotos
 
 @dynamic date;
+@dynamic dateUploaded;
 @dynamic key;
 @dynamic latitude;
 @dynamic longitude;
@@ -20,6 +21,6 @@
 @dynamic photoUrl;
 @dynamic tags;
 @dynamic title;
-@dynamic dateUploaded;
+@dynamic photoPageUrl;
 
 @end

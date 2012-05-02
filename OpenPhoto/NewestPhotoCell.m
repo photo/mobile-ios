@@ -32,7 +32,7 @@
 @synthesize label=_label;
 @synthesize shareButton = _shareButton;
 @synthesize geoPosition=_geoPosition;
-@synthesize imageUrl=_imageUrl;
+@synthesize photoPageUrl=_photoPageUrl;
 @synthesize newestPhotosTableViewController=_newestPhotosTableViewController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -59,6 +59,7 @@
     [self.geoPositionButton release];
     [self.geoPosition release];
     [self.shareButton release];
+    [self.photoPageUrl release];
     [self.newestPhotosTableViewController release];
     [super dealloc];
 }
@@ -72,10 +73,10 @@
 }
 
 - (IBAction)sharePhoto:(id)sender {
-    if (self.imageUrl != nil && self.newestPhotosTableViewController != nil){
+    if (self.photoPageUrl != nil && self.newestPhotosTableViewController != nil){
               
         // create the item to share
-        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.imageUrl] title:self.label.text];
+        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.photoPageUrl] title:self.label.text];
         
         // Get the ShareKit action sheet
         SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];

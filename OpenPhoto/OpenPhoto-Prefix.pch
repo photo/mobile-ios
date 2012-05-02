@@ -16,5 +16,6 @@
 #import "Constants.h"
 #import "OpenPhotoAppDelegate.h"
 #import "OpenPhotoAlertView.h"
+#import "PropertiesConfiguration.h"
 #endif
 

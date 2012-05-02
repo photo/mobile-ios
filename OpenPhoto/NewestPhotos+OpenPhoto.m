@@ -152,6 +152,9 @@
                 double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
                 NSTimeInterval dateUpload =  dUpload;
                 newest.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];  
+                
+                // page url
+                newest.photoPageUrl =  [raw objectForKey:@"url"];
             }
         }
         
