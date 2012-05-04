@@ -23,6 +23,7 @@
 #import "OpenPhotoTTThumbsViewController.h"
 #import "PhotoModel+OpenPhoto.h"
 #import "MBProgressHUD.h"
+#import "TagViewController.h"
 
 @class PhotoSet;
 

@@ -21,10 +21,14 @@
 
 @interface GalleryViewController()
 - (void) loadImages;
+@property (nonatomic, retain) TagViewController *tagController;
+@property (nonatomic) BOOL showBack;
 @end
 
 @implementation GalleryViewController
 @synthesize service=_service, tagName=_tagName;
+@synthesize tagController=_tagController;
+@synthesize showBack = _showBack;
 
 - (id)init{
     self = [super init];
@@ -37,7 +41,7 @@
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
         self.statusBarStyle = UIStatusBarStyleBlackOpaque;
-        
+        self.showBack = YES;
         self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
         
         
@@ -58,6 +62,8 @@
                                  photos:photos size:[photos count] tag:nil] autorelease];
         }
         
+        self.tagController = [[TagViewController alloc] init];
+        
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(eventHandler:)
@@ -74,6 +80,7 @@
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
                              photos:nil size:0 tag:nil] autorelease];
+        self.showBack = NO;
     }
     return self;
 }
@@ -86,7 +93,28 @@
     self.navigationItem.rightBarButtonItem = refreshButton;
     [refreshButton release];
     
+    if (self.showBack){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"tab-tags.png"] ;
+        [button setImage:buttonImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+        [button addTarget:self action:@selector(loadTags) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button]; 
+        self.navigationItem.leftBarButtonItem = customBarItem;
+        [customBarItem release];
+    }
+    
     [self loadImages];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+}
+
+- (void) loadTags{
+    [self.navigationController pushViewController:self.tagController animated:YES];
 }
 
 - (void) loadImages{
