@@ -57,6 +57,9 @@
         self.noPhotoImageView.hidden = YES;
         
         coreLocationController = [[CoreLocationController alloc] init];
+        
+        // nothing is loading
+        _reloading = NO;
     }
     return self;
 }
@@ -392,7 +395,7 @@
                         newestPhotoCell.activity.hidden = YES;
                         newestPhotoCell.photo.hidden = NO;               
                         newestPhotoCell.photo.image = thumbnail;
-
+                        
                         [self.tableView beginUpdates];
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                               withRowAnimation:UITableViewRowAnimationNone];
@@ -545,40 +548,42 @@
 #pragma mark Population core data
 - (void) loadNewestPhotosIntoCoreData
 {
-    // set reloading in the table
-    _reloading = YES;
-    
-    // if there isn't netwok
-    if ( [AppDelegate internetActive] == NO ){
-        [self notifyUserNoInternet];
-        [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
-    }else {
-        dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
-        dispatch_async(loadNewestPhotos, ^{
-            // call the method and get the details
-            @try {
-                // get factory for OpenPhoto Service
-                OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                NSArray *result = [service fetchNewestPhotosMaxResult:5];
-                [service release];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // let NewestPhotos treat the objects
-                    [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
-                    [self doneLoadingTableViewData];
-                });
-            }@catch (NSException *exception) {
-                dispatch_async(dispatch_get_main_queue(), ^{                  
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
-                    [alert showAlert];
-                    [alert release];
+    if (_reloading == NO){
+        // set reloading in the table
+        _reloading = YES;
+        
+        // if there isn't netwok
+        if ( [AppDelegate internetActive] == NO ){
+            [self notifyUserNoInternet];
+            [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
+        }else {
+            dispatch_queue_t loadNewestPhotos = dispatch_queue_create("loadNewestPhotos", NULL);
+            dispatch_async(loadNewestPhotos, ^{
+                // call the method and get the details
+                @try {
+                    // get factory for OpenPhoto Service
+                    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                    NSArray *result = [service fetchNewestPhotosMaxResult:5];
+                    [service release];
                     
-                    // refresh table  
-                    [self doneLoadingTableViewData];
-                });   
-            }
-        });
-        dispatch_release(loadNewestPhotos);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // let NewestPhotos treat the objects
+                        [NewestPhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
+                        [self doneLoadingTableViewData];
+                    });
+                }@catch (NSException *exception) {
+                    dispatch_async(dispatch_get_main_queue(), ^{                  
+                        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
+                        [alert showAlert];
+                        [alert release];
+                        
+                        // refresh table  
+                        [self doneLoadingTableViewData];
+                    });   
+                }
+            });
+            dispatch_release(loadNewestPhotos);
+        }
     }
 }
 
