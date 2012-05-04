@@ -23,12 +23,17 @@
 - (void) loadImages;
 @property (nonatomic, retain) TagViewController *tagController;
 @property (nonatomic) BOOL showBack;
+
+// to avoid multiples loading
+@property (nonatomic) BOOL isLoading;
+
 @end
 
 @implementation GalleryViewController
 @synthesize service=_service, tagName=_tagName;
 @synthesize tagController=_tagController;
 @synthesize showBack = _showBack;
+@synthesize isLoading = _isLoading;
 
 - (id)init{
     self = [super init];
@@ -41,7 +46,6 @@
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
         self.statusBarStyle = UIStatusBarStyleBlackOpaque;
-        self.showBack = YES;
         self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
         
         
@@ -63,6 +67,10 @@
         }
         
         self.tagController = [[TagViewController alloc] init];
+        
+        // show back button and loading control
+        self.showBack = YES;
+        self.isLoading = NO;
         
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -118,14 +126,18 @@
 }
 
 - (void) loadImages{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Loading";
-    
-    if (self.tagName != nil){
-        [self.service loadGallery:24 withTag:self.tagName onPage:1];
-    }else{
-        [self.service loadGallery:24 onPage:1];
-    }    
+    if (self.isLoading == NO){
+        self.isLoading = YES;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.labelText = @"Loading";
+        
+        
+        if (self.tagName != nil){
+            [self.service loadGallery:24 withTag:self.tagName onPage:1];
+        }else{
+            [self.service loadGallery:24 onPage:1];
+        }
+    }
 }
 
 - (void)viewDidLoad
@@ -138,6 +150,8 @@
 // delegate
 -(void) receivedResponse:(NSDictionary *)response{
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    self.isLoading = NO;
     
     // check if message is valid
     if (![WebService isMessageValid:response]){
@@ -213,7 +227,7 @@
         
         [photos release];
     }
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
     
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Gallery Loaded"];
@@ -228,6 +242,7 @@
 - (void) notifyUserNoInternet{
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    self.isLoading = NO;
     
     // problem with internet, show message to user    
     OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];

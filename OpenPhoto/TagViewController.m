@@ -22,12 +22,17 @@
 @interface TagViewController()
 - (void) loadTags;
 @property (nonatomic) BOOL readOnly;
+
+// to avoid multiples loading
+@property (nonatomic) BOOL isLoading;
+
 @end
 
 @implementation TagViewController
 
 @synthesize tags = _tags;
 @synthesize readOnly = _readOnly;
+@synthesize isLoading = _isLoading;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,6 +49,9 @@
         
         // color separator
         self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        
+        // is loading tags
+        self.isLoading = NO;
     }
     return self;
 }
@@ -122,7 +130,7 @@
         UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];          
         self.navigationItem.rightBarButtonItem = refreshButton;
         [refreshButton release];
-      
+        
         // load all tags
         [self loadTags];     
     }
@@ -245,64 +253,72 @@
 #pragma mark - Methods to get Tags via json
 - (void) loadTags
 {
-    // if there isn't netwok
-    if ( [AppDelegate internetActive] == NO ){
-        // problem with internet, show message to user
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
-        [alert showAlert];
-        [alert release];
-    }else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.labelText = @"Loading";
-        
-        dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
-        dispatch_async(loadTags, ^{
-            // call the method and get the details
-            @try {
-                // get factory for OpenPhoto Service
-                OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                NSArray *result = [service getTags];
-                [service release];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.tags removeAllObjects];
-                    if ([result class] != [NSNull class]) {
-                        // Loop through each entry in the dictionary and create an array Tags
-                        for (NSDictionary *tagDetails in result){
-                            // tag name       
-                            NSString *name = [tagDetails objectForKey:@"id"];
-                            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                            
-                            // how many images
-                            NSString *qtd = [tagDetails objectForKey:@"count"];
-                            
-                            // create a tag and add to the list
-                            Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
-                            tag.selected = NO;
-                            [self.tags addObject:tag];
-                            
-                            // we don't need it anymore.
-                            [tag release];
-                        }}
+    
+    if (self.isLoading == NO){
+        self.isLoading = YES;
+        // if there isn't netwok
+        if ( [AppDelegate internetActive] == NO ){
+            // problem with internet, show message to user
+            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+            [alert showAlert];
+            [alert release];
+            
+            self.isLoading = NO;
+        }else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+            hud.labelText = @"Loading";
+            
+            dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
+            dispatch_async(loadTags, ^{
+                // call the method and get the details
+                @try {
+                    // get factory for OpenPhoto Service
+                    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                    NSArray *result = [service getTags];
+                    [service release];
                     
-                    [self.tableView reloadData];
-                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.tags removeAllObjects];
+                        if ([result class] != [NSNull class]) {
+                            // Loop through each entry in the dictionary and create an array Tags
+                            for (NSDictionary *tagDetails in result){
+                                // tag name       
+                                NSString *name = [tagDetails objectForKey:@"id"];
+                                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                
+                                // how many images
+                                NSString *qtd = [tagDetails objectForKey:@"count"];
+                                
+                                // create a tag and add to the list
+                                Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
+                                tag.selected = NO;
+                                [self.tags addObject:tag];
+                                
+                                // we don't need it anymore.
+                                [tag release];
+                            }}
+                        
+                        [self.tableView reloadData];
+                        
 #ifdef TEST_FLIGHT_ENABLED
-                    [TestFlight passCheckpoint:@"Tags received from the website"];
+                        [TestFlight passCheckpoint:@"Tags received from the website"];
 #endif
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    
-                });
-            }@catch (NSException *exception) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
-                    [alert showAlert];
-                    [alert release];
-                });   
-            }
-        });
-        dispatch_release(loadTags);
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        self.isLoading = NO;
+                        
+                    });
+                }@catch (NSException *exception) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
+                        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                        [alert showAlert];
+                        [alert release];
+                        self.isLoading = NO;
+                    });   
+                }
+            });
+            dispatch_release(loadTags);
+        }
     }
     
 }
