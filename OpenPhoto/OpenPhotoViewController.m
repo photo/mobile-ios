@@ -36,7 +36,7 @@
                             [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-home.png"]],
                             [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-gallery.png"]],
                             [self viewControllerWithTabTitle:@"Photo" image:nil],
-                            [self viewControllerWithTabTitle:@"Tags" image:[UIImage imageNamed:@"tab-tags.png"]],
+                            [self viewControllerWithTabTitle:@"Sync" image:[UIImage imageNamed:@"tab-sync.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-settings.png"]], nil];
     
     //register to listen for to show the login screen.    

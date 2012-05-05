@@ -103,7 +103,7 @@
     
     if (self.showBack){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *buttonImage = [UIImage imageNamed:@"tab-tags.png"] ;
+        UIImage *buttonImage = [UIImage imageNamed:@"gallery-show-tags.png"] ;
         [button setImage:buttonImage forState:UIControlStateNormal];
         button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
         [button addTarget:self action:@selector(loadTags) forControlEvents:UIControlEventTouchUpInside];
