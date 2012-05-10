@@ -71,7 +71,7 @@
         // show back button and loading control
         self.showBack = YES;
         self.isLoading = NO;
-        
+
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(eventHandler:)

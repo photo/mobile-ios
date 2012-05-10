@@ -41,6 +41,9 @@
 @synthesize duration = _duration;
 
 
+- (id) initWithMessage:(NSString *) text{
+    return [self initWithMessage:text  duration:5000];
+}
 - (id) initWithMessage:(NSString *) text duration:(NSInteger) time{
 	if (self = [super init]) {
 		self.message = text;
