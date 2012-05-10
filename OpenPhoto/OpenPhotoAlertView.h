@@ -21,6 +21,8 @@
 
 @interface OpenPhotoAlertView : NSObject
     
+// init with text and default duration
+- (id) initWithMessage:(NSString *) text;
 // init with text and duration
 - (id) initWithMessage:(NSString *) text duration:(NSInteger) time;
 - (void) showAlert;
