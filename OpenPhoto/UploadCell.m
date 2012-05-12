@@ -59,6 +59,8 @@
 #endif
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
+    self.btnRetry.hidden=YES;
+    self.btnCancel.hidden=YES;
     
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){

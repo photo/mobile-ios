@@ -242,6 +242,9 @@
                                 [TestFlight passCheckpoint:@"Image uploaded"];
 #endif
                                 
+                                // update the table with newest photos
+                                [self loadNewestPhotosIntoCoreData];
+                                
                                 // check if it needs share for twitter or facebook
                                 // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
                                 if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
@@ -266,15 +269,6 @@
                                     NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
                                     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
                                 }  
-                                
-                                // reload list
-                                [self.uploads removeObjectAtIndex:indexPath.row];
-                                
-                                // table needs update
-                                [self.tableView reloadData]; 
-                                
-                                // update the table with newest photos
-                                [self loadNewestPhotosIntoCoreData];
                             });
                         }
                     }@catch (NSException* e) {
