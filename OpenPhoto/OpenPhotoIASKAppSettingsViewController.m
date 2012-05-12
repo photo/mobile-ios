@@ -38,6 +38,8 @@
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
     
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+    
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Settings"];
 #endif
