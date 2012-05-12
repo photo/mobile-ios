@@ -443,7 +443,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.uploads count] > 0 && indexPath.row < [self.uploads count]){
-        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+        return tableView.rowHeight;
     }else{
         return 365;
     }
