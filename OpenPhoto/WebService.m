@@ -251,7 +251,7 @@
     if (ticket.didSucceed) {
         NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 #ifdef DEVELOPMENT_ENABLED_JSON_RETURN        
-        NSLog(@"Succeed = %@",jsonString);       
+        NSLog(@"Response = %@",jsonString);       
 #endif        
         
         // Create a dictionary from JSON string
