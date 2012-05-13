@@ -23,6 +23,8 @@
 - (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method;
 - (void) validateCredentials;
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url;
+- (NSArray *) parseResponse:(ASIHTTPRequest *) response;
+- (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response;
 
 @property (nonatomic, retain, readwrite) NSString *server;
 @property (nonatomic, retain, readwrite) NSString *oAuthKey;
@@ -70,78 +72,6 @@
     return [self sendSynchronousRequest:request httpMethod:@"GET"]; 
 }
 
-- (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
-    [self validateCredentials];
-    
-    // create the url to connect to OpenPhoto
-    NSString *urlString =     [NSString stringWithFormat: @"%@%@", self.server, request];
-    
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Request to be sent = [%@]",urlString);
-    NSLog(@"Request http method = [%@]",method);
-    
-#endif
-    
-    // transform in URL for the request
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
-    [oaUrlRequest setHTTPMethod:method];
-    
-    // prepare the Authentication Header
-    [oaUrlRequest prepare];
-    
-    NSString *requestAnswer = nil;
-    // set the authorization header to be used in the OAuth            
-    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
-    
-    if ([method isEqualToString:@"GET"]){
-        // GET
-        ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
-        [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        [asiHttpRequest setUserAgent:@"OpenPhoto iOS"];
-        
-        // send the request synchronous
-        [asiHttpRequest startSynchronous];
-        
-        // parse response
-        requestAnswer =  [asiHttpRequest responseString] ;  
-    }else{
-        // POST
-        ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
-        [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        [asiRequest setUserAgent:@"OpenPhoto iOS"];
-        
-        [asiRequest startSynchronous];
-        
-        // parse response
-        requestAnswer = [asiRequest responseString];
-    }
-    
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Response = %@",requestAnswer);
-#endif
-    
-    NSDictionary *response = [requestAnswer JSONValue];
-    // check the valid result
-    if (![OpenPhotoService isMessageValid:response]){
-        // invalid message
-        NSException *exception = [NSException exceptionWithName: @"Incorrect request"
-                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
-                                                       userInfo: nil];
-        @throw exception;
-    }             
-    
-    NSArray *result = [response objectForKey:@"result"] ;
-    
-    // check if user has photos
-    if ([result class] == [NSNull class]){
-        // if it is null, return an empty array
-        return [NSArray array];
-    }else {
-        return result;
-    }
-}
 
 - (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
 {
@@ -198,33 +128,7 @@
     [asiRequest setTimeOutSeconds:240];
     [asiRequest startSynchronous];
     
-    NSError *error = [asiRequest error];
-    if (error) {
-        NSLog(@"Error: %@", error);
-        NSException *exception = [NSException exceptionWithName: @"Response error"
-                                                         reason: [error localizedDescription]
-                                                       userInfo: nil];
-        @throw exception;
-    }
-    
-    // check the valid result
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Response = %@",[asiRequest responseString]);
-    NSLog(@"responseStatusMessage = %@", [asiRequest responseStatusMessage]);
-    NSLog(@"responseStatusCode = %i", [asiRequest responseStatusCode]);
-#endif 
-    
-    NSDictionary *response =  [[asiRequest responseString] JSONValue]; 
-    
-    if (![OpenPhotoService isMessageValid:response]){
-        // invalid message
-        NSException *exception = [NSException exceptionWithName: @"Incorrect request"
-                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response objectForKey:@"code"],[response objectForKey:@"message"]]
-                                                       userInfo: nil];
-        @throw exception;
-    }  
-    
-    return response;
+    return [self parseResponseAsNSDictionary:asiRequest];
 }
 
 // get all tags. It brings how many images have this tag.
@@ -239,8 +143,111 @@
     return [self sendSynchronousRequest:@"/v1/system/version.json" httpMethod:@"GET"];    
 }
 
-- (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey{
+- (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey
+{
     return [self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"];
+}
+
+- (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
+    [self validateCredentials];
+    
+    // create the url to connect to OpenPhoto
+    NSString *urlString =     [NSString stringWithFormat: @"%@%@", self.server, request];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+    NSLog(@"Request http method = [%@]",method);
+    
+#endif
+    
+    // transform in URL for the request
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
+    [oaUrlRequest setHTTPMethod:method];
+    
+    // prepare the Authentication Header
+    [oaUrlRequest prepare];
+    
+    // set the authorization header to be used in the OAuth            
+    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
+    
+    if ([method isEqualToString:@"GET"]){
+        // GET
+        ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+        [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        [asiHttpRequest setUserAgent:@"OpenPhoto iOS"];
+        
+        // send the request synchronous
+        [asiHttpRequest startSynchronous];
+        
+        // parse response
+        return [self parseResponse:asiHttpRequest];
+    }else{
+        // POST
+        ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+        [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+        [asiRequest setUserAgent:@"OpenPhoto iOS"];
+        
+        [asiRequest startSynchronous];
+        
+        // parse response
+        return [self parseResponse:asiRequest];
+    }
+}
+
+- (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response
+{
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Response = %@",response);
+    NSLog(@"responseStatusMessage = %@", [response responseStatusMessage]);
+    NSLog(@"responseStatusCode = %i", [response responseStatusCode]);
+#endif
+    
+    NSError *error = [response error];
+    if (error) {
+        NSLog(@"Error: %@", error);
+        NSException *exception = [NSException exceptionWithName: @"Response error"
+                                                         reason: [error localizedDescription]
+                                                       userInfo: nil];
+        @throw exception;
+    }
+    
+    if ( [response responseStatusCode] != 200){
+        // there is an error with the request
+        NSException *exception = [NSException exceptionWithName: @"Response error"
+                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response responseStatusCode],[response responseStatusMessage]]
+                                                       userInfo: nil];
+        @throw exception;
+    }
+    
+    // parse response
+    NSDictionary *result = [[response responseString] JSONValue];
+    // check the valid result
+    if (![OpenPhotoService isMessageValid:result]){
+        // invalid message
+        NSException *exception = [NSException exceptionWithName: @"Incorrect request"
+                                                         reason: [NSString stringWithFormat:@"%@ - %@",[result objectForKey:@"code"],[result objectForKey:@"message"]]
+                                                       userInfo: nil];
+        @throw exception;
+    }             
+
+    return result;
+}
+
+- (NSArray *) parseResponse:(ASIHTTPRequest *) response
+{
+    
+    NSDictionary *result = [self parseResponseAsNSDictionary:response];
+    NSArray *array = [result objectForKey:@"result"] ;
+    
+    // check if user has photos
+    if ([array class] == [NSNull class]){
+        // if it is null, return an empty array
+        return [NSArray array];
+    }else {
+        return array;
+    }    
 }
 
 - (BOOL) isPhotoAlreadyOnServer:(NSString *) sha1{
