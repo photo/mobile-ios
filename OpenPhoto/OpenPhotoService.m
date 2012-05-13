@@ -198,8 +198,10 @@
 
 - (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response
 {
+#ifdef DEVELOPMENT_ENABLED_JSON_RETURN        
+    NSLog(@"Response = %@",response);       
+#endif    
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Response = %@",response);
     NSLog(@"responseStatusMessage = %@", [response responseStatusMessage]);
     NSLog(@"responseStatusCode = %i", [response responseStatusCode]);
 #endif
@@ -280,7 +282,7 @@
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url
 {
     
-#ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_CREDENTIALS_LOG_ENABLED
     NSLog(@"auth key = %@",self.oAuthKey);
     NSLog(@"auth secret = %@",self.oAuthSecret);
     NSLog(@"consumer key = %@",self.consumerKey);
