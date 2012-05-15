@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SyncViewController : UIViewController
+@interface SyncViewController : UITableViewController
 
 @end
