@@ -79,8 +79,8 @@
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
         return [self getUINavigationController:controller forHomeScreen:NO];
-    }else if (title == @"Tags"){
-        TagViewController *controller = [[[TagViewController alloc] init]autorelease];
+    }else if (title == @"Sync"){
+        SyncViewController *controller = [[[SyncViewController alloc] init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];       
         return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Settings"){

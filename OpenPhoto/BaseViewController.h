@@ -28,7 +28,7 @@
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"
-#import "TagViewController.h"
+#import "SyncViewController.h"
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
 #import "AuthenticationHelper.h"
