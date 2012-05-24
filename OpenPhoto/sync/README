@@ -1,0 +1,4 @@
+We will change a lot the behavior of this framework. That is the reason why the code is here.
+We do have a submodule to track changes that are implemented in the open source respository.
+
+At any moment, if we find bugs or features that can be used in the open source version, we should create a pull request.

@@ -22,3 +22,6 @@
 [submodule "Frameworks/EGOTableViewPullRefresh"]
 	path = Frameworks/EGOTableViewPullRefresh
 	url = https://github.com/enormego/EGOTableViewPullRefresh.git
+[submodule "Frameworks/ELCImagePickerController"]
+	path = Frameworks/ELCImagePickerController
+	url = https://github.com/elc/ELCImagePickerController.git
