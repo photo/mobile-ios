@@ -380,6 +380,10 @@
 #ifdef DEVELOPMENT_ENABLED 
                     NSLog(@"URL do download is = %@",photo.photoUrl);
 #endif
+                    
+                    // TODO: Should validate if data or photo.photoUrl are null
+                    
+                    
                     dispatch_sync(dispatch_get_main_queue(), ^{
                         photo.photoData = data;
                         UIImage *thumbnail = [UIImage imageWithData:data];

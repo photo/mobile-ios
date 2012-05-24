@@ -18,10 +18,10 @@
 @synthesize assetGroup, elcAssets;
 
 -(void)viewDidLoad {
-        
+    
 	[self.tableView setSeparatorColor:[UIColor clearColor]];
 	[self.tableView setAllowsSelection:NO];
-
+    
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     self.elcAssets = tempArray;
     [tempArray release];
@@ -29,8 +29,13 @@
 	UIBarButtonItem *doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)] autorelease];
 	[self.navigationItem setRightBarButtonItem:doneButtonItem];
 	[self.navigationItem setTitle:@"Loading..."];
-
+    
 	[self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+    
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+    // color separator
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
     
     // Show partial while full list loads
 	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
@@ -39,7 +44,7 @@
 -(void)preparePhotos {
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
+    
 	
     NSLog(@"enumerating photos");
     [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
@@ -59,13 +64,13 @@
 	[self.navigationItem setTitle:@"Pick Photos"];
     
     [pool release];
-
+    
 }
 
 - (void) doneAction:(id)sender {
 	
 	NSMutableArray *selectedAssetsImages = [[[NSMutableArray alloc] init] autorelease];
-	    
+    
 	for(ELCAsset *elcAsset in self.elcAssets) 
     {		
 		if([elcAsset selected]) {
@@ -73,7 +78,7 @@
 			[selectedAssetsImages addObject:[elcAsset asset]];
 		}
 	}
-        
+    
     [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
 }
 
@@ -93,9 +98,7 @@
     
 	int index = (_indexPath.row*4);
 	int maxIndex = (_indexPath.row*4+3);
-    
-	// NSLog(@"Getting assets for %d to %d with array count %d", index, maxIndex, [assets count]);
-    
+       
 	if(maxIndex < [self.elcAssets count]) {
         
 		return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
@@ -132,9 +135,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
-        
+    
     ELCAssetCell *cell = (ELCAssetCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
+    
     if (cell == nil) 
     {		        
         cell = [[[ELCAssetCell alloc] initWithAssets:[self assetsForIndexPath:indexPath] reuseIdentifier:CellIdentifier] autorelease];

@@ -18,13 +18,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        UIImage *backgroundImage= [UIImage imageNamed:@"appbar_empty.png"];
+        [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    }
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];   
+   
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+    // color separator
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
 	
 	[self.navigationItem setTitle:@"Loading..."];
-
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.parent action:@selector(cancelImagePicker)];
-	[self.navigationItem setRightBarButtonItem:cancelButton];
-	[cancelButton release];
-
+    
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	self.assetGroups = tempArray;
     [tempArray release];
@@ -72,7 +82,7 @@
 -(void)reloadTableView {
 	
 	[self.tableView reloadData];
-	[self.navigationItem setTitle:@"Select an Album"];
+	[self.navigationItem setTitle:@"Sync an Album"];
 }
 
 -(void)selectedAssets:(NSArray*)_assets {
