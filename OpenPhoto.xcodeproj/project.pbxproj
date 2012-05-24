@@ -182,7 +182,6 @@
 		CD994F371555C80D0033E033 /* gallery-show-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD994F351555C80D0033E033 /* gallery-show-tags@2x.png */; };
 		CD994F3A1555C81A0033E033 /* tab-sync.png in Resources */ = {isa = PBXBuildFile; fileRef = CD994F381555C81A0033E033 /* tab-sync.png */; };
 		CD994F3B1555C81A0033E033 /* tab-sync@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD994F391555C81A0033E033 /* tab-sync@2x.png */; };
-		CD994F3E1555CB730033E033 /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD994F3D1555CB720033E033 /* SyncViewController.m */; };
 		CD9A020714180457002DDCEF /* AuthenticationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020614180457002DDCEF /* AuthenticationHelper.m */; };
 		CD9A020C141804E3002DDCEF /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9A020A141804E3002DDCEF /* AuthenticationViewController.m */; };
 		CD9A020D141804E3002DDCEF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9A020B141804E3002DDCEF /* AuthenticationViewController.xib */; };
@@ -776,8 +775,6 @@
 		CD994F351555C80D0033E033 /* gallery-show-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gallery-show-tags@2x.png"; path = "OpenPhoto/images/gallery-show-tags@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD994F381555C81A0033E033 /* tab-sync.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-sync.png"; path = "OpenPhoto/images/tabs/tab-sync.png"; sourceTree = SOURCE_ROOT; };
 		CD994F391555C81A0033E033 /* tab-sync@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab-sync@2x.png"; path = "OpenPhoto/images/tabs/tab-sync@2x.png"; sourceTree = SOURCE_ROOT; };
-		CD994F3C1555CB720033E033 /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncViewController.h; sourceTree = "<group>"; };
-		CD994F3D1555CB720033E033 /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncViewController.m; sourceTree = "<group>"; };
 		CD9A020514180457002DDCEF /* AuthenticationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationHelper.h; sourceTree = "<group>"; };
 		CD9A020614180457002DDCEF /* AuthenticationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationHelper.m; sourceTree = "<group>"; };
 		CD9A0209141804E3002DDCEF /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
@@ -1583,8 +1580,6 @@
 				CDF63975156E23310095AE6E /* ELCImagePickerController.xib */,
 				CDF63976156E23310095AE6E /* Overlay.png */,
 				CDF63977156E23310095AE6E /* Overlay@2x.png */,
-				CD994F3C1555CB720033E033 /* SyncViewController.h */,
-				CD994F3D1555CB720033E033 /* SyncViewController.m */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -2511,7 +2506,6 @@
 				CD9060B9154589D0009EACB4 /* OpenPhotoAlertView.m in Sources */,
 				CDB7D4701550814A00621A70 /* PropertiesConfiguration.m in Sources */,
 				CDB7D473155085C400621A70 /* NewestPhotos.m in Sources */,
-				CD994F3E1555CB730033E033 /* SyncViewController.m in Sources */,
 				CDEE1A24156A673300A21820 /* SyncPhotos.m in Sources */,
 				CDEE1A27156A677100A21820 /* SyncPhotos+OpenPhoto.m in Sources */,
 				CDF63978156E23310095AE6E /* ELCAlbumPickerController.m in Sources */,
