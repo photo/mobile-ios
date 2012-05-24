@@ -63,8 +63,12 @@
 
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     coreLocationController = [[CoreLocationController alloc] init];
     coreLocationController.delegate = self;
+    
+    // for access local images
+    assetsLibrary = [[ALAssetsLibrary alloc] init];      
 }
 
 // Create a view controller and setup it's tab bar item with a title and image
@@ -80,9 +84,12 @@
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
         return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Sync"){
-        SyncViewController *controller = [[[SyncViewController alloc] init]autorelease];
-        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];       
-        return [self getUINavigationController:controller forHomeScreen:NO];
+        ELCAlbumPickerController *albumController = [[[ELCAlbumPickerController alloc] initWithNibName:@"ELCAlbumPickerController" bundle:[NSBundle mainBundle]] autorelease];    
+        ELCImagePickerController *controller = [[ELCImagePickerController alloc] initWithRootViewController:albumController];
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];          
+        [albumController setParent:controller];
+        [controller setDelegate:self];
+        return [controller autorelease];
     }else if (title == @"Settings"){
         [self.appSettingsViewController setShowCreditsFooter:NO];   
         self.appSettingsViewController.showDoneButton = NO; 
@@ -211,8 +218,7 @@
         // in this case, the user used the Snapshot. We will temporary save in the Library. 
         // If the Settings is to not do that, we will delete this.
         NSMutableDictionary *exif = nil;
-		ALAssetsLibrary	*aLAssetsLibrary = [[[ALAssetsLibrary alloc] init] autorelease];
-		
+        
         // check if metadata is available
 		if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
 			exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
@@ -228,7 +234,7 @@
             
       	}
         
-		[aLAssetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
+		[assetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
 			if (error) {
 				NSLog(@"The photo you took could not be saved!");
 			} else {
@@ -309,6 +315,104 @@
     }
 }
 
+
+
+// Sync 
+#pragma mark ELCImagePickerControllerDelegate Methods
+
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {	
+    NSLog(@"Selected some images");
+    
+    // schedules the asset read
+    ALAssetsLibrary* assetslibrary = [[[ALAssetsLibrary alloc] init] autorelease];
+    
+    // save all images in the upload screen
+    if (info != nil && [info count]>0){
+        
+        for(NSDictionary *dict in info) {
+            
+            // data to be saved in the database
+            UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
+                                                                      inManagedObjectContext:[AppDelegate managedObjectContext]];
+            
+            // details form this upload
+            uploadInfo.date = [NSDate date];
+            uploadInfo.facebook = [NSNumber numberWithBool:NO];
+            uploadInfo.twitter = [NSNumber numberWithBool:NO];
+            uploadInfo.permission = [NSNumber numberWithBool:YES];
+            uploadInfo.title =  @"";
+            uploadInfo.tags=@"sync mobile";
+            uploadInfo.status=kUploadStatusTypeCreated;
+            uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            
+            // Get image from Assets Library
+            // the result block
+            ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+            {
+                ALAssetRepresentation *rep = [myasset defaultRepresentation];
+#ifdef DEVELOPMENT_ENABLED            
+                NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
+#endif           
+                uint8_t* buffer = malloc([rep size]);
+                
+                NSError* error = NULL;
+                NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
+                NSData *data = nil;
+                
+                if (bytes == [rep size]){
+                    data = [[NSData dataWithBytes:buffer length:bytes] retain];
+                }else{
+                    NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], [dict objectForKey:UIImagePickerControllerReferenceURL]);
+                }
+                
+                free(buffer);
+                
+                // show alert to user
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    uploadInfo.image = data;
+                    uploadInfo.fileName = [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:[dict objectForKey:UIImagePickerControllerReferenceURL]],[AssetsLibraryUtilities getAssetsUrlExtension:[dict objectForKey:UIImagePickerControllerReferenceURL]]];
+                    
+                    // status
+                    uploadInfo.status=kUploadStatusTypeCreated;
+                    
+                    // save
+                    NSError *uploadError = nil;
+                    if (![[AppDelegate managedObjectContext] save:&uploadError]){
+                        NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
+                    }   
+                    
+#ifdef DEVELOPMENT_ENABLED
+                    NSLog(@"Data ready to send to openphoto. Saved on database");
+#endif
+                });
+            };
+            
+            //
+            ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
+                NSLog(@"Error '%@' getting asset from library", [myerror localizedDescription]);
+            };
+            
+            [assetslibrary assetForURL:[dict objectForKey:UIImagePickerControllerReferenceURL]
+                           resultBlock:resultblock
+                          failureBlock:failureblock];
+        }    
+        
+    }
+    
+#ifdef TEST_FLIGHT_ENABLED
+    [TestFlight passCheckpoint:@"Image from Sync"];
+    [TestFlight passCheckpoint:@"Saved image"];
+#endif
+    
+    // go to the home
+    [AppDelegate openTab:0];
+}
+
+- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
+    // this one is not used.
+    NSLog(@"Cancel Sync");
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return YES;
 }
@@ -319,6 +423,7 @@
     appSettingsViewController = nil;
     [coreLocationController release];
     [location release];
+    [assetsLibrary release];
     
     [super dealloc];
 }

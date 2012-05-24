@@ -28,7 +28,6 @@
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"
-#import "SyncViewController.h"
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
 #import "AuthenticationHelper.h"
@@ -37,14 +36,20 @@
 #import <ImageIO/ImageIO.h>
 #import "CoreLocationController.h"
 
+// for the sync
+#import "ELCImagePickerController.h"
+#import "ELCAlbumPickerController.h"
 
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate>{
-        OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
-
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
+    OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+    
     // for location
     CoreLocationController *coreLocationController;
-    CLLocation *location;    
+    CLLocation *location;  
+    
+    // better to keep here for faster access - schedules the asset read
+    ALAssetsLibrary* assetsLibrary;
 }
 
 @property (nonatomic, retain) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
