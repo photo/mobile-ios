@@ -123,6 +123,21 @@ BOOL isLoading = NO;
     isLoading = NO;
 }
 
+- (void) notifyUserNoInternet{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    // problem with internet, show message to user    
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+    [alert showAlert];
+    [alert release];
+    
+    
+    // Finishes
+    isLoading = NO;
+    [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
+
+}
+
 // delegate to add more pictures 
 -(void) receivedResponse:(NSDictionary *)response{
     // check if message is valid
@@ -134,6 +149,10 @@ BOOL isLoading = NO;
         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:message duration:5000];
         [alert showAlert];
         [alert release];
+        
+        // Finishes
+        isLoading = NO;
+        [_delegates perform:@selector(modelDidFinishLoad:) withObject:self];
         
         return;
     }
