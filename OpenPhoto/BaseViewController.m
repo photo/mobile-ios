@@ -331,20 +331,6 @@
         
         for(NSDictionary *dict in info) {
             
-            // data to be saved in the database
-            UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
-                                                                      inManagedObjectContext:[AppDelegate managedObjectContext]];
-            
-            // details form this upload
-            uploadInfo.date = [NSDate date];
-            uploadInfo.facebook = [NSNumber numberWithBool:NO];
-            uploadInfo.twitter = [NSNumber numberWithBool:NO];
-            uploadInfo.permission = [NSNumber numberWithBool:YES];
-            uploadInfo.title =  @"";
-            uploadInfo.tags=@"sync mobile";
-            uploadInfo.status=kUploadStatusTypeCreated;
-            uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            
             // Get image from Assets Library
             // the result block
             ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
@@ -369,6 +355,20 @@
                 
                 // show alert to user
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    if (data != nil){
+                    // data to be saved in the database
+                    UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
+                                                                              inManagedObjectContext:[AppDelegate managedObjectContext]];
+                    
+                    // details form this upload
+                    uploadInfo.date = [NSDate date];
+                    uploadInfo.facebook = [NSNumber numberWithBool:NO];
+                    uploadInfo.twitter = [NSNumber numberWithBool:NO];
+                    uploadInfo.permission = [NSNumber numberWithBool:YES];
+                    uploadInfo.title =  @"";
+                    uploadInfo.tags=@"sync mobile";
+                    uploadInfo.status=kUploadStatusTypeCreated;
+                    uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
                     uploadInfo.image = data;
                     uploadInfo.fileName = [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:[dict objectForKey:UIImagePickerControllerReferenceURL]],[AssetsLibraryUtilities getAssetsUrlExtension:[dict objectForKey:UIImagePickerControllerReferenceURL]]];
                     
@@ -384,6 +384,9 @@
 #ifdef DEVELOPMENT_ENABLED
                     NSLog(@"Data ready to send to openphoto. Saved on database");
 #endif
+                    }else{
+                        NSLog(@"Error to get the data from the library");
+                    }
                 });
             };
             
