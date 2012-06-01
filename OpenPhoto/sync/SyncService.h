@@ -21,11 +21,24 @@
 #import <Foundation/Foundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
+@protocol SyncServiceDelegate <NSObject>
+@required
+- (void) information:(NSString*) info;
+- (void) finish;
+@end
+
 @interface SyncService : NSObject{
     // better to keep here for faster access - schedules the asset read
     ALAssetsLibrary* assetsLibrary;
+    id <SyncServiceDelegate> delegate;
+    NSInteger counter;
+    NSInteger counterTotal;
 }
 
+// protocol that will send the response
+@property (retain) id delegate;
+@property (nonatomic) NSInteger counter;
+@property (nonatomic) NSInteger counterTotal;
 
 
 // it will load all images into the coredata entity SyncPhotos

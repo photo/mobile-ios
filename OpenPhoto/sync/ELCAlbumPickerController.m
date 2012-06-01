@@ -28,7 +28,7 @@
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];   
-   
+    
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
     // color separator
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
@@ -40,43 +40,88 @@
     [tempArray release];
     
     library = [[ALAssetsLibrary alloc] init];      
-
+    
     // Load Albums into assetGroups
     dispatch_async(dispatch_get_main_queue(), ^
-    {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-        
-        // Group enumerator Block
-        void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
-        {
-            if (group == nil) 
-            {
-                return;
-            }
-            
-            [self.assetGroups addObject:group];
+                   {
+                       NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+                       
+                       // Group enumerator Block
+                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
+                       {
+                           if (group == nil) 
+                           {
+                               return;
+                           }
+                           
+                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
+                               [self.assetGroups addObject:group];
+                           }
+                           
+                           // Reload albums
+                           [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
+                       };
+                       
+                       // Group Enumerator Failure Block
+                       void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
+                           
+                           UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                           [alert show];
+                           [alert release];
+                           
+                           NSLog(@"A problem occured %@", [error description]);	                                 
+                       };	
+                       
+                       // Enumerate Albums
+                       [library enumerateGroupsWithTypes:ALAssetsGroupAll
+                                              usingBlock:assetGroupEnumerator 
+                                            failureBlock:assetGroupEnumberatorFailure];
+                       
+                       [pool release];
+                   });    
+}
 
-            // Reload albums
-            [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
-        };
-        
-        // Group Enumerator Failure Block
-        void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-            
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-            [alert show];
-            [alert release];
-            
-            NSLog(@"A problem occured %@", [error description]);	                                 
-        };	
-                
-        // Enumerate Albums
-        [library enumerateGroupsWithTypes:ALAssetsGroupAll
-                               usingBlock:assetGroupEnumerator 
-                             failureBlock:assetGroupEnumberatorFailure];
-        
-        [pool release];
-    });    
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(calculateHash)];          
+    self.navigationItem.rightBarButtonItem = refreshButton;
+    [refreshButton release];
+    
+}
+
+- (void) calculateHash
+{/*
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Calculating hash";
+    
+    dispatch_queue_t hash_calculator = dispatch_queue_create("hash_calculator", NULL);
+    dispatch_async(hash_calculator, ^{
+   
+  */
+        @try{
+            SyncService *service = [[SyncService alloc]init];
+            [service setDelegate:self];
+            [service loadLocalImagesOnDatabase];
+            [service release];
+        }@catch (NSException* e) {
+            NSLog(@"Error %@",e);
+        }
+    /*    }});
+    dispatch_release(hash_calculator);
+     */
+}
+
+- (void) information:(NSString*) info
+{
+ NSLog(@"Info: %@",info);
+
+}
+
+- (void) finish
+{
+NSLog(@"Finished");
+
 }
 
 -(void)reloadTableView {
@@ -134,7 +179,7 @@
 	
 	ELCAssetTablePicker *picker = [[ELCAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]];
 	picker.parent = self;
-
+    
     // Move me    
     picker.assetGroup = [assetGroups objectAtIndex:indexPath.row];
     [picker.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];

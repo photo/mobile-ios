@@ -9,12 +9,12 @@
 #import "SyncService.h"
 
 @interface SyncService()
-- (void) loadAssets:(NSMutableArray *) groups;
+- (void) loadAssets:(ALAssetsGroup *) group;
 - (void) loadAssetsGroup;
 @end
 
 @implementation SyncService
-
+@synthesize delegate,counter,counterTotal;
 
 - (id)init
 {
@@ -32,36 +32,73 @@
 }
 
 
-- (void) loadAssets:(NSMutableArray *) groups
+- (void) loadAssets:(ALAssetsGroup *) group
 {
-    // loop in all groups
-    NSMutableArray *photos = [[[NSMutableArray alloc] init] autorelease];
-    
-    for (ALAssetsGroup *group in groups){
-        // filter all photos
-        [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+    // load image
+    ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
+    {
         
-        // get photos for each group
-        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
-         {         
-             if(result == nil){
-                 return;
-             }
-             
-             // add image
-             [photos addObject:result];
-         }];
-    }
-    
-    
-    // print all photos
-    for (ALAsset *photo in photos){
- //       NSLog(@"Image found url = %d", [[photo valueForProperty:ALAssetPropertyURLs] valueForKey:[[[photo valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]]);
-    }
-}
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        
+        
+        ALAssetRepresentation *rep = [myasset defaultRepresentation];     
+        uint8_t* buffer = malloc([rep size]);
+        
+        NSError* error = NULL;
+        NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
+        NSData *data = nil;
+        
+        if (bytes == [rep size]){
+            data = [NSData dataWithBytes:buffer length:bytes] ;
+            if (data != nil){
+                // calculate hash
+            //    [self.delegate information:[SHA1 sha1File:data]];
+                NSLog(@"Hash = %@ from group %@",[SHA1 sha1File:data],group);
+            }else{
+                NSLog(@"Error to get the data from the library");
+            }
+        }else{
+            NSLog(@"Error '%@' reading bytes", [error localizedDescription]);
+        }       
+        free(buffer);
+        
+        [pool release];
+      
+        //calculation to know if it is finished
+        self.counter = self.counter - 1;
 
+        NSLog(@"Conter %d",self.counter);
+        if (self.counter <1){
+            // finish
+            [self.delegate finish];
+        }
+    };
+    
+    //
+    ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
+        NSLog(@"Error '%@' getting asset from library", [myerror localizedDescription]);
+    };
+    
+    // filter all photos
+    [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+    
+    // get photos for each group
+    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
+     {         
+         if(result == nil){
+             return;
+         }
+         
+         // add image
+         [assetsLibrary assetForURL:[[result valueForProperty:ALAssetPropertyURLs] valueForKey:[[[result valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]]
+                        resultBlock:resultblock
+                       failureBlock:failureblock];
+     }];
+}
 - (void) loadAssetsGroup
 {
+    self.counter = 0;
+    
     // Load Albums into assetGroups
     // Group enumerator Block
     void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
@@ -69,7 +106,14 @@
         if (group == nil){
             return;
         }
- //       [self loadAssets:group];
+        
+        if ([[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
+           // [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            self.counter = self.counter + [group numberOfAssets];
+            NSLog(@"Album: %@",group);
+            [self loadAssets:group];
+        }
+        
     };
     
     // Group Enumerator Failure Block
@@ -81,8 +125,6 @@
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
                                  usingBlock:assetGroupEnumerator 
                                failureBlock:assetGroupEnumberatorFailure];
-    
-    
 }
 
 - (void)dealloc
