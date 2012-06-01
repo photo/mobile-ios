@@ -116,9 +116,7 @@
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Delegate invoked");
 #endif
-    
-    self.uploads = [NSMutableArray arrayWithArray:[UploadPhotos getUploadsNotUploadedInManagedObjectContext:[AppDelegate managedObjectContext]]];
-    [self.tableView reloadData];
+    [self doneLoadingTableViewData];
 }
 
 #pragma mark -
@@ -201,14 +199,38 @@
                 // start progress bar and update screen
                 [uploadCell.activity startAnimating];
                 
-                @try{
-                    NSDictionary *dictionary = [upload toDictionary];
+                NSDictionary *dictionary = nil;
+                @try {
+                    dictionary = [upload toDictionary];
+                }
+                @catch (NSException *e) {
+                    // check if it is duplicated
+                    NSString *alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
                     
-                    // create gcd and start upload
-                    dispatch_queue_t uploadQueue = dispatch_queue_create("uploader_queue", NULL);
-                    dispatch_async(uploadQueue, ^{
-                        
-                        
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
+                    [alert showAlert];
+                    [alert release];
+                    
+                    upload.status = kUploadStatusTypeFailed;
+                    uploadCell.status.text = kUploadStatusTypeFailed;
+                    uploadCell.btnRetry.hidden  = NO;
+                    uploadCell.btnCancel.hidden = NO;
+                    
+                    [self.tableView beginUpdates];
+                    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                          withRowAnimation:UITableViewRowAnimationFade];
+                    [self.tableView endUpdates];
+                    
+                    return uploadCell;
+                }
+                
+                
+                
+                // create gcd and start upload
+                dispatch_queue_t uploadQueue = dispatch_queue_create("uploader_queue", NULL);
+                dispatch_async(uploadQueue, ^{
+                    
+                    @try{
                         
                         // prepare the data to upload
                         NSString *filename = [dictionary objectForKey:@"fileName"];
@@ -219,7 +241,7 @@
                         
                         // before check if the photo already exist
                         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
-                            @throw  [NSException exceptionWithName: @"Failed to upload" reason: @"You already uploaded this photo." userInfo: nil];
+                            @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
                             [service release];
@@ -272,39 +294,51 @@
                                 }  
                             });
                         }
-                    });
-                    dispatch_release(uploadQueue);
-                    
-                }@catch (NSException* e) {
-                    NSLog(@"Error %@",e);
-                    
-                    // if it fails for any reason, set status FAILED in the main thread
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    }@catch (NSException* e) {
+                        NSLog(@"Error %@",e);
                         
-                        // check if it is duplicated
-                        NSString *alertMessage;
-                        if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"]){
-                            alertMessage = [[NSString alloc] initWithFormat:@"Failed! You already uploaded this photo."];
-                        }else {
-                            alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
-                        }
-                        
-                        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
-                        [alert showAlert];
-                        [alert release];
-                        
-                        upload.status = kUploadStatusTypeFailed;
-                        uploadCell.status.text = kUploadStatusTypeFailed;
-                        uploadCell.btnRetry.hidden  = NO;
-                        uploadCell.btnCancel.hidden = NO;
-                        
-                        [self.tableView beginUpdates];
-                        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                                              withRowAnimation:UITableViewRowAnimationFade];
-                        [self.tableView endUpdates]; 
-                        
-                    });
-                }
+                        // if it fails for any reason, set status FAILED in the main thread
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            
+                            // default for all erros
+                            upload.status = kUploadStatusTypeFailed;
+                            uploadCell.status.text = kUploadStatusTypeFailed;
+                            uploadCell.btnRetry.hidden  = NO;
+                            uploadCell.btnCancel.hidden = NO;
+                            
+                            // check if it is duplicated
+                            NSString *alertMessage;
+                            if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
+                                [[e description] hasPrefix:@"You already uploaded this photo."]){
+                                alertMessage = [[NSString alloc] initWithFormat:@"You already uploaded this photo."];
+                                
+                                // can considere the image as uploaded
+                                uploadCell.status.text = @"Duplicated";
+                                upload.status = kUploadStatusTypeUploaded;
+                                uploadCell.btnRetry.hidden  = YES;
+                                uploadCell.btnCancel.hidden = YES;
+                                
+                            }else {
+                                alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
+                            }
+                            
+                            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
+                            [alert showAlert];
+                            [alert release];
+                            
+                            
+                            
+                            [self.tableView beginUpdates];
+                            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                                  withRowAnimation:UITableViewRowAnimationFade];
+                            [self.tableView endUpdates]; 
+                            
+                                [self doneLoadingTableViewData];                            
+                        });
+                    }
+                });
+                dispatch_release(uploadQueue);
+                
             }else{
                 NSLog(@"Number max of uploading reached");
             }
