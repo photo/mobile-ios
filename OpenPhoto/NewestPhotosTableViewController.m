@@ -191,6 +191,10 @@
                 upload.status = kUploadStatusTypeFailed;
                 uploadCell.btnRetry.hidden  = NO;
                 uploadCell.btnCancel.hidden = NO;
+                NSError *saveError = nil;
+                if (![[AppDelegate managedObjectContext] save:&saveError]){
+                    NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
+                }
             }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
                 // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
                 uploadCell.status.text = kUploadStatusTypeUploading;
@@ -215,6 +219,11 @@
                     uploadCell.status.text = kUploadStatusTypeFailed;
                     uploadCell.btnRetry.hidden  = NO;
                     uploadCell.btnCancel.hidden = NO;
+                    
+                    NSError *saveError = nil;
+                    if (![[AppDelegate managedObjectContext] save:&saveError]){
+                        NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
+                    }
                     
                     [self.tableView beginUpdates];
                     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
@@ -276,6 +285,10 @@
 #endif
                                     NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
                                     
+                                    NSError *saveError = nil;
+                                    if (![[AppDelegate managedObjectContext] save:&saveError]){
+                                        NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
+                                    }          
 #ifdef TEST_FLIGHT_ENABLED
                                     
                                     if ([upload.twitter boolValue]){
@@ -333,7 +346,12 @@
                                                   withRowAnimation:UITableViewRowAnimationFade];
                             [self.tableView endUpdates]; 
                             
-                                [self doneLoadingTableViewData];                            
+                            NSError *saveError = nil;
+                            if (![[AppDelegate managedObjectContext] save:&saveError]){
+                                NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
+                            }
+                            
+                            [self doneLoadingTableViewData];                            
                         });
                     }
                 });
