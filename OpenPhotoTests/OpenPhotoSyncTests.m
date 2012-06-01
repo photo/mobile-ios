@@ -23,10 +23,11 @@
 @implementation OpenPhotoSyncTests
 
 
-- (void) loadImagesToDatabase
+- (void) testLoadImagesToDatabase
 {
-    
     SyncService *service = [[SyncService alloc]init];
     [service loadLocalImagesOnDatabase];
+    [service release];
+    
 }
 @end
