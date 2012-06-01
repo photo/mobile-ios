@@ -72,8 +72,8 @@
                            NSLog(@"A problem occured %@", [error description]);	                                 
                        };	
                        
-                       // Enumerate Albums
-                       [library enumerateGroupsWithTypes:ALAssetsGroupAll
+                       // Show only the Saved Photos
+                       [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
                                               usingBlock:assetGroupEnumerator 
                                             failureBlock:assetGroupEnumberatorFailure];
                        
@@ -81,48 +81,6 @@
                    });    
 }
 
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(calculateHash)];          
-    self.navigationItem.rightBarButtonItem = refreshButton;
-    [refreshButton release];
-    
-}
-
-- (void) calculateHash
-{/*
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Calculating hash";
-    
-    dispatch_queue_t hash_calculator = dispatch_queue_create("hash_calculator", NULL);
-    dispatch_async(hash_calculator, ^{
-   
-  */
-        @try{
-            SyncService *service = [[SyncService alloc]init];
-            [service setDelegate:self];
-            [service loadLocalImagesOnDatabase];
-            [service release];
-        }@catch (NSException* e) {
-            NSLog(@"Error %@",e);
-        }
-    /*    }});
-    dispatch_release(hash_calculator);
-     */
-}
-
-- (void) information:(NSString*) info
-{
- NSLog(@"Info: %@",info);
-
-}
-
-- (void) finish
-{
-NSLog(@"Finished");
-
-}
 
 -(void)reloadTableView {
 	

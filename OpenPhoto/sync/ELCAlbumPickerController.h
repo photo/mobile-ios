@@ -7,10 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "SyncService.h"
-#import "MBProgressHUD.h"
 
-@interface ELCAlbumPickerController : UITableViewController <SyncServiceDelegate, MBProgressHUDDelegate> {
+@interface ELCAlbumPickerController : UITableViewController {
 	
 	NSMutableArray *assetGroups;
 	NSOperationQueue *queue;
