@@ -274,6 +274,11 @@
                                 [TestFlight passCheckpoint:@"Image uploaded"];
 #endif
                                 
+                                [self.tableView beginUpdates];
+                                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                                      withRowAnimation:UITableViewRowAnimationFade];
+                                [self.tableView endUpdates]; 
+                                
                                 // update the table with newest photos
                                 [self loadNewestPhotosIntoCoreData];
                                 
@@ -338,13 +343,6 @@
                             OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
                             [alert showAlert];
                             [alert release];
-                            
-                            
-                            
-                            [self.tableView beginUpdates];
-                            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                                                  withRowAnimation:UITableViewRowAnimationFade];
-                            [self.tableView endUpdates]; 
                             
                             NSError *saveError = nil;
                             if (![[AppDelegate managedObjectContext] save:&saveError]){
@@ -449,7 +447,7 @@
                         
                         [self.tableView beginUpdates];
                         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                                              withRowAnimation:UITableViewRowAnimationNone];
+                                              withRowAnimation:UITableViewRowAnimationFade];
                         [self.tableView endUpdates]; 
                         
                     });

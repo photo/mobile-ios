@@ -84,10 +84,10 @@
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
         return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Sync"){
-        ELCAlbumPickerController *albumController = [[[ELCAlbumPickerController alloc] initWithNibName:@"ELCAlbumPickerController" bundle:[NSBundle mainBundle]] autorelease];    
-        ELCImagePickerController *controller = [[ELCImagePickerController alloc] initWithRootViewController:albumController];
+        ELCAssetTablePicker *photoPicker = [[[ELCAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]] autorelease];    
+        ELCImagePickerController *controller = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];          
-        [albumController setParent:controller];
+        [photoPicker setParent:controller];
         [controller setDelegate:self];
         return [controller autorelease];
     }else if (title == @"Settings"){
