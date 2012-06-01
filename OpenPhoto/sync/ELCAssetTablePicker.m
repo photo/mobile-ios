@@ -19,7 +19,6 @@
 
 -(void)viewDidLoad {
     
-	[self.tableView setSeparatorColor:[UIColor clearColor]];
 	[self.tableView setAllowsSelection:NO];
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
@@ -30,21 +29,87 @@
 	[self.navigationItem setRightBarButtonItem:doneButtonItem];
 	[self.navigationItem setTitle:@"Loading..."];
     
+    
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(prepareAndReload)];          
+    //  self.navigationItem.leftBarButtonItem = refreshButton;
+    [refreshButton release];
+    
 	[self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+    
+    self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        UIImage *backgroundImage= [UIImage imageNamed:@"appbar_empty.png"];
+        [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    }
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];   
+    
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
     // color separator
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     
-    // Show partial while full list loads
-	[self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
+    library = [[ALAssetsLibrary alloc] init]; 
+    loaded = NO;
+    
+    // the Saved Photos Album
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {                       
+                       // Group enumerator Block
+                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
+                       {
+                           if (group == nil) 
+                           {
+                               return;
+                           }
+                           
+                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
+                               self.assetGroup = group;
+                               [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                           }
+                           
+                           // with the local group, we can load the images                           
+                           [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+                           [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
+                       };
+                       
+                       // Group Enumerator Failure Block
+                       void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
+                           
+                           UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                           [alert show];
+                           [alert release];
+                           
+                           NSLog(@"A problem occured %@", [error description]);	                                 
+                       };	
+                       
+                       // Show only the Saved Photos
+                       [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                              usingBlock:assetGroupEnumerator 
+                                            failureBlock:assetGroupEnumberatorFailure];
+                       
+                   });      
+}
+
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    if (loaded == YES){
+        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+        [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
+    }else{
+        loaded = YES;
+    }
 }
 
 -(void)preparePhotos {
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+    [self.elcAssets removeAllObjects];
 	
     NSLog(@"enumerating photos");
     [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
@@ -65,6 +130,7 @@
     
     [pool release];
     
+    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
 }
 
 - (void) doneAction:(id)sender {
@@ -80,6 +146,10 @@
 	}
     
     [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
+}
+
+-(void)reloadTableView {
+	[self.tableView reloadData];
 }
 
 #pragma mark UITableViewDataSource Delegate Methods
@@ -98,7 +168,7 @@
     
 	int index = (_indexPath.row*4);
 	int maxIndex = (_indexPath.row*4+3);
-       
+    
 	if(maxIndex < [self.elcAssets count]) {
         
 		return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
@@ -174,6 +244,8 @@
 {
     [elcAssets release];
     [selectedAssetsLabel release];
+    [library release];
+    [self.assetGroup release];
     [super dealloc];    
 }
 

@@ -60,10 +60,10 @@ extern NSString * const kValidateNotAllowedLocation;
 #define DEVELOPMENT_ENABLED
 
 // log the return information from the server
-#define DEVELOPMENT_ENABLED_JSON_RETURN
+//#define DEVELOPMENT_ENABLED_JSON_RETURN
 
 // if set developer can have credentials printed in the console
-#define DEVELOPMENT_CREDENTIALS_LOG_ENABLED
+//#define DEVELOPMENT_CREDENTIALS_LOG_ENABLED
 
 // to transform color from hex to RBG
 //RGB color macro

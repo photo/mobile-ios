@@ -39,6 +39,7 @@
 // for the sync
 #import "ELCImagePickerController.h"
 #import "ELCAlbumPickerController.h"
+#import "ELCAssetTablePicker.h"
 
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{

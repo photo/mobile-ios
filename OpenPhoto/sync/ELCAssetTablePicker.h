@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "MBProgressHUD.h"
 
 @interface ELCAssetTablePicker : UITableViewController
 {
@@ -18,10 +19,13 @@
 	id parent;
 	
 	NSOperationQueue *queue;
+    ALAssetsLibrary *library;
+    
+    BOOL loaded;
 }
 
 @property (nonatomic, assign) id parent;
-@property (nonatomic, assign) ALAssetsGroup *assetGroup;
+@property (nonatomic, retain) ALAssetsGroup *assetGroup;
 @property (nonatomic, retain) NSMutableArray *elcAssets;
 @property (nonatomic, retain) IBOutlet UILabel *selectedAssetsLabel;
 
