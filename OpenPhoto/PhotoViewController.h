@@ -22,6 +22,7 @@
 #import "AssetsLibraryUtilities.h"
 #import "QSUtilities.h"
 #import "UploadPhotos+OpenPhoto.h"
+#import "SyncPhotos+OpenPhoto.h"
 #import "ContentTypeUtilities.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 

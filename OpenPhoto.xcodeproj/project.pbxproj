@@ -281,7 +281,6 @@
 		CDF63981156E23310095AE6E /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF63976156E23310095AE6E /* Overlay.png */; };
 		CDF63982156E23310095AE6E /* Overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF63977156E23310095AE6E /* Overlay@2x.png */; };
 		CDF6398C156E6BE50095AE6E /* SyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF6398B156E6BE30095AE6E /* SyncService.m */; };
-		CDF6398F156E82AE0095AE6E /* OpenPhotoSyncTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF6398E156E82AE0095AE6E /* OpenPhotoSyncTests.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
 		CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
 		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
@@ -924,8 +923,6 @@
 		CDF63977156E23310095AE6E /* Overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Overlay@2x.png"; path = "sync/Overlay@2x.png"; sourceTree = "<group>"; };
 		CDF6398A156E6BE30095AE6E /* SyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncService.h; path = sync/SyncService.h; sourceTree = "<group>"; };
 		CDF6398B156E6BE30095AE6E /* SyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncService.m; path = sync/SyncService.m; sourceTree = "<group>"; };
-		CDF6398D156E82AE0095AE6E /* OpenPhotoSyncTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoSyncTests.h; sourceTree = "<group>"; };
-		CDF6398E156E82AE0095AE6E /* OpenPhotoSyncTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoSyncTests.m; sourceTree = "<group>"; };
 		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CDFF467C141559FE00D89578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1795,8 +1792,6 @@
 				CD04BF2815247C7900D844ED /* OpenPhotoServiceTests.h */,
 				CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */,
 				CDA75EE81524AFB90067881D /* unit_test_image.jpg */,
-				CDF6398D156E82AE0095AE6E /* OpenPhotoSyncTests.h */,
-				CDF6398E156E82AE0095AE6E /* OpenPhotoSyncTests.m */,
 			);
 			path = OpenPhotoTests;
 			sourceTree = "<group>";
@@ -2534,7 +2529,6 @@
 				CDF1C97C13E1C45D0018AD0B /* OpenPhotoTests.m in Sources */,
 				CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */,
 				CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */,
-				CDF6398F156E82AE0095AE6E /* OpenPhotoSyncTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

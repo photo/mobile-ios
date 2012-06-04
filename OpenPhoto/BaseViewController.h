@@ -24,6 +24,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE
 //
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <ImageIO/ImageIO.h>
 #import "NewestPhotosTableViewController.h"
 #import "GalleryViewController.h"
 #import "QSStrings.h"
@@ -32,14 +34,13 @@
 #import "IASKSettingsStoreFile.h"
 #import "AuthenticationHelper.h"
 #import "OpenPhotoIASKAppSettingsViewController.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import <ImageIO/ImageIO.h>
 #import "CoreLocationController.h"
 
 // for the sync
 #import "ELCImagePickerController.h"
 #import "ELCAlbumPickerController.h"
 #import "ELCAssetTablePicker.h"
+#import "SyncPhotos+OpenPhoto.h"
 
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{

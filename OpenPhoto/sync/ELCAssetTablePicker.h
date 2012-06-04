@@ -5,9 +5,11 @@
 //  Copyright 2011 ELC Technologies. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AssetsLibraryUtilities.h"
+
 #import "MBProgressHUD.h"
+#import "SyncPhotos+OpenPhoto.h"
 
 @interface ELCAssetTablePicker : UITableViewController
 {
@@ -21,6 +23,8 @@
 	NSOperationQueue *queue;
     ALAssetsLibrary *library;
     
+    NSMutableArray *imagesAlreadyUploaded;
+    
     BOOL loaded;
 }
 
@@ -28,6 +32,7 @@
 @property (nonatomic, retain) ALAssetsGroup *assetGroup;
 @property (nonatomic, retain) NSMutableArray *elcAssets;
 @property (nonatomic, retain) IBOutlet UILabel *selectedAssetsLabel;
+@property (nonatomic, retain) NSMutableArray *imagesAlreadyUploaded;
 
 -(int)totalSelectedAssets;
 -(void)preparePhotos;

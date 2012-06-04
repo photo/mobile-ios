@@ -16,6 +16,7 @@
 @synthesize parent;
 @synthesize selectedAssetsLabel;
 @synthesize assetGroup, elcAssets;
+@synthesize imagesAlreadyUploaded;
 
 -(void)viewDidLoad {
     
@@ -54,6 +55,9 @@
     
     library = [[ALAssetsLibrary alloc] init]; 
     loaded = NO;
+    
+    // load all urls
+    self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     
     // the Saved Photos Album
     dispatch_async(dispatch_get_main_queue(), ^
@@ -99,6 +103,8 @@
 {
     if (loaded == YES){
         [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        // load all urls
+        self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
         [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
     }else{
@@ -119,10 +125,17 @@
              return;
          }
          
-         ELCAsset *elcAsset = [[[ELCAsset alloc] initWithAsset:result] autorelease];
-         [elcAsset setParent:self];
-         [self.elcAssets addObject:elcAsset];
-     }];    
+         // check if user already uploaded
+         NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
+         
+         //just add images that are not in the local download
+         if (![self.imagesAlreadyUploaded containsObject:asset]){
+             ELCAsset *elcAsset = [[[ELCAsset alloc] initWithAsset:result] autorelease];
+             [elcAsset setParent:self];
+             [self.elcAssets addObject:elcAsset];
+         }
+     }];   
+    
     NSLog(@"done enumerating photos");
 	
 	[self.tableView reloadData];
@@ -140,7 +153,6 @@
 	for(ELCAsset *elcAsset in self.elcAssets) 
     {		
 		if([elcAsset selected]) {
-			
 			[selectedAssetsImages addObject:[elcAsset asset]];
 		}
 	}
@@ -161,7 +173,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ceil([self.assetGroup numberOfAssets] / 4.0);
+    return ceil([self.elcAssets count] / 4.0);
 }
 
 - (NSArray*)assetsForIndexPath:(NSIndexPath*)_indexPath {
@@ -246,6 +258,7 @@
     [selectedAssetsLabel release];
     [library release];
     [self.assetGroup release];
+    [self.imagesAlreadyUploaded release];
     [super dealloc];    
 }
 

@@ -22,4 +22,10 @@
 
 @interface SyncPhotos (OpenPhoto)
 
+// constant
+extern NSString * const kSyncStatusTypeUploaded;
+
+
++ (NSMutableArray *) getPathsInManagedObjectContext:(NSManagedObjectContext *)context;
+
 @end

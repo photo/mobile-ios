@@ -22,4 +22,33 @@
 
 @implementation SyncPhotos (OpenPhoto)
 
+//
+// Constast for sync uploaded
+//
+NSString * const kSyncStatusTypeUploaded = @"Uploaded";
+
+
++ (NSMutableArray *) getPathsInManagedObjectContext:(NSManagedObjectContext *)context;
+{
+    NSMutableArray *array = [NSMutableArray array];
+    
+    // get all syncs and put in the dictionary 
+    // with all paths
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"SyncPhotos"];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (error){
+        NSLog(@"Error to get all paths from SyncPhotos on managed object context = %@",[error localizedDescription]);
+        return nil;
+    }
+    
+    for (SyncPhotos *model in matches) {
+        [array addObject:model.filePath];
+    }
+    
+    return array;
+}
+
 @end
