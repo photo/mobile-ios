@@ -47,14 +47,13 @@
     
 	overlayView.hidden = !overlayView.hidden;
     
-//    if([(ELCAssetTablePicker*)self.parent totalSelectedAssets] >= 10) {
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Maximum Reached" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
-//		[alert show];
-//		[alert release];	
-//
-//        [(ELCAssetTablePicker*)self.parent doneAction:nil];
-//    }
+    if([(ELCAssetTablePicker*)self.parent totalSelectedAssets] >= 30) {
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Maximum reached" duration:5000];
+        [alert showAlert];
+        [alert release];
+        
+        overlayView.hidden = TRUE;
+    }
 }
 
 -(BOOL)selected {
