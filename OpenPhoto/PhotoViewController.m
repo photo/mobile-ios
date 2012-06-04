@@ -324,7 +324,7 @@
         [TestFlight passCheckpoint:@"Image from Cameral Roll"];
 #endif        
     }
-     
+    
     
     // tags
     uploadInfo.tags=[self.tagController getSelectedTagsInJsonFormat];
@@ -386,6 +386,12 @@
                 
                 // status
                 uploadInfo.status=kUploadStatusTypeCreated;
+                
+                // add to the sync list, with that we don't need to show photos already uploaded.
+                SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
+                                                                  inManagedObjectContext:[AppDelegate managedObjectContext]];
+                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:self.urlImageOriginal];
+                sync.status = kSyncStatusTypeUploaded;
                 
                 // save
                 NSError *uploadError = nil;
