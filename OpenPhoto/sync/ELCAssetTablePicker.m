@@ -26,14 +26,18 @@
     self.elcAssets = tempArray;
     [tempArray release];
 	
-	UIBarButtonItem *doneButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)] autorelease];
-	[self.navigationItem setRightBarButtonItem:doneButtonItem];
 	[self.navigationItem setTitle:@"Loading..."];
     
+    // button to sync
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonImage = [UIImage imageNamed:@"syncButton.png"] ;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(prepareAndReload)];          
-    //  self.navigationItem.leftBarButtonItem = refreshButton;
-    [refreshButton release];
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button]; 
+    self.navigationItem.rightBarButtonItem = customBarItem;
+    [customBarItem release];
     
 	[self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
     

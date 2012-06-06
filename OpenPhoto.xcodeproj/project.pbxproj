@@ -245,6 +245,8 @@
 		CDE86B9014D597EA0036EC48 /* home-upload-now.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8C14D597EA0036EC48 /* home-upload-now.png */; };
 		CDE86B9114D597EA0036EC48 /* home-upload-now@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE86B8D14D597EA0036EC48 /* home-upload-now@2x.png */; };
 		CDE86B9414D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */; };
+		CDE8A7AF157FA5E0003D90A5 /* syncButton.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE8A7AD157FA5E0003D90A5 /* syncButton.png */; };
+		CDE8A7B0157FA5E0003D90A5 /* syncButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */; };
 		CDEE1A24156A673300A21820 /* SyncPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE1A23156A673300A21820 /* SyncPhotos.m */; };
 		CDEE1A27156A677100A21820 /* SyncPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE1A26156A677100A21820 /* SyncPhotos+OpenPhoto.m */; };
 		CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94B13E1C45C0018AD0B /* UIKit.framework */; };
@@ -870,6 +872,8 @@
 		CDE86B8D14D597EA0036EC48 /* home-upload-now@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-upload-now@2x.png"; path = "OpenPhoto/images/home-upload-now@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE86B9214D59DE00036EC48 /* OpenPhotoTTThumbsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoTTThumbsViewController.h; sourceTree = "<group>"; };
 		CDE86B9314D59DE00036EC48 /* OpenPhotoTTThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoTTThumbsViewController.m; sourceTree = "<group>"; };
+		CDE8A7AD157FA5E0003D90A5 /* syncButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = syncButton.png; path = sync/syncButton.png; sourceTree = "<group>"; };
+		CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "syncButton@2x.png"; path = "sync/syncButton@2x.png"; sourceTree = "<group>"; };
 		CDEE1A22156A673300A21820 /* SyncPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPhotos.h; sourceTree = "<group>"; };
 		CDEE1A23156A673300A21820 /* SyncPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPhotos.m; sourceTree = "<group>"; };
 		CDEE1A25156A677100A21820 /* SyncPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
@@ -1583,6 +1587,8 @@
 				CDF63975156E23310095AE6E /* ELCImagePickerController.xib */,
 				CDF63976156E23310095AE6E /* Overlay.png */,
 				CDF63977156E23310095AE6E /* Overlay@2x.png */,
+				CDE8A7AD157FA5E0003D90A5 /* syncButton.png */,
+				CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */,
 				CDF6398A156E6BE30095AE6E /* SyncService.h */,
 				CDF6398B156E6BE30095AE6E /* SyncService.m */,
 			);
@@ -2323,6 +2329,8 @@
 				CDF63980156E23310095AE6E /* ELCImagePickerController.xib in Resources */,
 				CDF63981156E23310095AE6E /* Overlay.png in Resources */,
 				CDF63982156E23310095AE6E /* Overlay@2x.png in Resources */,
+				CDE8A7AF157FA5E0003D90A5 /* syncButton.png in Resources */,
+				CDE8A7B0157FA5E0003D90A5 /* syncButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
