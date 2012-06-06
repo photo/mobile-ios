@@ -25,8 +25,8 @@
 @synthesize thumb=_thumb;
 @synthesize status=_status;
 @synthesize btnRetry=_btnRetry;
-@synthesize btnCancel=_btnCancel;
 @synthesize activity=_activity;
+@synthesize imageStatus = _imageStatus;
 @synthesize originalObject = _originalObject;
 @synthesize delegate=_delegate;
 
@@ -48,9 +48,9 @@
     [self.thumb release];
     [self.status release];
     [self.btnRetry release];
-    [self.btnCancel release];
     [self.activity release];
     [self.originalObject release];
+    [_imageStatus release];
     [super dealloc];
 }
 - (IBAction)refresh:(id)sender {
@@ -60,7 +60,6 @@
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
     self.btnRetry.hidden=YES;
-    self.btnCancel.hidden=YES;
     
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
@@ -70,19 +69,4 @@
     [self.delegate updateNeededForUploadDataSource];
 }
 
-- (IBAction)cancel:(id)sender {
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Pressed cancel button");
-#endif
-    // delete object originalObject
-    [[AppDelegate managedObjectContext] deleteObject:self.originalObject];
-    
-    NSError *saveError = nil;
-    if (![[AppDelegate managedObjectContext] save:&saveError]){
-        NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
-    }
-    
-    
-    [self.delegate updateNeededForUploadDataSource];
-}
 @end
