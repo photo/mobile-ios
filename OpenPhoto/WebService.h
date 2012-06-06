@@ -17,7 +17,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#include <Three20/Three20.h>
 #import "OAMutableURLRequest.h"
 #import "OAToken.h"
 #import "OADataFetcher.h"
