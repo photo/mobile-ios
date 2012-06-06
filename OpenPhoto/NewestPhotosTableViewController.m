@@ -165,7 +165,15 @@
         uploadCell.thumb.image = [UIImage imageWithData:imageData1];   
         
         // set status
-        uploadCell.status.text = upload.status;
+        if ( [upload.status isEqualToString:kUploadStatusTypeCreated]){
+            uploadCell.status.text=@"Waiting ...";
+        }else if ( [upload.status isEqualToString:kUploadStatusTypeUploading]){
+            uploadCell.status.text=@"Uploading";
+        }else if ( [upload.status isEqualToString:kUploadStatusTypeUploaded]){
+            uploadCell.status.text=@"Upload finished!!!";
+        }else if ( [upload.status isEqualToString:kUploadStatusTypeFailed]){
+            uploadCell.status.text=@"Failed";
+        }
         
         // decide if we show retry/cancel
         if (![upload.status isEqualToString:kUploadStatusTypeFailed]) {
@@ -262,8 +270,6 @@
                                 // if it is processed change the status UPLOADED
                                 uploadCell.status.text = kUploadStatusTypeUploaded;
                                 upload.status = kUploadStatusTypeUploaded;
-                                // while we do not delete this photo, save space removing the image
-                                upload.image = nil;
                                 
                                 NSError *saveError = nil;
                                 if (![[AppDelegate managedObjectContext] save:&saveError]){
