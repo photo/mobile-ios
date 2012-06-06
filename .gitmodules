@@ -25,3 +25,6 @@
 [submodule "Frameworks/ELCImagePickerController"]
 	path = Frameworks/ELCImagePickerController
 	url = https://github.com/elc/ELCImagePickerController.git
+[submodule "Frameworks/Nimbus"]
+	path = Frameworks/Nimbus
+	url = git://github.com/jverkoey/nimbus.git
