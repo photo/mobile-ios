@@ -53,9 +53,9 @@
     
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
-    // color separator
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
+    // no separator
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     library = [[ALAssetsLibrary alloc] init]; 
     loaded = NO;
