@@ -164,13 +164,18 @@
         NSData* imageData1 =[NSData dataWithData:UIImagePNGRepresentation (image)]; 
         uploadCell.thumb.image = [UIImage imageWithData:imageData1];   
         
-        // set status
+        // set status and image upload status
+        uploadCell.imageStatus.hidden=YES;
         if ( [upload.status isEqualToString:kUploadStatusTypeCreated]){
             uploadCell.status.text=@"Waiting ...";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-waiting.png"]];
+            uploadCell.imageStatus.hidden=NO;
         }else if ( [upload.status isEqualToString:kUploadStatusTypeUploading]){
             uploadCell.status.text=@"Uploading";
         }else if ( [upload.status isEqualToString:kUploadStatusTypeUploaded]){
             uploadCell.status.text=@"Upload finished!!!";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
+            uploadCell.imageStatus.hidden=NO;
         }else if ( [upload.status isEqualToString:kUploadStatusTypeFailed]){
             uploadCell.status.text=@"Failed";
         }
@@ -178,10 +183,8 @@
         // decide if we show retry/cancel
         if (![upload.status isEqualToString:kUploadStatusTypeFailed]) {
             uploadCell.btnRetry.hidden  = YES;
-            uploadCell.btnCancel.hidden = YES;
         }else{
             uploadCell.btnRetry.hidden  = NO;
-            uploadCell.btnCancel.hidden = NO;
         }
         
         // set ativity icon
@@ -198,15 +201,17 @@
                 uploadCell.status.text = kUploadStatusTypeFailed;
                 upload.status = kUploadStatusTypeFailed;
                 uploadCell.btnRetry.hidden  = NO;
-                uploadCell.btnCancel.hidden = NO;
+                uploadCell.imageStatus.hidden=YES;
+                
                 NSError *saveError = nil;
                 if (![[AppDelegate managedObjectContext] save:&saveError]){
                     NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
                 }
-            }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] <= 3 ){
+            }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] < 3 ){
                 // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
-                uploadCell.status.text = kUploadStatusTypeUploading;
                 upload.status = kUploadStatusTypeUploading;
+                uploadCell.status.text = @"Uploading";
+                uploadCell.imageStatus.hidden=YES;
                 
                 // start progress bar and update screen
                 [uploadCell.activity startAnimating];
@@ -226,7 +231,6 @@
                     upload.status = kUploadStatusTypeFailed;
                     uploadCell.status.text = kUploadStatusTypeFailed;
                     uploadCell.btnRetry.hidden  = NO;
-                    uploadCell.btnCancel.hidden = NO;
                     
                     NSError *saveError = nil;
                     if (![[AppDelegate managedObjectContext] save:&saveError]){
@@ -268,8 +272,12 @@
                             // update the screen
                             dispatch_async(dispatch_get_main_queue(), ^{
                                 // if it is processed change the status UPLOADED
-                                uploadCell.status.text = kUploadStatusTypeUploaded;
+                                //                                uploadCell.status.text = @"Upload finished!!!";
+                                //                              [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
+                                //                            uploadCell.imageStatus.hidden=NO;
                                 upload.status = kUploadStatusTypeUploaded;
+                                
+                                [self.uploads replaceObjectAtIndex:indexPath.row withObject:upload];
                                 
                                 NSError *saveError = nil;
                                 if (![[AppDelegate managedObjectContext] save:&saveError]){
@@ -326,29 +334,30 @@
                             
                             // default for all erros
                             upload.status = kUploadStatusTypeFailed;
-                            uploadCell.status.text = kUploadStatusTypeFailed;
+                            uploadCell.status.text = @"Failed";
                             uploadCell.btnRetry.hidden  = NO;
-                            uploadCell.btnCancel.hidden = NO;
                             
                             // check if it is duplicated
-                            NSString *alertMessage;
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
                                 [[e description] hasPrefix:@"You already uploaded this photo."]){
-                                alertMessage = [[NSString alloc] initWithFormat:@"You already uploaded this photo."];
                                 
                                 // can considere the image as uploaded
                                 uploadCell.status.text = @"Duplicated";
+                                [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
+                                uploadCell.imageStatus.hidden=NO;
                                 upload.status = kUploadStatusTypeUploaded;
-                                uploadCell.btnRetry.hidden  = YES;
-                                uploadCell.btnCancel.hidden = YES;
-                                
+                                uploadCell.btnRetry.hidden  = YES;  
+                                [self.uploads replaceObjectAtIndex:indexPath.row withObject:upload];
+                                [self.tableView beginUpdates];
+                                [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                                                      withRowAnimation:UITableViewRowAnimationFade];
+                                [self.tableView endUpdates]; 
                             }else {
-                                alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
+                                NSString *alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
+                                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
+                                [alert showAlert];
+                                [alert release];
                             }
-                            
-                            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
-                            [alert showAlert];
-                            [alert release];
                             
                             NSError *saveError = nil;
                             if (![[AppDelegate managedObjectContext] save:&saveError]){
@@ -508,6 +517,48 @@
     }else{
         return 365;
     }
+}
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // just in case of upload
+    if ([self.uploads count] > 0 && indexPath.row < [self.uploads count]){
+        // Return YES in case of Failed only
+        UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
+        if ( [upload.status isEqualToString:kUploadStatusTypeFailed]){
+            return YES;
+            
+        }
+    }
+    
+    // others no
+    return NO;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Pressed delete button");
+#endif
+        // delete object originalObject
+        UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
+        [[AppDelegate managedObjectContext] deleteObject:upload];
+        
+        NSError *saveError = nil;
+        if (![[AppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error on delete the item from cell = %@",[saveError localizedDescription]);
+        }
+        
+        [self.uploads removeObjectAtIndex:indexPath.row];
+        [self.tableView beginUpdates];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
+                              withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
+    }    
 }
 
 
