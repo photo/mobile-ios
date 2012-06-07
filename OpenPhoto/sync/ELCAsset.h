@@ -12,14 +12,15 @@
 @interface ELCAsset : UIView {
 	ALAsset *asset;
 	UIImageView *overlayView;
-	BOOL selected;
+	UIImageView *overlayAlreadyUploadedView;
 	id parent;
 }
 
 @property (nonatomic, retain) ALAsset *asset;
 @property (nonatomic, assign) id parent;
 
--(id)initWithAsset:(ALAsset*)_asset;
--(BOOL)selected;
+
+-(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded;
+-(BOOL) selected;
 
 @end

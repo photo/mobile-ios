@@ -347,7 +347,6 @@
                                 uploadCell.imageStatus.hidden=NO;
                                 upload.status = kUploadStatusTypeUploaded;
                                 uploadCell.btnRetry.hidden  = YES;  
-                                [self.uploads replaceObjectAtIndex:indexPath.row withObject:upload];
                                 [self.tableView beginUpdates];
                                 [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
                                                       withRowAnimation:UITableViewRowAnimationFade];
