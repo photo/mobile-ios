@@ -132,12 +132,10 @@
          // check if user already uploaded
          NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
          
-         //just add images that are not in the local download
-         if (![self.imagesAlreadyUploaded containsObject:asset]){
-             ELCAsset *elcAsset = [[[ELCAsset alloc] initWithAsset:result] autorelease];
-             [elcAsset setParent:self];
-             [self.elcAssets addObject:elcAsset];
-         }
+         ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:[self.imagesAlreadyUploaded containsObject:asset]];
+         [elcAsset setParent:self];
+         [self.elcAssets addObject:elcAsset];
+         [elcAsset release];
      }];   
     
     NSLog(@"done enumerating photos");
