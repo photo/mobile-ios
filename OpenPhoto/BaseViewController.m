@@ -28,8 +28,7 @@
 
 
 // private
-@interface BaseViewController()
-- (void) openTypePhotoLibrary;    
+@interface BaseViewController() 
 - (void) openTypeCamera;
 - (NSMutableDictionary*)currentLocation;
 - (UINavigationController*) getUINavigationController:(UIViewController *) controller forHomeScreen:(BOOL) home;
@@ -154,44 +153,16 @@
 }
 
 -(void)buttonEvent{
-    // start localtion
-    [coreLocationController.locMgr startUpdatingLocation];
-    
     // check if user has camera
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        
-        UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Upload your picture" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera Roll", @"Snapshot", nil];
-        menu.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [menu showInView:self.view];
-        [menu release];
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Your device hasn't a camera" duration:5000];
+        [alert showAlert];
+        [alert release];
     }else{
-        // open direct the library
-        [self openTypePhotoLibrary];
-    }
-}
-
-
-// user can open the photo library or the camera. Ask him.
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        [self openTypePhotoLibrary];
-    } else if (buttonIndex == 1) {
+        // start localtion
+        [coreLocationController.locMgr startUpdatingLocation];
         [self openTypeCamera];
-    } else{
-        // it was cancel, shutdown the location
-        [coreLocationController.locMgr stopUpdatingLocation];
     }
-}
-
-
--(void) openTypePhotoLibrary{
-    UIImagePickerController *pickerController = [[UIImagePickerController
-                                                  alloc]
-                                                 init];
-    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    pickerController.delegate = self;
-    [self presentModalViewController:pickerController animated:YES];
-    [pickerController release]; 
 }
 
 -(void) openTypeCamera{
@@ -205,44 +176,38 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // the image itself to save in the library
     UIImage *pickedImage = [info
                             objectForKey:UIImagePickerControllerOriginalImage];
     
-    // used for get EXIF information, in case of saved images
-    NSURL *referenceUrl = [info objectForKey:UIImagePickerControllerReferenceURL];
+    // User come from Snapshot. We will temporary save in the Library. 
+    // If in the Settings is configure to not save in the library, we will delete
+    NSMutableDictionary *exif = nil;
     
-    if (referenceUrl){
-        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photoUrl:referenceUrl photo:pickedImage source:picker.sourceType];
-        [picker pushViewController:controller animated:YES];
-    }else{
-        // in this case, the user used the Snapshot. We will temporary save in the Library. 
-        // If the Settings is to not do that, we will delete this.
-        NSMutableDictionary *exif = nil;
+    // check if metadata is available
+    if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
+        exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
         
-        // check if metadata is available
-		if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
-			exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
-            
-            
-            NSDictionary *gpsDict  = [self currentLocation];
-            if ([gpsDict count] > 0) {
-                NSLog(@"There is location");
-                [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
-            }else{
-                NSLog(@"No location found");
-            }
-            
-      	}
         
-		[assetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
-			if (error) {
-				NSLog(@"The photo you took could not be saved!");
-			} else {
-                PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil photoUrl:newUrl photo:pickedImage source:picker.sourceType];
-                [picker pushViewController:controller animated:YES]; 
-			}
-		}];
+        NSDictionary *gpsDict  = [self currentLocation];
+        if ([gpsDict count] > 0) {
+            NSLog(@"There is location");
+            [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
+        }else{
+            NSLog(@"No location found");
+        }
+        
     }
+    
+    [assetsLibrary writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
+        if (error) {
+            NSLog(@"The photo took by the user could not be saved = %@", [error description]);
+        } else {
+            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil url:newUrl image:pickedImage];
+            [picker pushViewController:controller animated:YES]; 
+        }
+    }];
+    
     
     // stop location
     [coreLocationController.locMgr stopUpdatingLocation];  
@@ -288,11 +253,13 @@
 
 - (void)locationUpdate:(CLLocation *)position{
     self.location = position;
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Position %@", position);
+#endif
 }
 
 - (void)locationError:(NSError *)error {
-    NSLog(@"Location %@", [error description]);
+    NSLog(@"Location error %@", [error description]);
     
     if ([error code] == kCLErrorDenied){
         // validate if we had checked once if user allowed location
@@ -315,107 +282,31 @@
     }
 }
 
-
-
 // Sync 
 #pragma mark ELCImagePickerControllerDelegate Methods
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {	
     NSLog(@"Selected some images");
     
-    // schedules the asset read
-    ALAssetsLibrary* assetslibrary = [[[ALAssetsLibrary alloc] init] autorelease];
-    
-    // save all images in the upload screen
-    if (info != nil && [info count]>0){
-        
+    if (info != nil && [info count]>0 ){
+        // convert to nsarray
+        NSMutableArray *urls = [NSMutableArray array];
         for(NSDictionary *dict in info) {
-            
-            // Get image from Assets Library
-            // the result block
-            ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
-            {
-                ALAssetRepresentation *rep = [myasset defaultRepresentation];
-#ifdef DEVELOPMENT_ENABLED            
-                NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
-#endif           
-                uint8_t* buffer = malloc([rep size]);
-                
-                NSError* error = NULL;
-                NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
-                NSData *data = nil;
-                
-                if (bytes == [rep size]){
-                    data = [[NSData dataWithBytes:buffer length:bytes] retain];
-                }else{
-                    NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], [dict objectForKey:UIImagePickerControllerReferenceURL]);
-                }
-                
-                free(buffer);
-                
-                // show alert to user
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (data != nil){
-                        // data to be saved in the database
-                        UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
-                                                                                  inManagedObjectContext:[AppDelegate managedObjectContext]];
-                        
-                        // details form this upload
-                        uploadInfo.date = [NSDate date];
-                        uploadInfo.facebook = [NSNumber numberWithBool:NO];
-                        uploadInfo.twitter = [NSNumber numberWithBool:NO];
-                        uploadInfo.permission = [NSNumber numberWithBool:YES];
-                        uploadInfo.title =  @"";
-                        uploadInfo.tags=@"sync mobile";
-                        uploadInfo.status=kUploadStatusTypeCreated;
-                        uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
-                        uploadInfo.image = data;
-                        uploadInfo.fileName = [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:[dict objectForKey:UIImagePickerControllerReferenceURL]],[AssetsLibraryUtilities getAssetsUrlExtension:[dict objectForKey:UIImagePickerControllerReferenceURL]]];
-                        
-                        // status
-                        uploadInfo.status=kUploadStatusTypeCreated;
-                        
-                        
-                        // add to the sync list, with that we don't need to show photos already uploaded.
-                        SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
-                                                                          inManagedObjectContext:[AppDelegate managedObjectContext]];
-                        sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:[dict objectForKey:UIImagePickerControllerReferenceURL]] ;
-                        sync.status = kSyncStatusTypeUploaded;
-                        
-                        // save
-                        NSError *uploadError = nil;
-                        if (![[AppDelegate managedObjectContext] save:&uploadError]){
-                            NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
-                        }   
-                        
-#ifdef DEVELOPMENT_ENABLED
-                        NSLog(@"Data ready to send to openphoto. Saved on database");
-#endif
-                    }else{
-                        NSLog(@"Error to get the data from the library");
-                    }
-                });
-            };
-            
-            //
-            ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror){
-                NSLog(@"Error '%@' getting asset from library", [myerror localizedDescription]);
-            };
-            
-            [assetslibrary assetForURL:[dict objectForKey:UIImagePickerControllerReferenceURL]
-                           resultBlock:resultblock
-                          failureBlock:failureblock];
-        }    
+            [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
+        }
         
+        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+        [picker pushViewController:controller animated:YES];
+    }else{
+        // no photo select
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"You didn't select any photo" duration:5000];
+        [alert showAlert];
+        [alert release];
+        
+        // go to the home
+        [AppDelegate openTab:0];
     }
     
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Image from Sync"];
-    [TestFlight passCheckpoint:@"Saved image"];
-#endif
-    
-    // go to the home
-    [AppDelegate openTab:0];
 }
 
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
@@ -426,7 +317,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return YES;
 }
-
 
 - (void)dealloc {
     [appSettingsViewController release];

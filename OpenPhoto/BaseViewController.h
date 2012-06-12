@@ -36,14 +36,13 @@
 #import "OpenPhotoIASKAppSettingsViewController.h"
 #import "CoreLocationController.h"
 
-// for the sync
+// for sync
+#import "ELCAssetTablePicker.h"    
 #import "ELCImagePickerController.h"
-#import "ELCAlbumPickerController.h"
-#import "ELCAssetTablePicker.h"
 #import "SyncPhotos+OpenPhoto.h"
+#import "MBProgressHUD.h"
 
-
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
     
     // for location

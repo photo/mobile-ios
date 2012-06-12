@@ -40,7 +40,6 @@ extern NSString * const kNotificationRefreshPictures;
 extern NSString * const kNotificationCheckRefreshPictures;
 extern NSString * const kNotificationShareInformationToFacebookOrTwitter;
 
-extern int        const kNumbersRow;
 extern NSString * const kCellIdentifierTitle;
 extern NSString * const kCellIdentifierTags;
 extern NSString * const kCellIdentifierFilter;

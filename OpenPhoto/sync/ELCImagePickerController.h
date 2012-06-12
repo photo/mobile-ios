@@ -6,9 +6,11 @@
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-@interface ELCImagePickerController : UINavigationController {
+#import "ELCAsset.h"
+#import "ELCAssetCell.h"
+#import "ELCAssetTablePicker.h"
+#import "ELCAlbumPickerController.h"
+@interface ELCImagePickerController : UINavigationController{
 
 	id delegate;
 }
@@ -26,4 +28,3 @@
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker;
 
 @end
-
