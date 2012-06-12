@@ -20,31 +20,76 @@
 #import "PhotoViewController.h"
 
 @interface PhotoViewController()
--(void) switchedFacebook;
--(void) switchedTwitter;
+- (void) switchedFacebook;
 
-- (NSString *) getFileNameFilterImage:(BOOL) filtered data:(NSData*)data url:(NSURL*) url;
+- (void) switchedTwitter;
 
+- (void) saveEntityUploadDate:(NSDate *) date 
+                shareFacebook:(NSNumber *) facebook
+                 shareTwitter:(NSNumber *) twitter
+                        image:(NSData *) image
+                   permission:(NSNumber *) permission
+                       source:(NSString *) source
+                         tags:(NSString *) tags
+                        title:(NSString *) title 
+                          url:(NSURL *) url;
+
+- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
+                           shareFacebook:(NSNumber *) facebook
+                            shareTwitter:(NSNumber *) twitter
+                              permission:(NSNumber *) permission
+                                  source:(NSString *) source
+                                    tags:(NSString *) tags
+                                   title:(NSString *) title 
+                                     url:(NSURL *) url;
 @end
 
 @implementation PhotoViewController
+@synthesize uploadButton = _uploadButton;
 
 @synthesize detailsPictureTable=_detailsPictureTable;
-@synthesize urlImageOriginal=_urlImageOriginal, imageOriginal=_imageOriginal, imageFiltered=_imageFiltered;
+@synthesize originalImage=_originalImage, imageFiltered=_imageFiltered;
 @synthesize titleTextField=_titleTextField, permissionPicture=_permissionPicture, shareFacebook=_shareFacebook, shareTwitter=_shareTwitter;
-@synthesize tagController=_tagController, sourceType=_sourceType;
+@synthesize tagController=_tagController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photoUrl:(NSURL *) url photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType{
+@synthesize image= _image;
+@synthesize images = _images;
+
+@synthesize imagesToProcess = _imagesToProcess;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
         // Custom initialization
-        self.urlImageOriginal = url;
-        self.imageOriginal = image;
-        self.sourceType = pickerSourceType;
+        self.image = imageFromCamera;
+        self.originalImage = originalImage;
+        self.imagesToProcess = 1;
         
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
+        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        // Custom initialization
+        self.images = imagesFromSync;
+        
+        // how many images we need to process?
+        if (self.images)
+            self.imagesToProcess = [self.images count];
+        
+        
+        // initialization of tag controller
+        self.tagController = [[TagViewController alloc] init];
+        [self.tagController setReadOnly];
+        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
     }
     return self;
 }
@@ -57,18 +102,25 @@
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad{  
+    [super viewDidLoad];
+    
+    self.title = @"Upload";
+    
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    // if user wants to cancel the upload
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
-    self.navigationItem.rightBarButtonItem = cancelButton;
-    [cancelButton release];
-    
-    
-    self.title = @"Upload";
-    [super viewDidLoad];
+    if (self.image){
+        // if user wants to cancel the upload
+        // it should be just in the case of snapshot
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
+        self.navigationItem.rightBarButtonItem = cancelButton;
+        [cancelButton release];
+    }else{
+        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y - 40);
+        self.uploadButton.center = CGPointMake([self.uploadButton  center].x, [self.uploadButton  center].y - 80);
+    }    
 }
+
 
 - (void) cancelUploadButton{
     [self dismissModalViewControllerAnimated:YES];
@@ -76,9 +128,8 @@
 
 
 - (void)viewDidUnload{
+    [self setUploadButton:nil];
     [super viewDidUnload];
-    [imageTitle release];
-    imageTitle = nil;
     [self setDetailsPictureTable:nil];
 }
 
@@ -89,7 +140,13 @@
 
 #pragma mark - Table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return kNumbersRow;
+    if (self.image == nil){
+        // user comes from the Sync, we don't show Aviary
+        return 5;
+    }else{
+        // show all possibilites
+        return 6;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -242,19 +299,19 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     
-    if ( row == 5){
+    if (row == 1){
+        // tags
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        [self.navigationController pushViewController:self.tagController animated:YES];
+    }else if ( row == 5){
         // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         AFFeatherController *controller = [[AFFeatherController alloc] 
-                                           initWithImage:self.imageOriginal];
+                                           initWithImage:self.originalImage];
         controller.delegate = self;
         
         [self presentModalViewController:controller animated:YES];
         [controller release];
-    }else if (row == 1){
-        // tags
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-        [self.navigationController pushViewController:self.tagController animated:YES];
     }
 }
 
@@ -284,148 +341,253 @@
     return YES;
 }
 
-- (IBAction)upload:(id)sender {
+- (IBAction)upload:(id)sender {     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Upload button clicked. Save all details in the database");
 #endif
     
-    UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
-                                                              inManagedObjectContext:[AppDelegate managedObjectContext]];
-    //
-    // add all details in the database
-    //
+    // values
+    NSNumber *facebook = ([self.shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]) ;
+    NSNumber *twitter = ([self.shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    NSNumber *permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
+    NSString *title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
+    NSString *tags = [self.tagController getSelectedTagsInJsonFormat];
+    UIImage  *imageFiltered = self.imageFiltered;
     
-    // date
-    uploadInfo.date = [NSDate date];
-    
-    // facebook
-    uploadInfo.facebook = ([self.shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-    
-    // twitter
-    uploadInfo.twitter = ([self.shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-    
-    // permissionPrivate
-    uploadInfo.permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-    
-    // source
-    if (self.sourceType == UIImagePickerControllerSourceTypePhotoLibrary){
-        uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Image from Cameral Roll"];
-#endif        
-    }else if (self.sourceType == UIImagePickerControllerSourceTypeCamera){
-        uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeCamera;
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Image from Snapshot"];
-#endif
-    }else if (self.sourceType == UIImagePickerControllerSourceTypeSavedPhotosAlbum){
-        uploadInfo.source=kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Image from Cameral Roll"];
-#endif        
-    }
-    
-    
-    // tags
-    uploadInfo.tags=[self.tagController getSelectedTagsInJsonFormat];
-    
-    // title
-    uploadInfo.title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Title photo %@",uploadInfo.title);
-#endif    
-    
-    // fileName and data    
-    if (self.imageFiltered != nil){
-        uploadInfo.image = UIImageJPEGRepresentation(self.imageFiltered,0.7);
-        uploadInfo.fileName = [self getFileNameFilterImage:YES data:uploadInfo.image url:nil];
-        uploadInfo.status=kUploadStatusTypeCreated;
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Data ready to send to openphoto. Saved on database");
-#endif
-        
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Saved edited image"];
-#endif
-        // go to home
-        [AppDelegate openTab:0];
-        [self dismissModalViewControllerAnimated:YES];
-    }else {
-        // Get image from Assets Library
-        // the result block
-        ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
-        {
-            ALAssetRepresentation *rep = [myasset defaultRepresentation];
-#ifdef DEVELOPMENT_ENABLED            
-            NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
-#endif           
-            uint8_t* buffer = malloc([rep size]);
+    dispatch_queue_t waiting = dispatch_queue_create("waiting_finish_insert_database", NULL);
+    dispatch_async(waiting, ^{
+        @try {
+            //
+            //
+            // Process all images in a queue.
+            // When necessary to run in the main thread, do it
+            // during this time, user will have a progress bar, so, no possible to change values
+            //
+            //
             
-            NSError* error = NULL;
-            NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
-            NSData *data = nil;
-            
-            if (bytes == [rep size])
-            {
-#ifdef DEVELOPMENT_ENABLED
-                NSLog(@"Asset %@ loaded from Asset Library OK", self.urlImageOriginal);
-#endif
-                data = [[NSData dataWithBytes:buffer length:bytes] retain];
-            }
-            else
-            {
-                NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], self.urlImageOriginal);
+            // check the type of image that we are uploading
+            // is it a single image, a bunch of images or the user used Aviary?
+            if (imageFiltered){
+                //image filtered. User used Aviary   
+                [self saveEntityUploadDate:[NSDate date] 
+                             shareFacebook:facebook
+                              shareTwitter:twitter
+                                     image:UIImageJPEGRepresentation(imageFiltered,0.7) 
+                                permission:permission
+                                    source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
+                                      tags:tags
+                                     title:title
+                                       url:nil];
+            }else if (self.images && [self.images count]>1){
+                // bunch of photos and more than one
+                int i = [self.images count];
+                for ( NSURL *url in self.images){
+                    if ( i != 1 ){
+                        [self loadDataAndSaveEntityUploadDate:[NSDate date] 
+                                                shareFacebook:[NSNumber numberWithBool:NO]
+                                                 shareTwitter:[NSNumber numberWithBool:NO]  
+                                                   permission:permission
+                                                       source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
+                                                         tags:tags 
+                                                        title:title
+                                                          url:url];
+                    }else{
+                        // this is the last one,
+                        // so we do the sharing if needed
+                        [self loadDataAndSaveEntityUploadDate:[NSDate date] 
+                                                shareFacebook:facebook 
+                                                 shareTwitter:twitter
+                                                   permission:permission
+                                                       source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
+                                                         tags:tags
+                                                        title:title
+                                                          url:url];
+                    }
+                    
+                    // decrease until the first one
+                    i--;
+                }
+            }else{
+                // just one photo to share
+                [self loadDataAndSaveEntityUploadDate:[NSDate date] 
+                                        shareFacebook:facebook 
+                                         shareTwitter:twitter 
+                                           permission:permission
+                                               source:kUploadSourceUIImagePickerControllerSourceTypeCamera 
+                                                 tags:tags
+                                                title:title
+                                                  url:self.image];
             }
             
-            free(buffer);
             
-            // show alert to user
+            // create a thread that check if all data is processed,
+            // when all the the assetslibrary job is done save database 
+            // and goes to main screen
+            // this will sleep for 0.5 seconds
+            while (TRUE) {
+                // sleep for 0.5 seconds
+                [NSThread sleepForTimeInterval:0.5];
+#ifdef DEVELOPMENT_ENABLED
+                NSLog(@"Checking if everything is saved");
+#endif
+                // check if counter is 0
+                if (self.imagesToProcess < 1){
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // save all objects in the context
+                        NSError *uploadError = nil;
+                        if (![[AppDelegate managedObjectContext] save:&uploadError]){
+                            NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
+                        }else{
+#ifdef DEVELOPMENT_ENABLED
+                            NSLog(@"Data ready to send to openphoto. Everything saved on database");
+#endif
+                        }
+                        
+#ifdef TEST_FLIGHT_ENABLED
+                        // checkpoint
+                        if (self.imageFiltered){
+                            [TestFlight passCheckpoint:@"Image from Aviary"];       
+                        }else if (self.images){
+                            [TestFlight passCheckpoint:@"Image from Sync"];
+                        }else{
+                            [TestFlight passCheckpoint:@"Image from Snapshot"];
+                        }
+#endif 
+                        
+                        // stop loading
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        
+                        // if it comes form the sync,
+                        // go back in the navigation
+                        if (self.images){
+                            [self.navigationController popViewControllerAnimated:NO];
+                        }
+                        
+                        // go to home
+                        [AppDelegate openTab:0];
+                        [self dismissModalViewControllerAnimated:YES];
+                    });
+                    break;
+                }
+            }            
+        }@catch (NSException *exception) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                uploadInfo.image = data;
-                uploadInfo.fileName = [self getFileNameFilterImage:NO data:data url:self.urlImageOriginal];
-                
-                // status
-                uploadInfo.status=kUploadStatusTypeCreated;
-                
-                // add to the sync list, with that we don't need to show photos already uploaded.
-                SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
-                                                                  inManagedObjectContext:[AppDelegate managedObjectContext]];
-                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:self.urlImageOriginal];
-                sync.status = kSyncStatusTypeUploaded;
-                
-                // save
-                NSError *uploadError = nil;
-                if (![[AppDelegate managedObjectContext] save:&uploadError]){
-                    NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
-                }   
-                
-#ifdef DEVELOPMENT_ENABLED
-                NSLog(@"Data ready to send to openphoto. Saved on database");
-#endif
-                
-#ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Saved image"];
-#endif
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
+                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                [alert showAlert];
+                [alert release];                
                 // go to home
                 [AppDelegate openTab:0];
                 [self dismissModalViewControllerAnimated:YES];
-            });
+            });   
+        }
+    });
+    dispatch_release(waiting);
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Preparing";
+}
+
+- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
+                           shareFacebook:(NSNumber *) facebook
+                            shareTwitter:(NSNumber *) twitter
+                              permission:(NSNumber *) permission
+                                  source:(NSString *) source
+                                    tags:(NSString *) tags
+                                   title:(NSString *) title 
+                                     url:(NSURL *) url
+{
+    // load image and then save it to database
+    // via block
+    ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *asset)
+    {
+        
+        ALAssetRepresentation *rep = [asset defaultRepresentation];
+#ifdef DEVELOPMENT_ENABLED            
+        NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
+#endif           
+        uint8_t* buffer = malloc([rep size]);
+        
+        NSError* error = NULL;
+        NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
+        NSData *data = nil;
+        
+        if (bytes == [rep size]){
+#ifdef DEVELOPMENT_ENABLED
+            NSLog(@"Asset %@ loaded from Asset Library OK", url);
+#endif
+            data = [[NSData dataWithBytes:buffer length:bytes] retain];
+        }else{
+            NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], url);
+        }
+        
+        free(buffer);
+        
+        [self saveEntityUploadDate:date
+                     shareFacebook:facebook 
+                      shareTwitter:twitter 
+                             image:data
+                        permission:permission
+                            source:source
+                              tags:tags
+                             title:title
+                               url:url];
+    };
+    
+    // block for failed image
+    ALAssetsLibraryAccessFailureBlock failureBlock  = ^(NSError *error)
+    {
+        NSLog(@"Error '%@' getting asset from library", [error localizedDescription]);
+    };
+    
+    // schedules the asset read       
+    [assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
+}
+
+- (void) saveEntityUploadDate:(NSDate *) date 
+                shareFacebook:(NSNumber *) facebook
+                 shareTwitter:(NSNumber *) twitter
+                        image:(NSData *) image
+                   permission:(NSNumber *) permission
+                       source:(NSString *) source
+                         tags:(NSString *) tags
+                        title:(NSString *) title 
+                          url:(NSURL *) url
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (image != nil){
+            // data to be saved in the database
+            UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
+                                                                      inManagedObjectContext:[AppDelegate managedObjectContext]];
             
-        };
-        
-        //
-        ALAssetsLibraryAccessFailureBlock failureblock  = ^(NSError *myerror)
-        {
-            NSLog(@"Error '%@' getting asset from library", [myerror localizedDescription]);
-        };
-        
-        // schedules the asset read
-        ALAssetsLibrary* assetslibrary = [[[ALAssetsLibrary alloc] init] autorelease];
-        
-        [assetslibrary assetForURL:self.urlImageOriginal
-                       resultBlock:resultblock
-                      failureBlock:failureblock];
-    }    
+            // details form this upload
+            uploadInfo.date = date;
+            uploadInfo.facebook = facebook;
+            uploadInfo.twitter = twitter;
+            uploadInfo.permission = permission;
+            uploadInfo.title =  title;
+            uploadInfo.tags=tags;
+            uploadInfo.status=kUploadStatusTypeCreated;
+            uploadInfo.source=source;
+            uploadInfo.image = image;
+            uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
+            uploadInfo.status=kUploadStatusTypeCreated;
+            
+            
+            if (url){
+                // add to the sync list, with that we don't need to show photos already uploaded.
+                // in the case of edited images via Aviary, we don't save it.
+                SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
+                                                                  inManagedObjectContext:[AppDelegate managedObjectContext]];
+                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:url] ;
+                sync.status = kSyncStatusTypeUploaded;
+            }
+            
+            // decrease counter
+            self.imagesToProcess = self.imagesToProcess - 1;
+        }});
+    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
@@ -437,27 +599,8 @@
     }
 }
 
-- (NSString *) getFileNameFilterImage:(BOOL) filtered data:(NSData*)data url:(NSURL*) url
-{
-    if (filtered){
-        // filtered
-        CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
-        CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
-        
-        // get type of the file
-        NSString *extension = [ContentTypeUtilities contentTypeExtensionForImageData:data];
-        
-        return [NSString stringWithFormat:@"%@.%@",(NSString *) newUniqueIdString,extension];
-    }else{
-        // no filter, image is located on Library
-        return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];
-    }
-}
-
 - (void)dealloc {
-    [imageTitle release];
-    [self.urlImageOriginal release];
-    [self.imageOriginal release];
+    [self.originalImage release];
     [self.imageFiltered release];
     [self.detailsPictureTable release];
     [self.titleTextField release];
@@ -465,7 +608,11 @@
     [self.shareTwitter release];
     [self.shareFacebook release];
     [self.tagController release];
+    [self.image release];
+    [self.images release];
+    [assetsLibrary release];
     
+    [_uploadButton release];
     [super dealloc];
 }
 

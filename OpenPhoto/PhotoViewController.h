@@ -19,38 +19,29 @@
 
 #import "TagViewController.h"
 #import "AFFeatherController.h"
-#import "AssetsLibraryUtilities.h"
 #import "QSUtilities.h"
 #import "UploadPhotos+OpenPhoto.h"
 #import "SyncPhotos+OpenPhoto.h"
+
 #import "ContentTypeUtilities.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AssetsLibraryUtilities.h"
 
 @interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
-    
-    IBOutlet UITextField *imageTitle;
-    
-    NSURL* urlImageOriginal;
-    UIImage* imageOriginal;
-    UIImage* imageFiltered;
-    
-    UITableView *detailsPictureTable;
-    UITextField *titleTextField;
-    
-    UISwitch *permissionPicture;
-    UISwitch *shareFacebook;
-    UISwitch *shareTwitter;
-    
-    TagViewController *tagController;
-    UIImagePickerControllerSourceType sourceType;
+    ALAssetsLibrary *assetsLibrary;
 }
-
 
 @property (nonatomic, retain) IBOutlet UITableView *detailsPictureTable;
 
-@property (nonatomic, retain) NSURL *urlImageOriginal;
-@property (nonatomic, retain) UIImage *imageOriginal;
+// in case of one image. The user can 
+// edit it
+@property (nonatomic, retain) UIImage *originalImage;
 @property (nonatomic, retain) UIImage *imageFiltered;
+
+// in case of user getting an image from the snapshot
+@property (nonatomic, retain) NSURL *image;
+// List of all images form the sync
+@property (nonatomic, retain) NSArray *images;
 
 @property (nonatomic, retain) UITextField *titleTextField;
 @property (nonatomic, retain) UISwitch *permissionPicture;
@@ -58,9 +49,19 @@
 @property (nonatomic, retain) UISwitch *shareTwitter;
 
 @property (nonatomic, retain) TagViewController *tagController;
-@property (nonatomic) UIImagePickerControllerSourceType sourceType;    
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil photoUrl:(NSURL *) url photo:(UIImage *) image source:(UIImagePickerControllerSourceType) pickerSourceType;
+// total of images to process. We use this variable to decrease everytime 
+// when an image is saved in the database
+// at the moment it turns 0, all images were processed and user can be redirected to the main screen
+@property (nonatomic) int imagesToProcess;
+
+// construct that receive the snapshot
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;
+// construct that receives a list with all images URL from Sync
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync;
+
+// action to start uploading
 - (IBAction)upload:(id)sender;
+@property (retain, nonatomic) IBOutlet UIButton *uploadButton;
 
 @end

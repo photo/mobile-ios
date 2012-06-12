@@ -7,7 +7,6 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsLibraryUtilities.h"
-
 #import "MBProgressHUD.h"
 #import "SyncPhotos+OpenPhoto.h"
 

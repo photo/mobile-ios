@@ -552,11 +552,7 @@
             NSLog(@"Error on delete the item from cell = %@",[saveError localizedDescription]);
         }
         
-        [self.uploads removeObjectAtIndex:indexPath.row];
-        [self.tableView beginUpdates];
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-                              withRowAnimation:UITableViewRowAnimationFade];
-        [self.tableView endUpdates];
+        [self doneLoadingTableViewData];
     }    
 }
 

@@ -23,5 +23,6 @@
 
 + (NSString *) getAssetsUrlExtension:(NSURL *) url;
 + (NSString *) getAssetsUrlId:(NSURL *) url;
-
++ (NSString *) getFileNameForImage:(NSData*)data 
+                               url:(NSURL*) url;
 @end

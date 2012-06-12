@@ -55,4 +55,21 @@
     return pairs;
 }
 
++ (NSString *) getFileNameForImage:(NSData*)data 
+                               url:(NSURL*) url
+{
+    if (!url){
+        CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
+        CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
+        
+        // get type of the file
+        NSString *extension = [ContentTypeUtilities contentTypeExtensionForImageData:data];
+        
+        return [NSString stringWithFormat:@"%@.%@",(NSString *) newUniqueIdString,extension];
+    }else{
+        // no filter, image is located on Library
+        return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];
+    }
+}
+
 @end

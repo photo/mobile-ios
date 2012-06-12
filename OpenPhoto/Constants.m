@@ -67,7 +67,6 @@ NSString * const kNotificationShareInformationToFacebookOrTwitter=@"notification
 /*
  * Constants for the table in the upload screen
  */
-int        const kNumbersRow=6;
 NSString * const kCellIdentifierTitle = @"cellIdentifierTitle";
 NSString * const kCellIdentifierTags=@"cellIdentifierTags";
 NSString * const kCellIdentifierFilter=@"cellIdentifierFilter";
