@@ -42,6 +42,10 @@
                                     tags:(NSString *) tags
                                    title:(NSString *) title 
                                      url:(NSURL *) url;
+
+// this method is used in case of in Multiples Uploads the user choose only one picure. we should enable him to edit the image
+- (void) loadImageToEdit:(NSURL *) url;
+
 @end
 
 @implementation PhotoViewController
@@ -82,9 +86,15 @@
         self.images = imagesFromSync;
         
         // how many images we need to process?
-        if (self.images)
+        if (self.images){
             self.imagesToProcess = [self.images count];
         
+        // if there is only one, treat it as a camera image, so user will be able to edit
+            if ([self.images count] == 1){
+                self.image = [self.images lastObject];
+                [self loadImageToEdit:self.image];
+            }
+        }
         
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
@@ -92,11 +102,6 @@
         assetsLibrary = [[ALAssetsLibrary alloc] init]; 
     }
     return self;
-}
-
-- (void)didReceiveMemoryWarning{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
 }
 
 
@@ -109,15 +114,15 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    if (self.image){
+    if (self.images){
+        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y - 50);
+        self.uploadButton.center = CGPointMake([self.uploadButton  center].x, [self.uploadButton  center].y - 80);
+    }else{
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
         self.navigationItem.rightBarButtonItem = cancelButton;
         [cancelButton release];
-    }else{
-        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y - 40);
-        self.uploadButton.center = CGPointMake([self.uploadButton  center].x, [self.uploadButton  center].y - 80);
     }    
 }
 
@@ -543,6 +548,23 @@
     
     // schedules the asset read       
     [assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
+}
+
+- (void) loadImageToEdit:(NSURL *) url
+{
+    ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *asset)
+    {
+       self.originalImage =[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage scale:1.0 orientation:(UIImageOrientation)[asset defaultRepresentation].orientation];
+    };
+    
+    ALAssetsLibraryAccessFailureBlock failureBlock  = ^(NSError *error)
+    {
+        NSLog(@"Unresolved error: %@, %@", error, [error localizedDescription]);
+    };
+    
+    [assetsLibrary assetForURL:url
+                    resultBlock:resultBlock
+                   failureBlock:failureBlock]; 
 }
 
 - (void) saveEntityUploadDate:(NSDate *) date 
