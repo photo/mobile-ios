@@ -602,8 +602,11 @@
                 // in the case of edited images via Aviary, we don't save it.
                 SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
                                                                   inManagedObjectContext:[AppDelegate managedObjectContext]];
-                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:url] ;
+                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:url];
                 sync.status = kSyncStatusTypeUploaded;
+                
+                // used to say which user uploaded this image
+                sync.userUrl = [AppDelegate user];
             }
             
             // decrease counter

@@ -18,9 +18,7 @@
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
-		CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
-		CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F1D81525B84100E7D405 /* UploadPhotos.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
 		CD152DFB1523B2A300001DDE /* upload-cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF71523B2A300001DDE /* upload-cancel.png */; };
 		CD152DFC1523B2A300001DDE /* upload-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD152DF81523B2A300001DDE /* upload-cancel@2x.png */; };
@@ -61,6 +59,10 @@
 		CD45C1B91486C27D00CAE2FB /* BackgroundUpload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1B71486C27D00CAE2FB /* BackgroundUpload@2x.png */; };
 		CD45C1BC1486C6B800CAE2FB /* IconCentralButton.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */; };
 		CD45C1BD1486C6B800CAE2FB /* IconCentralButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C1BB1486C6B700CAE2FB /* IconCentralButton@2x.png */; };
+		CD49BDD7158BB512009BBE5A /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDD6158BB512009BBE5A /* PhotoModel.m */; };
+		CD49BDDA158BB512009BBE5A /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDD9158BB512009BBE5A /* NewestPhotos.m */; };
+		CD49BDDD158BB512009BBE5A /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDDC158BB512009BBE5A /* UploadPhotos.m */; };
+		CD49BDE0158BB512009BBE5A /* SyncPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDDF158BB512009BBE5A /* SyncPhotos.m */; };
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD4E106F1512048A00718923 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E0F881512048A00718923 /* DefaultSHKConfigurator.m */; };
@@ -203,7 +205,6 @@
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
 		CDB7D4701550814A00621A70 /* PropertiesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */; };
-		CDB7D473155085C400621A70 /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D472155085C400621A70 /* NewestPhotos.m */; };
 		CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */; };
 		CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3886A1521AF2D0072CC66 /* UploadCell.m */; };
 		CDC3886D1521AF410072CC66 /* NewestPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3886C1521AF410072CC66 /* NewestPhotoCell.xib */; };
@@ -231,9 +232,7 @@
 		CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */; };
 		CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB815178C8D002C80F8 /* button-upload-form.png */; };
 		CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */; };
-		CDE210FB1518CC84002C80F8 /* Tags.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE210FA1518CC84002C80F8 /* Tags.m */; };
 		CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */; };
-		CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */; };
 		CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
@@ -253,7 +252,6 @@
 		CDE8A7FB157FCE24003D90A5 /* upload-waiting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE8A7F7157FCE24003D90A5 /* upload-waiting@2x.png */; };
 		CDE8A8441580B35D003D90A5 /* sync-already-uploaded.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE8A8421580B35C003D90A5 /* sync-already-uploaded.png */; };
 		CDE8A8451580B35D003D90A5 /* sync-already-uploaded@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE8A8431580B35D003D90A5 /* sync-already-uploaded@2x.png */; };
-		CDEE1A24156A673300A21820 /* SyncPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE1A23156A673300A21820 /* SyncPhotos.m */; };
 		CDEE1A27156A677100A21820 /* SyncPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEE1A26156A677100A21820 /* SyncPhotos+OpenPhoto.m */; };
 		CDF1C94C13E1C45C0018AD0B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94B13E1C45C0018AD0B /* UIKit.framework */; };
 		CDF1C94E13E1C45C0018AD0B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF1C94D13E1C45C0018AD0B /* Foundation.framework */; };
@@ -509,12 +507,8 @@
 		CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceTests.m; sourceTree = "<group>"; };
 		CD0CA689145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoIASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
-		CD10EA3A1535D9AB007BCD54 /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
-		CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
-		CD11F1D71525B84100E7D405 /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
-		CD11F1D81525B84100E7D405 /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CD152DF71523B2A300001DDE /* upload-cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel.png"; path = "OpenPhoto/images/upload-cancel.png"; sourceTree = SOURCE_ROOT; };
 		CD152DF81523B2A300001DDE /* upload-cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-cancel@2x.png"; path = "OpenPhoto/images/upload-cancel@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -571,6 +565,14 @@
 		CD45C1B71486C27D00CAE2FB /* BackgroundUpload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BackgroundUpload@2x.png"; path = "OpenPhoto/images/BackgroundUpload@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD45C1BA1486C6B700CAE2FB /* IconCentralButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconCentralButton.png; path = OpenPhoto/images/IconCentralButton.png; sourceTree = SOURCE_ROOT; };
 		CD45C1BB1486C6B700CAE2FB /* IconCentralButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "IconCentralButton@2x.png"; path = "OpenPhoto/images/IconCentralButton@2x.png"; sourceTree = SOURCE_ROOT; };
+		CD49BDD5158BB512009BBE5A /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
+		CD49BDD6158BB512009BBE5A /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
+		CD49BDD8158BB512009BBE5A /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
+		CD49BDD9158BB512009BBE5A /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
+		CD49BDDB158BB512009BBE5A /* UploadPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotos.h; sourceTree = "<group>"; };
+		CD49BDDC158BB512009BBE5A /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
+		CD49BDDE158BB512009BBE5A /* SyncPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPhotos.h; sourceTree = "<group>"; };
+		CD49BDDF158BB512009BBE5A /* SyncPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPhotos.m; sourceTree = "<group>"; };
 		CD4DF4DB13F3C1F000A31234 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		CD4DF4DC13F3C1F000A31234 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
@@ -810,8 +812,6 @@
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		CDB7D46E1550814A00621A70 /* PropertiesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesConfiguration.h; sourceTree = "<group>"; };
 		CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesConfiguration.m; sourceTree = "<group>"; };
-		CDB7D471155085C400621A70 /* NewestPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotos.h; sourceTree = "<group>"; };
-		CDB7D472155085C400621A70 /* NewestPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotos.m; sourceTree = "<group>"; };
 		CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
 		CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotoCell.m; sourceTree = "<group>"; };
 		CDC388691521AF2D0072CC66 /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
@@ -857,12 +857,8 @@
 		CDE20FB715178C8D002C80F8 /* button-disclosure-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form@2x.png"; path = "OpenPhoto/images/button-disclosure-form@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE20FB815178C8D002C80F8 /* button-upload-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form.png"; path = "OpenPhoto/images/button-upload-form.png"; sourceTree = SOURCE_ROOT; };
 		CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "OpenPhoto/images/button-upload-form@2x.png"; sourceTree = SOURCE_ROOT; };
-		CDE210F91518CC84002C80F8 /* Tags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tags.h; sourceTree = "<group>"; };
-		CDE210FA1518CC84002C80F8 /* Tags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tags.m; sourceTree = "<group>"; };
 		CDE211021518CD23002C80F8 /* UploadPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UploadPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UploadPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tags+OpenPhoto.h"; sourceTree = "<group>"; };
-		CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Tags+OpenPhoto.m"; sourceTree = "<group>"; };
 		CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedViewController.h; sourceTree = "<group>"; };
 		CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedViewController.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
@@ -886,8 +882,6 @@
 		CDE8A7F7157FCE24003D90A5 /* upload-waiting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "upload-waiting@2x.png"; path = "../OpenPhoto/images/upload-waiting@2x.png"; sourceTree = "<group>"; };
 		CDE8A8421580B35C003D90A5 /* sync-already-uploaded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-already-uploaded.png"; path = "sync/sync-already-uploaded.png"; sourceTree = "<group>"; };
 		CDE8A8431580B35D003D90A5 /* sync-already-uploaded@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-already-uploaded@2x.png"; path = "sync/sync-already-uploaded@2x.png"; sourceTree = "<group>"; };
-		CDEE1A22156A673300A21820 /* SyncPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPhotos.h; sourceTree = "<group>"; };
-		CDEE1A23156A673300A21820 /* SyncPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPhotos.m; sourceTree = "<group>"; };
 		CDEE1A25156A677100A21820 /* SyncPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDEE1A26156A677100A21820 /* SyncPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
 		CDF1C94713E1C45C0018AD0B /* OpenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1666,24 +1660,20 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CD10EA3A1535D9AB007BCD54 /* PhotoModel.h */,
-				CD10EA3B1535D9AB007BCD54 /* PhotoModel.m */,
+				CD49BDDE158BB512009BBE5A /* SyncPhotos.h */,
+				CD49BDDF158BB512009BBE5A /* SyncPhotos.m */,
+				CD49BDDB158BB512009BBE5A /* UploadPhotos.h */,
+				CD49BDDC158BB512009BBE5A /* UploadPhotos.m */,
+				CD49BDD8158BB512009BBE5A /* NewestPhotos.h */,
+				CD49BDD9158BB512009BBE5A /* NewestPhotos.m */,
+				CD49BDD5158BB512009BBE5A /* PhotoModel.h */,
+				CD49BDD6158BB512009BBE5A /* PhotoModel.m */,
 				CDFFAD74150E40BA00B87229 /* PhotoModel+OpenPhoto.h */,
 				CDFFAD75150E40BA00B87229 /* PhotoModel+OpenPhoto.m */,
-				CDE210F91518CC84002C80F8 /* Tags.h */,
-				CDE210FA1518CC84002C80F8 /* Tags.m */,
-				CDE211051518CD3B002C80F8 /* Tags+OpenPhoto.h */,
-				CDE211061518CD3B002C80F8 /* Tags+OpenPhoto.m */,
-				CD11F1D71525B84100E7D405 /* UploadPhotos.h */,
-				CD11F1D81525B84100E7D405 /* UploadPhotos.m */,
 				CDE211021518CD23002C80F8 /* UploadPhotos+OpenPhoto.h */,
 				CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */,
-				CDB7D471155085C400621A70 /* NewestPhotos.h */,
-				CDB7D472155085C400621A70 /* NewestPhotos.m */,
 				CD22B383151B745E0077A615 /* NewestPhotos+OpenPhoto.h */,
 				CD22B384151B745E0077A615 /* NewestPhotos+OpenPhoto.m */,
-				CDEE1A22156A673300A21820 /* SyncPhotos.h */,
-				CDEE1A23156A673300A21820 /* SyncPhotos.m */,
 				CDEE1A25156A677100A21820 /* SyncPhotos+OpenPhoto.h */,
 				CDEE1A26156A677100A21820 /* SyncPhotos+OpenPhoto.m */,
 			);
@@ -2524,9 +2514,7 @@
 				CD4E110B151208CC00718923 /* SBJSON.m in Sources */,
 				CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */,
 				CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */,
-				CDE210FB1518CC84002C80F8 /* Tags.m in Sources */,
 				CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */,
-				CDE211071518CD3B002C80F8 /* Tags+OpenPhoto.m in Sources */,
 				CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */,
 				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
 				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
@@ -2538,12 +2526,8 @@
 				CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */,
 				CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */,
 				CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */,
-				CD11F1D91525B84100E7D405 /* UploadPhotos.m in Sources */,
-				CD10EA3C1535D9AB007BCD54 /* PhotoModel.m in Sources */,
 				CD9060B9154589D0009EACB4 /* OpenPhotoAlertView.m in Sources */,
 				CDB7D4701550814A00621A70 /* PropertiesConfiguration.m in Sources */,
-				CDB7D473155085C400621A70 /* NewestPhotos.m in Sources */,
-				CDEE1A24156A673300A21820 /* SyncPhotos.m in Sources */,
 				CDEE1A27156A677100A21820 /* SyncPhotos+OpenPhoto.m in Sources */,
 				CDF63978156E23310095AE6E /* ELCAlbumPickerController.m in Sources */,
 				CDF6397A156E23310095AE6E /* ELCAsset.m in Sources */,
@@ -2551,6 +2535,10 @@
 				CDF6397D156E23310095AE6E /* ELCAssetTablePicker.m in Sources */,
 				CDF6397F156E23310095AE6E /* ELCImagePickerController.m in Sources */,
 				CDF6398C156E6BE50095AE6E /* SyncService.m in Sources */,
+				CD49BDD7158BB512009BBE5A /* PhotoModel.m in Sources */,
+				CD49BDDA158BB512009BBE5A /* NewestPhotos.m in Sources */,
+				CD49BDDD158BB512009BBE5A /* UploadPhotos.m in Sources */,
+				CD49BDE0158BB512009BBE5A /* SyncPhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
