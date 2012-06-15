@@ -22,5 +22,6 @@
 @dynamic photoUrl;
 @dynamic tags;
 @dynamic title;
+@dynamic userUrl;
 
 @end

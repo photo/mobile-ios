@@ -19,5 +19,6 @@
 @dynamic url;
 @dynamic urlSmall;
 @dynamic width;
+@dynamic userUrl;
 
 @end
