@@ -2,7 +2,7 @@
 //  PhotoModel.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 11/04/12.
+//  Created by Patrick Santana on 15/06/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -14,10 +14,10 @@
 @dynamic date;
 @dynamic height;
 @dynamic identification;
+@dynamic pageUrl;
 @dynamic title;
 @dynamic url;
 @dynamic urlSmall;
 @dynamic width;
-@dynamic pageUrl;
 
 @end

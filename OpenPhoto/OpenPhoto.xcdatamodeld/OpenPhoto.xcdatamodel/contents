@@ -27,10 +27,7 @@
         <attribute name="fileHash" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
-    <entity name="Tags" representedClassName="Tags" syncable="YES">
-        <attribute name="counter" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UploadPhotos" representedClassName="UploadPhotos" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -47,8 +44,7 @@
     <elements>
         <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="195"/>
         <element name="Photos" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="Tags" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="SyncPhotos" positionX="160" positionY="192" width="128" height="105"/>
         <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="SyncPhotos" positionX="160" positionY="192" width="128" height="90"/>
     </elements>
 </model>
