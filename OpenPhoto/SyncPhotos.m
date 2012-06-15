@@ -2,7 +2,7 @@
 //  SyncPhotos.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 21/05/12.
+//  Created by Patrick Santana on 15/06/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -11,8 +11,9 @@
 
 @implementation SyncPhotos
 
+@dynamic fileHash;
 @dynamic filePath;
 @dynamic status;
-@dynamic fileHash;
+@dynamic userUrl;
 
 @end
