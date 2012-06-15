@@ -68,5 +68,11 @@
 // 3 = Tag
 // 4 = Settings
 - (void) openTab:(int) position;
+
+// remove the current database and create everything again
+// watch out with the table SyncPhotos. We don't wanna lose details of this with upgrade.
 - (void) cleanDatabase;
+
+// get the user connect
+- (NSString *) user;
 @end

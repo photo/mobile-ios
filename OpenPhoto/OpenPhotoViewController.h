@@ -21,7 +21,5 @@
 #import "AuthenticationViewController.h"
 
 @interface OpenPhotoViewController : BaseViewController <UINavigationControllerDelegate>
-{
-}
 
 @end
