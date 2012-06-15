@@ -20,5 +20,6 @@
 @property (nonatomic, retain) NSString * url;
 @property (nonatomic, retain) NSString * urlSmall;
 @property (nonatomic, retain) NSNumber * width;
+@property (nonatomic, retain) NSString * userUrl;
 
 @end

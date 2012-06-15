@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSString * photoUrl;
 @property (nonatomic, retain) NSString * tags;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * userUrl;
 
 @end

@@ -21,5 +21,6 @@
 @dynamic tags;
 @dynamic title;
 @dynamic twitter;
+@dynamic userUrl;
 
 @end

@@ -22,5 +22,6 @@
 @property (nonatomic, retain) NSString * tags;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * twitter;
+@property (nonatomic, retain) NSString * userUrl;
 
 @end

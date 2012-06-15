@@ -12,6 +12,7 @@
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Photos" representedClassName="PhotoModel" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
@@ -21,6 +22,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlSmall" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="SyncPhotos" representedClassName="SyncPhotos" syncable="YES">
@@ -40,11 +42,12 @@
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="195"/>
-        <element name="Photos" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="SyncPhotos" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="195"/>
+        <element name="NewestPhotos" positionX="160" positionY="192" width="128" height="225"/>
+        <element name="Photos" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="SyncPhotos" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="UploadPhotos" positionX="160" positionY="192" width="128" height="210"/>
     </elements>
 </model>
