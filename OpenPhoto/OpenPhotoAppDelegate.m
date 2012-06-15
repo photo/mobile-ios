@@ -316,6 +316,11 @@
     }
 }
 
+- (NSString *) user
+{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+}
+
 
 //////// Internet details
 #pragma mark -
