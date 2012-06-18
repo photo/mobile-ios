@@ -19,11 +19,9 @@
 }
 
 -(void)selectedAssets:(NSArray*)_assets {
-
 	NSMutableArray *returnArray = [[[NSMutableArray alloc] init] autorelease];
 	
 	for(ALAsset *asset in _assets) {
-
 		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
 		[workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:@"UIImagePickerControllerReferenceURL"];
         
@@ -42,8 +40,10 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {    
+- (void)didReceiveMemoryWarning {  
+#ifdef DEVELOPMENT_ENABLED 
     NSLog(@"ELC Image Picker received memory warning.");
+#endif
     [super didReceiveMemoryWarning];
 }
 
@@ -53,7 +53,9 @@
 
 
 - (void)dealloc {
+#ifdef DEVELOPMENT_ENABLED 
     NSLog(@"deallocing ELCImagePickerController");
+#endif
     [super dealloc];
 }
 
