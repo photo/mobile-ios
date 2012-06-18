@@ -30,7 +30,6 @@
 @property (nonatomic, assign) id parent;
 @property (nonatomic, retain) ALAssetsGroup *assetGroup;
 @property (nonatomic, retain) NSMutableArray *elcAssets;
-@property (nonatomic, retain) IBOutlet UILabel *selectedAssetsLabel;
 @property (nonatomic, retain) NSMutableArray *imagesAlreadyUploaded;
 
 -(int)totalSelectedAssets;
