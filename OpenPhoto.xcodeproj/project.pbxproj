@@ -63,6 +63,8 @@
 		CD49BDDA158BB512009BBE5A /* NewestPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDD9158BB512009BBE5A /* NewestPhotos.m */; };
 		CD49BDDD158BB512009BBE5A /* UploadPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDDC158BB512009BBE5A /* UploadPhotos.m */; };
 		CD49BDE0158BB512009BBE5A /* SyncPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDDF158BB512009BBE5A /* SyncPhotos.m */; };
+		CD49BEEF158F3904009BBE5A /* sync-background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD49BEED158F3904009BBE5A /* sync-background.png */; };
+		CD49BEF0158F3904009BBE5A /* sync-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD49BEEE158F3904009BBE5A /* sync-background@2x.png */; };
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD4E106F1512048A00718923 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E0F881512048A00718923 /* DefaultSHKConfigurator.m */; };
@@ -204,6 +206,14 @@
 		CDAE086A144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */; };
 		CDAE086B144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */; };
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
+		CDB0A31D158F43E2003B739D /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0A31B158F43E2003B739D /* SyncViewController.m */; };
+		CDB0A31E158F43E2003B739D /* SyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A31C158F43E2003B739D /* SyncViewController.xib */; };
+		CDB0A368158F69DA003B739D /* sync-checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A362158F69DA003B739D /* sync-checkbox.png */; };
+		CDB0A369158F69DA003B739D /* sync-checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */; };
+		CDB0A36A158F69DA003B739D /* sync-selection-line.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A364158F69DA003B739D /* sync-selection-line.png */; };
+		CDB0A36B158F69DA003B739D /* sync-selection-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */; };
+		CDB0A36C158F69DA003B739D /* sync-selection-multi.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A366158F69DA003B739D /* sync-selection-multi.png */; };
+		CDB0A36D158F69DA003B739D /* sync-selection-multi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */; };
 		CDB7D4701550814A00621A70 /* PropertiesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */; };
 		CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */; };
 		CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3886A1521AF2D0072CC66 /* UploadCell.m */; };
@@ -280,8 +290,6 @@
 		CDF6397A156E23310095AE6E /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF6396C156E23310095AE6E /* ELCAsset.m */; };
 		CDF6397B156E23310095AE6E /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF6396E156E23310095AE6E /* ELCAssetCell.m */; };
 		CDF6397C156E23310095AE6E /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF6396F156E23310095AE6E /* ELCAssetPicker.xib */; };
-		CDF6397D156E23310095AE6E /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF63971156E23310095AE6E /* ELCAssetTablePicker.m */; };
-		CDF6397E156E23310095AE6E /* ELCAssetTablePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF63972156E23310095AE6E /* ELCAssetTablePicker.xib */; };
 		CDF6397F156E23310095AE6E /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF63974156E23310095AE6E /* ELCImagePickerController.m */; };
 		CDF63980156E23310095AE6E /* ELCImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF63975156E23310095AE6E /* ELCImagePickerController.xib */; };
 		CDF63981156E23310095AE6E /* Overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = CDF63976156E23310095AE6E /* Overlay.png */; };
@@ -573,6 +581,8 @@
 		CD49BDDC158BB512009BBE5A /* UploadPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotos.m; sourceTree = "<group>"; };
 		CD49BDDE158BB512009BBE5A /* SyncPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncPhotos.h; sourceTree = "<group>"; };
 		CD49BDDF158BB512009BBE5A /* SyncPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPhotos.m; sourceTree = "<group>"; };
+		CD49BEED158F3904009BBE5A /* sync-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-background.png"; path = "sync/sync-background.png"; sourceTree = "<group>"; };
+		CD49BEEE158F3904009BBE5A /* sync-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-background@2x.png"; path = "sync/sync-background@2x.png"; sourceTree = "<group>"; };
 		CD4DF4DB13F3C1F000A31234 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		CD4DF4DC13F3C1F000A31234 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
@@ -810,6 +820,15 @@
 		CDAE0863144C7C7300625C95 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
 		CDAE0864144C7C7300625C95 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
 		CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		CDB0A31A158F43E2003B739D /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncViewController.h; path = sync/SyncViewController.h; sourceTree = "<group>"; };
+		CDB0A31B158F43E2003B739D /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncViewController.m; path = sync/SyncViewController.m; sourceTree = "<group>"; };
+		CDB0A31C158F43E2003B739D /* SyncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyncViewController.xib; path = sync/SyncViewController.xib; sourceTree = "<group>"; };
+		CDB0A362158F69DA003B739D /* sync-checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-checkbox.png"; path = "sync/sync-checkbox.png"; sourceTree = "<group>"; };
+		CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-checkbox@2x.png"; path = "sync/sync-checkbox@2x.png"; sourceTree = "<group>"; };
+		CDB0A364158F69DA003B739D /* sync-selection-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-line.png"; path = "sync/sync-selection-line.png"; sourceTree = "<group>"; };
+		CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-line@2x.png"; path = "sync/sync-selection-line@2x.png"; sourceTree = "<group>"; };
+		CDB0A366158F69DA003B739D /* sync-selection-multi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-multi.png"; path = "sync/sync-selection-multi.png"; sourceTree = "<group>"; };
+		CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-multi@2x.png"; path = "sync/sync-selection-multi@2x.png"; sourceTree = "<group>"; };
 		CDB7D46E1550814A00621A70 /* PropertiesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesConfiguration.h; sourceTree = "<group>"; };
 		CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesConfiguration.m; sourceTree = "<group>"; };
 		CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
@@ -923,9 +942,6 @@
 		CDF6396D156E23310095AE6E /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELCAssetCell.h; path = sync/ELCAssetCell.h; sourceTree = "<group>"; };
 		CDF6396E156E23310095AE6E /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELCAssetCell.m; path = sync/ELCAssetCell.m; sourceTree = "<group>"; };
 		CDF6396F156E23310095AE6E /* ELCAssetPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELCAssetPicker.xib; path = sync/ELCAssetPicker.xib; sourceTree = "<group>"; };
-		CDF63970156E23310095AE6E /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELCAssetTablePicker.h; path = sync/ELCAssetTablePicker.h; sourceTree = "<group>"; };
-		CDF63971156E23310095AE6E /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELCAssetTablePicker.m; path = sync/ELCAssetTablePicker.m; sourceTree = "<group>"; };
-		CDF63972156E23310095AE6E /* ELCAssetTablePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELCAssetTablePicker.xib; path = sync/ELCAssetTablePicker.xib; sourceTree = "<group>"; };
 		CDF63973156E23310095AE6E /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELCImagePickerController.h; path = sync/ELCImagePickerController.h; sourceTree = "<group>"; };
 		CDF63974156E23310095AE6E /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELCImagePickerController.m; path = sync/ELCImagePickerController.m; sourceTree = "<group>"; };
 		CDF63975156E23310095AE6E /* ELCImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELCImagePickerController.xib; path = sync/ELCImagePickerController.xib; sourceTree = "<group>"; };
@@ -1585,9 +1601,6 @@
 				CDF6396D156E23310095AE6E /* ELCAssetCell.h */,
 				CDF6396E156E23310095AE6E /* ELCAssetCell.m */,
 				CDF6396F156E23310095AE6E /* ELCAssetPicker.xib */,
-				CDF63970156E23310095AE6E /* ELCAssetTablePicker.h */,
-				CDF63971156E23310095AE6E /* ELCAssetTablePicker.m */,
-				CDF63972156E23310095AE6E /* ELCAssetTablePicker.xib */,
 				CDF63973156E23310095AE6E /* ELCImagePickerController.h */,
 				CDF63974156E23310095AE6E /* ELCImagePickerController.m */,
 				CDF63975156E23310095AE6E /* ELCImagePickerController.xib */,
@@ -1597,8 +1610,19 @@
 				CDE8A8431580B35D003D90A5 /* sync-already-uploaded@2x.png */,
 				CDE8A7AD157FA5E0003D90A5 /* syncButton.png */,
 				CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */,
+				CDB0A362158F69DA003B739D /* sync-checkbox.png */,
+				CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */,
+				CDB0A364158F69DA003B739D /* sync-selection-line.png */,
+				CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */,
+				CDB0A366158F69DA003B739D /* sync-selection-multi.png */,
+				CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */,
+				CD49BEED158F3904009BBE5A /* sync-background.png */,
+				CD49BEEE158F3904009BBE5A /* sync-background@2x.png */,
 				CDF6398A156E6BE30095AE6E /* SyncService.h */,
 				CDF6398B156E6BE30095AE6E /* SyncService.m */,
+				CDB0A31A158F43E2003B739D /* SyncViewController.h */,
+				CDB0A31B158F43E2003B739D /* SyncViewController.m */,
+				CDB0A31C158F43E2003B739D /* SyncViewController.xib */,
 			);
 			name = Sync;
 			sourceTree = "<group>";
@@ -2333,7 +2357,6 @@
 				CD994F3B1555C81A0033E033 /* tab-sync@2x.png in Resources */,
 				CDF63979156E23310095AE6E /* ELCAlbumPickerController.xib in Resources */,
 				CDF6397C156E23310095AE6E /* ELCAssetPicker.xib in Resources */,
-				CDF6397E156E23310095AE6E /* ELCAssetTablePicker.xib in Resources */,
 				CDF63980156E23310095AE6E /* ELCImagePickerController.xib in Resources */,
 				CDF63981156E23310095AE6E /* Overlay.png in Resources */,
 				CDF63982156E23310095AE6E /* Overlay@2x.png in Resources */,
@@ -2345,6 +2368,15 @@
 				CDE8A7FB157FCE24003D90A5 /* upload-waiting@2x.png in Resources */,
 				CDE8A8441580B35D003D90A5 /* sync-already-uploaded.png in Resources */,
 				CDE8A8451580B35D003D90A5 /* sync-already-uploaded@2x.png in Resources */,
+				CD49BEEF158F3904009BBE5A /* sync-background.png in Resources */,
+				CD49BEF0158F3904009BBE5A /* sync-background@2x.png in Resources */,
+				CDB0A31E158F43E2003B739D /* SyncViewController.xib in Resources */,
+				CDB0A368158F69DA003B739D /* sync-checkbox.png in Resources */,
+				CDB0A369158F69DA003B739D /* sync-checkbox@2x.png in Resources */,
+				CDB0A36A158F69DA003B739D /* sync-selection-line.png in Resources */,
+				CDB0A36B158F69DA003B739D /* sync-selection-line@2x.png in Resources */,
+				CDB0A36C158F69DA003B739D /* sync-selection-multi.png in Resources */,
+				CDB0A36D158F69DA003B739D /* sync-selection-multi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2532,13 +2564,13 @@
 				CDF63978156E23310095AE6E /* ELCAlbumPickerController.m in Sources */,
 				CDF6397A156E23310095AE6E /* ELCAsset.m in Sources */,
 				CDF6397B156E23310095AE6E /* ELCAssetCell.m in Sources */,
-				CDF6397D156E23310095AE6E /* ELCAssetTablePicker.m in Sources */,
 				CDF6397F156E23310095AE6E /* ELCImagePickerController.m in Sources */,
 				CDF6398C156E6BE50095AE6E /* SyncService.m in Sources */,
 				CD49BDD7158BB512009BBE5A /* PhotoModel.m in Sources */,
 				CD49BDDA158BB512009BBE5A /* NewestPhotos.m in Sources */,
 				CD49BDDD158BB512009BBE5A /* UploadPhotos.m in Sources */,
 				CD49BDE0158BB512009BBE5A /* SyncPhotos.m in Sources */,
+				CDB0A31D158F43E2003B739D /* SyncViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
