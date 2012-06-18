@@ -6,7 +6,6 @@
 //
 
 #import "ELCAsset.h"
-#import "ELCAssetTablePicker.h"
 
 
 @interface ELCAsset(){
@@ -64,7 +63,7 @@
 	overlayView.hidden = !overlayView.hidden;
     overlayAlreadyUploadedView.hidden= !overlayAlreadyUploadedView.hidden;
     
-    if([(ELCAssetTablePicker*)self.parent totalSelectedAssets] >= 30) {
+    if([(SyncViewController*)self.parent totalSelectedAssets] >= 30) {
         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Maximum reached" duration:5000];
         [alert showAlert];
         [alert release];

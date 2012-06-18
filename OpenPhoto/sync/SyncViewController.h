@@ -11,8 +11,7 @@
 #import "MBProgressHUD.h"
 #import "SyncPhotos+OpenPhoto.h"
 #import "ELCAsset.h"
-#import "ELCAlbumPickerController.h"
-#import "ELCAssetTablePicker.h"    
+#import "ELCAlbumPickerController.h" 
 #import "ELCAssetCell.h"
 
 @interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>

@@ -7,7 +7,6 @@
 
 #import "ELCAlbumPickerController.h"
 #import "ELCImagePickerController.h"
-#import "ELCAssetTablePicker.h"
 
 @implementation ELCAlbumPickerController
 
@@ -135,7 +134,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	ELCAssetTablePicker *picker = [[ELCAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]];
+	SyncViewController *picker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:[NSBundle mainBundle]];
 	picker.parent = self;
     
     // Move me    
