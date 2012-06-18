@@ -83,12 +83,12 @@
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
         return [self getUINavigationController:controller forHomeScreen:NO];
     }else if (title == @"Multi Upload"){
-        ELCAssetTablePicker *photoPicker = [[[ELCAssetTablePicker alloc] initWithNibName:@"ELCAssetTablePicker" bundle:[NSBundle mainBundle]] autorelease];    
-        ELCImagePickerController *controller = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker];
+        SyncViewController *photoPicker = [[[SyncViewController alloc]init]autorelease];   
+        ELCImagePickerController *controller = [[[ELCImagePickerController alloc] initWithRootViewController:photoPicker] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];          
         [photoPicker setParent:controller];
         [controller setDelegate:self];
-        return [controller autorelease];
+        return controller;
     }else if (title == @"Settings"){
         [self.appSettingsViewController setShowCreditsFooter:NO];   
         self.appSettingsViewController.showDoneButton = NO; 
@@ -107,19 +107,30 @@
     UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
     navController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     navController.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
+    [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
+    
+    
+    UIImage *backgroundImage;
+    if ( home == YES){
+        backgroundImage = [UIImage imageNamed:@"home-openphoto-bar.png"];
+    }else {
+        backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];
+    } 
     
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0
-        UIImage *backgroundImage;
-        if ( home == YES){
-            backgroundImage = [UIImage imageNamed:@"home-openphoto-bar.png"];
-        }else {
-            backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];
-        }  
         [navController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
+    }else{
+        UIImageView *imageView = (UIImageView *)[navController.navigationBar viewWithTag:6183746];
+        if (imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:backgroundImage];
+            [imageView setTag:6183746];
+            [navController.navigationBar insertSubview:imageView atIndex:0];
+            [imageView release];
+        }
     }
-    [navController.navigationBar setBackgroundColor:[UIColor blackColor]];
     
     return navController;
 }
