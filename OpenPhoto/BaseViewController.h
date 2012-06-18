@@ -37,7 +37,6 @@
 #import "CoreLocationController.h"
 
 // for sync
-#import "ELCAssetTablePicker.h"    
 #import "ELCImagePickerController.h"
 #import "SyncPhotos+OpenPhoto.h"
 #import "MBProgressHUD.h"
