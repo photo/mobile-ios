@@ -14,7 +14,6 @@
 @implementation ELCAssetTablePicker
 
 @synthesize parent;
-@synthesize selectedAssetsLabel;
 @synthesize assetGroup, elcAssets;
 @synthesize imagesAlreadyUploaded;
 
@@ -259,7 +258,6 @@
 - (void)dealloc 
 {
     [elcAssets release];
-    [selectedAssetsLabel release];
     [library release];
     [self.assetGroup release];
     [self.imagesAlreadyUploaded release];
