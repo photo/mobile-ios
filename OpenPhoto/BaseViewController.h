@@ -41,6 +41,7 @@
 #import "ELCImagePickerController.h"
 #import "SyncPhotos+OpenPhoto.h"
 #import "MBProgressHUD.h"
+#import "SyncViewController.h"
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
