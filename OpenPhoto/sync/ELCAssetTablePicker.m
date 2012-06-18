@@ -39,8 +39,6 @@
     self.navigationItem.rightBarButtonItem = customBarItem;
     [customBarItem release];
     
-	[self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-    
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     
     // image for the navigator
@@ -74,14 +72,13 @@
                                return;
                            }
                            
-                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
+                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
                                [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                               [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                               // with the local group, we can load the images                           
+                               [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
                            }
-                           
-                           // with the local group, we can load the images                           
-                           [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-                           [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
                        };
                        
                        // Group Enumerator Failure Block
@@ -110,18 +107,25 @@
         // load all urls
         self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-        [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:.5];
+        
     }else{
         loaded = YES;
     }
 }
 
 -(void)preparePhotos {
+    if (loaded == YES){
+        // in the case we had already loaded, let's clean the assets
+        // to not have duplicate
+        [self.elcAssets removeAllObjects];
+    }
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [self.elcAssets removeAllObjects];
-	
+    
+#ifdef DEVELOPMENT_ENABLED 
     NSLog(@"enumerating photos");
+#endif
+    
     [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
      {         
          if(result == nil) 
@@ -138,10 +142,12 @@
          [elcAsset release];
      }];   
     
+#ifdef DEVELOPMENT_ENABLED     
     NSLog(@"done enumerating photos");
-	
-	[self.tableView reloadData];
-	[self.navigationItem setTitle:@"Pick Photos"];
+#endif
+    
+    [self.tableView reloadData];
+    [self.navigationItem setTitle:@"Pick Photos"];
     
     [pool release];
     
@@ -160,10 +166,6 @@
 	}
     
     [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
-}
-
--(void)reloadTableView {
-	[self.tableView reloadData];
 }
 
 #pragma mark UITableViewDataSource Delegate Methods
