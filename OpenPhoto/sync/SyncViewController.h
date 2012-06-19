@@ -36,6 +36,7 @@
 @property (nonatomic, retain) NSMutableArray *elcAssets;
 @property (nonatomic, retain) NSMutableArray *imagesAlreadyUploaded;
 @property (retain, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, retain) UISwitch *showUploaded;
 
 -(int)totalSelectedAssets;
 -(void)preparePhotos;
