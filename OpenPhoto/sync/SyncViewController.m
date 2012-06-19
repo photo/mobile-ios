@@ -21,6 +21,36 @@
 @synthesize showUploaded =_showUploaded;
 
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.showUploaded = [[UISwitch alloc] init];
+        self.showUploaded.frame = CGRectMake(237, 9, 20, 20);
+        if([self.showUploaded respondsToSelector:@selector(setOnTintColor:)]){
+            //iOS 5.0
+            [self.showUploaded setOnTintColor:[UIColor redColor]];
+        }
+        [self.showUploaded addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventValueChanged];  
+        
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        if (![standardUserDefaults valueForKey:kSyncShowUploadedPhotos]){
+            // it does not exist
+            // create as YES
+            [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
+            [standardUserDefaults synchronize];
+        }
+        
+        if  ([[NSUserDefaults standardUserDefaults] boolForKey:kSyncShowUploadedPhotos] == YES){
+            // set the sync to YES
+            self.showUploaded.on = YES;
+        }
+        
+    }
+    return self;
+}
+
 -(void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -47,15 +77,6 @@
     alreadySynced.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size: 15.0];
 	alreadySynced.shadowOffset = CGSizeMake(1,1);
 	alreadySynced.textColor =  UIColorFromRGB(0xA89672);
-    
-    self.showUploaded = [[UISwitch alloc] init];
-    self.showUploaded.frame =  CGRectMake(237, 9, 20, 20);
-    if([self.showUploaded respondsToSelector:@selector(setOnTintColor:)]){
-        //iOS 5.0
-        [self.showUploaded setOnTintColor:[UIColor redColor]];
-    }
-    [self.showUploaded addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventValueChanged];  
-    self.showUploaded.on = YES;
     
     // add views
     [options addSubview:alreadySynced];
@@ -317,6 +338,11 @@
 
 - (void) switchedShowUploaded
 {
+    NSLog(@"sync = %i",self.showUploaded.on);
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    [standardUserDefaults setBool:self.showUploaded.on forKey:kSyncShowUploadedPhotos];
+    [standardUserDefaults synchronize];
+    
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     // load all urls
     self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
