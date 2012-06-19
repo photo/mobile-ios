@@ -9,7 +9,7 @@
 #import "SyncViewController.h"
 
 @interface SyncViewController ()
-
+-(void) switchedShowUploaded;
 @end
 
 @implementation SyncViewController
@@ -18,6 +18,7 @@
 @synthesize assetGroup, elcAssets;
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
+@synthesize showUploaded =_showUploaded;
 
 
 -(void)viewDidLoad 
@@ -36,17 +37,29 @@
     
     
     UIImageView *options = [[UIImageView alloc] initWithImage:image];
+    options.userInteractionEnabled = YES;
     options.frame = CGRectMake(0, -1, 320, image.size.height);
-
     
     // Adding Hide already synced photos
-    UILabel *alreadySynced = [[UILabel alloc] initWithFrame:CGRectMake(128, 0, 200, 40)];
-    alreadySynced.text = @"Hide already synced photos";
+    UILabel *alreadySynced = [[UILabel alloc] initWithFrame:CGRectMake(2, 4, 200, 40)];
+    alreadySynced.text = @"Show uploaded photos";
     alreadySynced.backgroundColor = [UIColor clearColor]; 
-    alreadySynced.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size: 14.0];
+    alreadySynced.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size: 15.0];
 	alreadySynced.shadowOffset = CGSizeMake(1,1);
 	alreadySynced.textColor =  UIColorFromRGB(0xA89672);
+    
+    self.showUploaded = [[UISwitch alloc] init];
+    self.showUploaded.frame =  CGRectMake(237, 9, 20, 20);
+    if([self.showUploaded respondsToSelector:@selector(setOnTintColor:)]){
+        //iOS 5.0
+        [self.showUploaded setOnTintColor:[UIColor redColor]];
+    }
+    [self.showUploaded addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventValueChanged];  
+    self.showUploaded.on = YES;
+    
+    // add views
     [options addSubview:alreadySynced];
+    [options addSubview: self.showUploaded];    
     [self.view addSubview:options];
     
     [alreadySynced release];
@@ -70,7 +83,7 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button]; 
     self.navigationItem.rightBarButtonItem = customBarItem;
     [customBarItem release];
- 
+    
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
     
@@ -93,7 +106,7 @@
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
-           self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -179,10 +192,13 @@
          // check if user already uploaded
          NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
          
-         ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:[self.imagesAlreadyUploaded containsObject:asset]];
-         [elcAsset setParent:self];
-         [self.elcAssets addObject:elcAsset];
-         [elcAsset release];
+         BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
+         if ([self.showUploaded isOn] || (![self.showUploaded isOn] && !alreadyUploaded)){
+             ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
+             [elcAsset setParent:self];
+             [self.elcAssets addObject:elcAsset];
+             [elcAsset release];
+         }
      }];   
     
 #ifdef DEVELOPMENT_ENABLED     
@@ -299,6 +315,14 @@
     return count;
 }
 
+- (void) switchedShowUploaded
+{
+    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    // load all urls
+    self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+}
+
 - (void)dealloc 
 {
     [elcAssets release];
@@ -306,6 +330,7 @@
     [self.assetGroup release];
     [self.imagesAlreadyUploaded release];
     [self.tableView release];
+    [self.showUploaded release];
     [super dealloc];    
 }
 
