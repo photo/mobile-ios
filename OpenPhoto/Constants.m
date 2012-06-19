@@ -85,5 +85,10 @@ NSString * const kVersionApplicationInstalled=@"version_application_installed";
  */
 NSString * const kValidateNotAllowedLocation=@"validate_not_allowed_location";
 
+/*
+ * Constants for Sync
+ */
+NSString * const kSyncShowUploadedPhotos=@"sync_show_uploaded_photos";
+ 
 
 @end
