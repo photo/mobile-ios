@@ -208,12 +208,6 @@
 		CDAE086C144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDAE0865144C7C7300625C95 /* TSAlertViewMessageListViewShadow.png */; };
 		CDB0A31D158F43E2003B739D /* SyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB0A31B158F43E2003B739D /* SyncViewController.m */; };
 		CDB0A31E158F43E2003B739D /* SyncViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A31C158F43E2003B739D /* SyncViewController.xib */; };
-		CDB0A368158F69DA003B739D /* sync-checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A362158F69DA003B739D /* sync-checkbox.png */; };
-		CDB0A369158F69DA003B739D /* sync-checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */; };
-		CDB0A36A158F69DA003B739D /* sync-selection-line.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A364158F69DA003B739D /* sync-selection-line.png */; };
-		CDB0A36B158F69DA003B739D /* sync-selection-line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */; };
-		CDB0A36C158F69DA003B739D /* sync-selection-multi.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A366158F69DA003B739D /* sync-selection-multi.png */; };
-		CDB0A36D158F69DA003B739D /* sync-selection-multi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */; };
 		CDB7D4701550814A00621A70 /* PropertiesConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */; };
 		CDC388681521AF1B0072CC66 /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC388671521AF1B0072CC66 /* NewestPhotoCell.m */; };
 		CDC3886B1521AF2D0072CC66 /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3886A1521AF2D0072CC66 /* UploadCell.m */; };
@@ -823,12 +817,6 @@
 		CDB0A31A158F43E2003B739D /* SyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncViewController.h; path = sync/SyncViewController.h; sourceTree = "<group>"; };
 		CDB0A31B158F43E2003B739D /* SyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncViewController.m; path = sync/SyncViewController.m; sourceTree = "<group>"; };
 		CDB0A31C158F43E2003B739D /* SyncViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SyncViewController.xib; path = sync/SyncViewController.xib; sourceTree = "<group>"; };
-		CDB0A362158F69DA003B739D /* sync-checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-checkbox.png"; path = "sync/sync-checkbox.png"; sourceTree = "<group>"; };
-		CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-checkbox@2x.png"; path = "sync/sync-checkbox@2x.png"; sourceTree = "<group>"; };
-		CDB0A364158F69DA003B739D /* sync-selection-line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-line.png"; path = "sync/sync-selection-line.png"; sourceTree = "<group>"; };
-		CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-line@2x.png"; path = "sync/sync-selection-line@2x.png"; sourceTree = "<group>"; };
-		CDB0A366158F69DA003B739D /* sync-selection-multi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-multi.png"; path = "sync/sync-selection-multi.png"; sourceTree = "<group>"; };
-		CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-selection-multi@2x.png"; path = "sync/sync-selection-multi@2x.png"; sourceTree = "<group>"; };
 		CDB7D46E1550814A00621A70 /* PropertiesConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PropertiesConfiguration.h; sourceTree = "<group>"; };
 		CDB7D46F1550814A00621A70 /* PropertiesConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PropertiesConfiguration.m; sourceTree = "<group>"; };
 		CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
@@ -1610,12 +1598,6 @@
 				CDE8A8431580B35D003D90A5 /* sync-already-uploaded@2x.png */,
 				CDE8A7AD157FA5E0003D90A5 /* syncButton.png */,
 				CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */,
-				CDB0A362158F69DA003B739D /* sync-checkbox.png */,
-				CDB0A363158F69DA003B739D /* sync-checkbox@2x.png */,
-				CDB0A364158F69DA003B739D /* sync-selection-line.png */,
-				CDB0A365158F69DA003B739D /* sync-selection-line@2x.png */,
-				CDB0A366158F69DA003B739D /* sync-selection-multi.png */,
-				CDB0A367158F69DA003B739D /* sync-selection-multi@2x.png */,
 				CD49BEED158F3904009BBE5A /* sync-background.png */,
 				CD49BEEE158F3904009BBE5A /* sync-background@2x.png */,
 				CDF6398A156E6BE30095AE6E /* SyncService.h */,
@@ -2371,12 +2353,6 @@
 				CD49BEEF158F3904009BBE5A /* sync-background.png in Resources */,
 				CD49BEF0158F3904009BBE5A /* sync-background@2x.png in Resources */,
 				CDB0A31E158F43E2003B739D /* SyncViewController.xib in Resources */,
-				CDB0A368158F69DA003B739D /* sync-checkbox.png in Resources */,
-				CDB0A369158F69DA003B739D /* sync-checkbox@2x.png in Resources */,
-				CDB0A36A158F69DA003B739D /* sync-selection-line.png in Resources */,
-				CDB0A36B158F69DA003B739D /* sync-selection-line@2x.png in Resources */,
-				CDB0A36C158F69DA003B739D /* sync-selection-multi.png in Resources */,
-				CDB0A36D158F69DA003B739D /* sync-selection-multi@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
