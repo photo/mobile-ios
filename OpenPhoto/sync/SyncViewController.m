@@ -146,7 +146,9 @@
                            if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
                                [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-                               [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                               hud.labelText = @"Loading";
+                               
                                // with the local group, we can load the images                           
                                [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
                            }
@@ -174,7 +176,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     if (loaded == YES){
-        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.labelText = @"Loading";
         // load all urls
         self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
@@ -348,7 +351,9 @@
     
     [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];   
     
-    [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading";
+    
     // load all urls
     self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
