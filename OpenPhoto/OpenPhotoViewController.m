@@ -47,7 +47,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"IconCentralButton.png"] highlightImage:nil];
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-icon-central.png"] highlightImage:nil];
     [super viewWillAppear:animated];
 }
 

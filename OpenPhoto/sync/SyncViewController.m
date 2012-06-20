@@ -74,7 +74,7 @@
     
     // button to sync
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"syncButton.png"] ;
+    UIImage *buttonImage = [UIImage imageNamed:@"sync-next.png"] ;
     [button setImage:buttonImage forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
     [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -119,8 +119,8 @@
         }
     }
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     // no separator

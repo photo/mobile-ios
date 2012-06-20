@@ -39,7 +39,7 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
         
         // initialize the object tags
         self.tags = [[NSMutableArray alloc] init];    
