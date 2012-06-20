@@ -28,8 +28,6 @@
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
 		CD1F823B13E337DD00C91729 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1F823913E337DD00C91729 /* PhotoViewController.xib */; };
-		CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B358151B208D0077A615 /* MainHomeViewController.m */; };
-		CD22B35B151B208D0077A615 /* MainHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD22B359151B208D0077A615 /* MainHomeViewController.xib */; };
 		CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22B369151B58DF0077A615 /* EGORefreshTableHeaderView.m */; };
 		CD22B374151B58DF0077A615 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36B151B58DF0077A615 /* blackArrow.png */; };
 		CD22B375151B58DF0077A615 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD22B36C151B58DF0077A615 /* blackArrow@2x.png */; };
@@ -241,7 +239,6 @@
 		CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB815178C8D002C80F8 /* button-upload-form.png */; };
 		CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */; };
 		CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */; };
-		CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */; };
 		CDE3C6A713F02186008A4F09 /* ImageManipulation.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE3C6A613F02186008A4F09 /* ImageManipulation.m */; };
 		CDE5892D141B90F7004191B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE5892C141B90F7004191B4 /* Reachability.m */; };
 		CDE5892F141B911A004191B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE5892E141B911A004191B4 /* SystemConfiguration.framework */; };
@@ -527,9 +524,6 @@
 		CD199BB81506FDA600BFC316 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		CD1F823813E337DD00C91729 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		CD1F823913E337DD00C91729 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
-		CD22B357151B208D0077A615 /* MainHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeViewController.h; sourceTree = "<group>"; };
-		CD22B358151B208D0077A615 /* MainHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeViewController.m; sourceTree = "<group>"; };
-		CD22B359151B208D0077A615 /* MainHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainHomeViewController.xib; sourceTree = "<group>"; };
 		CD22B368151B58DF0077A615 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CD22B369151B58DF0077A615 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		CD22B36B151B58DF0077A615 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -874,8 +868,6 @@
 		CDE20FB915178C8D002C80F8 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "OpenPhoto/images/button-upload-form@2x.png"; sourceTree = SOURCE_ROOT; };
 		CDE211021518CD23002C80F8 /* UploadPhotos+OpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UploadPhotos+OpenPhoto.h"; sourceTree = "<group>"; };
 		CDE211031518CD23002C80F8 /* UploadPhotos+OpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UploadPhotos+OpenPhoto.m"; sourceTree = "<group>"; };
-		CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedViewController.h; sourceTree = "<group>"; };
-		CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedViewController.m; sourceTree = "<group>"; };
 		CDE3C6A513F02186008A4F09 /* ImageManipulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageManipulation.h; sourceTree = "<group>"; };
 		CDE3C6A613F02186008A4F09 /* ImageManipulation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageManipulation.m; sourceTree = "<group>"; };
 		CDE5892B141B90F7004191B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -1135,18 +1127,6 @@
 				CD22B372151B58DF0077A615 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		CD22B395151F01000077A615 /* CodeForRelease2.0 */ = {
-			isa = PBXGroup;
-			children = (
-				CDE211231518E8DD002C80F8 /* ActivityFeedViewController.h */,
-				CDE211241518E8DD002C80F8 /* ActivityFeedViewController.m */,
-				CD22B357151B208D0077A615 /* MainHomeViewController.h */,
-				CD22B358151B208D0077A615 /* MainHomeViewController.m */,
-				CD22B359151B208D0077A615 /* MainHomeViewController.xib */,
-			);
-			name = CodeForRelease2.0;
 			sourceTree = "<group>";
 		};
 		CD22C96D1439118B00E98B0B /* TestFlight */ = {
@@ -1939,7 +1919,6 @@
 		CDF4463D13E1C5F8007E8F72 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CD22B395151F01000077A615 /* CodeForRelease2.0 */,
 				CDCB02D915208837009C08D8 /* NewestPhotosTableViewController.h */,
 				CDCB02DA15208837009C08D8 /* NewestPhotosTableViewController.m */,
 				CDC388661521AF1B0072CC66 /* NewestPhotoCell.h */,
@@ -2322,7 +2301,6 @@
 				CDE20FBB15178C8D002C80F8 /* button-disclosure-form@2x.png in Resources */,
 				CDE20FBC15178C8D002C80F8 /* button-upload-form.png in Resources */,
 				CDE20FBD15178C8D002C80F8 /* button-upload-form@2x.png in Resources */,
-				CD22B35B151B208D0077A615 /* MainHomeViewController.xib in Resources */,
 				CD22B374151B58DF0077A615 /* blackArrow.png in Resources */,
 				CD22B375151B58DF0077A615 /* blackArrow@2x.png in Resources */,
 				CD22B376151B58DF0077A615 /* blueArrow.png in Resources */,
@@ -2539,8 +2517,6 @@
 				CD97D1011513DC92000FFF68 /* OpenPhotoTTPhotoViewController.m in Sources */,
 				CDE20FB515178BF8002C80F8 /* NSString+HTML.m in Sources */,
 				CDE211041518CD25002C80F8 /* UploadPhotos+OpenPhoto.m in Sources */,
-				CDE211261518E8DE002C80F8 /* ActivityFeedViewController.m in Sources */,
-				CD22B35A151B208D0077A615 /* MainHomeViewController.m in Sources */,
 				CD22B373151B58DF0077A615 /* EGORefreshTableHeaderView.m in Sources */,
 				CD22B385151B745E0077A615 /* NewestPhotos+OpenPhoto.m in Sources */,
 				CD22B38B151B7DD30077A615 /* CoreDataTableViewController.m in Sources */,
