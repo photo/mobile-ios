@@ -168,13 +168,13 @@
         uploadCell.imageStatus.hidden=YES;
         if ( [upload.status isEqualToString:kUploadStatusTypeCreated]){
             uploadCell.status.text=@"Waiting ...";
-            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-waiting.png"]];
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
         }else if ( [upload.status isEqualToString:kUploadStatusTypeUploading]){
             uploadCell.status.text=@"Uploading";
         }else if ( [upload.status isEqualToString:kUploadStatusTypeUploaded]){
-            uploadCell.status.text=@"Upload finished!!!";
-            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
+            uploadCell.status.text=@"Upload finished!";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
         }else if ( [upload.status isEqualToString:kUploadStatusTypeFailed]){
             uploadCell.status.text=@"Failed";
@@ -343,7 +343,7 @@
                                 
                                 // can considere the image as uploaded
                                 uploadCell.status.text = @"Duplicated";
-                                [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
+                                [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
                                 uploadCell.imageStatus.hidden=NO;
                                 upload.status = kUploadStatusTypeUploaded;
                                 uploadCell.btnRetry.hidden  = YES;  

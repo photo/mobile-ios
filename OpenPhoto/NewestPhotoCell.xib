@@ -107,7 +107,7 @@
 										<string key="NSFrameSize">{310, 270}</string>
 										<reference key="NSSuperview" ref="729864503"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="923513140"/>
+										<reference key="NSNextKeyView" ref="385029385"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -159,7 +159,7 @@
 								<string key="NSFrame">{{5, 329}, {271, 21}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="385029385"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -191,7 +191,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">home_private.png</string>
+									<string key="NSResourceName">home-private.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="1000200858">
@@ -217,7 +217,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">home_geoposition.png</string>
+									<string key="NSResourceName">home-geoposition.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -235,6 +235,7 @@
 								<string key="NSFrame">{{280, 5}, {37, 37}}</string>
 								<reference key="NSSuperview" ref="774582805"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="923513140"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -248,7 +249,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="301156185"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">home_share.png</string>
+									<string key="NSResourceName">home-share.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">2</int>
@@ -563,9 +564,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="home_geoposition.png">{26, 27}</string>
-			<string key="home_private.png">{25, 25}</string>
-			<string key="home_share.png">{26, 27}</string>
+			<string key="home-geoposition.png">{26, 27}</string>
+			<string key="home-private.png">{25, 25}</string>
+			<string key="home-share.png">{26, 27}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
