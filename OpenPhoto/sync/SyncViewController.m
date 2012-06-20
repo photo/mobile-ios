@@ -3,12 +3,26 @@
 //  OpenPhoto
 //
 //  Created by Patrick Santana on 18/06/12.
-//  Copyright (c) 2012 OpenPhoto. All rights reserved.
+//  Copyright 2012 OpenPhoto
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+// 
+//  http://www.apache.org/licenses/LICENSE-2.0
+// 
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 //
 
 #import "SyncViewController.h"
 
-@interface SyncViewController ()
+@interface SyncViewController (){
+    BOOL hidden;
+}
 -(void) switchedShowUploaded;
 @end
 
@@ -18,7 +32,7 @@
 @synthesize assetGroup, elcAssets;
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
-@synthesize showUploaded =_showUploaded;
+@synthesize buttonHidden =_buttonHidden;
 
 
 - (id)init
@@ -26,13 +40,8 @@
     self = [super init];
     if (self) {
         
-        self.showUploaded = [[UISwitch alloc] init];
-        self.showUploaded.frame = CGRectMake(237, 9, 20, 20);
-        if([self.showUploaded respondsToSelector:@selector(setOnTintColor:)]){
-            //iOS 5.0
-            [self.showUploaded setOnTintColor:[UIColor redColor]];
-        }
-        [self.showUploaded addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventValueChanged];  
+        self.buttonHidden = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.buttonHidden  addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventTouchUpInside];
         
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         if (![standardUserDefaults valueForKey:kSyncShowUploadedPhotos]){
@@ -40,11 +49,12 @@
             // create as YES
             [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
             [standardUserDefaults synchronize];
+            hidden = NO;
         }
         
         if  ([[NSUserDefaults standardUserDefaults] boolForKey:kSyncShowUploadedPhotos] == YES){
             // set the sync to YES
-            self.showUploaded.on = YES;
+            hidden = YES;
         }
         
     }
@@ -54,38 +64,6 @@
 -(void)viewDidLoad 
 {
     [super viewDidLoad];
-    
-    // background for OPTIONS
-    UIImage *image = nil;
-    
-    if([[UIImage class] respondsToSelector:@selector(resizableImageWithCapInsets)]){
-        //iOS >=5.0
-        image = [[UIImage imageNamed:@"sync-background.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 2, 0, 2)];
-    }else{
-        image = [[UIImage imageNamed:@"sync-background.png"] stretchableImageWithLeftCapWidth:2.0 topCapHeight:0.0];
-    }
-    
-    
-    UIImageView *options = [[UIImageView alloc] initWithImage:image];
-    options.userInteractionEnabled = YES;
-    options.frame = CGRectMake(0, -1, 320, image.size.height);
-    
-    // Adding Hide already synced photos
-    UILabel *alreadySynced = [[UILabel alloc] initWithFrame:CGRectMake(2, 4, 200, 40)];
-    alreadySynced.text = @"Show uploaded photos";
-    alreadySynced.backgroundColor = [UIColor clearColor]; 
-    alreadySynced.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size: 15.0];
-	alreadySynced.shadowOffset = CGSizeMake(1,1);
-	alreadySynced.textColor =  UIColorFromRGB(0xA89672);
-    
-    // add views
-    [options addSubview:alreadySynced];
-    [options addSubview: self.showUploaded];    
-    [self.view addSubview:options];
-    
-    [alreadySynced release];
-    [options release];
-    
 	[self.tableView setAllowsSelection:NO];
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
@@ -104,6 +82,22 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button]; 
     self.navigationItem.rightBarButtonItem = customBarItem;
     [customBarItem release];
+    
+    
+    if (hidden){
+        UIImage *buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
+        [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
+        self.buttonHidden.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    }else{
+        UIImage *buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
+        [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
+        self.buttonHidden.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    }
+    
+    customBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.buttonHidden];
+    self.navigationItem.leftBarButtonItem = customBarItem;
+    [customBarItem release];
+    
     
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
@@ -214,7 +208,7 @@
          NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
          
          BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
-         if ([self.showUploaded isOn] || (![self.showUploaded isOn] && !alreadyUploaded)){
+         if (!hidden || (hidden && !alreadyUploaded)){
              ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
              [elcAsset setParent:self];
              [self.elcAssets addObject:elcAsset];
@@ -338,10 +332,21 @@
 
 - (void) switchedShowUploaded
 {
-    NSLog(@"sync = %i",self.showUploaded.on);
+    // change the boolean
+    hidden = !hidden;
+    
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setBool:self.showUploaded.on forKey:kSyncShowUploadedPhotos];
+    [standardUserDefaults setBool:hidden forKey:kSyncShowUploadedPhotos];
     [standardUserDefaults synchronize];
+    
+    // set details of the button
+    UIImage *buttonImage ;
+    if (!hidden)
+        buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
+    else
+        buttonImage = [UIImage imageNamed:@"sync-show.png"] ; 
+    
+    [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];   
     
     [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     // load all urls
@@ -356,7 +361,7 @@
     [self.assetGroup release];
     [self.imagesAlreadyUploaded release];
     [self.tableView release];
-    [self.showUploaded release];
+    [self.buttonHidden release];
     [super dealloc];    
 }
 
