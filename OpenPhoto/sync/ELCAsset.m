@@ -50,7 +50,7 @@
         }
         
         overlayView = [[UIImageView alloc] initWithFrame:viewFrames];
-        [overlayView setImage:[UIImage imageNamed:@"Overlay.png"]];
+        [overlayView setImage:[UIImage imageNamed:@"sync-overlay.png"]];
         [overlayView setHidden:YES];
         [self addSubview:overlayView];
     }

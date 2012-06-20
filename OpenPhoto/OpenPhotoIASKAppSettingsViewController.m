@@ -23,8 +23,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
-        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+        
     }
     return self;
 }
@@ -38,7 +38,9 @@
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"BackgroundUpload.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
     
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Settings"];
