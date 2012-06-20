@@ -65,6 +65,10 @@
 		CD49BDE0158BB512009BBE5A /* SyncPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD49BDDF158BB512009BBE5A /* SyncPhotos.m */; };
 		CD49BEEF158F3904009BBE5A /* sync-background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD49BEED158F3904009BBE5A /* sync-background.png */; };
 		CD49BEF0158F3904009BBE5A /* sync-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD49BEEE158F3904009BBE5A /* sync-background@2x.png */; };
+		CD4D69AF1591EE9E0062DC38 /* sync-hide.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4D69AB1591EE9E0062DC38 /* sync-hide.png */; };
+		CD4D69B01591EE9E0062DC38 /* sync-hide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4D69AC1591EE9E0062DC38 /* sync-hide@2x.png */; };
+		CD4D69B11591EE9E0062DC38 /* sync-show.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4D69AD1591EE9E0062DC38 /* sync-show.png */; };
+		CD4D69B21591EE9E0062DC38 /* sync-show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4D69AE1591EE9E0062DC38 /* sync-show@2x.png */; };
 		CD4DF4DD13F3C1F000A31234 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DC13F3C1F000A31234 /* Tag.m */; };
 		CD4DF4E013F3C2BD00A31234 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4DF4DF13F3C2BD00A31234 /* TagViewController.m */; };
 		CD4E106F1512048A00718923 /* DefaultSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E0F881512048A00718923 /* DefaultSHKConfigurator.m */; };
@@ -577,6 +581,10 @@
 		CD49BDDF158BB512009BBE5A /* SyncPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncPhotos.m; sourceTree = "<group>"; };
 		CD49BEED158F3904009BBE5A /* sync-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-background.png"; path = "sync/sync-background.png"; sourceTree = "<group>"; };
 		CD49BEEE158F3904009BBE5A /* sync-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-background@2x.png"; path = "sync/sync-background@2x.png"; sourceTree = "<group>"; };
+		CD4D69AB1591EE9E0062DC38 /* sync-hide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-hide.png"; path = "sync/sync-hide.png"; sourceTree = "<group>"; };
+		CD4D69AC1591EE9E0062DC38 /* sync-hide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-hide@2x.png"; path = "sync/sync-hide@2x.png"; sourceTree = "<group>"; };
+		CD4D69AD1591EE9E0062DC38 /* sync-show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-show.png"; path = "sync/sync-show.png"; sourceTree = "<group>"; };
+		CD4D69AE1591EE9E0062DC38 /* sync-show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-show@2x.png"; path = "sync/sync-show@2x.png"; sourceTree = "<group>"; };
 		CD4DF4DB13F3C1F000A31234 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		CD4DF4DC13F3C1F000A31234 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
 		CD4DF4DE13F3C2BD00A31234 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
@@ -1596,6 +1604,10 @@
 				CDF63977156E23310095AE6E /* Overlay@2x.png */,
 				CDE8A8421580B35C003D90A5 /* sync-already-uploaded.png */,
 				CDE8A8431580B35D003D90A5 /* sync-already-uploaded@2x.png */,
+				CD4D69AB1591EE9E0062DC38 /* sync-hide.png */,
+				CD4D69AC1591EE9E0062DC38 /* sync-hide@2x.png */,
+				CD4D69AD1591EE9E0062DC38 /* sync-show.png */,
+				CD4D69AE1591EE9E0062DC38 /* sync-show@2x.png */,
 				CDE8A7AD157FA5E0003D90A5 /* syncButton.png */,
 				CDE8A7AE157FA5E0003D90A5 /* syncButton@2x.png */,
 				CD49BEED158F3904009BBE5A /* sync-background.png */,
@@ -2353,6 +2365,10 @@
 				CD49BEEF158F3904009BBE5A /* sync-background.png in Resources */,
 				CD49BEF0158F3904009BBE5A /* sync-background@2x.png in Resources */,
 				CDB0A31E158F43E2003B739D /* SyncViewController.xib in Resources */,
+				CD4D69AF1591EE9E0062DC38 /* sync-hide.png in Resources */,
+				CD4D69B01591EE9E0062DC38 /* sync-hide@2x.png in Resources */,
+				CD4D69B11591EE9E0062DC38 /* sync-show.png in Resources */,
+				CD4D69B21591EE9E0062DC38 /* sync-show@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
