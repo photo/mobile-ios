@@ -343,12 +343,15 @@
     [standardUserDefaults synchronize];
     
     // set details of the button
-    UIImage *buttonImage ;
-    if (!hidden)
+    UIImage *buttonImage;
+    NSString *message;
+    if (!hidden){
         buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
-    else
+        message = @"Display all your images";
+    }else{
         buttonImage = [UIImage imageNamed:@"sync-show.png"] ; 
-    
+        message = @"Display only the images not uploaded";
+    }
     [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];   
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -357,7 +360,12 @@
     // load all urls
     self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-}
+    
+    
+    // show explanations
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:message duration:3000];
+    [alert showAlert];
+    [alert release];}
 
 - (void)dealloc 
 {
