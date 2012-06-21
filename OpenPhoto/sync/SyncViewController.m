@@ -347,10 +347,10 @@
     NSString *message;
     if (!hidden){
         buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
-        message = @"Display all your images";
+        message = @"Showing all of your photos";
     }else{
         buttonImage = [UIImage imageNamed:@"sync-show.png"] ; 
-        message = @"Display only the images not uploaded";
+        message = @"Hiding photos you've already uploaded";
     }
     [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];   
     
