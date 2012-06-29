@@ -47,7 +47,7 @@
         
         [[UITabBarItem appearance] setTitleTextAttributes:
          [NSDictionary dictionaryWithObjectsAndKeys:
-          UIColorFromRGB(0xE6501E), UITextAttributeTextColor, 
+          UIColorFromRGB(0x645840), UITextAttributeTextColor, 
           [UIColor whiteColor], UITextAttributeTextShadowColor, 
           [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, 
           [UIFont fontWithName:@"HelveticaNeue-Bold" size:0.0] , UITextAttributeFont, 
