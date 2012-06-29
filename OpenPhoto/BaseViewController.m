@@ -67,7 +67,7 @@
     coreLocationController.delegate = self;
     
     // for access local images
-    assetsLibrary = [[ALAssetsLibrary alloc] init];      
+    assetsLibrary = [[ALAssetsLibrary alloc] init]; 
 }
 
 // Create a view controller and setup it's tab bar item with a title and image
@@ -75,17 +75,35 @@
 {  
     // Here we keep the link of what is in the BAR and its Controllers
     if (title == @"Home"){
-        NewestPhotosTableViewController *controller = [[[NewestPhotosTableViewController alloc]init]autorelease];
+        HomeTableViewController *controller = [[[HomeTableViewController alloc]init]autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+        
+        // if it answers to appearance
+        if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+            // from iOS 5.0
+            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon1_active.png"] withFinishedUnselectedImage:image];
+        }
         return [self getUINavigationController:controller forHomeScreen:YES];
     }else if (title == @"Gallery"){
         GalleryViewController *controller = [[[GalleryViewController alloc]init] autorelease];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:1] autorelease];
+        
+        // if it answers to appearance
+        if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+            // from iOS 5.0
+            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon2_active.png"] withFinishedUnselectedImage:image];
+        }
+        
         return [self getUINavigationController:controller forHomeScreen:NO];
-    }else if (title == @"Multi Upload"){
+    }else if (title == @"Sync"){
         SyncViewController *photoPicker = [[[SyncViewController alloc]init]autorelease];   
         ELCImagePickerController *controller = [[[ELCImagePickerController alloc] initWithRootViewController:photoPicker] autorelease];
-        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];          
+        controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:3] autorelease];      
+        // if it answers to appearance
+        if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+            // from iOS 5.0
+            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon6_active.png"] withFinishedUnselectedImage:image];       
+        }
         [photoPicker setParent:controller];
         [controller setDelegate:self];
         return controller;
@@ -95,12 +113,27 @@
         
         UINavigationController *controller = [self getUINavigationController:self.appSettingsViewController forHomeScreen:NO];
         controller.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:4] autorelease];
+        
+        // if it answers to appearance
+        if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+            // from iOS 5.0
+            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon5_active.png"] withFinishedUnselectedImage:image];
+        }
+        
         return controller;
-    }
+    }  
     
     UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
-    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:2] autorelease];
+    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Photo" image:nil tag:2] autorelease];
+    
+    // if it answers to appearance
+    if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+        // from iOS 5.0
+        [viewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon4_active.png"] withFinishedUnselectedImage:image];
+
+    }
     return viewController;
+    
 }
 
 - (UINavigationController*) getUINavigationController:(UIViewController *) controller forHomeScreen:(BOOL) home{

@@ -26,7 +26,7 @@
 //
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
-#import "NewestPhotosTableViewController.h"
+#import "HomeTableViewController.h"
 #import "GalleryViewController.h"
 #import "QSStrings.h"
 #import "PhotoViewController.h"

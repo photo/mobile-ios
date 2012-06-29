@@ -31,13 +31,29 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];  
+    
+       
     self.viewControllers = [NSArray arrayWithObjects:
-                            [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-home.png"]],
-                            [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-gallery.png"]],
-                            [self viewControllerWithTabTitle:@"Photo" image:nil],
-                            [self viewControllerWithTabTitle:@"Multi Upload" image:[UIImage imageNamed:@"tab-sync.png"]],
-                            [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-settings.png"]], nil];
+                            [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-icon1.png"]],
+                            [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-icon2.png"]],
+                            [self viewControllerWithTabTitle:@"Photo" image:[UIImage imageNamed:@"tab-icon4.png"]],
+                            [self viewControllerWithTabTitle:@"Sync" image:[UIImage imageNamed:@"tab-icon6.png"]],
+                            [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-icon5.png"]], nil];
+    
+    if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+        [[UITabBar appearance] setBackgroundImage:[UIImage imageNamed:@"tabbar.png"]];
+        [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tabbar-active.png"]];
+        
+        [[UITabBarItem appearance] setTitleTextAttributes:
+         [NSDictionary dictionaryWithObjectsAndKeys:
+          UIColorFromRGB(0xE6501E), UITextAttributeTextColor, 
+          [UIColor whiteColor], UITextAttributeTextShadowColor, 
+          [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, 
+          [UIFont fontWithName:@"HelveticaNeue-Bold" size:0.0] , UITextAttributeFont, 
+          nil] 
+                                                 forState:UIControlStateNormal];
+    }
     
     //register to listen for to show the login screen.    
     [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -47,7 +63,11 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-icon-central.png"] highlightImage:nil];
+    if(![[UITabBar class] respondsToSelector:@selector(appearance)]){
+        [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-icon-central.png"] highlightImage:nil];
+    }else {
+         [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-central-empty-button.png"]  highlightImage:[UIImage imageNamed:@"tab-central-selection-button.png"]];
+    }
     [super viewWillAppear:animated];
 }
 
@@ -69,7 +89,6 @@
         [controller release];
     }
 }
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

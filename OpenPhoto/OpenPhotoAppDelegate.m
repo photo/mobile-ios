@@ -78,7 +78,7 @@
     
     // open the default view controller
     self.window.rootViewController = self.viewController;
-    
+
     // now if it is not authenticated, show the screen in the TOP of the view controller
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
@@ -175,6 +175,14 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
+    
+    NSLog("App applicationWillResignActived, save database");
+
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+    }
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -201,11 +209,16 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    NSLog("App will terminate, save database");
     /*
      Called when the application is about to terminate.
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    NSError *saveError = nil;
+    if (![[AppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+    }
 }
 
 
