@@ -37,7 +37,7 @@
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-icon1.png"]],
                             [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-icon2.png"]],
-                            [self viewControllerWithTabTitle:@"Photo" image:[UIImage imageNamed:@"tab-icon4.png"]],
+                            [self viewControllerWithTabTitle:@"Camera" image:[UIImage imageNamed:@"tab-icon4.png"]],
                             [self viewControllerWithTabTitle:@"Sync" image:[UIImage imageNamed:@"tab-icon6.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-icon5.png"]], nil];
     
