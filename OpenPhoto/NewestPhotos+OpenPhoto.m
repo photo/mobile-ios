@@ -52,7 +52,7 @@
     if (error){
         NSLog(@"Error getting newest photos to delete all from managed object context = %@",[error localizedDescription]);
     }
-       
+    
     for (NSManagedObject *photo in photos) {
         [context deleteObject:photo];
     }
@@ -146,7 +146,7 @@
                 // longitude
                 NSString *longitude = [raw objectForKey:@"longitude"];
                 if ([longitude class] != [NSNull class] && ![longitude isEqualToString:@""])
-                newest.longitude = longitude;
+                    newest.longitude = longitude;
                 
                 // get the date since 1970
                 double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
@@ -159,7 +159,7 @@
         }
         
         // save context
-        NSError *error;
+        NSError *error = nil;
         if (![context save:&error]) {
             NSLog(@"Couldn't save: %@", [error localizedDescription]);
         }
