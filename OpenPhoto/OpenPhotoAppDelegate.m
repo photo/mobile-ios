@@ -97,6 +97,9 @@
                                                  name:kNotificationShareInformationToFacebookOrTwitter         
                                                object:nil ];
     
+    // start the job
+    [[JobUploaderController getController] start];
+    
     return YES;
 }
 

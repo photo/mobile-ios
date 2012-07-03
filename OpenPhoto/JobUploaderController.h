@@ -1,8 +1,8 @@
 //
-//  OpenPhotoServiceFactory.h
+//  JobUploaderController.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 23/03/12.
+//  Created by Patrick Santana on 03/07/12.
 //  Copyright 2012 OpenPhoto
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,12 +16,17 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
-#import "OpenPhotoService.h"
+#import <Foundation/Foundation.h>
 
-@interface OpenPhotoServiceFactory : NSObject
+@interface JobUploaderController : NSObject
 
-+ (OpenPhotoService*) createOpenPhotoService;
+// get the instance
++ (JobUploaderController*) getController;
+
+// methods
+- (void) start;
+- (void) stop;
+- (BOOL) isRunning;
 
 @end

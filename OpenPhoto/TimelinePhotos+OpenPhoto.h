@@ -28,10 +28,6 @@ extern NSString * const kUploadStatusTypeFailed;
 extern NSString * const kUploadStatusTypeUploaded;
 extern NSString * const kUploadStatusTypeUploading;
 
-extern NSString * const kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary;
-extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeCamera;
-extern NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum;
-
 @interface TimelinePhotos (OpenPhoto)
 
 

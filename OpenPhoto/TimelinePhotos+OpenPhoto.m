@@ -30,15 +30,8 @@ NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
 
-//
-// Constansts for the Source
-//
-NSString * const kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary=@"SourceTypePhotoLibrary";
-NSString * const kUploadSourceUIImagePickerControllerSourceTypeCamera=@"SourceTypeCamera";
-NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=@"SourceTypeSavedPhotosAlbum";
-
-
-+ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context{
++ (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context
+{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
@@ -60,7 +53,8 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     return [result autorelease]; 
 }
 
-+ (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context{
++ (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context
+{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
     
     // status not Uploaded
@@ -86,7 +80,8 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
 }
 
 
-+ (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
++ (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context
+{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
     [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
@@ -143,7 +138,8 @@ NSString * const kUploadSourceUIImagePickerControllerSourceTypeSavedPhotosAlbum=
     [fetchRequest release];
 }
 
-+ (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context{
++ (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context
+{
     if ([rawNewestPhotos count]>0){
         BOOL checkTotalRows = YES;
         for (NSDictionary *raw in rawNewestPhotos){

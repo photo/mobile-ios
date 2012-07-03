@@ -30,14 +30,15 @@
         <attribute name="photoPageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="syncedUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="285"/>
         <element name="GalleryPhotos" positionX="160" positionY="192" width="128" height="180"/>
         <element name="SyncedPhotos" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="300"/>
     </elements>
 </model>

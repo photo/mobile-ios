@@ -2,7 +2,7 @@
 //  GalleryPhotos.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 02/07/12.
+//  Created by Patrick Santana on 03/07/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
