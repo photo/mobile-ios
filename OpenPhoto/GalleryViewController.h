@@ -21,7 +21,7 @@
 #import "PhotoSource.h"
 #import "WebService.h"
 #import "OpenPhotoTTThumbsViewController.h"
-#import "PhotoModel+OpenPhoto.h"
+#import "GalleryPhotos+OpenPhoto.h"
 #import "MBProgressHUD.h"
 #import "TagViewController.h"
 

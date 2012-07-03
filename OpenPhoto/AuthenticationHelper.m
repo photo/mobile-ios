@@ -75,9 +75,8 @@
     [standardUserDefaults synchronize];
 
     // reset core data
-    [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
     [[AppDelegate managedObjectContext] reset];    
 
     NSError *saveError = nil;

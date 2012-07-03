@@ -29,7 +29,6 @@
                  shareTwitter:(NSNumber *) twitter
                         image:(NSData *) image
                    permission:(NSNumber *) permission
-                       source:(NSString *) source
                          tags:(NSString *) tags
                         title:(NSString *) title 
                           url:(NSURL *) url;
@@ -38,7 +37,6 @@
                            shareFacebook:(NSNumber *) facebook
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
-                                  source:(NSString *) source
                                     tags:(NSString *) tags
                                    title:(NSString *) title 
                                      url:(NSURL *) url;
@@ -88,8 +86,8 @@
         // how many images we need to process?
         if (self.images){
             self.imagesToProcess = [self.images count];
-        
-        // if there is only one, treat it as a camera image, so user will be able to edit
+            
+            // if there is only one, treat it as a camera image, so user will be able to edit
             if ([self.images count] == 1){
                 self.image = [self.images lastObject];
                 [self loadImageToEdit:self.image];
@@ -299,8 +297,6 @@
     [self.detailsPictureTable.delegate tableView: self.detailsPictureTable accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
-
-
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     
@@ -379,7 +375,6 @@
                               shareTwitter:twitter
                                      image:UIImageJPEGRepresentation(imageFiltered,0.7) 
                                 permission:permission
-                                    source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
                                       tags:tags
                                      title:title
                                        url:nil];
@@ -392,7 +387,6 @@
                                                 shareFacebook:[NSNumber numberWithBool:NO]
                                                  shareTwitter:[NSNumber numberWithBool:NO]  
                                                    permission:permission
-                                                       source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
                                                          tags:tags 
                                                         title:title
                                                           url:url];
@@ -403,7 +397,6 @@
                                                 shareFacebook:facebook 
                                                  shareTwitter:twitter
                                                    permission:permission
-                                                       source:kUploadSourceUIImagePickerControllerSourceTypePhotoLibrary 
                                                          tags:tags
                                                         title:title
                                                           url:url];
@@ -418,7 +411,6 @@
                                         shareFacebook:facebook 
                                          shareTwitter:twitter 
                                            permission:permission
-                                               source:kUploadSourceUIImagePickerControllerSourceTypeCamera 
                                                  tags:tags
                                                 title:title
                                                   url:self.image];
@@ -498,7 +490,6 @@
                            shareFacebook:(NSNumber *) facebook
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
-                                  source:(NSString *) source
                                     tags:(NSString *) tags
                                    title:(NSString *) title 
                                      url:(NSURL *) url
@@ -534,7 +525,6 @@
                       shareTwitter:twitter 
                              image:data
                         permission:permission
-                            source:source
                               tags:tags
                              title:title
                                url:url];
@@ -554,7 +544,7 @@
 {
     ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *asset)
     {
-       self.originalImage =[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage scale:1.0 orientation:(UIImageOrientation)[asset defaultRepresentation].orientation];
+        self.originalImage =[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage scale:1.0 orientation:(UIImageOrientation)[asset defaultRepresentation].orientation];
     };
     
     ALAssetsLibraryAccessFailureBlock failureBlock  = ^(NSError *error)
@@ -563,8 +553,8 @@
     };
     
     [assetsLibrary assetForURL:url
-                    resultBlock:resultBlock
-                   failureBlock:failureBlock]; 
+                   resultBlock:resultBlock
+                  failureBlock:failureBlock]; 
 }
 
 - (void) saveEntityUploadDate:(NSDate *) date 
@@ -572,7 +562,6 @@
                  shareTwitter:(NSNumber *) twitter
                         image:(NSData *) image
                    permission:(NSNumber *) permission
-                       source:(NSString *) source
                          tags:(NSString *) tags
                         title:(NSString *) title 
                           url:(NSURL *) url
@@ -580,8 +569,8 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         if (image != nil){
             // data to be saved in the database
-            UploadPhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"UploadPhotos" 
-                                                                      inManagedObjectContext:[AppDelegate managedObjectContext]];
+            TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
+                                                                        inManagedObjectContext:[AppDelegate managedObjectContext]];
             
             // details form this upload
             uploadInfo.date = date;
@@ -591,8 +580,7 @@
             uploadInfo.title =  title;
             uploadInfo.tags=tags;
             uploadInfo.status=kUploadStatusTypeCreated;
-            uploadInfo.source=source;
-            uploadInfo.image = image;
+            uploadInfo.photoData = image;
             uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
             uploadInfo.status=kUploadStatusTypeCreated;
             
@@ -600,10 +588,10 @@
             if (url){
                 // add to the sync list, with that we don't need to show photos already uploaded.
                 // in the case of edited images via Aviary, we don't save it.
-                SyncPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncPhotos" 
-                                                                  inManagedObjectContext:[AppDelegate managedObjectContext]];
+                SyncedPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncedPhotos" 
+                                                                    inManagedObjectContext:[AppDelegate managedObjectContext]];
                 sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:url];
-                sync.status = kSyncStatusTypeUploaded;
+                sync.status = kSyncedStatusTypeUploaded;
                 
                 // used to say which user uploaded this image
                 sync.userUrl = [AppDelegate user];

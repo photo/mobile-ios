@@ -18,9 +18,8 @@
 //  limitations under the License.
 
 #import "WebService.h"
-#import "PhotoModel+OpenPhoto.h"
-#import "NewestPhotos+OpenPhoto.h"
-#import "UploadPhotos+OpenPhoto.h"
+#import "GalleryPhotos+OpenPhoto.h"
+#import "TimelinePhotos+OpenPhoto.h"
 #import "OpenPhotoServiceFactory.h"
 
 @interface AuthenticationHelper : NSObject{

@@ -50,13 +50,8 @@
     if ([key isEqualToString:@"TestFlighFeed"]){
         [TestFlight openFeedbackView];
     }else if ([key isEqualToString:@"CleanCache"]){
-        [PhotoModel deleteAllPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-        [NewestPhotos deleteAllNewestPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-        [UploadPhotos deleteAllUploadsInManagedObjectContext:[AppDelegate managedObjectContext]];
-        NSError *saveError = nil;
-        if (![[AppDelegate managedObjectContext] save:&saveError]){
-            NSLog(@"Error on clean cache = %@",[saveError localizedDescription]);
-        }
+        [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+        [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
     }
 }
 

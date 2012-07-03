@@ -20,8 +20,8 @@
 #import "TagViewController.h"
 #import "AFFeatherController.h"
 #import "QSUtilities.h"
-#import "UploadPhotos+OpenPhoto.h"
-#import "SyncPhotos+OpenPhoto.h"
+#import "SyncedPhotos+OpenPhoto.h"
+#import "TimelinePhotos+OpenPhoto.h"
 
 #import "ContentTypeUtilities.h"
 #import <AssetsLibrary/AssetsLibrary.h>

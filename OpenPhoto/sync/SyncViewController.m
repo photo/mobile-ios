@@ -130,7 +130,7 @@
     loaded = NO;
     
     // load all urls
-    self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     
     // the Saved Photos Album
     dispatch_async(dispatch_get_main_queue(), ^
@@ -179,7 +179,7 @@
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.labelText = @"Loading";
         // load all urls
-        self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+        self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
         
     }else{
@@ -358,7 +358,7 @@
     hud.labelText = @"Loading";
     
     // load all urls
-    self.imagesAlreadyUploaded = [SyncPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
     
     

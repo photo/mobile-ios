@@ -38,9 +38,12 @@
 
 // for sync
 #import "ELCImagePickerController.h"
-#import "SyncPhotos+OpenPhoto.h"
 #import "MBProgressHUD.h"
 #import "SyncViewController.h"
+
+// for clean the cache
+#import "GalleryPhotos+OpenPhoto.h"
+#import "TimelinePhotos+OpenPhoto.h"
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
