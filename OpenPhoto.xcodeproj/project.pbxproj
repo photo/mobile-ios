@@ -17,9 +17,6 @@
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		CD04BF2A15247C7900D844ED /* OpenPhotoServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */; };
-		CD0986D615A1D84D00824034 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0986D515A1D84D00824034 /* TimelinePhotos.m */; };
-		CD0986D915A1D84D00824034 /* GalleryPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0986D815A1D84D00824034 /* GalleryPhotos.m */; };
-		CD0986DC15A1D84D00824034 /* SyncedPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0986DB15A1D84D00824034 /* SyncedPhotos.m */; };
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
@@ -307,6 +304,10 @@
 		CDF6397F156E23310095AE6E /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF63974156E23310095AE6E /* ELCImagePickerController.m */; };
 		CDF63980156E23310095AE6E /* ELCImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF63975156E23310095AE6E /* ELCImagePickerController.xib */; };
 		CDF6398C156E6BE50095AE6E /* SyncService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF6398B156E6BE30095AE6E /* SyncService.m */; };
+		CDFCBE1815A2F11400ADE9A5 /* SyncedPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE1715A2F11400ADE9A5 /* SyncedPhotos.m */; };
+		CDFCBE1B15A2F11500ADE9A5 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE1A15A2F11500ADE9A5 /* TimelinePhotos.m */; };
+		CDFCBE1E15A2F11500ADE9A5 /* GalleryPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */; };
+		CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
 		CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
 		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
@@ -525,12 +526,6 @@
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CD04BF2815247C7900D844ED /* OpenPhotoServiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceTests.h; sourceTree = "<group>"; };
 		CD04BF2915247C7900D844ED /* OpenPhotoServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceTests.m; sourceTree = "<group>"; };
-		CD0986D415A1D84D00824034 /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
-		CD0986D515A1D84D00824034 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
-		CD0986D715A1D84D00824034 /* GalleryPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryPhotos.h; sourceTree = "<group>"; };
-		CD0986D815A1D84D00824034 /* GalleryPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPhotos.m; sourceTree = "<group>"; };
-		CD0986DA15A1D84D00824034 /* SyncedPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncedPhotos.h; sourceTree = "<group>"; };
-		CD0986DB15A1D84D00824034 /* SyncedPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncedPhotos.m; sourceTree = "<group>"; };
 		CD0CA689145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoIASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoIASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
@@ -969,6 +964,14 @@
 		CDF63975156E23310095AE6E /* ELCImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ELCImagePickerController.xib; path = sync/ELCImagePickerController.xib; sourceTree = "<group>"; };
 		CDF6398A156E6BE30095AE6E /* SyncService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SyncService.h; path = sync/SyncService.h; sourceTree = "<group>"; };
 		CDF6398B156E6BE30095AE6E /* SyncService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SyncService.m; path = sync/SyncService.m; sourceTree = "<group>"; };
+		CDFCBE1615A2F11400ADE9A5 /* SyncedPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncedPhotos.h; sourceTree = "<group>"; };
+		CDFCBE1715A2F11400ADE9A5 /* SyncedPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncedPhotos.m; sourceTree = "<group>"; };
+		CDFCBE1915A2F11400ADE9A5 /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
+		CDFCBE1A15A2F11500ADE9A5 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
+		CDFCBE1C15A2F11500ADE9A5 /* GalleryPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryPhotos.h; sourceTree = "<group>"; };
+		CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPhotos.m; sourceTree = "<group>"; };
+		CDFCBE1F15A2F69B00ADE9A5 /* JobUploaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderController.h; sourceTree = "<group>"; };
+		CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobUploaderController.m; sourceTree = "<group>"; };
 		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CDFF467C141559FE00D89578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -1814,12 +1817,12 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CD0986DA15A1D84D00824034 /* SyncedPhotos.h */,
-				CD0986DB15A1D84D00824034 /* SyncedPhotos.m */,
-				CD0986D715A1D84D00824034 /* GalleryPhotos.h */,
-				CD0986D815A1D84D00824034 /* GalleryPhotos.m */,
-				CD0986D415A1D84D00824034 /* TimelinePhotos.h */,
-				CD0986D515A1D84D00824034 /* TimelinePhotos.m */,
+				CDFCBE1615A2F11400ADE9A5 /* SyncedPhotos.h */,
+				CDFCBE1C15A2F11500ADE9A5 /* GalleryPhotos.h */,
+				CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */,
+				CDFCBE1915A2F11400ADE9A5 /* TimelinePhotos.h */,
+				CDFCBE1A15A2F11500ADE9A5 /* TimelinePhotos.m */,
+				CDFCBE1715A2F11400ADE9A5 /* SyncedPhotos.m */,
 				CDFFAD74150E40BA00B87229 /* GalleryPhotos+OpenPhoto.h */,
 				CDFFAD75150E40BA00B87229 /* GalleryPhotos+OpenPhoto.m */,
 				CD22B383151B745E0077A615 /* TimelinePhotos+OpenPhoto.h */,
@@ -2081,6 +2084,8 @@
 				CD22B390151C6B7A0077A615 /* OpenPhotoServiceFactory.m */,
 				CDF59C5413E93D600019ED62 /* WebService.h */,
 				CDF59C5513E93D600019ED62 /* WebService.m */,
+				CDFCBE1F15A2F69B00ADE9A5 /* JobUploaderController.h */,
+				CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -2649,9 +2654,10 @@
 				CDF6398C156E6BE50095AE6E /* SyncService.m in Sources */,
 				CDB0A31D158F43E2003B739D /* SyncViewController.m in Sources */,
 				CD2DBF38159473D300B19784 /* HomeTableViewController.m in Sources */,
-				CD0986D615A1D84D00824034 /* TimelinePhotos.m in Sources */,
-				CD0986D915A1D84D00824034 /* GalleryPhotos.m in Sources */,
-				CD0986DC15A1D84D00824034 /* SyncedPhotos.m in Sources */,
+				CDFCBE1815A2F11400ADE9A5 /* SyncedPhotos.m in Sources */,
+				CDFCBE1B15A2F11500ADE9A5 /* TimelinePhotos.m in Sources */,
+				CDFCBE1E15A2F11500ADE9A5 /* GalleryPhotos.m in Sources */,
+				CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

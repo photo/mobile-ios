@@ -583,24 +583,16 @@
             uploadInfo.photoData = image;
             uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
             uploadInfo.status=kUploadStatusTypeCreated;
-            
+            uploadInfo.userUrl = [AppDelegate user];
             
             if (url){
                 // add to the sync list, with that we don't need to show photos already uploaded.
-                // in the case of edited images via Aviary, we don't save it.
-                SyncedPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncedPhotos" 
-                                                                    inManagedObjectContext:[AppDelegate managedObjectContext]];
-                sync.filePath = [AssetsLibraryUtilities getAssetsUrlId:url];
-                sync.status = kSyncedStatusTypeUploaded;
-                
-                // used to say which user uploaded this image
-                sync.userUrl = [AppDelegate user];
+                uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
             }
             
             // decrease counter
             self.imagesToProcess = self.imagesToProcess - 1;
         }});
-    
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
