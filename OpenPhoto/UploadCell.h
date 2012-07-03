@@ -19,7 +19,7 @@
 //
 
 
-#import "UploadPhotos.h"
+#import "TimelinePhotos+OpenPhoto.h"
 
 
 @protocol UploadCellDelegate <NSObject>
@@ -37,7 +37,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnRetry;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIImageView *imageStatus;
-@property (retain, nonatomic) UploadPhotos *originalObject;
+@property (retain, nonatomic) TimelinePhotos *originalObject;
 
 // protocol that will send the response
 @property (retain) id delegate;

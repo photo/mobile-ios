@@ -54,7 +54,7 @@
         [self.service setDelegate:self];
         
         
-        NSArray *photos = [PhotoModel getPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+        NSArray *photos = [GalleryPhotos getGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         
         if (photos == nil || [photos count] == 0){
             self.photoSource = [[[PhotoSource alloc]
@@ -176,7 +176,7 @@
         int totalRows=0;
         
         // Load in core data
-        [PhotoModel getPhotosFromOpenPhotoService:responsePhotos inManagedObjectContext:[AppDelegate managedObjectContext]]; 
+        [GalleryPhotos getGalleryPhotosFromOpenPhotoService:responsePhotos inManagedObjectContext:[AppDelegate managedObjectContext]]; 
         
         for (NSDictionary *photo in responsePhotos){
             

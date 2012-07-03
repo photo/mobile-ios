@@ -21,7 +21,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsLibraryUtilities.h"
 #import "MBProgressHUD.h"
-#import "SyncPhotos+OpenPhoto.h"
+#import "SyncedPhotos+OpenPhoto.h"
 #import "ELCAsset.h"
 #import "ELCAlbumPickerController.h" 
 #import "ELCAssetCell.h"
