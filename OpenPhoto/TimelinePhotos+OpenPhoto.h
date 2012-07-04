@@ -26,6 +26,7 @@
 extern NSString * const kUploadStatusTypeCreated;
 extern NSString * const kUploadStatusTypeFailed;
 extern NSString * const kUploadStatusTypeUploaded;
+extern NSString * const kUploadStatusTypeDuplicated;
 extern NSString * const kUploadStatusTypeUploading;
 
 @interface TimelinePhotos (OpenPhoto)

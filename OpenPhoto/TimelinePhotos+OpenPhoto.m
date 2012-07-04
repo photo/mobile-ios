@@ -28,6 +28,7 @@
 NSString * const kUploadStatusTypeCreated = @"Created";
 NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
+NSString * const kUploadStatusTypeDuplicated = @"Duplicated";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
 
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context
@@ -168,23 +169,23 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
                 NSLog(@"Object already exist");
 #endif
             }else {
-                TimelinePhotos *newest = [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
+                TimelinePhotos *photo = [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
                                                                        inManagedObjectContext:context];
                 
                 // get details URL
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
                     // retina display
-                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
+                    photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
                 }else{
                     // not retina display
-                    newest.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
+                    photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
                 }
                 
                 NSString *title = [raw objectForKey:@"title"];
                 if ([title class] == [NSNull class] || [title isEqualToString:@""])
-                    newest.title = [NSString stringWithFormat:@"%@",[raw objectForKey:@"filenameOriginal"]];
+                    photo.title = [NSString stringWithFormat:@"%@",[raw objectForKey:@"filenameOriginal"]];
                 else
-                    newest.title = title;
+                    photo.title = title;
                 
                 NSArray *tagsResult = [raw objectForKey:@"tags"];
                 NSMutableString *tags = [NSMutableString string];
@@ -197,38 +198,41 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
                         
                         i++;
                     }}
-                newest.tags=tags;
+                photo.tags=tags;
                 
-                newest.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];
+                photo.key=[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]];
                 
                 // get the date taken since 1970
                 double d            = [[raw objectForKey:@"dateTaken"] doubleValue];
                 NSTimeInterval date =  d;
-                newest.date          = [NSDate dateWithTimeIntervalSince1970:date];    
+                photo.date          = [NSDate dateWithTimeIntervalSince1970:date];    
                 
                 // permission
                 if ([[raw objectForKey:@"permission"] isEqualToString:@"1"])
-                    newest.permission = [NSNumber numberWithBool:YES];
+                    photo.permission = [NSNumber numberWithBool:YES];
                 else 
-                    newest.permission = [NSNumber numberWithBool:NO];
+                    photo.permission = [NSNumber numberWithBool:NO];
                 
                 // latitude
                 NSString *latitude = [raw objectForKey:@"latitude"];
                 if ([latitude class] != [NSNull class] && ![latitude isEqualToString:@""])
-                    newest.latitude = latitude;
+                    photo.latitude = latitude;
                 
                 // longitude
                 NSString *longitude = [raw objectForKey:@"longitude"];
                 if ([longitude class] != [NSNull class] && ![longitude isEqualToString:@""])
-                    newest.longitude = longitude;
+                    photo.longitude = longitude;
                 
                 // get the date since 1970
                 double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
                 NSTimeInterval dateUpload =  dUpload;
-                newest.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];  
+                photo.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];  
                 
                 // page url
-                newest.photoPageUrl =  [raw objectForKey:@"url"];
+                photo.photoPageUrl =  [raw objectForKey:@"url"];
+                
+                // status
+                photo.status = kUploadStatusTypeUploaded;
             }
         }
         

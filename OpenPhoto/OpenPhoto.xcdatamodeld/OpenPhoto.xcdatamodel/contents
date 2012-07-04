@@ -28,6 +28,7 @@
         <attribute name="permission" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoPageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoUploadProgress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="syncedUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,6 +40,6 @@
     <elements>
         <element name="GalleryPhotos" positionX="160" positionY="192" width="128" height="180"/>
         <element name="SyncedPhotos" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="300"/>
+        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="315"/>
     </elements>
 </model>
