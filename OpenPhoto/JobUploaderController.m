@@ -75,7 +75,15 @@
 
 - (void) executeJob
 {
-    NSLog(@"Executing the job");
+    NSLog(@"Executing uploader job");
+    
+    // in the main thead looks for uploads
+    
+    // loop in the list and start to upload
+    
+    // update the progress
+    
+    // 
 }
 
 
