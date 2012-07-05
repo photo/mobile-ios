@@ -73,7 +73,7 @@
 }
 
 
-- (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName
+- (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName delegate:(id) delegate
 {
     [self validateCredentials];
     
@@ -119,6 +119,9 @@
     [asiRequest addPostValue:[values objectForKey:@"title"] forKey:@"title"];
     [asiRequest addPostValue:[values objectForKey:@"permission"] forKey:@"permission"];
     [asiRequest addPostValue:[values objectForKey:@"tags"] forKey:@"tags"];
+    // set the progress bar
+    [asiRequest setUploadProgressDelegate:delegate]; 
+    
     
     // add the file in the multipart. This file is stored locally for perfomance reason. We don't have to load it
     // in memory. If it is a picture with filter, we just send without giving the name 

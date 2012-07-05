@@ -25,10 +25,10 @@
 @synthesize thumb=_thumb;
 @synthesize status=_status;
 @synthesize btnRetry=_btnRetry;
-@synthesize activity=_activity;
 @synthesize imageStatus = _imageStatus;
 @synthesize originalObject = _originalObject;
-@synthesize delegate=_delegate;
+@synthesize progressBar = _progressBar;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,9 +48,9 @@
     [self.thumb release];
     [self.status release];
     [self.btnRetry release];
-    [self.activity release];
     [self.originalObject release];
     [_imageStatus release];
+    [_progressBar release];
     [super dealloc];
 }
 - (IBAction)refresh:(id)sender {

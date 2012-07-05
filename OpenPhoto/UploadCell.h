@@ -21,26 +21,14 @@
 
 #import "TimelinePhotos+OpenPhoto.h"
 
-
-@protocol UploadCellDelegate <NSObject>
-@required
-- (void) updateNeededForUploadDataSource;
-@end
-
-
-@interface UploadCell : UITableViewCell{
-    id <UploadCellDelegate> delegate;
-}
+@interface UploadCell : UITableViewCell
 
 @property (retain, nonatomic) IBOutlet UIImageView *thumb;
 @property (retain, nonatomic) IBOutlet UILabel *status;
 @property (retain, nonatomic) IBOutlet UIButton *btnRetry;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (retain, nonatomic) IBOutlet UIImageView *imageStatus;
+@property (retain, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (retain, nonatomic) TimelinePhotos *originalObject;
-
-// protocol that will send the response
-@property (retain) id delegate;
 
 - (IBAction)refresh:(id)sender;
 

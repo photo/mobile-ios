@@ -309,6 +309,7 @@
 		CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */; };
 		CDFDC6A115A5919800F33CD1 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A015A5919800F33CD1 /* TimelinePhotos.m */; };
 		CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A315A591EC00F33CD1 /* NSDictionarySerializer.m */; };
+		CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A615A5BC4500F33CD1 /* JobUploaderDelegate.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
 		CDFFAD5D150E0BFB00B87229 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFFAD5C150E0BFA00B87229 /* CoreData.framework */; };
 		CDFFAD66150E0FCE00B87229 /* OpenPhotoCoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFFAD65150E0FCE00B87229 /* OpenPhotoCoreDataTests.m */; };
@@ -975,6 +976,8 @@
 		CDFDC6A015A5919800F33CD1 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
 		CDFDC6A215A591EC00F33CD1 /* NSDictionarySerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionarySerializer.h; sourceTree = "<group>"; };
 		CDFDC6A315A591EC00F33CD1 /* NSDictionarySerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionarySerializer.m; sourceTree = "<group>"; };
+		CDFDC6A515A5BC4500F33CD1 /* JobUploaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderDelegate.h; sourceTree = "<group>"; };
+		CDFDC6A615A5BC4500F33CD1 /* JobUploaderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobUploaderDelegate.m; sourceTree = "<group>"; };
 		CDFF467B141559FE00D89578 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CDFF467C141559FE00D89578 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CDFFAD5C150E0BFA00B87229 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -2091,6 +2094,8 @@
 				CDF59C5513E93D600019ED62 /* WebService.m */,
 				CDFCBE1F15A2F69B00ADE9A5 /* JobUploaderController.h */,
 				CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */,
+				CDFDC6A515A5BC4500F33CD1 /* JobUploaderDelegate.h */,
+				CDFDC6A615A5BC4500F33CD1 /* JobUploaderDelegate.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -2664,6 +2669,7 @@
 				CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */,
 				CDFDC6A115A5919800F33CD1 /* TimelinePhotos.m in Sources */,
 				CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */,
+				CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
