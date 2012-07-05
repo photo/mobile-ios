@@ -161,14 +161,24 @@
             uploadCell.status.text=@"Waiting ...";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploading]){
             uploadCell.status.text=@"Uploading";
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploaded]){
             uploadCell.status.text=@"Upload finished!";
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
             uploadCell.status.text=@"Retry uploading";
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+        }else if ( [photo.status isEqualToString:kUploadStatusTypeDuplicated]){
+            uploadCell.status.text=@"Already in your account";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
+            uploadCell.imageStatus.hidden=NO;
+            uploadCell.status.textColor=UIColorFromRGB(0xC8BEA0);
         }
         
         // decide if we show retry/cancel
@@ -183,190 +193,7 @@
             [uploadCell.activity stopAnimating];
         }
         
-        
-        /*
-         // start upload
-         if ([upload.status isEqualToString:kUploadStatusTypeCreated]){
-         // check if there is internet
-         if ([AppDelegate internetActive] == NO ){
-         // if not, set as failed
-         [self notifyUserNoInternet];
-         uploadCell.status.text = kUploadStatusTypeFailed;
-         upload.status = kUploadStatusTypeFailed;
-         uploadCell.btnRetry.hidden  = NO;
-         uploadCell.imageStatus.hidden=YES;
-         
-         NSError *saveError = nil;
-         if (![[AppDelegate managedObjectContext] save:&saveError]){
-         NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
-         }
-         }else if ([UploadPhotos howManyUploadingInManagedObjectContext:[AppDelegate managedObjectContext]] < 3 ){
-         // set the status to Uploading, in case of max 3 uploading - we don't wanna have too many uploads
-         upload.status = kUploadStatusTypeUploading;
-         uploadCell.status.text = @"Uploading";
-         uploadCell.imageStatus.hidden=YES;
-         
-         // start progress bar and update screen
-         [uploadCell.activity startAnimating];
-         
-         NSDictionary *dictionary = nil;
-         @try {
-         dictionary = [upload toDictionary];
-         }
-         @catch (NSException *e) {
-         // check if it is duplicated
-         NSString *alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
-         
-         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
-         [alert showAlert];
-         [alert release];
-         
-         upload.status = kUploadStatusTypeFailed;
-         uploadCell.status.text = kUploadStatusTypeFailed;
-         uploadCell.btnRetry.hidden  = NO;
-         
-         NSError *saveError = nil;
-         if (![[AppDelegate managedObjectContext] save:&saveError]){
-         NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
-         }
-         
-         [self.tableView beginUpdates];
-         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-         withRowAnimation:UITableViewRowAnimationFade];
-         [self.tableView endUpdates];
-         
-         return uploadCell;
-         }
-         
-         
-         
-         // create gcd and start upload
-         dispatch_queue_t uploadQueue = dispatch_queue_create("uploader_queue", NULL);
-         dispatch_async(uploadQueue, ^{
-         
-         @try{
-         
-         // prepare the data to upload
-         NSString *filename = [dictionary objectForKey:@"fileName"];
-         NSData *data = [dictionary objectForKey:@"image"];
-         
-         // create the service, check photo exists and send the request
-         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-         
-         // before check if the photo already exist
-         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
-         @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
-         }else{
-         NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
-         [service release];
-         #ifdef DEVELOPMENT_ENABLED                        
-         NSLog(@"Photo uploaded correctly");
-         #endif
-         // update the screen
-         dispatch_async(dispatch_get_main_queue(), ^{
-         // if it is processed change the status UPLOADED
-         //                                uploadCell.status.text = @"Upload finished!!!";
-         //                              [uploadCell.imageStatus setImage:[UIImage imageNamed:@"upload-finished.png"]];
-         //                            uploadCell.imageStatus.hidden=NO;
-         upload.status = kUploadStatusTypeUploaded;
-         
-         [self.uploads replaceObjectAtIndex:indexPath.row withObject:upload];
-         
-         NSError *saveError = nil;
-         if (![[AppDelegate managedObjectContext] save:&saveError]){
-         NSLog(@"Error on change status of Upload = %@",[saveError localizedDescription]);
-         }
-         
-         #ifdef TEST_FLIGHT_ENABLED
-         [TestFlight passCheckpoint:@"Image uploaded"];
-         #endif
-         
-         [self.tableView beginUpdates];
-         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-         withRowAnimation:UITableViewRowAnimationFade];
-         [self.tableView endUpdates]; 
-         
-         // update the table with newest photos
-         [self loadNewestPhotosIntoCoreData];
-         
-         // check if it needs share for twitter or facebook
-         // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
-         if ([upload.twitter boolValue] ||  [upload.facebook boolValue]){
-         #ifdef DEVELOPMENT_ENABLED
-         NSLog(@"User wants to share uploaded photo");
-         #endif
-         NSDictionary *responsePhoto = [response objectForKey:@"result"] ;
-         
-         NSError *saveError = nil;
-         if (![[AppDelegate managedObjectContext] save:&saveError]){
-         NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
-         }          
-         #ifdef TEST_FLIGHT_ENABLED
-         
-         if ([upload.twitter boolValue]){
-         [TestFlight passCheckpoint:@"Twitter"];
-         }else{
-         // facebook
-         [TestFlight passCheckpoint:@"Facebook"];
-         }
-         #endif
-         
-         // parameters from upload
-         NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
-         NSString *shareDetails = [responsePhoto objectForKey:@"url"];                              
-         NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[upload.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
-         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
-         }  
-         });
-         }
-         }@catch (NSException* e) {
-         NSLog(@"Error %@",e);
-         
-         // if it fails for any reason, set status FAILED in the main thread
-         dispatch_async(dispatch_get_main_queue(), ^{
-         
-         // default for all erros
-         upload.status = kUploadStatusTypeFailed;
-         uploadCell.status.text = @"Failed";
-         uploadCell.btnRetry.hidden  = NO;
-         
-         // check if it is duplicated
-         if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
-         [[e description] hasPrefix:@"You already uploaded this photo."]){
-         
-         // can considere the image as uploaded
-         uploadCell.status.text = @"Duplicated";
-         [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
-         uploadCell.imageStatus.hidden=NO;
-         upload.status = kUploadStatusTypeUploaded;
-         uploadCell.btnRetry.hidden  = YES;  
-         [self.tableView beginUpdates];
-         [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] 
-         withRowAnimation:UITableViewRowAnimationFade];
-         [self.tableView endUpdates]; 
-         }else {
-         NSString *alertMessage = [[NSString alloc] initWithFormat:@"Failed! %@",[e description]];
-         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:alertMessage duration:5000];
-         [alert showAlert];
-         [alert release];
-         }
-         
-         NSError *saveError = nil;
-         if (![[AppDelegate managedObjectContext] save:&saveError]){
-         NSLog(@"Error on cancel the item from cell = %@",[saveError localizedDescription]);
-         }
-         
-         [self doneLoadingTableViewData];                            
-         });
-         }
-         });
-         dispatch_release(uploadQueue);
-         
-         }else{
-         NSLog(@"Number max of uploading reached");
-         }
-         }
-         */
+
         return uploadCell;
     }else{
         

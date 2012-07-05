@@ -30,6 +30,7 @@ NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
 NSString * const kUploadStatusTypeDuplicated = @"Duplicated";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
+NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
 
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context
 {
@@ -71,20 +72,13 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
         NSLog(@"Error to get all uploads on managed object context = %@",[error localizedDescription]);
     }
     
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (TimelinePhotos *model in matches) {
-        [result addObject:model];
-    }
-    
-    // return an array of Uploads
-    return [result autorelease]; 
+    return matches;
 }
 
-
-+ (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context
++ (int) howEntitiesTimelinePhotosInManagedObjectContext:(NSManagedObjectContext *)context type:(NSString*) type
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
-    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", type];  
     [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
     NSError *error = nil;
@@ -95,6 +89,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
     
     return [result count];
 }
+
 
 + (NSArray *) getNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -129,7 +124,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
     for (NSManagedObject *photo in photos) {
         [context deleteObject:photo];
     }
-
+    
     NSError *saveError = nil;
     if (![context save:&saveError]){
         NSLog(@"Error delete all newest photos from managed object context = %@",[saveError localizedDescription]);
@@ -170,7 +165,7 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
 #endif
             }else {
                 TimelinePhotos *photo = [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
-                                                                       inManagedObjectContext:context];
+                                                                      inManagedObjectContext:context];
                 
                 // get details URL
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
@@ -243,6 +238,51 @@ NSString * const kUploadStatusTypeUploading = @"Uploading";
         }
     }
 }
+
++ (NSArray *) getNextWaitingToUploadInManagedObjectContext:(NSManagedObjectContext *)context qtd:(int) quantity
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
+    
+    // status not Uploaded
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreated];   
+    
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    
+    // set max to return
+    [request setFetchLimit:quantity];
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (error){
+        NSLog(@"Error to get all uploads on managed object context = %@",[error localizedDescription]);
+    }
+    
+    return matches;
+}
+
++ (void) deleteEntitiesInManagedObjectContext:(NSManagedObjectContext *)context state:(NSString*) state
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"TimelinePhotos" inManagedObjectContext:context]];
+    fetchRequest.predicate= [NSPredicate predicateWithFormat:@"status == %@", state];  
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *photos = [context executeFetchRequest:fetchRequest error:&error];
+    if (error){
+        NSLog(@"Error getting timeline to delete all from managed object context = %@",[error localizedDescription]);
+    }
+    
+    for (NSManagedObject *photo in photos) {
+        [context deleteObject:photo];
+    }
+    
+    // now we can release the object
+    [fetchRequest release];
+}
+
 
 - (NSDictionary *) toDictionary
 {
