@@ -24,6 +24,7 @@
 #import "NSString+SBJSON.h"
 #import "ASIFormDataRequest.h"
 #import "ContentTypeUtilities.h"
+#import "ASIProgressDelegate.h"
 
 @interface OpenPhotoService : NSObject{
     
@@ -38,7 +39,7 @@
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult;
 
 // in the dictionary, we expect: title, permission and tags
-- (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName;
+- (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName delegate:(id) delegate;
 
 // get all tags. It brings how many images have this tag.
 - (NSArray*)  getTags; 

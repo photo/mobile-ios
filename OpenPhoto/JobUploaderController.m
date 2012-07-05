@@ -102,6 +102,10 @@
             for (TimelinePhotos *photo in waitings){
                 photo.status = kUploadStatusTypeUploading;
                 
+                
+                // create a delegate
+                JobUploaderDelegate *delegate = [[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoData.length];
+                
                 NSDictionary *dictionary = nil;
                 @try {
                     dictionary = [photo toDictionary];
@@ -127,8 +131,9 @@
                         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
                             @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
                         }else{
-                            NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
+                            NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
                             [service release];
+                            [delegate release];
 #ifdef DEVELOPMENT_ENABLED                        
                             NSLog(@"Photo uploaded correctly");
 #endif

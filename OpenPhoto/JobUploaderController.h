@@ -20,8 +20,9 @@
 #import <Foundation/Foundation.h>
 #import "TimelinePhotos.h"
 #import "NSDictionarySerializer.h"
+#import "JobUploaderDelegate.h"
 
-@interface JobUploaderController : NSObject
+@interface JobUploaderController : NSObject 
 
 // get the instance
 + (JobUploaderController*) getController;

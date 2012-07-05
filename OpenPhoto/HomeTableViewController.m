@@ -128,15 +128,17 @@
         if (uploadCell == nil) {
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"UploadCell" owner:nil options:nil];
             uploadCell = [topLevelObjects objectAtIndex:0];
+            if([[UITabBar class] respondsToSelector:@selector(appearance)]){
+                // from iOS 5.0
+                uploadCell.progressBar.progressTintColor = UIColorFromRGB(0xE6501E);
+                uploadCell.progressBar.trackTintColor = UIColorFromRGB(0xC8BEA0);
+            }
         }
         
         
         
         // set the upload photo object in the cell for restart or cancel
         uploadCell.originalObject = photo;
-        
-        // delegation
-        uploadCell.delegate = self;
         
         // set thumb
         CGSize itemSize = CGSizeMake(70, 70);
@@ -157,15 +159,20 @@
         
         // set status and image upload status
         uploadCell.imageStatus.hidden=YES;
+        uploadCell.progressBar.hidden=YES;
+        
         if ( [photo.status isEqualToString:kUploadStatusTypeCreated]){
             uploadCell.status.text=@"Waiting ...";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploading]){
-            uploadCell.status.text=@"Uploading";
+            uploadCell.status.text=@"";
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
-        }else if ( [photo.status isEqualToString:kUploadStatusTypeUploaded]){
+            uploadCell.progressBar.hidden=NO;
+            
+            [uploadCell.progressBar setProgress:[photo.photoUploadProgress floatValue]];
+        }else if ( [photo.status isEqualToString:kUploadStatusTypeUploadFinished]){
             uploadCell.status.text=@"Upload finished!";
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
@@ -188,12 +195,6 @@
             uploadCell.btnRetry.hidden  = NO;
         }
         
-        // set ativity icon
-        if (![photo.status isEqualToString:kUploadStatusTypeUploading]) {
-            [uploadCell.activity stopAnimating];
-        }
-        
-
         return uploadCell;
     }else{
         
@@ -329,45 +330,30 @@
 // This only needs to be implemented if you are going to be returning NO
 // for some items. By default, all items are editable.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // get the object
+    TimelinePhotos *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    /*
-     // just in case of upload
-     if ([self.uploads count] > 0 && indexPath.row < [self.uploads count]){
-     // Return YES in case of Failed only
-     UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
-     if ( [upload.status isEqualToString:kUploadStatusTypeFailed]){
-     return YES;
-     
-     }
-     }
-     */
     
-    // others no
+    // first decide if we have to show a upload cell or photo cell
+    if ([photo.status isEqualToString:kUploadStatusTypeDuplicated] ||
+        [photo.status isEqualToString:kUploadStatusTypeFailed]){
+        return YES;
+    }
+    
     return NO;
 }
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
-    /* 
-     if (editingStyle == UITableViewCellEditingStyleDelete) {
-     #ifdef DEVELOPMENT_ENABLED
-     NSLog(@"Pressed delete button");
-     #endif
-     // delete object originalObject
-     UploadPhotos *upload = [self.uploads objectAtIndex:indexPath.row];
-     [[AppDelegate managedObjectContext] deleteObject:upload];
-     
-     NSError *saveError = nil;
-     if (![[AppDelegate managedObjectContext] save:&saveError]){
-     NSLog(@"Error on delete the item from cell = %@",[saveError localizedDescription]);
-     }
-     
-     [self doneLoadingTableViewData];
-     }    
-     
-     */
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Pressed delete button");
+#endif
+        // delete object originalObject
+        TimelinePhotos *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        [[AppDelegate managedObjectContext] deleteObject:photo];
+    }
 }
 
 
