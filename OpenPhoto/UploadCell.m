@@ -60,13 +60,6 @@
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
     self.btnRetry.hidden=YES;
-    
-    NSError *saveError = nil;
-    if (![[AppDelegate managedObjectContext] save:&saveError]){
-        NSLog(@"Error on refresh cell = %@",[saveError localizedDescription]);
-    }
-    
-    [self.delegate updateNeededForUploadDataSource];
 }
 
 @end

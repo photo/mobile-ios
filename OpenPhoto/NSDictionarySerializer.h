@@ -1,8 +1,8 @@
 //
-//  JobUploaderController.h
+//  NSDictionarySerializer.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 03/07/12.
+//  Created by Patrick Santana on 05/07/12.
 //  Copyright 2012 OpenPhoto
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,18 +17,12 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+
 #import <Foundation/Foundation.h>
-#import "TimelinePhotos.h"
-#import "NSDictionarySerializer.h"
 
-@interface JobUploaderController : NSObject
+@interface NSDictionarySerializer : NSObject
 
-// get the instance
-+ (JobUploaderController*) getController;
-
-// methods
-- (void) start;
-- (void) stop;
-- (BOOL) isRunning;
++ (NSData*) nsDictionaryToNSData:(NSDictionary *) dict;
++ (NSDictionary*) nsDataToNSDictionary:(NSData *) data;
 
 @end

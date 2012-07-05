@@ -28,6 +28,7 @@
 
 @implementation JobUploaderController
 
+
 + (JobUploaderController*) getController
 {
     static dispatch_once_t pred;
@@ -77,14 +78,90 @@
 {
     NSLog(@"Executing uploader job");
     
-    // in the main thead looks for uploads
+    // in the main thread 
     
-    // loop in the list and start to upload
+    // check how many are in state UPLOADING
     
-    // update the progress
     
-    // 
-}
+    dispatch_async(dispatch_get_main_queue(), ^{
+        int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
+        int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
 
+        if ( created == 0 ){
+            [TimelinePhotos deleteEntitiesInManagedObjectContext:[AppDelegate managedObjectContext] state:kUploadStatusTypeUploadFinished]; 
+            [TimelinePhotos deleteEntitiesInManagedObjectContext:[AppDelegate managedObjectContext] state:kUploadStatusTypeDuplicated];   
+        }
+        
+        // TODO: if they are older than 4 minutes, but then to RETRY
+        if (i < 2 && created > 0){
+            
+            //  looks for uploads in the state WAITING
+            NSArray *waitings = [TimelinePhotos getNextWaitingToUploadInManagedObjectContext:[AppDelegate managedObjectContext] qtd:2-i];  
+            
+            // loop in the list and start to upload
+            for (TimelinePhotos *photo in waitings){
+                photo.status = kUploadStatusTypeUploading;
+                
+                NSDictionary *dictionary = nil;
+                @try {
+                    dictionary = [photo toDictionary];
+                }
+                @catch (NSException *e) {
+                    photo.status = kUploadStatusTypeFailed;
+                    break;
+                }
+                
+                // send
+                dispatch_queue_t uploader = dispatch_queue_create("job_uploader", NULL);
+                dispatch_async(uploader, ^{
+                    
+                    @try{
+                        // prepare the data to upload
+                        NSString *filename = photo.fileName;
+                        NSData *data = photo.photoData;
+                        
+                        // create the service, check photo exists and send the request
+                        OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                        
+                        // before check if the photo already exist
+                        if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
+                            @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
+                        }else{
+                            NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename];
+                            [service release];
+#ifdef DEVELOPMENT_ENABLED                        
+                            NSLog(@"Photo uploaded correctly");
+#endif
+                            
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                photo.status = kUploadStatusTypeUploadFinished; 
+                                photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
+#ifdef TEST_FLIGHT_ENABLED
+                                [TestFlight passCheckpoint:@"Image uploaded"];
+#endif
+                                
+                            });
+                        }
+                    }@catch (NSException* e) {
+                        NSLog(@"Error %@",e);
+                        
+                        // if it fails for any reason, set status FAILED in the main thread
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // check if it is duplicated
+                            if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
+                                [[e description] hasPrefix:@"You already uploaded this photo."]){
+                                photo.status = kUploadStatusTypeDuplicated;
+                            }else {
+                                photo.status = kUploadStatusTypeFailed;
+                                NSLog(@"Error to upload %@", [e description]);
+                            }
+                        });
+                    }
+                });
+                dispatch_release(uploader);
+            }
+        }
+    });
+}
 
 @end

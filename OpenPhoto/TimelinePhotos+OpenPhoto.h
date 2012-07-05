@@ -25,9 +25,12 @@
 // constant
 extern NSString * const kUploadStatusTypeCreated;
 extern NSString * const kUploadStatusTypeFailed;
-extern NSString * const kUploadStatusTypeUploaded;
 extern NSString * const kUploadStatusTypeDuplicated;
 extern NSString * const kUploadStatusTypeUploading;
+extern NSString * const kUploadStatusTypeUploadFinished;
+
+// images already in the server
+extern NSString * const kUploadStatusTypeUploaded;
 
 @interface TimelinePhotos (OpenPhoto)
 
@@ -39,9 +42,11 @@ extern NSString * const kUploadStatusTypeUploading;
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *)context;
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context;
 + (void) deleteAllTimelineInManagedObjectContext:(NSManagedObjectContext *)context;
-+ (int) howManyUploadingInManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (int) howEntitiesTimelinePhotosInManagedObjectContext:(NSManagedObjectContext *)context type:(NSString*) type;
++ (NSArray *) getNextWaitingToUploadInManagedObjectContext:(NSManagedObjectContext *)context qtd:(int) quantity;  
++ (void) deleteEntitiesInManagedObjectContext:(NSManagedObjectContext *)context state:(NSString*) state;  
 
 - (NSDictionary *) toDictionary;
-
 
 @end
