@@ -151,7 +151,11 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (self.beganUpdates) [self.tableView endUpdates];
+    if (self.beganUpdates) {
+        self.beganUpdates = NO;
+        [self.tableView endUpdates];
+    }
+    
 }
 
 - (void)endSuspensionOfUpdatesDueToContextChanges
@@ -166,12 +170,6 @@
     } else {
         [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
     }
-}
-
-- (void) dealloc
-{
-    [self.fetchedResultsController release];
-    [super dealloc];
 }
 
 @end

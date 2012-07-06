@@ -78,7 +78,7 @@
     
     // open the default view controller
     self.window.rootViewController = self.viewController;
-
+    
     // now if it is not authenticated, show the screen in the TOP of the view controller
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
@@ -180,12 +180,15 @@
      */
     
     NSLog("App applicationWillResignActived, save database");
-
+    
+    // set the Timeline objects with state Uploading to RETRY
+    [TimelinePhotos resetEntitiesOnStateUploadingInManagedObjectContext:[AppDelegate managedObjectContext]];
+    
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
     }
-
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -194,6 +197,10 @@
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
+    
+    // set the Timeline objects with state Uploading to RETRY
+    [TimelinePhotos resetEntitiesOnStateUploadingInManagedObjectContext:[AppDelegate managedObjectContext]];
+    
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);

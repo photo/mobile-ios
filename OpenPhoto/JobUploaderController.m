@@ -86,11 +86,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
-
-        if ( created == 0 ){
-            [TimelinePhotos deleteEntitiesInManagedObjectContext:[AppDelegate managedObjectContext] state:kUploadStatusTypeUploadFinished]; 
-            [TimelinePhotos deleteEntitiesInManagedObjectContext:[AppDelegate managedObjectContext] state:kUploadStatusTypeDuplicated];   
-        }
+        
         
         // TODO: if they are older than 4 minutes, but then to RETRY
         if (i < 2 && created > 0){
@@ -101,7 +97,6 @@
             // loop in the list and start to upload
             for (TimelinePhotos *photo in waitings){
                 photo.status = kUploadStatusTypeUploading;
-                
                 
                 // create a delegate
                 JobUploaderDelegate *delegate = [[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoData.length];
@@ -139,12 +134,25 @@
 #endif
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
+                                // save the url
+                                if (photo.syncedUrl){
+                                    // add to the sync list, with that we don't need to show photos already uploaded.
+                                    // in the case of edited images via Aviary, we don't save it.
+                                    SyncedPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncedPhotos" 
+                                                                                        inManagedObjectContext:[AppDelegate managedObjectContext]];
+                                    sync.filePath = photo.syncedUrl;
+                                    sync.status = kSyncedStatusTypeUploaded;
+                                    
+                                    // used to say which user uploaded this image
+                                    sync.userUrl = [AppDelegate user];
+                                }
+                                
                                 photo.status = kUploadStatusTypeUploadFinished; 
                                 photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
 #ifdef TEST_FLIGHT_ENABLED
                                 [TestFlight passCheckpoint:@"Image uploaded"];
-#endif
                                 
+#endif
                             });
                         }
                     }@catch (NSException* e) {
@@ -155,6 +163,19 @@
                             // check if it is duplicated
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
                                 [[e description] hasPrefix:@"You already uploaded this photo."]){
+                                
+                                // this photo is already uploaded
+                                if (photo.syncedUrl){
+                                    // add to the sync list, with that we don't need to show photos already uploaded.
+                                    // in the case of edited images via Aviary, we don't save it.
+                                    SyncedPhotos *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"SyncedPhotos" 
+                                                                                        inManagedObjectContext:[AppDelegate managedObjectContext]];
+                                    sync.filePath = photo.syncedUrl;
+                                    sync.status = kSyncedStatusTypeUploaded;
+                                    
+                                    // used to say which user uploaded this image
+                                    sync.userUrl = [AppDelegate user];
+                                }
                                 photo.status = kUploadStatusTypeDuplicated;
                             }else {
                                 photo.status = kUploadStatusTypeFailed;

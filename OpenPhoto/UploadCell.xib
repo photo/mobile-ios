@@ -146,7 +146,6 @@
 								<string key="NSFrame">{{272, 0}, {48, 43}}</string>
 								<reference key="NSSuperview" ref="932131171"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -155,7 +154,7 @@
 							<object class="IBUIProgressView" id="729681634">
 								<reference key="NSNextResponder" ref="932131171"/>
 								<int key="NSvFlags">-2147483356</int>
-								<string key="NSFrame">{{53, 17}, {211, 11}}</string>
+								<string key="NSFrame">{{53, 17}, {261, 11}}</string>
 								<reference key="NSSuperview" ref="932131171"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="956326349"/>

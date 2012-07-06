@@ -28,3 +28,6 @@
 [submodule "Frameworks/Nimbus"]
 	path = Frameworks/Nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "Frameworks/SDWebImage"]
+	path = Frameworks/SDWebImage
+	url = https://github.com/rs/SDWebImage.git
