@@ -17,10 +17,10 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
-#import <Foundation/Foundation.h>
-#import "TimelinePhotos.h"
-#import "NSDictionarySerializer.h"
 #import "JobUploaderDelegate.h"
+#import "NSDictionarySerializer.h"
+#import "TimelinePhotos+OpenPhoto.h"
+#import "SyncedPhotos+OpenPhoto.h"
 
 @interface JobUploaderController : NSObject 
 

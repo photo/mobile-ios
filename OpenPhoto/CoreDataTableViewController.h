@@ -7,7 +7,7 @@
 @interface CoreDataTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 // The controller (this class fetches nothing if this is not set).
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 // Causes the fetchedResultsController to refetch the data.
 // You almost certainly never need to call this.

@@ -362,7 +362,7 @@
 {
     if (item.tag == 1)
     {
-        // set that needs update Gallery
+        // set that needs update - Gallery
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
         
     }

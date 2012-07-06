@@ -80,6 +80,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", type];  
     [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+   
     
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
@@ -88,6 +89,21 @@ NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
     }
     
     return [result count];
+}
+
++ (void) resetEntitiesOnStateUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    if (error){
+        NSLog(@"Error to get how many uploading = %@",[error localizedDescription]);
+    }
+    
+    for (TimelinePhotos *model in matches) {
+        model.status = kUploadStatusTypeFailed;
+    }
 }
 
 
@@ -246,7 +262,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
     // status not Uploaded
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreated];   
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     // set max to return

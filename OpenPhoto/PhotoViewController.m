@@ -575,6 +575,7 @@
             
             // details form this upload
             uploadInfo.date = date;
+            uploadInfo.dateUploaded = date;
             uploadInfo.facebook = facebook;
             uploadInfo.twitter = twitter;
             uploadInfo.permission = permission;

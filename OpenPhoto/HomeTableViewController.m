@@ -76,12 +76,13 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"TimelinePhotos" inManagedObjectContext:[AppDelegate managedObjectContext]];
     [fetchRequest setEntity:entity];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:YES]];
+    fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO]];
     
     self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:[AppDelegate managedObjectContext]
                                                                           sectionNameKeyPath:nil
                                                                                    cacheName:@"cache_for_home_screen"];
+    
 }
 
 - (void)viewDidLoad
@@ -178,6 +179,9 @@
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            
+            // delete this object after 2 seconds
+            [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
             uploadCell.status.text=@"Retry uploading";
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
@@ -186,6 +190,9 @@
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0xC8BEA0);
+            
+            // delete this object after 2 seconds
+            [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }
         
         // decide if we show retry/cancel
@@ -344,8 +351,8 @@
 }
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Pressed delete button");
@@ -356,6 +363,10 @@
     }
 }
 
+- (void) deleteTimeline:(TimelinePhotos *) photo
+{
+    [[AppDelegate managedObjectContext] deleteObject:photo];
+}
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
@@ -363,8 +374,6 @@
 {
     _reloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-    
-    
     
     // if no picture, show image to upload
     if ([[self.fetchedResultsController fetchedObjects] count]== 0){
@@ -426,6 +435,7 @@
     [_refreshHeaderView release];
     [self.noPhotoImageView release];
     [coreLocationController release];
+    [self.fetchedResultsController release];
     [super dealloc];
 }
 

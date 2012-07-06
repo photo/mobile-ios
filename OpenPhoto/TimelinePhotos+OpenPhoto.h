@@ -46,7 +46,7 @@ extern NSString * const kUploadStatusTypeUploaded;
 + (int) howEntitiesTimelinePhotosInManagedObjectContext:(NSManagedObjectContext *)context type:(NSString*) type;
 + (NSArray *) getNextWaitingToUploadInManagedObjectContext:(NSManagedObjectContext *)context qtd:(int) quantity;  
 + (void) deleteEntitiesInManagedObjectContext:(NSManagedObjectContext *)context state:(NSString*) state;  
-
++ (void) resetEntitiesOnStateUploadingInManagedObjectContext:(NSManagedObjectContext *)context;
 - (NSDictionary *) toDictionary;
 
 @end
