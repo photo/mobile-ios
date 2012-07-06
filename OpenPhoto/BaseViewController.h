@@ -45,7 +45,7 @@
 #import "GalleryPhotos+OpenPhoto.h"
 #import "TimelinePhotos+OpenPhoto.h"
 
-@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate>{
+@interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate, UITabBarDelegate>{
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
     
     // for location

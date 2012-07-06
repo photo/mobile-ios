@@ -125,7 +125,7 @@
     if([[UITabBar class] respondsToSelector:@selector(appearance)]){
         // from iOS 5.0
         [viewController.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon4_active.png"] withFinishedUnselectedImage:image];
-
+        
     }
     return viewController;
     
@@ -355,6 +355,17 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return YES;
+}
+
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if (item.tag == 1)
+    {
+        // set that needs update Gallery
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
+        
+    }
 }
 
 - (void)dealloc {
