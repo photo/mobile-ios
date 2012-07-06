@@ -27,6 +27,9 @@
 // to avoid multiples loading
 @property (nonatomic) BOOL isLoading;
 
+// update the images
+@property (nonatomic) BOOL needsUpdate;
+
 @end
 
 @implementation GalleryViewController
@@ -34,6 +37,7 @@
 @synthesize tagController=_tagController;
 @synthesize showBack = _showBack;
 @synthesize isLoading = _isLoading;
+@synthesize needsUpdate = _needsUpdate;
 
 - (id)init{
     self = [super init];
@@ -71,11 +75,18 @@
         // show back button and loading control
         self.showBack = YES;
         self.isLoading = NO;
-
+        self.needsUpdate = YES;
+        
         // clean table when log out    
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationLoginNeeded       
+                                                   object:nil ];
+        
+        // needs update in screen  
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationNeededsUpdate    
                                                    object:nil ];
     }
     return self;
@@ -113,7 +124,10 @@
         [customBarItem release];
     }
     
-    [self loadImages];
+    if (self.needsUpdate){    
+        [self loadImages];
+        self.needsUpdate = NO;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -260,6 +274,8 @@
         self.photoSource = [[[PhotoSource alloc]
                              initWithTitle:@"Gallery"
                              photos:nil size:0 tag:nil] autorelease];
+    }else if ([notification.name isEqualToString:kNotificationNeededsUpdate]){
+        self.needsUpdate = YES;
     }
 }
 
