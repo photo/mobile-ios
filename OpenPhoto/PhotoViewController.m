@@ -586,6 +586,7 @@
             uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
             uploadInfo.status=kUploadStatusTypeCreated;
             uploadInfo.userUrl = [AppDelegate user];
+            uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
             
             if (url){
                 // add to the sync list, with that we don't need to show photos already uploaded.

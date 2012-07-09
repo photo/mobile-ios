@@ -51,7 +51,7 @@
             // start the thread
             while (running) {
                 // sleep for 5 seconds
-                [NSThread sleepForTimeInterval:5];
+                [NSThread sleepForTimeInterval:2];
                 // execute the method
                 [self executeJob];
             }       
@@ -77,11 +77,6 @@
 - (void) executeJob
 {
     NSLog(@"Executing uploader job");
-    
-    // in the main thread 
-    
-    // check how many are in state UPLOADING
-    
     
     dispatch_async(dispatch_get_main_queue(), ^{
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];

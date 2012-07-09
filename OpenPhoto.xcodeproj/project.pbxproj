@@ -20,6 +20,7 @@
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
+		CD18341215AB13D50003E666 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD18341115AB13D50003E666 /* TimelinePhotos.m */; };
 		CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B751506BC0100BFC316 /* CoreLocationController.m */; };
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
@@ -307,7 +308,6 @@
 		CDFCBE1815A2F11400ADE9A5 /* SyncedPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE1715A2F11400ADE9A5 /* SyncedPhotos.m */; };
 		CDFCBE1E15A2F11500ADE9A5 /* GalleryPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */; };
 		CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */; };
-		CDFDC6A115A5919800F33CD1 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A015A5919800F33CD1 /* TimelinePhotos.m */; };
 		CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A315A591EC00F33CD1 /* NSDictionarySerializer.m */; };
 		CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFDC6A615A5BC4500F33CD1 /* JobUploaderDelegate.m */; };
 		CDFF467D141559FE00D89578 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFF467C141559FE00D89578 /* Constants.m */; };
@@ -533,6 +533,8 @@
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CD18341015AB13D50003E666 /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
+		CD18341115AB13D50003E666 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
 		CD199B741506BC0100BFC316 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CD199B751506BC0100BFC316 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD199B771506E12400BFC316 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
@@ -972,8 +974,6 @@
 		CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryPhotos.m; sourceTree = "<group>"; };
 		CDFCBE1F15A2F69B00ADE9A5 /* JobUploaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderController.h; sourceTree = "<group>"; };
 		CDFCBE2015A2F69B00ADE9A5 /* JobUploaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobUploaderController.m; sourceTree = "<group>"; };
-		CDFDC69F15A5919800F33CD1 /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
-		CDFDC6A015A5919800F33CD1 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
 		CDFDC6A215A591EC00F33CD1 /* NSDictionarySerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionarySerializer.h; sourceTree = "<group>"; };
 		CDFDC6A315A591EC00F33CD1 /* NSDictionarySerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionarySerializer.m; sourceTree = "<group>"; };
 		CDFDC6A515A5BC4500F33CD1 /* JobUploaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderDelegate.h; sourceTree = "<group>"; };
@@ -1823,8 +1823,8 @@
 			isa = PBXGroup;
 			children = (
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CDFDC69F15A5919800F33CD1 /* TimelinePhotos.h */,
-				CDFDC6A015A5919800F33CD1 /* TimelinePhotos.m */,
+				CD18341015AB13D50003E666 /* TimelinePhotos.h */,
+				CD18341115AB13D50003E666 /* TimelinePhotos.m */,
 				CDFCBE1C15A2F11500ADE9A5 /* GalleryPhotos.h */,
 				CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */,
 				CDFCBE1615A2F11400ADE9A5 /* SyncedPhotos.h */,
@@ -2667,9 +2667,9 @@
 				CDFCBE1815A2F11400ADE9A5 /* SyncedPhotos.m in Sources */,
 				CDFCBE1E15A2F11500ADE9A5 /* GalleryPhotos.m in Sources */,
 				CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */,
-				CDFDC6A115A5919800F33CD1 /* TimelinePhotos.m in Sources */,
 				CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */,
 				CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */,
+				CD18341215AB13D50003E666 /* TimelinePhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
