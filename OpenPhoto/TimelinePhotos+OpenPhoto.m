@@ -30,7 +30,7 @@ NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
 NSString * const kUploadStatusTypeDuplicated = @"Duplicated";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
-NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
+NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 
 + (NSArray *) getUploadsInManagedObjectContext:(NSManagedObjectContext *) context
 {
@@ -262,7 +262,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"UploadFinished";
     // status not Uploaded
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreated];   
     
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     
     // set max to return

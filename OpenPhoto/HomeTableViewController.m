@@ -56,6 +56,18 @@
         
         // nothing is loading
         _reloading = NO;
+
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"TimelinePhotos" inManagedObjectContext:[AppDelegate managedObjectContext]];
+        [fetchRequest setEntity:entity];
+        
+        
+        fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"photoToUpload" ascending:NO],[NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO],nil];
+        
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                            managedObjectContext:[AppDelegate managedObjectContext]
+                                                                              sectionNameKeyPath:nil
+                                                                                       cacheName:nil];
     }
     return self;
 }
@@ -71,18 +83,6 @@
     // ask if user wants to enable location
     [coreLocationController.locMgr startUpdatingLocation];    
     [coreLocationController.locMgr stopUpdatingLocation];  
-    
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"TimelinePhotos" inManagedObjectContext:[AppDelegate managedObjectContext]];
-    [fetchRequest setEntity:entity];
-    fetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO]];
-    
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                        managedObjectContext:[AppDelegate managedObjectContext]
-                                                                          sectionNameKeyPath:nil
-                                                                                   cacheName:@"cache_for_home_screen"];
-    
 }
 
 - (void)viewDidLoad
