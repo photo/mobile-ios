@@ -148,6 +148,22 @@
                                 [TestFlight passCheckpoint:@"Image uploaded"];
                                 
 #endif
+                                
+                                // check if there is more files to upload
+                                // if not, refresh the Home page
+                                if ( [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading] == 0 &&
+                                    [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){
+                                    
+                                    // set that needs update - Home
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdateHome object:nil];
+                                    
+                                    // also lets save the Managed Context
+                                    NSError *saveError = nil;
+                                    if (![[AppDelegate managedObjectContext] save:&saveError]){
+                                        NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+                                    }
+                                }
+                                
                             });
                         }
                     }@catch (NSException* e) {
@@ -175,6 +191,14 @@
                             }else {
                                 photo.status = kUploadStatusTypeFailed;
                                 NSLog(@"Error to upload %@", [e description]);
+                            }
+                            
+                            
+                            if ( [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading] == 0 &&
+                                [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){
+                                
+                                // set that needs update - Home
+                                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdateHome object:nil];
                             }
                         });
                     }

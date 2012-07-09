@@ -56,7 +56,7 @@
         
         // nothing is loading
         _reloading = NO;
-
+        
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"TimelinePhotos" inManagedObjectContext:[AppDelegate managedObjectContext]];
         [fetchRequest setEntity:entity];
@@ -68,6 +68,12 @@
                                                                             managedObjectContext:[AppDelegate managedObjectContext]
                                                                               sectionNameKeyPath:nil
                                                                                        cacheName:nil];
+        
+        // needs update in screen  
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationNeededsUpdateHome  
+                                                   object:nil ];
     }
     return self;
 }
@@ -342,8 +348,7 @@
     
     
     // first decide if we have to show a upload cell or photo cell
-    if ([photo.status isEqualToString:kUploadStatusTypeDuplicated] ||
-        [photo.status isEqualToString:kUploadStatusTypeFailed]){
+    if ([photo.status isEqualToString:kUploadStatusTypeFailed]){
         return YES;
     }
     
@@ -490,5 +495,15 @@
     OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
     [alert showAlert];
     [alert release];
+}
+
+- (void) eventHandler: (NSNotification *) notification{
+#ifdef DEVELOPMENT_ENABLED    
+    NSLog(@"###### Event triggered: %@", notification);
+#endif
+    
+    if ([notification.name isEqualToString:kNotificationNeededsUpdateHome]){
+        [self loadNewestPhotosIntoCoreData];
+    }
 }
 @end

@@ -63,6 +63,7 @@ NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures";
 NSString * const kNotificationCheckRefreshPictures=@"notification_check_refresh_pictures"; 
 NSString * const kNotificationShareInformationToFacebookOrTwitter=@"notification_share_information_to_facebook_or_twitter";
 NSString * const kNotificationNeededsUpdate=@"notification_needs_update";
+NSString * const kNotificationNeededsUpdateHome=@"notification_needs_update_home_screen";
 
 /*
  * Constants for the table in the upload screen
