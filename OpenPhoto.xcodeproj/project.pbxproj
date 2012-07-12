@@ -20,7 +20,6 @@
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
-		CD18341215AB13D50003E666 /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD18341115AB13D50003E666 /* TimelinePhotos.m */; };
 		CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B751506BC0100BFC316 /* CoreLocationController.m */; };
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
@@ -44,6 +43,7 @@
 		CD22C9A91439123000E98B0B /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A31439123000E98B0B /* QSHttpClient.m */; };
 		CD22C9AA1439123000E98B0B /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A51439123000E98B0B /* QSStrings.m */; };
 		CD2DBF38159473D300B19784 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2DBF37159473D300B19784 /* HomeTableViewController.m */; };
+		CD2DD30F15AF19F9002EC35A /* TimelinePhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2DD30E15AF19F9002EC35A /* TimelinePhotos.m */; };
 		CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */; };
 		CD45C11E14869F8600CAE2FB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C11C14869F8500CAE2FB /* Icon.png */; };
 		CD45C11F14869F8600CAE2FB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C11D14869F8500CAE2FB /* Icon@2x.png */; };
@@ -533,8 +533,6 @@
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		CD18341015AB13D50003E666 /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
-		CD18341115AB13D50003E666 /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
 		CD199B741506BC0100BFC316 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CD199B751506BC0100BFC316 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD199B771506E12400BFC316 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
@@ -574,6 +572,8 @@
 		CD22C9A61439123000E98B0B /* QSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSUtilities.h; path = Frameworks/QSUtilities/QSUtilities.h; sourceTree = SOURCE_ROOT; };
 		CD2DBF36159473D300B19784 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		CD2DBF37159473D300B19784 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		CD2DD30D15AF19F9002EC35A /* TimelinePhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelinePhotos.h; sourceTree = "<group>"; };
+		CD2DD30E15AF19F9002EC35A /* TimelinePhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelinePhotos.m; sourceTree = "<group>"; };
 		CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		CD45C11C14869F8500CAE2FB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = OpenPhoto/images/Icon.png; sourceTree = SOURCE_ROOT; };
 		CD45C11D14869F8500CAE2FB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "OpenPhoto/images/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -1822,9 +1822,9 @@
 		CDDCA458150E090F00EE1DB0 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				CD2DD30D15AF19F9002EC35A /* TimelinePhotos.h */,
+				CD2DD30E15AF19F9002EC35A /* TimelinePhotos.m */,
 				CDDCA459150E092F00EE1DB0 /* OpenPhoto.xcdatamodeld */,
-				CD18341015AB13D50003E666 /* TimelinePhotos.h */,
-				CD18341115AB13D50003E666 /* TimelinePhotos.m */,
 				CDFCBE1C15A2F11500ADE9A5 /* GalleryPhotos.h */,
 				CDFCBE1D15A2F11500ADE9A5 /* GalleryPhotos.m */,
 				CDFCBE1615A2F11400ADE9A5 /* SyncedPhotos.h */,
@@ -2669,7 +2669,7 @@
 				CDFCBE2115A2F69B00ADE9A5 /* JobUploaderController.m in Sources */,
 				CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */,
 				CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */,
-				CD18341215AB13D50003E666 /* TimelinePhotos.m in Sources */,
+				CD2DD30F15AF19F9002EC35A /* TimelinePhotos.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  TimelinePhotos.h
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 09/07/12.
+//  Created by Patrick Santana on 12/07/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSNumber * permission;
 @property (nonatomic, retain) NSData * photoData;
 @property (nonatomic, retain) NSString * photoPageUrl;
+@property (nonatomic, retain) NSNumber * photoToUpload;
 @property (nonatomic, retain) NSNumber * photoUploadProgress;
 @property (nonatomic, retain) NSData * photoUploadResponse;
 @property (nonatomic, retain) NSString * photoUrl;
@@ -31,6 +32,6 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * twitter;
 @property (nonatomic, retain) NSString * userUrl;
-@property (nonatomic, retain) NSNumber * photoToUpload;
+@property (nonatomic, retain) NSString * photoUploadMultiplesUrl;
 
 @end

@@ -186,6 +186,33 @@
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
             
+            // check if it needs share for twitter or facebook
+            // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
+            if ([photo.twitter boolValue] ||  [photo.facebook boolValue]){
+#ifdef DEVELOPMENT_ENABLED
+                NSLog(@"User wants to share uploaded photo");
+#endif
+#ifdef TEST_FLIGHT_ENABLED
+                if ([photo.twitter boolValue]){
+                    [TestFlight passCheckpoint:@"Twitter"];
+                }else{
+                    // facebook
+                    [TestFlight passCheckpoint:@"Facebook"];
+                }
+#endif
+
+                NSDictionary *responsePhoto = [NSDictionarySerializer nsDataToNSDictionary:photo.photoUploadResponse];        
+
+                // parameters from upload
+                NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
+                NSString *shareDetails = [responsePhoto objectForKey:@"url"]; 
+                if (photo.photoUploadMultiplesUrl){
+                    shareDetails = photo.photoUploadMultiplesUrl;
+                }
+                NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[photo.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
+            } 
+            
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
@@ -216,6 +243,11 @@
         if (newestPhotoCell == nil) {
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"NewestPhotoCell" owner:nil options:nil];
             newestPhotoCell = [topLevelObjects objectAtIndex:0];
+            
+            // change the color if it is allowed
+            if( [[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0){
+                newestPhotoCell.activity.color=UIColorFromRGB(0xE6501E);
+            }
         }
         
         

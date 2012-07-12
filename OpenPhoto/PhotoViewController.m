@@ -31,7 +31,8 @@
                    permission:(NSNumber *) permission
                          tags:(NSString *) tags
                         title:(NSString *) title 
-                          url:(NSURL *) url;
+                          url:(NSURL *) url
+                     groupUrl:(NSString *) urlGroup;
 
 - (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
                            shareFacebook:(NSNumber *) facebook
@@ -39,7 +40,8 @@
                               permission:(NSNumber *) permission
                                     tags:(NSString *) tags
                                    title:(NSString *) title 
-                                     url:(NSURL *) url;
+                                     url:(NSURL *) url
+                                groupUrl:(NSString *) urlGroup;
 
 // this method is used in case of in Multiples Uploads the user choose only one picure. we should enable him to edit the image
 - (void) loadImageToEdit:(NSURL *) url;
@@ -116,7 +118,7 @@
         self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y - 10);
         self.uploadButton.center = CGPointMake([self.uploadButton  center].x, [self.uploadButton  center].y - 80);
     }else{
-           self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y + 30);
+        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y + 30);
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
@@ -378,7 +380,8 @@
                                 permission:permission
                                       tags:tags
                                      title:title
-                                       url:nil];
+                                       url:nil
+                                  groupUrl:nil];
             }else if (self.images && [self.images count]>1){
                 // bunch of photos and more than one
                 int i = [self.images count];
@@ -390,17 +393,26 @@
                                                    permission:permission
                                                          tags:tags 
                                                         title:title
-                                                          url:url];
+                                                          url:url
+                                                     groupUrl:nil];
+                        
+                        
                     }else{
                         // this is the last one,
                         // so we do the sharing if needed
+                        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                        
+                        // create the url to connect to OpenPhoto
+                        NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kOpenPhotoServer], [self.images count]];
+                        
                         [self loadDataAndSaveEntityUploadDate:[NSDate date] 
                                                 shareFacebook:facebook 
                                                  shareTwitter:twitter
                                                    permission:permission
                                                          tags:tags
                                                         title:title
-                                                          url:url];
+                                                          url:url
+                                                     groupUrl:urlString];
                     }
                     
                     // decrease until the first one
@@ -414,7 +426,8 @@
                                            permission:permission
                                                  tags:tags
                                                 title:title
-                                                  url:self.image];
+                                                  url:self.image
+                                             groupUrl:nil];
             }
             
             
@@ -494,6 +507,7 @@
                                     tags:(NSString *) tags
                                    title:(NSString *) title 
                                      url:(NSURL *) url
+                                groupUrl:(NSString *) urlGroup
 {
     // load image and then save it to database
     // via block
@@ -528,7 +542,8 @@
                         permission:permission
                               tags:tags
                              title:title
-                               url:url];
+                               url:url
+                          groupUrl:urlGroup];
     };
     
     // block for failed image
@@ -566,6 +581,7 @@
                          tags:(NSString *) tags
                         title:(NSString *) title 
                           url:(NSURL *) url
+                     groupUrl:(NSString *) urlGroup
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (image != nil){
@@ -587,6 +603,7 @@
             uploadInfo.status=kUploadStatusTypeCreated;
             uploadInfo.userUrl = [AppDelegate user];
             uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
+            uploadInfo.photoUploadMultiplesUrl = urlGroup;
             
             if (url){
                 // add to the sync list, with that we don't need to show photos already uploaded.
