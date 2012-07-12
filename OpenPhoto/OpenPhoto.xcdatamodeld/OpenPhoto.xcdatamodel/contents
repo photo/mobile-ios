@@ -29,6 +29,7 @@
         <attribute name="photoData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoPageUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoToUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="photoUploadMultiplesUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoUploadProgress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="photoUploadResponse" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
