@@ -2889,6 +2889,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"”$(OBJROOT)/UninstalledProducts/include”",
 					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -2896,6 +2897,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2998,6 +3000,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"”$(OBJROOT)/UninstalledProducts/include”",
 					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -3005,6 +3008,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3029,6 +3033,7 @@
 					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
 					"”$(OBJROOT)/UninstalledProducts/include”",
 					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -3036,6 +3041,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary\"",
+					"\"$(SRCROOT)/Frameworks/SDWebImage\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
