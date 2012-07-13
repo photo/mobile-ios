@@ -200,9 +200,9 @@
                     [TestFlight passCheckpoint:@"Facebook"];
                 }
 #endif
-
+                
                 NSDictionary *responsePhoto = [NSDictionarySerializer nsDataToNSDictionary:photo.photoUploadResponse];        
-
+                
                 // parameters from upload
                 NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
                 NSString *shareDetails = [responsePhoto objectForKey:@"url"]; 
@@ -288,75 +288,46 @@
         // tags
         [newestPhotoCell tags].text=photo.tags;
         
-        //Load images from web asynchronously with GCD 
-        if(!photo.photoData && photo.photoUrl != nil){
-            newestPhotoCell.photo.hidden = YES;
-            newestPhotoCell.private.hidden = YES;
+        // set images --> placeholderImage:[UIImage imageNamed:@"placeholder.png"]
+        [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
+                       placeholderImage:nil];
+        
+        [newestPhotoCell.photo.layer setCornerRadius:5.0f];
+        newestPhotoCell.photo.layer.masksToBounds = YES;
+        
+        [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+        [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
+        [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
+        [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+        
+        
+        // set details of private or not
+        if ([photo.permission boolValue] == NO)
+            newestPhotoCell.private.hidden=NO;
+        else
+            newestPhotoCell.private.hidden=YES;
+        
+        
+        // set details geoposition
+        if (photo.latitude != nil && photo.longitude != nil){
+            // show button
+            newestPhotoCell.geoPositionButton.hidden=NO;
+            
+            // set the latitude and longitude
+            newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+        }else {
             newestPhotoCell.geoPositionButton.hidden=YES;
-            newestPhotoCell.shareButton.hidden=YES;
-            
-            [newestPhotoCell.activity startAnimating];
-            newestPhotoCell.activity.hidden = NO;
-            
-            if ( [AppDelegate internetActive] == YES ){
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoUrl]];
-                    
-#ifdef DEVELOPMENT_ENABLED 
-                    NSLog(@"URL do download is = %@",photo.photoUrl);
-#endif
-                    
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        photo.photoData = data;
-                        UIImage *thumbnail = [UIImage imageWithData:data];
-                        
-                        // set details on cell
-                        [newestPhotoCell.activity stopAnimating];
-                        newestPhotoCell.activity.hidden = YES;
-                        newestPhotoCell.photo.hidden = NO;               
-                        newestPhotoCell.photo.image = thumbnail;
-                    });
-                });
-            }
-        }else{
-            newestPhotoCell.photo.image = [UIImage imageWithData:photo.photoData];
-            [newestPhotoCell.photo.layer setCornerRadius:5.0f];
-            newestPhotoCell.photo.layer.masksToBounds = YES;
-            
-            [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-            [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
-            [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
-            [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-            
-            
-            // set details of private or not
-            if ([photo.permission boolValue] == NO)
-                newestPhotoCell.private.hidden=NO;
-            else
-                newestPhotoCell.private.hidden=YES;
-            
-            
-            // set details geoposition
-            if (photo.latitude != nil && photo.longitude != nil){
-                // show button
-                newestPhotoCell.geoPositionButton.hidden=NO;
-                
-                // set the latitude and longitude
-                newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
-            }else {
-                newestPhotoCell.geoPositionButton.hidden=YES;
-            }
-            
-            // share details
-            if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
-                newestPhotoCell.shareButton.hidden=NO;
-                newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                newestPhotoCell.newestPhotosTableViewController = self;
-            }else{
-                newestPhotoCell.shareButton.hidden=YES;
-            }
         }
+        
+        // share details
+        if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
+            newestPhotoCell.shareButton.hidden=NO;
+            newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+            newestPhotoCell.newestPhotosTableViewController = self;
+        }else{
+            newestPhotoCell.shareButton.hidden=YES;
+        }
+        
         
         return newestPhotoCell;
     }

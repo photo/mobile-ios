@@ -29,6 +29,9 @@
 #import "CoreDataTableViewController.h"
 #import "SHA1.h"
 
+// image cache
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate>{
  
     EGORefreshTableHeaderView *_refreshHeaderView;
