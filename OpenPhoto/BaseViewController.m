@@ -339,7 +339,7 @@
         [controller release];
     }else{
         // no photo select
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"You didn't select any photo" duration:5000];
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
         [alert showAlert];
         [alert release];
         
