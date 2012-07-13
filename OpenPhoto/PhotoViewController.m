@@ -498,6 +498,9 @@
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Preparing";
+    
+    // next visit to Newest Home does not need update
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDisableUpdateHome object:nil];
 }
 
 - (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
