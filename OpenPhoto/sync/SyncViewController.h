@@ -41,6 +41,7 @@
     NSMutableArray *imagesAlreadyUploaded;
     
     BOOL loaded;
+    int assetsNumber;
 }
 
 @property (nonatomic, assign) id parent;
