@@ -115,10 +115,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     if (self.images){
-        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y - 10);
-        self.uploadButton.center = CGPointMake([self.uploadButton  center].x, [self.uploadButton  center].y - 80);
+        self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 10, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height);
+        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 80, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);       
     }else{
-        self.detailsPictureTable.center = CGPointMake([self.detailsPictureTable  center].x, [self.detailsPictureTable  center].y + 30);
+                self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y + 30, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height);
+        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 10, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
