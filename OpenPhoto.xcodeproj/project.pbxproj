@@ -188,6 +188,7 @@
 		CD65458914F3082600CC5F5B /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458814F3082600CC5F5B /* ImageIO.framework */; };
 		CD65458B14F3086100CC5F5B /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */; };
 		CD6834CE1406596200468742 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD6834CD1406596200468742 /* Settings.bundle */; };
+		CD6AEE1015B011FF00DF4947 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD6AEE0915B0116700DF4947 /* libSDWebImage.a */; };
 		CD705140153099C50037E5BB /* home-brown-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD70513E153099C50037E5BB /* home-brown-arrow.png */; };
 		CD705141153099C50037E5BB /* home-brown-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD70513F153099C50037E5BB /* home-brown-arrow@2x.png */; };
 		CD7A128114391542001A88E0 /* IASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7A125B14391542001A88E0 /* IASKAppSettingsViewController.m */; };
@@ -422,6 +423,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = BEF31F390F352DF5000DE5D2;
 			remoteInfo = "extThree20JSON+SBJSON";
+		};
+		CD6AEE0815B0116700DF4947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		CD6AEE0A15B0116700DF4947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		CD6AEE0C15B0116700DF4947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage ARC+MKAnnotation";
+		};
+		CD6AEE0E15B011DD00DF4947 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53922D6E148C55810056699D;
+			remoteInfo = SDWebImage;
 		};
 		CD761571140FDF52005AD992 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -792,6 +821,7 @@
 		CD65458814F3082600CC5F5B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		CD6834CD1406596200468742 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Frameworks/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		CD70513E153099C50037E5BB /* home-brown-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-brown-arrow.png"; path = "OpenPhoto/images/home-brown-arrow.png"; sourceTree = SOURCE_ROOT; };
 		CD70513F153099C50037E5BB /* home-brown-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-brown-arrow@2x.png"; path = "OpenPhoto/images/home-brown-arrow@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD7A125A14391542001A88E0 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IASKAppSettingsViewController.h; sourceTree = "<group>"; };
@@ -1019,6 +1049,7 @@
 				CDF1C95013E1C45C0018AD0B /* CoreGraphics.framework in Frameworks */,
 				CD22C970143911A500E98B0B /* libTestFlight.a in Frameworks */,
 				CDC8993A146364E900C50A00 /* libAviarySDK-universal.a in Frameworks */,
+				CD6AEE1015B011FF00DF4947 /* libSDWebImage.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,6 +1706,16 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		CD6AEE0015B0116600DF4947 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD6AEE0915B0116700DF4947 /* libSDWebImage.a */,
+				CD6AEE0B15B0116700DF4947 /* libSDWebImageARC.a */,
+				CD6AEE0D15B0116700DF4947 /* libSDWebImageARC+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CD7A125914391542001A88E0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1891,6 +1932,7 @@
 				320A5A189C235877202780D0 /* Three20Network.xcodeproj */,
 				320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */,
 				CDF4462D13E1C5A8007E8F72 /* extThree20JSON.xcodeproj */,
+				CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */,
 				CD4E10CD151204A700718923 /* Twitter.framework */,
 				CD65458A14F3086000CC5F5B /* AssetsLibrary.framework */,
 				CD65458814F3082600CC5F5B /* ImageIO.framework */,
@@ -2123,6 +2165,7 @@
 				320F2C48872C2E2C4DF86201 /* PBXTargetDependency */,
 				320A5A189C235877202780D1 /* PBXTargetDependency */,
 				320CC833B8AF0ACFD35E6221 /* PBXTargetDependency */,
+				CD6AEE0F15B011DD00DF4947 /* PBXTargetDependency */,
 			);
 			name = OpenPhoto;
 			productName = OpenPhoto;
@@ -2172,6 +2215,10 @@
 				{
 					ProductGroup = CDF4462E13E1C5A8007E8F72 /* Products */;
 					ProjectRef = CDF4462D13E1C5A8007E8F72 /* extThree20JSON.xcodeproj */;
+				},
+				{
+					ProductGroup = CD6AEE0015B0116600DF4947 /* Products */;
+					ProjectRef = CD6AEDFF15B0116600DF4947 /* SDWebImage.xcodeproj */;
 				},
 				{
 					ProductGroup = 320D7DCCE32703ACAB9A45E3 /* Products */;
@@ -2258,6 +2305,27 @@
 			fileType = archive.ar;
 			path = libThree20UI.a;
 			remoteRef = 320F2C48872C2E2C4DF86206 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD6AEE0915B0116700DF4947 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = CD6AEE0815B0116700DF4947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD6AEE0B15B0116700DF4947 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = CD6AEE0A15B0116700DF4947 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD6AEE0D15B0116700DF4947 /* libSDWebImageARC+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImageARC+MKAnnotation.a";
+			remoteRef = CD6AEE0C15B0116700DF4947 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CD761572140FDF52005AD992 /* libThree20Network-Xcode3.2.5.a */ = {
@@ -2726,6 +2794,11 @@
 			name = "extThree20JSON+SBJSON";
 			targetProxy = CD3C7A1413EC72AA006ED46C /* PBXContainerItemProxy */;
 		};
+		CD6AEE0F15B011DD00DF4947 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SDWebImage;
+			targetProxy = CD6AEE0E15B011DD00DF4947 /* PBXContainerItemProxy */;
+		};
 		CDF1C97213E1C45C0018AD0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CDF1C94613E1C45C0018AD0B /* OpenPhoto */;
@@ -2811,6 +2884,12 @@
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"”$(OBJROOT)/UninstalledProducts/include”",
+					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2914,6 +2993,12 @@
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"”$(OBJROOT)/UninstalledProducts/include”",
+					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -2939,6 +3024,12 @@
 				GCC_PREFIX_HEADER = "OpenPhoto/OpenPhoto-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../three20\"",
+					"\"$(BUILT_PRODUCTS_DIR)/../../three20\"",
+					"”$(OBJROOT)/UninstalledProducts/include”",
+					"”$(TARGET_BUILD_DIR)/usr/local/lib/include”",
+				);
 				INFOPLIST_FILE = "OpenPhoto/OpenPhoto-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
