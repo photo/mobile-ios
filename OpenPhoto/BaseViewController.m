@@ -336,6 +336,7 @@
         
         PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
         [picker pushViewController:controller animated:YES];
+        [controller release];
     }else{
         // no photo select
         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"You didn't select any photo" duration:5000];
