@@ -21,11 +21,15 @@
 #import "HomeTableViewController.h"
 
 @interface HomeTableViewController ()
+// refresh the list. It is not necessary when comes from photo
+@property (nonatomic) BOOL needsUpdate;
+
 - (void)doneLoadingTableViewData;
 @end
 
 @implementation HomeTableViewController
 @synthesize noPhotoImageView=_noPhotoImageView;
+@synthesize needsUpdate = _needsUpdate;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -72,7 +76,15 @@
         // needs update in screen  
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(eventHandler:)
-                                                     name:kNotificationNeededsUpdateHome  
+                                                     name:kNotificationNeededsUpdateHome 
+                                                   object:nil ];
+        
+        // set that it always need update
+        self.needsUpdate = YES;
+        // if we don't need update, it needs to receive a notification
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationDisableUpdateHome 
                                                    object:nil ];
     }
     return self;
@@ -80,8 +92,13 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];   
-    [self loadNewestPhotosIntoCoreData];
     
+    if (self.needsUpdate == YES){
+        [self loadNewestPhotosIntoCoreData];
+    }else{
+        // next time it can be reloaded
+        self.needsUpdate = YES;
+    }
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Newest Photos Loaded"];
 #endif
@@ -287,46 +304,57 @@
         
         // tags
         [newestPhotoCell tags].text=photo.tags;
+        newestPhotoCell.private.hidden=YES;
+        newestPhotoCell.shareButton.hidden=YES;
+        newestPhotoCell.geoPositionButton.hidden=YES;
         
-        // set images --> placeholderImage:[UIImage imageNamed:@"placeholder.png"]
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
-                       placeholderImage:nil];
-        
-        [newestPhotoCell.photo.layer setCornerRadius:5.0f];
-        newestPhotoCell.photo.layer.masksToBounds = YES;
-        
-        [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-        [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
-        [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
-        [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-        
-        
-        // set details of private or not
-        if ([photo.permission boolValue] == NO)
-            newestPhotoCell.private.hidden=NO;
-        else
-            newestPhotoCell.private.hidden=YES;
-        
-        
-        // set details geoposition
-        if (photo.latitude != nil && photo.longitude != nil){
-            // show button
-            newestPhotoCell.geoPositionButton.hidden=NO;
-            
-            // set the latitude and longitude
-            newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
-        }else {
-            newestPhotoCell.geoPositionButton.hidden=YES;
-        }
-        
-        // share details
-        if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
-            newestPhotoCell.shareButton.hidden=NO;
-            newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-            newestPhotoCell.newestPhotosTableViewController = self;
-        }else{
-            newestPhotoCell.shareButton.hidden=YES;
-        }
+                              placeholderImage:nil 
+                                       success:^(UIImage *image) 
+         {
+             [newestPhotoCell.photo.layer setCornerRadius:5.0f];
+             newestPhotoCell.photo.layer.masksToBounds = YES;
+             
+             [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+             [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
+             [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
+             [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+             
+             
+             // set details of private or not
+             if ([photo.permission boolValue] == NO)
+                 newestPhotoCell.private.hidden=NO;
+             else
+                 newestPhotoCell.private.hidden=YES;
+             
+             
+             // set details geoposition
+             if (photo.latitude != nil && photo.longitude != nil){
+                 // show button
+                 newestPhotoCell.geoPositionButton.hidden=NO;
+                 
+                 // set the latitude and longitude
+                 newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+             }else {
+                 newestPhotoCell.geoPositionButton.hidden=YES;
+             }
+             
+             // share details
+             if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
+                 newestPhotoCell.shareButton.hidden=NO;
+                 newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+                 newestPhotoCell.newestPhotosTableViewController = self;
+             }else{
+                 newestPhotoCell.shareButton.hidden=YES;
+             }
+         }
+                                       failure:^(NSError *error) 
+         {
+             OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+             [alert showAlert];
+             [alert release];
+             
+         }];
         
         
         return newestPhotoCell;
@@ -468,7 +496,7 @@
                 @try {
                     // get factory for OpenPhoto Service
                     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                    NSArray *result = [service fetchNewestPhotosMaxResult:50];
+                    NSArray *result = [service fetchNewestPhotosMaxResult:25];
                     [service release];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -507,6 +535,8 @@
     
     if ([notification.name isEqualToString:kNotificationNeededsUpdateHome]){
         [self loadNewestPhotosIntoCoreData];
+    }else if ([notification.name isEqualToString:kNotificationDisableUpdateHome]){
+        self.needsUpdate = NO;   
     }
 }
 @end
