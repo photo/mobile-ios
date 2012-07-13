@@ -77,6 +77,7 @@
     // reset core data
     [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
+    [SyncedPhotos deleteAllSyncedPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [[AppDelegate managedObjectContext] reset];    
 
     NSError *saveError = nil;

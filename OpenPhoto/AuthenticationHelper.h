@@ -20,6 +20,7 @@
 #import "WebService.h"
 #import "GalleryPhotos+OpenPhoto.h"
 #import "TimelinePhotos+OpenPhoto.h"
+#import "SyncedPhotos+OpenPhoto.h"
 #import "OpenPhotoServiceFactory.h"
 
 @interface AuthenticationHelper : NSObject{

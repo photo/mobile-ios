@@ -26,5 +26,6 @@
 extern NSString * const kSyncedStatusTypeUploaded;
 
 + (NSMutableArray *) getPathsInManagedObjectContext:(NSManagedObjectContext *)context;
++ (void) deleteAllSyncedPhotosInManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

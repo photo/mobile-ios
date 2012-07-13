@@ -49,5 +49,29 @@ NSString * const kSyncedStatusTypeUploaded = @"Uploaded";
     
     return array;
 }
++ (void) deleteAllSyncedPhotosInManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"SyncedPhotos" inManagedObjectContext:context]];
+    [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
+    
+    NSError *error = nil;
+    NSArray *photos = [context executeFetchRequest:fetchRequest error:&error];
+    if (error){
+        NSLog(@"Error getting timeline to delete all from managed object context = %@",[error localizedDescription]);
+    }
+    
+    for (NSManagedObject *photo in photos) {
+        [context deleteObject:photo];
+    }
+    
+    NSError *saveError = nil;
+    if (![context save:&saveError]){
+        NSLog(@"Error delete all photos from managed object context = %@",[error localizedDescription]);
+    }   
+    
+    // now we can release the object
+    [fetchRequest release];  
+}
 
 @end
