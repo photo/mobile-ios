@@ -24,6 +24,7 @@
     BOOL hidden;
 }
 -(void) switchedShowUploaded;
+-(void) loadSavedPhotos;
 @end
 
 @implementation SyncViewController
@@ -56,7 +57,6 @@
             // set the sync to YES
             hidden = YES;
         }
-        
     }
     return self;
 }
@@ -132,46 +132,8 @@
     // load all urls
     self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
     
-    // the Saved Photos Album
-    dispatch_async(dispatch_get_main_queue(), ^
-                   {                       
-                       // Group enumerator Block
-                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
-                       {
-                           if (group == nil) 
-                           {
-                               return;
-                           }
-                           
-                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
-                               self.assetGroup = group;
-                               [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-                               hud.labelText = @"Loading";
-                               
-                               // with the local group, we can load the images                           
-                               [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-                           }
-                       };
-                       
-                       // Group Enumerator Failure Block
-                       void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-                           
-                           UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                           [alert show];
-                           [alert release];
-                           
-                           NSLog(@"A problem occured %@", [error description]);	                                 
-                       };	
-                       
-                       // Show only the Saved Photos
-                       [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                                              usingBlock:assetGroupEnumerator 
-                                            failureBlock:assetGroupEnumberatorFailure];
-                       
-                   });      
+    [self loadSavedPhotos];
 }
-
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -199,33 +161,38 @@
 #ifdef DEVELOPMENT_ENABLED 
     NSLog(@"enumerating photos");
 #endif
+    NSLog("Assets Number %i",assetsNumber);
+    NSLog("numberOfAssets %i",[self.assetGroup numberOfAssets]); 
     
-    [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
-     {         
-         if(result == nil) 
-         {
-             return;
-         }
-         
-         // check if user already uploaded
-         NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
-         
-         BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
-         if (!hidden || (hidden && !alreadyUploaded)){
-             ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
-             [elcAsset setParent:self];
-             [self.elcAssets addObject:elcAsset];
-             [elcAsset release];
-         }
-     }];   
-    
+    if ([self.assetGroup numberOfAssets] != assetsNumber){
+        // we need to load again
+        [self loadSavedPhotos];
+    }else{
+        [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
+         {         
+             if(result == nil) 
+             {
+                 return;
+             }
+             
+             // check if user already uploaded
+             NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
+             
+             BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
+             if (!hidden || (hidden && !alreadyUploaded)){
+                 ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
+                 [elcAsset setParent:self];
+                 [self.elcAssets addObject:elcAsset];
+                 [elcAsset release];
+             }
+         }];   
+        
 #ifdef DEVELOPMENT_ENABLED     
-    NSLog(@"done enumerating photos");
+        NSLog(@"done enumerating photos");
 #endif
-    
-    [self.tableView reloadData];
-    [self.navigationItem setTitle:@"Pick Photos"];
-    
+        [self.tableView reloadData];
+        [self.navigationItem setTitle:@"Pick Photos"];
+    }
     [pool release];
     
     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
@@ -366,6 +333,50 @@
     OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:message duration:3000];
     [alert showAlert];
     [alert release];}
+
+- (void) loadSavedPhotos
+{
+    // the Saved Photos Album
+    dispatch_async(dispatch_get_main_queue(), ^
+                   {                       
+                       // Group enumerator Block
+                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
+                       {
+                           if (group == nil) 
+                           {
+                               return;
+                           }
+                           
+                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
+                               self.assetGroup = group;
+                               [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                               hud.labelText = @"Loading";
+                               assetsNumber = [self.assetGroup numberOfAssets];
+                               
+                               // with the local group, we can load the images                           
+                               [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
+                           }
+                       };
+                       
+                       // Group Enumerator Failure Block
+                       void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
+                           
+                           UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                           [alert show];
+                           [alert release];
+                           
+                           NSLog(@"A problem occured %@", [error description]);	                                 
+                       };	
+                       
+                       // Show only the Saved Photos
+                       [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                              usingBlock:assetGroupEnumerator 
+                                            failureBlock:assetGroupEnumberatorFailure];
+                       
+                   });      
+    
+}
 
 - (void)dealloc 
 {
