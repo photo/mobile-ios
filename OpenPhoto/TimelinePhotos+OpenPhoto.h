@@ -23,6 +23,7 @@
 #import "SHA1.h"
 
 // constant
+extern NSString * const kUploadStatusTypeCreating; // this is used while we are creating all UPLOAD entries. After all of them are finish, we changed to CREATED
 extern NSString * const kUploadStatusTypeCreated;
 extern NSString * const kUploadStatusTypeFailed;
 extern NSString * const kUploadStatusTypeDuplicated;
@@ -47,6 +48,8 @@ extern NSString * const kUploadStatusTypeUploaded;
 + (NSArray *) getNextWaitingToUploadInManagedObjectContext:(NSManagedObjectContext *)context qtd:(int) quantity;  
 + (void) deleteEntitiesInManagedObjectContext:(NSManagedObjectContext *)context state:(NSString*) state;  
 + (void) resetEntitiesOnStateUploadingInManagedObjectContext:(NSManagedObjectContext *)context;
+
++ (void) setUploadsStatusToCreatedInManagedObjectContext:(NSManagedObjectContext *)context;
 - (NSDictionary *) toDictionary;
 
 @end

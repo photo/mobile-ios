@@ -25,6 +25,7 @@
 //
 // Constast for Upload Status
 //
+NSString * const kUploadStatusTypeCreating = @"Creating";
 NSString * const kUploadStatusTypeCreated = @"Created";
 NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
@@ -299,6 +300,22 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     [fetchRequest release];
 }
 
++ (void) setUploadsStatusToCreatedInManagedObjectContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreating];  
+    
+    NSError *error = nil;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    if (error){
+        NSLog(@"Error to get how many uploading = %@",[error localizedDescription]);
+    }
+    
+    for (TimelinePhotos *model in matches) {
+        model.status = kUploadStatusTypeCreated;
+    }
+
+}
 
 - (NSDictionary *) toDictionary
 {

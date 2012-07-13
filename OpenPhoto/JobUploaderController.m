@@ -75,9 +75,7 @@
 
 
 - (void) executeJob
-{
-    NSLog(@"Executing uploader job");
-    
+{   
     dispatch_async(dispatch_get_main_queue(), ^{
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
@@ -94,7 +92,7 @@
                 photo.status = kUploadStatusTypeUploading;
                 
                 // create a delegate
-                JobUploaderDelegate *delegate = [[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoData.length];
+                JobUploaderDelegate *delegate = [[[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoData.length] autorelease];
                 
                 NSDictionary *dictionary = nil;
                 @try {
@@ -123,7 +121,6 @@
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
                             [service release];
-                            [delegate release];
 #ifdef DEVELOPMENT_ENABLED                        
                             NSLog(@"Photo uploaded correctly");
 #endif
