@@ -115,11 +115,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     if (self.images){
-        self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 10, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height);
-        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 80, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);       
+        self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 40, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height+40);
+        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 85, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);       
     }else{
-                self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y + 30, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height);
-        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 10, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
@@ -465,7 +463,6 @@
                             [TestFlight passCheckpoint:@"Image from Snapshot"];
                         }
 #endif 
-                        
                         // stop loading
                         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                         
@@ -474,6 +471,9 @@
                         if (self.images){
                             [self.navigationController popViewControllerAnimated:NO];
                         }
+                        
+                        // change the status of all upload from kUploadStatusTypeCreating to kUploadStatusTypeCreated;
+                        [TimelinePhotos setUploadsStatusToCreatedInManagedObjectContext:[AppDelegate managedObjectContext]];
                         
                         // go to home
                         [AppDelegate openTab:0];
@@ -601,10 +601,10 @@
             uploadInfo.permission = permission;
             uploadInfo.title =  title;
             uploadInfo.tags=tags;
-            uploadInfo.status=kUploadStatusTypeCreated;
+            uploadInfo.status=kUploadStatusTypeCreating;
             uploadInfo.photoData = image;
             uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
-            uploadInfo.status=kUploadStatusTypeCreated;
+            uploadInfo.status=kUploadStatusTypeCreating;
             uploadInfo.userUrl = [AppDelegate user];
             uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
             uploadInfo.photoUploadMultiplesUrl = urlGroup;
