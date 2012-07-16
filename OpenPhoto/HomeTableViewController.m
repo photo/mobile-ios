@@ -98,6 +98,7 @@
     }else{
         // next time it can be reloaded
         self.needsUpdate = YES;
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
 #ifdef TEST_FLIGHT_ENABLED
     [TestFlight passCheckpoint:@"Newest Photos Loaded"];
