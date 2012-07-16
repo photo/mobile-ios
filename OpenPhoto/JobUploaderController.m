@@ -80,8 +80,6 @@
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
         
-        
-        // TODO: if they are older than 4 minutes, but then to RETRY
         if (i < 2 && created > 0){
             
             //  looks for uploads in the state WAITING
