@@ -42,7 +42,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"2.0.3";
+    return @"3.0";
 }
 
 - (BOOL) needsUpdate{
