@@ -475,17 +475,6 @@
 }
 
 
-- (void) dealloc 
-{    
-    [_refreshHeaderView release];
-    [self.noPhotoImageView release];
-    [coreLocationController release];
-    [self.fetchedResultsController release];
-    [super dealloc];
-}
-
-
-
 #pragma mark -
 #pragma mark Population core data
 - (void) loadNewestPhotosIntoCoreData
@@ -547,5 +536,15 @@
     }else if ([notification.name isEqualToString:kNotificationDisableUpdateHome]){
         self.needsUpdate = NO;   
     }
+}
+
+- (void) dealloc 
+{    
+    [_refreshHeaderView release];
+    [self.noPhotoImageView release];
+    [coreLocationController release];
+    [self.fetchedResultsController release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 @end
