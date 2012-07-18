@@ -187,8 +187,7 @@
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
-    }
-    
+    }   
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -223,6 +222,9 @@
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    // needs to update the Sync
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateTableWithAllPhotosAgain object:nil];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
