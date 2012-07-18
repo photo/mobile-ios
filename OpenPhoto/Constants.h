@@ -42,6 +42,7 @@ extern NSString * const kNotificationShareInformationToFacebookOrTwitter;
 extern NSString * const kNotificationNeededsUpdate;
 extern NSString * const kNotificationNeededsUpdateHome;
 extern NSString * const kNotificationDisableUpdateHome;
+extern NSString * const kNotificationUpdateTableWithAllPhotosAgain;
 
 extern NSString * const kCellIdentifierTitle;
 extern NSString * const kCellIdentifierTags;

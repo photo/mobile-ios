@@ -57,6 +57,12 @@
             // set the sync to NO
             hidden = NO;
         }
+        
+        // notification for update the table
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationUpdateTableWithAllPhotosAgain 
+                                                   object:nil ];
     }
     return self;
 }
@@ -160,9 +166,9 @@
     
 #ifdef DEVELOPMENT_ENABLED 
     NSLog(@"enumerating photos");
+    NSLog("Assets Number %i", assetsNumber);
+    NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]); 
 #endif
-    NSLog("Assets Number %i",assetsNumber);
-    NSLog("numberOfAssets %i",[self.assetGroup numberOfAssets]); 
     
     if ([self.assetGroup numberOfAssets] != assetsNumber){
         // we need to load again
@@ -378,6 +384,19 @@
     
 }
 
+- (void) eventHandler: (NSNotification *) notification{
+#ifdef DEVELOPMENT_ENABLED    
+    NSLog(@"###### Event triggered: %@", notification);
+#endif
+    
+    if ([notification.name isEqualToString:kNotificationUpdateTableWithAllPhotosAgain]){
+        // just reset the number of photos
+        assetsNumber = -1;
+        [self loadSavedPhotos];
+    }
+}
+
+
 - (void)dealloc 
 {
     [elcAssets release];
@@ -386,6 +405,7 @@
     [self.imagesAlreadyUploaded release];
     [self.tableView release];
     [self.buttonHidden release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];    
 }
 
