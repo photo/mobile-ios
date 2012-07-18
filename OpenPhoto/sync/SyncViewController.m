@@ -54,8 +54,8 @@
         }
         
         if  ([[NSUserDefaults standardUserDefaults] boolForKey:kSyncShowUploadedPhotos] == YES){
-            // set the sync to YES
-            hidden = YES;
+            // set the sync to NO
+            hidden = NO;
         }
     }
     return self;

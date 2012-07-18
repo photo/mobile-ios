@@ -63,6 +63,9 @@
         [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
         [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
         
+        // shoz photos uploades
+        [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
+        
         // synchronize the keys
         [standardUserDefaults synchronize];
     }
