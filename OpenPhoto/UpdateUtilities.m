@@ -50,9 +50,9 @@ static UpdateUtilities* instance = nil;
     NSLog(@"Version from user: %@",[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled]);
 #endif
     
-   // check if the user version saved in the user default
+    // check if the user version saved in the user default
     if ([[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] == nil
-         || ![[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] isEqualToString:[self getVersion]]){
+        || ![[[NSUserDefaults standardUserDefaults] stringForKey:kVersionApplicationInstalled] isEqualToString:[self getVersion]]){
         return YES;
     }
     
@@ -66,11 +66,12 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
+    [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
     [standardUserDefaults synchronize];   
     
     //clean up database
     [AppDelegate cleanDatabase]; 
-        
+    
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
