@@ -106,7 +106,15 @@
     
     // ask if user wants to enable location
     [coreLocationController.locMgr startUpdatingLocation];    
-    [coreLocationController.locMgr stopUpdatingLocation];  
+    [coreLocationController.locMgr stopUpdatingLocation]; 
+    
+    // if no picture, show image to upload
+    if ([[self.fetchedResultsController fetchedObjects] count]== 0){
+        [self.navigationController.view addSubview:self.noPhotoImageView];
+        self.noPhotoImageView.hidden = NO;
+    }else{
+        [self.noPhotoImageView removeFromSuperview];
+    }
 }
 
 - (void)viewDidLoad
