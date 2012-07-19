@@ -92,7 +92,10 @@
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
     NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/token/access"] autorelease];
     
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"URL for OAuth Access = %@",url);
+#endif
+    
     return [NSURL URLWithString:url];  
 }
 
@@ -101,7 +104,10 @@
     NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
     NSString* url = [[[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/test"] autorelease];
     
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"URL for OAuth Test = %@",url);
+#endif
+    
     return [NSURL URLWithString:url];  
 }
 

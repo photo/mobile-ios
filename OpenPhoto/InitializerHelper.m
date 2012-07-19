@@ -26,7 +26,11 @@
     // compare not just nil. It may be reset. So, we need to check for NO
     if (![[NSUserDefaults standardUserDefaults] boolForKey:kAppInitialized] || 
         [[NSUserDefaults standardUserDefaults] boolForKey:kAppInitialized] == NO){
+        
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Property not defined");
+#endif
+        
         return NO;
     }
     
@@ -34,8 +38,10 @@
 }
 
 - (void) initialize
-{                
+{  
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Initialization starting ....");
+#endif
     
     // get the user defaults
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -71,7 +77,9 @@
     }
     
     // set the variable to initialized
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Initialization finished ....");
+#endif
 }
 
 - (void) resetInitialization
@@ -79,7 +87,7 @@
     // set the variable initialized to NO
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setBool:NO forKey:kAppInitialized];
-   
+    
     // clean images saved localy
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];

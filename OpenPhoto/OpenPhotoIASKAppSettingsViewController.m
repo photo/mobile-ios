@@ -23,7 +23,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-    
+        
         
     }
     return self;
@@ -108,7 +108,10 @@
         [TestFlight passCheckpoint:@"User log out"];
 #endif
         
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Invalidate user information");
+#ifdef DEVELOPMENT_ENABLED
+        
         AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
         [helper invalidateAuthentication];
         [helper release];

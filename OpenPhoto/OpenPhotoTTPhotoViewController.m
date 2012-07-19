@@ -21,7 +21,9 @@
 
 
 - (void) shareButton{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"User wants to share this photo");
+#endif
     
     // get details from the photo
     id<TTPhotoSource> photoSourceDetails = self.photoSource;    

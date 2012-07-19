@@ -332,12 +332,17 @@
 }
 
 - (void)feather:(AFFeatherController *)featherController finishedWithImage:(UIImage *)image{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Image changed");
+#endif
+    
     self.imageFiltered = image;
 }
 
 - (void)featherCanceled:(AFFeatherController *)featherController{
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Widget canceled");
+#endif
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -625,7 +630,9 @@
     if (error.localizedDescription != nil){
         NSLog(@"Image could not be saved = %@", error.localizedDescription);
     }else{
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Image saved");
+#endif
     }
 }
 
