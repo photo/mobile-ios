@@ -69,11 +69,12 @@
         self.image = imageFromCamera;
         self.originalImage = originalImage;
         self.imagesToProcess = 1;
+        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
         
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
-        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
+        
     }
     return self;
 }
@@ -84,6 +85,7 @@
     if (self) {
         // Custom initialization
         self.images = imagesFromSync;
+        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
         
         // how many images we need to process?
         if (self.images){
@@ -99,7 +101,6 @@
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
-        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
     }
     return self;
 }
