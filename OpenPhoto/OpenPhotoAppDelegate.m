@@ -63,8 +63,12 @@
     
     UpdateUtilities *updater = [UpdateUtilities instance];
     if ([updater needsUpdate] == YES){
+        
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"App needs to be updated");
         NSLog(@"Version to install %@", [updater getVersion]);
+#endif
+        
         [updater update];
     }
     
@@ -147,7 +151,9 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Application should handleOpenUrl = %@",url);
+#endif
     
     // the "openphoto-test" is used for TestFlight tester 
     if ([[url scheme] isEqualToString:@"openphoto"] ||
@@ -178,8 +184,9 @@
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
-    
-    NSLog("App applicationWillResignActived, save database");
+#ifdef DEVELOPMENT_ENABLED 
+    NSLog(@"App applicationWillResignActived, save database");
+#endif
     
     // set the Timeline objects with state Uploading to RETRY
     [TimelinePhotos resetEntitiesOnStateUploadingInManagedObjectContext:[AppDelegate managedObjectContext]];
@@ -229,7 +236,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    NSLog("App will terminate, save database");
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"App will terminate, save database");
+#endif
+    
     /*
      Called when the application is about to terminate.
      Save data if appropriate.

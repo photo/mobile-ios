@@ -230,10 +230,14 @@
         
         NSDictionary *gpsDict  = [self currentLocation];
         if ([gpsDict count] > 0) {
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"There is location");
+#endif
             [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
         }else{
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"No location found");
+#endif
         }
         
     }
@@ -325,7 +329,9 @@
 #pragma mark ELCImagePickerControllerDelegate Methods
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {	
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Selected some images");
+#endif
     
     if (info != nil && [info count]>0 ){
         // convert to nsarray
@@ -351,7 +357,9 @@
 
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
     // this one is not used.
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Cancel Sync");
+#endif
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{

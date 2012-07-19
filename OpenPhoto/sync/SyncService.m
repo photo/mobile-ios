@@ -52,7 +52,6 @@
             data = [NSData dataWithBytes:buffer length:bytes] ;
             if (data != nil){
                 // calculate hash
-            //    [self.delegate information:[SHA1 sha1File:data]];
                 NSLog(@"Hash = %@ from group %@",[SHA1 sha1File:data],group);
             }else{
                 NSLog(@"Error to get the data from the library");
@@ -63,11 +62,14 @@
         free(buffer);
         
         [pool release];
-      
+        
         //calculation to know if it is finished
         self.counter = self.counter - 1;
-
+        
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Conter %d",self.counter);
+#endif
+        
         if (self.counter <1){
             // finish
             [self.delegate finish];
@@ -108,9 +110,11 @@
         }
         
         if ([[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
-           // [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            // [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             self.counter = self.counter + [group numberOfAssets];
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"Album: %@",group);
+#endif
             [self loadAssets:group];
         }
         

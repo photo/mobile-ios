@@ -71,7 +71,9 @@
 }
 
 - (IBAction)login:(id)sender {
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url Login %@",self.serverURL.text);
+#endif
     
     // check if the user typed something
     if ( self.serverURL.text != nil &&
@@ -98,7 +100,10 @@
 
 // Action if user clicks in DONE in the keyboard
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {  
+    
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url %@",self.serverURL.text);
+#endif
     
     if ([self validateUrl:textField.text] == YES){
         
@@ -125,7 +130,7 @@
         [self.view setCenter:CGPointMake([self.view  center].x, [self.view  center].y - 40)];
     }completion:^(BOOL finished){
         if([textField respondsToSelector:@selector(selectedTextRange)]){
-
+            
             //iOS >=5.0            
             if ( [textField.text isEqualToString:@"username.openphoto.me"]){
                 // get the actual range
@@ -138,8 +143,6 @@
                 //Construct a new range and set  in the textfield
                 UITextRange *newRange = [textField textRangeFromPosition:fromPosition toPosition:toPosition];
                 textField.selectedTextRange = newRange;
-                
-
             }
         }
     }];
@@ -175,7 +178,11 @@
     
     NSURL *url;
     if ([text rangeOfString:@"http://"].location == NSNotFound) {
+        
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"URL does not contain http://");
+#endif
+        
         NSString *urlString = [[NSString alloc] initWithFormat:@"http://%@",text];
         url = [NSURL URLWithString:urlString];
     }else{
@@ -194,7 +201,10 @@
 //event handler when event occurs
 -(void)eventHandler: (NSNotification *) notification
 {
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"###### Event triggered: %@", notification);
+#endif
+    
     if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
         [self dismissModalViewControllerAnimated:YES];

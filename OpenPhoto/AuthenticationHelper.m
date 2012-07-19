@@ -61,7 +61,7 @@
             NSLog(@"Error to remove the credentials from server %@",exception.description);
         }
     }
-
+    
     // set the variable client id to INVALID
     [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
     [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthToken];
@@ -73,13 +73,13 @@
     
     // synchronize the keys
     [standardUserDefaults synchronize];
-
+    
     // reset core data
     [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
     [SyncedPhotos deleteAllSyncedPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
     [[AppDelegate managedObjectContext] reset];    
-
+    
     NSError *saveError = nil;
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
@@ -224,8 +224,10 @@
         [TestFlight passCheckpoint:@"OAuth - finished"];
 #endif
         
-        
+#ifdef DEVELOPMENT_ENABLED        
         NSLog(@"OAuth procedure finished");
+#endif
+        
     }
 }
 
