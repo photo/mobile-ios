@@ -110,7 +110,7 @@
         
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Invalidate user information");
-#ifdef DEVELOPMENT_ENABLED
+#endif
         
         AuthenticationHelper* helper = [[AuthenticationHelper alloc]init];
         [helper invalidateAuthentication];
