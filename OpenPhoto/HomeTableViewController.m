@@ -319,8 +319,7 @@
         
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
                               placeholderImage:nil 
-                                       success:^(UIImage *image) 
-         {
+                                       success:^(UIImage *image){
              [newestPhotoCell.photo.layer setCornerRadius:5.0f];
              newestPhotoCell.photo.layer.masksToBounds = YES;
              
@@ -357,8 +356,7 @@
                  newestPhotoCell.shareButton.hidden=YES;
              }
          }
-                                       failure:^(NSError *error) 
-         {
+         failure:^(NSError *error){
              OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
              [alert showAlert];
              [alert release];
