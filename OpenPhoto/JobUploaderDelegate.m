@@ -23,12 +23,12 @@
 @implementation JobUploaderDelegate
 @synthesize totalSize=_totalSize, alreadySent=_alreadySent, photoDelegate = _photoDelegate;
 
-- (id) initWithPhoto:(TimelinePhotos*) photo size:(NSUInteger) bytes;
+- (id) initWithPhoto:(TimelinePhotos *) photo size:(NSNumber *) bytes;
 {
     self = [super init];
     if (self) {
         self.photoDelegate = photo;
-        self.totalSize = [NSNumber numberWithUnsignedInteger:bytes];
+        self.totalSize = bytes;
         self.alreadySent = [NSNumber numberWithInt:0];
         needsUpdate = YES;
     }

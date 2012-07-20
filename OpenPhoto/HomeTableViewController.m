@@ -174,16 +174,7 @@
         uploadCell.originalObject = photo;
         
         // set thumb
-        CGSize itemSize = CGSizeMake(70, 70);
-        UIGraphicsBeginImageContext(itemSize);
-        
-        UIImage *image =  [UIImage imageWithData:photo.photoData];
-        [image drawInRect:CGRectMake(0, 0, 70, 70)];
-        image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        NSData* imageData1 =[NSData dataWithData:UIImagePNGRepresentation (image)]; 
-        uploadCell.thumb.image = [UIImage imageWithData:imageData1];   
+        uploadCell.thumb.image = [UIImage imageWithData:photo.photoDataThumb];   
         [uploadCell.thumb.superview.layer setCornerRadius:3.0f];
         [uploadCell.thumb.superview.layer setShadowColor:[UIColor blackColor].CGColor];
         [uploadCell.thumb.superview.layer setShadowOpacity:0.25];

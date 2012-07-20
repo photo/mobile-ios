@@ -50,11 +50,6 @@
 
 @property (nonatomic, retain) TagViewController *tagController;
 
-// total of images to process. We use this variable to decrease everytime 
-// when an image is saved in the database
-// at the moment it turns 0, all images were processed and user can be redirected to the main screen
-@property (nonatomic) int imagesToProcess;
-
 // construct that receive the snapshot
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;
 // construct that receives a list with all images URL from Sync

@@ -59,8 +59,6 @@
 @synthesize image= _image;
 @synthesize images = _images;
 
-@synthesize imagesToProcess = _imagesToProcess;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
@@ -68,7 +66,6 @@
         // Custom initialization
         self.image = imageFromCamera;
         self.originalImage = originalImage;
-        self.imagesToProcess = 1;
         assetsLibrary = [[ALAssetsLibrary alloc] init]; 
         
         // initialization of tag controller
@@ -88,9 +85,7 @@
         assetsLibrary = [[ALAssetsLibrary alloc] init]; 
         
         // how many images we need to process?
-        if (self.images){
-            self.imagesToProcess = [self.images count];
-            
+        if (self.images){            
             // if there is only one, treat it as a camera image, so user will be able to edit
             if ([self.images count] == 1){
                 self.image = [self.images lastObject];
@@ -435,59 +430,47 @@
                                              groupUrl:nil];
             }
             
-            
-            // create a thread that check if all data is processed,
-            // when all the the assetslibrary job is done save database 
-            // and goes to main screen
-            // this will sleep for 0.5 seconds
-            while (TRUE) {
-                // sleep for 0.5 seconds
-                [NSThread sleepForTimeInterval:0.5];
-#ifdef DEVELOPMENT_ENABLED
-                NSLog(@"Checking if everything is saved");
-#endif
-                // check if counter is 0
-                if (self.imagesToProcess < 1){
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // save all objects in the context
-                        NSError *uploadError = nil;
-                        if (![[AppDelegate managedObjectContext] save:&uploadError]){
-                            NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
-                        }else{
-#ifdef DEVELOPMENT_ENABLED
-                            NSLog(@"Data ready to send to openphoto. Everything saved on database");
-#endif
-                        }
-                        
 #ifdef TEST_FLIGHT_ENABLED
-                        // checkpoint
-                        if (self.imageFiltered){
-                            [TestFlight passCheckpoint:@"Image from Aviary"];       
-                        }else if (self.images){
-                            [TestFlight passCheckpoint:@"Image from Sync"];
-                        }else{
-                            [TestFlight passCheckpoint:@"Image from Snapshot"];
-                        }
+            // checkpoint
+            if (self.imageFiltered){
+                [TestFlight passCheckpoint:@"Image from Aviary"];       
+            }else if (self.images){
+                [TestFlight passCheckpoint:@"Image from Sync"];
+            }else{
+                [TestFlight passCheckpoint:@"Image from Snapshot"];
+            }
 #endif 
-                        // stop loading
-                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                        
-                        // if it comes form the sync,
-                        // go back in the navigation
-                        if (self.images){
-                            [self.navigationController popViewControllerAnimated:NO];
-                        }
-                        
-                        // change the status of all upload from kUploadStatusTypeCreating to kUploadStatusTypeCreated;
-                        [TimelinePhotos setUploadsStatusToCreatedInManagedObjectContext:[AppDelegate managedObjectContext]];
-                        
-                        // go to home
-                        [AppDelegate openTab:0];
-                        [self dismissModalViewControllerAnimated:YES];
-                    });
-                    break;
+            
+            // wait for 2 seconds to go to main screen
+            [NSThread sleepForTimeInterval:2];       
+            dispatch_async(dispatch_get_main_queue(), ^{                        
+                
+                // save all objects in the context
+                NSError *uploadError = nil;
+                if (![[AppDelegate managedObjectContext] save:&uploadError]){
+                    NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
+                }else{
+#ifdef DEVELOPMENT_ENABLED
+                    NSLog(@"Data ready to send to openphoto. Everything saved on database");
+#endif
                 }
-            }            
+                
+                
+                // stop loading
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                
+                // if it comes form the sync,
+                // go back in the navigation
+                if (self.images){
+                    [self.navigationController popViewControllerAnimated:NO];
+                }else{
+                    [self dismissModalViewControllerAnimated:YES];                            
+                }
+                
+                // go to home
+                [AppDelegate openTab:0];
+            });     
+            
         }@catch (NSException *exception) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
@@ -593,36 +576,58 @@
                           url:(NSURL *) url
                      groupUrl:(NSString *) urlGroup
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (image != nil){
-            // data to be saved in the database
-            TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
-                                                                        inManagedObjectContext:[AppDelegate managedObjectContext]];
-            
-            // details form this upload
-            uploadInfo.date = date;
-            uploadInfo.dateUploaded = date;
-            uploadInfo.facebook = facebook;
-            uploadInfo.twitter = twitter;
-            uploadInfo.permission = permission;
-            uploadInfo.title =  title;
-            uploadInfo.tags=tags;
-            uploadInfo.status=kUploadStatusTypeCreating;
-            uploadInfo.photoData = image;
-            uploadInfo.fileName = [AssetsLibraryUtilities getFileNameForImage:image url:url];
-            uploadInfo.status=kUploadStatusTypeCreating;
-            uploadInfo.userUrl = [AppDelegate user];
-            uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
-            uploadInfo.photoUploadMultiplesUrl = urlGroup;
-            
-            if (url){
-                // add to the sync list, with that we don't need to show photos already uploaded.
-                uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
-            }
-            
-            // decrease counter
-            self.imagesToProcess = self.imagesToProcess - 1;
-        }});
+    if ( image != nil){
+        // generate a file name
+        NSString *name = [AssetsLibraryUtilities getFileNameForImage:image url:url];
+        
+        // generate path of temporary file
+        NSURL *pathTemporaryFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:name]];
+        
+        // save in a temporary folder
+        BOOL result = [image writeToURL:pathTemporaryFile atomically:YES];
+        
+        // generate a thumb
+        CGSize itemSize = CGSizeMake(70, 70);
+        UIGraphicsBeginImageContext(itemSize);
+        
+        UIImage *imageTemp =  [UIImage imageWithData:image];
+        [imageTemp drawInRect:CGRectMake(0, 0, 70, 70)];
+        imageTemp = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData* data =[NSData dataWithData:UIImagePNGRepresentation (imageTemp)]; 
+        
+        
+        //in the main queue, generate TimelinePhotos       
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (result){
+                // data to be saved in the database
+                TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
+                                                                            inManagedObjectContext:[AppDelegate managedObjectContext]];
+                
+                // details form this upload
+                uploadInfo.date = date;
+                uploadInfo.dateUploaded = date;
+                uploadInfo.facebook = facebook;
+                uploadInfo.twitter = twitter;
+                uploadInfo.permission = permission;
+                uploadInfo.title =  title;
+                uploadInfo.tags=tags;
+                uploadInfo.status=kUploadStatusTypeCreated;
+                uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
+                uploadInfo.photoDataThumb = data;
+                uploadInfo.photoDataLength = [NSNumber numberWithUnsignedInteger:image.length];;
+                uploadInfo.fileName = name;
+                uploadInfo.userUrl = [AppDelegate user];
+                uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
+                uploadInfo.photoUploadMultiplesUrl = urlGroup;
+                
+                if (url){
+                    // add to the sync list, with that we don't need to show photos already uploaded.
+                    uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
+                }
+            }});
+    }
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
