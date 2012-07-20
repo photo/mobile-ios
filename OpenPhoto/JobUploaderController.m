@@ -50,8 +50,8 @@
         @try {
             // start the thread
             while (running) {
-                // sleep for 5 seconds
-                [NSThread sleepForTimeInterval:2];
+                // sleep for 3 seconds
+                [NSThread sleepForTimeInterval:3];
                 // execute the method
                 [self executeJob];
             }       
@@ -77,6 +77,7 @@
 - (void) executeJob
 {   
     dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"Checking data in database");
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
         

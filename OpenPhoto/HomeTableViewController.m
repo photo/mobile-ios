@@ -252,6 +252,22 @@
             
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
+        }else if ( [photo.status isEqualToString:kUploadStatusTypeCreating]){
+            uploadCell.status.text=@"Creating ...";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
+            uploadCell.imageStatus.hidden=NO;
+            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+        }else{
+            NSLog(@"******** Status %@",photo.status);
+            // it is invalid
+            uploadCell.status.text=@"Invalid photo";
+            [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
+            uploadCell.imageStatus.hidden=NO;
+            uploadCell.status.textColor=UIColorFromRGB(0xC8BEA0);
+            
+            // delete this object after 1 seconds
+            [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:1.0];
+            
         }
         
         // decide if we show retry/cancel
