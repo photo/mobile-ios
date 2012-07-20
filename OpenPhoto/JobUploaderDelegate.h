@@ -10,7 +10,6 @@
 
 @interface JobUploaderDelegate : NSObject <ASIProgressDelegate>
 
-- (id) initWithPhoto:(TimelinePhotos*) photo size:(NSUInteger) bytes;
-
+- (id) initWithPhoto:(TimelinePhotos *) photo size:(NSNumber *) bytes;
 
 @end

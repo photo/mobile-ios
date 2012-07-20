@@ -81,7 +81,6 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"TimelinePhotos"];
     request.predicate= [NSPredicate predicateWithFormat:@"status == %@", type];  
     [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
-   
     
     NSError *error = nil;
     NSArray *result = [context executeFetchRequest:request error:&error];
@@ -314,19 +313,14 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     for (TimelinePhotos *model in matches) {
         model.status = kUploadStatusTypeCreated;
     }
-
 }
 
 - (NSDictionary *) toDictionary
 {
-    if (self.photoData){
-        NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"status", @"title", @"twitter", @"image", @"fileName",@"tags", nil];  
-        NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permission,self.status,self.title,self.twitter,self.photoData,self.fileName,self.tags, nil];  
-        
-        return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-    }
+    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"status", @"title", @"twitter", @"image", @"fileName",@"tags", nil];  
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permission,self.status,self.title,self.twitter,self.photoDataTempUrl,self.fileName,self.tags, nil];  
     
-    return nil;
+    return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }
 
 @end

@@ -77,7 +77,10 @@
 - (void) executeJob
 {   
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"Checking data in database");
+#ifdef DEVELOPMENT_ENABLED                        
+        NSLog(@"Executing job");
+#endif
+        
         int i = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [TimelinePhotos howEntitiesTimelinePhotosInManagedObjectContext:[AppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
         
@@ -91,7 +94,7 @@
                 photo.status = kUploadStatusTypeUploading;
                 
                 // create a delegate
-                JobUploaderDelegate *delegate = [[[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoData.length] autorelease];
+                JobUploaderDelegate *delegate = [[[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoDataLength] autorelease];
                 
                 NSDictionary *dictionary = nil;
                 @try {
@@ -109,7 +112,8 @@
                     @try{
                         // prepare the data to upload
                         NSString *filename = photo.fileName;
-                        NSData *data = photo.photoData;
+                        NSURL *storedURL = [NSURL URLWithString:photo.photoDataTempUrl];
+                        NSData *data = [[NSData alloc] initWithContentsOfURL:storedURL];
                         
                         // create the service, check photo exists and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
@@ -144,6 +148,23 @@
                                 [TestFlight passCheckpoint:@"Image uploaded"];
                                 
 #endif
+                                // release data
+                                [data release];
+                                
+                                // delete local file
+                                NSFileManager *fileManager = [NSFileManager defaultManager];
+                                NSError *error;
+                                BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
+#ifdef DEVELOPMENT_ENABLED    
+                                NSLog(@"Path to file: %@", photo.photoDataTempUrl);        
+                                NSLog(@"File exists: %d", fileExists);
+                                NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
+#endif
+                                if (fileExists) 
+                                {
+                                    BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
+                                    if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+                                }
                                 
                                 // check if there is more files to upload
                                 // if not, refresh the Home page
@@ -158,12 +179,11 @@
                                     if (![[AppDelegate managedObjectContext] save:&saveError]){
                                         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
                                     }
-                                }
-                                
+                                }                                
                             });
                         }
                     }@catch (NSException* e) {
-                        NSLog(@"Error %@",e);
+                        NSLog(@"Error to upload image %@",e);
                         
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -201,8 +221,8 @@
                 });
                 dispatch_release(uploader);
             }
+            
         }
     });
 }
-
 @end

@@ -2,7 +2,7 @@
 //  TimelinePhotos.m
 //  OpenPhoto
 //
-//  Created by Patrick Santana on 12/07/12.
+//  Created by Patrick Santana on 20/07/12.
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
@@ -19,9 +19,10 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic permission;
-@dynamic photoData;
+@dynamic photoDataTempUrl;
 @dynamic photoPageUrl;
 @dynamic photoToUpload;
+@dynamic photoUploadMultiplesUrl;
 @dynamic photoUploadProgress;
 @dynamic photoUploadResponse;
 @dynamic photoUrl;
@@ -31,6 +32,7 @@
 @dynamic title;
 @dynamic twitter;
 @dynamic userUrl;
-@dynamic photoUploadMultiplesUrl;
+@dynamic photoDataThumb;
+@dynamic photoDataLength;
 
 @end
