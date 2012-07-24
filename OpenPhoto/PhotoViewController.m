@@ -577,6 +577,7 @@
                      groupUrl:(NSString *) urlGroup
 {
     if ( image != nil){
+
         // generate a file name
         NSString *name = [AssetsLibraryUtilities getFileNameForImage:image url:url];
         
@@ -584,7 +585,7 @@
         NSURL *pathTemporaryFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:name]];
         
         // save in a temporary folder
-        BOOL result = [image writeToURL:pathTemporaryFile atomically:YES];
+        BOOL result = [image writeToURL:pathTemporaryFile atomically:NO];
         
         // generate a thumb
         CGSize itemSize = CGSizeMake(70, 70);
@@ -616,7 +617,6 @@
                 uploadInfo.status=kUploadStatusTypeCreated;
                 uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
                 uploadInfo.photoDataThumb = data;
-                uploadInfo.photoDataLength = [NSNumber numberWithUnsignedInteger:image.length];;
                 uploadInfo.fileName = name;
                 uploadInfo.userUrl = [AppDelegate user];
                 uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];

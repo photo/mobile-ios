@@ -94,7 +94,7 @@
                 photo.status = kUploadStatusTypeUploading;
                 
                 // create a delegate
-                JobUploaderDelegate *delegate = [[[JobUploaderDelegate alloc] initWithPhoto:photo size:photo.photoDataLength] autorelease];
+                JobUploaderDelegate *delegate = [[[JobUploaderDelegate alloc] initWithPhoto:photo size:[NSNumber numberWithInteger:0]] autorelease];
                 
                 NSDictionary *dictionary = nil;
                 @try {
@@ -114,6 +114,9 @@
                         NSString *filename = photo.fileName;
                         NSURL *storedURL = [NSURL URLWithString:photo.photoDataTempUrl];
                         NSData *data = [[NSData alloc] initWithContentsOfURL:storedURL];
+                        
+                        // set size
+                        delegate.totalSize = [NSNumber numberWithInteger:data.length];
                         
                         // create the service, check photo exists and send the request
                         OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];

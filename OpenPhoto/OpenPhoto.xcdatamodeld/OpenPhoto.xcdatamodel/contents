@@ -26,7 +26,6 @@
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="permission" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="photoDataLength" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="photoDataTempUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoDataThumb" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="photoPageUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,6 +44,6 @@
     <elements>
         <element name="GalleryPhotos" positionX="160" positionY="192" width="128" height="180"/>
         <element name="SyncedPhotos" positionX="160" positionY="192" width="128" height="105"/>
-        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="390"/>
+        <element name="TimelinePhotos" positionX="160" positionY="192" width="128" height="375"/>
     </elements>
 </model>
