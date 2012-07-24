@@ -205,17 +205,25 @@
 }
 
 - (void) doneAction:(id)sender {
-	
-	NSMutableArray *selectedAssetsImages = [[[NSMutableArray alloc] init] autorelease];
-    
-	for(ELCAsset *elcAsset in self.elcAssets) 
-    {		
-		if([elcAsset selected]) {
-			[selectedAssetsImages addObject:[elcAsset asset]];
-		}
-	}
-    
-    [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
+	@try {
+        NSMutableArray *selectedAssetsImages = [[[NSMutableArray alloc] init] autorelease];
+        
+        for(ELCAsset *elcAsset in self.elcAssets) 
+        {		
+            if([elcAsset selected]) {
+                [selectedAssetsImages addObject:[elcAsset asset]];
+            }
+        }
+        
+        [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
+    }@catch (NSException *exception) {
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Error to select your photos" duration:3000];
+        [alert showAlert];
+        [alert release];
+        
+        NSLog(@"A problem occured when NEXT is clicked on SyncController: %@", [exception description]);	 
+        [self loadSavedPhotos];
+    }
 }
 
 #pragma mark UITableViewDataSource Delegate Methods
