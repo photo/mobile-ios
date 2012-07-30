@@ -126,7 +126,6 @@
                             @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
-                            [service release];
 #ifdef DEVELOPMENT_ENABLED                        
                             NSLog(@"Photo uploaded correctly");
 #endif

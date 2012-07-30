@@ -50,13 +50,14 @@
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
         self.statusBarStyle = UIStatusBarStyleBlackOpaque;
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
         
         
         // create service and the delegate
-        self.service = [[WebService alloc]init];
+        WebService *web = [[WebService alloc]init];
+        self.service = web;
         [self.service setDelegate:self];
-        
+        [web release];
         
         NSArray *photos = [GalleryPhotos getGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         
@@ -70,7 +71,7 @@
                                  photos:photos size:[photos count] tag:nil] autorelease];
         }
         
-        self.tagController = [[TagViewController alloc] init];
+        self.tagController = [[[TagViewController alloc] init] autorelease];
         
         // show back button and loading control
         self.showBack = YES;
@@ -281,8 +282,9 @@
 
 
 - (void) dealloc {
-    [self.service release];
-    [self.tagName release];
+    [_service release];
+    [_tagName release];
+    [_tagController release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

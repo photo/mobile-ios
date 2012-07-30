@@ -26,7 +26,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.webService = [[WebService alloc]init];
+        WebService *web = [[WebService alloc]init];
+        self.webService = web;
+        [web release];
     }
     return self;
 }
@@ -99,11 +101,11 @@
      */
     
     // get the token and the verifier from the URL
-    NSString *oauthConsumerKey;
-    NSString *oauthConsumerSecret;
-    NSString *oauthToken;
-    NSString *oauthTokenSecret;
-    NSString *oauthVerifier;
+    NSString *oauthConsumerKey = nil;
+    NSString *oauthConsumerSecret = nil;
+    NSString *oauthToken = nil;
+    NSString *oauthTokenSecret = nil;
+    NSString *oauthVerifier = nil;
     
     // we just care after ?
     NSArray *comp1 = [[url absoluteString] componentsSeparatedByString:@"?"];
@@ -185,8 +187,8 @@
          * oauth_token=9dd1869a9cf07fd5daa9b4e8785978
          * oauth_token_secret=18c2927518
          */
-        NSString *oauthToken;
-        NSString *oauthTokenSecret;
+        NSString *oauthToken = nil;
+        NSString *oauthTokenSecret = nil;
         
         
         // parse the data

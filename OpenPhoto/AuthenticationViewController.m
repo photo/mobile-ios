@@ -63,8 +63,6 @@
 - (void)viewDidUnload
 {
     [self setServerURL:nil];
-    [self.serverURL release];
-    self.serverURL = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -185,6 +183,7 @@
         
         NSString *urlString = [[NSString alloc] initWithFormat:@"http://%@",text];
         url = [NSURL URLWithString:urlString];
+        [urlString release];
     }else{
         url = [NSURL URLWithString:text];
     }
@@ -212,7 +211,7 @@
 }
 
 - (void)dealloc {
-    [self.serverURL release];
+    [_serverURL release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

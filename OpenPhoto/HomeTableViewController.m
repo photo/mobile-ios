@@ -52,7 +52,7 @@
         self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
         
         CGRect imageSize = CGRectMake(0, 63, 320, 367);
-        self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
+        self.noPhotoImageView = [[[UIImageView alloc] initWithFrame:imageSize] autorelease];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
         self.noPhotoImageView.hidden = YES;
         
@@ -68,10 +68,13 @@
         
         fetchRequest.sortDescriptors = [NSArray arrayWithObjects:[NSSortDescriptor sortDescriptorWithKey:@"photoToUpload" ascending:NO],[NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO],nil];
         
-        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                            managedObjectContext:[AppDelegate managedObjectContext]
-                                                                              sectionNameKeyPath:nil
-                                                                                       cacheName:nil];
+        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                                     managedObjectContext:[AppDelegate managedObjectContext]
+                                                                                       sectionNameKeyPath:nil
+                                                                                                cacheName:nil];
+        self.fetchedResultsController =  controller;
+        [fetchRequest release];
+        [controller release];
         
         // needs update in screen  
         [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -500,7 +503,6 @@
                     // get factory for OpenPhoto Service
                     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
                     NSArray *result = [service fetchNewestPhotosMaxResult:25];
-                    [service release];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // let NewestPhotos treat the objects
@@ -546,9 +548,8 @@
 - (void) dealloc 
 {    
     [_refreshHeaderView release];
-    [self.noPhotoImageView release];
+    [_noPhotoImageView release];
     [coreLocationController release];
-    [self.fetchedResultsController release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

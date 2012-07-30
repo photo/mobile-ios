@@ -39,10 +39,10 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
         
         // initialize the object tags
-        self.tags = [[NSMutableArray alloc] init];    
+        self.tags = [NSMutableArray array];
         
         // set the read only by default as NO 
         self.readOnly = NO;
@@ -58,7 +58,7 @@
 
 -(void) dealloc
 {
-    [self.tags release];
+    [_tags release];
     [super dealloc];
 }
 - (void) setReadOnly
@@ -275,7 +275,6 @@
                     // get factory for OpenPhoto Service
                     OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
                     NSArray *result = [service getTags];
-                    [service release];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tags removeAllObjects];

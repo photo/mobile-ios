@@ -44,15 +44,6 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)dealloc {
-    [self.thumb release];
-    [self.status release];
-    [self.btnRetry release];
-    [self.originalObject release];
-    [_imageStatus release];
-    [_progressBar release];
-    [super dealloc];
-}
 - (IBAction)refresh:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Pressed refresh button");
@@ -60,6 +51,16 @@
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
     self.btnRetry.hidden=YES;
+}
+
+- (void)dealloc {
+    [_thumb release];
+    [_status release];
+    [_btnRetry release];
+    [_originalObject release];
+    [_imageStatus release];
+    [_progressBar release];
+    [super dealloc];
 }
 
 @end

@@ -20,7 +20,7 @@
 #import "UpdateUtilities.h"
 
 @implementation UpdateUtilities
-@synthesize service;
+@synthesize service=_service;
 
 static UpdateUtilities* instance = nil;
 
@@ -35,8 +35,10 @@ static UpdateUtilities* instance = nil;
     self = [super init];
     if (self) {
         // create service and the delegate
-        self.service = [[WebService alloc]init];
-        [service setDelegate:self];
+        WebService *web = [[WebService alloc]init];
+        self.service = web;
+        [self.service setDelegate:self];
+        [web release];
     }
     return self;
 }
@@ -79,7 +81,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (void) dealloc {
-    [service release];
+    [_service release];
     [super dealloc];
 }
 

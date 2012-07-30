@@ -47,13 +47,14 @@
     NSFetchedResultsController *oldfrc = _fetchedResultsController;
     if (newfrc != oldfrc) {
         _fetchedResultsController = newfrc;
+        [_fetchedResultsController retain];
         newfrc.delegate = self;
         if ((!self.title || [self.title isEqualToString:oldfrc.fetchRequest.entity.name]) && (!self.navigationController || !self.navigationItem.title)) {
             self.title = newfrc.fetchRequest.entity.name;
         }
         if (newfrc) {
             if (self.debug) NSLog(@"[%@ %@] %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), oldfrc ? @"updated" : @"set");
-            [self performFetch]; 
+            [self performFetch];
         } else {
             if (self.debug) NSLog(@"[%@ %@] reset to nil", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
             [self.tableView reloadData];
@@ -123,7 +124,7 @@
 	   atIndexPath:(NSIndexPath *)indexPath
 	 forChangeType:(NSFetchedResultsChangeType)type
 	  newIndexPath:(NSIndexPath *)newIndexPath
-{		
+{
     if (!self.suspendAutomaticTrackingOfChangesInManagedObjectContext)
     {
         switch(type) {
@@ -173,6 +174,13 @@
     } else {
         [self performSelector:@selector(endSuspensionOfUpdatesDueToContextChanges) withObject:0 afterDelay:0];
     }
+}
+
+
+- (void)dealloc
+{
+    [_fetchedResultsController release];
+    [super dealloc];
 }
 
 @end

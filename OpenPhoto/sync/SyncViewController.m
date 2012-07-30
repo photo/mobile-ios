@@ -125,8 +125,8 @@
         }
     }
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     // no separator
@@ -409,10 +409,10 @@
 {
     [elcAssets release];
     [library release];
-    [self.assetGroup release];
-    [self.imagesAlreadyUploaded release];
-    [self.tableView release];
-    [self.buttonHidden release];
+    [assetGroup release];
+    [imagesAlreadyUploaded release];
+    [_tableView release];
+    [_buttonHidden release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];    
 }

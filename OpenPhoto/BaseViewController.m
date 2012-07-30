@@ -247,7 +247,8 @@
             NSLog(@"The photo took by the user could not be saved = %@", [error description]);
         } else {
             PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil url:newUrl image:pickedImage];
-            [picker pushViewController:controller animated:YES]; 
+            [picker pushViewController:controller animated:YES];
+            [controller release];
         }
     }];
     

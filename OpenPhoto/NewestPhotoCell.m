@@ -50,17 +50,17 @@
 }
 
 - (void)dealloc {
-    [self.label release];
-    [self.photo release];
-    [self.activity release];
-    [self.date release];
-    [self.tags release];
-    [self.private release];
-    [self.geoPositionButton release];
-    [self.geoPosition release];
-    [self.shareButton release];
-    [self.photoPageUrl release];
-    [self.newestPhotosTableViewController release];
+    [_label release];
+    [_photo release];
+    [_activity release];
+    [_date release];
+    [_tags release];
+    [_private release];
+    [_geoPositionButton release];
+    [_geoPosition release];
+    [_shareButton release];
+    [_photoPageUrl release];
+    [_newestPhotosTableViewController release];
     [super dealloc];
 }
 

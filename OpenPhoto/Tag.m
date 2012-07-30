@@ -39,7 +39,7 @@
 
 ///////////////// 
 -(void) dealloc{
-    [self.tagName release];
+    [_tagName release];
     [super dealloc];
 }
 

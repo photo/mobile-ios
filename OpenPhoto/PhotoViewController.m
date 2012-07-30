@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -24,22 +24,22 @@
 
 - (void) switchedTwitter;
 
-- (void) saveEntityUploadDate:(NSDate *) date 
+- (void) saveEntityUploadDate:(NSDate *) date
                 shareFacebook:(NSNumber *) facebook
                  shareTwitter:(NSNumber *) twitter
                         image:(NSData *) image
                    permission:(NSNumber *) permission
                          tags:(NSString *) tags
-                        title:(NSString *) title 
+                        title:(NSString *) title
                           url:(NSURL *) url
                      groupUrl:(NSString *) urlGroup;
 
-- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
+- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date
                            shareFacebook:(NSNumber *) facebook
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
                                     tags:(NSString *) tags
-                                   title:(NSString *) title 
+                                   title:(NSString *) title
                                      url:(NSURL *) url
                                 groupUrl:(NSString *) urlGroup;
 
@@ -66,10 +66,10 @@
         // Custom initialization
         self.image = imageFromCamera;
         self.originalImage = originalImage;
-        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
+        assetsLibrary = [[[ALAssetsLibrary alloc] init] autorelease];
         
         // initialization of tag controller
-        self.tagController = [[TagViewController alloc] init];
+        self.tagController = [[[TagViewController alloc] init] autorelease];
         [self.tagController setReadOnly];
         
     }
@@ -82,10 +82,10 @@
     if (self) {
         // Custom initialization
         self.images = imagesFromSync;
-        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
+        assetsLibrary = [[ALAssetsLibrary alloc] init];
         
         // how many images we need to process?
-        if (self.images){            
+        if (self.images){
             // if there is only one, treat it as a camera image, so user will be able to edit
             if ([self.images count] == 1){
                 self.image = [self.images lastObject];
@@ -94,7 +94,7 @@
         }
         
         // initialization of tag controller
-        self.tagController = [[TagViewController alloc] init];
+        self.tagController = [[[TagViewController alloc] init] autorelease];
         [self.tagController setReadOnly];
     }
     return self;
@@ -102,7 +102,7 @@
 
 
 #pragma mark - View lifecycle
-- (void)viewDidLoad{  
+- (void)viewDidLoad{
     [super viewDidLoad];
     
     self.title = @"Upload";
@@ -112,14 +112,14 @@
     
     if (self.images){
         self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 40, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height+40);
-        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 85, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);       
+        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 85, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);
     }else{
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
-        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];          
+        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];
         self.navigationItem.rightBarButtonItem = cancelButton;
         [cancelButton release];
-    }    
+    }
 }
 
 
@@ -151,7 +151,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
     
     NSUInteger row = [indexPath row];
     switch (row) {
@@ -161,7 +161,8 @@
             if (cell == nil)
             {
                 cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle] autorelease];
-                self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                self.titleTextField = [[[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)] autorelease];
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
                 self.titleTextField.textColor = UIColorFromRGB(0xE6501E);
                 
@@ -183,7 +184,7 @@
             
             cell.textLabel.text=@"Tags";
             // customised disclosure button
-            [cell setAccessoryView:[self makeDetailDisclosureButton]];     
+            [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;
             
         case 2:
@@ -223,9 +224,9 @@
                 //iOS 5.0
                 [self.shareFacebook setOnTintColor:[UIColor redColor]];
             }
-            [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];  
+            [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];
             [self.shareFacebook setOn:NO];
-            cell.accessoryView = self.shareFacebook;            
+            cell.accessoryView = self.shareFacebook;
             break;
             
         case 4:
@@ -243,7 +244,7 @@
                 //iOS 5.0
                 [self.shareTwitter setOnTintColor:[UIColor redColor]];
             }
-            [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];  
+            [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = self.shareTwitter;
             break;
             
@@ -258,14 +259,13 @@
             
             cell.textLabel.text=@"Crop & effects";
             // customised disclosure button
-            [cell setAccessoryView:[self makeDetailDisclosureButton]];            
+            [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;
             
         default:
             break;
     }
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
@@ -305,7 +305,7 @@
     }else if ( row == 5){
         // filter
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-        AFFeatherController *controller = [[AFFeatherController alloc] 
+        AFFeatherController *controller = [[AFFeatherController alloc]
                                            initWithImage:self.originalImage];
         controller.delegate = self;
         
@@ -345,7 +345,7 @@
     return YES;
 }
 
-- (IBAction)upload:(id)sender {     
+- (IBAction)upload:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Upload button clicked. Save all details in the database");
 #endif
@@ -372,11 +372,11 @@
             // check the type of image that we are uploading
             // is it a single image, a bunch of images or the user used Aviary?
             if (imageFiltered){
-                //image filtered. User used Aviary   
-                [self saveEntityUploadDate:[NSDate date] 
+                //image filtered. User used Aviary
+                [self saveEntityUploadDate:[NSDate date]
                              shareFacebook:facebook
                               shareTwitter:twitter
-                                     image:UIImageJPEGRepresentation(imageFiltered,0.7) 
+                                     image:UIImageJPEGRepresentation(imageFiltered,0.7)
                                 permission:permission
                                       tags:tags
                                      title:title
@@ -387,11 +387,11 @@
                 int i = [self.images count];
                 for ( NSURL *url in self.images){
                     if ( i != 1 ){
-                        [self loadDataAndSaveEntityUploadDate:[NSDate date] 
+                        [self loadDataAndSaveEntityUploadDate:[NSDate date]
                                                 shareFacebook:[NSNumber numberWithBool:NO]
-                                                 shareTwitter:[NSNumber numberWithBool:NO]  
+                                                 shareTwitter:[NSNumber numberWithBool:NO]
                                                    permission:permission
-                                                         tags:tags 
+                                                         tags:tags
                                                         title:title
                                                           url:url
                                                      groupUrl:nil];
@@ -405,8 +405,8 @@
                         // create the url to connect to OpenPhoto
                         NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kOpenPhotoServer], [self.images count]];
                         
-                        [self loadDataAndSaveEntityUploadDate:[NSDate date] 
-                                                shareFacebook:facebook 
+                        [self loadDataAndSaveEntityUploadDate:[NSDate date]
+                                                shareFacebook:facebook
                                                  shareTwitter:twitter
                                                    permission:permission
                                                          tags:tags
@@ -420,9 +420,9 @@
                 }
             }else{
                 // just one photo to share
-                [self loadDataAndSaveEntityUploadDate:[NSDate date] 
-                                        shareFacebook:facebook 
-                                         shareTwitter:twitter 
+                [self loadDataAndSaveEntityUploadDate:[NSDate date]
+                                        shareFacebook:facebook
+                                         shareTwitter:twitter
                                            permission:permission
                                                  tags:tags
                                                 title:title
@@ -433,17 +433,17 @@
 #ifdef TEST_FLIGHT_ENABLED
             // checkpoint
             if (self.imageFiltered){
-                [TestFlight passCheckpoint:@"Image from Aviary"];       
+                [TestFlight passCheckpoint:@"Image from Aviary"];
             }else if (self.images){
                 [TestFlight passCheckpoint:@"Image from Sync"];
             }else{
                 [TestFlight passCheckpoint:@"Image from Snapshot"];
             }
-#endif 
+#endif
             
             // wait for 2 seconds to go to main screen
-            [NSThread sleepForTimeInterval:2];       
-            dispatch_async(dispatch_get_main_queue(), ^{                        
+            [NSThread sleepForTimeInterval:2];
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // save all objects in the context
                 NSError *uploadError = nil;
@@ -464,23 +464,23 @@
                 if (self.images){
                     [self.navigationController popViewControllerAnimated:NO];
                 }else{
-                    [self dismissModalViewControllerAnimated:YES];                            
+                    [self dismissModalViewControllerAnimated:YES];
                 }
                 
                 // go to home
                 [AppDelegate openTab:0];
-            });     
+            });
             
         }@catch (NSException *exception) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];                    
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                 [alert showAlert];
-                [alert release];                
+                [alert release];
                 // go to home
                 [AppDelegate openTab:0];
                 [self dismissModalViewControllerAnimated:YES];
-            });   
+            });
         }
     });
     dispatch_release(waiting);
@@ -493,12 +493,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDisableUpdateHome object:nil];
 }
 
-- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date 
+- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date
                            shareFacebook:(NSNumber *) facebook
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
                                     tags:(NSString *) tags
-                                   title:(NSString *) title 
+                                   title:(NSString *) title
                                      url:(NSURL *) url
                                 groupUrl:(NSString *) urlGroup
 {
@@ -508,9 +508,9 @@
     {
         
         ALAssetRepresentation *rep = [asset defaultRepresentation];
-#ifdef DEVELOPMENT_ENABLED            
-        NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f)); 
-#endif           
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f));
+#endif
         uint8_t* buffer = malloc([rep size]);
         
         NSError* error = NULL;
@@ -522,21 +522,21 @@
             NSLog(@"Asset %@ loaded from Asset Library OK", url);
 #endif
             data = [[NSData dataWithBytes:buffer length:bytes] retain];
+            [self saveEntityUploadDate:date
+                         shareFacebook:facebook
+                          shareTwitter:twitter
+                                 image:data
+                            permission:permission
+                                  tags:tags
+                                 title:title
+                                   url:url
+                              groupUrl:urlGroup];
+            [data release];
         }else{
             NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], url);
         }
         
         free(buffer);
-        
-        [self saveEntityUploadDate:date
-                     shareFacebook:facebook 
-                      shareTwitter:twitter 
-                             image:data
-                        permission:permission
-                              tags:tags
-                             title:title
-                               url:url
-                          groupUrl:urlGroup];
     };
     
     // block for failed image
@@ -545,7 +545,7 @@
         NSLog(@"Error '%@' getting asset from library", [error localizedDescription]);
     };
     
-    // schedules the asset read       
+    // schedules the asset read
     [assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
 }
 
@@ -563,21 +563,21 @@
     
     [assetsLibrary assetForURL:url
                    resultBlock:resultBlock
-                  failureBlock:failureBlock]; 
+                  failureBlock:failureBlock];
 }
 
-- (void) saveEntityUploadDate:(NSDate *) date 
+- (void) saveEntityUploadDate:(NSDate *) date
                 shareFacebook:(NSNumber *) facebook
                  shareTwitter:(NSNumber *) twitter
                         image:(NSData *) image
                    permission:(NSNumber *) permission
                          tags:(NSString *) tags
-                        title:(NSString *) title 
+                        title:(NSString *) title
                           url:(NSURL *) url
                      groupUrl:(NSString *) urlGroup
 {
     if ( image != nil){
-
+        
         // generate a file name
         NSString *name = [AssetsLibraryUtilities getFileNameForImage:image url:url];
         
@@ -596,14 +596,14 @@
         imageTemp = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        NSData* data =[NSData dataWithData:UIImagePNGRepresentation (imageTemp)]; 
+        NSData* data =[NSData dataWithData:UIImagePNGRepresentation (imageTemp)];
         
         
-        //in the main queue, generate TimelinePhotos       
+        //in the main queue, generate TimelinePhotos
         dispatch_async(dispatch_get_main_queue(), ^{
             if (result){
                 // data to be saved in the database
-                TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos" 
+                TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos"
                                                                             inManagedObjectContext:[AppDelegate managedObjectContext]];
                 
                 // details form this upload
@@ -642,19 +642,20 @@
 }
 
 - (void)dealloc {
-    [self.originalImage release];
-    [self.imageFiltered release];
-    [self.detailsPictureTable release];
-    [self.titleTextField release];
-    [self.permissionPicture release];
-    [self.shareTwitter release];
-    [self.shareFacebook release];
-    [self.tagController release];
-    [self.image release];
-    [self.images release];
+    [_originalImage release];
+    [_imageFiltered release];
+    [_detailsPictureTable release];
+    [_titleTextField release];
+    [_permissionPicture release];
+    [_shareTwitter release];
+    [_shareFacebook release];
+    [_tagController release];
+    [_image release];
+    [_images release];
+    [_uploadButton release];
+    
     [assetsLibrary release];
     
-    [_uploadButton release];
     [super dealloc];
 }
 

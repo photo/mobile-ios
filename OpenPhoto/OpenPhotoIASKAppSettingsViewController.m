@@ -38,7 +38,7 @@
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     
@@ -65,8 +65,9 @@
     
 	headerLabel.text = text;
 	[customView addSubview:headerLabel];
+    [headerLabel release];
     
-	return customView;
+	return [customView autorelease];
 }
 
 // extend the framework to let Switch be red color.

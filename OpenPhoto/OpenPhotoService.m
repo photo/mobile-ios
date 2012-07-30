@@ -99,6 +99,9 @@
                                                                       value:[values objectForKey:@"tags"]];
     NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagParam, nil];
     [oaUrlRequest setParameters:params];
+    [titleParam release];
+    [permissionParam release];
+    [tagParam release];
     
     // prepare the request. This will be used to get the Authorization header and add in the multipart component        
     [oaUrlRequest prepare];
@@ -225,7 +228,7 @@
     if ( [response responseStatusCode] != 200){
         // there is an error with the request
         NSException *exception = [NSException exceptionWithName: @"Response error"
-                                                         reason: [NSString stringWithFormat:@"%@ - %@",[response responseStatusCode],[response responseStatusMessage]]
+                                                         reason: [NSString stringWithFormat:@"%d - %@",[response responseStatusCode],[response responseStatusMessage]]
                                                        userInfo: nil];
         @throw exception;
     }
@@ -322,6 +325,16 @@
     
     // another kind of message
     return YES;
+}
+
+- (void)dealloc
+{
+    [_server release];
+    [_oAuthKey release];
+    [_oAuthSecret release];
+    [_consumerKey release];
+    [_consumerSecret release];
+    [super dealloc];
 }
 
 @end

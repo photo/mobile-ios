@@ -255,7 +255,7 @@
 
 - (void)requestTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data{
     if (ticket.didSucceed) {
-        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *jsonString = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 #ifdef DEVELOPMENT_ENABLED_JSON_RETURN        
         NSLog(@"Response = %@",jsonString);       
 #endif        
@@ -267,9 +267,8 @@
         NSDictionary *results =  [jsonString JSONValue];
         
         [self performSelectorOnMainThread:@selector(deliveryResult:) withObject:results waitUntilDone:YES];
-        [jsonString release];
     }else{
-        NSLog(@"The request didn't succeed=%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"The request didn't succeed=%@",[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
     }
 }
 

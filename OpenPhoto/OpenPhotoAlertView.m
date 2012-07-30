@@ -37,7 +37,7 @@
 
 @implementation OpenPhotoAlertView
 @synthesize viewAlert = _viewAlert;
-@synthesize message = message;
+@synthesize message = _message;
 @synthesize duration = _duration;
 
 
@@ -110,7 +110,8 @@
 
 - (void)dealloc
 {
-    [self.viewAlert release];
+    [_viewAlert release];
+    [_message release];
     [super dealloc];
 }
 

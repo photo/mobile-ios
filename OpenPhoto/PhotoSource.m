@@ -41,8 +41,10 @@ BOOL isLoading = NO;
         self.actualMaxPhotoIndex = 24;
         
         // create service and the delegate
-        self.service = [[WebService alloc]init];
+        WebService *web = [[WebService alloc]init];
+        self.service = web;
         [service setDelegate:self];
+        [web release];
         
         for (int i = 0; i < self.photos.count; ++i) {
             id<TTPhoto> photo = [self.photos objectAtIndex:i];
@@ -61,8 +63,8 @@ BOOL isLoading = NO;
 
 - (void)dealloc {
     TT_RELEASE_SAFELY(_title);
-    [self.service release];
-    [self.photos release];
+    [service release];
+    [photos release];
     [super dealloc];
 }
 
