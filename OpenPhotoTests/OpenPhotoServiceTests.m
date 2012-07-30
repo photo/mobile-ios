@@ -55,7 +55,7 @@
     
     // send image
     @try {
-        [service uploadPicture:data metadata:values fileName:@"unit_test.jpg"];
+        [service uploadPicture:data metadata:values fileName:@"unit_test.jpg" delegate:nil];
         STFail(@"It should fail");
     }
     @catch (NSException *exception) {
