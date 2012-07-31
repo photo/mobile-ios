@@ -445,17 +445,6 @@
             [NSThread sleepForTimeInterval:2];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                // save all objects in the context
-                NSError *uploadError = nil;
-                if (![[AppDelegate managedObjectContext] save:&uploadError]){
-                    NSLog(@"Error saving uploading = %@",[uploadError localizedDescription]);
-                }else{
-#ifdef DEVELOPMENT_ENABLED
-                    NSLog(@"Data ready to send to openphoto. Everything saved on database");
-#endif
-                }
-                
-                
                 // stop loading
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 
@@ -477,9 +466,16 @@
                 OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                 [alert showAlert];
                 [alert release];
+                
+                // go to home
+                if (self.images){
+                    [self.navigationController popViewControllerAnimated:NO];
+                }else{
+                    [self dismissModalViewControllerAnimated:YES];
+                }
+                
                 // go to home
                 [AppDelegate openTab:0];
-                [self dismissModalViewControllerAnimated:YES];
             });
         }
     });
