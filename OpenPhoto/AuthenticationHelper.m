@@ -56,12 +56,21 @@
     
     // remove the credentials from the server in case of internet
     if ([AppDelegate internetActive]){
+        NSString *consumerKey = [standardUserDefaults objectForKey:kAuthenticationConsumerKey ];
+        
+        dispatch_queue_t removeCredentials = dispatch_queue_create("remove_credentials", NULL);
+        dispatch_async(removeCredentials, ^{
+            
         @try {
             OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-            [service removeCredentialsForKey:[standardUserDefaults objectForKey:kAuthenticationConsumerKey ]];
+            [service removeCredentialsForKey:consumerKey];
         }@catch (NSException *exception) {
             NSLog(@"Error to remove the credentials from server %@",exception.description);
         }
+            
+        });
+        dispatch_release(removeCredentials);
+
     }
     
     // set the variable client id to INVALID
