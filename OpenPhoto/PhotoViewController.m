@@ -59,14 +59,20 @@
 @synthesize image= _image;
 @synthesize images = _images;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;{
+// assets
+@synthesize assetsLibrary = _assetsLibrary;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
         // Custom initialization
         self.image = imageFromCamera;
         self.originalImage = originalImage;
-        assetsLibrary = [[[ALAssetsLibrary alloc] init] autorelease];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        self.assetsLibrary = library;
+        [library release];
         
         // initialization of tag controller
         self.tagController = [[[TagViewController alloc] init] autorelease];
@@ -76,13 +82,16 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync
+{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
         // Custom initialization
         self.images = imagesFromSync;
-        assetsLibrary = [[ALAssetsLibrary alloc] init];
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        self.assetsLibrary = library;
+        [library release];
         
         // how many images we need to process?
         if (self.images){
@@ -542,7 +551,7 @@
     };
     
     // schedules the asset read
-    [assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
+    [self.assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
 }
 
 - (void) loadImageToEdit:(NSURL *) url
@@ -557,9 +566,9 @@
         NSLog(@"Unresolved error: %@, %@", error, [error localizedDescription]);
     };
     
-    [assetsLibrary assetForURL:url
-                   resultBlock:resultBlock
-                  failureBlock:failureBlock];
+    [self.assetsLibrary assetForURL:url
+                        resultBlock:resultBlock
+                       failureBlock:failureBlock];
 }
 
 - (void) saveEntityUploadDate:(NSDate *) date
@@ -649,8 +658,7 @@
     [_image release];
     [_images release];
     [_uploadButton release];
-    
-    [assetsLibrary release];
+    [_assetsLibrary release];
     
     [super dealloc];
 }

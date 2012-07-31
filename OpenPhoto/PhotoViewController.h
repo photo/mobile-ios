@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -27,13 +27,11 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsLibraryUtilities.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>{
-    ALAssetsLibrary *assetsLibrary;
-}
+@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFFeatherDelegate>
 
 @property (nonatomic, retain) IBOutlet UITableView *detailsPictureTable;
 
-// in case of one image. The user can 
+// in case of one image. The user can
 // edit it
 @property (nonatomic, retain) UIImage *originalImage;
 @property (nonatomic, retain) UIImage *imageFiltered;
@@ -58,5 +56,8 @@
 // action to start uploading
 - (IBAction)upload:(id)sender;
 @property (retain, nonatomic) IBOutlet UIButton *uploadButton;
+
+// assets library
+@property (nonatomic, retain) ALAssetsLibrary *assetsLibrary;
 
 @end
