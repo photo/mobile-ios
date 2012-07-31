@@ -319,8 +319,8 @@
     NSString* code = [response objectForKey:@"code"];
     NSInteger icode = [code integerValue];
     
-    // is it different than 200, 201, 202
-    if (icode != 200 && icode != 201 && icode != 202)
+    // is it different than 200, 201, 202, 204
+    if (icode != 200 && icode != 201 && icode != 202 && icode != 204)
         return NO;
     
     // another kind of message
