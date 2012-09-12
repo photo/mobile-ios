@@ -44,7 +44,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"3.0";
+    return @"3.1";
 }
 
 - (BOOL) needsUpdate{
@@ -69,15 +69,7 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
-    [standardUserDefaults synchronize];   
-    
-    //clean up database
-    [AppDelegate cleanDatabase]; 
-    
-    NSError *saveError = nil;
-    if (![[AppDelegate managedObjectContext] save:&saveError]){
-        NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
-    }
+    [standardUserDefaults synchronize]; 
 }
 
 - (void) dealloc {
