@@ -43,15 +43,12 @@
     [actionSheet showFromToolbar:self.navigationController.toolbar];
     
 #ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Gallery Details - Share More"];
+     [TestFlight passCheckpoint:@"Shared"];
 #endif  
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Gallery Details Loaded"];
-#endif      
+    [super viewWillAppear:animated]; 
 }
 @end

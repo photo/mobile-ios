@@ -146,10 +146,7 @@
                                 
                                 photo.status = kUploadStatusTypeUploadFinished; 
                                 photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
-#ifdef TEST_FLIGHT_ENABLED
-                                [TestFlight passCheckpoint:@"Image uploaded"];
-                                
-#endif
+
                                 // release data
                                 [data release];
                                 

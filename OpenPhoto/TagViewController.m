@@ -298,10 +298,6 @@
                             }}
                         
                         [self.tableView reloadData];
-                        
-#ifdef TEST_FLIGHT_ENABLED
-                        [TestFlight passCheckpoint:@"Tags received from the website"];
-#endif
                         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                         self.isLoading = NO;
                         

@@ -56,7 +56,6 @@
 #ifdef TEST_FLIGHT_ENABLED
     // to start the TestFlight SDK
     [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
-    [TestFlight passCheckpoint:@"App Loaded"];
 #endif
     
     [self prepareConnectionInformation];
@@ -159,11 +158,7 @@
     if ([[url scheme] isEqualToString:@"openphoto"] ||
         [[url scheme] isEqualToString:@"openphoto-test"]){
         AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
-        
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"OAuth - starting"];
-#endif
-        
+                
         if ([auth isValid] == NO){
             [auth startOAuthProcedure:url];
         }

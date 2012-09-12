@@ -208,10 +208,6 @@ BOOL isLoading = NO;
     [self.photos addObjectsFromArray:localPhotos];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Gallery Load More"];
-#endif
-    
     // Finishes
     isLoading = NO;
     [localPhotos release];

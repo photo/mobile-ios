@@ -230,11 +230,7 @@
         
         // send notification to the system that it can shows the screen:
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
-        
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"OAuth - finished"];
-#endif
-        
+               
 #ifdef DEVELOPMENT_ENABLED        
         NSLog(@"OAuth procedure finished");
 #endif

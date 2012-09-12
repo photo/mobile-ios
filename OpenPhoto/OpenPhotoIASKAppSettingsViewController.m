@@ -40,11 +40,6 @@
     
     self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
-    
-    
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Settings"];
-#endif
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -104,11 +99,7 @@
     if (buttonIndex == 1){
         // move the screen to tab 0
         [AppDelegate openTab:0];
-        
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"User log out"];
-#endif
-        
+
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Invalidate user information");
 #endif

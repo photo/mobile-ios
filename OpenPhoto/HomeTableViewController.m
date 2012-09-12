@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -76,25 +76,25 @@
         [fetchRequest release];
         [controller release];
         
-        // needs update in screen  
-        [[NSNotificationCenter defaultCenter] addObserver:self 
+        // needs update in screen
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
-                                                     name:kNotificationNeededsUpdateHome 
+                                                     name:kNotificationNeededsUpdateHome
                                                    object:nil ];
         
         // set that it always need update
         self.needsUpdate = YES;
         // if we don't need update, it needs to receive a notification
-        [[NSNotificationCenter defaultCenter] addObserver:self 
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
-                                                     name:kNotificationDisableUpdateHome 
+                                                     name:kNotificationDisableUpdateHome
                                                    object:nil ];
     }
     return self;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];   
+    [super viewWillAppear:animated];
     
     if (self.needsUpdate == YES){
         [self loadNewestPhotosIntoCoreData];
@@ -108,8 +108,8 @@
 #endif
     
     // ask if user wants to enable location
-    [coreLocationController.locMgr startUpdatingLocation];    
-    [coreLocationController.locMgr stopUpdatingLocation]; 
+    [coreLocationController.locMgr startUpdatingLocation];
+    [coreLocationController.locMgr stopUpdatingLocation];
     
     // if no picture, show image to upload
     if ([[self.fetchedResultsController fetchedObjects] count]== 0){
@@ -148,7 +148,7 @@
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {   
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *photoCellIdentifier = @"photoCell";
     static NSString *uploadCellIdentifier = @"uploadCell";
     
@@ -177,7 +177,7 @@
         uploadCell.originalObject = photo;
         
         // set thumb
-        uploadCell.thumb.image = [UIImage imageWithData:photo.photoDataThumb];   
+        uploadCell.thumb.image = [UIImage imageWithData:photo.photoDataThumb];
         [uploadCell.thumb.superview.layer setCornerRadius:3.0f];
         [uploadCell.thumb.superview.layer setShadowColor:[UIColor blackColor].CGColor];
         [uploadCell.thumb.superview.layer setShadowOpacity:0.25];
@@ -213,25 +213,20 @@
                 NSLog(@"User wants to share uploaded photo");
 #endif
 #ifdef TEST_FLIGHT_ENABLED
-                if ([photo.twitter boolValue]){
-                    [TestFlight passCheckpoint:@"Twitter"];
-                }else{
-                    // facebook
-                    [TestFlight passCheckpoint:@"Facebook"];
-                }
+                [TestFlight passCheckpoint:@"Shared"];
 #endif
                 
-                NSDictionary *responsePhoto = [NSDictionarySerializer nsDataToNSDictionary:photo.photoUploadResponse];        
+                NSDictionary *responsePhoto = [NSDictionarySerializer nsDataToNSDictionary:photo.photoUploadResponse];
                 
                 // parameters from upload
                 NSArray *keys = [NSArray arrayWithObjects:@"url", @"title",@"type",nil];
-                NSString *shareDetails = [responsePhoto objectForKey:@"url"]; 
+                NSString *shareDetails = [responsePhoto objectForKey:@"url"];
                 if (photo.photoUploadMultiplesUrl){
                     shareDetails = photo.photoUploadMultiplesUrl;
                 }
                 NSArray *objects= [NSArray arrayWithObjects: shareDetails, [NSString stringWithFormat:@"%@", [responsePhoto objectForKey:@"title"]],[photo.twitter boolValue] ? @"Twitter" : @"Facebook", nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];       
-            } 
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationShareInformationToFacebookOrTwitter object:[NSDictionary dictionaryWithObjects:objects forKeys:keys] ];
+            }
             
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
@@ -297,7 +292,7 @@
         NSInteger days = interval/86400;
         if (days >= 2 ){
             if (days > 365){
-                // show in years 
+                // show in years
                 [dateText appendFormat:days/365 == 1 ? [NSString stringWithFormat:@"%i year ago",days/365] : [NSString stringWithFormat:@"%i years ago",days/365]];
             }else{
                 // lets show in days
@@ -328,50 +323,50 @@
         newestPhotoCell.geoPositionButton.hidden=YES;
         
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
-                              placeholderImage:nil 
+                              placeholderImage:nil
                                        success:^(UIImage *image){
-             [newestPhotoCell.photo.layer setCornerRadius:5.0f];
-             newestPhotoCell.photo.layer.masksToBounds = YES;
-             
-             [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-             [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
-             [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
-             [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-             
-             
-             // set details of private or not
-             if ([photo.permission boolValue] == NO)
-                 newestPhotoCell.private.hidden=NO;
-             else
-                 newestPhotoCell.private.hidden=YES;
-             
-             
-             // set details geoposition
-             if (photo.latitude != nil && photo.longitude != nil){
-                 // show button
-                 newestPhotoCell.geoPositionButton.hidden=NO;
-                 
-                 // set the latitude and longitude
-                 newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
-             }else {
-                 newestPhotoCell.geoPositionButton.hidden=YES;
-             }
-             
-             // share details
-             if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
-                 newestPhotoCell.shareButton.hidden=NO;
-                 newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                 newestPhotoCell.newestPhotosTableViewController = self;
-             }else{
-                 newestPhotoCell.shareButton.hidden=YES;
-             }
-         }
-         failure:^(NSError *error){
-             OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
-             [alert showAlert];
-             [alert release];
-             
-         }];
+                                           [newestPhotoCell.photo.layer setCornerRadius:5.0f];
+                                           newestPhotoCell.photo.layer.masksToBounds = YES;
+                                           
+                                           [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+                                           [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
+                                           [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
+                                           [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+                                           
+                                           
+                                           // set details of private or not
+                                           if ([photo.permission boolValue] == NO)
+                                               newestPhotoCell.private.hidden=NO;
+                                           else
+                                               newestPhotoCell.private.hidden=YES;
+                                           
+                                           
+                                           // set details geoposition
+                                           if (photo.latitude != nil && photo.longitude != nil){
+                                               // show button
+                                               newestPhotoCell.geoPositionButton.hidden=NO;
+                                               
+                                               // set the latitude and longitude
+                                               newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+                                           }else {
+                                               newestPhotoCell.geoPositionButton.hidden=YES;
+                                           }
+                                           
+                                           // share details
+                                           if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
+                                               newestPhotoCell.shareButton.hidden=NO;
+                                               newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+                                               newestPhotoCell.newestPhotosTableViewController = self;
+                                           }else{
+                                               newestPhotoCell.shareButton.hidden=YES;
+                                           }
+                                       }
+                                       failure:^(NSError *error){
+                                           OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                           [alert showAlert];
+                                           [alert release];
+                                           
+                                       }];
         
         
         return newestPhotoCell;
@@ -405,7 +400,7 @@
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{    
+{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Pressed delete button");
@@ -443,12 +438,12 @@
 #pragma mark UIScrollViewDelegate Methods
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{	
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];    
+{
+    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{  
+{
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
@@ -457,17 +452,17 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
     // via GCD, get the newest photos and save it on database
-    [self loadNewestPhotosIntoCoreData];    
+    [self loadNewestPhotosIntoCoreData];
 }
 
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
 {
-    return _reloading; // should return if data source model is reloading	
+    return _reloading; // should return if data source model is reloading
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{	
-    return [NSDate date]; // should return date data source was last changed	
+{
+    return [NSDate date]; // should return date data source was last changed
 }
 
 
@@ -506,11 +501,11 @@
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         // let NewestPhotos treat the objects
-                        [TimelinePhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];  
+                        [TimelinePhotos insertIntoCoreData:result InManagedObjectContext:[AppDelegate managedObjectContext]];
                         [self doneLoadingTableViewData];
                     });
                 }@catch (NSException *exception) {
-                    dispatch_async(dispatch_get_main_queue(), ^{                  
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
                         [alert showAlert];
                         [alert release];

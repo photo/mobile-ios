@@ -87,10 +87,6 @@
         
         // Display the action sheet
         [actionSheet showFromTabBar:self.newestPhotosTableViewController.tabBarController.tabBar];
-        
-#ifdef TEST_FLIGHT_ENABLED
-        [TestFlight passCheckpoint:@"Newest Photos - Share More"];
-#endif  
     }
 }
 @end
