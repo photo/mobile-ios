@@ -247,7 +247,6 @@
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
         }else{
-            NSLog(@"******** Status %@",photo.status);
             // it is invalid
             uploadCell.status.text=@"Invalid photo";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
@@ -407,6 +406,12 @@
 #endif
         // delete object originalObject
         TimelinePhotos *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        //delete the file
+        NSError *error = nil;
+        if ([[NSFileManager defaultManager] removeItemAtPath:photo.photoDataTempUrl error:&error] != YES)
+            NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+        
         [[AppDelegate managedObjectContext] deleteObject:photo];
     }
 }
