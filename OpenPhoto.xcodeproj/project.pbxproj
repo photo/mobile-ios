@@ -43,6 +43,7 @@
 		CD22C9A91439123000E98B0B /* QSHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A31439123000E98B0B /* QSHttpClient.m */; };
 		CD22C9AA1439123000E98B0B /* QSStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = CD22C9A51439123000E98B0B /* QSStrings.m */; };
 		CD2DBF38159473D300B19784 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2DBF37159473D300B19784 /* HomeTableViewController.m */; };
+		CD39BB4C16008D05002763B6 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD39BB4A16008D05002763B6 /* iRate.m */; };
 		CD3C79F213EC6F7F006ED46C /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */; };
 		CD45C11E14869F8600CAE2FB /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C11C14869F8500CAE2FB /* Icon.png */; };
 		CD45C11F14869F8600CAE2FB /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD45C11D14869F8500CAE2FB /* Icon@2x.png */; };
@@ -601,6 +602,8 @@
 		CD22C9A61439123000E98B0B /* QSUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QSUtilities.h; path = Frameworks/QSUtilities/QSUtilities.h; sourceTree = SOURCE_ROOT; };
 		CD2DBF36159473D300B19784 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		CD2DBF37159473D300B19784 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		CD39BB4916008D05002763B6 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
+		CD39BB4A16008D05002763B6 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
 		CD3C79F113EC6F7F006ED46C /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		CD45C11C14869F8500CAE2FB /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = OpenPhoto/images/Icon.png; sourceTree = SOURCE_ROOT; };
 		CD45C11D14869F8500CAE2FB /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "OpenPhoto/images/Icon@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -1220,6 +1223,15 @@
 			name = GTM;
 			path = Frameworks/QSUtilities/GTM;
 			sourceTree = SOURCE_ROOT;
+		};
+		CD39BB4716008C85002763B6 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				CD39BB4916008D05002763B6 /* iRate.h */,
+				CD39BB4A16008D05002763B6 /* iRate.m */,
+			);
+			name = iRate;
+			sourceTree = "<group>";
 		};
 		CD4A1509159D8FE200B7C417 /* tabbar */ = {
 			isa = PBXGroup;
@@ -1915,6 +1927,7 @@
 		CDF1C94A13E1C45C0018AD0B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD39BB4716008C85002763B6 /* iRate */,
 				CD4E0F851512048A00718923 /* ShareKit */,
 				CDC8994514649E8F00C50A00 /* ASIHTTPRequest */,
 				CD578AB51463510E00D4EFC9 /* MBProgressHUD */,
@@ -2738,6 +2751,7 @@
 				CDFDC6A415A591EC00F33CD1 /* NSDictionarySerializer.m in Sources */,
 				CDFDC6A715A5BC4500F33CD1 /* JobUploaderDelegate.m in Sources */,
 				CDE518E815BF09700098E349 /* TimelinePhotos.m in Sources */,
+				CD39BB4C16008D05002763B6 /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
