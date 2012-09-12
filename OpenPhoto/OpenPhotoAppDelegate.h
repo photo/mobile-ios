@@ -29,6 +29,7 @@
 #import "SHK.h"
 #import "Reachability.h"
 #import "JobUploaderController.h"
+#import "iRate.h"
 
 // easy way to get app delegate
 #define AppDelegate (OpenPhotoAppDelegate*) [[UIApplication sharedApplication] delegate]
