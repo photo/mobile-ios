@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,10 +20,9 @@
 #import "AuthenticationViewController.h"
 
 // Private interface definition
-@interface AuthenticationViewController() 
+@interface AuthenticationViewController()
 
 - (void) saveUrl:(NSString *) text;
-- (BOOL) validateUrl: (NSString *) url;
 - (void) eventHandler: (NSNotification *) notification;
 
 @end
@@ -35,10 +34,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //register to listen for to remove the login screen.    
-        [[NSNotificationCenter defaultCenter] addObserver:self 
+        //register to listen for to remove the login screen.
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
-                                                     name:kNotificationLoginAuthorize         
+                                                     name:kNotificationLoginAuthorize
                                                    object:nil ];
     }
     return self;
@@ -82,43 +81,34 @@
         [alert showAlert];
         [alert release];
     }else{
-        // the same actin as click the button from keyboard
-        if ( [self validateUrl:self.serverURL.text]==YES){
-            
-            // save the url method. It removes the last / if exists
-            [self saveUrl:self.serverURL.text];
-            
-            // to the login in the website
-            WebService* service = [[WebService alloc]init];
-            [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
-            [service release];   
-        }
+        // save the url method. It removes the last / if exists
+        [self saveUrl:self.serverURL.text];
+        
+        // to the login in the website
+        WebService* service = [[WebService alloc]init];
+        [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
+        [service release];
     }
 }
 
 // Action if user clicks in DONE in the keyboard
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {  
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url %@",self.serverURL.text);
 #endif
     
-    if ([self validateUrl:textField.text] == YES){
-        
-        // save the url method. It removes the last / if exists
-        [self saveUrl:textField.text];
-        
-        // to the login
-        WebService* service = [[WebService alloc]init];
-        [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
-        [service release];   
-        
-        // return
-        [textField resignFirstResponder];
-        return YES;
-    }
+    // save the url method. It removes the last / if exists
+    [self saveUrl:textField.text];
     
-    return NO;
+    // to the login
+    WebService* service = [[WebService alloc]init];
+    [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
+    [service release];
+    
+    // return
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -129,13 +119,13 @@
     }completion:^(BOOL finished){
         if([textField respondsToSelector:@selector(selectedTextRange)]){
             
-            //iOS >=5.0            
+            //iOS >=5.0
             if ( [textField.text isEqualToString:@"username.openphoto.me"]){
                 // get the actual range
-                UITextRange *selectedRange = [textField selectedTextRange];       
+                UITextRange *selectedRange = [textField selectedTextRange];
                 
                 //Calculate the new position, - for left and + for right
-                UITextPosition *fromPosition = [textField positionFromPosition:selectedRange.start offset:-21];  
+                UITextPosition *fromPosition = [textField positionFromPosition:selectedRange.start offset:-21];
                 UITextPosition *toPosition = [textField positionFromPosition:selectedRange.start offset:-13];
                 
                 //Construct a new range and set  in the textfield
@@ -151,24 +141,6 @@
 ///////////////////////////////////
 // PRIVATES METHODS
 //////////////////////////////////
-- (BOOL) validateUrl: (NSString *) url {
-    NSString *theURL =
-    @"((http|https)://)?((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
-    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", theURL]; 
-    
-    // validate URL
-    if ( [urlTest evaluateWithObject:url] == NO){
-        // show alert to user
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Invalid URL, please try again." duration:5000];
-        [alert showAlert];
-        [alert release];
-        
-        return NO;
-    }
-    
-    return YES;
-}
-
 -(void) saveUrl:(NSString *) text{
     // save the url for the app
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -194,7 +166,7 @@
     }else{
         [standardUserDefaults setValue:[url relativeString] forKey:kOpenPhotoServer];
     }
-    [standardUserDefaults synchronize];  
+    [standardUserDefaults synchronize];
 }
 
 //event handler when event occurs
