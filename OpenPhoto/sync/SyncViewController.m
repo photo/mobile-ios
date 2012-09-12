@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,21 +53,23 @@
             hidden = NO;
         }
         
-        if  ([[NSUserDefaults standardUserDefaults] boolForKey:kSyncShowUploadedPhotos] == YES){
+        if  ([standardUserDefaults boolForKey:kSyncShowUploadedPhotos] == YES){
             // set the sync to NO
             hidden = NO;
+        }else{
+            hidden = YES;
         }
         
         // notification for update the table
-        [[NSNotificationCenter defaultCenter] addObserver:self 
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
-                                                     name:kNotificationUpdateTableWithAllPhotosAgain 
+                                                     name:kNotificationUpdateTableWithAllPhotosAgain
                                                    object:nil ];
     }
     return self;
 }
 
--(void)viewDidLoad 
+-(void)viewDidLoad
 {
     [super viewDidLoad];
 	[self.tableView setAllowsSelection:NO];
@@ -85,7 +87,7 @@
     button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
     [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button]; 
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = customBarItem;
     [customBarItem release];
     
@@ -132,7 +134,7 @@
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    library = [[ALAssetsLibrary alloc] init]; 
+    library = [[ALAssetsLibrary alloc] init];
     loaded = NO;
     
     // load all urls
@@ -164,19 +166,19 @@
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-#ifdef DEVELOPMENT_ENABLED 
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"enumerating photos");
     NSLog("Assets Number %i", assetsNumber);
-    NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]); 
+    NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]);
 #endif
     
     if ([self.assetGroup numberOfAssets] != assetsNumber){
         // we need to load again
         [self loadSavedPhotos];
     }else{
-        [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
-         {         
-             if(result == nil) 
+        [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
+         {
+             if(result == nil)
              {
                  return;
              }
@@ -191,9 +193,9 @@
                  [self.elcAssets addObject:elcAsset];
                  [elcAsset release];
              }
-         }];   
+         }];
         
-#ifdef DEVELOPMENT_ENABLED     
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"done enumerating photos");
 #endif
         [self.tableView reloadData];
@@ -208,8 +210,8 @@
 	@try {
         NSMutableArray *selectedAssetsImages = [[[NSMutableArray alloc] init] autorelease];
         
-        for(ELCAsset *elcAsset in self.elcAssets) 
-        {		
+        for(ELCAsset *elcAsset in self.elcAssets)
+        {
             if([elcAsset selected]) {
                 [selectedAssetsImages addObject:[elcAsset asset]];
             }
@@ -221,7 +223,7 @@
         [alert showAlert];
         [alert release];
         
-        NSLog(@"A problem occured when NEXT is clicked on SyncController: %@", [exception description]);	 
+        NSLog(@"A problem occured when NEXT is clicked on SyncController: %@", [exception description]);
         [self loadSavedPhotos];
     }
 }
@@ -282,12 +284,12 @@
     
     ELCAssetCell *cell = (ELCAssetCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil) 
-    {		        
+    if (cell == nil)
+    {
         cell = [[[ELCAssetCell alloc] initWithAssets:[self assetsForIndexPath:indexPath] reuseIdentifier:CellIdentifier] autorelease];
-    }	
-	else 
-    {		
+    }
+	else
+    {
 		[cell setAssets:[self assetsForIndexPath:indexPath]];
 	}
     
@@ -303,11 +305,11 @@
     
     int count = 0;
     
-    for(ELCAsset *asset in self.elcAssets) 
+    for(ELCAsset *asset in self.elcAssets)
     {
-		if([asset selected]) 
-        {            
-            count++;	
+		if([asset selected])
+        {
+            count++;
 		}
 	}
     
@@ -318,10 +320,8 @@
 {
     // change the boolean
     hidden = !hidden;
-    
+
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setBool:hidden forKey:kSyncShowUploadedPhotos];
-    [standardUserDefaults synchronize];
     
     // set details of the button
     UIImage *buttonImage;
@@ -329,11 +329,15 @@
     if (!hidden){
         buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
         message = @"Showing all of your photos";
+        [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
     }else{
-        buttonImage = [UIImage imageNamed:@"sync-show.png"] ; 
+        buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
         message = @"Hiding photos you've already uploaded";
+        [standardUserDefaults setBool:NO forKey:kSyncShowUploadedPhotos];
     }
-    [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];   
+    [standardUserDefaults synchronize];
+    
+    [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Loading";
@@ -352,11 +356,11 @@
 {
     // the Saved Photos Album
     dispatch_async(dispatch_get_main_queue(), ^
-                   {                       
+                   {
                        // Group enumerator Block
-                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
+                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
                        {
-                           if (group == nil) 
+                           if (group == nil)
                            {
                                return;
                            }
@@ -368,7 +372,7 @@
                                hud.labelText = @"Loading";
                                assetsNumber = [self.assetGroup numberOfAssets];
                                
-                               // with the local group, we can load the images                           
+                               // with the local group, we can load the images
                                [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
                            }
                        };
@@ -380,20 +384,20 @@
                            [alert show];
                            [alert release];
                            
-                           NSLog(@"A problem occured %@", [error description]);	                                 
-                       };	
+                           NSLog(@"A problem occured %@", [error description]);
+                       };
                        
                        // Show only the Saved Photos
                        [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                                              usingBlock:assetGroupEnumerator 
+                                              usingBlock:assetGroupEnumerator
                                             failureBlock:assetGroupEnumberatorFailure];
                        
-                   });      
+                   });
     
 }
 
 - (void) eventHandler: (NSNotification *) notification{
-#ifdef DEVELOPMENT_ENABLED    
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"###### Event triggered: %@", notification);
 #endif
     
@@ -405,7 +409,7 @@
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
     [elcAssets release];
     [library release];
@@ -414,7 +418,7 @@
     [_tableView release];
     [_buttonHidden release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];    
+    [super dealloc];
 }
 
 - (void)viewDidUnload {
