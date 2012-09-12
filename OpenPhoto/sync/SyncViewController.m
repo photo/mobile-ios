@@ -176,6 +176,7 @@
         // we need to load again
         [self loadSavedPhotos];
     }else{
+        NSMutableArray *startArray = [NSMutableArray array];
         [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
          {
              if(result == nil)
@@ -190,10 +191,14 @@
              if (!hidden || (hidden && !alreadyUploaded)){
                  ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
                  [elcAsset setParent:self];
-                 [self.elcAssets addObject:elcAsset];
+                 [startArray addObject:elcAsset];
                  [elcAsset release];
              }
          }];
+        
+        //revert the order
+        [self.elcAssets addObjectsFromArray:[[startArray reverseObjectEnumerator] allObjects]];
+
         
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"done enumerating photos");
