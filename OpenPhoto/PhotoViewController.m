@@ -129,6 +129,11 @@
         self.navigationItem.rightBarButtonItem = cancelButton;
         [cancelButton release];
     }
+    
+    UIImageView *imgView=[[UIImageView alloc]init];
+    imgView.image=[UIImage imageNamed:@"Background.png"];;
+    self.detailsPictureTable.backgroundView=imgView;
+    [imgView release];
 }
 
 

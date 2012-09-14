@@ -38,7 +38,11 @@
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
     
-    self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    UIImageView *imgView=[[UIImageView alloc]init];
+    imgView.image=[UIImage imageNamed:@"Background.png"];;
+    self.tableView.backgroundView=imgView;
+    [imgView release];
+    
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
 }
 
