@@ -1,5 +1,6 @@
 # Xcode
-build/*
+.DS_Store
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,10 +14,5 @@ build/*
 xcuserdata
 profile
 *.moved-aside
-
-OpenPhoto.xcodeproj/xcuserdata
-
-# osx noise
-.DS_Store
-profile
-
+DerivedData
+.idea/
