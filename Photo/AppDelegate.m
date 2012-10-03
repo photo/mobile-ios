@@ -3,8 +3,19 @@
 //  Photo
 //
 //  Created by Patrick Santana on 25/09/12.
-//  Copyright (c) 2012 Photo Project. All rights reserved.
+//  Copyright 2012 OpenPhoto
 //
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
 
 #import "AppDelegate.h"
 
@@ -14,13 +25,30 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+@synthesize centerController = _viewController;
+@synthesize leftController = _leftController;
+@synthesize imageController = _imageController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.leftController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
+    RightViewController* rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
+    
+    ViewController *centerController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
+    IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
+                                                                                    leftViewController:self.leftController
+                                                                                   rightViewController:rightController];
+    deckController.rightLedge = 100;
+    
+    self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
     return YES;
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
