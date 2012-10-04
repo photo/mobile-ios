@@ -20,7 +20,7 @@
 #import <UIKit/UIKit.h>
 #import "IIViewDeckController.h"
 #import "ViewController.h"
-#import "LeftViewController.h"
+#import "MenuViewController.h"
 #import "RightViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -36,7 +36,7 @@
 
 
 @property (strong, nonatomic) UIViewController *centerController;
-@property (strong, nonatomic) UIViewController *leftController;
+@property (strong, nonatomic) UIViewController *menuController;
 @property (strong, nonatomic) UIViewController *imageController;
 
 

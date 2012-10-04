@@ -26,7 +26,7 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 @synthesize centerController = _viewController;
-@synthesize leftController = _leftController;
+@synthesize menuController = _menuController;
 @synthesize imageController = _imageController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -35,13 +35,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.leftController = [[LeftViewController alloc] initWithNibName:@"LeftViewController" bundle:nil];
+    self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     RightViewController* rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
     
     ViewController *centerController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
-                                                                                    leftViewController:self.leftController
+                                                                                    leftViewController:self.menuController
                                                                                    rightViewController:rightController];
     deckController.rightLedge = 100;
     
