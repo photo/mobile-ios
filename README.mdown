@@ -59,7 +59,9 @@ Don't forget to execute
 $ git submodule update --init
 
 ### Localization
-Run  
+Use this command to run in all files .m and generate the translation file to be filled by translators.
+
 ````
-find . -name \*.m | xargs genstrings -o fr.lproj
+cd Photo
+find . -name \*.m | xargs genstrings -o en.lproj
 ````
