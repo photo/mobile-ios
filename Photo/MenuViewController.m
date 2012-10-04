@@ -111,7 +111,50 @@
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [NSString stringWithFormat:@"%d:%d", indexPath.section, indexPath.row];
+    if ( indexPath.section == 0){
+        // your photos menu
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = NSLocalizedString(@"Home", @"Menu - title for Home");
+                break;
+            case 1:
+                cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
+                break;
+            case 2:
+                cell.textLabel.text = NSLocalizedString(@"Album", @"Menu - title for Album");
+                break;
+            case 3:
+                cell.textLabel.text = NSLocalizedString(@"Tag", @"Menu - title for Tag");
+                break;
+            case 4:
+                cell.textLabel.text = NSLocalizedString(@"Sync", @"Menu - title for Sync");
+                break;
+            default:
+                cell.textLabel.text = @"not defined";
+                break;
+        }
+    }else{
+        // settings
+        switch (indexPath.row) {
+            case 0:
+                cell.textLabel.text = NSLocalizedString(@"Account", @"Menu - title for Account");
+                break;
+            case 1:
+                cell.textLabel.text = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
+                break;
+            case 2:
+                cell.textLabel.text = NSLocalizedString(@"Properties", @"Menu - title for Properties");
+                break;
+            case 3:
+                cell.textLabel.text = NSLocalizedString(@"About Us", @"Menu - title for About Us");
+                break;
+                
+            default:
+                cell.textLabel.text = @"not defined";
+                break;
+        }
+    }
+    
     return cell;
 }
 

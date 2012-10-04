@@ -30,13 +30,14 @@
 		CDAFB9F916122263002D6E86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D816122262002D6E86 /* CoreData.framework */; };
 		CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAFB9FF16122263002D6E86 /* InfoPlist.strings */; };
 		CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFBA0316122263002D6E86 /* PhotoTests.m */; };
+		CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */; };
+		CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */; };
+		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CDEC257E161C70DD0062E9B0 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDEC257D161C70DD0062E9B0 /* Entitlements.entitlements */; };
 		CDEC2589161C75B80062E9B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2581161C75B70062E9B0 /* ViewController.m */; };
 		CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2582161C75B70062E9B0 /* ViewController.xib */; };
-		CDEC258B161C75B80062E9B0 /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2584161C75B70062E9B0 /* LeftViewController.m */; };
-		CDEC258C161C75B80062E9B0 /* LeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2585161C75B70062E9B0 /* LeftViewController.xib */; };
 		CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2587161C75B80062E9B0 /* RightViewController.m */; };
 		CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2588161C75B80062E9B0 /* RightViewController.xib */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,12 @@
 		CDAFBA0016122263002D6E86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CDAFBA0216122263002D6E86 /* PhotoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoTests.h; sourceTree = "<group>"; };
 		CDAFBA0316122263002D6E86 /* PhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
+		CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		CDC3A7EC161DFAEA003FDC2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CDC3A7EE161DFAF3003FDC2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CDC3A7EF161DFAFD003FDC2E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDEC2562161C3A280062E9B0 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
@@ -83,9 +90,6 @@
 		CDEC2580161C75B70062E9B0 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CDEC2581161C75B70062E9B0 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CDEC2582161C75B70062E9B0 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
-		CDEC2583161C75B70062E9B0 /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
-		CDEC2584161C75B70062E9B0 /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
-		CDEC2585161C75B70062E9B0 /* LeftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewController.xib; sourceTree = "<group>"; };
 		CDEC2586161C75B80062E9B0 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		CDEC2587161C75B80062E9B0 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		CDEC2588161C75B80062E9B0 /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightViewController.xib; sourceTree = "<group>"; };
@@ -190,9 +194,9 @@
 		CD4613DB161C7B3A0028619D /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				CDEC2583161C75B70062E9B0 /* LeftViewController.h */,
-				CDEC2584161C75B70062E9B0 /* LeftViewController.m */,
-				CDEC2585161C75B70062E9B0 /* LeftViewController.xib */,
+				CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */,
+				CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */,
+				CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -265,6 +269,7 @@
 		CDAFB9DB16122262002D6E86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */,
 				CD4613DC161C7B800028619D /* Images */,
 				CDAFB9DC16122262002D6E86 /* Photo-Info.plist */,
 				CDAFB9DD16122262002D6E86 /* InfoPlist.strings */,
@@ -358,6 +363,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				fr,
 			);
 			mainGroup = CDAFB9C316122262002D6E86;
 			productRefGroup = CDAFB9CF16122262002D6E86 /* Products */;
@@ -378,13 +385,14 @@
 				CDAFB9DF16122262002D6E86 /* InfoPlist.strings in Resources */,
 				CDEC257E161C70DD0062E9B0 /* Entitlements.entitlements in Resources */,
 				CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */,
-				CDEC258C161C75B80062E9B0 /* LeftViewController.xib in Resources */,
 				CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */,
 				CD4613E0161C7C7C0028619D /* Default-568h@2x.png in Resources */,
 				CD4613E1161C7C7C0028619D /* Default.png in Resources */,
 				CD4613E2161C7C7C0028619D /* Default@2x.png in Resources */,
 				CD4613E5161C7CA20028619D /* Icon.png in Resources */,
 				CD4613E6161C7CA20028619D /* Icon@2x.png in Resources */,
+				CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */,
+				CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,8 +435,8 @@
 				CDAFB9E516122263002D6E86 /* AppDelegate.m in Sources */,
 				CDAFB9EE16122263002D6E86 /* Photo.xcdatamodeld in Sources */,
 				CDEC2589161C75B80062E9B0 /* ViewController.m in Sources */,
-				CDEC258B161C75B80062E9B0 /* LeftViewController.m in Sources */,
 				CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */,
+				CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +475,16 @@
 				CDAFBA0016122263002D6E86 /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDC3A7EC161DFAEA003FDC2E /* de */,
+				CDC3A7EE161DFAF3003FDC2E /* en */,
+				CDC3A7EF161DFAFD003FDC2E /* fr */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
