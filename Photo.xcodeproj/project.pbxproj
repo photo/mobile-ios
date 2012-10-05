@@ -52,6 +52,7 @@
 		CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */; };
 		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
 		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
+		CD8992EF161F24F200026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992EE161F24F200026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -413,6 +414,7 @@
 		CD899284161F08AB00026DBB /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
 		CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
 		CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
+		CD8992EE161F24F200026DBB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = Reachability.m; path = Frameworks/ShareKit/Classes/ShareKit/Reachability/Reachability.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -605,6 +607,7 @@
 		CD76428A161ED9E600E0B657 /* ASIHTTPRequest */ = {
 			isa = PBXGroup;
 			children = (
+				CD8992EE161F24F200026DBB /* Reachability.m */,
 				CD76428B161EDAC000E0B657 /* ASIAuthenticationDialog.h */,
 				CD76428C161EDAC000E0B657 /* ASIAuthenticationDialog.m */,
 				CD76428D161EDAC000E0B657 /* ASICacheDelegate.h */,
@@ -1242,6 +1245,7 @@
 				CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */,
 				CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */,
 				CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */,
+				CD8992EF161F24F200026DBB /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

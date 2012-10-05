@@ -1,9 +1,9 @@
 //
 //  AuthenticationViewController.m
-//  OpenPhoto
+//  Photo
 //
-//  Created by Patrick Santana on 07/09/11.
-//  Copyright 2012 OpenPhoto
+//  Created by Patrick Santana on 5/10/12.
+//  Copyright 2012 Photo
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.

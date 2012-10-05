@@ -3,7 +3,7 @@
 //  Photo
 //
 //  Created by Patrick Santana on 25/09/12.
-//  Copyright 2012 OpenPhoto
+//  Copyright 2012 Photo
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,6 +72,28 @@
     [iRate sharedInstance].applicationBundleID = @"me.OpenPhoto.ios";
     [iRate sharedInstance].applicationName=@"OpenPhoto";
 }
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Application should handleOpenUrl = %@",url);
+#endif
+    
+    // the "photo-test" is used for TestFlight tester and community contributors
+    if ([[url scheme] isEqualToString:@"photo-test"]){
+        AuthenticationService *auth = [[AuthenticationService alloc]init];
+        
+        if ([auth isValid] == NO){
+            [auth startOAuthProcedure:url];
+        }
+    }else if ([[url scheme] hasPrefix:@"fb"]){
+       // [SHKFacebook handleOpenURL:url];
+       // return [self.facebook handleOpenURL:url];
+    }
+    
+    return YES;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
