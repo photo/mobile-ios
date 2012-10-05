@@ -13,6 +13,8 @@
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
     #import "AppDelegate.h"
+    #import "TestFlight.h"
+    #import "Constants.h"
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 

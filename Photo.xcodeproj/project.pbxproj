@@ -29,6 +29,8 @@
 		CD7642AE161EDB8300E0B657 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642AD161EDB8300E0B657 /* SystemConfiguration.framework */; };
 		CD7642B0161EDB8E00E0B657 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642AF161EDB8E00E0B657 /* MobileCoreServices.framework */; };
 		CD7642B2161EDB9E00E0B657 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B1161EDB9E00E0B657 /* libz.dylib */; };
+		CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B4161EDF1E00E0B657 /* libTestFlight.a */; };
+		CD7642BA161EDFE400E0B657 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642B9161EDFE400E0B657 /* Constants.m */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -100,6 +102,10 @@
 		CD7642AD161EDB8300E0B657 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CD7642AF161EDB8E00E0B657 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD7642B1161EDB9E00E0B657 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		CD7642B4161EDF1E00E0B657 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Frameworks/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
+		CD7642B5161EDF1E00E0B657 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Frameworks/TestFlight/TestFlight.h; sourceTree = "<group>"; };
+		CD7642B8161EDFE400E0B657 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		CD7642B9161EDFE400E0B657 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -153,6 +159,7 @@
 				CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */,
 				CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */,
 				CDAFB9D916122262002D6E86 /* CoreData.framework in Frameworks */,
+				CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +315,24 @@
 			name = Reachability;
 			sourceTree = "<group>";
 		};
+		CD7642B3161EDF0D00E0B657 /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				CD7642B4161EDF1E00E0B657 /* libTestFlight.a */,
+				CD7642B5161EDF1E00E0B657 /* TestFlight.h */,
+			);
+			name = TestFlight;
+			sourceTree = "<group>";
+		};
+		CD7642B7161EDFCA00E0B657 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				CD7642B8161EDFE400E0B657 /* Constants.h */,
+				CD7642B9161EDFE400E0B657 /* Constants.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +356,7 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD7642B3161EDF0D00E0B657 /* TestFlight */,
 				CD7642A7161EDAD100E0B657 /* Reachability */,
 				CD76428A161ED9E600E0B657 /* ASIHTTPRequest */,
 				CD764283161ED9A900E0B657 /* iRate */,
@@ -361,6 +387,7 @@
 				CD4613D7161C7AFA0028619D /* Sync */,
 				CD4613D6161C7AEA0028619D /* Gallery */,
 				CD4613D4161C7AC00028619D /* Server */,
+				CD7642B7161EDFCA00E0B657 /* Utility */,
 				CDAFB9DB16122262002D6E86 /* Supporting Files */,
 				CDAFB9E316122263002D6E86 /* AppDelegate.h */,
 				CDAFB9E416122263002D6E86 /* AppDelegate.m */,
@@ -553,6 +580,7 @@
 				CD7642A5161EDAC000E0B657 /* ASIInputStream.m in Sources */,
 				CD7642A6161EDAC000E0B657 /* ASINetworkQueue.m in Sources */,
 				CD7642AA161EDAE400E0B657 /* Reachability.m in Sources */,
+				CD7642BA161EDFE400E0B657 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +695,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/TestFlight\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -679,6 +711,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks/TestFlight\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
