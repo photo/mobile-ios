@@ -31,6 +31,16 @@
 		CD7642B2161EDB9E00E0B657 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B1161EDB9E00E0B657 /* libz.dylib */; };
 		CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B4161EDF1E00E0B657 /* libTestFlight.a */; };
 		CD7642BA161EDFE400E0B657 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642B9161EDFE400E0B657 /* Constants.m */; };
+		CD7642BE161EE15E00E0B657 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */; };
+		CD7642BF161EE15E00E0B657 /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */; };
+		CD7642C9161EE1F600E0B657 /* register-background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C3161EE1F600E0B657 /* register-background.png */; };
+		CD7642CA161EE1F600E0B657 /* register-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C4161EE1F600E0B657 /* register-background@2x.png */; };
+		CD7642CB161EE1F600E0B657 /* register-button-login.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C5161EE1F600E0B657 /* register-button-login.png */; };
+		CD7642CC161EE1F600E0B657 /* register-button-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C6161EE1F600E0B657 /* register-button-login@2x.png */; };
+		CD7642CD161EE1F600E0B657 /* register-input-server.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C7161EE1F600E0B657 /* register-input-server.png */; };
+		CD7642CE161EE1F600E0B657 /* register-input-server@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD7642C8161EE1F600E0B657 /* register-input-server@2x.png */; };
+		CD7642D1161EE27D00E0B657 /* AuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642D0161EE27D00E0B657 /* AuthenticationService.m */; };
+		CD7642D7161EE4B800E0B657 /* PhotoAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642D6161EE4B800E0B657 /* PhotoAlertView.m */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -106,6 +116,19 @@
 		CD7642B5161EDF1E00E0B657 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Frameworks/TestFlight/TestFlight.h; sourceTree = "<group>"; };
 		CD7642B8161EDFE400E0B657 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CD7642B9161EDFE400E0B657 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		CD7642BB161EE15E00E0B657 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
+		CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationViewController.m; sourceTree = "<group>"; };
+		CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
+		CD7642C3161EE1F600E0B657 /* register-background.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-background.png"; path = "images/register/register-background.png"; sourceTree = "<group>"; };
+		CD7642C4161EE1F600E0B657 /* register-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-background@2x.png"; path = "images/register/register-background@2x.png"; sourceTree = "<group>"; };
+		CD7642C5161EE1F600E0B657 /* register-button-login.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-button-login.png"; path = "images/register/register-button-login.png"; sourceTree = "<group>"; };
+		CD7642C6161EE1F600E0B657 /* register-button-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-button-login@2x.png"; path = "images/register/register-button-login@2x.png"; sourceTree = "<group>"; };
+		CD7642C7161EE1F600E0B657 /* register-input-server.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-input-server.png"; path = "images/register/register-input-server.png"; sourceTree = "<group>"; };
+		CD7642C8161EE1F600E0B657 /* register-input-server@2x.png */ = {isa = PBXFileReference; lastKnownFileType = file; name = "register-input-server@2x.png"; path = "images/register/register-input-server@2x.png"; sourceTree = "<group>"; };
+		CD7642CF161EE27D00E0B657 /* AuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationService.h; sourceTree = "<group>"; };
+		CD7642D0161EE27D00E0B657 /* AuthenticationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationService.m; sourceTree = "<group>"; };
+		CD7642D5161EE4B800E0B657 /* PhotoAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoAlertView.h; sourceTree = "<group>"; };
+		CD7642D6161EE4B800E0B657 /* PhotoAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoAlertView.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -188,6 +211,11 @@
 		CD4613D3161C7AB40028619D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				CD7642BB161EE15E00E0B657 /* AuthenticationViewController.h */,
+				CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */,
+				CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */,
+				CD7642CF161EE27D00E0B657 /* AuthenticationService.h */,
+				CD7642D0161EE27D00E0B657 /* AuthenticationService.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -260,6 +288,7 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD7642C2161EE1E800E0B657 /* register */,
 				CD4613E3161C7CA20028619D /* Icon.png */,
 				CD4613E4161C7CA20028619D /* Icon@2x.png */,
 				CD4613DD161C7C7C0028619D /* Default-568h@2x.png */,
@@ -327,10 +356,25 @@
 		CD7642B7161EDFCA00E0B657 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CD7642D5161EE4B800E0B657 /* PhotoAlertView.h */,
+				CD7642D6161EE4B800E0B657 /* PhotoAlertView.m */,
 				CD7642B8161EDFE400E0B657 /* Constants.h */,
 				CD7642B9161EDFE400E0B657 /* Constants.m */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		CD7642C2161EE1E800E0B657 /* register */ = {
+			isa = PBXGroup;
+			children = (
+				CD7642C3161EE1F600E0B657 /* register-background.png */,
+				CD7642C4161EE1F600E0B657 /* register-background@2x.png */,
+				CD7642C5161EE1F600E0B657 /* register-button-login.png */,
+				CD7642C6161EE1F600E0B657 /* register-button-login@2x.png */,
+				CD7642C7161EE1F600E0B657 /* register-input-server.png */,
+				CD7642C8161EE1F600E0B657 /* register-input-server@2x.png */,
+			);
+			name = register;
 			sourceTree = "<group>";
 		};
 		CDAFB9C316122262002D6E86 = {
@@ -528,6 +572,13 @@
 				CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */,
 				CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */,
 				CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */,
+				CD7642BF161EE15E00E0B657 /* AuthenticationViewController.xib in Resources */,
+				CD7642C9161EE1F600E0B657 /* register-background.png in Resources */,
+				CD7642CA161EE1F600E0B657 /* register-background@2x.png in Resources */,
+				CD7642CB161EE1F600E0B657 /* register-button-login.png in Resources */,
+				CD7642CC161EE1F600E0B657 /* register-button-login@2x.png in Resources */,
+				CD7642CD161EE1F600E0B657 /* register-input-server.png in Resources */,
+				CD7642CE161EE1F600E0B657 /* register-input-server@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +632,9 @@
 				CD7642A6161EDAC000E0B657 /* ASINetworkQueue.m in Sources */,
 				CD7642AA161EDAE400E0B657 /* Reachability.m in Sources */,
 				CD7642BA161EDFE400E0B657 /* Constants.m in Sources */,
+				CD7642BE161EE15E00E0B657 /* AuthenticationViewController.m in Sources */,
+				CD7642D1161EE27D00E0B657 /* AuthenticationService.m in Sources */,
+				CD7642D7161EE4B800E0B657 /* PhotoAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

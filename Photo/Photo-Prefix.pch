@@ -15,6 +15,7 @@
     #import "AppDelegate.h"
     #import "TestFlight.h"
     #import "Constants.h"
+    #import "PhotoAlertView.h"
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 
