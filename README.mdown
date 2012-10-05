@@ -58,6 +58,12 @@ There are importing tools available to make the switch easy.
 Don't forget to execute
 $ git submodule update --init
 
+ShareKit also has some submodule, for this one:
+````
+cd Frameworks/ShareKit
+git submodule update --init --recursive
+````
+
 ### Localization
 Use this command to run in all files .m and generate the translation file to be filled by translators.
 

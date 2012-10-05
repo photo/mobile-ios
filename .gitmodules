@@ -10,3 +10,6 @@
 [submodule "Frameworks/ASIHTTPRequest"]
 	path = Frameworks/ASIHTTPRequest
 	url = git://github.com/pokeb/asi-http-request
+[submodule "Frameworks/ShareKit"]
+	path = Frameworks/ShareKit
+	url = git://github.com/ShareKit/ShareKit

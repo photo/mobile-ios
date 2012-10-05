@@ -10,6 +10,8 @@
 
 @interface AuthenticationService : NSObject
 
+
+// for OAuth 1.a
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;
 -(NSURL*) getOAuthTestUrl;
