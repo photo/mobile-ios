@@ -51,6 +51,16 @@
 
 }
 
++ (void) initialize
+{
+    //configure iRate
+    [iRate sharedInstance].daysUntilPrompt = 10;
+    [iRate sharedInstance].usesUntilPrompt = 6;
+    [iRate sharedInstance].appStoreID = 511845345;
+    [iRate sharedInstance].applicationBundleID = @"me.OpenPhoto.ios";
+    [iRate sharedInstance].applicationName=@"OpenPhoto";
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

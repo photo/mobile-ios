@@ -22,6 +22,7 @@
 #import "ViewController.h"
 #import "MenuViewController.h"
 #import "RightViewController.h"
+#import "iRate.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
