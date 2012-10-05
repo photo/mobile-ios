@@ -50,6 +50,8 @@
 		CD7642DA161EF3DD00E0B657 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642D9161EF3DD00E0B657 /* SHA1.m */; };
 		CD7642DD161EF45700E0B657 /* NSDictionarySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DC161EF45700E0B657 /* NSDictionarySerializer.m */; };
 		CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */; };
+		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
+		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -407,6 +409,10 @@
 		CD7642DE161EF4F400E0B657 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD764361161EFE7B00E0B657 /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
+		CD899283161F08AB00026DBB /* OpenPhotoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoService.h; sourceTree = "<group>"; };
+		CD899284161F08AB00026DBB /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
+		CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
+		CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -507,6 +513,10 @@
 		CD4613D4161C7AC00028619D /* Server */ = {
 			isa = PBXGroup;
 			children = (
+				CD899283161F08AB00026DBB /* OpenPhotoService.h */,
+				CD899284161F08AB00026DBB /* OpenPhotoService.m */,
+				CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */,
+				CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -1230,6 +1240,8 @@
 				CD7642DA161EF3DD00E0B657 /* SHA1.m in Sources */,
 				CD7642DD161EF45700E0B657 /* NSDictionarySerializer.m in Sources */,
 				CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */,
+				CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */,
+				CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

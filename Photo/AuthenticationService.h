@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OAMutableURLRequest.h"
+#import "OAToken.h"
+#import "OAServiceTicket.h"
+#import "OpenPhotoService.h"
+#import "OpenPhotoServiceFactory.h"
+#import "OADataFetcher.h"
 
 @interface AuthenticationService : NSObject
 
@@ -15,5 +21,11 @@
 -(NSURL*) getOAuthInitialUrl;
 -(NSURL*) getOAuthAccessUrl;
 -(NSURL*) getOAuthTestUrl;
+
+
+// methods related to user authentication
+- (BOOL) isValid;
+- (void) invalidateAuthentication;
+- (void) startOAuthProcedure:(NSURL*) url;
 
 @end
