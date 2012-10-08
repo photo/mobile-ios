@@ -24,11 +24,11 @@
 + (OpenPhotoService*) createOpenPhotoService{
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
        
-    return [[[OpenPhotoService alloc] initForServer:[standardUserDefaults valueForKey:kOpenPhotoServer]
+    return [[OpenPhotoService alloc] initForServer:[standardUserDefaults valueForKey:kOpenPhotoServer]
                                        oAuthKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken] 
                                     oAuthSecret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret] 
                                     consumerKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey]
-                                 consumerSecret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret]] autorelease] ;
+                                 consumerSecret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret]]  ;
 }
 
 @end

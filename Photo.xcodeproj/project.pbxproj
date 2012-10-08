@@ -53,6 +53,18 @@
 		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
 		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
 		CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992F1161F4E4F00026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD8D9CBA162341FF00A76811 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9CB7162341FF00A76811 /* Tag.m */; };
+		CD8D9CBE162343E400A76811 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9CBD162343E400A76811 /* TagViewController.m */; };
+		CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157216234A5A0099204B /* MBProgressHUD.m */; };
+		CD91157C16234A820099204B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157516234A820099204B /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157616234A820099204B /* TSAlertViewBackground.png */; };
+		CD91157E16234A820099204B /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157716234A820099204B /* TSAlertViewBackground2.png */; };
+		CD91157F16234A820099204B /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157816234A820099204B /* TSAlertViewButtonBackground_Highlighted.png */; };
+		CD91158016234A820099204B /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157916234A820099204B /* TSAlertViewButtonBackground.png */; };
+		CD91158116234A820099204B /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157A16234A820099204B /* TSAlertViewCancelButtonBackground.png */; };
+		CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */; };
+		CD91158516234D7D0099204B /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91158316234D7D0099204B /* Background.png */; };
+		CD91158616234D7D0099204B /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91158416234D7D0099204B /* Background@2x.png */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -415,6 +427,22 @@
 		CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
 		CD8992F0161F4E4F00026DBB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.h; sourceTree = "<group>"; };
 		CD8992F1161F4E4F00026DBB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.m; sourceTree = "<group>"; };
+		CD8D9CB6162341FF00A76811 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		CD8D9CB7162341FF00A76811 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		CD8D9CBC162343E400A76811 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
+		CD8D9CBD162343E400A76811 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
+		CD91157116234A5A0099204B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		CD91157216234A5A0099204B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		CD91157416234A820099204B /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
+		CD91157516234A820099204B /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TSAlertView.m; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.m; sourceTree = "<group>"; };
+		CD91157616234A820099204B /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewBackground.png; sourceTree = "<group>"; };
+		CD91157716234A820099204B /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewBackground2.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewBackground2.png; sourceTree = "<group>"; };
+		CD91157816234A820099204B /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground_Highlighted.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
+		CD91157916234A820099204B /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewButtonBackground.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
+		CD91157A16234A820099204B /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewCancelButtonBackground.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
+		CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
+		CD91158316234D7D0099204B /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = images/Background.png; sourceTree = "<group>"; };
+		CD91158416234D7D0099204B /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "images/Background@2x.png"; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -589,6 +617,8 @@
 				CD4613DD161C7C7C0028619D /* Default-568h@2x.png */,
 				CD4613DE161C7C7C0028619D /* Default.png */,
 				CD4613DF161C7C7C0028619D /* Default@2x.png */,
+				CD91158316234D7D0099204B /* Background.png */,
+				CD91158416234D7D0099204B /* Background@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -719,6 +749,39 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CD8D9CBF1623446B00A76811 /* TSAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				CD91157416234A820099204B /* TSAlertView.h */,
+				CD91157516234A820099204B /* TSAlertView.m */,
+				CD91157616234A820099204B /* TSAlertViewBackground.png */,
+				CD91157716234A820099204B /* TSAlertViewBackground2.png */,
+				CD91157816234A820099204B /* TSAlertViewButtonBackground_Highlighted.png */,
+				CD91157916234A820099204B /* TSAlertViewButtonBackground.png */,
+				CD91157A16234A820099204B /* TSAlertViewCancelButtonBackground.png */,
+				CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */,
+			);
+			name = TSAlertView;
+			sourceTree = "<group>";
+		};
+		CD8D9CC01623447C00A76811 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				CD8992F0161F4E4F00026DBB /* Reachability.h */,
+				CD8992F1161F4E4F00026DBB /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		CD8D9CC1162344A700A76811 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				CD91157116234A5A0099204B /* MBProgressHUD.h */,
+				CD91157216234A5A0099204B /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
@@ -741,8 +804,9 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD8992F0161F4E4F00026DBB /* Reachability.h */,
-				CD8992F1161F4E4F00026DBB /* Reachability.m */,
+				CD8D9CC1162344A700A76811 /* MBProgressHUD */,
+				CD8D9CC01623447C00A76811 /* Reachability */,
+				CD8D9CBF1623446B00A76811 /* TSAlertView */,
 				CD76435F161EFE4C00E0B657 /* ShareKit */,
 				CD7642B3161EDF0D00E0B657 /* TestFlight */,
 				CD76428A161ED9E600E0B657 /* ASIHTTPRequest */,
@@ -823,6 +887,10 @@
 		CDE0B11E1622DB1A00CB4FBC /* Tag */ = {
 			isa = PBXGroup;
 			children = (
+				CD8D9CB6162341FF00A76811 /* Tag.h */,
+				CD8D9CB7162341FF00A76811 /* Tag.m */,
+				CD8D9CBC162343E400A76811 /* TagViewController.h */,
+				CD8D9CBD162343E400A76811 /* TagViewController.m */,
 			);
 			name = Tag;
 			path = ..;
@@ -1192,6 +1260,14 @@
 				CD7642CC161EE1F600E0B657 /* register-button-login@2x.png in Resources */,
 				CD7642CD161EE1F600E0B657 /* register-input-server.png in Resources */,
 				CD7642CE161EE1F600E0B657 /* register-input-server@2x.png in Resources */,
+				CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */,
+				CD91157E16234A820099204B /* TSAlertViewBackground2.png in Resources */,
+				CD91157F16234A820099204B /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
+				CD91158016234A820099204B /* TSAlertViewButtonBackground.png in Resources */,
+				CD91158116234A820099204B /* TSAlertViewCancelButtonBackground.png in Resources */,
+				CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */,
+				CD91158516234D7D0099204B /* Background.png in Resources */,
+				CD91158616234D7D0099204B /* Background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,6 +1329,10 @@
 				CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */,
 				CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */,
 				CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */,
+				CD8D9CBA162341FF00A76811 /* Tag.m in Sources */,
+				CD8D9CBE162343E400A76811 /* TagViewController.m in Sources */,
+				CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */,
+				CD91157C16234A820099204B /* TSAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

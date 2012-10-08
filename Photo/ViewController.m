@@ -16,7 +16,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -45,6 +44,13 @@
     else {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
     }
+    
+    // Custom initialization
+    self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    
+    // color separator
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+
 }
 
 - (void)viewDidUnload

@@ -311,6 +311,19 @@
                                    signatureProvider:nil] autorelease];
 }
 
+// get 25 pictures
+- (NSArray*)  loadGallery:(int) pageSize onPage:(int) page
+{
+    return nil;
+}
+
+// get pictures by tag
+-(NSArray*)  loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page
+{
+    return nil;
+}
+
+
 + (BOOL) isMessageValid:(NSDictionary *)response{
     // get the content of code
     NSString* code = [response objectForKey:@"code"];

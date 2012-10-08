@@ -55,4 +55,10 @@
 
 + (BOOL) isMessageValid:(NSDictionary *)response;
 
+// get pictures to be used in the gallery
+- (NSArray*) loadGallery:(int) pageSize onPage:(int) page;
+
+// get pictures by tag
+- (NSArray*) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
+
 @end

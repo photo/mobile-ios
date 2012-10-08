@@ -32,6 +32,11 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationNeededsUpdate
                                                    object:nil ];
+        
+        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+        
+        // color separator
+        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     }
     return self;
 }
@@ -244,9 +249,11 @@
                     AuthenticationViewController *controller = [[AuthenticationViewController alloc]initWithNibName:@"AuthenticationViewController" bundle:nil];
                     [cc presentViewController:controller animated:YES completion:nil];
                 }
-            }else if ( indexPath.section == 1 && indexPath.row == 4){
+            }else if ( indexPath.section == 0 && indexPath.row == 3){
                 // Tags
-                
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
             }
             
             if ([cc respondsToSelector:@selector(tableView)]) {

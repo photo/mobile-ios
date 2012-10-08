@@ -13,3 +13,9 @@
 [submodule "Frameworks/ShareKit"]
 	path = Frameworks/ShareKit
 	url = git://github.com/ShareKit/ShareKit
+[submodule "Frameworks/MBProgressHUD"]
+	path = Frameworks/MBProgressHUD
+	url = https://github.com/jdg/MBProgressHUD.git
+[submodule "Frameworks/TSAlertView"]
+	path = Frameworks/TSAlertView
+	url = git://github.com/TomSwift/TSAlertView.git
