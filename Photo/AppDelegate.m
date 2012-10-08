@@ -57,8 +57,9 @@
                                                                                    rightViewController:rightController];
     deckController.rightLedge = 100;
     
-    self.window.rootViewController = deckController;
+    self.window.rootViewController = deckController;    
     [self.window makeKeyAndVisible];
+    
     return YES;
 
 }
@@ -83,7 +84,7 @@
     if ([[url scheme] isEqualToString:@"photo-test"]){
         AuthenticationService *auth = [[AuthenticationService alloc]init];
         
-        if ([auth isValid] == NO){
+        if ([auth isLogged] == NO){
             [auth startOAuthProcedure:url];
         }
     }else if ([[url scheme] hasPrefix:@"fb"]){

@@ -52,7 +52,7 @@
 		CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */; };
 		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
 		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
-		CD8992EF161F24F200026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992EE161F24F200026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992F1161F4E4F00026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -72,7 +72,6 @@
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
-		CDEC257E161C70DD0062E9B0 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDEC257D161C70DD0062E9B0 /* Entitlements.entitlements */; };
 		CDEC2589161C75B80062E9B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2581161C75B70062E9B0 /* ViewController.m */; };
 		CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2582161C75B70062E9B0 /* ViewController.xib */; };
 		CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2587161C75B80062E9B0 /* RightViewController.m */; };
@@ -414,7 +413,8 @@
 		CD899284161F08AB00026DBB /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
 		CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
 		CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
-		CD8992EE161F24F200026DBB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file; name = Reachability.m; path = Frameworks/ShareKit/Classes/ShareKit/Reachability/Reachability.m; sourceTree = "<group>"; };
+		CD8992F0161F4E4F00026DBB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.h; sourceTree = "<group>"; };
+		CD8992F1161F4E4F00026DBB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -446,7 +446,6 @@
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
 		CDEC2565161C3A280062E9B0 /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WrapController.m; path = Frameworks/ViewDeck/ViewDeck/WrapController.m; sourceTree = "<group>"; };
-		CDEC257D161C70DD0062E9B0 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = SOURCE_ROOT; };
 		CDEC2580161C75B70062E9B0 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CDEC2581161C75B70062E9B0 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CDEC2582161C75B70062E9B0 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -607,7 +606,6 @@
 		CD76428A161ED9E600E0B657 /* ASIHTTPRequest */ = {
 			isa = PBXGroup;
 			children = (
-				CD8992EE161F24F200026DBB /* Reachability.m */,
 				CD76428B161EDAC000E0B657 /* ASIAuthenticationDialog.h */,
 				CD76428C161EDAC000E0B657 /* ASIAuthenticationDialog.m */,
 				CD76428D161EDAC000E0B657 /* ASICacheDelegate.h */,
@@ -724,7 +722,6 @@
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
-				CDEC257D161C70DD0062E9B0 /* Entitlements.entitlements */,
 				CDAFB9DA16122262002D6E86 /* Photo */,
 				CDAFB9FC16122263002D6E86 /* PhotoTests */,
 				CDAFB9D116122262002D6E86 /* Frameworks */,
@@ -744,6 +741,8 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD8992F0161F4E4F00026DBB /* Reachability.h */,
+				CD8992F1161F4E4F00026DBB /* Reachability.m */,
 				CD76435F161EFE4C00E0B657 /* ShareKit */,
 				CD7642B3161EDF0D00E0B657 /* TestFlight */,
 				CD76428A161ED9E600E0B657 /* ASIHTTPRequest */,
@@ -779,6 +778,7 @@
 				CD4613D8161C7B000028619D /* Settings */,
 				CD4613D7161C7AFA0028619D /* Sync */,
 				CD4613D6161C7AEA0028619D /* Gallery */,
+				CDE0B11E1622DB1A00CB4FBC /* Tag */,
 				CD4613D4161C7AC00028619D /* Server */,
 				CD7642B7161EDFCA00E0B657 /* Utility */,
 				CDAFB9DB16122262002D6E86 /* Supporting Files */,
@@ -818,6 +818,14 @@
 				CDAFB9FF16122263002D6E86 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CDE0B11E1622DB1A00CB4FBC /* Tag */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tag;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CDEC2560161C39E10062E9B0 /* ViewDeck */ = {
@@ -1166,7 +1174,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDAFB9DF16122262002D6E86 /* InfoPlist.strings in Resources */,
-				CDEC257E161C70DD0062E9B0 /* Entitlements.entitlements in Resources */,
 				CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */,
 				CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */,
 				CD4613E0161C7C7C0028619D /* Default-568h@2x.png in Resources */,
@@ -1245,7 +1252,7 @@
 				CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */,
 				CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */,
 				CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */,
-				CD8992EF161F24F200026DBB /* Reachability.m in Sources */,
+				CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1366,7 +1373,7 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";
@@ -1387,7 +1394,7 @@
 		CDAFBA0916122263002D6E86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";

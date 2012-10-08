@@ -19,6 +19,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "AuthenticationService.h"
 
 @interface MenuViewController : UITableViewController
 

@@ -66,7 +66,7 @@
 }
 
 
-- (BOOL) isValid{
+- (BOOL) isLogged{
     /*
      * check if the client id is valid.
      * Possible values: nil, INVALID or other
@@ -82,7 +82,7 @@
     return YES;
 }
 
-- (void) invalidateAuthentication{
+- (void) logout{
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
@@ -255,7 +255,8 @@
         [standardUserDefaults synchronize];
         
         // send notification to the system that it can shows the screen:
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
         
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"OAuth procedure finished");

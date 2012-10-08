@@ -35,8 +35,8 @@
 
 
 // methods related to user authentication
-- (BOOL) isValid;
-- (void) invalidateAuthentication;
+- (BOOL) isLogged;
+- (void) logout;
 - (void) startOAuthProcedure:(NSURL*) url;
 
 @end

@@ -24,6 +24,7 @@
 #import "RightViewController.h"
 #import "iRate.h"
 #import "AuthenticationService.h"
+#import "AuthenticationViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

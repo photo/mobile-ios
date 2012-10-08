@@ -23,11 +23,15 @@
 
 @implementation MenuViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    self = [super initWithNibName:nibName bundle:nibBundle];
+    if (self){
+        // needs update menu
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationNeededsUpdate
+                                                   object:nil ];
     }
     return self;
 }
@@ -101,7 +105,7 @@
         return 5;
     }else{
         // settings
-        return 4;
+        return 5;
     }
 }
 
@@ -149,20 +153,24 @@
         }
     }else{
         // settings
+        AuthenticationService *authentication = [[AuthenticationService alloc]init];
+        
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = NSLocalizedString(@"Account", @"Menu - title for Account");
                 break;
             case 1:
-                cell.textLabel.text = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
+                cell.textLabel.text = ([authentication isLogged] ? NSLocalizedString(@"Log out", @"Menu - title for Log out") : NSLocalizedString(@"Login", @"Menu - title for Login"));
                 break;
             case 2:
-                cell.textLabel.text = NSLocalizedString(@"Properties", @"Menu - title for Properties");
+                cell.textLabel.text = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
                 break;
             case 3:
+                cell.textLabel.text = NSLocalizedString(@"Properties", @"Menu - title for Properties");
+                break;
+            case 4:
                 cell.textLabel.text = NSLocalizedString(@"About Us", @"Menu - title for About Us");
                 break;
-                
             default:
                 cell.textLabel.text = @"not defined";
                 break;
@@ -217,15 +225,66 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
+        
+        
+        
         if ([controller.centerController isKindOfClass:[UINavigationController class]]) {
             UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;
             cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            
+            // temporary login page
+            if ( indexPath.section == 1 && indexPath.row == 1){
+                
+                AuthenticationService *authentication = [[AuthenticationService alloc]init];
+                if ([authentication isLogged]){
+                    // do the log out
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Message when logging out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"General") otherButtonTitles:NSLocalizedString(@"Log out",@"General"),nil] ;
+                    [alert show];
+                }else{
+                    AuthenticationViewController *controller = [[AuthenticationViewController alloc]initWithNibName:@"AuthenticationViewController" bundle:nil];
+                    [cc presentViewController:controller animated:YES completion:nil];
+                }
+            }else if ( indexPath.section == 1 && indexPath.row == 4){
+                // Tags
+                
+            }
+            
             if ([cc respondsToSelector:@selector(tableView)]) {
                 [cc.tableView deselectRowAtIndexPath:[cc.tableView indexPathForSelectedRow] animated:NO];
             }
         }
+        
         [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
     }];
+}
+
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Log out");
+#endif
+        
+        AuthenticationService *service = [[AuthenticationService alloc]init];
+        [service logout];
+        [self.tableView reloadData];
+    }
+}
+
+- (void) eventHandler: (NSNotification *) notification{
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"###### Event triggered: %@", notification);
+#endif
+    
+    if ([notification.name isEqualToString:kNotificationNeededsUpdate]){
+        [self.tableView reloadData];
+    }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
