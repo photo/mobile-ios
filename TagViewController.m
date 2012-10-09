@@ -311,7 +311,7 @@
          self.isLoading = NO;
          }else {
          */
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
         hud.labelText = @"Loading";
         
         dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
@@ -344,7 +344,7 @@
                         }}
                     
                     [self.tableView reloadData];
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                     self.isLoading = NO;
                     
                 });
