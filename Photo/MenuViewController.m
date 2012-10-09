@@ -144,10 +144,10 @@
                 cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
                 break;
             case 2:
-                cell.textLabel.text = NSLocalizedString(@"Album", @"Menu - title for Album");
+                cell.textLabel.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
                 break;
             case 3:
-                cell.textLabel.text = NSLocalizedString(@"Tag", @"Menu - title for Tag");
+                cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
                 break;
             case 4:
                 cell.textLabel.text = NSLocalizedString(@"Sync", @"Menu - title for Sync");

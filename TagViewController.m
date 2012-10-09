@@ -115,6 +115,9 @@
     else {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
     }
+    
+    // title
+    self.navigationItem.title = NSLocalizedString(@"Tags", @"Menu - title for Tags");
 }
 
 - (void)viewDidUnload
@@ -153,37 +156,37 @@
 }
 
 /*
--(void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    self.clearsSelectionOnViewWillAppear = NO;
-    
-    
-    
-    // wanna add new tag name
-    if (self.readOnly == YES){
-        UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];
-        self.navigationItem.rightBarButtonItem = addNewTagButton;
-        [addNewTagButton release];
-        
-        if ([self.tags count] == 0 ){
-            // just load in case there is no tags.
-            // we do that to keep the past selection
-            [self loadTags];
-        }
-    }else{
-        UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];
-        self.navigationItem.rightBarButtonItem = refreshButton;
-        [refreshButton release];
-        
-        // load all tags
-        [self loadTags];
-    }
-}
-
-*/
+ -(void) viewWillAppear:(BOOL)animated
+ {
+ [super viewWillAppear:animated];
+ 
+ // Uncomment the following line to preserve selection between presentations.
+ self.clearsSelectionOnViewWillAppear = NO;
+ 
+ 
+ 
+ // wanna add new tag name
+ if (self.readOnly == YES){
+ UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];
+ self.navigationItem.rightBarButtonItem = addNewTagButton;
+ [addNewTagButton release];
+ 
+ if ([self.tags count] == 0 ){
+ // just load in case there is no tags.
+ // we do that to keep the past selection
+ [self loadTags];
+ }
+ }else{
+ UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];
+ self.navigationItem.rightBarButtonItem = refreshButton;
+ [refreshButton release];
+ 
+ // load all tags
+ [self loadTags];
+ }
+ }
+ 
+ */
 -(void) addNewTag
 {
 #ifdef DEVELOPMENT_ENABLED

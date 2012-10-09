@@ -50,6 +50,9 @@
     
     // color separator
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    // title
+    self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
 
 }
 
