@@ -39,7 +39,7 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
         
         // initialize the object tags
         self.tags = [NSMutableArray array];
@@ -198,7 +198,6 @@
                                        otherButtonTitles:@"OK",nil];
     av.style = TSAlertViewStyleInput;
     [av show];
-    [av release];
 }
 
 // after animation
@@ -212,9 +211,6 @@
     Tag *newTag = [[Tag alloc]initWithTagName:alertView.inputTextField.text Quantity:0];
     newTag.selected = YES;
     [self.tags addObject:newTag];
-    
-    // we don't need it anymore.
-    [newTag release];
     [self.tableView reloadData];
 }
 
@@ -238,7 +234,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
     NSUInteger row = [indexPath row];
     
@@ -341,9 +337,6 @@
                             Tag *tag = [[Tag alloc]initWithTagName:name Quantity:[qtd integerValue]];
                             tag.selected = NO;
                             [self.tags addObject:tag];
-                            
-                            // we don't need it anymore.
-                            [tag release];
                         }}
                     
                     [self.tableView reloadData];

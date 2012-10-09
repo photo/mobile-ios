@@ -61,4 +61,7 @@
 // get pictures by tag
 - (NSArray*) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
 
+// get albums with a specific page size
+- (NSArray*) loadAlbums:(int) pageSize;
+
 @end

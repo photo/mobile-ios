@@ -33,7 +33,7 @@
                                                      name:kNotificationNeededsUpdate
                                                    object:nil ];
         
-        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
         
         // color separator
         self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
@@ -252,6 +252,11 @@
             }else if ( indexPath.section == 0 && indexPath.row == 3){
                 // Tags
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
+            }else if ( indexPath.section == 0 && indexPath.row == 2){
+                // Tags
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }

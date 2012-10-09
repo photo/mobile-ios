@@ -153,6 +153,24 @@
     return [self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"];
 }
 
+// get 25 pictures
+- (NSArray*)  loadGallery:(int) pageSize onPage:(int) page
+{
+    return nil;
+}
+
+// get pictures by tag
+-(NSArray*)  loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page
+{
+    return nil;
+}
+
+- (NSArray*) loadAlbums:(int) pageSize
+{
+    return [self sendSynchronousRequest:@"/v1/albums/list.json" httpMethod:@"GET"];
+}
+
+
 - (NSArray *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
     [self validateCredentials];
     
@@ -310,19 +328,6 @@
                                                realm:nil
                                    signatureProvider:nil] autorelease];
 }
-
-// get 25 pictures
-- (NSArray*)  loadGallery:(int) pageSize onPage:(int) page
-{
-    return nil;
-}
-
-// get pictures by tag
--(NSArray*)  loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page
-{
-    return nil;
-}
-
 
 + (BOOL) isMessageValid:(NSDictionary *)response{
     // get the content of code

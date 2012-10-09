@@ -46,7 +46,7 @@
     }
     
     // Custom initialization
-    self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     
     // color separator
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);

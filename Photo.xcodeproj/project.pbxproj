@@ -65,6 +65,8 @@
 		CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */; };
 		CD91158516234D7D0099204B /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91158316234D7D0099204B /* Background.png */; };
 		CD91158616234D7D0099204B /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91158416234D7D0099204B /* Background@2x.png */; };
+		CD9115BD16243FCA0099204B /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BC16243FCA0099204B /* Album.m */; };
+		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -443,6 +445,10 @@
 		CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TSAlertViewMessageListViewShadow.png; path = Frameworks/TSAlertView/TSAlertView/TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		CD91158316234D7D0099204B /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = images/Background.png; sourceTree = "<group>"; };
 		CD91158416234D7D0099204B /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "images/Background@2x.png"; sourceTree = "<group>"; };
+		CD9115BB16243FCA0099204B /* Album.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Album.h; sourceTree = "<group>"; };
+		CD9115BC16243FCA0099204B /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
+		CD9115BE16243FE90099204B /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
+		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Photo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -782,6 +788,17 @@
 			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		CD9115BA16243FB10099204B /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				CD9115BB16243FCA0099204B /* Album.h */,
+				CD9115BC16243FCA0099204B /* Album.m */,
+				CD9115BE16243FE90099204B /* AlbumViewController.h */,
+				CD9115BF16243FE90099204B /* AlbumViewController.m */,
+			);
+			name = Album;
+			sourceTree = "<group>";
+		};
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
@@ -842,6 +859,7 @@
 				CD4613D8161C7B000028619D /* Settings */,
 				CD4613D7161C7AFA0028619D /* Sync */,
 				CD4613D6161C7AEA0028619D /* Gallery */,
+				CD9115BA16243FB10099204B /* Album */,
 				CDE0B11E1622DB1A00CB4FBC /* Tag */,
 				CD4613D4161C7AC00028619D /* Server */,
 				CD7642B7161EDFCA00E0B657 /* Utility */,
@@ -1333,6 +1351,8 @@
 				CD8D9CBE162343E400A76811 /* TagViewController.m in Sources */,
 				CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */,
 				CD91157C16234A820099204B /* TSAlertView.m in Sources */,
+				CD9115BD16243FCA0099204B /* Album.m in Sources */,
+				CD9115C016243FE90099204B /* AlbumViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

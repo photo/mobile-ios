@@ -21,6 +21,7 @@
 #import <UIKit/UIKit.h>
 #import "AuthenticationService.h"
 #import "TagViewController.h"
+#import "AlbumViewController.h"
 
 @interface MenuViewController : UITableViewController
 
