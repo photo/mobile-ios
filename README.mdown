@@ -56,7 +56,9 @@ There are importing tools available to make the switch easy.
 
 ### Modules
 Don't forget to execute
+````
 $ git submodule update --init
+````
 
 ShareKit also has some submodule, for this one:
 ````
