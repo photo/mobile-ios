@@ -1,0 +1,239 @@
+//
+//  LoginConnectViewController.m
+//  OpenPhoto
+//
+//  Created by Patrick Santana on 02/05/12.
+//  Copyright (c) 2012 OpenPhoto. All rights reserved.
+//
+
+#import "LoginConnectViewController.h"
+
+@interface LoginConnectViewController ()
+
+@property (nonatomic) BOOL isViewUp;
+
+@end
+
+@implementation LoginConnectViewController
+@synthesize email;
+@synthesize password;
+@synthesize isViewUp = _isViewUp;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title=@"Login";
+        self.isViewUp = NO;
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewDidUnload
+{
+    [self setEmail:nil];
+    [self setPassword:nil];
+    [super viewDidUnload];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc {
+    [email release];
+    [password release];
+    [super dealloc];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (self.isViewUp == NO){
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y - 42)];
+        }completion:^(BOOL finished){
+            self.isViewUp = YES;
+        }];
+    }
+}
+
+
+// Action if user clicks in DONE in the keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.email){
+        [self.password becomeFirstResponder];
+        return NO;
+    }else{
+        [textField resignFirstResponder];
+        [self login:nil];
+        return YES;
+    }
+}
+- (IBAction)login:(id)sender {
+    // put view down
+    if (self.isViewUp == YES){
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
+        }completion:^(BOOL finished){
+            self.isViewUp = NO;
+        }];
+    }
+    
+    // no keyboard
+    [self.email resignFirstResponder];
+    [self.password resignFirstResponder];
+    
+    //
+    // check if email and password is set
+    //
+    if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
+        //show message
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your email."];
+        [alert showAlert];
+        [alert release];
+        return;
+        
+    }
+    if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
+        //show message
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your password."];
+        [alert showAlert];
+        [alert release];
+        return;
+    }
+    
+    if ( [AppDelegate internetActive] == NO ){
+        // problem with internet, show message to user
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        [alert showAlert];
+        [alert release];
+    }else{
+        
+        // display
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.labelText = @"Logging";
+        
+        
+        // do it in a queue
+        NSString *postEmail =self.email.text;
+        NSString *postPassword = self.password.text;
+        dispatch_queue_t loggin_account = dispatch_queue_create("logging_account", NULL);
+        dispatch_async(loggin_account, ^{
+            
+            @try{
+                // gcd to sign in
+                AccountOpenPhoto *account = [AccountLoginService signIn:postEmail password:postPassword];
+                
+                // save the details of account and remove the progress
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // save data to the user information
+                    [account saveToStandardUserDefaults];
+                    
+                    // send notification to the system that it can shows the screen:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                    
+                    // check point create new account
+#ifdef TEST_FLIGHT_ENABLED
+                    [TestFlight passCheckpoint:@"Login"];
+#endif
+                    
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                });
+            }@catch (NSException* e) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                    [alert showAlert];
+                    [alert release];
+                });
+                
+            }
+        });
+        dispatch_release(loggin_account);
+    }
+}
+
+- (IBAction)recoverPassword:(id)sender {
+    
+    // put view down
+    if (self.isViewUp == YES){
+        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
+        }completion:^(BOOL finished){
+            self.isViewUp = NO;
+        }];
+    }
+    
+    // no keyboard
+    [self.email resignFirstResponder];
+    [self.password resignFirstResponder];
+    
+    if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
+        //show message
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your email to recovery password."];
+        [alert showAlert];
+        [alert release];
+        return;
+        
+    }
+    
+    if ( [AppDelegate internetActive] == NO ){
+        // problem with internet, show message to user
+        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        [alert showAlert];
+        [alert release];
+    }else{
+        
+        // display
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        hud.labelText = @"Resetting";
+        
+        
+        // do it in a queue
+        NSString *postEmail =self.email.text;
+        dispatch_queue_t reset_user_pwd = dispatch_queue_create("reset_user_pwd", NULL);
+        dispatch_async(reset_user_pwd, ^{
+            
+            @try{
+                // gcd to reset
+                NSString *messageStatusRecover = [AccountLoginService recoverPassword:postEmail];
+                
+                // show the message to the user
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    
+                    // show message to the user
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:messageStatusRecover];
+                    [alert showAlert];
+                    [alert release];
+                });
+            }@catch (NSException* e) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                    [alert showAlert];
+                    [alert release];
+                });
+            }
+        });
+        dispatch_release(reset_user_pwd);
+    }
+}
+
+- (IBAction)haveYourOwnInstance:(id)sender {
+    AuthenticationViewController *controller = [[[AuthenticationViewController alloc]init ] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+@end
