@@ -21,8 +21,8 @@
 // this class helps with initializer routines
 @interface InitializerService : NSObject
 
-- (BOOL) isInitialized;
-- (void) initialize;
-- (void) resetInitialization;
++ (BOOL) isInitialized;
++ (void) initialize;
++ (void) resetInitialization;
 
 @end

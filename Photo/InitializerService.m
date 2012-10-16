@@ -21,7 +21,7 @@
 
 @implementation InitializerService
 
-- (BOOL) isInitialized
++ (BOOL) isInitialized
 {
     // compare not just nil. It may be reset. So, we need to check for NO
     if (![[NSUserDefaults standardUserDefaults] boolForKey:kAppInitialized] || 
@@ -37,7 +37,7 @@
     return YES;
 }
 
-- (void) initialize
++ (void) initialize
 {  
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Initialization starting ....");
@@ -82,7 +82,7 @@
 #endif
 }
 
-- (void) resetInitialization
++ (void) resetInitialization
 {
     // set the variable initialized to NO
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];

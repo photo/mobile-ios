@@ -78,9 +78,8 @@
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     // initializer
-    InitializerService *service = [[InitializerService alloc]init];
-    if ([service isInitialized] == NO){
-        [service initialize];
+    if ([InitializerService isInitialized] == NO){
+        [InitializerService initialize];
     }
     
     self.window.rootViewController = deckController;
