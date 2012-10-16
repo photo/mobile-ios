@@ -29,14 +29,4 @@
     [standardUserDefaults synchronize];  
 }
 
-- (void)dealloc {
-    [self.email release]; 
-    [self.host release];
-    [self.clientToken release]; 
-    [self.clientSecret release]; 
-    [self.userToken release]; 
-    [self.userSecret release];
-    [super dealloc];
-}
-
 @end

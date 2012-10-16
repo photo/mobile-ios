@@ -87,8 +87,7 @@
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
     // remove the credentials from the server in case of internet
-    /*
-    if ([AppDelegate internetActive]){
+    if ([SharedAppDelegate internetActive]){
         NSString *consumerKey = [standardUserDefaults objectForKey:kAuthenticationConsumerKey ];
         
         dispatch_queue_t removeCredentials = dispatch_queue_create("remove_credentials", NULL);
@@ -105,7 +104,6 @@
         dispatch_release(removeCredentials);
         
     }
-     */
     
     // set the variable client id to INVALID
     [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
@@ -269,6 +267,31 @@
     NSLog(@"Error = %@", [error userInfo]);
     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Authentication failed: try again." duration:5000];
     [alert showAlertOnTop];
+}
+
++ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email
+{
+    return nil;
+}
+
++ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
+{
+    return nil;
+}
+
++ (BOOL) checkUserFacebookEmail:(NSString*) email
+{
+    return NO;
+}
+
++ (AccountOpenPhoto*) signIn:(NSString*) email password:(NSString*) pwd
+{
+    return nil;
+}
+
++ (NSString *) recoverPassword:(NSString *) email
+{
+    return nil;
 }
 
 @end

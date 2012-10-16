@@ -38,10 +38,7 @@
 
 - (void)viewDidUnload
 {
-    [self setEmail:nil];
-    [self setPassword:nil];
     [super viewDidUnload];
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -50,11 +47,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)dealloc {
-    [email release];
-    [password release];
-    [super dealloc];
-}
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -98,25 +90,22 @@
     //
     if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your email."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email."];
         [alert showAlert];
-        [alert release];
         return;
         
     }
     if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your password."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your password."];
         [alert showAlert];
-        [alert release];
         return;
     }
     
-    if ( [AppDelegate internetActive] == NO ){
+    if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
         [alert showAlert];
-        [alert release];
     }else{
         
         // display
@@ -132,7 +121,7 @@
             
             @try{
                 // gcd to sign in
-                AccountOpenPhoto *account = [AccountLoginService signIn:postEmail password:postPassword];
+                AccountOpenPhoto *account = [AuthenticationService signIn:postEmail password:postPassword];
                 
                 // save the details of account and remove the progress
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -153,9 +142,8 @@
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                     [alert showAlert];
-                    [alert release];
                 });
                 
             }
@@ -181,18 +169,16 @@
     
     if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your email to recovery password."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email to recovery password."];
         [alert showAlert];
-        [alert release];
         return;
         
     }
     
-    if ( [AppDelegate internetActive] == NO ){
+    if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
         [alert showAlert];
-        [alert release];
     }else{
         
         // display
@@ -207,7 +193,7 @@
             
             @try{
                 // gcd to reset
-                NSString *messageStatusRecover = [AccountLoginService recoverPassword:postEmail];
+                NSString *messageStatusRecover = [AuthenticationService recoverPassword:postEmail];
                 
                 // show the message to the user
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -215,16 +201,14 @@
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     
                     // show message to the user
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:messageStatusRecover];
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:messageStatusRecover];
                     [alert showAlert];
-                    [alert release];
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                     [alert showAlert];
-                    [alert release];
                 });
             }
         });

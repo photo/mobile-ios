@@ -8,9 +8,10 @@
 
 #import "LoginConnectViewController.h"
 #import "LoginCreateAccountViewController.h"
-#import "AccountLoginService.h"
+#import "AuthenticationService.h"
 #import "AccountOpenPhoto.h"
 #import "MBProgressHUD.h"
+
 
 @interface LoginViewController : UIViewController
 

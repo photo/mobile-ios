@@ -50,8 +50,8 @@
 }
 
 - (IBAction)connectUsingFacebook:(id)sender {
-    if (![[AppDelegate facebook] isSessionValid]) {
-        [[AppDelegate facebook] authorize:[[[NSArray alloc] initWithObjects:@"email", nil] autorelease]];
+    if (![[SharedAppDelegate facebook] isSessionValid]) {
+        [[SharedAppDelegate facebook] authorize:[[[NSArray alloc] initWithObjects:@"email", nil] autorelease]];
     }else{
         [self checkUser];
     }
@@ -59,8 +59,6 @@
 - (IBAction)signUpWithEmail:(id)sender {
     LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init] ;
     [self.navigationController pushViewController:controller animated:YES];
-    [controller release];
-    
 }
 
 - (IBAction)signInWithEmail:(id)sender {
@@ -76,17 +74,16 @@
         [self checkUser];
     }else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (void) checkUser{
     
-    if ( [AppDelegate internetActive] == NO ){
+    if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user    
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
         [alert showAlert];
-        [alert release];
         return;
     }
     
@@ -103,10 +100,10 @@
     dispatch_async(checkingEmailFacebook, ^{
         
         @try{
-            BOOL hasAccount = [AccountLoginService checkUserFacebookEmail:email];
+            BOOL hasAccount = [AuthenticationService checkUserFacebookEmail:email];
             if (hasAccount){
                 // just log in
-                AccountOpenPhoto *account = [AccountLoginService signIn:email password:nil];
+                AccountOpenPhoto *account = [AuthenticationService signIn:email password:nil];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // save the details of account and remove the progress
@@ -134,9 +131,8 @@
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description] duration:5000];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description] duration:5000];
                 [alert showAlertOnTop];
-                [alert release];
             });
         }
     });
@@ -146,9 +142,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
+
 @end

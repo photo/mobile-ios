@@ -110,11 +110,10 @@
     [self.email resignFirstResponder];
     [self.password resignFirstResponder];
     
-    if ( [AppDelegate internetActive] == NO ){
+    if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user    
-        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
         [alert showAlert];
-        [alert release];
     }else{
         
         if (self.isFacebookCreationAccount){
@@ -122,9 +121,8 @@
             // create the account with username and email
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message 
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your username."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
                 [alert showAlert];
-                [alert release];
                 return;
             }
             
@@ -138,25 +136,22 @@
             // check for email, username and password
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message 
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your username."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
                 [alert showAlert];
-                [alert release];
                 return;
             }
             
             if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message  
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your email."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email."];
                 [alert showAlert];
-                [alert release];
                 return;
             } 
             
             if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message  
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set your password."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your password."];
                 [alert showAlert];
-                [alert release];
                 return;
             } 
             
@@ -164,7 +159,6 @@
             [self createAccountUsername:self.username.text withEmail:self.email.text andPassword:self.password.text];
         }
     }
-    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -227,46 +221,6 @@
     }
 }
 
-- (void)viewDidUnload
-{
-    
-    [self setUsername:nil];
-    [self setEmail:nil];
-    [self setPassword:nil];
-    [self setButtonCreateAccount:nil];
-    [self setBackgroundUsername:nil];
-    [self setBackgroundEmail:nil];
-    [self setBackgroundPassword:nil];
-    [self setCreateAccountLabelEnter:nil];
-    [self setCreateAccountLabelYourUsername:nil];
-    [self setCreateAccountLabelForYour:nil];
-    [self setCreateAccountLabelOpenPhoto:nil];
-    [self setFacebookCreateAccountCreate:nil];
-    [self setFacebookCreateAccountUsername:nil];
-    [self setFacebookCreateAccountOpenPhoto:nil];
-    [super viewDidUnload];
-}
-
-
-- (void)dealloc {
-    [self.username release];
-    [self.email release];
-    [self.password release];
-    [buttonCreateAccount release];
-    [backgroundUsername release];
-    [backgroundEmail release];
-    [backgroundPassword release];
-    [createAccountLabelEnter release];
-    [createAccountLabelYourUsername release];
-    [createAccountLabelForYour release];
-    [createAccountLabelOpenPhoto release];
-    [facebookCreateAccountCreate release];
-    [facebookCreateAccountUsername release];
-    [facebookCreateAccountOpenPhoto release];
-    [super dealloc];
-}
-
-
 
 ////
 //// Private methods
@@ -282,7 +236,7 @@
         
         @try{
             // gcd to sign in
-            AccountOpenPhoto *account = [AccountLoginService createNewAccountWithUser:username email:email password:password];
+            AccountOpenPhoto *account = [AuthenticationService createNewAccountWithUser:username email:email password:password];
             
             // save the details of account and remove the progress
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -303,9 +257,9 @@
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                 [alert showAlert];
-                [alert release];
+
             });
             
         }
@@ -324,7 +278,7 @@
         
         @try{
             // gcd tcreate facebook user
-            AccountOpenPhoto *account = [AccountLoginService createNewAccountWithUser:username email:email];
+            AccountOpenPhoto *account = [AuthenticationService createNewAccountWithUser:username email:email];
             
             // save the details of account and remove the progress
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -345,11 +299,9 @@
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:[e description]];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                 [alert showAlert];
-                [alert release];
             });
-            
         }
     });
     dispatch_release(queue);

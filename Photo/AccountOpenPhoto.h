@@ -8,21 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AccountOpenPhoto : NSObject{
-    NSString *email;
-    NSString *host;
-    NSString *clientToken;
-    NSString *clientSecret;
-    NSString *userToken;
-    NSString *userSecret;
-}
+@interface AccountOpenPhoto : NSObject
 
-@property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *host;
-@property (nonatomic, retain) NSString *clientToken;
-@property (nonatomic, retain) NSString *clientSecret;
-@property (nonatomic, retain) NSString *userToken;
-@property (nonatomic, retain) NSString *userSecret;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *host;
+@property (nonatomic, strong) NSString *clientToken;
+@property (nonatomic, strong) NSString *clientSecret;
+@property (nonatomic, strong) NSString *userToken;
+@property (nonatomic, strong) NSString *userSecret;
 
 
 - (void) saveToStandardUserDefaults;

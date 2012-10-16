@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 OpenPhoto. All rights reserved.
 //
 
-#import "AccountLoginService.h"
+#import "AuthenticationService.h"
 #import "AccountOpenPhoto.h"
 #import "MBProgressHUD.h"
 

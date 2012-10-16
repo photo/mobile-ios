@@ -24,6 +24,7 @@
 #import "OpenPhotoService.h"
 #import "OpenPhotoServiceFactory.h"
 #import "OADataFetcher.h"
+#import "AccountOpenPhoto.h"
 
 @interface AuthenticationService : NSObject
 
@@ -38,5 +39,12 @@
 - (BOOL) isLogged;
 - (void) logout;
 - (void) startOAuthProcedure:(NSURL*) url;
+
+// for login
++ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email;
++ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
++ (BOOL) checkUserFacebookEmail:(NSString*) email;
++ (AccountOpenPhoto*) signIn:(NSString*) email password:(NSString*) pwd;
++ (NSString *) recoverPassword:(NSString *) email;
 
 @end
