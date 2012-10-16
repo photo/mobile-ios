@@ -26,11 +26,11 @@
 - (NSArray *) parseResponse:(ASIHTTPRequest *) response;
 - (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response;
 
-@property (nonatomic, retain, readwrite) NSString *server;
-@property (nonatomic, retain, readwrite) NSString *oAuthKey;
-@property (nonatomic, retain, readwrite) NSString *oAuthSecret;
-@property (nonatomic, retain, readwrite) NSString *consumerKey;
-@property (nonatomic, retain, readwrite) NSString *consumerSecret;
+@property (nonatomic, strong, readwrite) NSString *server;
+@property (nonatomic, strong, readwrite) NSString *oAuthKey;
+@property (nonatomic, strong, readwrite) NSString *oAuthSecret;
+@property (nonatomic, strong, readwrite) NSString *consumerKey;
+@property (nonatomic, strong, readwrite) NSString *consumerSecret;
 
 @end
 

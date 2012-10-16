@@ -70,7 +70,7 @@ FBSessionDelegate>{
 @property (nonatomic) BOOL  hostActive;
 
 // for facebook single sign in
-@property (nonatomic, retain) Facebook *facebook;
+@property (nonatomic, strong) Facebook *facebook;
 
 // navigation
 @property (strong, nonatomic) UIViewController *centerController;

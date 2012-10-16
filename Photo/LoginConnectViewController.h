@@ -12,8 +12,8 @@
 
 @interface LoginConnectViewController : UIViewController<UITextFieldDelegate>
 
-@property (retain, nonatomic) IBOutlet UITextField *email;
-@property (retain, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) IBOutlet UITextField *email;
+@property (strong, nonatomic) IBOutlet UITextField *password;
 
 // actions
 - (IBAction)login:(id)sender;

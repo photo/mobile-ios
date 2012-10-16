@@ -26,18 +26,18 @@
     UITableViewController *newestPhotosTableViewController;
 }
 
-@property (retain, nonatomic) IBOutlet UIImageView *photo;
-@property (retain, nonatomic) IBOutlet UILabel *date;
-@property (retain, nonatomic) IBOutlet UILabel *tags;
-@property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
-@property (retain, nonatomic) IBOutlet UIImageView *private;
-@property (retain, nonatomic) IBOutlet UIButton *geoPositionButton;
-@property (retain, nonatomic) IBOutlet UILabel *label;
-@property (retain, nonatomic) IBOutlet UIButton *shareButton;
+@property (strong, nonatomic) IBOutlet UIImageView *photo;
+@property (strong, nonatomic) IBOutlet UILabel *date;
+@property (strong, nonatomic) IBOutlet UILabel *tags;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
+@property (strong, nonatomic) IBOutlet UIImageView *private;
+@property (strong, nonatomic) IBOutlet UIButton *geoPositionButton;
+@property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic, copy) NSString *geoPosition;
 @property (nonatomic, copy) NSString *photoPageUrl;
-@property (nonatomic, retain) UITableViewController *newestPhotosTableViewController;
+@property (nonatomic, strong) UITableViewController *newestPhotosTableViewController;
 
 - (IBAction)openGeoPosition:(id)sender;
 - (IBAction)sharePhoto:(id)sender;

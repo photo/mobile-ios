@@ -169,7 +169,6 @@
  if (self.readOnly == YES){
  UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];
  self.navigationItem.rightBarButtonItem = addNewTagButton;
- [addNewTagButton release];
  
  if ([self.tags count] == 0 ){
  // just load in case there is no tags.
@@ -179,7 +178,6 @@
  }else{
  UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadTags)];
  self.navigationItem.rightBarButtonItem = refreshButton;
- [refreshButton release];
  
  // load all tags
  [self loadTags];
@@ -272,8 +270,6 @@
          // open the gallery with a tag that contains at least one picture.
          GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:[tag.tagName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
          [self.navigationController pushViewController:galleryController animated:YES];
-         [galleryController release];
-         
          */
     }
     

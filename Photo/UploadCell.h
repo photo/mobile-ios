@@ -23,12 +23,12 @@
 
 @interface UploadCell : UITableViewCell
 
-@property (retain, nonatomic) IBOutlet UIImageView *thumb;
-@property (retain, nonatomic) IBOutlet UILabel *status;
-@property (retain, nonatomic) IBOutlet UIButton *btnRetry;
-@property (retain, nonatomic) IBOutlet UIImageView *imageStatus;
-@property (retain, nonatomic) IBOutlet UIProgressView *progressBar;
-@property (retain, nonatomic) Timeline *originalObject;
+@property (strong, nonatomic) IBOutlet UIImageView *thumb;
+@property (strong, nonatomic) IBOutlet UILabel *status;
+@property (strong, nonatomic) IBOutlet UIButton *btnRetry;
+@property (strong, nonatomic) IBOutlet UIImageView *imageStatus;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressBar;
+@property (strong, nonatomic) Timeline *originalObject;
 
 - (IBAction)refresh:(id)sender;
 
