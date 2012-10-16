@@ -73,6 +73,10 @@
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
     
+    //ShareKit
+    DefaultSHKConfigurator *configurator = [[PhotoSHKConfigurator alloc] init];
+    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+    
     self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
     

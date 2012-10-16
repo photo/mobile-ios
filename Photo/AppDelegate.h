@@ -31,6 +31,7 @@
 #import "SHKFacebook.h"
 #import "SHKConfiguration.h"
 #import "SHK.h"
+#import "PhotoSHKConfigurator.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,

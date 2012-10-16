@@ -65,6 +65,7 @@
 		CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */; };
 		CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B36E162D49180008FE7D /* PrivateConstants.m */; };
 		CD84B3A2162D527E0008FE7D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD84B3A1162D527E0008FE7D /* QuartzCore.framework */; };
+		CD84B3A5162D58330008FE7D /* PhotoSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B3A4162D58330008FE7D /* PhotoSHKConfigurator.m */; };
 		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
 		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
 		CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992F1161F4E4F00026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -500,6 +501,8 @@
 		CD84B36D162D49180008FE7D /* PrivateConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateConstants.h; sourceTree = "<group>"; };
 		CD84B36E162D49180008FE7D /* PrivateConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateConstants.m; sourceTree = "<group>"; };
 		CD84B3A1162D527E0008FE7D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CD84B3A3162D58330008FE7D /* PhotoSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSHKConfigurator.h; sourceTree = "<group>"; };
+		CD84B3A4162D58330008FE7D /* PhotoSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSHKConfigurator.m; sourceTree = "<group>"; };
 		CD899283161F08AB00026DBB /* OpenPhotoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoService.h; sourceTree = "<group>"; };
 		CD899284161F08AB00026DBB /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
 		CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
@@ -837,6 +840,8 @@
 				CD7642DC161EF45700E0B657 /* NSDictionarySerializer.m */,
 				CD7642DE161EF4F400E0B657 /* ContentTypeUtilities.h */,
 				CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */,
+				CD84B3A3162D58330008FE7D /* PhotoSHKConfigurator.h */,
+				CD84B3A4162D58330008FE7D /* PhotoSHKConfigurator.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -1563,6 +1568,7 @@
 				CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */,
 				CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */,
 				CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */,
+				CD84B3A5162D58330008FE7D /* PhotoSHKConfigurator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
