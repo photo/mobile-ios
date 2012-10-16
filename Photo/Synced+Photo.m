@@ -70,9 +70,6 @@ NSString * const kSyncedStatusTypeUploaded = @"Uploaded";
     if (![context save:&saveError]){
         NSLog(@"Error delete all photos from managed object context = %@",[error localizedDescription]);
     }   
-    
-    // now we can release the object
-    [fetchRequest release];  
 }
 
 @end

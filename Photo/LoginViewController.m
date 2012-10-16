@@ -51,7 +51,7 @@
 
 - (IBAction)connectUsingFacebook:(id)sender {
     if (![[SharedAppDelegate facebook] isSessionValid]) {
-        [[SharedAppDelegate facebook] authorize:[[[NSArray alloc] initWithObjects:@"email", nil] autorelease]];
+        [[SharedAppDelegate facebook] authorize:[[NSArray alloc] initWithObjects:@"email", nil]];
     }else{
         [self checkUser];
     }
@@ -62,7 +62,7 @@
 }
 
 - (IBAction)signInWithEmail:(id)sender {
-    LoginConnectViewController *controller = [[[LoginConnectViewController alloc] init] autorelease];
+    LoginConnectViewController *controller = [[LoginConnectViewController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -123,7 +123,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // open LoginCreateAccountViewController
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    LoginCreateAccountViewController *controller = [[[LoginCreateAccountViewController alloc] init] autorelease];
+                    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init];
                     [controller setFacebookCreateAccount];
                     [self.navigationController pushViewController:controller animated:YES];
                 });

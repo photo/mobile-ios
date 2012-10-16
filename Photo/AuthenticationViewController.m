@@ -43,30 +43,6 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidUnload
-{
-    [self setServerURL:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (IBAction)login:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url Login %@",self.serverURL.text);
@@ -153,7 +129,6 @@
         
         NSString *urlString = [[NSString alloc] initWithFormat:@"http://%@",text];
         url = [NSURL URLWithString:urlString];
-        [urlString release];
     }else{
         url = [NSURL URLWithString:text];
     }

@@ -244,7 +244,6 @@
                               otherButtonTitles:nil,
                               nil];
     [alertView show];
-    [alertView release];
     [self fbDidLogout];
 }
 

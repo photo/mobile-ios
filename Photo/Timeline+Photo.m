@@ -53,7 +53,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     }
     
     // return an array of Uploads
-    return [result autorelease]; 
+    return result; 
 }
 
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context
@@ -145,9 +145,6 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     if (![context save:&saveError]){
         NSLog(@"Error delete all newest photos from managed object context = %@",[saveError localizedDescription]);
     }
-    
-    // now we can release the object
-    [fetchRequest release];
 }
 
 + (void) insertIntoCoreData:(NSArray *) rawNewestPhotos InManagedObjectContext:(NSManagedObjectContext *)context
@@ -294,9 +291,6 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     for (NSManagedObject *photo in photos) {
         [context deleteObject:photo];
     }
-    
-    // now we can release the object
-    [fetchRequest release];
 }
 
 + (void) setUploadsStatusToCreatedInManagedObjectContext:(NSManagedObjectContext *)context

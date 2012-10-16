@@ -217,7 +217,7 @@
 }
 
 - (IBAction)haveYourOwnInstance:(id)sender {
-    AuthenticationViewController *controller = [[[AuthenticationViewController alloc]init ] autorelease];
+    AuthenticationViewController *controller = [[AuthenticationViewController alloc]init ];
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end
