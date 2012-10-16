@@ -14,6 +14,19 @@
 		CD004A3D161F02DA006B1C6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3C161F02DA006B1C6E /* CoreLocation.framework */; };
 		CD004A3F161F030F006B1C6E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3E161F030F006B1C6E /* Twitter.framework */; };
 		CD004A41161F0324006B1C6E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A40161F0324006B1C6E /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CD1528481628DB8500EA08FF /* AccountOpenPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* AccountOpenPhoto.m */; };
+		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
+		CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528411628DB8500EA08FF /* LoginViewController.xib */; };
+		CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */; };
+		CD15284D1628DB8500EA08FF /* LoginCreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */; };
+		CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528461628DB8500EA08FF /* LoginConnectViewController.m */; };
+		CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */; };
+		CD1CDE33162C244200E57F73 /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE32162C244200E57F73 /* Synced.m */; };
+		CD1CDE36162C244200E57F73 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE35162C244200E57F73 /* Timeline.m */; };
+		CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */; };
+		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
+		CD1CDE4F162C2D7100E57F73 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE4A162C2D2C00E57F73 /* libSDWebImageARC.a */; };
+		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
 		CD4613CE161C78B00028619D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CD4613D0161C78B00028619D /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CD4613E0161C7C7C0028619D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4613DD161C7C7C0028619D /* Default-568h@2x.png */; };
@@ -50,11 +63,11 @@
 		CD7642DA161EF3DD00E0B657 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642D9161EF3DD00E0B657 /* SHA1.m */; };
 		CD7642DD161EF45700E0B657 /* NSDictionarySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DC161EF45700E0B657 /* NSDictionarySerializer.m */; };
 		CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */; };
+		CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B36E162D49180008FE7D /* PrivateConstants.m */; };
+		CD84B3A2162D527E0008FE7D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD84B3A1162D527E0008FE7D /* QuartzCore.framework */; };
 		CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* OpenPhotoService.m */; };
 		CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */; };
 		CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8992F1161F4E4F00026DBB /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD8D9CBA162341FF00A76811 /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9CB7162341FF00A76811 /* Tag.m */; };
-		CD8D9CBE162343E400A76811 /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8D9CBD162343E400A76811 /* TagViewController.m */; };
 		CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157216234A5A0099204B /* MBProgressHUD.m */; };
 		CD91157C16234A820099204B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157516234A820099204B /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157616234A820099204B /* TSAlertViewBackground.png */; };
@@ -90,9 +103,49 @@
 		CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2582161C75B70062E9B0 /* ViewController.xib */; };
 		CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2587161C75B80062E9B0 /* RightViewController.m */; };
 		CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2588161C75B80062E9B0 /* RightViewController.xib */; };
+		CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF33E16285495007A4FDF /* HomeTableViewController.m */; };
+		CDFAF34616285495007A4FDF /* NewestPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34016285495007A4FDF /* NewestPhotoCell.m */; };
+		CDFAF34716285495007A4FDF /* NewestPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFAF34116285495007A4FDF /* NewestPhotoCell.xib */; };
+		CDFAF34816285495007A4FDF /* UploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34316285495007A4FDF /* UploadCell.m */; };
+		CDFAF34916285495007A4FDF /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFAF34416285495007A4FDF /* UploadCell.xib */; };
+		CDFAF34F16285730007A4FDF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34C16285730007A4FDF /* Tag.m */; };
+		CDFAF35016285730007A4FDF /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34E16285730007A4FDF /* TagViewController.m */; };
+		CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDFAF3561628591C007A4FDF /* home-brown-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFAF3541628591C007A4FDF /* home-brown-arrow.png */; };
+		CDFAF3571628591C007A4FDF /* home-brown-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDFAF3551628591C007A4FDF /* home-brown-arrow@2x.png */; };
+		CDFAF35D16285BC6007A4FDF /* Timeline+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */; };
+		CDFAF36016285C4E007A4FDF /* Synced+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		CD1CDE47162C2D2C00E57F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53922D6F148C55820056699D;
+			remoteInfo = SDWebImage;
+		};
+		CD1CDE49162C2D2C00E57F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 53761325155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
+		CD1CDE4B162C2D2C00E57F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 531041E0157EAFA400BBABC3;
+			remoteInfo = "SDWebImage ARC+MKAnnotation";
+		};
+		CD1CDE4D162C2D5400E57F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 53761307155AD0D5005750A4;
+			remoteInfo = "SDWebImage ARC";
+		};
 		CD76438B161EFE7B00E0B657 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD764361161EFE7B00E0B657 /* ShareKit.xcodeproj */;
@@ -367,6 +420,27 @@
 		CD004A3C161F02DA006B1C6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CD004A3E161F030F006B1C6E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		CD004A40161F0324006B1C6E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		CD15283B1628DB8500EA08FF /* AccountOpenPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountOpenPhoto.h; sourceTree = "<group>"; };
+		CD15283C1628DB8500EA08FF /* AccountOpenPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountOpenPhoto.m; sourceTree = "<group>"; };
+		CD15283F1628DB8500EA08FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CD1528401628DB8500EA08FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CD1528411628DB8500EA08FF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		CD1528421628DB8500EA08FF /* LoginCreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCreateAccountViewController.h; sourceTree = "<group>"; };
+		CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCreateAccountViewController.m; sourceTree = "<group>"; };
+		CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController.xib; sourceTree = "<group>"; };
+		CD1528451628DB8500EA08FF /* LoginConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginConnectViewController.h; sourceTree = "<group>"; };
+		CD1528461628DB8500EA08FF /* LoginConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginConnectViewController.m; sourceTree = "<group>"; };
+		CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginConnectViewController.xib; sourceTree = "<group>"; };
+		CD1CDE31162C244200E57F73 /* Synced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synced.h; sourceTree = "<group>"; };
+		CD1CDE32162C244200E57F73 /* Synced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synced.m; sourceTree = "<group>"; };
+		CD1CDE34162C244200E57F73 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
+		CD1CDE35162C244200E57F73 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
+		CD1CDE37162C275F00E57F73 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
+		CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
+		CD1CDE3A162C2AE400E57F73 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
+		CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Frameworks/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
+		CD1CDE50162C2D8300E57F73 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		CD4613DD161C7C7C0028619D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = "<group>"; };
 		CD4613DE161C7C7C0028619D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
 		CD4613DF161C7C7C0028619D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
@@ -423,16 +497,15 @@
 		CD7642DE161EF4F400E0B657 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD7642DF161EF4F400E0B657 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD764361161EFE7B00E0B657 /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
+		CD84B36D162D49180008FE7D /* PrivateConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateConstants.h; sourceTree = "<group>"; };
+		CD84B36E162D49180008FE7D /* PrivateConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateConstants.m; sourceTree = "<group>"; };
+		CD84B3A1162D527E0008FE7D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CD899283161F08AB00026DBB /* OpenPhotoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoService.h; sourceTree = "<group>"; };
 		CD899284161F08AB00026DBB /* OpenPhotoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoService.m; sourceTree = "<group>"; };
 		CD899285161F08AB00026DBB /* OpenPhotoServiceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenPhotoServiceFactory.h; sourceTree = "<group>"; };
 		CD899286161F08AB00026DBB /* OpenPhotoServiceFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenPhotoServiceFactory.m; sourceTree = "<group>"; };
 		CD8992F0161F4E4F00026DBB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.h; sourceTree = "<group>"; };
 		CD8992F1161F4E4F00026DBB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Frameworks/ASIHTTPRequest/External/Reachability/Reachability.m; sourceTree = "<group>"; };
-		CD8D9CB6162341FF00A76811 /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
-		CD8D9CB7162341FF00A76811 /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
-		CD8D9CBC162343E400A76811 /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
-		CD8D9CBD162343E400A76811 /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
 		CD91157116234A5A0099204B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD91157216234A5A0099204B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD91157416234A820099204B /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
@@ -486,6 +559,26 @@
 		CDEC2586161C75B80062E9B0 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		CDEC2587161C75B80062E9B0 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		CDEC2588161C75B80062E9B0 /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightViewController.xib; sourceTree = "<group>"; };
+		CDFAF33D16285495007A4FDF /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
+		CDFAF33E16285495007A4FDF /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		CDFAF33F16285495007A4FDF /* NewestPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewestPhotoCell.h; sourceTree = "<group>"; };
+		CDFAF34016285495007A4FDF /* NewestPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewestPhotoCell.m; sourceTree = "<group>"; };
+		CDFAF34116285495007A4FDF /* NewestPhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotoCell.xib; sourceTree = "<group>"; };
+		CDFAF34216285495007A4FDF /* UploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCell.h; sourceTree = "<group>"; };
+		CDFAF34316285495007A4FDF /* UploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCell.m; sourceTree = "<group>"; };
+		CDFAF34416285495007A4FDF /* UploadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCell.xib; sourceTree = "<group>"; };
+		CDFAF34B16285730007A4FDF /* Tag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tag.h; path = Photo/Tag.h; sourceTree = "<group>"; };
+		CDFAF34C16285730007A4FDF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Photo/Tag.m; sourceTree = "<group>"; };
+		CDFAF34D16285730007A4FDF /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagViewController.h; path = Photo/TagViewController.h; sourceTree = "<group>"; };
+		CDFAF34E16285730007A4FDF /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagViewController.m; path = Photo/TagViewController.m; sourceTree = "<group>"; };
+		CDFAF35116285892007A4FDF /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		CDFAF3541628591C007A4FDF /* home-brown-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-brown-arrow.png"; path = "images/home-brown-arrow.png"; sourceTree = "<group>"; };
+		CDFAF3551628591C007A4FDF /* home-brown-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-brown-arrow@2x.png"; path = "images/home-brown-arrow@2x.png"; sourceTree = "<group>"; };
+		CDFAF35A16285BC6007A4FDF /* Timeline+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Timeline+Photo.h"; sourceTree = "<group>"; };
+		CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Timeline+Photo.m"; sourceTree = "<group>"; };
+		CDFAF35E16285C4E007A4FDF /* Synced+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Synced+Photo.h"; sourceTree = "<group>"; };
+		CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Synced+Photo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -493,6 +586,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD84B3A2162D527E0008FE7D /* QuartzCore.framework in Frameworks */,
+				CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */,
+				CD1CDE4F162C2D7100E57F73 /* libSDWebImageARC.a in Frameworks */,
 				CD004A41161F0324006B1C6E /* CoreFoundation.framework in Frameworks */,
 				CD004A3F161F030F006B1C6E /* Twitter.framework in Frameworks */,
 				CD004A3D161F02DA006B1C6E /* CoreLocation.framework in Frameworks */,
@@ -525,10 +621,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD1CDE3D162C2B4B00E57F73 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */,
+			);
+			name = SDWebImage;
+			sourceTree = "<group>";
+		};
+		CD1CDE3F162C2D2B00E57F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CD1CDE48162C2D2C00E57F73 /* libSDWebImage.a */,
+				CD1CDE4A162C2D2C00E57F73 /* libSDWebImageARC.a */,
+				CD1CDE4C162C2D2C00E57F73 /* libSDWebImageARC+MKAnnotation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CD4613D2161C7A9F0028619D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				CDFAF35E16285C4E007A4FDF /* Synced+Photo.h */,
+				CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */,
+				CDFAF35A16285BC6007A4FDF /* Timeline+Photo.h */,
+				CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */,
 				CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */,
+				CD1CDE34162C244200E57F73 /* Timeline.h */,
+				CD1CDE35162C244200E57F73 /* Timeline.m */,
+				CD1CDE31162C244200E57F73 /* Synced.h */,
+				CD1CDE32162C244200E57F73 /* Synced.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -536,11 +658,22 @@
 		CD4613D3161C7AB40028619D /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				CD15283B1628DB8500EA08FF /* AccountOpenPhoto.h */,
+				CD15283C1628DB8500EA08FF /* AccountOpenPhoto.m */,
+				CD7642CF161EE27D00E0B657 /* AuthenticationService.h */,
+				CD7642D0161EE27D00E0B657 /* AuthenticationService.m */,
+				CD15283F1628DB8500EA08FF /* LoginViewController.h */,
+				CD1528401628DB8500EA08FF /* LoginViewController.m */,
+				CD1528411628DB8500EA08FF /* LoginViewController.xib */,
+				CD1528421628DB8500EA08FF /* LoginCreateAccountViewController.h */,
+				CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */,
+				CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */,
+				CD1528451628DB8500EA08FF /* LoginConnectViewController.h */,
+				CD1528461628DB8500EA08FF /* LoginConnectViewController.m */,
+				CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */,
 				CD7642BB161EE15E00E0B657 /* AuthenticationViewController.h */,
 				CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */,
 				CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */,
-				CD7642CF161EE27D00E0B657 /* AuthenticationService.h */,
-				CD7642D0161EE27D00E0B657 /* AuthenticationService.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -559,6 +692,14 @@
 		CD4613D5161C7ACB0028619D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CDFAF33D16285495007A4FDF /* HomeTableViewController.h */,
+				CDFAF33E16285495007A4FDF /* HomeTableViewController.m */,
+				CDFAF33F16285495007A4FDF /* NewestPhotoCell.h */,
+				CDFAF34016285495007A4FDF /* NewestPhotoCell.m */,
+				CDFAF34116285495007A4FDF /* NewestPhotoCell.xib */,
+				CDFAF34216285495007A4FDF /* UploadCell.h */,
+				CDFAF34316285495007A4FDF /* UploadCell.m */,
+				CDFAF34416285495007A4FDF /* UploadCell.xib */,
 				CDEC2580161C75B70062E9B0 /* ViewController.h */,
 				CDEC2581161C75B70062E9B0 /* ViewController.m */,
 				CDEC2582161C75B70062E9B0 /* ViewController.xib */,
@@ -625,6 +766,8 @@
 				CD4613DF161C7C7C0028619D /* Default@2x.png */,
 				CD91158316234D7D0099204B /* Background.png */,
 				CD91158416234D7D0099204B /* Background@2x.png */,
+				CDFAF3541628591C007A4FDF /* home-brown-arrow.png */,
+				CDFAF3551628591C007A4FDF /* home-brown-arrow@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -678,10 +821,16 @@
 		CD7642B7161EDFCA00E0B657 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CD1CDE3A162C2AE400E57F73 /* CoreLocationController.h */,
+				CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */,
+				CD1CDE37162C275F00E57F73 /* CoreDataTableViewController.h */,
+				CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */,
 				CD7642D5161EE4B800E0B657 /* PhotoAlertView.h */,
 				CD7642D6161EE4B800E0B657 /* PhotoAlertView.m */,
 				CD7642B8161EDFE400E0B657 /* Constants.h */,
 				CD7642B9161EDFE400E0B657 /* Constants.m */,
+				CD84B36D162D49180008FE7D /* PrivateConstants.h */,
+				CD84B36E162D49180008FE7D /* PrivateConstants.m */,
 				CD7642D8161EF3DD00E0B657 /* SHA1.h */,
 				CD7642D9161EF3DD00E0B657 /* SHA1.m */,
 				CD7642DB161EF45700E0B657 /* NSDictionarySerializer.h */,
@@ -821,6 +970,8 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD1CDE3D162C2B4B00E57F73 /* SDWebImage */,
+				CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */,
 				CD8D9CC1162344A700A76811 /* MBProgressHUD */,
 				CD8D9CC01623447C00A76811 /* Reachability */,
 				CD8D9CBF1623446B00A76811 /* TSAlertView */,
@@ -838,10 +989,12 @@
 				CDAFB9D416122262002D6E86 /* Foundation.framework */,
 				CDAFB9D616122262002D6E86 /* CoreGraphics.framework */,
 				CDAFB9D816122262002D6E86 /* CoreData.framework */,
+				CD1CDE50162C2D8300E57F73 /* ImageIO.framework */,
 				CD7642B1161EDB9E00E0B657 /* libz.dylib */,
 				CD7642AF161EDB8E00E0B657 /* MobileCoreServices.framework */,
 				CD7642AD161EDB8300E0B657 /* SystemConfiguration.framework */,
 				CD7642AB161EDB7700E0B657 /* CFNetwork.framework */,
+				CD84B3A1162D527E0008FE7D /* QuartzCore.framework */,
 				CDAFB9F516122263002D6E86 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
@@ -905,10 +1058,10 @@
 		CDE0B11E1622DB1A00CB4FBC /* Tag */ = {
 			isa = PBXGroup;
 			children = (
-				CD8D9CB6162341FF00A76811 /* Tag.h */,
-				CD8D9CB7162341FF00A76811 /* Tag.m */,
-				CD8D9CBC162343E400A76811 /* TagViewController.h */,
-				CD8D9CBD162343E400A76811 /* TagViewController.m */,
+				CDFAF34B16285730007A4FDF /* Tag.h */,
+				CDFAF34C16285730007A4FDF /* Tag.m */,
+				CDFAF34D16285730007A4FDF /* TagViewController.h */,
+				CDFAF34E16285730007A4FDF /* TagViewController.m */,
 			);
 			name = Tag;
 			path = ..;
@@ -925,6 +1078,15 @@
 			name = ViewDeck;
 			sourceTree = "<group>";
 		};
+		CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				CDFAF35116285892007A4FDF /* EGORefreshTableHeaderView.h */,
+				CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */,
+			);
+			name = EGORefreshTableHeaderView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -939,6 +1101,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CD1CDE4E162C2D5400E57F73 /* PBXTargetDependency */,
 				CDD7928E161EFEF100FA6AA8 /* PBXTargetDependency */,
 				CDD79290161EFEF100FA6AA8 /* PBXTargetDependency */,
 			);
@@ -994,6 +1157,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = CD1CDE3F162C2D2B00E57F73 /* Products */;
+					ProjectRef = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+				},
+				{
 					ProductGroup = CD764362161EFE7B00E0B657 /* Products */;
 					ProjectRef = CD764361161EFE7B00E0B657 /* ShareKit.xcodeproj */;
 				},
@@ -1007,6 +1174,27 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		CD1CDE48162C2D2C00E57F73 /* libSDWebImage.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImage.a;
+			remoteRef = CD1CDE47162C2D2C00E57F73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD1CDE4A162C2D2C00E57F73 /* libSDWebImageARC.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSDWebImageARC.a;
+			remoteRef = CD1CDE49162C2D2C00E57F73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CD1CDE4C162C2D2C00E57F73 /* libSDWebImageARC+MKAnnotation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImageARC+MKAnnotation.a";
+			remoteRef = CD1CDE4B162C2D2C00E57F73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		CD76438C161EFE7B00E0B657 /* ShareKitDemo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
@@ -1286,6 +1474,13 @@
 				CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */,
 				CD91158516234D7D0099204B /* Background.png in Resources */,
 				CD91158616234D7D0099204B /* Background@2x.png in Resources */,
+				CDFAF34716285495007A4FDF /* NewestPhotoCell.xib in Resources */,
+				CDFAF34916285495007A4FDF /* UploadCell.xib in Resources */,
+				CDFAF3561628591C007A4FDF /* home-brown-arrow.png in Resources */,
+				CDFAF3571628591C007A4FDF /* home-brown-arrow@2x.png in Resources */,
+				CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */,
+				CD15284D1628DB8500EA08FF /* LoginCreateAccountViewController.xib in Resources */,
+				CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1347,12 +1542,27 @@
 				CD899287161F08AB00026DBB /* OpenPhotoService.m in Sources */,
 				CD899288161F08AB00026DBB /* OpenPhotoServiceFactory.m in Sources */,
 				CD8992F2161F4E4F00026DBB /* Reachability.m in Sources */,
-				CD8D9CBA162341FF00A76811 /* Tag.m in Sources */,
-				CD8D9CBE162343E400A76811 /* TagViewController.m in Sources */,
 				CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */,
 				CD91157C16234A820099204B /* TSAlertView.m in Sources */,
 				CD9115BD16243FCA0099204B /* Album.m in Sources */,
 				CD9115C016243FE90099204B /* AlbumViewController.m in Sources */,
+				CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */,
+				CDFAF34616285495007A4FDF /* NewestPhotoCell.m in Sources */,
+				CDFAF34816285495007A4FDF /* UploadCell.m in Sources */,
+				CDFAF34F16285730007A4FDF /* Tag.m in Sources */,
+				CDFAF35016285730007A4FDF /* TagViewController.m in Sources */,
+				CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */,
+				CDFAF35D16285BC6007A4FDF /* Timeline+Photo.m in Sources */,
+				CDFAF36016285C4E007A4FDF /* Synced+Photo.m in Sources */,
+				CD1528481628DB8500EA08FF /* AccountOpenPhoto.m in Sources */,
+				CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */,
+				CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */,
+				CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */,
+				CD1CDE33162C244200E57F73 /* Synced.m in Sources */,
+				CD1CDE36162C244200E57F73 /* Timeline.m in Sources */,
+				CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */,
+				CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */,
+				CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,6 +1579,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		CD1CDE4E162C2D5400E57F73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "SDWebImage ARC";
+			targetProxy = CD1CDE4D162C2D5400E57F73 /* PBXContainerItemProxy */;
+		};
 		CDAFB9FB16122263002D6E86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CDAFB9CD16122262002D6E86 /* Photo */;
@@ -1476,6 +1691,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+				);
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1497,6 +1716,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(TARGET_BUILD_DIR)/usr/local/lib/include\"",
+					"\"$(OBJROOT)/UninstalledProducts/include\"",
+				);
 				INFOPLIST_FILE = "Photo/Photo-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

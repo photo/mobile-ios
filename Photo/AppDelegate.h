@@ -25,8 +25,34 @@
 #import "iRate.h"
 #import "AuthenticationService.h"
 #import "AuthenticationViewController.h"
+#import "Reachability.h"
+#import "SHKItem.h"
+#import "SHKTwitter.h"
+#import "SHKFacebook.h"
+#import "SHKConfiguration.h"
+#import "SHK.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,
+FBDialogDelegate,
+FBSessionDelegate>{
+    
+@private
+    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectModel *managedObjectModel;
+    NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    
+    // for internet checks
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+    
+    // facebook sdk
+    Facebook *facebook;
+    
+@public
+    BOOL internetActive, hostActive;
+}
+
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -38,6 +64,14 @@
 - (NSURL *)applicationDocumentsDirectory;
 
 
+// for internet check
+@property (nonatomic) BOOL  internetActive;
+@property (nonatomic) BOOL  hostActive;
+
+// for facebook single sign in
+@property (nonatomic, retain) Facebook *facebook;
+
+// navigation
 @property (strong, nonatomic) UIViewController *centerController;
 @property (strong, nonatomic) UIViewController *menuController;
 @property (strong, nonatomic) UIViewController *imageController;
