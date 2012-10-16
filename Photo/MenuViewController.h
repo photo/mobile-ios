@@ -22,6 +22,7 @@
 #import "AuthenticationService.h"
 #import "TagViewController.h"
 #import "AlbumViewController.h"
+#import "HomeTableViewController.h"
 
 @interface MenuViewController : UITableViewController
 

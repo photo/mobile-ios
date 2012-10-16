@@ -32,9 +32,9 @@
 @synthesize needsUpdate = _needsUpdate;
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithStyle:style];
     if (self) {
         
         // transparent background
@@ -42,13 +42,15 @@
         self.tableView.opaque = NO;
         self.tableView.backgroundView = nil;
         
-        self.tabBarItem.title=@"Home";
-        self.title=@"";
+        // Custom initialization
+        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
         
-        UIColor *background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-        self.view.backgroundColor = background;
-        
+        // color separator
         self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        
+        // title
+        self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
+        
         
         CGRect imageSize = CGRectMake(0, 63, 320, 367);
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
@@ -137,6 +139,26 @@
     
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+    
+    if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)]) {
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
+                                                   [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)],
+                                                   nil];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
+    }
+    
+    // Custom initialization
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    
+    // color separator
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    // title
+    self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
 }
 
 

@@ -214,13 +214,18 @@
                     AuthenticationViewController *controller = [[AuthenticationViewController alloc]initWithNibName:@"AuthenticationViewController" bundle:nil];
                     [cc presentViewController:controller animated:YES completion:nil];
                 }
+            }else if (indexPath.section == 0 && indexPath.row == 0){
+                // Home
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[HomeTableViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
             }else if ( indexPath.section == 0 && indexPath.row == 3){
                 // Tags
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }else if ( indexPath.section == 0 && indexPath.row == 2){
-                // Tags
+                // Album
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;

@@ -62,7 +62,7 @@
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     RightViewController* rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
     
-    ViewController *centerController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+    HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController

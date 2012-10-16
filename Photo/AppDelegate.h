@@ -33,6 +33,7 @@
 #import "SHK.h"
 #import "PhotoSHKConfigurator.h"
 #import "InitializerService.h"
+#import "HomeTableViewController.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,

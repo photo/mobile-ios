@@ -101,8 +101,6 @@
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
-		CDEC2589161C75B80062E9B0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2581161C75B70062E9B0 /* ViewController.m */; };
-		CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2582161C75B70062E9B0 /* ViewController.xib */; };
 		CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2587161C75B80062E9B0 /* RightViewController.m */; };
 		CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDEC2588161C75B80062E9B0 /* RightViewController.xib */; };
 		CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF33E16285495007A4FDF /* HomeTableViewController.m */; };
@@ -559,9 +557,6 @@
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
 		CDEC2565161C3A280062E9B0 /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WrapController.m; path = Frameworks/ViewDeck/ViewDeck/WrapController.m; sourceTree = "<group>"; };
-		CDEC2580161C75B70062E9B0 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CDEC2581161C75B70062E9B0 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CDEC2582161C75B70062E9B0 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 		CDEC2586161C75B80062E9B0 /* RightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
 		CDEC2587161C75B80062E9B0 /* RightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		CDEC2588161C75B80062E9B0 /* RightViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightViewController.xib; sourceTree = "<group>"; };
@@ -706,9 +701,6 @@
 				CDFAF34216285495007A4FDF /* UploadCell.h */,
 				CDFAF34316285495007A4FDF /* UploadCell.m */,
 				CDFAF34416285495007A4FDF /* UploadCell.xib */,
-				CDEC2580161C75B70062E9B0 /* ViewController.h */,
-				CDEC2581161C75B70062E9B0 /* ViewController.m */,
-				CDEC2582161C75B70062E9B0 /* ViewController.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1458,7 +1450,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDAFB9DF16122262002D6E86 /* InfoPlist.strings in Resources */,
-				CDEC258A161C75B80062E9B0 /* ViewController.xib in Resources */,
 				CDEC258E161C75B80062E9B0 /* RightViewController.xib in Resources */,
 				CD4613E0161C7C7C0028619D /* Default-568h@2x.png in Resources */,
 				CD4613E1161C7C7C0028619D /* Default.png in Resources */,
@@ -1530,7 +1521,6 @@
 				CDAFB9E116122262002D6E86 /* main.m in Sources */,
 				CDAFB9E516122263002D6E86 /* AppDelegate.m in Sources */,
 				CDAFB9EE16122263002D6E86 /* Photo.xcdatamodeld in Sources */,
-				CDEC2589161C75B80062E9B0 /* ViewController.m in Sources */,
 				CDEC258D161C75B80062E9B0 /* RightViewController.m in Sources */,
 				CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */,
 				CD764289161ED9BB00E0B657 /* iRate.m in Sources */,
