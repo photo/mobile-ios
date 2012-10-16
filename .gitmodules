@@ -19,3 +19,6 @@
 [submodule "Frameworks/TSAlertView"]
 	path = Frameworks/TSAlertView
 	url = git://github.com/TomSwift/TSAlertView.git
+[submodule "Frameworks/EGOTableViewPullRefresh"]
+	path = Frameworks/EGOTableViewPullRefresh
+	url = git://github.com/enormego/EGOTableViewPullRefresh.git
