@@ -94,5 +94,11 @@ NSString * const kValidateNotAllowedLocation=@"validate_not_allowed_location";
  */
 NSString * const kSyncShowUploadedPhotos=@"sync_show_uploaded_photos";
  
+/*
+ * Facebook
+ */
+NSString * const kFacebookUserConnected=@"facebook_user_connected";
+NSString * const kFacebookUserConnectedEmail=@"facebook_user_connected_email";
+NSString * const kFacebookUserConnectedUsername=@"facebook_user_connected_username";
 
 @end

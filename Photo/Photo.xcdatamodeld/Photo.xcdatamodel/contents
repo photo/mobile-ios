@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Synced" representedClassName="Synced" syncable="YES">
+        <attribute name="fileHash" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Timeline" representedClassName="Timeline" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateUploaded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="facebook" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="photoDataTempUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoDataThumb" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photoPageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoToUpload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="photoUploadMultiplesUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoUploadProgress" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="photoUploadResponse" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="syncedUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userUrl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Synced" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Timeline" positionX="160" positionY="192" width="128" height="375"/>
+    </elements>
 </model>
