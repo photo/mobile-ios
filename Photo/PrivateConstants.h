@@ -23,7 +23,7 @@
 
 extern NSString * const kPrivateFacebookAppId;
 extern NSString * const kPrivateTestFlightId;
-extern NSString * const kPrivateappStoreID;
+extern NSInteger  const kPrivateappStoreID;
 extern NSString * const kPrivateapplicationBundleID;
 extern NSString * const kPrivateapplicationName;
 

@@ -24,7 +24,7 @@
 NSString * const kPrivateFacebookAppId=@"";
 NSString * const kPrivateTestFlightId=@"";
 
-NSString * const kPrivateappStoreID=@"";
+NSInteger  const kPrivateappStoreID=0;
 NSString * const kPrivateapplicationBundleID=@"";
 NSString * const kPrivateapplicationName=@"";
 
