@@ -77,6 +77,12 @@
     DefaultSHKConfigurator *configurator = [[PhotoSHKConfigurator alloc] init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
+    // initializer
+    InitializerService *service = [[InitializerService alloc]init];
+    if ([service isInitialized] == NO){
+        [service initialize];
+    }
+    
     self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
     
