@@ -21,7 +21,7 @@
 
 @interface AuthenticationViewController : UIViewController<UITextFieldDelegate>
 
-@property (strong, nonatomic) IBOutlet UITextField *serverURL;
+@property (nonatomic,weak) IBOutlet UITextField *serverURL;
 - (IBAction)login:(id)sender;
 
 @end

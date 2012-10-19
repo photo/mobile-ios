@@ -36,7 +36,7 @@
 }
 
 // protocol that will send the response
-@property (retain) id delegate;
+@property (nonatomic, weak) id delegate;
 @property (nonatomic) NSInteger counter;
 @property (nonatomic) NSInteger counterTotal;
 
@@ -44,7 +44,4 @@
 // it will load all images into the coredata entity SyncPhotos
 - (void) loadLocalImagesOnDatabase;
 
-// method to calculate all hashs
-
-// method to match the hashs with the server
 @end

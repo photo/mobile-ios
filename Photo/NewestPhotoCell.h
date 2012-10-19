@@ -20,23 +20,19 @@
 
 #import "SHK.h"
 
-@interface NewestPhotoCell : UITableViewCell{
-    NSString *geoPosition;
-    NSString *photoPageUrl;
-    UITableViewController *newestPhotosTableViewController;
-}
+@interface NewestPhotoCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *photo;
-@property (strong, nonatomic) IBOutlet UILabel *date;
-@property (strong, nonatomic) IBOutlet UILabel *tags;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
-@property (strong, nonatomic) IBOutlet UIImageView *private;
-@property (strong, nonatomic) IBOutlet UIButton *geoPositionButton;
-@property (strong, nonatomic) IBOutlet UILabel *label;
-@property (strong, nonatomic) IBOutlet UIButton *shareButton;
+@property (nonatomic, weak) IBOutlet UIImageView *photo;
+@property (nonatomic, weak) IBOutlet UILabel *date;
+@property (nonatomic, weak) IBOutlet UILabel *tags;
+@property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activity;
+@property (nonatomic, weak) IBOutlet UIImageView *private;
+@property (nonatomic, weak) IBOutlet UIButton *geoPositionButton;
+@property (nonatomic, weak) IBOutlet UILabel *label;
+@property (nonatomic, weak) IBOutlet UIButton *shareButton;
 
-@property (nonatomic, copy) NSString *geoPosition;
-@property (nonatomic, copy) NSString *photoPageUrl;
+@property (nonatomic, strong) NSString *geoPosition;
+@property (nonatomic, strong) NSString *photoPageUrl;
 @property (nonatomic, strong) UITableViewController *newestPhotosTableViewController;
 
 - (IBAction)openGeoPosition:(id)sender;

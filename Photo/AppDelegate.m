@@ -60,7 +60,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    RightViewController* rightController = [[RightViewController alloc] initWithNibName:@"RightViewController" bundle:nil];
+    SyncViewController* rightController = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
     
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];

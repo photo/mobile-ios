@@ -10,7 +10,7 @@
 
 @implementation ELCAlbumPickerController
 
-@synthesize parent, assetGroups;
+@synthesize parent=_parent, assetGroups=_assetGroups;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -26,7 +26,7 @@
         UIImage *backgroundImage= [UIImage imageNamed:@"appbar_empty.png"];
         [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
     }
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];   
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     // color separator
@@ -37,41 +37,43 @@
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	self.assetGroups = tempArray;
     
-    library = [[ALAssetsLibrary alloc] init];      
+    library = [[ALAssetsLibrary alloc] init];
     
     // Load Albums into assetGroups
     dispatch_async(dispatch_get_main_queue(), ^
                    {
-                       // Group enumerator Block
-                       void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
-                       {
-                           if (group == nil) 
+                       @autoreleasepool {
+                           // Group enumerator Block
+                           void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
                            {
-                               return;
-                           }
+                               if (group == nil)
+                               {
+                                   return;
+                               }
+                               
+                               if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
+                                   [self.assetGroups addObject:group];
+                               }
+                               
+                               // Reload albums
+                               [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
+                           };
                            
-                           if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] != ALAssetsGroupPhotoStream){
-                               [self.assetGroups addObject:group];
-                           }
+                           // Group Enumerator Failure Block
+                           void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
+                               
+                               UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                               [alert show];
+                               
+                               NSLog(@"A problem occured %@", [error description]);
+                           };
                            
-                           // Reload albums
-                           [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
-                       };
-                       
-                       // Group Enumerator Failure Block
-                       void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-                           
-                           UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                           [alert show];
-                           
-                           NSLog(@"A problem occured %@", [error description]);	                                 
-                       };	
-                       
-                       // Show only the Saved Photos
-                       [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
-                                              usingBlock:assetGroupEnumerator 
-                                            failureBlock:assetGroupEnumberatorFailure];
-                   });    
+                           // Show only the Saved Photos
+                           [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                                  usingBlock:assetGroupEnumerator
+                                                failureBlock:assetGroupEnumberatorFailure];
+                       }
+                   });
 }
 
 
@@ -131,7 +133,7 @@
 	SyncViewController *picker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:[NSBundle mainBundle]];
 	picker.parent = self;
     
-    // Move me    
+    // Move me
     picker.assetGroup = [assetGroups objectAtIndex:indexPath.row];
     [picker.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
     

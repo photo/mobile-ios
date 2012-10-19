@@ -29,8 +29,8 @@
 
 @implementation SyncViewController
 
-@synthesize parent;
-@synthesize assetGroup, elcAssets;
+@synthesize parent=_parent;
+@synthesize assetGroup=_assetGroup, elcAssets=_elcAssets;
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
 @synthesize buttonHidden =_buttonHidden;
@@ -133,7 +133,7 @@
     loaded = NO;
     
     // load all urls
-    self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     
     [self loadSavedPhotos];
 }
@@ -141,10 +141,10 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     if (loaded == YES){
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
         hud.labelText = @"Loading";
         // load all urls
-        self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+        self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
         
     }else{
@@ -159,52 +159,54 @@
         [self.elcAssets removeAllObjects];
     }
     
+    @autoreleasepool {
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"enumerating photos");
-    NSLog("Assets Number %i", assetsNumber);
-    NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]);
+        NSLog(@"enumerating photos");
+        NSLog("Assets Number %i", assetsNumber);
+        NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]);
 #endif
-    
-    if ([self.assetGroup numberOfAssets] != assetsNumber){
-        // we need to load again
-        [self loadSavedPhotos];
-    }else{
-        NSMutableArray *startArray = [NSMutableArray array];
-        [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
-         {
-             if(result == nil)
+        
+        if ([self.assetGroup numberOfAssets] != assetsNumber){
+            // we need to load again
+            [self loadSavedPhotos];
+        }else{
+            NSMutableArray *startArray = [NSMutableArray array];
+            [self.assetGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
              {
-                 return;
-             }
-             
-             // check if user already uploaded
-             NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
-             
-             BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
-             if (!hidden || (hidden && !alreadyUploaded)){
-                 ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
-                 [elcAsset setParent:self];
-                 [startArray addObject:elcAsset];
-             }
-         }];
-        
-        //revert the order
-        [self.elcAssets addObjectsFromArray:[[startArray reverseObjectEnumerator] allObjects]];
-        
-        
+                 if(result == nil)
+                 {
+                     return;
+                 }
+                 
+                 // check if user already uploaded
+                 NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
+                 
+                 BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
+                 if (!hidden || (hidden && !alreadyUploaded)){
+                     ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
+                     [elcAsset setParent:self];
+                     [startArray addObject:elcAsset];
+                 }
+             }];
+            
+            //revert the order
+            [self.elcAssets addObjectsFromArray:[[startArray reverseObjectEnumerator] allObjects]];
+            
+            
 #ifdef DEVELOPMENT_ENABLED
-        NSLog(@"done enumerating photos");
+            NSLog(@"done enumerating photos");
 #endif
-        [self.tableView reloadData];
-        [self.navigationItem setTitle:@"Pick Photos"];
+            [self.tableView reloadData];
+            [self.navigationItem setTitle:@"Pick Photos"];
+        }
     }
     
-    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
 }
 
 - (void) doneAction:(id)sender {
 	@try {
-        NSMutableArray *selectedAssetsImages = [[NSMutableArray alloc] init]];
+        NSMutableArray *selectedAssetsImages = [[NSMutableArray alloc] init];
         
         for(ELCAsset *elcAsset in self.elcAssets)
         {
@@ -334,11 +336,11 @@
     
     [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
     hud.labelText = @"Loading";
     
     // load all urls
-    self.imagesAlreadyUploaded = [SyncedPhotos getPathsInManagedObjectContext:[AppDelegate managedObjectContext]];
+    self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
     
     
@@ -363,7 +365,7 @@
                            if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
                                [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
-                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+                               MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
                                hud.labelText = @"Loading";
                                assetsNumber = [self.assetGroup numberOfAssets];
                                
@@ -405,9 +407,7 @@
 
 - (void)dealloc
 {
-    [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 - (void)viewDidUnload {

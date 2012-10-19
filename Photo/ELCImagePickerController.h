@@ -9,12 +9,9 @@
 #import "ELCAsset.h"
 #import "ELCAssetCell.h"
 #import "ELCAlbumPickerController.h"
-@interface ELCImagePickerController : UINavigationController{
+@interface ELCImagePickerController : UINavigationController
 
-	id delegate;
-}
-
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, weak) id delegate;
 
 -(void)selectedAssets:(NSArray*)_assets;
 -(void)cancelImagePicker;

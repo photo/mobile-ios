@@ -21,7 +21,7 @@
 #import "IIViewDeckController.h"
 #import "ViewController.h"
 #import "MenuViewController.h"
-#import "RightViewController.h"
+#import "SyncViewController.h"
 #import "iRate.h"
 #import "AuthenticationService.h"
 #import "AuthenticationViewController.h"
@@ -34,6 +34,7 @@
 #import "PhotoSHKConfigurator.h"
 #import "InitializerService.h"
 #import "HomeTableViewController.h"
+
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,

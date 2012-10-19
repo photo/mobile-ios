@@ -23,6 +23,7 @@
 #import "TagViewController.h"
 #import "AlbumViewController.h"
 #import "HomeTableViewController.h"
+#import "SyncViewController.h"
 
 @interface MenuViewController : UITableViewController
 

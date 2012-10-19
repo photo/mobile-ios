@@ -14,14 +14,14 @@
 @end
 
 @implementation SyncService
-@synthesize delegate,counter,counterTotal;
+@synthesize delegate=_delegate,counter=_counter,counterTotal=_counterTotal;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // for access local images
-        assetsLibrary = [[ALAssetsLibrary alloc] init]; 
+        assetsLibrary = [[ALAssetsLibrary alloc] init];
     }
     return self;
 }
@@ -37,26 +37,27 @@
     // load image
     ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *myasset)
     {
-        ALAssetRepresentation *rep = [myasset defaultRepresentation];     
-        uint8_t* buffer = malloc([rep size]);
-        
-        NSError* error = NULL;
-        NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
-        NSData *data = nil;
-        
-        if (bytes == [rep size]){
-            data = [NSData dataWithBytes:buffer length:bytes] ;
-            if (data != nil){
-                // calculate hash
-                NSLog(@"Hash = %@ from group %@",[SHA1 sha1File:data],group);
+        @autoreleasepool {
+            ALAssetRepresentation *rep = [myasset defaultRepresentation];
+            uint8_t* buffer = malloc([rep size]);
+            
+            NSError* error = NULL;
+            NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
+            NSData *data = nil;
+            
+            if (bytes == [rep size]){
+                data = [NSData dataWithBytes:buffer length:bytes] ;
+                if (data != nil){
+                    // calculate hash
+                    NSLog(@"Hash = %@ from group %@",[SHA1 sha1File:data],group);
+                }else{
+                    NSLog(@"Error to get the data from the library");
+                }
             }else{
-                NSLog(@"Error to get the data from the library");
+                NSLog(@"Error '%@' reading bytes", [error localizedDescription]);
             }
-        }else{
-            NSLog(@"Error '%@' reading bytes", [error localizedDescription]);
-        }       
-        free(buffer);
-               
+            free(buffer);
+        }
         //calculation to know if it is finished
         self.counter = self.counter - 1;
         
@@ -79,8 +80,8 @@
     [group setAssetsFilter:[ALAssetsFilter allPhotos]];
     
     // get photos for each group
-    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) 
-     {         
+    [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
+     {
          if(result == nil){
              return;
          }
@@ -97,7 +98,7 @@
     
     // Load Albums into assetGroups
     // Group enumerator Block
-    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) 
+    void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
     {
         if (group == nil){
             return;
@@ -116,12 +117,12 @@
     
     // Group Enumerator Failure Block
     void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-        NSLog(@"A problem occured %@", [error description]);	                                 
-    };	
+        NSLog(@"A problem occured %@", [error description]);
+    };
     
     // Enumerate Albums
     [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
-                                 usingBlock:assetGroupEnumerator 
+                                 usingBlock:assetGroupEnumerator
                                failureBlock:assetGroupEnumberatorFailure];
 }
 

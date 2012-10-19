@@ -15,8 +15,8 @@
 
 @implementation ELCAsset
 
-@synthesize asset;
-@synthesize parent;
+@synthesize parent=_parent;
+@synthesize asset=_asset;
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
@@ -25,11 +25,11 @@
     return self;
 }
 
--(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) isUploaded{
+-(id)initWithAsset:(ALAsset*) alasset alreadyUploaded:(BOOL) isUploaded{
 	
 	if (self = [super initWithFrame:CGRectMake(0, 0, 0, 0)]) {
 		
-		self.asset = _asset;
+		self.asset = alasset;
 		uploaded = isUploaded;
         
 		CGRect viewFrames = CGRectMake(0, 0, 75, 75);

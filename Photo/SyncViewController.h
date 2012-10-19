@@ -44,12 +44,12 @@
     int assetsNumber;
 }
 
-@property (nonatomic, assign) id parent;
-@property (nonatomic, retain) ALAssetsGroup *assetGroup;
-@property (nonatomic, retain) NSMutableArray *elcAssets;
-@property (nonatomic, retain) NSMutableArray *imagesAlreadyUploaded;
-@property (retain, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, retain) UIButton *buttonHidden;
+@property (nonatomic, weak) id parent;
+@property (nonatomic, strong) ALAssetsGroup *assetGroup;
+@property (nonatomic, strong) NSMutableArray *elcAssets;
+@property (nonatomic, strong) NSMutableArray *imagesAlreadyUploaded;
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIButton *buttonHidden;
 
 -(int)totalSelectedAssets;
 -(void)preparePhotos;

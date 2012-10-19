@@ -65,7 +65,7 @@
         // get type of the file
         NSString *extension = [ContentTypeUtilities contentTypeExtensionForImageData:data];
         
-        return [NSString stringWithFormat:@"%@.%@",(NSString *) newUniqueIdString,extension];
+        return [NSString stringWithFormat:@"%@.%@",(__bridge NSString *) newUniqueIdString,extension];
     }else{
         // no filter, image is located on Library
         return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];

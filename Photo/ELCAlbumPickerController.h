@@ -17,7 +17,7 @@
     ALAssetsLibrary *library;
 }
 
-@property (nonatomic, assign) id parent;
+@property (nonatomic, weak) id parent;
 @property (nonatomic, strong) NSMutableArray *assetGroups;
 
 -(void)selectedAssets:(NSArray*)_assets;

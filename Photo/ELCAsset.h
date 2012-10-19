@@ -18,7 +18,7 @@
 }
 
 @property (nonatomic, strong) ALAsset *asset;
-@property (nonatomic, assign) id parent;
+@property (nonatomic, weak) id parent;
 
 
 -(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded;

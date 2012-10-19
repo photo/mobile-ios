@@ -109,7 +109,7 @@
     }else{
         
         // display
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
         hud.labelText = @"Logging";
         
         
