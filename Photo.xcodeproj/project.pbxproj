@@ -102,6 +102,8 @@
 		CD30D74116315E50001A0CA0 /* sync-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D73716315E50001A0CA0 /* sync-overlay@2x.png */; };
 		CD30D74216315E50001A0CA0 /* sync-show.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D73816315E50001A0CA0 /* sync-show.png */; };
 		CD30D74316315E50001A0CA0 /* sync-show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D73916315E50001A0CA0 /* sync-show@2x.png */; };
+		CD30D79116317A79001A0CA0 /* JobUploaderController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D78E16317A79001A0CA0 /* JobUploaderController.m */; };
+		CD30D79216317A79001A0CA0 /* JobUploaderDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D79016317A79001A0CA0 /* JobUploaderDelegate.m */; };
 		CD4613CE161C78B00028619D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CD4613D0161C78B00028619D /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
@@ -581,6 +583,10 @@
 		CD30D73716315E50001A0CA0 /* sync-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-overlay@2x.png"; path = "images/sync-overlay@2x.png"; sourceTree = "<group>"; };
 		CD30D73816315E50001A0CA0 /* sync-show.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-show.png"; path = "images/sync-show.png"; sourceTree = "<group>"; };
 		CD30D73916315E50001A0CA0 /* sync-show@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sync-show@2x.png"; path = "images/sync-show@2x.png"; sourceTree = "<group>"; };
+		CD30D78D16317A79001A0CA0 /* JobUploaderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderController.h; sourceTree = "<group>"; };
+		CD30D78E16317A79001A0CA0 /* JobUploaderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobUploaderController.m; sourceTree = "<group>"; };
+		CD30D78F16317A79001A0CA0 /* JobUploaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobUploaderDelegate.h; sourceTree = "<group>"; };
+		CD30D79016317A79001A0CA0 /* JobUploaderDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobUploaderDelegate.m; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
 		CD764286161ED9BB00E0B657 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
 		CD764287161ED9BB00E0B657 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
@@ -868,6 +874,10 @@
 		CD4613D9161C7B0C0028619D /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				CD30D78D16317A79001A0CA0 /* JobUploaderController.h */,
+				CD30D78E16317A79001A0CA0 /* JobUploaderController.m */,
+				CD30D78F16317A79001A0CA0 /* JobUploaderDelegate.h */,
+				CD30D79016317A79001A0CA0 /* JobUploaderDelegate.m */,
 			);
 			name = Upload;
 			sourceTree = "<group>";
@@ -1801,6 +1811,8 @@
 				CD30D57516303E54001A0CA0 /* SyncService.m in Sources */,
 				CD30D57616303E54001A0CA0 /* SyncViewController.m in Sources */,
 				CD30D5FB16304202001A0CA0 /* AssetsLibraryUtilities.m in Sources */,
+				CD30D79116317A79001A0CA0 /* JobUploaderController.m in Sources */,
+				CD30D79216317A79001A0CA0 /* JobUploaderDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

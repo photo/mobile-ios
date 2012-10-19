@@ -1,5 +1,5 @@
 //
-//  NewestPhotos+Photo.m
+//  Timeline+Photo.m
 //  Photo
 //
 //  Created by Patrick Santana on 22/03/12.

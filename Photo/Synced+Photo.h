@@ -1,5 +1,5 @@
 //
-//  SyncPhotos.h
+//  Synced+Photos.h
 //  Photo
 //
 //  Created by Patrick Santana on 21/05/12.

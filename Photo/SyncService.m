@@ -1,9 +1,9 @@
 //
 //  SyncService.m
-//  OpenPhoto
+//  Photo
 //
 //  Created by Patrick Santana on 24/05/12.
-//  Copyright (c) 2012 OpenPhoto. All rights reserved.
+//  Copyright (c) 2012 Photo. All rights reserved.
 //
 
 #import "SyncService.h"

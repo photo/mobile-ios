@@ -1,5 +1,5 @@
 //
-//  NewestPhotos+Photo.h
+//  Timeline+Photo.h
 //  Photo
 //
 //  Created by Patrick Santana on 22/03/12.
