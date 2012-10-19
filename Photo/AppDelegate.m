@@ -37,7 +37,7 @@
 
 @synthesize centerController = _viewController;
 @synthesize menuController = _menuController;
-@synthesize imageController = _imageController;
+@synthesize syncController = _syncController;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -60,13 +60,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    SyncViewController* rightController = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
+    self.syncController = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
     
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController
-                                                                                   rightViewController:rightController];
+                                                                                   rightViewController:self.syncController];
 
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
@@ -83,8 +83,16 @@
     self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
     
-    return YES;
+    //register to share data.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(eventHandler:)
+                                                 name:kNotificationShareInformationToFacebookOrTwitter
+                                               object:nil ];
     
+    // start the job
+    [[JobUploaderController getController] start];
+    
+    return YES;
 }
 
 + (void) initialize
@@ -474,6 +482,16 @@
             break;
         }
     }
+}
+
+- (NSString *) user
+{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

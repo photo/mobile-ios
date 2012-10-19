@@ -34,6 +34,7 @@
 #import "PhotoSHKConfigurator.h"
 #import "InitializerService.h"
 #import "HomeTableViewController.h"
+#import "JobUploaderController.h"
 
 
 
@@ -78,7 +79,9 @@ FBSessionDelegate>{
 // navigation
 @property (strong, nonatomic) UIViewController *centerController;
 @property (strong, nonatomic) UIViewController *menuController;
-@property (strong, nonatomic) UIViewController *imageController;
+@property (strong, nonatomic) UIViewController *syncController;
 
+// get the user connect
+- (NSString *) user;
 
 @end
