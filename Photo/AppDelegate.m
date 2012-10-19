@@ -67,9 +67,7 @@
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController
                                                                                    rightViewController:rightController];
-    deckController.rightLedge = 100;
-    
-    
+
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
     

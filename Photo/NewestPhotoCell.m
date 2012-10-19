@@ -69,10 +69,11 @@
         
         // ShareKit detects top view controller (the one intended to present ShareKit UI) automatically,
         // but sometimes it may not find one. To be safe, set it explicitly
-        [SHK setRootViewController:self.newestPhotosTableViewController];
+       //[SHK setRootViewController:self.view];
         
         // Display the action sheet
-        [actionSheet showFromTabBar:self.newestPhotosTableViewController.tabBarController.tabBar];
+        	[actionSheet showInView:self.newestPhotosTableViewController.viewDeckController.view];
+        //[actionSheet showFromTabBar:self.newestPhotosTableViewController.tabBarController.tabBar];
     }
 }
 @end
