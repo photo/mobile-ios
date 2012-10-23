@@ -26,6 +26,7 @@
 #import "ELCAlbumPickerController.h" 
 #import "ELCAssetCell.h"
 #import "ELCImagePickerController.h"
+#import "PhotoViewController.h"
 
 @interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate>
 {

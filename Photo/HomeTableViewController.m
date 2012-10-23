@@ -37,21 +37,6 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        // transparent background
-        self.tableView.backgroundColor = [UIColor clearColor];
-        self.tableView.opaque = NO;
-        self.tableView.backgroundView = nil;
-        
-        // Custom initialization
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-        
-        // color separator
-        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
-        
-        // title
-        self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
-        
-        
         CGRect imageSize = CGRectMake(0, 63, 320, 367);
         self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
@@ -117,6 +102,27 @@
     }else{
         [self.noPhotoImageView removeFromSuperview];
     }
+    
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
+    
+    // color separator
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+    }else{
+        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
+        if (imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
+            [imageView setTag:6183746];
+            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
+        }
+    }
 }
 
 - (void)viewDidLoad
@@ -151,14 +157,28 @@
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
     }
     
-    // Custom initialization
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-    
-    // color separator
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
-    
     // title
     self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
+    
+    // color separator
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+    }else{
+        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
+        if (imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
+            [imageView setTag:6183746];
+            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
+        }
+    }
 }
 
 

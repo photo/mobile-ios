@@ -123,7 +123,6 @@
     }
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] ;
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] ;
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     // no separator
@@ -420,10 +419,9 @@
             [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
         }
         
-//        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
-//        [picker pushViewController:controller animated:YES];
-//        [controller release];
-        [self.viewDeckController  toggleRightViewAnimated:YES];
+PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+        [picker pushViewController:controller animated:YES];
+//        [self.viewDeckController  closeRightViewAnimated:YES];
     }else{
         // no photo select
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
