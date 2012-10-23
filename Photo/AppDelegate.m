@@ -61,7 +61,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-    self.syncController = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
+
+    //sync
+    SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
+    self.syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
+    [photoPicker setParent:self.syncController];
+    [self.syncController setDelegate:photoPicker];
+    
     
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];

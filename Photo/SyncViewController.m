@@ -36,9 +36,9 @@
 @synthesize buttonHidden =_buttonHidden;
 
 
-- (id)init
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
-    self = [super init];
+    self = [super initWithNibName:nibName bundle:nibBundle];
     if (self) {
         
         self.buttonHidden = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -402,6 +402,44 @@
         assetsNumber = -1;
         [self loadSavedPhotos];
     }
+}
+
+
+// Sync
+#pragma mark ELCImagePickerControllerDelegate Methods
+
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Selected some images");
+#endif
+    
+    if (info != nil && [info count]>0 ){
+        // convert to nsarray
+        NSMutableArray *urls = [NSMutableArray array];
+        for(NSDictionary *dict in info) {
+            [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
+        }
+        
+//        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+//        [picker pushViewController:controller animated:YES];
+//        [controller release];
+        [self.viewDeckController  toggleRightViewAnimated:YES];
+    }else{
+        // no photo select
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
+        [alert showAlert];
+        
+        // go to the home
+        // close the sync
+    }
+    
+}
+
+- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
+    // this one is not used.
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Cancel Sync");
+#endif
 }
 
 

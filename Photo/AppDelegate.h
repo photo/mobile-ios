@@ -36,6 +36,7 @@
 #import "InitializerService.h"
 #import "HomeTableViewController.h"
 #import "JobUploaderController.h"
+#import "ELCImagePickerController.h"
 
 
 
@@ -80,7 +81,7 @@ FBSessionDelegate>{
 // navigation
 @property (strong, nonatomic) UIViewController *centerController;
 @property (strong, nonatomic) UIViewController *menuController;
-@property (strong, nonatomic) UIViewController *syncController;
+@property (strong, nonatomic) ELCImagePickerController *syncController;
 
 // get the user connect
 - (NSString *) user;

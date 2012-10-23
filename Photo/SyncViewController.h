@@ -25,8 +25,9 @@
 #import "ELCAsset.h"
 #import "ELCAlbumPickerController.h" 
 #import "ELCAssetCell.h"
+#import "ELCImagePickerController.h"
 
-@interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	
