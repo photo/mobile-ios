@@ -113,6 +113,10 @@
 		CD30D8551636A9C0001A0CA0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8541636A9BF001A0CA0 /* StoreKit.framework */; };
 		CD30D8571636A9CE001A0CA0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8561636A9CE001A0CA0 /* CoreText.framework */; };
 		CD30D8591636A9DB001A0CA0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */; };
+		CD30D85C1636B832001A0CA0 /* button-upload-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D85A1636B832001A0CA0 /* button-upload-form.png */; };
+		CD30D85D1636B832001A0CA0 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D85B1636B832001A0CA0 /* button-upload-form@2x.png */; };
+		CD30D8911636EBD2001A0CA0 /* button-disclosure-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D88F1636EBD2001A0CA0 /* button-disclosure-form.png */; };
+		CD30D8921636EBD2001A0CA0 /* button-disclosure-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD30D8901636EBD2001A0CA0 /* button-disclosure-form@2x.png */; };
 		CD4613CE161C78B00028619D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CD4613D0161C78B00028619D /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
@@ -612,6 +616,10 @@
 		CD30D8541636A9BF001A0CA0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CD30D8561636A9CE001A0CA0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CD30D85A1636B832001A0CA0 /* button-upload-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form.png"; path = "images/button-upload-form.png"; sourceTree = "<group>"; };
+		CD30D85B1636B832001A0CA0 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "images/button-upload-form@2x.png"; sourceTree = "<group>"; };
+		CD30D88F1636EBD2001A0CA0 /* button-disclosure-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form.png"; path = "images/button-disclosure-form.png"; sourceTree = "<group>"; };
+		CD30D8901636EBD2001A0CA0 /* button-disclosure-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form@2x.png"; path = "images/button-disclosure-form@2x.png"; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
 		CD764286161ED9BB00E0B657 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
 		CD764287161ED9BB00E0B657 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
@@ -951,6 +959,10 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD30D88F1636EBD2001A0CA0 /* button-disclosure-form.png */,
+				CD30D8901636EBD2001A0CA0 /* button-disclosure-form@2x.png */,
+				CD30D85A1636B832001A0CA0 /* button-upload-form.png */,
+				CD30D85B1636B832001A0CA0 /* button-upload-form@2x.png */,
 				CD30D5B116304006001A0CA0 /* appbar_empty.png */,
 				CD30D5B216304006001A0CA0 /* appbar_empty@2x.png */,
 				CD30D5B316304006001A0CA0 /* Background.png */,
@@ -1779,6 +1791,10 @@
 				CD30D74316315E50001A0CA0 /* sync-show@2x.png in Resources */,
 				CD30D84216369CF1001A0CA0 /* PhotoViewController.xib in Resources */,
 				CD30D8471636A8E6001A0CA0 /* AviarySDKResources.bundle in Resources */,
+				CD30D85C1636B832001A0CA0 /* button-upload-form.png in Resources */,
+				CD30D85D1636B832001A0CA0 /* button-upload-form@2x.png in Resources */,
+				CD30D8911636EBD2001A0CA0 /* button-disclosure-form.png in Resources */,
+				CD30D8921636EBD2001A0CA0 /* button-disclosure-form@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

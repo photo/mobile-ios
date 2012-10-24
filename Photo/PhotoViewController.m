@@ -337,8 +337,9 @@
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Image changed");
 #endif
-    
-    self.imageFiltered = image;
+    [editor dismissViewControllerAnimated:YES completion:^{
+          self.imageFiltered = image;
+    }];
 }
 
 - (void)photoEditorCanceled:(AFPhotoEditorController *)editor
