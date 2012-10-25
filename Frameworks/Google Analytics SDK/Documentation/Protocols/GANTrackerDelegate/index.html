@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>GANTrackerDelegate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<script language="JavaScript" type="text/javascript"><!--
+function hidetoc() {
+	var origURL = parent.document.URL;
+	var contentURL = origURL.substring(origURL.indexOf('?')+1, origURL.length);
+	if (contentURL.length == origURL.length) {
+		jumpPos = origURL.substring(origURL.indexOf('#')+1, origURL.length);
+	}
+	if (contentURL == "hidetoc") {
+		var toc = document.getElementById('tocMenu');
+		var body = document.getElementById('bodyText');
+		if (toc && body) {
+			toc.style.display = 'none';
+			body.style.marginLeft = '0px';
+		}
+	}
+}
+--></script><style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}.list_indent { margin-left: 40px; }.declaration_indent { margin-left: 40px; }.param_indent { margin-left: 40px; }.group_indent { margin-left: 40px; }.group_desc_indent { margin-left: 20px; }.warning_indent { margin-left: 40px; }.important_indent { margin-left: 40px; }.hd_tocAccess { font-style: italic; font-size: 10px; font-weight: normal; color: #303030; }--></style>
+</head>
+<body bgcolor="#ffffff" onload="hidetoc();">
+
+<!-- headerDoc=intf; uid=//apple_ref/occ/intf/GANTrackerDelegate;  name=GANTrackerDelegate-->
+<a name="//apple_ref/occ/intf/GANTrackerDelegate"></a><div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+<div id="bodyText">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="GANTrackerDelegate">GANTrackerDelegate</a></h1>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Google Analytics tracker delegate. This delegate gets notified when
+the tracker dispatches a hit successfully, or when there was an error
+dispatching the hit. All delegate methods are optional.
+<!-- end abstract --></p>
+<p><b>Extends&#160;Protocol:</b> <!-- a logicalPath="//apple_ref/occ/intf/NSObject" -->NSObject<!-- /a --><br><b>Declared In:</b> <a href="../../index.html" target="_top">GANTracker.h</a><br></p>
+<div class="declaration_indent">
+</div>
+<p></p>
+<hr>
+<br><a name="HeaderDoc_methods"></a>
+<h2>Methods</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/intfm/GANTrackerDelegate/hitDispatched:" target="_top">-hitDispatched:</a></tt></dt>
+<dd>
+<p>This method is invoked when a hit has been successfully submitted to
+Google Analytics.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/intfm/GANTrackerDelegate/trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:" target="_top">-trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:</a></tt></dt>
+<dd>
+<p>This method is invoked when a dispatch to Google Analytics is
+completed.
+</p>
+</dd>
+</dl>
+<hr>
+<!-- headerDoc=intfm;  uid=//apple_ref/occ/intfm/GANTrackerDelegate/hitDispatched:;   name=GANTrackerDelegate::hitDispatched: --><a name="//apple_ref/occ/intfm/GANTrackerDelegate/hitDispatched:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="hitDispatched:">hitDispatched:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>This method is invoked when a hit has been successfully submitted to
+Google Analytics.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/hitDispatched //apple_ref/occ/clm/hitDispatched //apple_ref/occ/intfcm/hitDispatched //apple_ref/occ/intfm/hitDispatched //apple_ref/occ/func/hitDispatched //apple_ref/occ/ftmplt/hitDispatched //apple_ref/occ/defn/hitDispatched //apple_ref/occ/macro/hitDispatched" --><span class="function">hitDispatched</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/hitString //apple_ref/occ/data/hitString" --><span class="var">hitString</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>hitString</code></dt>
+<dd><p>The string representation of the hit, as sent to Google
+Analytics.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=intfm;  uid=//apple_ref/occ/intfm/GANTrackerDelegate/trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:;   name=GANTrackerDelegate::trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch: --><a name="//apple_ref/occ/intfm/GANTrackerDelegate/trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:">trackerDispatchDidComplete:eventsDispatched:eventsFailedDispatch:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>This method is invoked when a dispatch to Google Analytics is
+completed.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/trackerDispatchDidComplete //apple_ref/occ/clm/trackerDispatchDidComplete //apple_ref/occ/intfcm/trackerDispatchDidComplete //apple_ref/occ/intfm/trackerDispatchDidComplete //apple_ref/occ/func/trackerDispatchDidComplete //apple_ref/occ/ftmplt/trackerDispatchDidComplete //apple_ref/occ/defn/trackerDispatchDidComplete //apple_ref/occ/macro/trackerDispatchDidComplete" --><span class="function">trackerDispatchDidComplete</span><!-- /a -->:(<a href="../../Classes/GANTracker/index.html#//apple_ref/occ/cl/GANTracker" logicalPath="//apple_ref/occ/cl/GANTracker" target="_top"><span class="type">GANTracker</span></a> <span class="type">*</span>)<span class="param">tracker</span> <!-- a logicalPath="//apple_ref/occ/instm/eventsDispatched //apple_ref/occ/clm/eventsDispatched //apple_ref/occ/intfcm/eventsDispatched //apple_ref/occ/intfm/eventsDispatched //apple_ref/occ/func/eventsDispatched //apple_ref/occ/ftmplt/eventsDispatched //apple_ref/occ/defn/eventsDispatched //apple_ref/occ/macro/eventsDispatched" --><span class="function">eventsDispatched</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a -->)<span class="param">hitsDispatched</span> <!-- a logicalPath="//apple_ref/occ/instm/eventsFailedDispatch //apple_ref/occ/clm/eventsFailedDispatch //apple_ref/occ/intfcm/eventsFailedDispatch //apple_ref/occ/intfm/eventsFailedDispatch //apple_ref/occ/func/eventsFailedDispatch //apple_ref/occ/ftmplt/eventsFailedDispatch //apple_ref/occ/defn/eventsFailedDispatch //apple_ref/occ/macro/eventsFailedDispatch" --><span class="function">eventsFailedDispatch</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/econst/hitsFailedDispatch //apple_ref/occ/data/hitsFailedDispatch" --><span class="var">hitsFailedDispatch</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>tracker</code></dt>
+<dd><p>The tracker object for which the dispatch was made.</p></dd>
+<dt><code>hitsDispatched</code></dt>
+<dd><p>The number of hits successfully submitted to Google
+Analytics.</p></dd>
+<dt><code>hitsFailedDispatch</code></dt>
+<dd><p>The number of hits that could not be submitted.</p></dd>
+</dl>
+</div>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>Note: failed hits will be retried on the next dispatch.
+</p>
+<!-- end discussion -->
+<p></p>
+<p></p>
+<p>&#169; 2011 Google Inc. All Rights Reserved. Last Updated: Wednesday, April 11, 2012
+</p>
+</div>
+</body>
+</html>

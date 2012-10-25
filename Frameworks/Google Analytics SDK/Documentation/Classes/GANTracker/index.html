@@ -1,0 +1,752 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>GANTracker</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<script language="JavaScript" type="text/javascript"><!--
+function hidetoc() {
+	var origURL = parent.document.URL;
+	var contentURL = origURL.substring(origURL.indexOf('?')+1, origURL.length);
+	if (contentURL.length == origURL.length) {
+		jumpPos = origURL.substring(origURL.indexOf('#')+1, origURL.length);
+	}
+	if (contentURL == "hidetoc") {
+		var toc = document.getElementById('tocMenu');
+		var body = document.getElementById('bodyText');
+		if (toc && body) {
+			toc.style.display = 'none';
+			body.style.marginLeft = '0px';
+		}
+	}
+}
+--></script><style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}a:link {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #0000ff;}a:visited:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:active {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}a:hover {text-decoration: underline; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: small; color: #ff6600;}h4 {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: tiny; font-weight: bold;}body {text-decoration: none; font-family: lucida grande, geneva, helvetica, arial, sans-serif; font-size: 10pt;}.list_indent { margin-left: 40px; }.declaration_indent { margin-left: 40px; }.param_indent { margin-left: 40px; }.group_indent { margin-left: 40px; }.group_desc_indent { margin-left: 20px; }.warning_indent { margin-left: 40px; }.important_indent { margin-left: 40px; }.hd_tocAccess { font-style: italic; font-size: 10px; font-weight: normal; color: #303030; }--></style>
+</head>
+<body bgcolor="#ffffff" onload="hidetoc();">
+
+<!-- headerDoc=cl; uid=//apple_ref/occ/cl/GANTracker;  name=GANTracker-->
+<a name="//apple_ref/occ/cl/GANTracker"></a><div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+<div id="bodyText">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="GANTracker">GANTracker</a></h1>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Google Analytics tracking class. Tracks pageviews, events, and
+transactions by storing them in a persistent store and dispatching them in the
+background to Google Analytics.
+<!-- end abstract --></p>
+<p><b>Superclass:</b> <!-- a logicalPath="//apple_ref/occ/cl/NSObject" -->NSObject<!-- /a --><br><b>Declared In:</b> <a href="../../index.html" target="_top">GANTracker.h</a><br></p>
+<div class="declaration_indent">
+</div>
+<p></p>
+<hr>
+<br><a name="HeaderDoc_methods"></a>
+<h2>Methods</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/clm/GANTracker/sharedTracker" target="_top">+sharedTracker</a></tt></dt>
+<dd><p>Returns the singleton instance of GANTracker.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/startTrackerWithAccountID:dispatchPeriod:delegate:" target="_top">-startTrackerWithAccountID:dispatchPeriod:delegate:</a></tt></dt>
+<dd>
+<p>Start the Google Analytics tracker.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/stopTracker" target="_top">-stopTracker</a></tt></dt>
+<dd><p>Stop the tracker.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/trackPageview:withError:" target="_top">-trackPageview:withError:</a></tt></dt>
+<dd>
+<p>Track a page view.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/trackEvent:action:label:value:withError:" target="_top">-trackEvent:action:label:value:withError:</a></tt></dt>
+<dd>
+<p>Track an event view.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:scope:withError:" target="_top">-setCustomVariableAtIndex:name:value:scope:withError:</a></tt></dt>
+<dd>
+<p>Set a custom variable. If there is an existing custom variable at the
+specified index, it will be overwritten.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:withError:" target="_top">-setCustomVariableAtIndex:name:value:withError:</a></tt></dt>
+<dd>
+<p>Set a page scoped custom variable. The variable set is included with
+the next even only. If there is an existing custom variable at the specified
+index, it will be overwritten by this one.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/getVisitorCustomVarAtIndex:" target="_top">-getVisitorCustomVarAtIndex:</a></tt></dt>
+<dd>
+<p>Get the value of the custom variable at the index requested.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:" target="_top">-addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:</a></tt></dt>
+<dd>
+<p>Create an e-commerce transaction.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:" target="_top">-addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:</a></tt></dt>
+<dd>
+<p>Add an item to an e-commerce transaction.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/trackTransactions:" target="_top">-trackTransactions:</a></tt></dt>
+<dd>
+<p>Queue pending e-commerce transactions for dispatch.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/clearTransactions:" target="_top">-clearTransactions:</a></tt></dt>
+<dd>
+<p>Remove pending e-commerce transactions.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/setReferrer:withError:" target="_top">-setReferrer:withError:</a></tt></dt>
+<dd>
+<p>Set the referrer and create a new session associated with the
+specified referrer.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/dispatch" target="_top">-dispatch</a></tt></dt>
+<dd>
+<p>Dispatch pageviews, events, or transactions to Google Analytics.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instm/GANTracker/dispatchSynchronous:" target="_top">-dispatchSynchronous:</a></tt></dt>
+<dd>
+<p>Synchronously dispatch pageviews, events, or transactions to Google
+Analytics.
+</p>
+</dd>
+</dl>
+<hr>
+<!-- headerDoc=clm;  uid=//apple_ref/occ/clm/GANTracker/sharedTracker;   name=GANTracker::sharedTracker --><a name="//apple_ref/occ/clm/GANTracker/sharedTracker"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sharedTracker">sharedTracker</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Returns the singleton instance of GANTracker.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre>+ (<a href="index.html#//apple_ref/occ/cl/GANTracker" logicalPath="//apple_ref/occ/cl/GANTracker" target="_top"><span class="type">GANTracker</span></a> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/sharedTracker //apple_ref/occ/data/sharedTracker" --><span class="var">sharedTracker</span><!-- /a -->; </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/startTrackerWithAccountID:dispatchPeriod:delegate:;   name=GANTracker::startTrackerWithAccountID:dispatchPeriod:delegate: --><a name="//apple_ref/occ/instm/GANTracker/startTrackerWithAccountID:dispatchPeriod:delegate:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="startTrackerWithAccountID:dispatchPeriod:delegate:">startTrackerWithAccountID:dispatchPeriod:delegate:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Start the Google Analytics tracker.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/startTrackerWithAccountID //apple_ref/occ/clm/startTrackerWithAccountID //apple_ref/occ/intfcm/startTrackerWithAccountID //apple_ref/occ/intfm/startTrackerWithAccountID //apple_ref/occ/func/startTrackerWithAccountID //apple_ref/occ/ftmplt/startTrackerWithAccountID //apple_ref/occ/defn/startTrackerWithAccountID //apple_ref/occ/macro/startTrackerWithAccountID" --><span class="function">startTrackerWithAccountID</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">accountID</span> <!-- a logicalPath="//apple_ref/occ/instm/dispatchPeriod //apple_ref/occ/clm/dispatchPeriod //apple_ref/occ/intfcm/dispatchPeriod //apple_ref/occ/intfm/dispatchPeriod //apple_ref/occ/func/dispatchPeriod //apple_ref/occ/ftmplt/dispatchPeriod //apple_ref/occ/defn/dispatchPeriod //apple_ref/occ/macro/dispatchPeriod" --><span class="function">dispatchPeriod</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSInteger //apple_ref/occ/tdef/NSInteger //apple_ref/occ/tag/NSInteger //apple_ref/occ/econst/NSInteger //apple_ref/occ/struct/NSInteger //apple_ref/occ/clconst/NSInteger //apple_ref/occ/intf/NSInteger" --><span class="type">NSInteger</span><!-- /a -->)<span class="param">dispatchPeriod</span> <!-- a logicalPath="//apple_ref/occ/instm/delegate //apple_ref/occ/clm/delegate //apple_ref/occ/intfcm/delegate //apple_ref/occ/intfm/delegate //apple_ref/occ/func/delegate //apple_ref/occ/ftmplt/delegate //apple_ref/occ/defn/delegate //apple_ref/occ/macro/delegate" --><span class="function">delegate</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/econst/id //apple_ref/occ/struct/id //apple_ref/occ/clconst/id //apple_ref/occ/intf/id" --><span class="type">id</span><!-- /a -->&lt;<span class="param">GANTrackerDelegate</span>&gt;)<!-- a logicalPath="//apple_ref/occ/econst/delegate //apple_ref/occ/data/delegate" --><span class="var">delegate</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>accountID</code></dt>
+<dd><p>The Google Analytics account ID (the string that begins with
+"UA-").</p></dd>
+<dt><code>dispatchPeriod</code></dt>
+<dd><p>The desired automatic dispatch period (in seconds).
+The dispatcher will check for events to dispatch every |dispatchPeriod|
+seconds. If a non-positive (e.g. 0 or -1) dispatch period is given, automatic
+dispatch will not be enabled, and the application will need to dispatch events
+manually using <a href="index.html#//apple_ref/occ/instm/GANTracker/dispatch" logicalPath="//apple_ref/occ/instm/GANTracker/dispatch" target="_top">dispatch</a> or <a href="index.html#//apple_ref/occ/instm/GANTracker/dispatchSynchronous:" logicalPath="//apple_ref/occ/instm/GANTracker/dispatchSynchronous:" target="_top">dispatchSynchronous:</a>.</p></dd>
+<dt><code>delegate</code></dt>
+<dd><p>An optional delegate which will get notified when hits get
+dispatched.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/stopTracker;   name=GANTracker::stopTracker --><a name="//apple_ref/occ/instm/GANTracker/stopTracker"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="stopTracker">stopTracker</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Stop the tracker.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/econst/void //apple_ref/occ/struct/void //apple_ref/occ/clconst/void //apple_ref/occ/intf/void" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/econst/stopTracker //apple_ref/occ/data/stopTracker" --><span class="var">stopTracker</span><!-- /a -->; </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/trackPageview:withError:;   name=GANTracker::trackPageview:withError: --><a name="//apple_ref/occ/instm/GANTracker/trackPageview:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="trackPageview:withError:">trackPageview:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Track a page view.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/trackPageview //apple_ref/occ/clm/trackPageview //apple_ref/occ/intfcm/trackPageview //apple_ref/occ/intfm/trackPageview //apple_ref/occ/func/trackPageview //apple_ref/occ/ftmplt/trackPageview //apple_ref/occ/defn/trackPageview //apple_ref/occ/macro/trackPageview" --><span class="function">trackPageview</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">pageURL</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>pageURL</code></dt>
+<dd><p>The URL of the pageview to track. A forward-slash ('/')
+character will be prepended to this string if it doesn't start with one.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/trackEvent:action:label:value:withError:;   name=GANTracker::trackEvent:action:label:value:withError: --><a name="//apple_ref/occ/instm/GANTracker/trackEvent:action:label:value:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="trackEvent:action:label:value:withError:">trackEvent:action:label:value:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Track an event view.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/trackEvent //apple_ref/occ/clm/trackEvent //apple_ref/occ/intfcm/trackEvent //apple_ref/occ/intfm/trackEvent //apple_ref/occ/func/trackEvent //apple_ref/occ/ftmplt/trackEvent //apple_ref/occ/defn/trackEvent //apple_ref/occ/macro/trackEvent" --><span class="function">trackEvent</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">category</span> <!-- a logicalPath="//apple_ref/occ/instm/action //apple_ref/occ/clm/action //apple_ref/occ/intfcm/action //apple_ref/occ/intfm/action //apple_ref/occ/func/action //apple_ref/occ/ftmplt/action //apple_ref/occ/defn/action //apple_ref/occ/macro/action" --><span class="function">action</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">action</span> <!-- a logicalPath="//apple_ref/occ/instm/label //apple_ref/occ/clm/label //apple_ref/occ/intfcm/label //apple_ref/occ/intfm/label //apple_ref/occ/func/label //apple_ref/occ/ftmplt/label //apple_ref/occ/defn/label //apple_ref/occ/macro/label" --><span class="function">label</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">label</span> <!-- a logicalPath="//apple_ref/occ/instm/value //apple_ref/occ/clm/value //apple_ref/occ/intfcm/value //apple_ref/occ/intfm/value //apple_ref/occ/func/value //apple_ref/occ/ftmplt/value //apple_ref/occ/defn/value //apple_ref/occ/macro/value" --><span class="function">value</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSInteger //apple_ref/occ/tdef/NSInteger //apple_ref/occ/tag/NSInteger //apple_ref/occ/econst/NSInteger //apple_ref/occ/struct/NSInteger //apple_ref/occ/clconst/NSInteger //apple_ref/occ/intf/NSInteger" --><span class="type">NSInteger</span><!-- /a -->)<span class="param">value</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>category</code></dt>
+<dd><p>The event category. This parameter is required to be non-nil.</p></dd>
+<dt><code>action</code></dt>
+<dd><p>The event action. This parameter is required to be non-nil.</p></dd>
+<dt><code>label</code></dt>
+<dd><p>The event label. This parameter may be nil to indicate no label.</p></dd>
+<dt><code>value</code></dt>
+<dd><p>The event value. This parameter may be -1 to indicate no value.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:scope:withError:;   name=GANTracker::setCustomVariableAtIndex:name:value:scope:withError: --><a name="//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:scope:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setCustomVariableAtIndex:name:value:scope:withError:">setCustomVariableAtIndex:name:value:scope:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Set a custom variable. If there is an existing custom variable at the
+specified index, it will be overwritten.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setCustomVariableAtIndex //apple_ref/occ/clm/setCustomVariableAtIndex //apple_ref/occ/intfcm/setCustomVariableAtIndex //apple_ref/occ/intfm/setCustomVariableAtIndex //apple_ref/occ/func/setCustomVariableAtIndex //apple_ref/occ/ftmplt/setCustomVariableAtIndex //apple_ref/occ/defn/setCustomVariableAtIndex //apple_ref/occ/macro/setCustomVariableAtIndex" --><span class="function">setCustomVariableAtIndex</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a -->)<span class="param">index</span> <!-- a logicalPath="//apple_ref/occ/instm/name //apple_ref/occ/clm/name //apple_ref/occ/intfcm/name //apple_ref/occ/intfm/name //apple_ref/occ/func/name //apple_ref/occ/ftmplt/name //apple_ref/occ/defn/name //apple_ref/occ/macro/name" --><span class="function">name</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">name</span> <!-- a logicalPath="//apple_ref/occ/instm/value //apple_ref/occ/clm/value //apple_ref/occ/intfcm/value //apple_ref/occ/intfm/value //apple_ref/occ/func/value //apple_ref/occ/ftmplt/value //apple_ref/occ/defn/value //apple_ref/occ/macro/value" --><span class="function">value</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">value</span> <!-- a logicalPath="//apple_ref/occ/instm/scope //apple_ref/occ/clm/scope //apple_ref/occ/intfcm/scope //apple_ref/occ/intfm/scope //apple_ref/occ/func/scope //apple_ref/occ/ftmplt/scope //apple_ref/occ/defn/scope //apple_ref/occ/macro/scope" --><span class="function">scope</span><!-- /a -->:(<a href="../../index.html#//apple_ref/c/tdef/GANCVScope" logicalPath="//apple_ref/occ/cl/GANCVScope //apple_ref/occ/tdef/GANCVScope" target="_top"><span class="type">GANCVScope</span></a>)<span class="param">scope</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>index</code></dt>
+<dd><p>The variable index. This must be between 1 and
+<a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariables" logicalPath="//apple_ref/c/data/kGANMaxCustomVariables" target="_top">kGANMaxCustomVariables</a>, inclusive.</p></dd>
+<dt><code>name</code></dt>
+<dd><p>The custom variable name. The length of this string must not exceed
+<a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariableLength" logicalPath="//apple_ref/c/data/kGANMaxCustomVariableLength" target="_top">kGANMaxCustomVariableLength</a>.</p></dd>
+<dt><code>value</code></dt>
+<dd><p>The custom variable value. The length of this string must not
+exceed <a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariableLength" logicalPath="//apple_ref/c/data/kGANMaxCustomVariableLength" target="_top">kGANMaxCustomVariableLength</a>.</p></dd>
+<dt><code>scope</code></dt>
+<dd><p>The custom variable scope (see <a href="../../index.html#//apple_ref/c/tdef/GANCVScope" logicalPath="//apple_ref/c/tdef/GANCVScope" target="_top">GANCVScope</a> for
+discussion of what this value means).</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:withError:;   name=GANTracker::setCustomVariableAtIndex:name:value:withError: --><a name="//apple_ref/occ/instm/GANTracker/setCustomVariableAtIndex:name:value:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setCustomVariableAtIndex:name:value:withError:">setCustomVariableAtIndex:name:value:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Set a page scoped custom variable. The variable set is included with
+the next even only. If there is an existing custom variable at the specified
+index, it will be overwritten by this one.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setCustomVariableAtIndex //apple_ref/occ/clm/setCustomVariableAtIndex //apple_ref/occ/intfcm/setCustomVariableAtIndex //apple_ref/occ/intfm/setCustomVariableAtIndex //apple_ref/occ/func/setCustomVariableAtIndex //apple_ref/occ/ftmplt/setCustomVariableAtIndex //apple_ref/occ/defn/setCustomVariableAtIndex //apple_ref/occ/macro/setCustomVariableAtIndex" --><span class="function">setCustomVariableAtIndex</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a -->)<span class="param">index</span> <!-- a logicalPath="//apple_ref/occ/instm/name //apple_ref/occ/clm/name //apple_ref/occ/intfcm/name //apple_ref/occ/intfm/name //apple_ref/occ/func/name //apple_ref/occ/ftmplt/name //apple_ref/occ/defn/name //apple_ref/occ/macro/name" --><span class="function">name</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">name</span> <!-- a logicalPath="//apple_ref/occ/instm/value //apple_ref/occ/clm/value //apple_ref/occ/intfcm/value //apple_ref/occ/intfm/value //apple_ref/occ/func/value //apple_ref/occ/ftmplt/value //apple_ref/occ/defn/value //apple_ref/occ/macro/value" --><span class="function">value</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">value</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>index</code></dt>
+<dd><p>The variable index. This must be between 1 and
+<a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariables" logicalPath="//apple_ref/c/data/kGANMaxCustomVariables" target="_top">kGANMaxCustomVariables</a>, inclusive.</p></dd>
+<dt><code>name</code></dt>
+<dd><p>The custom variable name. The length of this string must not exceed
+<a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariableLength" logicalPath="//apple_ref/c/data/kGANMaxCustomVariableLength" target="_top">kGANMaxCustomVariableLength</a>.</p></dd>
+<dt><code>value</code></dt>
+<dd><p>The custom variable value. The length of this string must not
+exceed <a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariableLength" logicalPath="//apple_ref/c/data/kGANMaxCustomVariableLength" target="_top">kGANMaxCustomVariableLength</a>.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/getVisitorCustomVarAtIndex:;   name=GANTracker::getVisitorCustomVarAtIndex: --><a name="//apple_ref/occ/instm/GANTracker/getVisitorCustomVarAtIndex:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="getVisitorCustomVarAtIndex:">getVisitorCustomVarAtIndex:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Get the value of the custom variable at the index requested.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/getVisitorCustomVarAtIndex //apple_ref/occ/clm/getVisitorCustomVarAtIndex //apple_ref/occ/intfcm/getVisitorCustomVarAtIndex //apple_ref/occ/intfm/getVisitorCustomVarAtIndex //apple_ref/occ/func/getVisitorCustomVarAtIndex //apple_ref/occ/ftmplt/getVisitorCustomVarAtIndex //apple_ref/occ/defn/getVisitorCustomVarAtIndex //apple_ref/occ/macro/getVisitorCustomVarAtIndex" --><span class="function">getVisitorCustomVarAtIndex</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/econst/index //apple_ref/occ/data/index" --><span class="var">index</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>index</code></dt>
+<dd><p>The variable index. This must be between 1 and
+<a href="../../index.html#//apple_ref/c/data/kGANMaxCustomVariables" logicalPath="//apple_ref/c/data/kGANMaxCustomVariables" target="_top">kGANMaxCustomVariables</a>, inclusive.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the value of the custom variable at the specified index.
+Returns nil no variable is present at that index or the index is out of range.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:;   name=GANTracker::addTransaction:totalPrice:storeName:totalTax:shippingCost:withError: --><a name="//apple_ref/occ/instm/GANTracker/addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:">addTransaction:totalPrice:storeName:totalTax:shippingCost:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Create an e-commerce transaction.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/addTransaction //apple_ref/occ/clm/addTransaction //apple_ref/occ/intfcm/addTransaction //apple_ref/occ/intfm/addTransaction //apple_ref/occ/func/addTransaction //apple_ref/occ/ftmplt/addTransaction //apple_ref/occ/defn/addTransaction //apple_ref/occ/macro/addTransaction" --><span class="function">addTransaction</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">orderID</span> <!-- a logicalPath="//apple_ref/occ/instm/totalPrice //apple_ref/occ/clm/totalPrice //apple_ref/occ/intfcm/totalPrice //apple_ref/occ/intfm/totalPrice //apple_ref/occ/func/totalPrice //apple_ref/occ/ftmplt/totalPrice //apple_ref/occ/defn/totalPrice //apple_ref/occ/macro/totalPrice" --><span class="function">totalPrice</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/double //apple_ref/occ/tdef/double //apple_ref/occ/tag/double //apple_ref/occ/econst/double //apple_ref/occ/struct/double //apple_ref/occ/clconst/double //apple_ref/occ/intf/double" --><span class="type">double</span><!-- /a -->)<span class="param">totalPrice</span> <!-- a logicalPath="//apple_ref/occ/instm/storeName //apple_ref/occ/clm/storeName //apple_ref/occ/intfcm/storeName //apple_ref/occ/intfm/storeName //apple_ref/occ/func/storeName //apple_ref/occ/ftmplt/storeName //apple_ref/occ/defn/storeName //apple_ref/occ/macro/storeName" --><span class="function">storeName</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">storeName</span> <!-- a logicalPath="//apple_ref/occ/instm/totalTax //apple_ref/occ/clm/totalTax //apple_ref/occ/intfcm/totalTax //apple_ref/occ/intfm/totalTax //apple_ref/occ/func/totalTax //apple_ref/occ/ftmplt/totalTax //apple_ref/occ/defn/totalTax //apple_ref/occ/macro/totalTax" --><span class="function">totalTax</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/double //apple_ref/occ/tdef/double //apple_ref/occ/tag/double //apple_ref/occ/econst/double //apple_ref/occ/struct/double //apple_ref/occ/clconst/double //apple_ref/occ/intf/double" --><span class="type">double</span><!-- /a -->)<span class="param">totalTax</span> <!-- a logicalPath="//apple_ref/occ/instm/shippingCost //apple_ref/occ/clm/shippingCost //apple_ref/occ/intfcm/shippingCost //apple_ref/occ/intfm/shippingCost //apple_ref/occ/func/shippingCost //apple_ref/occ/ftmplt/shippingCost //apple_ref/occ/defn/shippingCost //apple_ref/occ/macro/shippingCost" --><span class="function">shippingCost</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/double //apple_ref/occ/tdef/double //apple_ref/occ/tag/double //apple_ref/occ/econst/double //apple_ref/occ/struct/double //apple_ref/occ/clconst/double //apple_ref/occ/intf/double" --><span class="type">double</span><!-- /a -->)<span class="param">shippingCost</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>orderID</code></dt>
+<dd><p>The transaction order ID. If a transaction with this order id is
+already present in the ECommerce buffer, it will be overwritten by this one.</p></dd>
+<dt><code>totalPrice</code></dt>
+<dd><p>The transaction total price.</p></dd>
+<dt><code>storeName</code></dt>
+<dd><p>The transaction store name.</p></dd>
+<dt><code>totalTax</code></dt>
+<dd><p>Total tax incurred in the transaction, if any.</p></dd>
+<dt><code>shippingCost</code></dt>
+<dd><p>Shipping costs incurred in the transaction, if any.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>All transactions will be queued for dispatch when
+<a href="index.html#//apple_ref/occ/instm/GANTracker/trackTransactions:" logicalPath="//apple_ref/occ/instm/GANTracker/trackTransactions:" target="_top">trackTransactions:</a> is called.
+</p>
+<!-- end discussion -->
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:;   name=GANTracker::addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError: --><a name="//apple_ref/occ/instm/GANTracker/addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:">addItem:itemSKU:itemPrice:itemCount:itemName:itemCategory:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Add an item to an e-commerce transaction.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/addItem //apple_ref/occ/clm/addItem //apple_ref/occ/intfcm/addItem //apple_ref/occ/intfm/addItem //apple_ref/occ/func/addItem //apple_ref/occ/ftmplt/addItem //apple_ref/occ/defn/addItem //apple_ref/occ/macro/addItem" --><span class="function">addItem</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">orderID</span> <!-- a logicalPath="//apple_ref/occ/instm/itemSKU //apple_ref/occ/clm/itemSKU //apple_ref/occ/intfcm/itemSKU //apple_ref/occ/intfm/itemSKU //apple_ref/occ/func/itemSKU //apple_ref/occ/ftmplt/itemSKU //apple_ref/occ/defn/itemSKU //apple_ref/occ/macro/itemSKU" --><span class="function">itemSKU</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">itemSKU</span> <!-- a logicalPath="//apple_ref/occ/instm/itemPrice //apple_ref/occ/clm/itemPrice //apple_ref/occ/intfcm/itemPrice //apple_ref/occ/intfm/itemPrice //apple_ref/occ/func/itemPrice //apple_ref/occ/ftmplt/itemPrice //apple_ref/occ/defn/itemPrice //apple_ref/occ/macro/itemPrice" --><span class="function">itemPrice</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/double //apple_ref/occ/tdef/double //apple_ref/occ/tag/double //apple_ref/occ/econst/double //apple_ref/occ/struct/double //apple_ref/occ/clconst/double //apple_ref/occ/intf/double" --><span class="type">double</span><!-- /a -->)<span class="param">itemPrice</span> <!-- a logicalPath="//apple_ref/occ/instm/itemCount //apple_ref/occ/clm/itemCount //apple_ref/occ/intfcm/itemCount //apple_ref/occ/intfm/itemCount //apple_ref/occ/func/itemCount //apple_ref/occ/ftmplt/itemCount //apple_ref/occ/defn/itemCount //apple_ref/occ/macro/itemCount" --><span class="function">itemCount</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/double //apple_ref/occ/tdef/double //apple_ref/occ/tag/double //apple_ref/occ/econst/double //apple_ref/occ/struct/double //apple_ref/occ/clconst/double //apple_ref/occ/intf/double" --><span class="type">double</span><!-- /a -->)<span class="param">itemCount</span> <!-- a logicalPath="//apple_ref/occ/instm/itemName //apple_ref/occ/clm/itemName //apple_ref/occ/intfcm/itemName //apple_ref/occ/intfm/itemName //apple_ref/occ/func/itemName //apple_ref/occ/ftmplt/itemName //apple_ref/occ/defn/itemName //apple_ref/occ/macro/itemName" --><span class="function">itemName</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">itemName</span> <!-- a logicalPath="//apple_ref/occ/instm/itemCategory //apple_ref/occ/clm/itemCategory //apple_ref/occ/intfcm/itemCategory //apple_ref/occ/intfm/itemCategory //apple_ref/occ/func/itemCategory //apple_ref/occ/ftmplt/itemCategory //apple_ref/occ/defn/itemCategory //apple_ref/occ/macro/itemCategory" --><span class="function">itemCategory</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">itemCategory</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>orderID</code></dt>
+<dd><p>The order ID of the transaction to which the item will be added.
+If no transaction with this order ID exists, one will be created.</p></dd>
+<dt><code>itemSKU</code></dt>
+<dd><p>The item SKU. If an item in the transaction with the same SKU
+exists, it will replaced with this one.</p></dd>
+<dt><code>itemPrice</code></dt>
+<dd><p>The item price.</p></dd>
+<dt><code>itemCount</code></dt>
+<dd><p>The item quantity.</p></dd>
+<dt><code>itemName</code></dt>
+<dd><p>The item name.</p></dd>
+<dt><code>itemCategory</code></dt>
+<dd><p>The item category.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>Adds the specified item to the transaction with the specified order
+ID. All transactions will be queued for dispatch when
+<a href="index.html#//apple_ref/occ/instm/GANTracker/trackTransactions:" logicalPath="//apple_ref/occ/instm/GANTracker/trackTransactions:" target="_top">trackTransactions:</a> is called.
+</p>
+<!-- end discussion -->
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/trackTransactions:;   name=GANTracker::trackTransactions: --><a name="//apple_ref/occ/instm/GANTracker/trackTransactions:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="trackTransactions:">trackTransactions:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Queue pending e-commerce transactions for dispatch.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/trackTransactions //apple_ref/occ/clm/trackTransactions //apple_ref/occ/intfcm/trackTransactions //apple_ref/occ/intfm/trackTransactions //apple_ref/occ/func/trackTransactions //apple_ref/occ/ftmplt/trackTransactions //apple_ref/occ/defn/trackTransactions //apple_ref/occ/macro/trackTransactions" --><span class="function">trackTransactions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/clearTransactions:;   name=GANTracker::clearTransactions: --><a name="//apple_ref/occ/instm/GANTracker/clearTransactions:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="clearTransactions:">clearTransactions:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Remove pending e-commerce transactions.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/clearTransactions //apple_ref/occ/clm/clearTransactions //apple_ref/occ/intfcm/clearTransactions //apple_ref/occ/intfm/clearTransactions //apple_ref/occ/func/clearTransactions //apple_ref/occ/ftmplt/clearTransactions //apple_ref/occ/defn/clearTransactions //apple_ref/occ/macro/clearTransactions" --><span class="function">clearTransactions</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass 'nil'
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/setReferrer:withError:;   name=GANTracker::setReferrer:withError: --><a name="//apple_ref/occ/instm/GANTracker/setReferrer:withError:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setReferrer:withError:">setReferrer:withError:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Set the referrer and create a new session associated with the
+specified referrer.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/setReferrer //apple_ref/occ/clm/setReferrer //apple_ref/occ/intfcm/setReferrer //apple_ref/occ/intfm/setReferrer //apple_ref/occ/func/setReferrer //apple_ref/occ/ftmplt/setReferrer //apple_ref/occ/defn/setReferrer //apple_ref/occ/macro/setReferrer" --><span class="function">setReferrer</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/econst/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/clconst/NSString //apple_ref/occ/intf/NSString" --><span class="type">NSString</span><!-- /a --> <span class="type">*</span>)<span class="param">referrer</span> <!-- a logicalPath="//apple_ref/occ/instm/withError //apple_ref/occ/clm/withError //apple_ref/occ/intfcm/withError //apple_ref/occ/intfm/withError //apple_ref/occ/func/withError //apple_ref/occ/ftmplt/withError //apple_ref/occ/defn/withError //apple_ref/occ/macro/withError" --><span class="function">withError</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSError //apple_ref/occ/tdef/NSError //apple_ref/occ/tag/NSError //apple_ref/occ/econst/NSError //apple_ref/occ/struct/NSError //apple_ref/occ/clconst/NSError //apple_ref/occ/intf/NSError" --><span class="type">NSError</span><!-- /a --> <span class="type">*</span><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/error //apple_ref/occ/data/error" --><span class="var">error</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>referrer</code></dt>
+<dd><p>A string specifying the campaign with which to associate this
+session. All events generated after setting the referrer will have the
+campaign attached.</p></dd>
+<dt><code>error</code></dt>
+<dd><p>A location to record the error if one occurs. You may pass nil
+here.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES on success or NO on error.
+
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/dispatch;   name=GANTracker::dispatch --><a name="//apple_ref/occ/instm/GANTracker/dispatch"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="dispatch">dispatch</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Dispatch pageviews, events, or transactions to Google Analytics.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/econst/dispatch //apple_ref/occ/data/dispatch" --><span class="var">dispatch</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES if there were pending pageviews, events, or transactions that
+resulted in a new dispatch; NO otherwise.
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=instm;  uid=//apple_ref/occ/instm/GANTracker/dispatchSynchronous:;   name=GANTracker::dispatchSynchronous: --><a name="//apple_ref/occ/instm/GANTracker/dispatchSynchronous:"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="dispatchSynchronous:">dispatchSynchronous:</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Synchronously dispatch pageviews, events, or transactions to Google
+Analytics.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>- (<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/dispatchSynchronous //apple_ref/occ/clm/dispatchSynchronous //apple_ref/occ/intfcm/dispatchSynchronous //apple_ref/occ/intfm/dispatchSynchronous //apple_ref/occ/func/dispatchSynchronous //apple_ref/occ/ftmplt/dispatchSynchronous //apple_ref/occ/defn/dispatchSynchronous //apple_ref/occ/macro/dispatchSynchronous" --><span class="function">dispatchSynchronous</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/NSTimeInterval //apple_ref/occ/tdef/NSTimeInterval //apple_ref/occ/tag/NSTimeInterval //apple_ref/occ/econst/NSTimeInterval //apple_ref/occ/struct/NSTimeInterval //apple_ref/occ/clconst/NSTimeInterval //apple_ref/occ/intf/NSTimeInterval" --><span class="type">NSTimeInterval</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/econst/timeout //apple_ref/occ/data/timeout" --><span class="var">timeout</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>timeout</code></dt>
+<dd><p>The maximum time, in seconds, this method can spend submitting
+information to Google Analytics before it must return.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->YES if there were pending pageviews, events, or transactions that
+resulted in a new dispatch and all were successfully submitted to Google
+Analytics; NO otherwise.
+
+<!-- end return value --></p>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>This routine will block until all information has been submitted,
+or the specified timeout has elapsed.
+</p>
+<!-- end discussion -->
+<p></p>
+<a name="HeaderDoc_props"></a>
+<h2>Properties</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/GANTracker/debug" target="_top">debug</a></tt></dt>
+<dd><p>If true, debug messages will be written to the log.
+This is useful for debugging calls to the Google Analytics SDK.
+By default, this flag is false.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/GANTracker/dryRun" target="_top">dryRun</a></tt></dt>
+<dd><p>If true, hits will not be sent to Google Analytics.
+This is useful for debugging calls to the Google Analytics SDK.
+By default, this flag is false.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/GANTracker/anonymizeIp" target="_top">anonymizeIp</a></tt></dt>
+<dd>
+<p>If true, Google Analytics will anonymize the IP address information
+collected by zeroing out some of the least significant bits of the address. By
+default, this flag is false.
+</p>
+</dd>
+<dt><tt><a href="index.html#//apple_ref/occ/instp/GANTracker/sampleRate" target="_top">sampleRate</a></tt></dt>
+<dd>
+<p>The sampleRate parameter controls the probability that the visitor
+will be sampled. By default, sampleRate is 100, which signifies no sampling.
+sampleRate may be set to any integer value between 0 and 100, inclusive. A
+value of 90 requests 90% of visitors to be sampled (10% of visitors to be
+sampled out).
+</p>
+</dd>
+</dl>
+<hr>
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/GANTracker/debug;   name=GANTracker::debug --><a name="//apple_ref/occ/instp/GANTracker/debug"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="debug">debug</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>If true, debug messages will be written to the log.
+This is useful for debugging calls to the Google Analytics SDK.
+By default, this flag is false.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre>@property(
+    <span class="param">nonatomic</span>,
+    <span class="param">readwrite</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/debug //apple_ref/occ/data/debug" --><span class="var">debug</span><!-- /a -->; </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/GANTracker/dryRun;   name=GANTracker::dryRun --><a name="//apple_ref/occ/instp/GANTracker/dryRun"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="dryRun">dryRun</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>If true, hits will not be sent to Google Analytics.
+This is useful for debugging calls to the Google Analytics SDK.
+By default, this flag is false.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre>@property(
+    <span class="param">nonatomic</span>,
+    <span class="param">readwrite</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/dryRun //apple_ref/occ/data/dryRun" --><span class="var">dryRun</span><!-- /a -->; </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/GANTracker/anonymizeIp;   name=GANTracker::anonymizeIp --><a name="//apple_ref/occ/instp/GANTracker/anonymizeIp"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="anonymizeIp">anonymizeIp</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>If true, Google Analytics will anonymize the IP address information
+collected by zeroing out some of the least significant bits of the address. By
+default, this flag is false.
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>@property(
+    <span class="param">nonatomic</span>,
+    <span class="param">readwrite</span>) <!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/econst/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/clconst/BOOL //apple_ref/occ/intf/BOOL" --><span class="type">BOOL</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/anonymizeIp //apple_ref/occ/data/anonymizeIp" --><span class="var">anonymizeIp</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>In the case of IPv4 addresses, the last octet is set to zero. For
+IPv6 addresses, the last 10 octets are set to zero, although this is subject to
+change in the future.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=instp;  uid=//apple_ref/occ/instp/GANTracker/sampleRate;   name=GANTracker::sampleRate --><a name="//apple_ref/occ/instp/GANTracker/sampleRate"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="sampleRate">sampleRate</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The sampleRate parameter controls the probability that the visitor
+will be sampled. By default, sampleRate is 100, which signifies no sampling.
+sampleRate may be set to any integer value between 0 and 100, inclusive. A
+value of 90 requests 90% of visitors to be sampled (10% of visitors to be
+sampled out).
+</p>
+<!-- end abstract -->
+<p></p>
+<div class="declaration_indent">
+<pre>@property(
+    <span class="param">nonatomic</span>,
+    <span class="param">readwrite</span>) <!-- a logicalPath="//apple_ref/occ/cl/NSUInteger //apple_ref/occ/tdef/NSUInteger //apple_ref/occ/tag/NSUInteger //apple_ref/occ/econst/NSUInteger //apple_ref/occ/struct/NSUInteger //apple_ref/occ/clconst/NSUInteger //apple_ref/occ/intf/NSUInteger" --><span class="type">NSUInteger</span><!-- /a --> <!-- a logicalPath="//apple_ref/occ/econst/sampleRate //apple_ref/occ/data/sampleRate" --><span class="var">sampleRate</span><!-- /a -->; </pre>
+</div>
+<h5 class="tight">
+<font face="Lucida Grande,Helvetica,Arial">Discussion</font>
+</h5>
+<!-- begin discussion --><p>When a visitor is not sampled, no data is submitted to Google
+Analytics about that visitor's activity. If your application is subject to
+heavy traffic spikes, you may wish to adjust the sample rate to ensure
+uninterrupted report tracking. Sampling in Google Analytics occurs consistently
+across unique visitors, ensuring integrity in trending and reporting even when
+sampling is enabled, because unique visitors remain included or excluded from
+the sample, as set from the initiation of sampling.
+<!-- end discussion -->
+</p>
+<p></p>
+<p></p>
+<p>&#169; 2011 Google Inc. All Rights Reserved. Last Updated: Wednesday, April 11, 2012
+</p>
+</div>
+</body>
+</html>
