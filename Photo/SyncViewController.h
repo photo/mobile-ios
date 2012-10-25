@@ -20,6 +20,7 @@
 
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsLibraryUtilities.h"
+#import <ImageIO/ImageIO.h>
 #import "MBProgressHUD.h"
 #import "Synced+Photo.h"
 #import "ELCAsset.h"
@@ -27,8 +28,9 @@
 #import "ELCAssetCell.h"
 #import "ELCImagePickerController.h"
 #import "PhotoViewController.h"
+#import "ELCCamera.h"
 
-@interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate>
+@interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	
@@ -53,9 +55,11 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIButton *buttonHidden;
 
--(int)totalSelectedAssets;
--(void)preparePhotos;
+@property (nonatomic, strong) CLLocation *location;
 
--(void)doneAction:(id)sender;
+-(int)  totalSelectedAssets;
+-(void) preparePhotos;
+-(void) handleCamera;
+-(void) doneAction:(id)sender;
 
 @end

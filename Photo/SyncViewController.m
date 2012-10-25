@@ -22,6 +22,7 @@
 
 @interface SyncViewController (){
     BOOL hidden;
+    CoreLocationController *coreLocationController;
 }
 -(void) switchedShowUploaded;
 -(void) loadSavedPhotos;
@@ -34,6 +35,7 @@
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
 @synthesize buttonHidden =_buttonHidden;
+@synthesize location=_location;
 
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
@@ -134,6 +136,9 @@
     // load all urls
     self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     
+    coreLocationController = [[CoreLocationController alloc] init];
+    coreLocationController.delegate = self;
+    
     [self loadSavedPhotos];
 }
 
@@ -187,6 +192,11 @@
                      [startArray addObject:elcAsset];
                  }
              }];
+            
+            // add the camera icon
+            ELCCamera *camera = [[ELCCamera alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+            [camera setParent:self];
+            [startArray addObject:camera];
             
             //revert the order
             [self.elcAssets addObjectsFromArray:[[startArray reverseObjectEnumerator] allObjects]];
@@ -419,9 +429,9 @@
             [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
         }
         
-PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
         [picker pushViewController:controller animated:YES];
-//        [self.viewDeckController  closeRightViewAnimated:YES];
+        //        [self.viewDeckController  closeRightViewAnimated:YES];
     }else{
         // no photo select
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
@@ -440,6 +450,136 @@ PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"
 #endif
 }
 
+
+- (void) handleCamera
+{
+    // check if user has camera
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Your device hasn't a camera" duration:5000];
+        [alert showAlert];
+    }else{
+        // start localtion
+        [coreLocationController.locMgr startUpdatingLocation];
+        
+        UIImagePickerController *pickerController = [[UIImagePickerController
+                                                      alloc]
+                                                     init];
+        pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        pickerController.delegate = self;
+        [self  presentModalViewController:pickerController animated:YES];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // the image itself to save in the library
+    UIImage *pickedImage = [info
+                            objectForKey:UIImagePickerControllerOriginalImage];
+    
+    // User come from Snapshot. We will temporary save in the Library.
+    // If in the Settings is configure to not save in the library, we will delete
+    NSMutableDictionary *exif = nil;
+    
+    // check if metadata is available
+    if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
+        exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
+        
+        
+        NSDictionary *gpsDict  = [self currentLocation];
+        if ([gpsDict count] > 0) {
+#ifdef DEVELOPMENT_ENABLED
+            NSLog(@"There is location");
+#endif
+            [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
+        }else{
+#ifdef DEVELOPMENT_ENABLED
+            NSLog(@"No location found");
+#endif
+        }
+        
+    }
+    
+    [library writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
+        if (error) {
+            NSLog(@"The photo took by the user could not be saved = %@", [error description]);
+        } else {
+            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil url:newUrl image:pickedImage];
+            [picker pushViewController:controller animated:YES];
+        }
+    }];
+    
+    
+    // stop location
+    [coreLocationController.locMgr stopUpdatingLocation];
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissModalViewControllerAnimated:YES];
+    [coreLocationController.locMgr stopUpdatingLocation];
+}
+
+
+//Creates an EXIF field for the current geo location.
+- (NSMutableDictionary*)currentLocation {
+    NSMutableDictionary *locDict = [[NSMutableDictionary alloc] init];
+	
+	if (self.location != nil) {
+		CLLocationDegrees exifLatitude = self.location.coordinate.latitude;
+		CLLocationDegrees exifLongitude = self.location.coordinate.longitude;
+        
+		[locDict setObject:self.location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
+		
+		if (exifLatitude < 0.0) {
+			exifLatitude = exifLatitude*(-1);
+			[locDict setObject:@"S" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+		} else {
+			[locDict setObject:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+		}
+		[locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        
+		if (exifLongitude < 0.0) {
+			exifLongitude=exifLongitude*(-1);
+			[locDict setObject:@"W" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+		} else {
+			[locDict setObject:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+		}
+		[locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString*) kCGImagePropertyGPSLongitude];
+	}
+	
+    return [locDict autorelease];
+    
+}
+
+- (void)locationUpdate:(CLLocation *)position{
+    self.location = position;
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Position %@", position);
+#endif
+}
+
+- (void)locationError:(NSError *)error {
+    NSLog(@"Location error %@", [error description]);
+    
+    if ([error code] == kCLErrorDenied){
+        // validate if we had checked once if user allowed location
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        if (standardUserDefaults) {
+            
+            if (![[NSUserDefaults standardUserDefaults] boolForKey:kValidateNotAllowedLocation] ||
+                [[NSUserDefaults standardUserDefaults] boolForKey:kValidateNotAllowedLocation] == NO){
+                // validated
+                [standardUserDefaults setBool:YES forKey:kValidateNotAllowedLocation];
+                
+                // synchronize the keys
+                [standardUserDefaults synchronize];
+                
+#ifdef TEST_FLIGHT_ENABLED
+                [TestFlight passCheckpoint:@"Not allowed location"];
+#endif
+            }
+        }
+    }
+}
 
 - (void)dealloc
 {

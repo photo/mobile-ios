@@ -27,6 +27,8 @@
 		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
 		CD1CDE4F162C2D7100E57F73 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE4A162C2D2C00E57F73 /* libSDWebImageARC.a */; };
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
+		CD2FE8931639665D0032105A /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD2FE8921639665D0032105A /* camera.jpg */; };
+		CD2FE896163967500032105A /* ELCCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2FE895163967500032105A /* ELCCamera.m */; };
 		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
 		CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */; };
 		CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56216303E54001A0CA0 /* ELCAsset.m */; };
@@ -514,6 +516,9 @@
 		CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Frameworks/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		CD1CDE50162C2D8300E57F73 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		CD2FE8921639665D0032105A /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = images/camera.jpg; sourceTree = "<group>"; };
+		CD2FE894163967500032105A /* ELCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCCamera.h; sourceTree = "<group>"; };
+		CD2FE895163967500032105A /* ELCCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCCamera.m; sourceTree = "<group>"; };
 		CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
@@ -903,6 +908,8 @@
 				CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */,
 				CD30D56116303E54001A0CA0 /* ELCAsset.h */,
 				CD30D56216303E54001A0CA0 /* ELCAsset.m */,
+				CD2FE894163967500032105A /* ELCCamera.h */,
+				CD2FE895163967500032105A /* ELCCamera.m */,
 				CD30D56316303E54001A0CA0 /* ELCAssetCell.h */,
 				CD30D56416303E54001A0CA0 /* ELCAssetCell.m */,
 				CD30D56516303E54001A0CA0 /* ELCAssetPicker.xib */,
@@ -959,6 +966,7 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD2FE8921639665D0032105A /* camera.jpg */,
 				CD30D88F1636EBD2001A0CA0 /* button-disclosure-form.png */,
 				CD30D8901636EBD2001A0CA0 /* button-disclosure-form@2x.png */,
 				CD30D85A1636B832001A0CA0 /* button-upload-form.png */,
@@ -1795,6 +1803,7 @@
 				CD30D85D1636B832001A0CA0 /* button-upload-form@2x.png in Resources */,
 				CD30D8911636EBD2001A0CA0 /* button-disclosure-form.png in Resources */,
 				CD30D8921636EBD2001A0CA0 /* button-disclosure-form@2x.png in Resources */,
+				CD2FE8931639665D0032105A /* camera.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1887,6 +1896,7 @@
 				CD30D79116317A79001A0CA0 /* JobUploaderController.m in Sources */,
 				CD30D79216317A79001A0CA0 /* JobUploaderDelegate.m in Sources */,
 				CD30D84116369CF1001A0CA0 /* PhotoViewController.m in Sources */,
+				CD2FE896163967500032105A /* ELCCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
