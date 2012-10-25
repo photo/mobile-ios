@@ -439,14 +439,23 @@
                                              groupUrl:nil];
             }
             
-#ifdef TEST_FLIGHT_ENABLED
-            // checkpoint
+#ifdef GOOGLE_ANALYTICS_ENABLED
+            NSError *error = nil;
+            NSString *label;
             if (self.imageFiltered){
-                [TestFlight passCheckpoint:@"Image from Aviary"];
+                label = @"Image from Aviary";
             }else if (self.images){
-                [TestFlight passCheckpoint:@"Image from Sync"];
+                label = @"Image from Sync";
             }else{
-                [TestFlight passCheckpoint:@"Image from Snapshot"];
+                label = @"Image from Snapshot";
+            }
+
+            if (![[GANTracker sharedTracker] trackEvent:@"ios"
+                                                 action:@"track"
+                                                  label:label
+                                                  value:1
+                                              withError:&error]) {
+                // Handle error here
             }
 #endif
             

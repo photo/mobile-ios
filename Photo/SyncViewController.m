@@ -573,8 +573,15 @@
                 // synchronize the keys
                 [standardUserDefaults synchronize];
                 
-#ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Not allowed location"];
+#ifdef GOOGLE_ANALYTICS_ENABLED
+                NSError *error = nil;
+                if (![[GANTracker sharedTracker] trackEvent:@"ios"
+                                                     action:@"track"
+                                                      label:@"Not allowed location"
+                                                      value:1
+                                                  withError:&error]) {
+                    // Handle error here
+                }
 #endif
             }
         }

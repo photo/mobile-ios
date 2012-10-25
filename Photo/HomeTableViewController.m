@@ -87,8 +87,15 @@
         self.needsUpdate = YES;
         [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
-#ifdef TEST_FLIGHT_ENABLED
-    [TestFlight passCheckpoint:@"Newest Photos Loaded"];
+#ifdef GOOGLE_ANALYTICS_ENABLED
+    NSError *error = nil;
+    if (![[GANTracker sharedTracker] trackEvent:@"ios"
+                                         action:@"track"
+                                          label:@"newest photos loaded"
+                                          value:1
+                                      withError:&error]) {
+        // Handle error here
+    }
 #endif
     
     // ask if user wants to enable location
@@ -249,8 +256,16 @@
 #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"User wants to share uploaded photo");
 #endif
-#ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Shared"];
+
+#ifdef GOOGLE_ANALYTICS_ENABLED
+                NSError *error = nil;
+                if (![[GANTracker sharedTracker] trackEvent:@"ios"
+                                                     action:@"track"
+                                                      label:@"image shared"
+                                                      value:1
+                                                  withError:&error]) {
+                    // Handle error here
+                }
 #endif
                 
                 NSDictionary *responsePhoto = [NSDictionarySerializer nsDataToNSDictionary:photo.photoUploadResponse];

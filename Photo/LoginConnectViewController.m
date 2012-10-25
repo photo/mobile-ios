@@ -144,9 +144,15 @@
                     // send notification to the system that it can shows the screen:
                     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
                     
-                    // check point create new account
-#ifdef TEST_FLIGHT_ENABLED
-                    [TestFlight passCheckpoint:@"Login"];
+#ifdef GOOGLE_ANALYTICS_ENABLED
+                    NSError *error = nil;
+                    if (![[GANTracker sharedTracker] trackEvent:@"ios"
+                                                         action:@"track"
+                                                          label:@"login"
+                                                          value:1
+                                                      withError:&error]) {
+                        // Handle error here
+                    }
 #endif
                     
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
