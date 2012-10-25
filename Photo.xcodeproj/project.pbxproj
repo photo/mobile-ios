@@ -29,6 +29,7 @@
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
 		CD2FE8931639665D0032105A /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD2FE8921639665D0032105A /* camera.jpg */; };
 		CD2FE896163967500032105A /* ELCCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2FE895163967500032105A /* ELCCamera.m */; };
+		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
 		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
 		CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */; };
 		CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56216303E54001A0CA0 /* ELCAsset.m */; };
@@ -519,6 +520,8 @@
 		CD2FE8921639665D0032105A /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = images/camera.jpg; sourceTree = "<group>"; };
 		CD2FE894163967500032105A /* ELCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCCamera.h; sourceTree = "<group>"; };
 		CD2FE895163967500032105A /* ELCCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCCamera.m; sourceTree = "<group>"; };
+		CD2FE8E1163983910032105A /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GANTracker.h; path = "Frameworks/Google Analytics SDK/Library/GANTracker.h"; sourceTree = "<group>"; };
+		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
 		CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
@@ -778,6 +781,7 @@
 				CDAFB9D916122262002D6E86 /* CoreData.framework in Frameworks */,
 				CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */,
 				CD30D84F1636A94C001A0CA0 /* libAviarySDK.a in Frameworks */,
+				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,6 +815,15 @@
 				CD1CDE4C162C2D2C00E57F73 /* libSDWebImageARC+MKAnnotation.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		CD2FE8E01639837D0032105A /* Google Analytics SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CD2FE8E1163983910032105A /* GANTracker.h */,
+				CD2FE8E2163983910032105A /* libGoogleAnalytics.a */,
+			);
+			name = "Google Analytics SDK";
 			sourceTree = "<group>";
 		};
 		CD30D8431636A77E001A0CA0 /* AviarySDK */ = {
@@ -1229,6 +1242,7 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD2FE8E01639837D0032105A /* Google Analytics SDK */,
 				CD30D8431636A77E001A0CA0 /* AviarySDK */,
 				CD1CDE3D162C2B4B00E57F73 /* SDWebImage */,
 				CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */,
@@ -2035,6 +2049,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary/AviarySDK\"",
+					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2062,6 +2077,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary/AviarySDK\"",
+					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

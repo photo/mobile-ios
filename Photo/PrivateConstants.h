@@ -27,5 +27,6 @@ extern NSString * const kPrivateTestFlightId;
 extern NSInteger  const kPrivateappStoreID;
 extern NSString * const kPrivateapplicationBundleID;
 extern NSString * const kPrivateapplicationName;
+extern NSString * const kPrivateGoogleAnalytics;
 
 @end

@@ -37,7 +37,7 @@
 #import "HomeTableViewController.h"
 #import "JobUploaderController.h"
 #import "ELCImagePickerController.h"
-
+#import "GANTracker.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,

@@ -26,6 +26,9 @@
 -(void) checkNetworkStatus:(NSNotification *) notice;
 @end
 
+// Dispatch period in seconds
+static const NSInteger kGANDispatchPeriodSec = 10;
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -43,6 +46,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Google Analytics SDK
+    [[GANTracker sharedTracker] startTrackerWithAccountID:kPrivateGoogleAnalytics
+                                           dispatchPeriod:kGANDispatchPeriodSec
+                                                 delegate:nil];
     
     // in development phase we use the UID of user
 #ifdef DEVELOPMENT_ENABLED
@@ -499,6 +507,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[GANTracker sharedTracker] stopTracker];
 }
 
 @end
