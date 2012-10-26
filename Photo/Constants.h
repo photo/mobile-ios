@@ -58,10 +58,6 @@ extern NSString * const kValidateNotAllowedLocation;
 
 extern NSString * const kSyncShowUploadedPhotos;
 
-
-// while using TestFlight, this variable will permit the app to save/send data
-#define TEST_FLIGHT_ENABLED
-
 // when defined, we will use Google Analytics
 #define GOOGLE_ANALYTICS_ENABLED
 

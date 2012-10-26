@@ -30,4 +30,9 @@
     [(SyncViewController*)self.parent handleCamera];
 }
 
+-(BOOL) selected
+{
+    return NO;
+}
+
 @end

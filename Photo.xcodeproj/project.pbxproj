@@ -2065,6 +2065,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2084,6 +2085,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "01F9F7F3-5EDD-4721-AEF5-CEF691EA4FBD";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

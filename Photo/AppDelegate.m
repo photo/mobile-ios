@@ -57,11 +57,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // in development phase we use the UID of user
 #ifdef DEVELOPMENT_ENABLED
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-#endif
-
-    // just used for crash reports. Nothing more.
-#ifdef TEST_FLIGHT_ENABLED
-    // to start the TestFlight SDK
     [TestFlight takeOff:kPrivateTestFlightId];
 #endif
     

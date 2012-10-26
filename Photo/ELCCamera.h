@@ -12,4 +12,6 @@
 
 @property (nonatomic, weak) id parent;
 
+-(BOOL) selected;
+
 @end

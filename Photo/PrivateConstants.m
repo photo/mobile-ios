@@ -29,7 +29,6 @@ NSInteger  const kPrivateappStoreID=0;
 NSString * const kPrivateapplicationBundleID=@"";
 NSString * const kPrivateapplicationName=@"";
 
-
 NSString * const kPrivateGoogleAnalytics=@"UA-0000000-1";
 
 @end
