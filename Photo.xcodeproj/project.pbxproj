@@ -27,6 +27,7 @@
 		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
 		CD1CDE4F162C2D7100E57F73 /* libSDWebImageARC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE4A162C2D2C00E57F73 /* libSDWebImageARC.a */; };
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
+		CD2068F7163ABF1000F92F8A /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD2068F6163ABF1000F92F8A /* Icon-72.png */; };
 		CD2FE8931639665D0032105A /* camera.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CD2FE8921639665D0032105A /* camera.jpg */; };
 		CD2FE896163967500032105A /* ELCCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2FE895163967500032105A /* ELCCamera.m */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
@@ -517,6 +518,7 @@
 		CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Frameworks/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		CD1CDE50162C2D8300E57F73 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		CD2068F6163ABF1000F92F8A /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CD2FE8921639665D0032105A /* camera.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = camera.jpg; path = images/camera.jpg; sourceTree = "<group>"; };
 		CD2FE894163967500032105A /* ELCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCCamera.h; sourceTree = "<group>"; };
 		CD2FE895163967500032105A /* ELCCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCCamera.m; sourceTree = "<group>"; };
@@ -995,6 +997,7 @@
 				CD30D5B916304006001A0CA0 /* home-brown-arrow@2x.png */,
 				CD30D5BA16304006001A0CA0 /* Icon.png */,
 				CD30D5BB16304006001A0CA0 /* Icon@2x.png */,
+				CD2068F6163ABF1000F92F8A /* Icon-72.png */,
 				CD30D5BC16304006001A0CA0 /* login-background.png */,
 				CD30D5BD16304006001A0CA0 /* login-background@2x.png */,
 				CD30D5BE16304006001A0CA0 /* login-create-account.png */,
@@ -1818,6 +1821,7 @@
 				CD30D8911636EBD2001A0CA0 /* button-disclosure-form.png in Resources */,
 				CD30D8921636EBD2001A0CA0 /* button-disclosure-form@2x.png in Resources */,
 				CD2FE8931639665D0032105A /* camera.jpg in Resources */,
+				CD2068F7163ABF1000F92F8A /* Icon-72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
