@@ -16,5 +16,3 @@ profile
 *.moved-aside
 DerivedData
 .idea/
-Photo/PrivateAccountLoginService.h
-Photo/PrivateAccountLoginService.m
