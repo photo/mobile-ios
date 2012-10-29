@@ -38,6 +38,8 @@
 #import "JobUploaderController.h"
 #import "ELCImagePickerController.h"
 #import "GANTracker.h"
+#import "LoginViewController.h"
+#import "AuthenticationService.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,

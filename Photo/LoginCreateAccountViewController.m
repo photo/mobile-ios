@@ -240,7 +240,7 @@
 -(void) createAccountUsername:(NSString*) username withEmail:(NSString *) email andPassword:(NSString*) password
 { 
     // display
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
     hud.labelText = @"Creating Account";
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_user_pwd", NULL);
@@ -288,7 +288,7 @@
 -(void) createFacebookAccountForUsername:(NSString*) username andEmail:(NSString *) email;
 {
     // display
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
     hud.labelText = @"Creating Account";
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_facebook", NULL);

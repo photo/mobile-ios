@@ -66,7 +66,7 @@
 }
 
 
-- (BOOL) isLogged{
++ (BOOL) isLogged{
     /*
      * check if the client id is valid.
      * Possible values: nil, INVALID or other
@@ -118,15 +118,15 @@
     [standardUserDefaults synchronize];
     
     /* reset core data
-    [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [SyncedPhotos deleteAllSyncedPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-    [[AppDelegate managedObjectContext] reset];
-    
-    NSError *saveError = nil;
-    if (![[AppDelegate managedObjectContext] save:&saveError]){
-        NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
-    }
+     [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+     [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
+     [SyncedPhotos deleteAllSyncedPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
+     [[AppDelegate managedObjectContext] reset];
+     
+     NSError *saveError = nil;
+     if (![[AppDelegate managedObjectContext] save:&saveError]){
+     NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+     }
      */
     
     // send notification to the system that it can shows the screen:
@@ -271,28 +271,29 @@
 
 + (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email
 {
-    return nil;
+    return [PrivateAccountLoginService createNewAccountWithUser:user email:email];
 }
 
 + (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
 {
-    return nil;
+    return [PrivateAccountLoginService createNewAccountWithUser:user email:email password:pwd];
+    
 }
 
 + (BOOL) checkUserFacebookEmail:(NSString*) email
 {
-    return NO;
+    return [PrivateAccountLoginService checkUserFacebookEmail:email];
 }
 
 + (AccountOpenPhoto*) signIn:(NSString*) email password:(NSString*) pwd
 {
-    return nil;
+    return [PrivateAccountLoginService signIn:email password:pwd];
 }
 
 + (NSString *) recoverPassword:(NSString *) email
 {
-    return nil;
+    return [PrivateAccountLoginService recoverPassword:email];
 }
 
 @end
- 
+

@@ -67,7 +67,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
-
+    
     //sync
     SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
     self.syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
@@ -80,7 +80,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController
                                                                                    rightViewController:self.syncController];
-
+    
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
     
@@ -95,6 +95,19 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
+    
+    
+    // check if use is connect
+    if (![AuthenticationService isLogged]){
+        LoginViewController *controller = [[LoginViewController alloc]init ];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
+        [deckController presentModalViewController:navController animated:YES];
+
+        
+    }
     
     //register to share data.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -128,7 +141,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if ([[url scheme] isEqualToString:@"photo-test"]){
         AuthenticationService *auth = [[AuthenticationService alloc]init];
         
-        if ([auth isLogged] == NO){
+        if ([AuthenticationService isLogged] == NO){
             [auth startOAuthProcedure:url];
         }
     }else if ([[url scheme] hasPrefix:@"fb"]){

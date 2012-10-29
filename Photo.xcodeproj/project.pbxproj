@@ -191,6 +191,7 @@
 		CDC7AE88163EC14100FC8BC1 /* ContactUsViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE86163EC14100FC8BC1 /* ContactUsViewController5.xib */; };
 		CDC7AE8D163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE8B163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib */; };
 		CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */; };
+		CDC7AEDC163EDD3A00FC8BC1 /* PrivateAccountLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AEDB163EDD3900FC8BC1 /* PrivateAccountLoginService.m */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF33E16285495007A4FDF /* HomeTableViewController.m */; };
@@ -754,6 +755,8 @@
 		CDC7AE8B163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUsViewControlleriPad.xib; sourceTree = "<group>"; };
 		CDC7AE8E163EC7D700FC8BC1 /* DisplayUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayUtilities.h; sourceTree = "<group>"; };
 		CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayUtilities.m; sourceTree = "<group>"; };
+		CDC7AEDA163EDD3900FC8BC1 /* PrivateAccountLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateAccountLoginService.h; sourceTree = "<group>"; };
+		CDC7AEDB163EDD3900FC8BC1 /* PrivateAccountLoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateAccountLoginService.m; sourceTree = "<group>"; };
 		CDEC2562161C3A280062E9B0 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
@@ -905,6 +908,8 @@
 				CD7642BB161EE15E00E0B657 /* AuthenticationViewController.h */,
 				CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */,
 				CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */,
+				CDC7AEDA163EDD3900FC8BC1 /* PrivateAccountLoginService.h */,
+				CDC7AEDB163EDD3900FC8BC1 /* PrivateAccountLoginService.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -1965,6 +1970,7 @@
 				CDC7AE72163EBFA300FC8BC1 /* AccountViewController.m in Sources */,
 				CDC7AE82163EC13100FC8BC1 /* ContactUsViewController.m in Sources */,
 				CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */,
+				CDC7AEDC163EDD3A00FC8BC1 /* PrivateAccountLoginService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

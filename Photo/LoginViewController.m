@@ -103,7 +103,7 @@
     // display
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *email = [defaults valueForKey:kFacebookUserConnectedEmail];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
     hud.labelText = @"Checking";
     
     
@@ -140,7 +140,7 @@
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // open LoginCreateAccountViewController
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                     LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init];
                     [controller setFacebookCreateAccount];
                     [self.navigationController pushViewController:controller animated:YES];
@@ -148,7 +148,7 @@
             }
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description] duration:5000];
                 [alert showAlertOnTop];
             });

@@ -121,7 +121,7 @@
     }else{
         
         // display
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"Logging";
         
         
@@ -141,9 +141,6 @@
                     // save data to the user information
                     [account saveToStandardUserDefaults];
                     
-                    // send notification to the system that it can shows the screen:
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
-                    
 #ifdef GOOGLE_ANALYTICS_ENABLED
                     NSError *error = nil;
                     if (![[GANTracker sharedTracker] trackEvent:@"ios"
@@ -155,11 +152,13 @@
                     }
 #endif
                     
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    // send notification to the system that it can shows the screen:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                     [alert showAlert];
                 });
@@ -200,7 +199,7 @@
     }else{
         
         // display
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
         hud.labelText = @"Resetting";
         
         

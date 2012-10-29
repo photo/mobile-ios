@@ -80,12 +80,14 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if (self.needsUpdate == YES){
-        [self loadNewestPhotosIntoCoreData];
-    }else{
-        // next time it can be reloaded
-        self.needsUpdate = YES;
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if ([AuthenticationService isLogged]){
+        if (self.needsUpdate == YES){
+            [self loadNewestPhotosIntoCoreData];
+        }else{
+            // next time it can be reloaded
+            self.needsUpdate = YES;
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
     }
 #ifdef GOOGLE_ANALYTICS_ENABLED
     NSError *error = nil;
@@ -256,7 +258,7 @@
 #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"User wants to share uploaded photo");
 #endif
-
+                
 #ifdef GOOGLE_ANALYTICS_ENABLED
                 NSError *error = nil;
                 if (![[GANTracker sharedTracker] trackEvent:@"ios"
@@ -371,7 +373,7 @@
         newestPhotoCell.private.hidden=YES;
         newestPhotoCell.shareButton.hidden=YES;
         newestPhotoCell.geoPositionButton.hidden=YES;
-                
+        
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
                               placeholderImage:nil
                                        success:^(UIImage *image, BOOL cached){
@@ -563,9 +565,9 @@
                         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
                         [alert showAlert];
                         
-                        // refresh table  
+                        // refresh table
                         [self doneLoadingTableViewData];
-                    });   
+                    });
                 }
             });
             dispatch_release(loadNewestPhotos);
@@ -575,24 +577,24 @@
 
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // problem with internet, show message to user    
+    // problem with internet, show message to user
     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
     [alert showAlert];
 }
 
 - (void) eventHandler: (NSNotification *) notification{
-#ifdef DEVELOPMENT_ENABLED    
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"###### Event triggered: %@", notification);
 #endif
     
     if ([notification.name isEqualToString:kNotificationNeededsUpdateHome]){
         [self loadNewestPhotosIntoCoreData];
     }else if ([notification.name isEqualToString:kNotificationDisableUpdateHome]){
-        self.needsUpdate = NO;   
+        self.needsUpdate = NO;
     }
 }
 
-- (void) dealloc 
+- (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

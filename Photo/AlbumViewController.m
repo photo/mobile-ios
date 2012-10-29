@@ -141,59 +141,57 @@
     if (self.isLoading == NO){
         self.isLoading = YES;
         // if there isn't netwok
-        /*
-         if ( [AppDelegate internetActive] == NO ){
-         // problem with internet, show message to user
-         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
-         [alert showAlert];
-         
-         self.isLoading = NO;
-         }else {
-         */
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-        hud.labelText = @"Loading";
-        
-        dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
-        dispatch_async(loadAlbums, ^{
-            // call the method and get the details
-            @try {
-                // get factory for OpenPhoto Service
-                OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
-                NSArray *result = [service loadAlbums:25];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.albums removeAllObjects];
-                    if ([result class] != [NSNull class]) {
-                        // Loop through each entry in the dictionary and create an array Albums
-                        for (NSDictionary *albumDetails in result){
-                            // tag name
-                            NSString *name = [albumDetails objectForKey:@"name"];
-                            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                            
-                            // how many images
-                            NSString *qtd = [albumDetails objectForKey:@"count"];
-                            
-                            // create an album and add to the list
-                            Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue]];
-                            [self.albums addObject:album];
-                        }}
+        if ( [SharedAppDelegate internetActive] == NO ){
+            // problem with internet, show message to user
+            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+            [alert showAlert];
+            
+            self.isLoading = NO;
+        }else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+            hud.labelText = @"Loading";
+            
+            dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
+            dispatch_async(loadAlbums, ^{
+                // call the method and get the details
+                @try {
+                    // get factory for OpenPhoto Service
+                    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                    NSArray *result = [service loadAlbums:25];
                     
-                    [self.tableView reloadData];
-                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                    self.isLoading = NO;
-                    
-                });
-            }@catch (NSException *exception) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
-                    [alert showAlert];
-                    self.isLoading = NO;
-                });
-            }
-        });
-        dispatch_release(loadAlbums);
-        //}
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.albums removeAllObjects];
+                        if ([result class] != [NSNull class]) {
+                            // Loop through each entry in the dictionary and create an array Albums
+                            for (NSDictionary *albumDetails in result){
+                                // tag name
+                                NSString *name = [albumDetails objectForKey:@"name"];
+                                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                
+                                // how many images
+                                NSString *qtd = [albumDetails objectForKey:@"count"];
+                                
+                                // create an album and add to the list
+                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue]];
+                                [self.albums addObject:album];
+                            }}
+                        
+                        [self.tableView reloadData];
+                        [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        self.isLoading = NO;
+                        
+                    });
+                }@catch (NSException *exception) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                        [alert showAlert];
+                        self.isLoading = NO;
+                    });
+                }
+            });
+            dispatch_release(loadAlbums);
+        }
     }
     
 }

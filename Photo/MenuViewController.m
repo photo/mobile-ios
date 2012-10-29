@@ -123,15 +123,12 @@
                 break;
         }
     }else{
-        // settings
-        AuthenticationService *authentication = [[AuthenticationService alloc]init];
-        
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = NSLocalizedString(@"Account", @"Menu - title for Account");
                 break;
             case 1:
-                cell.textLabel.text = ([authentication isLogged] ? NSLocalizedString(@"Log out", @"Menu - title for Log out") : NSLocalizedString(@"Login", @"Menu - title for Login"));
+                cell.textLabel.text = ([AuthenticationService isLogged] ? NSLocalizedString(@"Log out", @"Menu - title for Log out") : NSLocalizedString(@"Login", @"Menu - title for Login"));
                 break;
             case 2:
                 cell.textLabel.text = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
@@ -205,9 +202,7 @@
             
             // temporary login page
             if ( indexPath.section == 1 && indexPath.row == 1){
-                
-                AuthenticationService *authentication = [[AuthenticationService alloc]init];
-                if ([authentication isLogged]){
+                if ([AuthenticationService isLogged]){
                     // do the log out
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Message when logging out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"General") otherButtonTitles:NSLocalizedString(@"Log out",@"General"),nil] ;
                     [alert show];
@@ -252,6 +247,10 @@
         AuthenticationService *service = [[AuthenticationService alloc]init];
         [service logout];
         [self.tableView reloadData];
+        
+        // open the login
+        LoginViewController *loginController = [[LoginViewController alloc] init];
+        [self presentModalViewController:loginController animated:YES];
     }
 }
 

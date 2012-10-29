@@ -25,6 +25,7 @@
 #import "OpenPhotoServiceFactory.h"
 #import "OADataFetcher.h"
 #import "AccountOpenPhoto.h"
+#import "PrivateAccountLoginService.h"
 
 @interface AuthenticationService : NSObject
 
@@ -36,7 +37,7 @@
 
 
 // methods related to user authentication
-- (BOOL) isLogged;
++ (BOOL) isLogged;
 - (void) logout;
 - (void) startOAuthProcedure:(NSURL*) url;
 
