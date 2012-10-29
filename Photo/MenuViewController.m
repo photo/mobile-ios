@@ -140,7 +140,7 @@
                 cell.textLabel.text = NSLocalizedString(@"Properties", @"Menu - title for Properties");
                 break;
             case 4:
-                cell.textLabel.text = NSLocalizedString(@"About Us", @"Menu - title for About Us");
+                cell.textLabel.text = NSLocalizedString(@"Contact Us", @"Menu - title for Contact us");
                 break;
             default:
                 cell.textLabel.text = @"not defined";
