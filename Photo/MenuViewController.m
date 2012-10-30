@@ -202,7 +202,7 @@
                 // Properties
             }else if ( indexPath.section == 1 && indexPath.row == 4){
                 // Contact Us
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ContactUsViewController alloc] init]];
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ContactUsViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"ContactUsViewController"] bundle:nil]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }

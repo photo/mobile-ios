@@ -67,6 +67,9 @@
     }
     
     self.view.backgroundColor = UIColorFromRGB(0xFFCC00);
+    
+    // title
+    self.navigationItem.title = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
 }
 
 - (void)didReceiveMemoryWarning

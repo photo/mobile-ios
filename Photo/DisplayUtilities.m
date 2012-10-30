@@ -27,7 +27,7 @@
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         return YES;
     }
-
+    
     return NO;
 }
 
@@ -39,7 +39,7 @@
 +(BOOL) isIPad
 {
     if([UIDevice currentDevice].userInterfaceIdiom==UIUserInterfaceIdiomPad) {
-                return YES;
+        return YES;
     }
     
     return NO;
@@ -51,8 +51,21 @@
     if (screenBounds.size.height == 568) {
         return YES;
     }
-
+    
     return NO;
+}
+
++(NSString*) getCorrectNibName:(NSString*) nibName
+{
+    if ( [DisplayUtilities isIPad] ){
+        // for now we don't do the ipad
+        return nibName;
+    }else if ( [DisplayUtilities is4InchRetina]){
+        return [[NSString alloc] initWithFormat:@"%@%@",nibName,@"5"];
+    }
+    
+    // return default
+    return nibName;   
 }
 
 @end

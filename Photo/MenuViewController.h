@@ -29,6 +29,7 @@
 #import "AccountViewController.h"
 #import "UpgradeViewController.h"
 #import "GalleryViewController.h"
+#import "DisplayUtilities.h"
 
 @interface MenuViewController : UITableViewController
 

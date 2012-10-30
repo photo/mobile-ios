@@ -67,6 +67,8 @@
     }
     
     self.view.backgroundColor = UIColorFromRGB(0xFFCC00);
+    // title
+    self.navigationItem.title = NSLocalizedString(@"Account", @"Menu - title for Account");
 }
 
 - (void)didReceiveMemoryWarning

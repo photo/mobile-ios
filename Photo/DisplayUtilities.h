@@ -25,4 +25,13 @@
 +(BOOL) isIPad;
 +(BOOL) is4InchRetina;
 
+// this method will add the correct extension in the nibname
+// specific for the device:
+// eg: nibname: ContactUsViewController
+// returns
+//      iphone : ContactUsViewController
+//      iphone5: ContactUsViewController5
+//      ipad   : ContactUsViewControlleriPad
++(NSString*) getCorrectNibName:(NSString*) nibName;
+
 @end
