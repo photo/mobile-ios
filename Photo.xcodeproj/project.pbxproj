@@ -192,6 +192,10 @@
 		CDC7AE8D163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE8B163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib */; };
 		CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */; };
 		CDC7AEDC163EDD3A00FC8BC1 /* PrivateAccountLoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AEDB163EDD3900FC8BC1 /* PrivateAccountLoginService.m */; };
+		CDC7AF291640125A00FC8BC1 /* UpgradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AF271640125900FC8BC1 /* UpgradeViewController.m */; };
+		CDC7AF2A1640125A00FC8BC1 /* UpgradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AF281640125A00FC8BC1 /* UpgradeViewController.xib */; };
+		CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */; };
+		CDC7AF2F1640156400FC8BC1 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AF2D1640156400FC8BC1 /* GalleryViewController.xib */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF33E16285495007A4FDF /* HomeTableViewController.m */; };
@@ -757,6 +761,12 @@
 		CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayUtilities.m; sourceTree = "<group>"; };
 		CDC7AEDA163EDD3900FC8BC1 /* PrivateAccountLoginService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateAccountLoginService.h; sourceTree = "<group>"; };
 		CDC7AEDB163EDD3900FC8BC1 /* PrivateAccountLoginService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateAccountLoginService.m; sourceTree = "<group>"; };
+		CDC7AF261640125900FC8BC1 /* UpgradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpgradeViewController.h; sourceTree = "<group>"; };
+		CDC7AF271640125900FC8BC1 /* UpgradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpgradeViewController.m; sourceTree = "<group>"; };
+		CDC7AF281640125A00FC8BC1 /* UpgradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpgradeViewController.xib; sourceTree = "<group>"; };
+		CDC7AF2B1640156400FC8BC1 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		CDC7AF2D1640156400FC8BC1 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
 		CDEC2562161C3A280062E9B0 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
@@ -943,6 +953,9 @@
 		CD4613D6161C7AEA0028619D /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				CDC7AF2B1640156400FC8BC1 /* GalleryViewController.h */,
+				CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */,
+				CDC7AF2D1640156400FC8BC1 /* GalleryViewController.xib */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -1006,6 +1019,9 @@
 				CDC7AE81163EC13100FC8BC1 /* ContactUsViewController.xib */,
 				CDC7AE86163EC14100FC8BC1 /* ContactUsViewController5.xib */,
 				CDC7AE8B163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib */,
+				CDC7AF261640125900FC8BC1 /* UpgradeViewController.h */,
+				CDC7AF271640125900FC8BC1 /* UpgradeViewController.m */,
+				CDC7AF281640125A00FC8BC1 /* UpgradeViewController.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -1874,6 +1890,8 @@
 				CDC7AE83163EC13100FC8BC1 /* ContactUsViewController.xib in Resources */,
 				CDC7AE88163EC14100FC8BC1 /* ContactUsViewController5.xib in Resources */,
 				CDC7AE8D163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib in Resources */,
+				CDC7AF2A1640125A00FC8BC1 /* UpgradeViewController.xib in Resources */,
+				CDC7AF2F1640156400FC8BC1 /* GalleryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1971,6 +1989,8 @@
 				CDC7AE82163EC13100FC8BC1 /* ContactUsViewController.m in Sources */,
 				CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */,
 				CDC7AEDC163EDD3A00FC8BC1 /* PrivateAccountLoginService.m in Sources */,
+				CDC7AF291640125A00FC8BC1 /* UpgradeViewController.m in Sources */,
+				CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2064,7 +2084,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2085,7 +2105,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

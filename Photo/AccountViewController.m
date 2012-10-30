@@ -40,7 +40,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+    
+    if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)]) {
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
+                                                   [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)],
+                                                   nil];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
+    }
+    
+    // image for the navigator
+    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
+        //iOS >=5.0
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+    }else{
+        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
+        if (imageView == nil)
+        {
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
+            [imageView setTag:6183746];
+            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
+        }
+    }
+    
+    self.view.backgroundColor = UIColorFromRGB(0xFFCC00);
 }
 
 - (void)didReceiveMemoryWarning

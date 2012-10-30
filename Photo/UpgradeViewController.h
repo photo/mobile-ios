@@ -1,8 +1,8 @@
 //
-//  MenuViewController.h
+//  UpgradeViewController.h
 //  Photo
 //
-//  Created by Patrick Santana on 5/10/12.
+//  Created by Patrick Santana on 30/10/12.
 //  Copyright 2012 Photo
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,17 +19,9 @@
 //
 
 
-#import <UIKit/UIKit.h>
-#import "AuthenticationService.h"
-#import "TagViewController.h"
-#import "AlbumViewController.h"
-#import "HomeTableViewController.h"
-#import "SyncViewController.h"
-#import "ContactUsViewController.h"
-#import "AccountViewController.h"
-#import "UpgradeViewController.h"
-#import "GalleryViewController.h"
 
-@interface MenuViewController : UITableViewController
+#import <UIKit/UIKit.h>
+
+@interface UpgradeViewController : UIViewController
 
 @end

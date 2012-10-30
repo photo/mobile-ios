@@ -73,7 +73,7 @@
 {
     if (section == 0){
         // your photos menu
-        return 5;
+        return 4;
     }else{
         // settings
         return 5;
@@ -115,9 +115,6 @@
             case 3:
                 cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
                 break;
-            case 4:
-                cell.textLabel.text = NSLocalizedString(@"Sync", @"Menu - title for Sync");
-                break;
             default:
                 cell.textLabel.text = @"not defined";
                 break;
@@ -148,45 +145,6 @@
     return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -200,19 +158,19 @@
             UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;
             cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
             
-            // temporary login page
-            if ( indexPath.section == 1 && indexPath.row == 1){
-                if ([AuthenticationService isLogged]){
-                    // do the log out
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Message when logging out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"General") otherButtonTitles:NSLocalizedString(@"Log out",@"General"),nil] ;
-                    [alert show];
-                }else{
-                    AuthenticationViewController *controller = [[AuthenticationViewController alloc]initWithNibName:@"AuthenticationViewController" bundle:nil];
-                    [cc presentViewController:controller animated:YES completion:nil];
-                }
-            }else if (indexPath.section == 0 && indexPath.row == 0){
+            if ( indexPath.section == 0 && indexPath.row == 0){
                 // Home
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[HomeTableViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
+            }else if ( indexPath.section == 0 && indexPath.row ==1){
+                // Gallery
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
+            }else if ( indexPath.section == 0 && indexPath.row == 2){
+                // Albums
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }else if ( indexPath.section == 0 && indexPath.row == 3){
@@ -220,9 +178,31 @@
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 0 && indexPath.row == 2){
-                // Album
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
+            }else if ( indexPath.section == 1 && indexPath.row == 0){
+                // Account
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AccountViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
+            }else if ( indexPath.section == 1 && indexPath.row == 1){
+                // Log out
+                if ([AuthenticationService isLogged]){
+                    // do the log out
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Message when logging out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"General") otherButtonTitles:NSLocalizedString(@"Log out",@"General"),nil] ;
+                    [alert show];
+                }else{
+                    // open the login
+                    [self openLoginViewController];
+                }
+            }else if ( indexPath.section == 1 && indexPath.row == 2){
+                // Upgrade
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[UpgradeViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
+            }else if ( indexPath.section == 1 && indexPath.row == 3){
+                // Properties
+            }else if ( indexPath.section == 1 && indexPath.row == 4){
+                // Contact Us
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ContactUsViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }
@@ -249,13 +229,19 @@
         [self.tableView reloadData];
         
         // open the login
-        LoginViewController *controller = [[LoginViewController alloc]init ];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-        
-        [self presentModalViewController:navController animated:YES];
+        [self openLoginViewController];
     }
+}
+
+- (void) openLoginViewController
+{
+    // open the login
+    LoginViewController *controller = [[LoginViewController alloc]init ];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+    navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (void) eventHandler: (NSNotification *) notification{

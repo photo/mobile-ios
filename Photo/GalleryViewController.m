@@ -1,8 +1,8 @@
 //
-//  ContactUsViewController.m
+//  GalleryViewController.m
 //  Photo
 //
-//  Created by Patrick Santana on 29/10/12.
+//  Created by Patrick Santana on 30/10/12.
 //  Copyright 2012 Photo
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,13 +20,13 @@
 
 
 
-#import "ContactUsViewController.h"
+#import "GalleryViewController.h"
 
-@interface ContactUsViewController ()
+@interface GalleryViewController ()
 
 @end
 
-@implementation ContactUsViewController
+@implementation GalleryViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
