@@ -196,6 +196,7 @@
 		CDC7AF2A1640125A00FC8BC1 /* UpgradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AF281640125A00FC8BC1 /* UpgradeViewController.xib */; };
 		CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */; };
 		CDC7AF2F1640156400FC8BC1 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AF2D1640156400FC8BC1 /* GalleryViewController.xib */; };
+		CDC7AF39164028E100FC8BC1 /* PhotoViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AF37164028E000FC8BC1 /* PhotoViewController5.xib */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF33E16285495007A4FDF /* HomeTableViewController.m */; };
@@ -767,6 +768,7 @@
 		CDC7AF2B1640156400FC8BC1 /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		CDC7AF2D1640156400FC8BC1 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		CDC7AF37164028E000FC8BC1 /* PhotoViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController5.xib; sourceTree = "<group>"; };
 		CDEC2562161C3A280062E9B0 /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
 		CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CDEC2564161C3A280062E9B0 /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/ViewDeck/WrapController.h; sourceTree = "<group>"; };
@@ -998,6 +1000,7 @@
 				CD30D83E16369CF1001A0CA0 /* PhotoViewController.h */,
 				CD30D83F16369CF1001A0CA0 /* PhotoViewController.m */,
 				CD30D84016369CF1001A0CA0 /* PhotoViewController.xib */,
+				CDC7AF37164028E000FC8BC1 /* PhotoViewController5.xib */,
 				CD30D78D16317A79001A0CA0 /* JobUploaderController.h */,
 				CD30D78E16317A79001A0CA0 /* JobUploaderController.m */,
 				CD30D78F16317A79001A0CA0 /* JobUploaderDelegate.h */,
@@ -1892,6 +1895,7 @@
 				CDC7AE8D163EC15300FC8BC1 /* ContactUsViewControlleriPad.xib in Resources */,
 				CDC7AF2A1640125A00FC8BC1 /* UpgradeViewController.xib in Resources */,
 				CDC7AF2F1640156400FC8BC1 /* GalleryViewController.xib in Resources */,
+				CDC7AF39164028E100FC8BC1 /* PhotoViewController5.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

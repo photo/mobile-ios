@@ -429,9 +429,8 @@
             [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
         }
         
-        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil images:urls];
         [picker pushViewController:controller animated:YES];
-        //        [self.viewDeckController  closeRightViewAnimated:YES];
     }else{
         // no photo select
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
@@ -502,7 +501,7 @@
         if (error) {
             NSLog(@"The photo took by the user could not be saved = %@", [error description]);
         } else {
-            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil url:newUrl image:pickedImage];
+            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl image:pickedImage];
             [picker pushViewController:controller animated:YES];
         }
     }];
