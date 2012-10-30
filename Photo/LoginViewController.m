@@ -36,12 +36,6 @@
                                                      name:kFacebookUserConnected       
                                                    object:nil ];
         
-        //register to listen for to remove the login screen.    
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(eventHandler:)
-                                                     name:kNotificationLoginAuthorize         
-                                                   object:nil ];
-        
     }
     return self;
 }
@@ -84,10 +78,14 @@
     NSLog(@"Event received: %@",notification);
     if ([notification.name isEqualToString:kFacebookUserConnected]){
         [self checkUser];
-    }else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
-        // we don't need the screen anymore
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
+    
+    
+    
+   // else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
+        // we don't need the screen anymore
+   //     [self dismissViewControllerAnimated:YES completion:nil];
+   // }
 }
 
 - (void) checkUser{
@@ -103,7 +101,7 @@
     // display
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *email = [defaults valueForKey:kFacebookUserConnectedEmail];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Checking";
     
     
@@ -120,9 +118,8 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // save the details of account and remove the progress
                     [account saveToStandardUserDefaults];
-                    
-                    // send notification to the system that it can shows the screen:
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
+                    [self dismissModalViewControllerAnimated:YES];
                     
 #ifdef GOOGLE_ANALYTICS_ENABLED
                     NSError *error = nil;
@@ -135,12 +132,12 @@
                     }
 #endif
                     
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // open LoginCreateAccountViewController
-                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
                     LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init];
                     [controller setFacebookCreateAccount];
                     [self.navigationController pushViewController:controller animated:YES];
@@ -148,7 +145,7 @@
             }
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description] duration:5000];
                 [alert showAlertOnTop];
             });

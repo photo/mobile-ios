@@ -89,8 +89,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
     
     // initializer
-    if ([InitializerService isInitialized] == NO){
-        [InitializerService initialize];
+    InitializerService *initializer = [[InitializerService alloc]init];
+    if ([initializer isInitialized] == NO){
+        [initializer initialize];
     }
     
     self.window.rootViewController = deckController;
@@ -99,13 +100,23 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // check if use is connect
     if (![AuthenticationService isLogged]){
+        // reset core data
+        [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+        [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+        [[SharedAppDelegate managedObjectContext] reset];
+        
+        NSError *saveError = nil;
+        if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+        }
+        
         LoginViewController *controller = [[LoginViewController alloc]init ];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
         [deckController presentModalViewController:navController animated:YES];
-
+        
         
     }
     

@@ -249,8 +249,12 @@
         [self.tableView reloadData];
         
         // open the login
-        LoginViewController *loginController = [[LoginViewController alloc] init];
-        [self presentModalViewController:loginController animated:YES];
+        LoginViewController *controller = [[LoginViewController alloc]init ];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
+        [self presentModalViewController:navController animated:YES];
     }
 }
 

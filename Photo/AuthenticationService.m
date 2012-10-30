@@ -117,18 +117,16 @@
     // synchronize the keys
     [standardUserDefaults synchronize];
     
-    /* reset core data
-     [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-     [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
-     [SyncedPhotos deleteAllSyncedPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
-     [[AppDelegate managedObjectContext] reset];
+    // reset core data
+     [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+     [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+     [[SharedAppDelegate managedObjectContext] reset];
      
      NSError *saveError = nil;
-     if (![[AppDelegate managedObjectContext] save:&saveError]){
+     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
      NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
      }
-     */
-    
+         
     // send notification to the system that it can shows the screen:
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginNeeded object:nil];
 }
@@ -248,6 +246,8 @@
         [standardUserDefaults setValue:@"OK" forKey:kAuthenticationValid];
         [standardUserDefaults setValue:oauthToken forKey:kAuthenticationOAuthToken];
         [standardUserDefaults setValue:oauthTokenSecret forKey:kAuthenticationOAuthSecret];
+        [standardUserDefaults setValue:nil          forKey:kHomeScreenPicturesTimestamp];
+        [standardUserDefaults setValue:nil          forKey:kHomeScreenPictures];
         
         // synchronize the keys
         [standardUserDefaults synchronize];

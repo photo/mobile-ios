@@ -26,6 +26,8 @@
 #import "OADataFetcher.h"
 #import "AccountOpenPhoto.h"
 #import "PrivateAccountLoginService.h"
+#import "Timeline+Photo.h"
+#import "Synced+Photo.h"
 
 @interface AuthenticationService : NSObject
 

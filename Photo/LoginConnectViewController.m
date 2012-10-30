@@ -140,6 +140,8 @@
                     
                     // save data to the user information
                     [account saveToStandardUserDefaults];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
+                    [self dismissModalViewControllerAnimated:YES];
                     
 #ifdef GOOGLE_ANALYTICS_ENABLED
                     NSError *error = nil;
@@ -152,8 +154,6 @@
                     }
 #endif
                     
-                    // send notification to the system that it can shows the screen:
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
                     [MBProgressHUD hideHUDForView:self.view animated:YES];
                 });
             }@catch (NSException* e) {
