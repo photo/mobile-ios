@@ -67,6 +67,8 @@
     }
     
     self.view.backgroundColor = UIColorFromRGB(0xFFCC00);
+    // title
+    self.navigationItem.title = NSLocalizedString(@"Contact Us", @"Menu - title for Contact us");
 }
 
 - (void)didReceiveMemoryWarning
