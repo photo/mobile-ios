@@ -320,10 +320,12 @@
         newestPhotoCell.private.hidden=YES;
         newestPhotoCell.shareButton.hidden=YES;
         newestPhotoCell.geoPositionButton.hidden=YES;
+        [newestPhotoCell.activity startAnimating];
         
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
                               placeholderImage:nil
                                        success:^(UIImage *image){
+                                           [newestPhotoCell.activity stopAnimating];
                                            [newestPhotoCell.photo.layer setCornerRadius:5.0f];
                                            newestPhotoCell.photo.layer.masksToBounds = YES;
                                            
@@ -334,11 +336,16 @@
                                            
                                            
                                            // set details of private or not
-                                           if ([photo.permission boolValue] == NO)
+                                           if ([photo.permission boolValue] == NO){
                                                newestPhotoCell.private.hidden=NO;
-                                           else
-                                               newestPhotoCell.private.hidden=YES;
-                                           
+                                           }else{
+                                               // in case of public image, user can share
+                                               if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
+                                                   newestPhotoCell.shareButton.hidden=NO;
+                                                   newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+                                                   newestPhotoCell.newestPhotosTableViewController = self;
+                                               }
+                                           }
                                            
                                            // set details geoposition
                                            if (photo.latitude != nil && photo.longitude != nil){
@@ -349,15 +356,6 @@
                                                newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
                                            }else {
                                                newestPhotoCell.geoPositionButton.hidden=YES;
-                                           }
-                                           
-                                           // share details
-                                           if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
-                                               newestPhotoCell.shareButton.hidden=NO;
-                                               newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                                               newestPhotoCell.newestPhotosTableViewController = self;
-                                           }else{
-                                               newestPhotoCell.shareButton.hidden=YES;
                                            }
                                        }
                                        failure:^(NSError *error){
@@ -515,9 +513,9 @@
                         [alert showAlert];
                         [alert release];
                         
-                        // refresh table  
+                        // refresh table
                         [self doneLoadingTableViewData];
-                    });   
+                    });
                 }
             });
             dispatch_release(loadNewestPhotos);
@@ -527,26 +525,26 @@
 
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // problem with internet, show message to user    
+    // problem with internet, show message to user
     OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
     [alert showAlert];
     [alert release];
 }
 
 - (void) eventHandler: (NSNotification *) notification{
-#ifdef DEVELOPMENT_ENABLED    
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"###### Event triggered: %@", notification);
 #endif
     
     if ([notification.name isEqualToString:kNotificationNeededsUpdateHome]){
         [self loadNewestPhotosIntoCoreData];
     }else if ([notification.name isEqualToString:kNotificationDisableUpdateHome]){
-        self.needsUpdate = NO;   
+        self.needsUpdate = NO;
     }
 }
 
-- (void) dealloc 
-{    
+- (void) dealloc
+{
     [_refreshHeaderView release];
     [_noPhotoImageView release];
     [coreLocationController release];
