@@ -20,6 +20,7 @@
 		CD0CA68B145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0CA68A145C566B002246C2 /* OpenPhotoIASKAppSettingsViewController.m */; };
 		CD11F07D1524FA1300E7D405 /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */; };
 		CD12AAB91405AB10008B124A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD12AAB81405AB10008B124A /* MessageUI.framework */; };
+		CD1737B016491F7C0081A1C5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD1737AF16491F7C0081A1C5 /* Default-568h@2x.png */; };
 		CD199B761506BC0200BFC316 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B751506BC0100BFC316 /* CoreLocationController.m */; };
 		CD199B791506E12500BFC316 /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD199B781506E12500BFC316 /* SHA1.m */; };
 		CD1F823A13E337DD00C91729 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1F823813E337DD00C91729 /* PhotoViewController.m */; };
@@ -563,6 +564,7 @@
 		CD11F07B1524FA1200E7D405 /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CD11F07C1524FA1300E7D405 /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
 		CD12AAB81405AB10008B124A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CD1737AF16491F7C0081A1C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "OpenPhoto/images/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		CD199B741506BC0100BFC316 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		CD199B751506BC0100BFC316 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD199B771506E12400BFC316 /* SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHA1.h; sourceTree = "<group>"; };
@@ -1329,6 +1331,7 @@
 				CDE86B8714D597DD0036EC48 /* appbar_empty@2x.png */,
 				CD45C1B01486BF7500CAE2FB /* Default.png */,
 				CD45C1B11486BF7500CAE2FB /* Default@2x.png */,
+				CD1737AF16491F7C0081A1C5 /* Default-568h@2x.png */,
 				CD45C11C14869F8500CAE2FB /* Icon.png */,
 				CD45C11D14869F8500CAE2FB /* Icon@2x.png */,
 			);
@@ -2558,6 +2561,7 @@
 				CDB3D2F0159E5B8900F443A4 /* tab-central-empty-button@2x.png in Resources */,
 				CDB3D2F1159E5B8900F443A4 /* tab-central-selection-button.png in Resources */,
 				CDB3D2F2159E5B8900F443A4 /* tab-central-selection-button@2x.png in Resources */,
+				CD1737B016491F7C0081A1C5 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
