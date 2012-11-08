@@ -538,7 +538,7 @@
 #pragma mark Population core data
 - (void) loadNewestPhotosIntoCoreData
 {
-    if (_reloading == NO){
+    if (_reloading == NO && [AuthenticationService isLogged]){
         // set reloading in the table
         _reloading = YES;
         
