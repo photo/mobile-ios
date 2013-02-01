@@ -33,12 +33,12 @@
 {
     [super viewDidLoad];  
     
-       
+    
     self.viewControllers = [NSArray arrayWithObjects:
                             [self viewControllerWithTabTitle:@"Home" image:[UIImage imageNamed:@"tab-icon1.png"]],
                             [self viewControllerWithTabTitle:@"Gallery" image:[UIImage imageNamed:@"tab-icon2.png"]],
-                            [self viewControllerWithTabTitle:@"Camera" image:[UIImage imageNamed:@"tab-icon4.png"]],
-                            [self viewControllerWithTabTitle:@"Sync" image:[UIImage imageNamed:@"tab-icon6.png"]],
+                            [self viewControllerWithTabTitle:@"Camera" image:[UIImage imageNamed:@"tab-icon3.png"]],
+                            [self viewControllerWithTabTitle:@"Sync" image:[UIImage imageNamed:@"tab-icon4.png"]],
                             [self viewControllerWithTabTitle:@"Settings" image:[UIImage imageNamed:@"tab-icon5.png"]], nil];
     
     if([[UITabBar class] respondsToSelector:@selector(appearance)]){
@@ -66,7 +66,7 @@
     if(![[UITabBar class] respondsToSelector:@selector(appearance)]){
         [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-icon-central.png"] highlightImage:nil];
     }else {
-         [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-central-empty-button.png"]  highlightImage:[UIImage imageNamed:@"tab-central-selection-button.png"]];
+        [self addCenterButtonWithImage:[UIImage imageNamed:@"tab-central-empty-button.png"]  highlightImage:[UIImage imageNamed:@"tab-central-selection-button.png"]];
     }
     [super viewWillAppear:animated];
 }
@@ -84,8 +84,12 @@
     
     if ([notification.name isEqualToString:kNotificationLoginNeeded]){
         // open the authentication screen
-        AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
-        [self presentModalViewController:controller animated:YES];
+        LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;       
+        
+        [self presentModalViewController:navController animated:YES];
         [controller release];
     }
 }

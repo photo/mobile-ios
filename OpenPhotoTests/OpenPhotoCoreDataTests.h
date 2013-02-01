@@ -19,8 +19,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "PhotoModel+OpenPhoto.h"
-#import "UploadPhotos+OpenPhoto.h"
+#import "TimelinePhotos+OpenPhoto.h"
 #import "NewestPhotos+OpenPhoto.h"
 
 @interface OpenPhotoCoreDataTests : SenTestCase <NSFetchedResultsControllerDelegate> {

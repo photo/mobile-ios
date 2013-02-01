@@ -33,17 +33,23 @@
     
 	[super viewWillAppear:animated];
     
-    // add logt out
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Log out" style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton)];          
+    // add log out
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonImage = [UIImage imageNamed:@"settings-logout.png"] ;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    [button addTarget:self action:@selector(logoutButton) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = logoutButton;
     [logoutButton release];
-    
+      
     UIImageView *imgView=[[UIImageView alloc]init];
     imgView.image=[UIImage imageNamed:@"Background.png"];;
     self.tableView.backgroundView=imgView;
     [imgView release];
     
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -57,7 +63,7 @@
 	// create the button object
 	UILabel * headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 	headerLabel.backgroundColor = [UIColor clearColor];
-	headerLabel.textColor = UIColorFromRGB(0xE6501E);
+	headerLabel.textColor = UIColorFromRGB(0x8C7B73);
 	headerLabel.font = [UIFont boldSystemFontOfSize:18];
 	headerLabel.frame = CGRectMake(18.0, 0.0, 300.0, 44.0);
     
@@ -69,7 +75,7 @@
 	return [customView autorelease];
 }
 
-// extend the framework to let Switch be red color.
+// extend the framework to let Switch be another color.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     
@@ -79,17 +85,25 @@
     if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
         if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
             //iOS 5.0
-            [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor:[UIColor redColor]];
+            [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor: UIColorFromRGB(0xEFC005)];
         }
     }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
         // change the color for the text 
-        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E);
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73);
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     }else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {
         // change the color for the text 
-        cell.detailTextLabel.textColor =  UIColorFromRGB(0xE6501E); 
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73); 
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
-    } 
+    } else if ([[specifier type] isEqualToString:kIASKButtonSpecifier]) {
+        if (!cell) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]] autorelease];
+			cell.backgroundColor = [UIColor whiteColor];
+        }
+        cell.textLabel.text = [specifier title];
+        cell.textLabel.textAlignment = UITextAlignmentLeft;
+        return cell;
+    }
     
     return cell;
 }

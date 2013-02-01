@@ -17,5 +17,6 @@
 #import "OpenPhotoAppDelegate.h"
 #import "OpenPhotoAlertView.h"
 #import "PropertiesConfiguration.h"
+#import "DisplayUtilities.h"
 #endif
 

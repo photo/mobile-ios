@@ -57,6 +57,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO animated:YES];     
 }
 
 - (void)viewDidUnload
@@ -74,7 +75,7 @@
     
     // check if the user typed something
     if ( self.serverURL.text != nil &&
-        [self.serverURL.text isEqualToString:@"username.openphoto.me"]){
+        [self.serverURL.text isEqualToString:@"username.trovebox.com"]){
         
         // user should add URL
         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please, set the URL to the OpenPhoto Server." duration:5000];
@@ -120,7 +121,7 @@
         if([textField respondsToSelector:@selector(selectedTextRange)]){
             
             //iOS >=5.0
-            if ( [textField.text isEqualToString:@"username.openphoto.me"]){
+            if ( [textField.text isEqualToString:@"username.trovebox.com"]){
                 // get the actual range
                 UITextRange *selectedRange = [textField selectedTextRange];
                 

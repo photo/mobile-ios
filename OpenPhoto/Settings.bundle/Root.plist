@@ -12,7 +12,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>http://current.openphoto.me</string>
+			<string>http://current.trovebox.com</string>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
@@ -63,28 +63,6 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-			<key>Title</key>
-			<string>Bug reporter</string>
-		</dict>
-        <dict>
-			<key>Key</key>
-			<string>TestFlighFeed</string>
-			<key>Title</key>
-            <string>Submit feedback</string>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-		</dict>
-        <dict>
-			<key>Key</key>
-			<string>CleanCache</string>
-			<key>Title</key>
-            <string>Clean cache</string>
-			<key>Type</key>
-			<string>IASKButtonSpecifier</string>
-		</dict>
-		<dict>
 			<key>Title</key>
 			<string>About</string>
 			<key>Type</key>
@@ -102,11 +80,19 @@
 			<key>DefaultValue</key>
 			<string>website</string>
 			<key>File</key>
-			<string>http://theopenphotoproject.org/</string>
+			<string>https://trovebox.com/</string>
 			<key>Title</key>
-			<string>The OpenPhoto Project</string>
+			<string>Trovebox</string>
 			<key>Type</key>
 			<string>IASKOpenURLSpecifier</string>
+		</dict>
+		<dict>
+			<key>Key</key>
+			<string>CleanCache</string>
+			<key>Title</key>
+			<string>Clean cache</string>
+			<key>Type</key>
+			<string>IASKButtonSpecifier</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

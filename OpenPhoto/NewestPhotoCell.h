@@ -18,13 +18,17 @@
 //  limitations under the License.
 //
 
+#import <MapKit/MapKit.h>
+
 @interface NewestPhotoCell : UITableViewCell{
-    NSString *geoPosition;
+    NSString *geoPositionLatitude;
+    NSString *geoPositionLongitude;
     NSString *photoPageUrl;
     UITableViewController *newestPhotosTableViewController;
 }
 
 @property (retain, nonatomic) IBOutlet UIImageView *photo;
+@property (retain, nonatomic) IBOutlet UIImageView *photoDetailBox;
 @property (retain, nonatomic) IBOutlet UILabel *date;
 @property (retain, nonatomic) IBOutlet UILabel *tags;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activity;
@@ -32,8 +36,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *geoPositionButton;
 @property (retain, nonatomic) IBOutlet UILabel *label;
 @property (retain, nonatomic) IBOutlet UIButton *shareButton;
+@property (retain, nonatomic) IBOutlet UIImageView *geoSharingImage;
 
-@property (nonatomic, copy) NSString *geoPosition;
+@property (nonatomic, copy) NSString *geoPositionLatitude;
+@property (nonatomic, copy) NSString *geoPositionLongitude;
 @property (nonatomic, copy) NSString *photoPageUrl;
 @property (nonatomic, retain) UITableViewController *newestPhotosTableViewController;
 

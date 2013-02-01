@@ -48,7 +48,7 @@
         self.readOnly = NO;
         
         // color separator
-        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
         
         // is loading tags
         self.isLoading = NO;
@@ -204,7 +204,7 @@
         
         // details quantity
         cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", tag.quantity];
-        cell.detailTextLabel.textColor = UIColorFromRGB(0xE6501E);
+        cell.detailTextLabel.textColor = UIColorFromRGB(0x8C7B73);
         
         cell.accessoryType = UITableViewCellAccessoryNone;
     }else{
@@ -259,7 +259,7 @@
         // if there isn't netwok
         if ( [AppDelegate internetActive] == NO ){
             // problem with internet, show message to user
-            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+            OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please check your internet connection" duration:5000];
             [alert showAlert];
             [alert release];
             

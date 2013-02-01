@@ -31,7 +31,10 @@
 @synthesize geoPositionButton=_geoPositionButton;
 @synthesize label=_label;
 @synthesize shareButton = _shareButton;
-@synthesize geoPosition=_geoPosition;
+
+@synthesize geoPositionLatitude=_geoPositionLatitude;
+@synthesize geoPositionLongitude=_geoPositionLongitude;
+
 @synthesize photoPageUrl=_photoPageUrl;
 @synthesize newestPhotosTableViewController=_newestPhotosTableViewController;
 
@@ -57,18 +60,41 @@
     [_tags release];
     [_private release];
     [_geoPositionButton release];
-    [_geoPosition release];
     [_shareButton release];
     [_photoPageUrl release];
     [_newestPhotosTableViewController release];
+    [_geoSharingImage release];
+    [_geoPositionLatitude release];
+    [_geoPositionLongitude release];
+    [_private release];
+    [_photoDetailBox release];
     [super dealloc];
 }
 
 - (IBAction)openGeoPosition:(id)sender {
-    if (self.geoPosition != nil){
-        NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
-                         [self.geoPosition stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+    if (self.geoPositionLatitude != 0){
+        
+        // Check for iOS 6
+        Class mapItemClass = [MKMapItem class];
+        if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
+        {
+            // Create an MKMapItem to pass to the Maps app
+            CLLocationDegrees lat = [self.geoPositionLatitude doubleValue];
+            CLLocationDegrees lon = [self.geoPositionLongitude doubleValue];
+            CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat,lon );
+            MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate
+                                                           addressDictionary:nil];
+            MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+            [mapItem setName:@"My Photo"];
+            // Pass the map item to the Maps app
+            [mapItem openInMapsWithLaunchOptions:nil];
+            [placemark release];
+            [mapItem release];
+        }else{
+            NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
+                             [[NSString stringWithFormat:@"%@,%@",self.geoPositionLatitude,self.geoPositionLongitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
     }
 }
 

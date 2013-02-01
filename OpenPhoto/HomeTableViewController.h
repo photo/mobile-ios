@@ -31,6 +31,7 @@
 
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "AuthenticationHelper.h"
 
 @interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate>{
  

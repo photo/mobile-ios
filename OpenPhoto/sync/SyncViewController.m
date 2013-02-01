@@ -129,7 +129,7 @@
     
     self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     self.view.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -168,8 +168,6 @@
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"enumerating photos");
-    NSLog("Assets Number %i", assetsNumber);
-    NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]);
 #endif
     
     if ([self.assetGroup numberOfAssets] != assetsNumber){

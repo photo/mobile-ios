@@ -29,7 +29,11 @@
 #import "SHK.h"
 #import "Reachability.h"
 #import "JobUploaderController.h"
+#import "LoginViewController.h"
+#import "FBConnect.h"
 #import "iRate.h"
+
+#import "GAI.h"
 
 // easy way to get app delegate
 #define AppDelegate (OpenPhotoAppDelegate*) [[UIApplication sharedApplication] delegate]
@@ -37,17 +41,22 @@
 
 @class OpenPhotoViewController;
 
-@interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate>{
-
+@interface OpenPhotoAppDelegate : NSObject <UIApplicationDelegate,FBRequestDelegate,
+FBDialogDelegate,
+FBSessionDelegate>{
+    
 @private
     NSManagedObjectContext *managedObjectContext;
     NSManagedObjectModel *managedObjectModel;
     NSPersistentStoreCoordinator *persistentStoreCoordinator;
-  
+    
     // for internet checks
     Reachability* internetReachable;
     Reachability* hostReachable;
-
+    
+    // facebook sdk
+    Facebook *facebook;
+    
 @public
     BOOL internetActive, hostActive;
 }
@@ -63,6 +72,12 @@
 // for internet check
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
+
+// for facebook single sign in
+@property (nonatomic, retain) Facebook *facebook;
+
+//google analytics
+@property(nonatomic, retain) id<GAITracker> tracker;
 
 // this method will be used to open a specific tab
 // 0 = Home

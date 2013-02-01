@@ -47,11 +47,19 @@
 }
 
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
-    if ([key isEqualToString:@"TestFlighFeed"]){
-        [TestFlight openFeedbackView];
-    }else if ([key isEqualToString:@"CleanCache"]){
+    if ([key isEqualToString:@"CleanCache"]){
         [GalleryPhotos deleteAllGalleryPhotosInManagedObjectContext:[AppDelegate managedObjectContext]];
         [TimelinePhotos deleteAllTimelineInManagedObjectContext:[AppDelegate managedObjectContext]];
+        NSError *saveError = nil;
+        if (![[AppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+        }
+        
+        //remove cache
+        SDImageCache *imageCache = [SDImageCache sharedImageCache];
+        [imageCache clearMemory];
+        [imageCache clearDisk];
+        [imageCache cleanDisk];
     }
 }
 
@@ -97,7 +105,7 @@
         // if it answers to appearance
         if([[UITabBar class] respondsToSelector:@selector(appearance)]){
             // from iOS 5.0
-            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon6_active.png"] withFinishedUnselectedImage:image];       
+            [controller.tabBarItem setFinishedSelectedImage:[UIImage imageNamed:@"tab-icon4_active.png"] withFinishedUnselectedImage:image];       
         }
         [photoPicker setParent:controller];
         [controller setDelegate:self];
@@ -119,7 +127,7 @@
     }  
     
     UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
-    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Photo" image:nil tag:2] autorelease];
+    viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:@"Camera" image:nil tag:2] autorelease];
     
     // if it answers to appearance
     if([[UITabBar class] respondsToSelector:@selector(appearance)]){
@@ -246,7 +254,7 @@
         if (error) {
             NSLog(@"The photo took by the user could not be saved = %@", [error description]);
         } else {
-            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil url:newUrl image:pickedImage];
+            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl image:pickedImage];
             [picker pushViewController:controller animated:YES];
             [controller release];
         }
@@ -341,7 +349,7 @@
             [urls addObject:[dict objectForKey:UIImagePickerControllerReferenceURL]];
         }
         
-        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:@"PhotoViewController" bundle:nil images:urls];
+        PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil images:urls];
         [picker pushViewController:controller animated:YES];
         [controller release];
     }else{

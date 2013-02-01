@@ -129,7 +129,7 @@ BOOL isLoading = NO;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     // problem with internet, show message to user    
-    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please check your internet connection" duration:5000];
     [alert showAlert];
     [alert release];
     

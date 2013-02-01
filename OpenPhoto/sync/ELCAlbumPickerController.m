@@ -30,7 +30,7 @@
     
     self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
     // color separator
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
 	
 	[self.navigationItem setTitle:@"Loading..."];
     

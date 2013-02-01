@@ -44,6 +44,7 @@
 // for clean the cache
 #import "GalleryPhotos+OpenPhoto.h"
 #import "TimelinePhotos+OpenPhoto.h"
+#import <SDWebImage/SDImageCache.h>
 
 @interface BaseViewController : UITabBarController<UINavigationControllerDelegate, UIImagePickerControllerDelegate, IASKSettingsDelegate, CoreLocationControllerDelegate, ELCImagePickerControllerDelegate, UITabBarDelegate>{
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;

@@ -49,12 +49,15 @@
         self.view.backgroundColor = background;
         [background release];
         
-        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
         
         CGRect imageSize = CGRectMake(0, 63, 320, 367);
         self.noPhotoImageView = [[[UIImageView alloc] initWithFrame:imageSize] autorelease];
         self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
         self.noPhotoImageView.hidden = YES;
+        background = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+        self.noPhotoImageView.backgroundColor = background;
+        [background release];
         
         coreLocationController = [[CoreLocationController alloc] init];
         
@@ -166,8 +169,8 @@
             uploadCell = [topLevelObjects objectAtIndex:0];
             if([[UITabBar class] respondsToSelector:@selector(appearance)]){
                 // from iOS 5.0
-                uploadCell.progressBar.progressTintColor = UIColorFromRGB(0xE6501E);
-                uploadCell.progressBar.trackTintColor = UIColorFromRGB(0xC8BEA0);
+                uploadCell.progressBar.progressTintColor = UIColorFromRGB(0xFECD31);
+                uploadCell.progressBar.trackTintColor = UIColorFromRGB(0x3B2414);
             }
         }
         
@@ -192,19 +195,19 @@
             uploadCell.status.text=@"Waiting ...";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploading]){
             uploadCell.status.text=@"";
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             uploadCell.progressBar.hidden=NO;
             
             [uploadCell.progressBar setProgress:[photo.photoUploadProgress floatValue]];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploadFinished]){
             uploadCell.status.text=@"Upload finished!";
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             
             // check if it needs share for twitter or facebook
             // prepare NSDictionary with details of sharing if Twitter or Facebook was checked
@@ -232,12 +235,12 @@
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
             uploadCell.status.text=@"Retry uploading";
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeDuplicated]){
             uploadCell.status.text=@"Already in your account";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
             uploadCell.imageStatus.hidden=NO;
-            uploadCell.status.textColor=UIColorFromRGB(0xC8BEA0);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
@@ -245,13 +248,13 @@
             uploadCell.status.text=@"Creating ...";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
-            uploadCell.status.textColor=UIColorFromRGB(0xE6501E);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else{
             // it is invalid
             uploadCell.status.text=@"Invalid photo";
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
             uploadCell.imageStatus.hidden=NO;
-            uploadCell.status.textColor=UIColorFromRGB(0xC8BEA0);
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             
             // delete this object after 1 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:1.0];
@@ -276,7 +279,7 @@
             
             // change the color if it is allowed
             if( [[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0){
-                newestPhotoCell.activity.color=UIColorFromRGB(0xE6501E);
+                newestPhotoCell.activity.color=UIColorFromRGB(0x3B2414);
             }
         }
         
@@ -292,7 +295,7 @@
         if (days >= 2 ){
             if (days > 365){
                 // show in years
-                [dateText appendFormat:days/365 == 1 ? [NSString stringWithFormat:@"%i year ago",days/365] : [NSString stringWithFormat:@"%i years ago",days/365]];
+                [dateText appendString:[NSString stringWithFormat:@"%@", days/365 == 1 ? [NSString stringWithFormat:@"%i year ago",days/365] : [NSString stringWithFormat:@"%i years ago",days/365]]];
             }else{
                 // lets show in days
                 [dateText appendFormat:@"%i days ago",days];
@@ -320,42 +323,53 @@
         newestPhotoCell.private.hidden=YES;
         newestPhotoCell.shareButton.hidden=YES;
         newestPhotoCell.geoPositionButton.hidden=YES;
+        newestPhotoCell.geoSharingImage.hidden=YES;
         [newestPhotoCell.activity startAnimating];
         
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
                               placeholderImage:nil
                                        success:^(UIImage *image){
                                            [newestPhotoCell.activity stopAnimating];
-                                           [newestPhotoCell.photo.layer setCornerRadius:5.0f];
                                            newestPhotoCell.photo.layer.masksToBounds = YES;
+                                           
                                            
                                            [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
                                            [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
                                            [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
-                                           [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+                                           [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 0.0)];
                                            
+                                           newestPhotoCell.photoDetailBox.layer.masksToBounds = YES;
+                                           [newestPhotoCell.photoDetailBox.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+                                           [newestPhotoCell.photoDetailBox.superview.layer setShadowOpacity:0.25];
+                                           [newestPhotoCell.photoDetailBox.superview.layer setShadowRadius:1.0];
+                                           [newestPhotoCell.photoDetailBox.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
                                            
                                            // set details of private or not
                                            if ([photo.permission boolValue] == NO){
                                                newestPhotoCell.private.hidden=NO;
-                                           }else{
-                                               // in case of public image, user can share
-                                               if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
-                                                   newestPhotoCell.shareButton.hidden=NO;
-                                                   newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                                                   newestPhotoCell.newestPhotosTableViewController = self;
-                                               }
+                                           }
+                                           
+                                           // user can share
+                                           if (photo.photoUrl != nil && [PropertiesConfiguration isHostedUser]){
+                                               newestPhotoCell.shareButton.hidden=NO;
+                                               newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+                                               newestPhotoCell.newestPhotosTableViewController = self;
                                            }
                                            
                                            // set details geoposition
+                                           newestPhotoCell.geoSharingImage.hidden=NO;
+                                           
                                            if (photo.latitude != nil && photo.longitude != nil){
                                                // show button
                                                newestPhotoCell.geoPositionButton.hidden=NO;
+                                               newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-on-sharing.png"];
                                                
                                                // set the latitude and longitude
-                                               newestPhotoCell.geoPosition = [NSString stringWithFormat:@"%@,%@",photo.latitude,photo.longitude];
+                                               newestPhotoCell.geoPositionLatitude = photo.latitude;
+                                               newestPhotoCell.geoPositionLongitude = photo.longitude;
                                            }else {
                                                newestPhotoCell.geoPositionButton.hidden=YES;
+                                               newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-off-sharing.png"];
                                            }
                                        }
                                        failure:^(NSError *error){
@@ -485,7 +499,9 @@
 #pragma mark Population core data
 - (void) loadNewestPhotosIntoCoreData
 {
-    if (_reloading == NO){
+    AuthenticationHelper *helper = [[AuthenticationHelper alloc]init];
+    
+    if (_reloading == NO && [helper isValid] ){
         // set reloading in the table
         _reloading = YES;
         
@@ -509,7 +525,7 @@
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
+                        OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"We couldn't get your newest photos." duration:5000];
                         [alert showAlert];
                         [alert release];
                         
@@ -521,12 +537,14 @@
             dispatch_release(loadNewestPhotos);
         }
     }
+    
+    [helper release];
 }
 
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
-    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+    OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Please check your internet connection" duration:5000];
     [alert showAlert];
     [alert release];
 }

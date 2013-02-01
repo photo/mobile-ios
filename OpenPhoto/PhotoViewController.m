@@ -178,7 +178,7 @@
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 self.titleTextField = [[[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)] autorelease];
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
-                self.titleTextField.textColor = UIColorFromRGB(0xE6501E);
+                self.titleTextField.textColor = UIColorFromRGB(0x8C7B73);
                 
                 self.titleTextField.placeholder = @"title";
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
@@ -216,7 +216,7 @@
             
             if([self.permissionPicture respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.permissionPicture setOnTintColor:[UIColor redColor]];
+                [self.permissionPicture setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             
             // get from user configuration if pictures should be private or not
@@ -236,7 +236,7 @@
             self.shareFacebook = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             if([self.shareFacebook respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.shareFacebook setOnTintColor:[UIColor redColor]];
+                [self.shareFacebook setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];
             [self.shareFacebook setOn:NO];
@@ -256,7 +256,7 @@
             self.shareTwitter = [[[UISwitch alloc] initWithFrame:CGRectZero] autorelease];
             if([self.shareTwitter respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.shareTwitter setOnTintColor:[UIColor redColor]];
+                [self.shareTwitter setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = self.shareTwitter;
@@ -611,32 +611,34 @@
         
         //in the main queue, generate TimelinePhotos
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (result){
-                // data to be saved in the database
-                TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos"
-                                                                            inManagedObjectContext:[AppDelegate managedObjectContext]];
-                
-                // details form this upload
-                uploadInfo.date = date;
-                uploadInfo.dateUploaded = date;
-                uploadInfo.facebook = facebook;
-                uploadInfo.twitter = twitter;
-                uploadInfo.permission = permission;
-                uploadInfo.title =  title;
-                uploadInfo.tags=tags;
-                uploadInfo.status=kUploadStatusTypeCreated;
-                uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
-                uploadInfo.photoDataThumb = data;
-                uploadInfo.fileName = name;
-                uploadInfo.userUrl = [AppDelegate user];
-                uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
-                uploadInfo.photoUploadMultiplesUrl = urlGroup;
-                
-                if (url){
-                    // add to the sync list, with that we don't need to show photos already uploaded.
-                    uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
-                }
-            }});
+            @autoreleasepool{
+                if (result){
+                    // data to be saved in the database
+                    TimelinePhotos *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"TimelinePhotos"
+                                                                                inManagedObjectContext:[AppDelegate managedObjectContext]];
+                    
+                    // details form this upload
+                    uploadInfo.date = date;
+                    uploadInfo.dateUploaded = date;
+                    uploadInfo.facebook = facebook;
+                    uploadInfo.twitter = twitter;
+                    uploadInfo.permission = permission;
+                    uploadInfo.title =  title;
+                    uploadInfo.tags=tags;
+                    uploadInfo.status=kUploadStatusTypeCreated;
+                    uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
+                    uploadInfo.photoDataThumb = data;
+                    uploadInfo.fileName = name;
+                    uploadInfo.userUrl = [AppDelegate user];
+                    uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
+                    uploadInfo.photoUploadMultiplesUrl = urlGroup;
+                    
+                    if (url){
+                        // add to the sync list, with that we don't need to show photos already uploaded.
+                        uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
+                    }
+                }}
+        });
     }
 }
 

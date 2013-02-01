@@ -63,7 +63,7 @@
 	overlayView.hidden = !overlayView.hidden;
     overlayAlreadyUploadedView.hidden= !overlayAlreadyUploadedView.hidden;
     
-    if([(SyncViewController*)self.parent totalSelectedAssets] >= 30) {
+    if([(SyncViewController*)self.parent totalSelectedAssets] >= 60) {
         OpenPhotoAlertView *alert = [[OpenPhotoAlertView alloc] initWithMessage:@"Maximum reached" duration:5000];
         [alert showAlert];
         [alert release];

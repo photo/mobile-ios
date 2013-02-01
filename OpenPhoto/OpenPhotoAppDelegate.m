@@ -20,6 +20,8 @@
 #import "OpenPhotoAppDelegate.h"
 #import "OpenPhotoViewController.h"
 
+/******* Set your tracking ID here *******/
+static NSString *const kTrackingId = @"UA-11111111-3";
 
 
 @interface OpenPhotoAppDelegate()
@@ -34,6 +36,8 @@
 @synthesize viewController = _viewController;
 @synthesize internetActive = _internetActive;
 @synthesize hostActive = _hostActive;
+@synthesize facebook = _facebook;
+@synthesize tracker = tracker_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -48,7 +52,15 @@
     // since the default is unlimited.
     [[TTURLCache sharedCache] setMaxPixelCount:20*640*960];
     
-    // in development phase we use the UID of user
+    // Initialize Google Analytics with a 120-second dispatch interval. There is a
+    // tradeoff between battery usage and timely dispatch.
+    [GAI sharedInstance].debug = YES;
+    [GAI sharedInstance].dispatchInterval = 120;
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kTrackingId];
+    
+    
+// in development phase we use the UID of user
 #ifdef DEVELOPMENT_ENABLED
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
@@ -86,13 +98,20 @@
     // check if user is authenticated or not
     AuthenticationHelper *auth = [[AuthenticationHelper alloc]init];
     if ([auth isValid]== NO){
-        // open the authentication screen
-        AuthenticationViewController *controller = [[AuthenticationViewController alloc]init];
-        [self.window.rootViewController presentModalViewController:controller animated:YES];
+        LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
+        UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:controller] autorelease];
+        navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
+        
+        [self.window.rootViewController presentModalViewController:navController animated:YES];
         [controller release];
     }
     [auth release];
     [self.window makeKeyAndVisible];
+    
+    // FACEBOOK
+    self.facebook = [[Facebook alloc] initWithAppId:@"283425805036236" andDelegate:self];
+    
     
     //register to share data.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -102,9 +121,16 @@
     
     // start the job
     [[JobUploaderController getController] start];
+    
+    // Let the device know we want to receive push notifications
+//	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+//     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    // remove badges
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    
     return YES;
 }
-
 
 + (void) initialize
 {
@@ -175,13 +201,155 @@
         }
         
         [auth release];
-    }else if ([[url scheme] hasPrefix:[NSString stringWithFormat:@"fb%@", SHKCONFIG(facebookAppId)]]){
-        return [SHKFacebook handleOpenURL:url];
+    }else if ([[url scheme] hasPrefix:@"fb"]){
+        [SHKFacebook handleOpenURL:url];
+        return [self.facebook handleOpenURL:url];
     }
     
     return YES;
 }
 
+#pragma mark - Facebook API Calls
+/**
+ * Make a Graph API Call to get information about the current logged in user.
+ */
+- (void)apiFQLIMe {
+    // Using the "pic" picture since this currently has a maximum width of 100 pixels
+    // and since the minimum profile picture size is 180 pixels wide we should be able
+    // to get a 100 pixel wide version of the profile picture
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"SELECT username,email FROM user WHERE uid=me()", @"query",
+                                   nil];
+    
+    [self.facebook  requestWithMethodName:@"fql.query"
+                                andParams:params
+                            andHttpMethod:@"POST"
+                              andDelegate:self];
+}
+
+
+/*
+ * Called when the user has logged in successfully.
+ */
+- (void)fbDidLogin {
+    NSLog(@"fbDidLogin");
+    [self storeAuthData:[self.facebook accessToken] expiresAt:[self.facebook expirationDate]];
+    [self apiFQLIMe];
+}
+
+- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
+    [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+}
+
+-(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    NSLog(@"token extended");
+    [self storeAuthData:accessToken expiresAt:expiresAt];
+}
+
+/**
+ * Called when the user canceled the authorization dialog.
+ */
+-(void)fbDidNotLogin:(BOOL)cancelled {
+    NSLog(@"Couldn't login");
+}
+
+/**
+ * Called when the request logout has succeeded.
+ */
+- (void)fbDidLogout {
+    NSLog(@"fbDidLogout");
+    
+    // Remove saved authorization information if it exists and it is
+    // ok to clear it (logout, session invalid, app unauthorized)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+}
+
+/**
+ * Called when the session has expired.
+ */
+- (void)fbSessionInvalidated {
+    NSLog(@"fbSessionInvalidated");
+    
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"Auth Exception"
+                              message:@"Your session has expired."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil,
+                              nil];
+    [alertView show];
+    [alertView release];
+    [self fbDidLogout];
+}
+
+
+#pragma mark - FBRequestDelegate Methods
+/**
+ * Called when the Facebook API request has returned a response.
+ *
+ * This callback gives you access to the raw response. It's called before
+ * (void)request:(FBRequest *)request didLoad:(id)result,
+ * which is passed the parsed response object.
+ */
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
+    NSLog(@"received response = %@",response);
+}
+
+/**
+ * Called when a request returns and its response has been parsed into
+ * an object.
+ *
+ * The resulting object may be a dictionary, an array or a string, depending
+ * on the format of the API response. If you need access to the raw response,
+ * use:
+ *
+ * (void)request:(FBRequest *)request
+ *      didReceiveResponse:(NSURLResponse *)response
+ */
+- (void)request:(FBRequest *)request didLoad:(id)result
+{
+    if ([result isKindOfClass:[NSArray class]]) {
+        result = [result objectAtIndex:0];
+    }
+    
+    // This callback can be a result of getting the user's basic
+    // information or getting the user's permissions.
+    if ([result objectForKey:@"email"]) {
+        // If basic information callback, set the UI objects to
+        // display this.
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Email: %@", [result objectForKey:@"email"]);
+        NSLog(@"Username: %@", [result objectForKey:@"username"]);
+#endif
+        [defaults setObject:[result objectForKey:@"email"] forKey:kFacebookUserConnectedEmail];
+        [defaults setObject:[result objectForKey:@"username"] forKey:kFacebookUserConnectedUsername];
+        [defaults synchronize];
+        
+        // notify the screen that user is logged
+        [[NSNotificationCenter defaultCenter] postNotificationName:kFacebookUserConnected object:nil ];
+    }
+}
+
+
+/**
+ * Called when an error prevents the Facebook API request from completing
+ * successfully.
+ */
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
+    NSLog(@"Error message: %@", [[error userInfo] objectForKey:@"error_msg"]);
+    NSLog(@"Error code: %d", [error code]);
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -201,6 +369,7 @@
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
     }
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -228,6 +397,7 @@
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
     }
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -238,6 +408,7 @@
     
     // needs to update the Sync
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateTableWithAllPhotosAgain object:nil];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -255,6 +426,8 @@
     if (![[AppDelegate managedObjectContext] save:&saveError]){
         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
     }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
 }
 
 
@@ -451,7 +624,28 @@
     [internetReachable release];
     [hostReachable release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [tracker_ release];
     [super dealloc];
 }
+
+
+/////////////
+/// FOR NOTIFICATION
+////////////
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+}
+
 
 @end

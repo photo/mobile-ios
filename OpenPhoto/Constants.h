@@ -77,4 +77,8 @@ extern NSString * const kSyncShowUploadedPhotos;
 
 #define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
+// Facebook
+extern NSString * const kFacebookUserConnected;
+extern NSString * const kFacebookUserConnectedEmail;
+extern NSString * const kFacebookUserConnectedUsername;
 @end
