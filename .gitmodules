@@ -22,6 +22,3 @@
 [submodule "Frameworks/EGOTableViewPullRefresh"]
 	path = Frameworks/EGOTableViewPullRefresh
 	url = git://github.com/enormego/EGOTableViewPullRefresh.git
-[submodule "Frameworks/Aviary"]
-	path = Frameworks/Aviary
-	url = git://github.com/AviaryInc/Mobile-Feather-SDK-for-iOS.git
