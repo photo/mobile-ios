@@ -1,22 +1,21 @@
 //
 //  Constants.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 05/09/11.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-//
+// 
 //  http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import "Constants.h"
 
@@ -31,8 +30,10 @@ NSString * const kPhotosSaveCameraRollOrSnapshot=@"photos_save_camera_roll_or_sn
 NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
 // Privacy - NSUserDefaults name
 NSString * const kPhotosArePrivate=@"photos_are_private";
-// NSUserDefault variable name for the OpenPhoto Server
-NSString * const kOpenPhotoServer=@"account_server";
+// NSUserDefault variable name for the Trovebox Server
+NSString * const kTroveboxServer=@"account_server";
+// user email
+NSString * const kTroveboxEmailUser=@"account_user_email";
 // NSUserDefault variable to hold user pictures
 NSString * const kHomeScreenPictures=@"home_pictures";
 // NSUserDefault variable with information about the last time that the pictures were refreshed
@@ -67,6 +68,7 @@ NSString * const kNotificationNeededsUpdate=@"notification_needs_update";
 NSString * const kNotificationNeededsUpdateHome=@"notification_needs_update_home_screen";
 NSString * const kNotificationDisableUpdateHome=@"notification_disable_update_home_screen";
 NSString * const kNotificationUpdateTableWithAllPhotosAgain=@"notification_update_table_with_all_pictures";
+NSString * const kNotificationProfileRefresh=@"notification_update_profile_information";
 
 
 /*
@@ -95,11 +97,19 @@ NSString * const kValidateNotAllowedLocation=@"validate_not_allowed_location";
  */
 NSString * const kSyncShowUploadedPhotos=@"sync_show_uploaded_photos";
  
+
 /*
  * Facebook
  */
 NSString * const kFacebookUserConnected=@"facebook_user_connected";
 NSString * const kFacebookUserConnectedEmail=@"facebook_user_connected_email";
 NSString * const kFacebookUserConnectedUsername=@"facebook_user_connected_username";
+
+
+// For profile
+NSString * const kProfileAccountType=@"profile_account_type";
+NSString * const kProfileLimitRemaining=@"profile_limit_remaining";
+NSString * const kProfileAccountProReceipt=@"profile_account_pro_receipt";
+NSString * const kProfileLatestUpdateDate=@"profile_latest_update_date";
 
 @end

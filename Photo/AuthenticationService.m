@@ -23,7 +23,7 @@
 
 -(NSURL*) getOAuthInitialUrl{
     // get the url
-    NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxServer];
     NSString *path = @"/v1/oauth/authorize?oauth_callback=photo-test://&name=";
     NSString *appName = [[UIDevice currentDevice] name];
     NSString *fullPath = [[NSString alloc]initWithFormat:@"%@%@%@",server,path,[appName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ] ;
@@ -43,7 +43,7 @@
 
 -(NSURL*) getOAuthAccessUrl{
     // get the url
-    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxServer];
     NSString* url = [[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/token/access"] ;
     
 #ifdef DEVELOPMENT_ENABLED
@@ -55,7 +55,7 @@
 
 -(NSURL*) getOAuthTestUrl{
     // get the url
-    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    NSString* server = [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxServer];
     NSString* url = [[NSString alloc]initWithFormat:@"%@%@",server,@"/v1/oauth/test"] ;
     
 #ifdef DEVELOPMENT_ENABLED
@@ -94,7 +94,7 @@
         dispatch_async(removeCredentials, ^{
             
             @try {
-                OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                WebService *service = [[WebService alloc] init];
                 [service removeCredentialsForKey:consumerKey];
             }@catch (NSException *exception) {
                 NSLog(@"Error to remove the credentials from server %@",exception.description);
@@ -114,14 +114,19 @@
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     
+    // reset profile information
+    [standardUserDefaults setValue:nil forKey:kTroveboxEmailUser];
+    [standardUserDefaults setValue:nil forKey:kProfileLatestUpdateDate];
+    [standardUserDefaults setValue:nil forKey:kProfileAccountType];
+    [standardUserDefaults setValue:nil forKey:kProfileLimitRemaining];
+    
     // synchronize the keys
     [standardUserDefaults synchronize];
     
     // reset core data
      [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
      [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-     [[SharedAppDelegate managedObjectContext] reset];
-     
+    
      NSError *saveError = nil;
      if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
      NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
@@ -269,30 +274,35 @@
     [alert showAlertOnTop];
 }
 
-+ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email
++ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email
 {
-    return [PrivateAccountLoginService createNewAccountWithUser:user email:email];
+    return [PrivateAuthenticationService createNewAccountWithUser:user email:email];
 }
 
-+ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
++ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
 {
-    return [PrivateAccountLoginService createNewAccountWithUser:user email:email password:pwd];
+    return [PrivateAuthenticationService createNewAccountWithUser:user email:email password:pwd];
     
+}
+
++ (Account *) signIn:(NSString*) email password:(NSString*) pwd
+{
+    return [PrivateAuthenticationService signIn:email password:pwd];
 }
 
 + (BOOL) checkUserFacebookEmail:(NSString*) email
 {
-    return [PrivateAccountLoginService checkUserFacebookEmail:email];
-}
-
-+ (AccountOpenPhoto*) signIn:(NSString*) email password:(NSString*) pwd
-{
-    return [PrivateAccountLoginService signIn:email password:pwd];
+    return [PrivateAuthenticationService checkUserFacebookEmail:email];
 }
 
 + (NSString *) recoverPassword:(NSString *) email
 {
-    return [PrivateAccountLoginService recoverPassword:email];
+    return [PrivateAuthenticationService recoverPassword:email];
+}
+
++ (void) sendToServerReceipt:(NSData *) receipt forUser:(NSString *) email
+{
+    return [PrivateAuthenticationService sendToServerReceipt:receipt forUser:email];
 }
 
 @end

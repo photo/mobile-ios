@@ -1,5 +1,5 @@
 //
-//  OpenPhotoAlertView.m
+//  PhotoAlertView.m
 //  Photo
 //
 //  Created by Patrick Santana on 23/04/12.

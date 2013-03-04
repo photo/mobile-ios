@@ -1,57 +1,68 @@
-iPhone Analytics SDK Changelog
+Google Analytics SDK for iOS Changelog
 
 --------------------------------------------
-Version: 1.5.1 (September 2012)
+Version: 2.0beta4 Update (Jan 2013)
 --------------------------------------------
-* Add support for armv7s (for iPhone5).
-* Drop support for armv6.
-* Remove NoThumb version of library.
+* Change default appVersion to the value in CFBundleShortVersionString
+    instead of CFBundleVersionKey.
+* Use HTTPS as the default protocol instead of HTTP.
+* Track methods changed to Send (e.g. trackView now called sendView).
+* Some minor bug fixes.
 
 --------------------------------------------
-Version: 1.5 (April 2012)
+Version: 2.0beta3 iOS6 Update (Sep 2012)
 --------------------------------------------
-* Support for up to 50 custom variables (up from 5).
-* Events now include the last tracked page view.
-* GANTrackerDelegate protocol methods are now optional.
-* Updated BasicExample example app.
+* Add armv7s architecture to libGoogleAnalytics.a.
+* Remove armv6 architecture from libGoogleAnalytics.a.
 
 --------------------------------------------
-Version: 1.4 (November 2011)
+Version: 2.0beta3 (Aug 2012)
 --------------------------------------------
-* Added dispatchSynchronously method.
-* Exposed several useful constants.
-* Changed location of the Google Analytics
-  database from Documents to Library.
-* The SDK no longer throws NSAsserts for SQLite
-  database errors.
-* Fixed crash when calling trackPageview with an
-  empty string
-* Fixed crashes when calling various GANTracker
-  methods after stopTracker was called
-* Fixed several memory leaks, including one calling
-  trackPageview with a pageURL that begins with '/'
+* Third beta release.
+* Added social tracking method to GAITracker:
+    trackSocial:withAction:withTarget:
+* Timing method signature changed to:
+    trackTiming:withValue:withName:withLabel:
+* Manual construction and dispatch methods added to GAITracker:
+    set:value:
+    get:
+    send:params:
+* Custom dimension setter methods added to GAITracker:
+    setCustom:dimension:
+    setCustom:metric:
+* Architecture of data store refactored to prevent reported CoreData issues.
 
 --------------------------------------------
-Version: 1.3 (August 2011)
+Version: 2.0beta2 (Jun 2012)
 --------------------------------------------
-* Added anonymizeIp flag.
-* Added sampleRate parameter.
-* Added support for campaign referrals.
+* Second beta release.
+* Updated to latest wire format.
+* sampleRate changed to double-precision float.
+* Excessive tracking is throttled.
+* Undispatched tracking information is deleted when opt-out is enabled.
+* Undispatched tracking information older than 30 days will be deleted.
+* Enhancements to hit dispatcher.
+* Rather than periodically retry, the dispatcher will use the Reachability API
+  when connectivity is lost to get notified when connectivity is reestablished.
+* Updated example app.
+* Other bugfixes and enhancements.
 
 --------------------------------------------
-Version: 1.2 (June 2011)
+Version: 2.0beta1 (May 2012)
 --------------------------------------------
-* Added support for Ecommerce.
-* Added Debug flag.
-* Added DryRun flag.
+* Initial internal beta release.
+* Added uncaught exception handling facility.
+* Removed 'dispatchEnabled' property from GAI.
+* Added 'defaultTracker' property to GAI.
+* Added 'close' method to GAITracker.
+* Added timing tracking method to GAITracker.
+* Added trackView method to GAITracker which takes no argument.
+* Transaction item field names updated.
+* Updated to latest wire format.
+* Event value is interpreted as a 64-bit integer.
+* ARMV6 code generation switched from THUMB to ARM.
 
 --------------------------------------------
-Version: 1.1 (February 2011)
+Version: 2.0alpha1 (April 2012)
 --------------------------------------------
-* Added support for Custom Variables.
-* Added a NoThumb version of the library.
-
---------------------------------------------
-Version: 1.0 (July 2010)
---------------------------------------------
-* iOS4 support for iPhone-Analytics.
+* Initial internal alpha release.

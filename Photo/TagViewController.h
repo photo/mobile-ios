@@ -20,7 +20,7 @@
 
 #import "Tag.h"
 #import "TSAlertView.h"
-#import "OpenPhotoServiceFactory.h"
+#import "WebService.h"
 #import "MBProgressHUD.h"
 #import "PhotoAlertView.h"
 

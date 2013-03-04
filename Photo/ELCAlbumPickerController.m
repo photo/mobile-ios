@@ -30,7 +30,7 @@
     
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     // color separator
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
 	
 	[self.navigationItem setTitle:@"Loading..."];
     
@@ -61,8 +61,7 @@
                            
                            // Group Enumerator Failure Block
                            void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-                               
-                               UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@ - %@", [error localizedDescription], [error localizedRecoverySuggestion]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                               UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@. Please, check if Trovebox has Location Permission in your Mobile Settings.", [error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                [alert show];
                                
                                NSLog(@"A problem occured %@", [error description]);
@@ -78,14 +77,12 @@
 
 
 -(void)reloadTableView {
-	
-	[self.tableView reloadData];
-	[self.navigationItem setTitle:@"Sync an Album"];
+    [self.tableView reloadData];
+    [self.navigationItem setTitle:@"Sync an Album"];
 }
 
 -(void)selectedAssets:(NSArray*)_assets {
-	
-	[(ELCImagePickerController*)parent selectedAssets:_assets];
+    [(ELCImagePickerController*)parent selectedAssets:_assets];
 }
 
 #pragma mark -
@@ -120,8 +117,8 @@
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d)",[g valueForProperty:ALAssetsGroupPropertyName], gCount];
     [cell.imageView setImage:[UIImage imageWithCGImage:[(ALAssetsGroup*)[assetGroups objectAtIndex:indexPath.row] posterImage]]];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-	
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
     return cell;
 }
 
@@ -129,9 +126,9 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	SyncViewController *picker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:[NSBundle mainBundle]];
-	picker.parent = self;
+    
+    SyncViewController *picker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:[NSBundle mainBundle]];
+    picker.parent = self;
     
     // Move me
     picker.assetGroup = [assetGroups objectAtIndex:indexPath.row];
@@ -141,8 +138,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	return 57;
+    return 57;
 }
 
 #pragma mark -

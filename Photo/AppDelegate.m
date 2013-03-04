@@ -43,21 +43,28 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 @synthesize menuController = _menuController;
 @synthesize syncController = _syncController;
 
+@synthesize tracker = tracker_;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
 #ifdef GOOGLE_ANALYTICS_ENABLED
     // Google Analytics SDK
-    [[GANTracker sharedTracker] startTrackerWithAccountID:kPrivateGoogleAnalytics
-                                           dispatchPeriod:kGANDispatchPeriodSec
-                                                 delegate:nil];
+    // Initialize Google Analytics
+    [GAI sharedInstance].trackUncaughtExceptions = NO;
+    [GAI sharedInstance].dispatchInterval = 20;
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kPrivateGoogleAnalytics];
 #endif
     
     // in development phase we use the UID of user
 #ifdef DEVELOPMENT_ENABLED
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    [TestFlight takeOff:kPrivateTestFlightId];
+#endif
+    
+#ifdef TEST_FLIGHT_ENABLED
+    // to start the TestFlight SDK
+    [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
 #endif
     
     [self prepareConnectionInformation];
@@ -116,8 +123,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         
         [deckController presentModalViewController:navController animated:YES];
-        
-        
     }
     
     //register to share data.
@@ -128,6 +133,22 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // start the job
     [[JobUploaderController getController] start];
+    
+    // Let the device know we want to receive push notifications
+    //	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+    //     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
+    
+    // remove badges
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    
+    // Payment setup
+    if ([SKPaymentQueue canMakePayments]) {
+        TroveboxSubscription *subscription = [TroveboxSubscription createTroveboxSubscription];
+        [subscription requestProUpgradeProductData];
+        
+        TroveboxPaymentTransactionObserver *observer = [[TroveboxPaymentTransactionObserver alloc] init];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
+    }
     
     return YES;
 }
@@ -521,18 +542,36 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
 }
 
-- (NSString *) user
+- (NSString *) userHost
 {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:kOpenPhotoServer];
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxServer];
+}
+
+- (NSString *) userEmail
+{
+    return [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxEmailUser];
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-#ifdef GOOGLE_ANALYTICS_ENABLED
-    [[GANTracker sharedTracker] stopTracker];
-#endif
+}
+
+/////////////
+/// FOR NOTIFICATION
+////////////
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+	NSLog(@"My token is: %@", deviceToken);
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+	NSLog(@"Failed to get token, error: %@", error);
+}
+
+- (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
     
 }
 

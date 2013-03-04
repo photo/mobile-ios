@@ -76,7 +76,7 @@
         return 4;
     }else{
         // settings
-        return 5;
+        return 3;
     }
 }
 
@@ -194,15 +194,8 @@
                     [self openLoginViewController];
                 }
             }else if ( indexPath.section == 1 && indexPath.row == 2){
-                // Upgrade
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[UpgradeViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
-            }else if ( indexPath.section == 1 && indexPath.row == 3){
-                // Properties
-            }else if ( indexPath.section == 1 && indexPath.row == 4){
-                // Contact Us
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ContactUsViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"ContactUsViewController"] bundle:nil]];
+                // Profile
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }

@@ -156,7 +156,7 @@
                 // call the method and get the details
                 @try {
                     // get factory for OpenPhoto Service
-                    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                    WebService *service = [[WebService alloc] init];
                     NSArray *result = [service loadAlbums:25];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{

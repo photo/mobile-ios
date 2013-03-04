@@ -1,9 +1,9 @@
 //
 //  PhotoViewController.h
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 29/07/11.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import "TagViewController.h"
 #import "AFPhotoEditorController.h"
@@ -27,7 +26,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AssetsLibraryUtilities.h"
 
-@interface PhotoViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFPhotoEditorControllerDelegate>
+#import "GAI.h"
+
+@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFPhotoEditorControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *detailsPictureTable;
 
@@ -52,10 +53,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;
 // construct that receives a list with all images URL from Sync
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync;
-
-// action to start uploading
-- (IBAction)upload:(id)sender;
-@property (nonatomic, weak) IBOutlet UIButton *uploadButton;
 
 // assets library
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;

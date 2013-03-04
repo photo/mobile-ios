@@ -1,9 +1,9 @@
 //
 //  SyncViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 18/06/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -75,6 +75,7 @@
 {
     [super viewDidLoad];
 	[self.tableView setAllowsSelection:NO];
+    self.trackedViewName = @"Sync Screen";
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     self.elcAssets = tempArray;
@@ -83,7 +84,7 @@
     
     // button to sync
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"sync-next.png"] ;
+    UIImage *buttonImage = [UIImage imageNamed:@"next.png"] ;
     [button setImage:buttonImage forState:UIControlStateNormal];
     button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
     [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -124,8 +125,9 @@
         }
     }
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] ;
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -571,17 +573,6 @@
                 
                 // synchronize the keys
                 [standardUserDefaults synchronize];
-                
-#ifdef GOOGLE_ANALYTICS_ENABLED
-                NSError *error = nil;
-                if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                     action:@"track"
-                                                      label:@"Not allowed location"
-                                                      value:1
-                                                  withError:&error]) {
-                    // Handle error here
-                }
-#endif
             }
         }
     }

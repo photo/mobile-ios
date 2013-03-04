@@ -1,21 +1,9 @@
 //
 //  LoginCreateAccountViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 02/05/12.
-//  Copyright 2012 Photo
-//
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
 #import "LoginCreateAccountViewController.h"
@@ -69,7 +57,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.trackedViewName = @"Create Account Screen";
     
     if (self.isFacebookCreationAccount){
         self.email.hidden = YES;
@@ -106,7 +95,7 @@
     self.title=@"Facebook Login";
 }
 
-- (IBAction)createAccount:(id)sender 
+- (IBAction)createAccount:(id)sender
 {
     
     if ( self.isViewUp == YES){
@@ -123,8 +112,8 @@
     [self.password resignFirstResponder];
     
     if ( [SharedAppDelegate internetActive] == NO ){
-        // problem with internet, show message to user    
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        // problem with internet, show message to user
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
         [alert showAlert];
     }else{
         
@@ -132,7 +121,7 @@
             // user is authenticated via facebook
             // create the account with username and email
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
-                //show message 
+                //show message
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
                 [alert showAlert];
                 return;
@@ -141,36 +130,37 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             NSString *facebookEmail = [defaults valueForKey:kFacebookUserConnectedEmail];
             
-            // create account 
+            // create account
             [self createFacebookAccountForUsername:self.username.text andEmail:facebookEmail];
         }else{
             // user is creating account using email
             // check for email, username and password
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
-                //show message 
+                //show message
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
                 [alert showAlert];
                 return;
             }
             
             if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
-                //show message  
+                //show message
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email."];
                 [alert showAlert];
                 return;
-            } 
+            }
             
             if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
-                //show message  
+                //show message
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your password."];
                 [alert showAlert];
                 return;
-            } 
+            }
             
             // create account
             [self createAccountUsername:self.username.text withEmail:self.email.text andPassword:self.password.text];
         }
     }
+    
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -210,27 +200,47 @@
 
 
 // Action if user clicks in DONE in the keyboard
-- (BOOL)textFieldShouldReturn:(UITextField *)textField { 
-   
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
     if (self.isFacebookCreationAccount){
         if (textField == self.username){
             [textField resignFirstResponder];
-            [self createAccount:nil];           
+            [self createAccount:nil];
         }
-        return YES; 
+        return YES;
     }else{
         if (textField == self.username){
             [self.email becomeFirstResponder];
-            return NO;   
+            return NO;
         }if (textField == self.email){
             [self.password becomeFirstResponder];
-            return NO;   
+            return NO;
         }else{
             [textField resignFirstResponder];
-            [self createAccount:nil];           
+            [self createAccount:nil];
             return YES;
         }
     }
+}
+
+- (void)viewDidUnload
+{
+    
+    [self setUsername:nil];
+    [self setEmail:nil];
+    [self setPassword:nil];
+    [self setButtonCreateAccount:nil];
+    [self setBackgroundUsername:nil];
+    [self setBackgroundEmail:nil];
+    [self setBackgroundPassword:nil];
+    [self setCreateAccountLabelEnter:nil];
+    [self setCreateAccountLabelYourUsername:nil];
+    [self setCreateAccountLabelForYour:nil];
+    [self setCreateAccountLabelOpenPhoto:nil];
+    [self setFacebookCreateAccountCreate:nil];
+    [self setFacebookCreateAccountUsername:nil];
+    [self setFacebookCreateAccountOpenPhoto:nil];
+    [super viewDidUnload];
 }
 
 
@@ -238,9 +248,9 @@
 //// Private methods
 ////
 -(void) createAccountUsername:(NSString*) username withEmail:(NSString *) email andPassword:(NSString*) password
-{ 
+{
     // display
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Creating Account";
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_user_pwd", NULL);
@@ -248,34 +258,29 @@
         
         @try{
             // gcd to sign in
-            AccountOpenPhoto *account = [AuthenticationService createNewAccountWithUser:username email:email password:password];
+            Account *account = [AuthenticationService createNewAccountWithUser:username email:email password:password];
             
             // save the details of account and remove the progress
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // save data to the user information
                 [account saveToStandardUserDefaults];
-                [self dismissModalViewControllerAnimated:YES];
-
-#ifdef GOOGLE_ANALYTICS_ENABLED
-                NSError *error = nil;
-                if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                     action:@"track"
-                                                      label:@"created account"
-                                                      value:1
-                                                  withError:&error]) {
-                    // Handle error here
-                }
+                
+                // send notification to the system that it can shows the screen:
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                
+                // check point create new account
+#ifdef TEST_FLIGHT_ENABLED
+                [TestFlight passCheckpoint:@"Created account"];
 #endif
                 
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             });
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                 [alert showAlert];
-
             });
             
         }
@@ -286,7 +291,7 @@
 -(void) createFacebookAccountForUsername:(NSString*) username andEmail:(NSString *) email;
 {
     // display
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Creating Account";
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_facebook", NULL);
@@ -294,35 +299,31 @@
         
         @try{
             // gcd tcreate facebook user
-            AccountOpenPhoto *account = [AuthenticationService createNewAccountWithUser:username email:email];
+            Account *account = [AuthenticationService createNewAccountWithUser:username email:email];
             
             // save the details of account and remove the progress
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // save data to the user information
                 [account saveToStandardUserDefaults];
-                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
-                [self dismissModalViewControllerAnimated:YES];
                 
-#ifdef GOOGLE_ANALYTICS_ENABLED
-                NSError *error = nil;
-                if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                     action:@"track"
-                                                      label:@"created account"
-                                                      value:1
-                                                  withError:&error]) {
-                    // Handle error here
-                }
+                // send notification to the system that it can shows the screen:
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                
+                // check point create new account
+#ifdef TEST_FLIGHT_ENABLED
+                [TestFlight passCheckpoint:@"Created account"];
 #endif
                 
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             });
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                 [alert showAlert];
             });
+            
         }
     });
     dispatch_release(queue);

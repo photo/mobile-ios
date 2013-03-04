@@ -1,9 +1,9 @@
 //
 //  NewestPhotoCell.h
-//  Photo
+//  Trovebox-FIXED
 //
 //  Created by Patrick Santana on 27/03/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -18,11 +18,13 @@
 //  limitations under the License.
 //
 
+#import <MapKit/MapKit.h>
 #import "SHK.h"
 
 @interface NewestPhotoCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *photo;
+@property (nonatomic, weak) IBOutlet UIImageView *photoDetailBox;
 @property (nonatomic, weak) IBOutlet UILabel *date;
 @property (nonatomic, weak) IBOutlet UILabel *tags;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activity;
@@ -30,8 +32,10 @@
 @property (nonatomic, weak) IBOutlet UIButton *geoPositionButton;
 @property (nonatomic, weak) IBOutlet UILabel *label;
 @property (nonatomic, weak) IBOutlet UIButton *shareButton;
+@property (nonatomic, weak) IBOutlet UIImageView *geoSharingImage;
 
-@property (nonatomic, strong) NSString *geoPosition;
+@property (nonatomic, strong) NSString *geoPositionLatitude;
+@property (nonatomic, strong) NSString *geoPositionLongitude;
 @property (nonatomic, strong) NSString *photoPageUrl;
 @property (nonatomic, strong) UITableViewController *newestPhotosTableViewController;
 

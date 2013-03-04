@@ -1,9 +1,9 @@
 //
 //  JobUploaderController.h
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 03/07/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import "JobUploaderDelegate.h"
+#import "WebService.h"
 #import "NSDictionarySerializer.h"
 #import "Timeline+Photo.h"
 #import "Synced+Photo.h"

@@ -1,16 +1,16 @@
 //
 //  JobUploaderController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 03/07/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -39,7 +39,7 @@
         shared = [[JobUploaderController alloc] init];
     });
     
-    return shared; 
+    return shared;
 }
 
 - (void) start
@@ -55,7 +55,7 @@
                 [NSThread sleepForTimeInterval:3];
                 // execute the method
                 [self executeJob];
-            }       
+            }
         }@catch (NSException *exception) {
             NSLog(@"Error in the job %@", [exception description]);
         }
@@ -76,19 +76,28 @@
 
 
 - (void) executeJob
-{   
+{
     dispatch_async(dispatch_get_main_queue(), ^{
-#ifdef DEVELOPMENT_ENABLED                        
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Executing job");
 #endif
         
         int i = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
         int created = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
         
+        // disable or enable the lock screen
+        if (created > 0){
+            // disable lock screen
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
+        }else{
+            // enable lock screen
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
+        }
+        
         if (i < 2 && created > 0){
             
             //  looks for uploads in the state WAITING
-            NSArray *waitings = [Timeline getNextWaitingToUploadInManagedObjectContext:[SharedAppDelegate managedObjectContext] qtd:2-i];  
+            NSArray *waitings = [Timeline getNextWaitingToUploadInManagedObjectContext:[SharedAppDelegate managedObjectContext] qtd:2-i];
             
             // loop in the list and start to upload
             for (Timeline *photo in waitings){
@@ -107,27 +116,28 @@
                 }
                 
                 // send
+                NSURL *storedURL = [NSURL URLWithString:photo.photoDataTempUrl];
+                NSData *data = [[NSData alloc] initWithContentsOfURL:storedURL];
+                
                 dispatch_queue_t uploader = dispatch_queue_create("job_uploader", NULL);
                 dispatch_async(uploader, ^{
                     
                     @try{
                         // prepare the data to upload
                         NSString *filename = photo.fileName;
-                        NSURL *storedURL = [NSURL URLWithString:photo.photoDataTempUrl];
-                        NSData *data = [[NSData alloc] initWithContentsOfURL:storedURL];
-                        
+   
                         // set size
                         delegate.totalSize = [NSNumber numberWithInteger:data.length];
                         
                         // create the service, check photo exists and send the request
-                        OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                        WebService *service = [[WebService alloc] init];
                         
                         // before check if the photo already exist
                         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
                             @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
-#ifdef DEVELOPMENT_ENABLED                        
+#ifdef DEVELOPMENT_ENABLED
                             NSLog(@"Photo uploaded correctly");
 #endif
                             
@@ -136,28 +146,28 @@
                                 if (photo.syncedUrl){
                                     // add to the sync list, with that we don't need to show photos already uploaded.
                                     // in the case of edited images via Aviary, we don't save it.
-                                    Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced" 
+                                    Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
                                                                                         inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                                     sync.filePath = photo.syncedUrl;
                                     sync.status = kSyncedStatusTypeUploaded;
                                     
                                     // used to say which user uploaded this image
-                                    sync.userUrl = [SharedAppDelegate user];
+                                    sync.userUrl = [SharedAppDelegate userHost];
                                 }
                                 
-                                photo.status = kUploadStatusTypeUploadFinished; 
+                                photo.status = kUploadStatusTypeUploadFinished;
                                 photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
                                 
                                 // delete local file
                                 NSFileManager *fileManager = [NSFileManager defaultManager];
                                 NSError *error;
                                 BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
-#ifdef DEVELOPMENT_ENABLED    
-                                NSLog(@"Path to file: %@", photo.photoDataTempUrl);        
+#ifdef DEVELOPMENT_ENABLED
+                                NSLog(@"Path to file: %@", photo.photoDataTempUrl);
                                 NSLog(@"File exists: %d", fileExists);
                                 NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
 #endif
-                                if (fileExists) 
+                                if (fileExists)
                                 {
                                     BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
                                     if (!success) NSLog(@"Error: %@", [error localizedDescription]);
@@ -176,7 +186,7 @@
                                     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
                                         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
                                     }
-                                }                                
+                                }
                             });
                         }
                     }@catch (NSException* e) {
@@ -192,13 +202,13 @@
                                 if (photo.syncedUrl){
                                     // add to the sync list, with that we don't need to show photos already uploaded.
                                     // in the case of edited images via Aviary, we don't save it.
-                                    Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced" 
-                                                                                        inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                                    Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
+                                                                                  inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                                     sync.filePath = photo.syncedUrl;
                                     sync.status = kSyncedStatusTypeUploaded;
                                     
                                     // used to say which user uploaded this image
-                                    sync.userUrl = [SharedAppDelegate user];
+                                    sync.userUrl = [SharedAppDelegate userHost];
                                 }
                                 photo.status = kUploadStatusTypeDuplicated;
                             }else {
@@ -214,11 +224,26 @@
                                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdateHome object:nil];
                             }
                         });
+                    }@finally{
+                        // delete local file
+                        NSFileManager *fileManager = [NSFileManager defaultManager];
+                        NSError *error;
+                        BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
+#ifdef DEVELOPMENT_ENABLED
+                        NSLog(@"Path to file: %@", photo.photoDataTempUrl);
+                        NSLog(@"File exists: %d", fileExists);
+                        NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
+#endif
+                        if (fileExists)
+                        {
+                            BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
+                            if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+                        }
+                        
                     }
                 });
                 dispatch_release(uploader);
             }
-            
         }
     });
 }

@@ -1,21 +1,9 @@
 //
 //  LoginViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 02/05/12.
-//  Copyright 2012 Photo
-//
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
 #import "LoginViewController.h"
@@ -31,9 +19,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // notification user connect via facebook
-        [[NSNotificationCenter defaultCenter] addObserver:self 
+        [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
-                                                     name:kFacebookUserConnected       
+                                                     name:kFacebookUserConnected
+                                                   object:nil ];
+        
+        //register to listen for to remove the login screen.
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationLoginAuthorize
                                                    object:nil ];
         
     }
@@ -42,12 +36,13 @@
 
 -(void) viewDidLoad{
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];  
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.trackedViewName = @"Login Screen";
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];  
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -63,12 +58,12 @@
     }
 }
 - (IBAction)signUpWithEmail:(id)sender {
-    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init] ;
+    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginCreateAccountViewController"] bundle:nil] ;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)signInWithEmail:(id)sender {
-    LoginConnectViewController *controller = [[LoginConnectViewController alloc] init];
+    LoginConnectViewController *controller = [[LoginConnectViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginConnectViewController"] bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -78,21 +73,17 @@
     NSLog(@"Event received: %@",notification);
     if ([notification.name isEqualToString:kFacebookUserConnected]){
         [self checkUser];
-    }
-    
-    
-    
-   // else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
+    }else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
-   //     [self dismissViewControllerAnimated:YES completion:nil];
-   // }
+        [self dismissModalViewControllerAnimated:YES];
+    }
 }
 
 - (void) checkUser{
     
     if ( [SharedAppDelegate internetActive] == NO ){
-        // problem with internet, show message to user    
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        // problem with internet, show message to user
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
         [alert showAlert];
         return;
     }
@@ -101,7 +92,7 @@
     // display
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *email = [defaults valueForKey:kFacebookUserConnectedEmail];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Checking";
     
     
@@ -113,31 +104,26 @@
             BOOL hasAccount = [AuthenticationService checkUserFacebookEmail:email];
             if (hasAccount){
                 // just log in
-                AccountOpenPhoto *account = [AuthenticationService signIn:email password:nil];
+                Account *account = [AuthenticationService signIn:email password:nil];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // save the details of account and remove the progress
                     [account saveToStandardUserDefaults];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
-                    [self dismissModalViewControllerAnimated:YES];
                     
-#ifdef GOOGLE_ANALYTICS_ENABLED
-                    NSError *error = nil;
-                    if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                         action:@"track"
-                                                          label:@"login"
-                                                          value:1
-                                                      withError:&error]) {
-                        // Handle error here
-                    }
+                    // send notification to the system that it can shows the screen:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                    
+                    // check point create new account
+#ifdef TEST_FLIGHT_ENABLED
+                    [TestFlight passCheckpoint:@"Login"];
 #endif
                     
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // open LoginCreateAccountViewController
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] init];
                     [controller setFacebookCreateAccount];
                     [self.navigationController pushViewController:controller animated:YES];
@@ -145,18 +131,20 @@
             }
         }@catch (NSException* e) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description] duration:5000];
                 [alert showAlertOnTop];
             });
         }
     });
-    dispatch_release(checkingEmailFacebook);    
+    dispatch_release(checkingEmailFacebook);
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
 @end

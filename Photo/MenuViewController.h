@@ -25,9 +25,8 @@
 #import "AlbumViewController.h"
 #import "HomeTableViewController.h"
 #import "SyncViewController.h"
-#import "ContactUsViewController.h"
 #import "AccountViewController.h"
-#import "UpgradeViewController.h"
+#import "ProfileViewController.h"
 #import "GalleryViewController.h"
 #import "DisplayUtilities.h"
 

@@ -1,9 +1,9 @@
 //
 //  PhotoViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 29/07/11.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import "PhotoViewController.h"
 
@@ -46,11 +45,11 @@
 
 // this method is used in case of in Multiples Uploads the user choose only one picure. we should enable him to edit the image
 - (void) loadImageToEdit:(NSURL *) url;
+- (void)upload:(id)sender;
 
 @end
 
 @implementation PhotoViewController
-@synthesize uploadButton = _uploadButton;
 
 @synthesize detailsPictureTable=_detailsPictureTable;
 @synthesize originalImage=_originalImage, imageFiltered=_imageFiltered;
@@ -110,7 +109,7 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    self.trackedViewName = @"Upload Screen";
     self.title = @"Upload";
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
@@ -118,13 +117,22 @@
     
     if (self.images){
         self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 40, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height+40);
-        self.uploadButton.frame = CGRectMake(self.uploadButton.frame.origin.x,self.uploadButton.frame.origin.y - 85, self.uploadButton.frame.size.width,self.uploadButton.frame.size.height);
     }else{
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];
         self.navigationItem.rightBarButtonItem = cancelButton;
     }
+    
+    // button to done
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonImage = [UIImage imageNamed:@"done.png"] ;
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+    [button addTarget:self action:@selector(upload:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = customBarItem;
     
     UIImageView *imgView=[[UIImageView alloc]init];
     imgView.image=[UIImage imageNamed:@"Background.png"];;
@@ -134,11 +142,14 @@
 
 - (void) cancelUploadButton{
     [self dismissModalViewControllerAnimated:YES];
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                      withAction:@"buttonPress"
+                                                       withLabel:@"Cancel Upload"
+                                                       withValue:nil];
 }
 
 
 - (void)viewDidUnload{
-    [self setUploadButton:nil];
     [super viewDidUnload];
     [self setDetailsPictureTable:nil];
 }
@@ -173,7 +184,7 @@
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
-                self.titleTextField.textColor = UIColorFromRGB(0xE6501E);
+                self.titleTextField.textColor = UIColorFromRGB(0x8C7B73);
                 
                 self.titleTextField.placeholder = @"title";
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
@@ -211,7 +222,7 @@
             
             if([self.permissionPicture respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.permissionPicture setOnTintColor:[UIColor redColor]];
+                [self.permissionPicture setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             
             // get from user configuration if pictures should be private or not
@@ -231,7 +242,7 @@
             self.shareFacebook = [[UISwitch alloc] initWithFrame:CGRectZero];
             if([self.shareFacebook respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.shareFacebook setOnTintColor:[UIColor redColor]];
+                [self.shareFacebook setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];
             [self.shareFacebook setOn:NO];
@@ -251,7 +262,7 @@
             self.shareTwitter = [[UISwitch alloc] initWithFrame:CGRectZero];
             if([self.shareTwitter respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
-                [self.shareTwitter setOnTintColor:[UIColor redColor]];
+                [self.shareTwitter setOnTintColor:UIColorFromRGB(0xEFC005)];
             }
             [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = self.shareTwitter;
@@ -354,7 +365,12 @@
     return YES;
 }
 
-- (IBAction)upload:(id)sender {
+- (void)upload:(id)sender {
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                      withAction:@"buttonPress"
+                                                       withLabel:@"Upload"
+                                                       withValue:nil];
+    
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Upload button clicked. Save all details in the database");
 #endif
@@ -412,7 +428,7 @@
                         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
                         
                         // create the url to connect to OpenPhoto
-                        NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kOpenPhotoServer], [self.images count]];
+                        NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kTroveboxServer], [self.images count]];
                         
                         [self loadDataAndSaveEntityUploadDate:[NSDate date]
                                                 shareFacebook:facebook
@@ -439,23 +455,14 @@
                                              groupUrl:nil];
             }
             
-#ifdef GOOGLE_ANALYTICS_ENABLED
-            NSError *error = nil;
-            NSString *label;
+#ifdef TEST_FLIGHT_ENABLED
+            // checkpoint
             if (self.imageFiltered){
-                label = @"Image from Aviary";
+                [TestFlight passCheckpoint:@"Image from Aviary"];
             }else if (self.images){
-                label = @"Image from Sync";
+                [TestFlight passCheckpoint:@"Image from Sync"];
             }else{
-                label = @"Image from Snapshot";
-            }
-
-            if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                 action:@"track"
-                                                  label:label
-                                                  value:1
-                                              withError:&error]) {
-                // Handle error here
+                [TestFlight passCheckpoint:@"Image from Snapshot"];
             }
 #endif
             
@@ -611,32 +618,34 @@
         
         //in the main queue, generate TimelinePhotos
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (result){
-                // data to be saved in the database
-                Timeline *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
-                                                                            inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-                
-                // details form this upload
-                uploadInfo.date = date;
-                uploadInfo.dateUploaded = date;
-                uploadInfo.facebook = facebook;
-                uploadInfo.twitter = twitter;
-                uploadInfo.permission = permission;
-                uploadInfo.title =  title;
-                uploadInfo.tags=tags;
-                uploadInfo.status=kUploadStatusTypeCreated;
-                uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
-                uploadInfo.photoDataThumb = data;
-                uploadInfo.fileName = name;
-                uploadInfo.userUrl = [SharedAppDelegate user];
-                uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
-                uploadInfo.photoUploadMultiplesUrl = urlGroup;
-                
-                if (url){
-                    // add to the sync list, with that we don't need to show photos already uploaded.
-                    uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
-                }
-            }});
+            @autoreleasepool{
+                if (result){
+                    // data to be saved in the database
+                    Timeline *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
+                                                                                inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                    
+                    // details form this upload
+                    uploadInfo.date = date;
+                    uploadInfo.dateUploaded = date;
+                    uploadInfo.facebook = facebook;
+                    uploadInfo.twitter = twitter;
+                    uploadInfo.permission = permission;
+                    uploadInfo.title =  title;
+                    uploadInfo.tags=tags;
+                    uploadInfo.status=kUploadStatusTypeCreated;
+                    uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
+                    uploadInfo.photoDataThumb = data;
+                    uploadInfo.fileName = name;
+                    uploadInfo.userUrl = [SharedAppDelegate userHost];
+                    uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
+                    uploadInfo.photoUploadMultiplesUrl = urlGroup;
+                    
+                    if (url){
+                        // add to the sync list, with that we don't need to show photos already uploaded.
+                        uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
+                    }
+                }}
+        });
     }
 }
 

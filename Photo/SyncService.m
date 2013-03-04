@@ -1,9 +1,9 @@
 //
 //  SyncService.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 24/05/12.
-//  Copyright (c) 2012 Photo. All rights reserved.
+//  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
 #import "SyncService.h"

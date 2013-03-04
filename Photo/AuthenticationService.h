@@ -21,11 +21,9 @@
 #import "OAMutableURLRequest.h"
 #import "OAToken.h"
 #import "OAServiceTicket.h"
-#import "OpenPhotoService.h"
-#import "OpenPhotoServiceFactory.h"
 #import "OADataFetcher.h"
-#import "AccountOpenPhoto.h"
-#import "PrivateAccountLoginService.h"
+#import "Account.h"
+#import "PrivateAuthenticationService.h"
 #import "Timeline+Photo.h"
 #import "Synced+Photo.h"
 
@@ -44,10 +42,12 @@
 - (void) startOAuthProcedure:(NSURL*) url;
 
 // for login
-+ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email;
-+ (AccountOpenPhoto*) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
++ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email;
++ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
++ (Account *) signIn:(NSString*) email password:(NSString*) pwd;
 + (BOOL) checkUserFacebookEmail:(NSString*) email;
-+ (AccountOpenPhoto*) signIn:(NSString*) email password:(NSString*) pwd;
 + (NSString *) recoverPassword:(NSString *) email;
+
++ (void) sendToServerReceipt:(NSData *) receipt forUser:(NSString *) email;
 
 @end

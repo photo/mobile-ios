@@ -1,9 +1,9 @@
 //
 //  HomeTableViewController.h
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 22/06/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 
 #import "EGORefreshTableHeaderView.h"
 #import "Timeline+Photo.h"
-#import "OpenPhotoServiceFactory.h"
+#import "WebService.h"
 
 #import "NewestPhotoCell.h"
 #import "UploadCell.h"
@@ -33,7 +33,8 @@
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-#import "AuthenticationService.h"
+// to update profile
+#import "DateUtilities.h"
 
 @interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate>{
  

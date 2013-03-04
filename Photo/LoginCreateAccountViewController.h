@@ -19,10 +19,12 @@
 //
 
 #import "AuthenticationService.h"
-#import "AccountOpenPhoto.h"
+#import "Account.h"
 #import "MBProgressHUD.h"
 
-@interface LoginCreateAccountViewController : UIViewController<UITextFieldDelegate>
+#import "GAI.h"
+
+@interface LoginCreateAccountViewController : GAITrackedViewController<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *email;

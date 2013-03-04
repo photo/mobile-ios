@@ -37,9 +37,15 @@
 #import "HomeTableViewController.h"
 #import "JobUploaderController.h"
 #import "ELCImagePickerController.h"
-#import "GANTracker.h"
 #import "LoginViewController.h"
 #import "AuthenticationService.h"
+
+#import "GAI.h"
+
+//for payment
+#import <StoreKit/StoreKit.h>
+#import "TroveboxPaymentTransactionObserver.h"
+#import "TroveboxSubscription.h"
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,
@@ -80,12 +86,16 @@ FBSessionDelegate>{
 // for facebook single sign in
 @property (nonatomic, strong) Facebook *facebook;
 
+//google analytics
+@property(nonatomic, strong) id<GAITracker> tracker;
+
 // navigation
-@property (strong, nonatomic) UIViewController *centerController;
-@property (strong, nonatomic) UIViewController *menuController;
-@property (strong, nonatomic) ELCImagePickerController *syncController;
+@property (nonatomic, strong) UIViewController *centerController;
+@property (nonatomic, strong) UIViewController *menuController;
+@property (nonatomic, strong) ELCImagePickerController *syncController;
 
 // get the user connect
-- (NSString *) user;
+- (NSString *) userHost;
+- (NSString *) userEmail;
 
 @end

@@ -1,21 +1,9 @@
 //
 //  LoginConnectViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 02/05/12.
-//  Copyright 2012 Photo
-//
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
 #import "LoginConnectViewController.h"
@@ -46,11 +34,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.trackedViewName = @"Login Screen";
 }
 
 - (void)viewDidUnload
 {
+    [self setEmail:nil];
+    [self setPassword:nil];
     [super viewDidUnload];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
@@ -58,7 +50,6 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -116,12 +107,12 @@
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
         [alert showAlert];
     }else{
         
         // display
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.labelText = @"Logging";
         
         
@@ -133,32 +124,27 @@
             
             @try{
                 // gcd to sign in
-                AccountOpenPhoto *account = [AuthenticationService signIn:postEmail password:postPassword];
+                Account *account = [AuthenticationService signIn:postEmail password:postPassword];
                 
                 // save the details of account and remove the progress
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     // save data to the user information
                     [account saveToStandardUserDefaults];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
-                    [self dismissModalViewControllerAnimated:YES];
                     
-#ifdef GOOGLE_ANALYTICS_ENABLED
-                    NSError *error = nil;
-                    if (![[GANTracker sharedTracker] trackEvent:@"ios"
-                                                         action:@"track"
-                                                          label:@"login"
-                                                          value:1
-                                                      withError:&error]) {
-                        // Handle error here
-                    }
+                    // send notification to the system that it can shows the screen:
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                    
+                    // check point create new account
+#ifdef TEST_FLIGHT_ENABLED
+                    [TestFlight passCheckpoint:@"Login"];
 #endif
                     
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:[e description]];
                     [alert showAlert];
                 });
@@ -194,12 +180,12 @@
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
         [alert showAlert];
     }else{
         
         // display
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         hud.labelText = @"Resetting";
         
         
@@ -234,7 +220,7 @@
 }
 
 - (IBAction)haveYourOwnInstance:(id)sender {
-    AuthenticationViewController *controller = [[AuthenticationViewController alloc]init ];
+    AuthenticationViewController *controller = [[AuthenticationViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"AuthenticationViewController"] bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

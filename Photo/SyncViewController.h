@@ -1,9 +1,9 @@
 //
 //  SyncViewController.h
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 18/06/12.
-//  Copyright 2012 Photo
+//  Copyright 2013
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,9 @@
 #import "PhotoViewController.h"
 #import "ELCCamera.h"
 
-@interface SyncViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
+#import "GAI.h"
+
+@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	

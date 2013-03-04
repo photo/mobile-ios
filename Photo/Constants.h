@@ -1,22 +1,21 @@
 //
 //  Constants.h
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 05/09/11.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-//
+// 
 //  http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 @interface Constants : NSObject
 
@@ -24,7 +23,9 @@ extern NSString * const kAppInitialized;
 extern NSString * const kPhotosSaveCameraRollOrSnapshot;
 extern NSString * const kPhotosSaveFiltered;
 extern NSString * const kPhotosArePrivate;
-extern NSString * const kOpenPhotoServer;
+extern NSString * const kTroveboxServer;
+extern NSString * const kTroveboxEmailUser;
+
 extern NSString * const kHomeScreenPictures;
 extern NSString * const kHomeScreenPicturesTimestamp;
 extern NSString * const kServerDetails;
@@ -44,6 +45,7 @@ extern NSString * const kNotificationNeededsUpdate;
 extern NSString * const kNotificationNeededsUpdateHome;
 extern NSString * const kNotificationDisableUpdateHome;
 extern NSString * const kNotificationUpdateTableWithAllPhotosAgain;
+extern NSString * const kNotificationProfileRefresh;
 
 extern NSString * const kCellIdentifierTitle;
 extern NSString * const kCellIdentifierTags;
@@ -58,8 +60,22 @@ extern NSString * const kValidateNotAllowedLocation;
 
 extern NSString * const kSyncShowUploadedPhotos;
 
+// Facebook
+extern NSString * const kFacebookUserConnected;
+extern NSString * const kFacebookUserConnectedEmail;
+extern NSString * const kFacebookUserConnectedUsername;
+
+// For profile
+extern NSString * const kProfileAccountType;
+extern NSString * const kProfileLimitRemaining;
+extern NSString * const kProfileAccountProReceipt;
+extern NSString * const kProfileLatestUpdateDate;
+
 // when defined, we will use Google Analytics
 #define GOOGLE_ANALYTICS_ENABLED
+
+// while using TestFlight, this variable will permit the app to save/send data
+#define TEST_FLIGHT_ENABLED
 
 // a lot of logs, don't use in production env.
 #define DEVELOPMENT_ENABLED
@@ -68,7 +84,7 @@ extern NSString * const kSyncShowUploadedPhotos;
 #define DEVELOPMENT_ENABLED_JSON_RETURN
 
 // if set developer can have credentials printed in the console
-// #define DEVELOPMENT_CREDENTIALS_LOG_ENABLED
+#define DEVELOPMENT_CREDENTIALS_LOG_ENABLED
 
 // to transform color from hex to RBG
 //RGB color macro
@@ -77,9 +93,5 @@ extern NSString * const kSyncShowUploadedPhotos;
 
 #define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
-// Facebook
-extern NSString * const kFacebookUserConnected;
-extern NSString * const kFacebookUserConnectedEmail;
-extern NSString * const kFacebookUserConnectedUsername;
 
 @end

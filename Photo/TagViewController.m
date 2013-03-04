@@ -39,13 +39,18 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-                
+        
+        self.tableView.backgroundColor = [[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]] autorelease];
+        
         // initialize the object tags
         self.tags = [NSMutableArray array];
         
         // set the read only by default as NO
         self.readOnly = NO;
-
+        
+        // color separator
+        self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
+        
         // is loading tags
         self.isLoading = NO;
     }
@@ -298,8 +303,8 @@
             dispatch_async(loadTags, ^{
                 // call the method and get the details
                 @try {
-                    // get factory for OpenPhoto Service
-                    OpenPhotoService *service = [OpenPhotoServiceFactory createOpenPhotoService];
+                    // Get Web Service
+                    WebService *service = [[WebService alloc] init];
                     NSArray *result = [service getTags];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{

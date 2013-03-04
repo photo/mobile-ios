@@ -1,9 +1,9 @@
 //
 //  AuthenticationViewController.m
-//  Photo
+//  Trovebox
 //
-//  Created by Patrick Santana on 5/10/12.
-//  Copyright 2012 Photo
+//  Created by Patrick Santana on 07/09/11.
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
 
 #import "AuthenticationViewController.h"
 
@@ -44,6 +43,24 @@
     return self;
 }
 
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.trackedViewName = @"Self-instance Login Screen";
+}
+
+- (void)viewDidUnload
+{
+    [self setServerURL:nil];
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
 - (IBAction)login:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url Login %@",self.serverURL.text);
@@ -51,7 +68,7 @@
     
     // check if the user typed something
     if ( self.serverURL.text != nil &&
-        [self.serverURL.text isEqualToString:@"username.openphoto.me"]){
+        [self.serverURL.text isEqualToString:@"username.trovebox.com"]){
         
         // user should add URL
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set the URL to the OpenPhoto Server." duration:5000];
@@ -61,8 +78,7 @@
         [self saveUrl:self.serverURL.text];
         
         // to the login in the website
-        AuthenticationService* service = [[AuthenticationService alloc]init];
-        [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
+        [[UIApplication sharedApplication] openURL:[[[AuthenticationService alloc]init] getOAuthInitialUrl]];
     }
 }
 
@@ -77,9 +93,7 @@
     [self saveUrl:textField.text];
     
     // to the login
-    AuthenticationService* service = [[AuthenticationService alloc]init];
-    [[UIApplication sharedApplication] openURL:[service getOAuthInitialUrl]];
-
+    [[UIApplication sharedApplication] openURL:[[[AuthenticationService alloc]init] getOAuthInitialUrl]];
     
     // return
     [textField resignFirstResponder];
@@ -95,7 +109,7 @@
         if([textField respondsToSelector:@selector(selectedTextRange)]){
             
             //iOS >=5.0
-            if ( [textField.text isEqualToString:@"username.openphoto.me"]){
+            if ( [textField.text isEqualToString:@"username.trovebox.com"]){
                 // get the actual range
                 UITextRange *selectedRange = [textField selectedTextRange];
                 
@@ -136,9 +150,9 @@
     
     // removes form the URL if it ends with "/"
     if ([[url lastPathComponent] isEqualToString:@"/"]){
-        [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kOpenPhotoServer];
+        [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kTroveboxServer];
     }else{
-        [standardUserDefaults setValue:[url relativeString] forKey:kOpenPhotoServer];
+        [standardUserDefaults setValue:[url relativeString] forKey:kTroveboxServer];
     }
     [standardUserDefaults synchronize];
 }
@@ -152,7 +166,7 @@
     
     if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissModalViewControllerAnimated:YES];
     }
 }
 
