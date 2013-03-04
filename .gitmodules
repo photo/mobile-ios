@@ -1,36 +1,27 @@
-[submodule "three20"]
-	path = three20
-	url = git://github.com/facebook/three20.git
-[submodule "Frameworks/QSUtilities"]
-	path = Frameworks/QSUtilities
-	url = git://github.com/mikeho/QSUtilities.git
-[submodule "Frameworks/InAppSettingsKit"]
-	path = Frameworks/InAppSettingsKit
-	url = https://github.com/futuretap/InAppSettingsKit.git
-[submodule "Frameworks/TSAlertView"]
-	path = Frameworks/TSAlertView
-	url = git://github.com/TomSwift/TSAlertView.git
-[submodule "Frameworks/MBProgressHUD"]
-	path = Frameworks/MBProgressHUD
-	url = https://github.com/jdg/MBProgressHUD.git
-[submodule "Frameworks/ASIHTTPRequest"]
-	path = Frameworks/ASIHTTPRequest
-	url = git://github.com/pokeb/asi-http-request.git
-[submodule "Frameworks/ShareKit"]
-	path = Frameworks/ShareKit
-	url = git://github.com/ShareKit/ShareKit.git
-[submodule "Frameworks/EGOTableViewPullRefresh"]
-	path = Frameworks/EGOTableViewPullRefresh
-	url = https://github.com/enormego/EGOTableViewPullRefresh.git
-[submodule "Frameworks/ELCImagePickerController"]
-	path = Frameworks/ELCImagePickerController
-	url = https://github.com/elc/ELCImagePickerController.git
-[submodule "Frameworks/Nimbus"]
-	path = Frameworks/Nimbus
-	url = git://github.com/jverkoey/nimbus.git
-[submodule "Frameworks/SDWebImage"]
-	path = Frameworks/SDWebImage
-	url = https://github.com/rs/SDWebImage.git
+[submodule "Frameworks/ViewDeck"]
+	path = Frameworks/ViewDeck
+	url = git://github.com/Inferis/ViewDeck.git
 [submodule "Frameworks/iRate"]
 	path = Frameworks/iRate
 	url = git://github.com/nicklockwood/iRate.git
+[submodule "Frameworks/SDWebImage"]
+	path = Frameworks/SDWebImage
+	url = git://github.com/rs/SDWebImage.git
+[submodule "Frameworks/ASIHTTPRequest"]
+	path = Frameworks/ASIHTTPRequest
+	url = git://github.com/pokeb/asi-http-request
+[submodule "Frameworks/ShareKit"]
+	path = Frameworks/ShareKit
+	url = git://github.com/ShareKit/ShareKit
+[submodule "Frameworks/MBProgressHUD"]
+	path = Frameworks/MBProgressHUD
+	url = https://github.com/jdg/MBProgressHUD.git
+[submodule "Frameworks/TSAlertView"]
+	path = Frameworks/TSAlertView
+	url = git://github.com/TomSwift/TSAlertView.git
+[submodule "Frameworks/EGOTableViewPullRefresh"]
+	path = Frameworks/EGOTableViewPullRefresh
+	url = git://github.com/enormego/EGOTableViewPullRefresh.git
+[submodule "Frameworks/Aviary"]
+	path = Frameworks/Aviary
+	url = git://github.com/AviaryInc/Mobile-Feather-SDK-for-iOS.git

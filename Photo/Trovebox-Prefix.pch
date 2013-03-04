@@ -1,0 +1,23 @@
+//
+// Prefix header for all source files of the 'Photo' target in the 'Photo' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import "AppDelegate.h"
+    #import "TestFlight.h"
+    #import "Constants.h"
+    #import "PrivateConstants.h"
+    #import "PhotoAlertView.h"
+
+#define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+
+#endif

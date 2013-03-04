@@ -1,5 +1,6 @@
 # Xcode
-build/*
+.DS_Store
+build/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -13,10 +14,8 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+DerivedData
+.idea/
 
-OpenPhoto.xcodeproj/xcuserdata
-
-# osx noise
-.DS_Store
-profile
-
+// private class
+Photo/PrivateAuthenticationService.m
