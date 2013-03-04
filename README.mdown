@@ -1,4 +1,4 @@
-<img src="https://github.com/photo/frontend/raw/master/files/creative/logo.png" style="width:234px; height:43px; margin:auto;">
+<img src="https://trovebox.com/images/logo.png" style="margin:auto;">
 
 
 ### What is Trovebox?

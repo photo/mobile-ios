@@ -7,3 +7,21 @@
 [submodule "Frameworks/SDWebImage"]
 	path = Frameworks/SDWebImage
 	url = git://github.com/rs/SDWebImage.git
+[submodule "Frameworks/ASIHTTPRequest"]
+	path = Frameworks/ASIHTTPRequest
+	url = git://github.com/pokeb/asi-http-request
+[submodule "Frameworks/ShareKit"]
+	path = Frameworks/ShareKit
+	url = git://github.com/ShareKit/ShareKit
+[submodule "Frameworks/MBProgressHUD"]
+	path = Frameworks/MBProgressHUD
+	url = git://github.com/jdg/MBProgressHUD.git
+[submodule "Frameworks/TSAlertView"]
+	path = Frameworks/TSAlertView
+	url = git://github.com/TomSwift/TSAlertView.git
+[submodule "Frameworks/EGOTableViewPullRefresh"]
+	path = Frameworks/EGOTableViewPullRefresh
+	url = git://github.com/enormego/EGOTableViewPullRefresh.git
+[submodule "Frameworks/Aviary"]
+	path = Frameworks/Aviary
+	url = git://github.com/AviaryInc/Mobile-Feather-SDK-for-iOS.git
