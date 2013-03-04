@@ -4,3 +4,6 @@
 [submodule "Frameworks/iRate"]
 	path = Frameworks/iRate
 	url = git://github.com/nicklockwood/iRate.git
+[submodule "Frameworks/SDWebImage"]
+	path = Frameworks/SDWebImage
+	url = git://github.com/rs/SDWebImage.git
