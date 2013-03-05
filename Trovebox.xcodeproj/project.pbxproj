@@ -99,6 +99,10 @@
 		CDA1855E16E601CB00D617CB /* libShareKitCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15C016E600DC004D22FD /* libShareKitCore.a */; };
 		CDA1855F16E601CB00D617CB /* libTwitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15FA16E600DC004D22FD /* libTwitter.a */; };
 		CDA1856016E601F100D617CB /* ShareKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD2F15BE16E600DC004D22FD /* ShareKit.bundle */; };
+		CDA1856D16E61BC200D617CB /* button-navigation-camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856916E61BBC00D617CB /* button-navigation-camera.png */; };
+		CDA1856E16E61BC200D617CB /* button-navigation-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */; };
+		CDA1856F16E61BC200D617CB /* button-navigation-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */; };
+		CDA1857016E61BC200D617CB /* button-navigation-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -769,6 +773,10 @@
 		CD9115BC16243FCA0099204B /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 		CD9115BE16243FE90099204B /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
+		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
+		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
+		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
+		CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu@2x.png"; path = "images/button-navigation-menu@2x.png"; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1322,6 +1330,10 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDA1856916E61BBC00D617CB /* button-navigation-camera.png */,
+				CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */,
+				CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */,
+				CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */,
 				CDCC0A0E16E0C23700BE4481 /* appbar_empty.png */,
 				CDCC0A0F16E0C23700BE4481 /* appbar_empty@2x.png */,
 				CDCC0A1016E0C23700BE4481 /* back.png */,
@@ -2297,6 +2309,10 @@
 				CDCC0CEE16E1023D00BE4481 /* IASKSpecifierValuesView.xib in Resources */,
 				CDA1856016E601F100D617CB /* ShareKit.bundle in Resources */,
 				CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */,
+				CDA1856D16E61BC200D617CB /* button-navigation-camera.png in Resources */,
+				CDA1856E16E61BC200D617CB /* button-navigation-camera@2x.png in Resources */,
+				CDA1856F16E61BC200D617CB /* button-navigation-menu.png in Resources */,
+				CDA1857016E61BC200D617CB /* button-navigation-menu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

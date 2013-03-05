@@ -118,16 +118,17 @@
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"home-openphoto-bar.png"] forBarMetrics:UIBarMetricsDefault];
     }else{
         UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
         if (imageView == nil)
         {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-openphoto-bar.png"]];
             [imageView setTag:6183746];
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
+    
     
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
@@ -154,39 +155,34 @@
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleLeftView)];
+    // menu
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
     
-    if ([self.navigationItem respondsToSelector:@selector(rightBarButtonItems)]) {
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:
-                                                   [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)],
-                                                   nil];
-    }
-    else {
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sync" style:UIBarButtonItemStyleBordered target:self.viewDeckController action:@selector(toggleRightView)];
-    }
+    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = customLeftButton;
+    
+    // camera
+    UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
+    [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
+    buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
+    [buttonRight addTarget:self action:@selector(capturePhoto) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
+    self.navigationItem.rightBarButtonItem = customRightButton;
     
     // title
-    self.navigationItem.title = NSLocalizedString(@"OpenPhoto", @"Main page title");
+    self.navigationItem.title = @"";
     
     UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
     
     // color separator
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
-    
-    // image for the navigator
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
-        //iOS >=5.0
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
-    }else{
-        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
-        if (imageView == nil)
-        {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
-            [imageView setTag:6183746];
-            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
-        }
-    }
 }
 
 
@@ -616,6 +612,11 @@
         [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
         [standardUserDefaults synchronize];
     }
+}
+
+- (void) capturePhoto
+{
+    
 }
 
 - (void) dealloc

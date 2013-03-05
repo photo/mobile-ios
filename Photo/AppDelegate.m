@@ -75,18 +75,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
     
-    //sync
-    SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
-    self.syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
-    [photoPicker setParent:self.syncController];
-    [self.syncController setDelegate:photoPicker];
-    
-    
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController
-                                                                                   rightViewController:self.syncController];
+                                                                                   rightViewController:nil];
     
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
