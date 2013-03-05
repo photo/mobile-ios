@@ -22,3 +22,6 @@
 [submodule "Frameworks/json-framework"]
 	path = Frameworks/json-framework
 	url = git://github.com/stig/json-framework.git
+[submodule "Frameworks/ShareKit"]
+	path = Frameworks/ShareKit
+	url = git://github.com/ShareKit/ShareKit.git
