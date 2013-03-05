@@ -21,7 +21,7 @@
 #import "ASIHTTPRequest.h"
 #import "OAMutableURLRequest.h"
 #import "OAToken.h"
-#import "NSString+SBJSON.h"
+#import "SBJson.h"
 #import "ASIFormDataRequest.h"
 #import "ContentTypeUtilities.h"
 #import "ASIProgressDelegate.h"

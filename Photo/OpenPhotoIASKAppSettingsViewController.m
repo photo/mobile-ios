@@ -42,12 +42,11 @@
     
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = logoutButton;
-    [logoutButton release];
+
       
     UIImageView *imgView=[[UIImageView alloc]init];
     imgView.image=[UIImage imageNamed:@"Background.png"];;
     self.tableView.backgroundView=imgView;
-    [imgView release];
     
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
 }
@@ -70,9 +69,8 @@
     
 	headerLabel.text = text;
 	[customView addSubview:headerLabel];
-    [headerLabel release];
     
-	return [customView autorelease];
+	return customView;
 }
 
 // extend the framework to let Switch be another color.
@@ -97,7 +95,7 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     } else if ([[specifier type] isEqualToString:kIASKButtonSpecifier]) {
         if (!cell) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:[specifier type]];
 			cell.backgroundColor = [UIColor whiteColor];
         }
         cell.textLabel.text = [specifier title];
@@ -109,7 +107,7 @@
 }
 
 - (void) logoutButton{
-    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Log out. Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] autorelease];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out. Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil];
     [alert show];
 }
 

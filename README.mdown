@@ -53,6 +53,11 @@ There are importing tools available to make the switch easy.
 [guides]: https://github.com/photo/frontend/blob/master/documentation/guides/Guides.markdown
 ---------------------------------------
 
+### IMPORTANT
+
+`Reachability / gcc-4.2 failed with exit code 1 / Duplicate symbol`
+The Reachability class is included in ShareKit. As this class already exists in the project, you'll need to remove it from ShareKit. Open the ShareKit group and delete the Reachability group.
+
 
 ### Modules
 Don't forget to execute

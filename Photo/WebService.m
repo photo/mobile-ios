@@ -113,9 +113,6 @@
                                                                       value:[values objectForKey:@"tags"]];
     NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagParam, nil];
     [oaUrlRequest setParameters:params];
-    [titleParam release];
-    [permissionParam release];
-    [tagParam release];
     
     // prepare the request. This will be used to get the Authorization header and add in the multipart component
     [oaUrlRequest prepare];
@@ -278,7 +275,9 @@
     }
     
     // parse response
-    NSDictionary *result = [[response responseString] JSONValue];
+    SBJsonParser *parser =[[SBJsonParser alloc] init];
+    NSDictionary *result = [parser objectWithString:[response responseString]];
+
     // check the valid result
     if (![WebService isMessageValid:result]){
         // invalid message
@@ -344,18 +343,18 @@
 #endif
     
     // token to send. We get the details from the user defaults
-    OAToken *token = [[[OAToken alloc] initWithKey:self.oAuthKey
-                                            secret:self.oAuthSecret] autorelease];
+    OAToken *token = [[OAToken alloc] initWithKey:self.oAuthKey
+                                            secret:self.oAuthSecret];
     
     // consumer to send. We get the details from the user defaults
-    OAConsumer *consumer = [[[OAConsumer alloc] initWithKey:self.consumerKey
-                                                     secret:self.consumerSecret] autorelease];
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:self.consumerKey
+                                                     secret:self.consumerSecret];
     
-    return [[[OAMutableURLRequest alloc] initWithURL:url
+    return [[OAMutableURLRequest alloc] initWithURL:url
                                             consumer:consumer
                                                token:token
                                                realm:nil
-                                   signatureProvider:nil] autorelease];
+                                   signatureProvider:nil];
 }
 
 + (BOOL) isMessageValid:(NSDictionary *)response{

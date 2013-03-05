@@ -547,7 +547,7 @@
 		[locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString*) kCGImagePropertyGPSLongitude];
 	}
 	
-    return [locDict autorelease];
+    return locDict;
     
 }
 

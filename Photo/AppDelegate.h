@@ -27,11 +27,7 @@
 #import "AuthenticationService.h"
 #import "AuthenticationViewController.h"
 #import "Reachability.h"
-#import "SHKItem.h"
-#import "SHKTwitter.h"
-#import "SHKFacebook.h"
-#import "SHKConfiguration.h"
-#import "SHK.h"
+
 #import "PhotoSHKConfigurator.h"
 #import "InitializerService.h"
 #import "HomeTableViewController.h"
@@ -47,8 +43,14 @@
 #import "TroveboxPaymentTransactionObserver.h"
 #import "TroveboxSubscription.h"
 
+#import "SHK.h"
+#import "SHKItem.h"
+#import "SHKTwitter.h"
+#import "SHKFacebook.h"
+#import "SHKConfiguration.h"
+#import "FBConnect.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,FBRequestDelegate,
+@interface AppDelegate : UIResponder <UIApplicationDelegate, FBRequestDelegate,
 FBDialogDelegate,
 FBSessionDelegate>{
     

@@ -168,31 +168,31 @@
                         // name
                         [self.labelName setText:[result objectForKey:@"name"]];
                         // url thumb
-                        [self.photo setImageWithURL:[NSURL URLWithString:[result objectForKey:@"photoUrl"]]
-                                   placeholderImage:nil
-                                            success:^(UIImage *image , BOOL cached){
-                                                // Begin a new image that will be the new image with the rounded corners
-                                                // (here with the size of an UIImageView)
-                                                UIGraphicsBeginImageContextWithOptions(self.photo.bounds.size, NO, 1.0);
-                                                
-                                                // Add a clip before drawing anything, in the shape of an rounded rect
-                                                [[UIBezierPath bezierPathWithRoundedRect:self.photo.bounds
-                                                                            cornerRadius:10.0] addClip];
-                                                // Draw your image
-                                                [image drawInRect:self.photo.bounds];
-                                                
-                                                // Get the image, here setting the UIImageView image
-                                                self.photo.image = UIGraphicsGetImageFromCurrentImageContext();
-                                                
-                                                // Lets forget about that we were drawing
-                                                UIGraphicsEndImageContext();
-                                            }
-                                            failure:^(NSError *error){
-                                                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
-                                                [alert showAlert];
+                        [self.photo  setImageWithURL:[NSURL URLWithString:[result objectForKey:@"photoUrl"]]
+                                            placeholderImage:nil
+                                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                                                if (error){
+                                                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                                    [alert showAlert];
+                                                }else{
+                                                    // Begin a new image that will be the new image with the rounded corners
+                                                    // (here with the size of an UIImageView)
+                                                    UIGraphicsBeginImageContextWithOptions(self.photo.bounds.size, NO, 1.0);
+                                                    
+                                                    // Add a clip before drawing anything, in the shape of an rounded rect
+                                                    [[UIBezierPath bezierPathWithRoundedRect:self.photo.bounds
+                                                                                cornerRadius:10.0] addClip];
+                                                    // Draw your image
+                                                    [image drawInRect:self.photo.bounds];
+                                                    
+                                                    // Get the image, here setting the UIImageView image
+                                                    self.photo.image = UIGraphicsGetImageFromCurrentImageContext();
+                                                    
+                                                    // Lets forget about that we were drawing
+                                                    UIGraphicsEndImageContext();
+                                                }
                                             }];
-                        
-                        
+
                         // paid user
                         if ([[result objectForKey:@"paid"] boolValue])
                             [self.labelAccount setText:@"Pro"];
