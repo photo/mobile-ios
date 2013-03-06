@@ -267,6 +267,7 @@
 		CDCC0CEC16E1023D00BE4481 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE616E1023D00BE4481 /* IASKPSTextFieldSpecifierViewCell.xib */; };
 		CDCC0CED16E1023D00BE4481 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE716E1023D00BE4481 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
 		CDCC0CEE16E1023D00BE4481 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE816E1023D00BE4481 /* IASKSpecifierValuesView.xib */; };
+		CDD1A39C16E76E7600CDC33C /* libSSKeyChain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15C416E600DC004D22FD /* libSSKeyChain.a */; };
 		CDEC2566161C3A280062E9B0 /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CDEC2567161C3A280062E9B0 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
@@ -603,6 +604,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CDAFB9CD16122262002D6E86;
 			remoteInfo = Photo;
+		};
+		CDD1A39A16E76E6300CDC33C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A1AFCB1160E11F90086B98A;
+			remoteInfo = SSKeyChain;
 		};
 		CDF2F0C916E520FC00D309B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1022,6 +1030,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDD1A39C16E76E7600CDC33C /* libSSKeyChain.a in Frameworks */,
 				CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */,
 				CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */,
 				CDA1855C16E601CB00D617CB /* libJSONKit.a in Frameworks */,
@@ -1790,6 +1799,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CDD1A39B16E76E6300CDC33C /* PBXTargetDependency */,
 				CDA1852316E6019A00D617CB /* PBXTargetDependency */,
 				CDA1852516E6019A00D617CB /* PBXTargetDependency */,
 				CDA1852716E6019A00D617CB /* PBXTargetDependency */,
@@ -2489,6 +2499,11 @@
 			isa = PBXTargetDependency;
 			target = CDAFB9CD16122262002D6E86 /* Trovebox */;
 			targetProxy = CDAFB9FA16122263002D6E86 /* PBXContainerItemProxy */;
+		};
+		CDD1A39B16E76E6300CDC33C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SSKeyChain;
+			targetProxy = CDD1A39A16E76E6300CDC33C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
