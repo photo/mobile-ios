@@ -18,7 +18,6 @@
 //  limitations under the License.
 //
 
-
 #import <UIKit/UIKit.h>
 #import "AuthenticationService.h"
 #import "TagViewController.h"
@@ -30,6 +29,15 @@
 #import "GalleryViewController.h"
 #import "DisplayUtilities.h"
 
-@interface MenuViewController : UITableViewController
+// for settings
+#import "IASKAppSettingsViewController.h"
+#import "IASKSettingsStoreFile.h"
+
+@interface MenuViewController : UITableViewController<IASKSettingsDelegate>
+{
+    OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+}
+
+@property (nonatomic, strong) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 
 @end

@@ -15,8 +15,6 @@
 
 @implementation ProfileViewController
 
-@synthesize appSettingsViewController;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,36 +43,6 @@
     return self;
 }
 
-- (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[OpenPhotoIASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
-		appSettingsViewController.delegate = self;
-	}
-	return appSettingsViewController;
-}
-
-- (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
-    if ([key isEqualToString:@"CleanCache"]){
-        [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-        [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-        NSError *saveError = nil;
-        if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
-            NSLog(@"Error to save context = %@",[saveError localizedDescription]);
-        }
-        
-        //remove cache
-        SDImageCache *imageCache = [SDImageCache sharedImageCache];
-        [imageCache clearMemory];
-        [imageCache clearDisk];
-        [imageCache cleanDisk];
-    }
-}
-
-- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -92,15 +60,16 @@
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    UIButton *buttonSettings = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImageSettings = [UIImage imageNamed:@"settingsbtn.png"] ;
-    [buttonSettings setImage:buttonImageSettings forState:UIControlStateNormal];
-    buttonSettings.frame = CGRectMake(0, 0, buttonImageSettings.size.width, buttonImageSettings.size.height);
-    [buttonSettings addTarget:self action:@selector(settingsButton) forControlEvents:UIControlEventTouchUpInside];
+    // menu
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *customBarItemRefresh = [[UIBarButtonItem alloc] initWithCustomView:buttonSettings];
-    self.navigationItem.leftBarButtonItem = customBarItemRefresh;
-    
+    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = customLeftButton;
+        
     // add log out
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"logout.png"] ;
@@ -113,13 +82,6 @@
     
     // load the data from the server and show in the screen
     [self loadUserDetails];
-}
-
-- (void) settingsButton
-{
-    [self.appSettingsViewController setShowCreditsFooter:NO];
-    self.appSettingsViewController.showDoneButton = NO;
-    [self.navigationController pushViewController:self.appSettingsViewController animated:YES];
 }
 
 - (void) logoutButton{

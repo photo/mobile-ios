@@ -33,6 +33,16 @@
     
 	[super viewWillAppear:animated];
     
+    // menu
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = customLeftButton;
+    
     // add log out
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"logout.png"] ;

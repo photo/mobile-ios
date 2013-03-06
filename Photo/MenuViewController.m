@@ -23,6 +23,7 @@
 #import "IIViewDeckController.h"
 
 @implementation MenuViewController
+@synthesize appSettingsViewController;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
@@ -73,10 +74,10 @@
 {
     if (section == 0){
         // your photos menu
-        return 4;
+        return 5;
     }else{
         // settings
-        return 3;
+        return 2;
     }
 }
 
@@ -86,7 +87,7 @@
         return NSLocalizedString(@"Your Photos", @"Used to title your photos in Menu");
     }else{
         // settings
-        return NSLocalizedString(@"Settings", @"Used to title Settings in Menu");
+        return NSLocalizedString(@"PREFERENCES", @"Used to title Preferences in Menu");
     }
 }
 
@@ -104,7 +105,7 @@
         // your photos menu
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = NSLocalizedString(@"Home", @"Menu - title for Home");
+                cell.textLabel.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
                 break;
             case 1:
                 cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
@@ -115,6 +116,9 @@
             case 3:
                 cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
                 break;
+            case 4:
+                cell.textLabel.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
+                break;
             default:
                 cell.textLabel.text = @"not defined";
                 break;
@@ -122,19 +126,10 @@
     }else{
         switch (indexPath.row) {
             case 0:
-                cell.textLabel.text = NSLocalizedString(@"Account", @"Menu - title for Account");
+                cell.textLabel.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
                 break;
             case 1:
-                cell.textLabel.text = ([AuthenticationService isLogged] ? NSLocalizedString(@"Log out", @"Menu - title for Log out") : NSLocalizedString(@"Login", @"Menu - title for Login"));
-                break;
-            case 2:
-                cell.textLabel.text = NSLocalizedString(@"Upgrade", @"Menu - title for Upgrade");
-                break;
-            case 3:
-                cell.textLabel.text = NSLocalizedString(@"Properties", @"Menu - title for Properties");
-                break;
-            case 4:
-                cell.textLabel.text = NSLocalizedString(@"Contact Us", @"Menu - title for Contact us");
+                cell.textLabel.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
                 break;
             default:
                 cell.textLabel.text = @"not defined";
@@ -159,7 +154,7 @@
             cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
             
             if ( indexPath.section == 0 && indexPath.row == 0){
-                // Home
+                // Latest activity
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[HomeTableViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
@@ -178,24 +173,19 @@
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
+            }else if ( indexPath.section == 0 && indexPath.row == 4){
+                // Upload & Sync
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[SyncViewController alloc] init]];
+                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                controller.centerController = nav;
             }else if ( indexPath.section == 1 && indexPath.row == 0){
-                // Account
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AccountViewController alloc] init]];
+                // Account - Profile
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }else if ( indexPath.section == 1 && indexPath.row == 1){
-                // Log out
-                if ([AuthenticationService isLogged]){
-                    // do the log out
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure?", @"Message when logging out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"General") otherButtonTitles:NSLocalizedString(@"Log out",@"General"),nil] ;
-                    [alert show];
-                }else{
-                    // open the login
-                    [self openLoginViewController];
-                }
-            }else if ( indexPath.section == 1 && indexPath.row == 2){
-                // Profile
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
+                // Settings
+                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.appSettingsViewController];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
             }
@@ -209,22 +199,6 @@
     }];
 }
 
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1){
-        
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Log out");
-#endif
-        
-        AuthenticationService *service = [[AuthenticationService alloc]init];
-        [service logout];
-        [self.tableView reloadData];
-        
-        // open the login
-        [self openLoginViewController];
-    }
-}
 
 - (void) openLoginViewController
 {
@@ -245,6 +219,37 @@
     if ([notification.name isEqualToString:kNotificationNeededsUpdate]){
         [self.tableView reloadData];
     }
+}
+
+- (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
+	if (!appSettingsViewController) {
+		appSettingsViewController = [[OpenPhotoIASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+		appSettingsViewController.delegate = self;
+        [appSettingsViewController setShowCreditsFooter:NO];
+        appSettingsViewController.showDoneButton = NO;
+	}
+	return appSettingsViewController;
+}
+
+- (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
+    if ([key isEqualToString:@"CleanCache"]){
+        [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+        [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+        NSError *saveError = nil;
+        if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+        }
+        
+        //remove cache
+        SDImageCache *imageCache = [SDImageCache sharedImageCache];
+        [imageCache clearMemory];
+        [imageCache clearDisk];
+        [imageCache cleanDisk];
+    }
+}
+
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc

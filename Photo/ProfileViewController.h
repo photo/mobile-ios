@@ -8,9 +8,6 @@
 
 #import "WebService.h"
 #import "OpenPhotoIASKAppSettingsViewController.h"
-#import "IASKAppSettingsViewController.h"
-#import "IASKSettingsStoreFile.h"
-
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -27,10 +24,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WebViewController.h"
 
-@interface ProfileViewController : GAITrackedViewController <UIAlertViewDelegate, IASKSettingsDelegate>
-{
-    OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
-}
+@interface ProfileViewController : GAITrackedViewController <UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UILabel *labelAlbums;
 @property (nonatomic, weak) IBOutlet UILabel *labelPhotos;
@@ -47,6 +41,5 @@
 - (IBAction)openFeaturesList:(id)sender;
 @property (nonatomic, weak) IBOutlet UIButton *buttonFeatureList;
 
-@property (nonatomic, retain) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 
 @end

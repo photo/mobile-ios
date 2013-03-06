@@ -128,8 +128,7 @@
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
-    
-    
+        
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
 }
@@ -177,12 +176,6 @@
     
     // title
     self.navigationItem.title = @"";
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
-    
-    // color separator
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
 }
 
 
