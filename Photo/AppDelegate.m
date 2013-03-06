@@ -41,7 +41,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @synthesize centerController = _viewController;
 @synthesize menuController = _menuController;
-@synthesize syncController = _syncController;
 
 @synthesize tracker = tracker_;
 
@@ -78,8 +77,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
-                                                                                    leftViewController:self.menuController
-                                                                                   rightViewController:nil];
+                                                                                    leftViewController:self.menuController];
     
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];

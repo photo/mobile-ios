@@ -31,7 +31,6 @@
 @synthesize noPhotoImageView=_noPhotoImageView;
 @synthesize needsUpdate = _needsUpdate;
 
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -90,10 +89,10 @@
         }
     }
 #ifdef GOOGLE_ANALYTICS_ENABLED
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Screens"
-                                                          withAction:@"Loaded"
-                                                           withLabel:@"Home"
-                                                           withValue:nil];
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Screens"
+                                                      withAction:@"Loaded"
+                                                       withLabel:@"Home"
+                                                       withValue:nil];
 #endif
     
     // ask if user wants to enable location
@@ -128,7 +127,7 @@
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
-        
+    
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
 }
@@ -169,8 +168,8 @@
     UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
     [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
     buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(capturePhoto) forControlEvents:UIControlEventTouchUpInside];
-    
+    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
+
     UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
     self.navigationItem.rightBarButtonItem = customRightButton;
     
@@ -178,6 +177,10 @@
     self.navigationItem.title = @"";
 }
 
+- (void) openCamera:(id) sender
+{
+    [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
+}
 
 #pragma mark -
 #pragma mark UITableViewDataSource
@@ -355,55 +358,55 @@
         
         [newestPhotoCell.photo setImageWithURL:[NSURL URLWithString:photo.photoUrl]
                               placeholderImage:nil
-                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                                           if (error){
-                                               PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
-                                               [alert showAlert];
-                                           }else{
-                                               [newestPhotoCell.activity stopAnimating];
-                                               newestPhotoCell.photo.layer.masksToBounds = YES;
-                                               
-                                               
-                                               [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-                                               [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
-                                               [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
-                                               [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 0.0)];
-                                               
-                                               newestPhotoCell.photoDetailBox.layer.masksToBounds = YES;
-                                               [newestPhotoCell.photoDetailBox.superview.layer setShadowColor:[UIColor blackColor].CGColor];
-                                               [newestPhotoCell.photoDetailBox.superview.layer setShadowOpacity:0.25];
-                                               [newestPhotoCell.photoDetailBox.superview.layer setShadowRadius:1.0];
-                                               [newestPhotoCell.photoDetailBox.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-                                               
-                                               // set details of private or not
-                                               if ([photo.permission boolValue] == NO){
-                                                   newestPhotoCell.private.hidden=NO;
-                                               }
-                                               
-                                               // user can share
-                                               if (photo.photoUrl != nil){
-                                                   newestPhotoCell.shareButton.hidden=NO;
-                                                   newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                                                   newestPhotoCell.newestPhotosTableViewController = self;
-                                               }
-                                               
-                                               // set details geoposition
-                                               newestPhotoCell.geoSharingImage.hidden=NO;
-                                               
-                                               if (photo.latitude != nil && photo.longitude != nil){
-                                                   // show button
-                                                   newestPhotoCell.geoPositionButton.hidden=NO;
-                                                   newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-on-sharing.png"];
-                                                   
-                                                   // set the latitude and longitude
-                                                   newestPhotoCell.geoPositionLatitude = photo.latitude;
-                                                   newestPhotoCell.geoPositionLongitude = photo.longitude;
-                                               }else {
-                                                   newestPhotoCell.geoPositionButton.hidden=YES;
-                                                   newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-off-sharing.png"];
-                                               }
-                                           }
-                                       }];
+                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                                         if (error){
+                                             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                             [alert showAlert];
+                                         }else{
+                                             [newestPhotoCell.activity stopAnimating];
+                                             newestPhotoCell.photo.layer.masksToBounds = YES;
+                                             
+                                             
+                                             [newestPhotoCell.photo.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+                                             [newestPhotoCell.photo.superview.layer setShadowOpacity:0.25];
+                                             [newestPhotoCell.photo.superview.layer setShadowRadius:1.0];
+                                             [newestPhotoCell.photo.superview.layer setShadowOffset:CGSizeMake(2.0, 0.0)];
+                                             
+                                             newestPhotoCell.photoDetailBox.layer.masksToBounds = YES;
+                                             [newestPhotoCell.photoDetailBox.superview.layer setShadowColor:[UIColor blackColor].CGColor];
+                                             [newestPhotoCell.photoDetailBox.superview.layer setShadowOpacity:0.25];
+                                             [newestPhotoCell.photoDetailBox.superview.layer setShadowRadius:1.0];
+                                             [newestPhotoCell.photoDetailBox.superview.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+                                             
+                                             // set details of private or not
+                                             if ([photo.permission boolValue] == NO){
+                                                 newestPhotoCell.private.hidden=NO;
+                                             }
+                                             
+                                             // user can share
+                                             if (photo.photoUrl != nil){
+                                                 newestPhotoCell.shareButton.hidden=NO;
+                                                 newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+                                                 newestPhotoCell.newestPhotosTableViewController = self;
+                                             }
+                                             
+                                             // set details geoposition
+                                             newestPhotoCell.geoSharingImage.hidden=NO;
+                                             
+                                             if (photo.latitude != nil && photo.longitude != nil){
+                                                 // show button
+                                                 newestPhotoCell.geoPositionButton.hidden=NO;
+                                                 newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-on-sharing.png"];
+                                                 
+                                                 // set the latitude and longitude
+                                                 newestPhotoCell.geoPositionLatitude = photo.latitude;
+                                                 newestPhotoCell.geoPositionLongitude = photo.longitude;
+                                             }else {
+                                                 newestPhotoCell.geoPositionButton.hidden=YES;
+                                                 newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-off-sharing.png"];
+                                             }
+                                         }
+                                     }];
         
         return newestPhotoCell;
     }
@@ -605,11 +608,6 @@
         [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
         [standardUserDefaults synchronize];
     }
-}
-
-- (void) capturePhoto
-{
-    
 }
 
 - (void) dealloc

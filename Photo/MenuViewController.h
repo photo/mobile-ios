@@ -28,16 +28,26 @@
 #import "ProfileViewController.h"
 #import "GalleryViewController.h"
 #import "DisplayUtilities.h"
+#import "CoreLocationController.h"
 
 // for settings
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
 
-@interface MenuViewController : UITableViewController<IASKSettingsDelegate>
+@interface MenuViewController : UITableViewController<IASKSettingsDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
 {
+    // ask the user about location int the home screen
+    CoreLocationController *coreLocationController;
+    
+    ALAssetsLibrary *library;
+    
     OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 }
 
 @property (nonatomic, strong) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+@property (nonatomic, strong) CLLocation *location;
+@property (nonatomic, strong) UIPopoverController* popoverController;
+
+- (void) openCamera:(id) sender;
 
 @end

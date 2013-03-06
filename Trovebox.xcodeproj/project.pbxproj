@@ -26,7 +26,6 @@
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
 		CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
-		CD2FE896163967500032105A /* ELCCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = CD2FE895163967500032105A /* ELCCamera.m */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
 		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
 		CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */; };
@@ -120,10 +119,6 @@
 		CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */; };
 		CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */; };
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
-		CDC7AE72163EBFA300FC8BC1 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE70163EBFA300FC8BC1 /* AccountViewController.m */; };
-		CDC7AE73163EBFA300FC8BC1 /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE71163EBFA300FC8BC1 /* AccountViewController.xib */; };
-		CDC7AE78163EC00600FC8BC1 /* AccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE76163EC00600FC8BC1 /* AccountViewController5.xib */; };
-		CDC7AE7E163EC02100FC8BC1 /* AccountViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC7AE7C163EC02100FC8BC1 /* AccountViewControlleriPad.xib */; };
 		CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */; };
 		CDC7AEDC163EDD3A00FC8BC1 /* PrivateAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AEDB163EDD3900FC8BC1 /* PrivateAuthenticationService.m */; };
 		CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */; };
@@ -672,8 +667,6 @@
 		CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewControlleriPad.xib; sourceTree = "<group>"; };
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
-		CD2FE894163967500032105A /* ELCCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCCamera.h; sourceTree = "<group>"; };
-		CD2FE895163967500032105A /* ELCCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCCamera.m; sourceTree = "<group>"; };
 		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
 		CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
@@ -813,10 +806,6 @@
 		CDC3A7F3161DFFC3003FDC2E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC3A7F4161DFFCD003FDC2E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC7AE6F163EBFA300FC8BC1 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
-		CDC7AE70163EBFA300FC8BC1 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
-		CDC7AE71163EBFA300FC8BC1 /* AccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
-		CDC7AE76163EC00600FC8BC1 /* AccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewController5.xib; sourceTree = "<group>"; };
-		CDC7AE7C163EC02100FC8BC1 /* AccountViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountViewControlleriPad.xib; sourceTree = "<group>"; };
 		CDC7AE8E163EC7D700FC8BC1 /* DisplayUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayUtilities.h; sourceTree = "<group>"; };
 		CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayUtilities.m; sourceTree = "<group>"; };
 		CDC7AEDA163EDD3900FC8BC1 /* PrivateAuthenticationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateAuthenticationService.h; sourceTree = "<group>"; };
@@ -1267,8 +1256,6 @@
 				CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */,
 				CD30D56116303E54001A0CA0 /* ELCAsset.h */,
 				CD30D56216303E54001A0CA0 /* ELCAsset.m */,
-				CD2FE894163967500032105A /* ELCCamera.h */,
-				CD2FE895163967500032105A /* ELCCamera.m */,
 				CD30D56316303E54001A0CA0 /* ELCAssetCell.h */,
 				CD30D56416303E54001A0CA0 /* ELCAssetCell.m */,
 				CD30D56516303E54001A0CA0 /* ELCAssetPicker.xib */,
@@ -1305,10 +1292,6 @@
 				CDCC0BCF16E0C66400BE4481 /* OpenPhotoIASKAppSettingsViewController.h */,
 				CDCC0BD016E0C66400BE4481 /* OpenPhotoIASKAppSettingsViewController.m */,
 				CDC7AE6F163EBFA300FC8BC1 /* AccountViewController.h */,
-				CDC7AE70163EBFA300FC8BC1 /* AccountViewController.m */,
-				CDC7AE71163EBFA300FC8BC1 /* AccountViewController.xib */,
-				CDC7AE76163EC00600FC8BC1 /* AccountViewController5.xib */,
-				CDC7AE7C163EC02100FC8BC1 /* AccountViewControlleriPad.xib */,
 				CDCC0B5816E0C49D00BE4481 /* ProfileViewController.h */,
 				CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */,
 				CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */,
@@ -2199,9 +2182,6 @@
 				CD30D8471636A8E6001A0CA0 /* AviarySDKResources.bundle in Resources */,
 				CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */,
 				CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */,
-				CDC7AE73163EBFA300FC8BC1 /* AccountViewController.xib in Resources */,
-				CDC7AE78163EC00600FC8BC1 /* AccountViewController5.xib in Resources */,
-				CDC7AE7E163EC02100FC8BC1 /* AccountViewControlleriPad.xib in Resources */,
 				CDC7AF2F1640156400FC8BC1 /* GalleryViewController.xib in Resources */,
 				CDC7AF39164028E100FC8BC1 /* PhotoViewController5.xib in Resources */,
 				CDCC0A8F16E0C23700BE4481 /* appbar_empty.png in Resources */,
@@ -2414,8 +2394,6 @@
 				CD30D79116317A79001A0CA0 /* JobUploaderController.m in Sources */,
 				CD30D79216317A79001A0CA0 /* JobUploaderDelegate.m in Sources */,
 				CD30D84116369CF1001A0CA0 /* PhotoViewController.m in Sources */,
-				CD2FE896163967500032105A /* ELCCamera.m in Sources */,
-				CDC7AE72163EBFA300FC8BC1 /* AccountViewController.m in Sources */,
 				CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */,
 				CDC7AEDC163EDD3A00FC8BC1 /* PrivateAuthenticationService.m in Sources */,
 				CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */,

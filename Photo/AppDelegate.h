@@ -94,7 +94,6 @@ FBSessionDelegate>{
 // navigation
 @property (nonatomic, strong) UIViewController *centerController;
 @property (nonatomic, strong) UIViewController *menuController;
-@property (nonatomic, strong) ELCImagePickerController *syncController;
 
 // get the user connect
 - (NSString *) userHost;

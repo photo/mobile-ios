@@ -28,11 +28,10 @@
 #import "ELCAssetCell.h"
 #import "ELCImagePickerController.h"
 #import "PhotoViewController.h"
-#import "ELCCamera.h"
 
 #import "GAI.h"
 
-@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
+@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	
@@ -57,11 +56,8 @@
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIButton *buttonHidden;
 
-@property (nonatomic, strong) CLLocation *location;
-
 -(int)  totalSelectedAssets;
 -(void) preparePhotos;
--(void) handleCamera;
 -(void) doneAction:(id)sender;
 
 @end
