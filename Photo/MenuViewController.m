@@ -38,10 +38,9 @@
                                                      name:kNotificationNeededsUpdate
                                                    object:nil ];
         
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-        
+        self.tableView.backgroundColor = UIColorFromRGB(0x958077);
         // color separator
-        self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+        self.tableView.separatorColor = UIColorFromRGB(0xB6A39A);
         
         coreLocationController = [[CoreLocationController alloc] init];
         coreLocationController.delegate = self;
@@ -59,11 +58,8 @@
     [super viewDidLoad];
     
     self.tableView.scrollsToTop = NO;
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 10.0f)];
+    self.tableView.scrollEnabled = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -76,28 +72,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0){
-        // your photos menu
-        return 5;
-    }else{
-        // settings
-        return 2;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0){
-        // your photos menu
-        return NSLocalizedString(@"Your Photos", @"Used to title your photos in Menu");
-    }else{
-        // settings
-        return NSLocalizedString(@"PREFERENCES", @"Used to title Preferences in Menu");
-    }
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,43 +87,41 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.textLabel.textColor = [UIColor whiteColor];
     }
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if ( indexPath.section == 0){
-        // your photos menu
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
-                break;
-            case 1:
-                cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
-                break;
-            case 2:
-                cell.textLabel.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
-                break;
-            case 3:
-                cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
-                break;
-            case 4:
-                cell.textLabel.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
-                break;
-            default:
-                cell.textLabel.text = @"not defined";
-                break;
-        }
-    }else{
-        switch (indexPath.row) {
-            case 0:
-                cell.textLabel.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
-                break;
-            case 1:
-                cell.textLabel.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
-                break;
-            default:
-                cell.textLabel.text = @"not defined";
-                break;
-        }
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"Search";
+            break;
+        case 1:
+            cell.textLabel.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
+            break;
+        case 2:
+            cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
+            break;
+        case 3:
+            cell.textLabel.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
+            break;
+        case 4:
+            cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
+            break;
+        case 5:
+            cell.textLabel.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
+            break;
+        case 6:
+            cell.textLabel.text = @"Preferences";
+            break;
+        case 7:
+            cell.textLabel.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
+            break;
+        case 8:
+            cell.textLabel.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
+            break;
+        default:
+            cell.textLabel.text = @"not defined";
+            break;
     }
     
     return cell;
@@ -155,8 +133,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
-        
-        
         
         if ([controller.centerController isKindOfClass:[UINavigationController class]]) {
             UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;

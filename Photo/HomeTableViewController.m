@@ -110,9 +110,9 @@
     
     UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
     
-    // color separator
+    // details screen
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
-    self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
@@ -207,8 +207,6 @@
                 uploadCell.progressBar.trackTintColor = UIColorFromRGB(0x3B2414);
             }
         }
-        
-        
         
         // set the upload photo object in the cell for restart or cancel
         uploadCell.originalObject = photo;
