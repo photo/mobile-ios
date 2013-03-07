@@ -28,6 +28,8 @@
 		CD1D826C16E9211100877A8E /* MenuTableViewSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */; };
 		CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826D16E9213800877A8E /* MenuTableViewCell.xib */; };
 		CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */; };
+		CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */; };
+		CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */; };
 		CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
@@ -689,6 +691,9 @@
 		CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSectionCell.m; sourceTree = "<group>"; };
 		CD1D826D16E9213800877A8E /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSectionCell.xib; sourceTree = "<group>"; };
+		CD1D827116E9412800877A8E /* MenuTableViewSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewSearchCell.h; sourceTree = "<group>"; };
+		CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSearchCell.m; sourceTree = "<group>"; };
+		CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSearchCell.xib; sourceTree = "<group>"; };
 		CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewControlleriPad.xib; sourceTree = "<group>"; };
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
@@ -1360,6 +1365,9 @@
 				CD1D826A16E9211000877A8E /* MenuTableViewSectionCell.h */,
 				CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */,
 				CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */,
+				CD1D827116E9412800877A8E /* MenuTableViewSearchCell.h */,
+				CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */,
+				CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -2381,6 +2389,7 @@
 				CDD1A3C916E89A2600CDC33C /* menu-upload@2x.png in Resources */,
 				CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */,
 				CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */,
+				CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2502,6 +2511,7 @@
 				CDCC0CE216E1023200BE4481 /* IASKTextField.m in Sources */,
 				CD1D824716E9205A00877A8E /* MenuTableViewCell.m in Sources */,
 				CD1D826C16E9211100877A8E /* MenuTableViewSectionCell.m in Sources */,
+				CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
