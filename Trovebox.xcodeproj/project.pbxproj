@@ -24,6 +24,10 @@
 		CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */; };
 		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
+		CD1D824716E9205A00877A8E /* MenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D824616E9205A00877A8E /* MenuTableViewCell.m */; };
+		CD1D826C16E9211100877A8E /* MenuTableViewSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */; };
+		CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826D16E9213800877A8E /* MenuTableViewCell.xib */; };
+		CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */; };
 		CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
@@ -117,7 +121,6 @@
 		CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAFB9FF16122263002D6E86 /* InfoPlist.strings */; };
 		CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFBA0316122263002D6E86 /* PhotoTests.m */; };
 		CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */; };
-		CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */; };
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
 		CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */; };
 		CDC7AEDC163EDD3A00FC8BC1 /* PrivateAuthenticationService.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AEDB163EDD3900FC8BC1 /* PrivateAuthenticationService.m */; };
@@ -680,6 +683,12 @@
 		CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Frameworks/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
 		CD1CDE50162C2D8300E57F73 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		CD1D824516E9205A00877A8E /* MenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewCell.h; sourceTree = "<group>"; };
+		CD1D824616E9205A00877A8E /* MenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewCell.m; sourceTree = "<group>"; };
+		CD1D826A16E9211000877A8E /* MenuTableViewSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewSectionCell.h; sourceTree = "<group>"; };
+		CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSectionCell.m; sourceTree = "<group>"; };
+		CD1D826D16E9213800877A8E /* MenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
+		CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSectionCell.xib; sourceTree = "<group>"; };
 		CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewControlleriPad.xib; sourceTree = "<group>"; };
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
@@ -814,7 +823,6 @@
 		CDAFBA0316122263002D6E86 /* PhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
 		CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		CDC3A7EC161DFAEA003FDC2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC3A7EE161DFAF3003FDC2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC3A7EF161DFAFD003FDC2E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1346,7 +1354,12 @@
 			children = (
 				CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */,
 				CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */,
-				CDC3A7E8161DF89D003FDC2E /* MenuViewController.xib */,
+				CD1D824516E9205A00877A8E /* MenuTableViewCell.h */,
+				CD1D824616E9205A00877A8E /* MenuTableViewCell.m */,
+				CD1D826D16E9213800877A8E /* MenuTableViewCell.xib */,
+				CD1D826A16E9211000877A8E /* MenuTableViewSectionCell.h */,
+				CD1D826B16E9211000877A8E /* MenuTableViewSectionCell.m */,
+				CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -2207,7 +2220,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDAFB9DF16122262002D6E86 /* InfoPlist.strings in Resources */,
-				CDC3A7EA161DF89D003FDC2E /* MenuViewController.xib in Resources */,
 				CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */,
 				CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */,
 				CD7642BF161EE15E00E0B657 /* AuthenticationViewController.xib in Resources */,
@@ -2367,6 +2379,8 @@
 				CDD1A3C716E89A2600CDC33C /* menu-tags@2x.png in Resources */,
 				CDD1A3C816E89A2600CDC33C /* menu-upload.png in Resources */,
 				CDD1A3C916E89A2600CDC33C /* menu-upload@2x.png in Resources */,
+				CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */,
+				CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2486,6 +2500,8 @@
 				CDCC0CE016E1023200BE4481 /* IASKSlider.m in Sources */,
 				CDCC0CE116E1023200BE4481 /* IASKSwitch.m in Sources */,
 				CDCC0CE216E1023200BE4481 /* IASKTextField.m in Sources */,
+				CD1D824716E9205A00877A8E /* MenuTableViewCell.m in Sources */,
+				CD1D826C16E9211100877A8E /* MenuTableViewSectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,6 +84,9 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
+    static NSString *menuTableViewCellIdentifier = @"menuTableViewCell";
+    static NSString *menuTableViewSectionCellIdentifier = @"menuTableViewSectionCell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
