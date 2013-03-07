@@ -75,7 +75,11 @@
         }
     }
 
-    self.view.backgroundColor = UIColorFromRGB(0xFFCC00);
+    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    // title
+    self.navigationItem.title = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
+
 }
 
 - (void)didReceiveMemoryWarning

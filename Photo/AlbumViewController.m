@@ -92,8 +92,6 @@
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
-    
-    
 }
 
 

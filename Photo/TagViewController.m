@@ -134,6 +134,11 @@
     // color separator
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
@@ -148,36 +153,11 @@
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    
     // load all tags
     [self loadTags];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
