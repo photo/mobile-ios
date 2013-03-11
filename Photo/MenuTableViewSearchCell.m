@@ -22,8 +22,15 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
+}
+
+// Action if user clicks in DONE in the keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    // return
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

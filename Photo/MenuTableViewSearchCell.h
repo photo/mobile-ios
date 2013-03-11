@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuTableViewSearchCell : UITableViewCell
+@interface MenuTableViewSearchCell : UITableViewCell <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *labelSearch;
 @end

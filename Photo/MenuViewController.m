@@ -22,6 +22,10 @@
 #import "MenuViewController.h"
 #import "IIViewDeckController.h"
 
+@interface MenuViewController()
+- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView ;
+@end
+
 @implementation MenuViewController
 
 @synthesize popoverController = _popoverController2;
@@ -82,51 +86,95 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    
-    static NSString *menuTableViewCellIdentifier = @"menuTableViewCell";
     static NSString *menuTableViewSectionCellIdentifier = @"menuTableViewSectionCell";
     static NSString *menuTableViewSearchCellIdentifier = @"menuTableViewSearchCell";
     
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.textLabel.textColor = [UIColor whiteColor];
+    NSUInteger row = [indexPath row];
+    if ( row == 0){
+        // the first one is the search
+        // load the search cell
+        MenuTableViewSearchCell  *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSearchCellIdentifier];
+        
+        if (cell == nil){
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewSearchCell" owner:nil options:nil];
+            for(id currentObject in topLevelObjects)
+            {
+                if([currentObject isKindOfClass:[MenuTableViewSearchCell class]])
+                {
+                    cell = (MenuTableViewSearchCell *)currentObject;
+                    break;
+                }
+            }
+        }
+        
+        cell.contentView.backgroundColor = UIColorFromRGB(0x40332D);
+        cell.labelSearch.delegate = cell;
+        return cell;
+    }else if ( row ==  1){
+        // latest activity
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
+        [cell.image setImage:[UIImage imageNamed:@"menu-latest.png"]];
+        return cell;
+    }else if ( row ==  2){
+        // photos - gallery
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
+        [cell.image setImage:[UIImage imageNamed:@"menu-gallery.png"]];
+        return cell;
+    }else if ( row ==  3){
+        // albums
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
+        [cell.image setImage:[UIImage imageNamed:@"menu-album.png"]];
+        return cell;
+    }else if ( row ==  4){
+        // tags
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
+        [cell.image setImage:[UIImage imageNamed:@"menu-tags.png"]];
+        return cell;
+    }else if ( row ==  5){
+        // upload & sync
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
+        [cell.image setImage:[UIImage imageNamed:@"menu-upload.png"]];
+        return cell;
+    }else if ( row ==  6){
+        // preferences
+        // load preference cell
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSectionCellIdentifier];
+        if (cell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewSectionCell" owner:nil options:nil];
+            cell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        cell.contentView.backgroundColor = UIColorFromRGB(0x40332D);
+        
+        return cell;
+    }else if ( row ==  7){
+        // my account
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
+        [cell.image setImage:[UIImage imageNamed:@"menu-profile.png"]];
+        return cell;
+    }else {
+        // settings
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        cell.label.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
+        [cell.image setImage:[UIImage imageNamed:@"menu-settings.png"]];
+        return cell;
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"Search";
-            break;
-        case 1:
-            cell.textLabel.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
-            break;
-        case 2:
-            cell.textLabel.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
-            break;
-        case 3:
-            cell.textLabel.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
-            break;
-        case 4:
-            cell.textLabel.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
-            break;
-        case 5:
-            cell.textLabel.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
-            break;
-        case 6:
-            cell.textLabel.text = @"Preferences";
-            break;
-        case 7:
-            cell.textLabel.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
-            break;
-        case 8:
-            cell.textLabel.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
-            break;
-        default:
-            cell.textLabel.text = @"not defined";
-            break;
+}
+
+- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView
+{
+    static NSString *menuTableViewCellIdentifier = @"menuTableViewCell";
+    MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewCellIdentifier];
+    if (cell == nil) {
+        NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:nil options:nil];
+        cell = [topLevelObjects objectAtIndex:0];
     }
     
     return cell;
@@ -143,37 +191,37 @@
             UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;
             cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
             
-            if ( indexPath.section == 0 && indexPath.row == 0){
+            if (indexPath.row == 1){
                 // Latest activity
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[HomeTableViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 0 && indexPath.row ==1){
+            }else if (indexPath.row ==2){
                 // Gallery
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 0 && indexPath.row == 2){
+            }else if ( indexPath.row == 3){
                 // Albums
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 0 && indexPath.row == 3){
+            }else if (  indexPath.row == 4){
                 // Tags
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 0 && indexPath.row == 4){
+            }else if (  indexPath.row == 5){
                 // Upload & Sync
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[SyncViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 1 && indexPath.row == 0){
+            }else if (  indexPath.row == 7){
                 // Account - Profile
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }else if ( indexPath.section == 1 && indexPath.row == 1){
+            }else if ( indexPath.row == 8){
                 // Settings
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.appSettingsViewController];
                 nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -189,6 +237,13 @@
     }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ( [indexPath row] == 6){
+        return 20;
+    }else{
+        return 44;
+    }
+}
 
 - (void) openLoginViewController
 {
@@ -209,13 +264,13 @@
 }
 
 - (OpenPhotoIASKAppSettingsViewController*)appSettingsViewController {
-	if (!appSettingsViewController) {
-		appSettingsViewController = [[OpenPhotoIASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
-		appSettingsViewController.delegate = self;
+    if (!appSettingsViewController) {
+        appSettingsViewController = [[OpenPhotoIASKAppSettingsViewController alloc] initWithNibName:@"IASKAppSettingsView" bundle:nil];
+        appSettingsViewController.delegate = self;
         [appSettingsViewController setShowCreditsFooter:NO];
         appSettingsViewController.showDoneButton = NO;
-	}
-	return appSettingsViewController;
+    }
+    return appSettingsViewController;
 }
 
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
@@ -319,30 +374,30 @@
 //Creates an EXIF field for the current geo location.
 - (NSMutableDictionary*)currentLocation {
     NSMutableDictionary *locDict = [[NSMutableDictionary alloc] init];
-	
-	if (self.location != nil) {
-		CLLocationDegrees exifLatitude = self.location.coordinate.latitude;
-		CLLocationDegrees exifLongitude = self.location.coordinate.longitude;
+    
+    if (self.location != nil) {
+        CLLocationDegrees exifLatitude = self.location.coordinate.latitude;
+        CLLocationDegrees exifLongitude = self.location.coordinate.longitude;
         
-		[locDict setObject:self.location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
-		
-		if (exifLatitude < 0.0) {
-			exifLatitude = exifLatitude*(-1);
-			[locDict setObject:@"S" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
-		} else {
-			[locDict setObject:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
-		}
-		[locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        [locDict setObject:self.location.timestamp forKey:(NSString*) kCGImagePropertyGPSTimeStamp];
         
-		if (exifLongitude < 0.0) {
-			exifLongitude=exifLongitude*(-1);
-			[locDict setObject:@"W" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
-		} else {
-			[locDict setObject:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
-		}
-		[locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString*) kCGImagePropertyGPSLongitude];
-	}
-	
+        if (exifLatitude < 0.0) {
+            exifLatitude = exifLatitude*(-1);
+            [locDict setObject:@"S" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+        } else {
+            [locDict setObject:@"N" forKey:(NSString*)kCGImagePropertyGPSLatitudeRef];
+        }
+        [locDict setObject:[NSNumber numberWithFloat:exifLatitude] forKey:(NSString*)kCGImagePropertyGPSLatitude];
+        
+        if (exifLongitude < 0.0) {
+            exifLongitude=exifLongitude*(-1);
+            [locDict setObject:@"W" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+        } else {
+            [locDict setObject:@"E" forKey:(NSString*)kCGImagePropertyGPSLongitudeRef];
+        }
+        [locDict setObject:[NSNumber numberWithFloat:exifLongitude] forKey:(NSString*) kCGImagePropertyGPSLongitude];
+    }
+    
     return locDict;
     
 }

@@ -34,6 +34,11 @@
 #import "IASKAppSettingsViewController.h"
 #import "IASKSettingsStoreFile.h"
 
+// specific cell
+#import "MenuTableViewSearchCell.h"
+#import "MenuTableViewSectionCell.h"
+#import "MenuTableViewCell.h"
+
 @interface MenuViewController : UITableViewController<IASKSettingsDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate>
 {
     // ask the user about location int the home screen
