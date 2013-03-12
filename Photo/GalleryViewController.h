@@ -21,7 +21,12 @@
 
 
 #import <UIKit/UIKit.h>
+#import "Photo.h"
+#import "TMQuiltView.h"
+#import "TMPhotoQuiltViewCell.h"
 
-@interface GalleryViewController : UIViewController
+@interface GalleryViewController : TMQuiltViewController
+
+@property (nonatomic, strong) NSMutableArray *photos;
 
 @end

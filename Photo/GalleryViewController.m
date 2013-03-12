@@ -22,17 +22,27 @@
 
 #import "GalleryViewController.h"
 
+const NSInteger kNumberOfCells = 10;
+
 @interface GalleryViewController ()
+- (void) loadPhotos;
+
+// to avoid multiples loading
+@property (nonatomic) BOOL isLoading;
 
 @end
 
 @implementation GalleryViewController
+@synthesize photos=_photos;
+@synthesize isLoading=_isLoading;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
+        self.photos = [NSMutableArray array];
+        self.isLoading = NO;
     }
     return self;
 }
@@ -74,12 +84,15 @@
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
-
+    
     UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
     // title
     self.navigationItem.title = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
-
+    
+    
+    
+     self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,4 +101,114 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // load photos
+   // [self loadPhotos];
+    
+    NSMutableArray *imageNames = [NSMutableArray array];
+    for(int i = 0; i < kNumberOfCells; i++) {
+        [imageNames addObject:[NSString stringWithFormat:@"%d.jpeg", i % 10 + 1]];
+    }
+    self.photos = imageNames;
+    
+}
+
+#pragma mark - QuiltViewControllerDataSource
+- (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
+    return [UIImage imageNamed:[self.photos objectAtIndex:indexPath.row]];
+}
+
+- (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
+    return [self.photos count];
+}
+
+- (TMQuiltViewCell *)quiltView:(TMQuiltView *)quiltView cellAtIndexPath:(NSIndexPath *)indexPath {
+    TMPhotoQuiltViewCell *cell = (TMPhotoQuiltViewCell *)[quiltView dequeueReusableCellWithReuseIdentifier:@"PhotoCell"];
+    if (!cell) {
+        cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
+    }
+    
+    cell.photoView.image = [self imageAtIndexPath:indexPath];
+    cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+    return cell;
+}
+
+#pragma mark - TMQuiltViewDelegate
+
+- (NSInteger)quiltViewNumberOfColumns:(TMQuiltView *)quiltView {
+    
+    
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft
+        || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        return 3;
+    } else {
+        return 2;
+    }
+}
+
+- (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
+    return [self imageAtIndexPath:indexPath].size.height / [self quiltViewNumberOfColumns:quiltView];
+}
+
+-(void) loadPhotos
+{
+    
+    if (self.isLoading == NO){
+        self.isLoading = YES;
+        // if there isn't netwok
+        if ( [SharedAppDelegate internetActive] == NO ){
+            // problem with internet, show message to user
+            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+            [alert showAlert];
+            
+            self.isLoading = NO;
+        }else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+            hud.labelText = @"Loading";
+            
+            dispatch_queue_t loadPhotos = dispatch_queue_create("loadPhotos", NULL);
+            dispatch_async(loadPhotos, ^{
+                // call the method and get the details
+                @try {
+                    // get factory for Service
+                    WebService *service = [[WebService alloc] init];
+                    NSArray *result = [service loadGallery:50 onPage:1];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self.photos removeAllObjects];
+                        if ([result class] != [NSNull class]) {
+                            // Loop through each entry in the dictionary and create an array of photos
+                            for (NSDictionary *photoDetails in result){
+                                // photo url
+                                NSString *name = [photoDetails objectForKey:@"name"];
+                                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                
+                                // how many images
+                                NSString *qtd = [photoDetails objectForKey:@"count"];
+                                
+                                
+                                // create an album and add to the list
+                                Photo *photo = [[Photo alloc]init];
+                                [self.photos addObject:photo];
+                            }}
+                        
+                        [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        self.isLoading = NO;
+                    });
+                }@catch (NSException *exception) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                        [alert showAlert];
+                        self.isLoading = NO;
+                    });
+                }
+            });
+            dispatch_release(loadPhotos);
+        }
+    }
+    
+}
 @end
