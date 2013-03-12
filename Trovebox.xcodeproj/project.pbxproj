@@ -108,6 +108,9 @@
 		CDA1856E16E61BC200D617CB /* button-navigation-camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */; };
 		CDA1856F16E61BC200D617CB /* button-navigation-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */; };
 		CDA1857016E61BC200D617CB /* button-navigation-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */; };
+		CDAC02B316EF62EB00D3BB7F /* TMQuiltView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02AE16EF62EB00D3BB7F /* TMQuiltView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02B016EF62EB00D3BB7F /* TMQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02B216EF62EB00D3BB7F /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
 		CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D616122262002D6E86 /* CoreGraphics.framework */; };
@@ -808,6 +811,12 @@
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
 		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
 		CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu@2x.png"; path = "images/button-navigation-menu@2x.png"; sourceTree = "<group>"; };
+		CDAC02AD16EF62EB00D3BB7F /* TMQuiltView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltView.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltView.h; sourceTree = "<group>"; };
+		CDAC02AE16EF62EB00D3BB7F /* TMQuiltView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltView.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltView.m; sourceTree = "<group>"; };
+		CDAC02AF16EF62EB00D3BB7F /* TMQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltViewCell.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewCell.h; sourceTree = "<group>"; };
+		CDAC02B016EF62EB00D3BB7F /* TMQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltViewCell.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewCell.m; sourceTree = "<group>"; };
+		CDAC02B116EF62EB00D3BB7F /* TMQuiltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltViewController.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewController.h; sourceTree = "<group>"; };
+		CDAC02B216EF62EB00D3BB7F /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltViewController.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewController.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9D216122262002D6E86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CDAFB9D416122262002D6E86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1622,6 +1631,19 @@
 			name = Album;
 			sourceTree = "<group>";
 		};
+		CDAC028A16EF62C700D3BB7F /* TMQuiltView */ = {
+			isa = PBXGroup;
+			children = (
+				CDAC02AD16EF62EB00D3BB7F /* TMQuiltView.h */,
+				CDAC02AE16EF62EB00D3BB7F /* TMQuiltView.m */,
+				CDAC02AF16EF62EB00D3BB7F /* TMQuiltViewCell.h */,
+				CDAC02B016EF62EB00D3BB7F /* TMQuiltViewCell.m */,
+				CDAC02B116EF62EB00D3BB7F /* TMQuiltViewController.h */,
+				CDAC02B216EF62EB00D3BB7F /* TMQuiltViewController.m */,
+			);
+			name = TMQuiltView;
+			sourceTree = "<group>";
+		};
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
@@ -1644,6 +1666,7 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDAC028A16EF62C700D3BB7F /* TMQuiltView */,
 				CD2F159116E600C8004D22FD /* ShareKit */,
 				CDF2F07C16E520AB00D309B9 /* SBJson */,
 				CDCC0C6516E0FD6300BE4481 /* InAppSettingsKit */,
@@ -2512,6 +2535,9 @@
 				CD1D824716E9205A00877A8E /* MenuTableViewCell.m in Sources */,
 				CD1D826C16E9211100877A8E /* MenuTableViewSectionCell.m in Sources */,
 				CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */,
+				CDAC02B316EF62EB00D3BB7F /* TMQuiltView.m in Sources */,
+				CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */,
+				CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

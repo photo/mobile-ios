@@ -25,3 +25,6 @@
 [submodule "Frameworks/ShareKit"]
 	path = Frameworks/ShareKit
 	url = git://github.com/ShareKit/ShareKit.git
+[submodule "Frameworks/TMQuiltView"]
+	path = Frameworks/TMQuiltView
+	url = git://github.com/1000Memories/TMQuiltView.git
