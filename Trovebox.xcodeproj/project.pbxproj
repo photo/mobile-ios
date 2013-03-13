@@ -158,8 +158,6 @@
 		CDCC0A9B16E0C23700BE4481 /* close_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1A16E0C23700BE4481 /* close_camera.png */; };
 		CDCC0A9C16E0C23700BE4481 /* close_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1B16E0C23700BE4481 /* close_camera@2x.png */; };
 		CDCC0A9D16E0C23700BE4481 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1C16E0C23700BE4481 /* Default-568h@2x.png */; };
-		CDCC0A9E16E0C23700BE4481 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1D16E0C23700BE4481 /* Default.png */; };
-		CDCC0A9F16E0C23700BE4481 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1E16E0C23700BE4481 /* Default@2x.png */; };
 		CDCC0AA016E0C23700BE4481 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1F16E0C23700BE4481 /* done.png */; };
 		CDCC0AA116E0C23700BE4481 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2016E0C23700BE4481 /* done@2x.png */; };
 		CDCC0AA216E0C23700BE4481 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2116E0C23700BE4481 /* edit.png */; };
@@ -822,16 +820,16 @@
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
 		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
 		CDA1856C16E61BC000D617CB /* button-navigation-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu@2x.png"; path = "images/button-navigation-menu@2x.png"; sourceTree = "<group>"; };
-		CDA4FC5A16EF7117003C60FE /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 1.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/1.jpeg; sourceTree = "<group>"; };
-		CDA4FC5B16EF7117003C60FE /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/2.jpeg; sourceTree = "<group>"; };
-		CDA4FC5C16EF7117003C60FE /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 3.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/3.jpeg; sourceTree = "<group>"; };
-		CDA4FC5D16EF7117003C60FE /* 4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 4.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/4.jpeg; sourceTree = "<group>"; };
-		CDA4FC5E16EF7117003C60FE /* 5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 5.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/5.jpeg; sourceTree = "<group>"; };
-		CDA4FC5F16EF7117003C60FE /* 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 6.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/6.jpeg; sourceTree = "<group>"; };
-		CDA4FC6016EF7117003C60FE /* 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 7.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/7.jpeg; sourceTree = "<group>"; };
-		CDA4FC6116EF7117003C60FE /* 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 8.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/8.jpeg; sourceTree = "<group>"; };
-		CDA4FC6216EF7117003C60FE /* 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 9.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/9.jpeg; sourceTree = "<group>"; };
-		CDA4FC6316EF7117003C60FE /* 10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = file; name = 10.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/10.jpeg; sourceTree = "<group>"; };
+		CDA4FC5A16EF7117003C60FE /* 1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/1.jpeg; sourceTree = "<group>"; };
+		CDA4FC5B16EF7117003C60FE /* 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/2.jpeg; sourceTree = "<group>"; };
+		CDA4FC5C16EF7117003C60FE /* 3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/3.jpeg; sourceTree = "<group>"; };
+		CDA4FC5D16EF7117003C60FE /* 4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 4.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/4.jpeg; sourceTree = "<group>"; };
+		CDA4FC5E16EF7117003C60FE /* 5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 5.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/5.jpeg; sourceTree = "<group>"; };
+		CDA4FC5F16EF7117003C60FE /* 6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 6.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/6.jpeg; sourceTree = "<group>"; };
+		CDA4FC6016EF7117003C60FE /* 7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 7.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/7.jpeg; sourceTree = "<group>"; };
+		CDA4FC6116EF7117003C60FE /* 8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 8.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/8.jpeg; sourceTree = "<group>"; };
+		CDA4FC6216EF7117003C60FE /* 9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 9.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/9.jpeg; sourceTree = "<group>"; };
+		CDA4FC6316EF7117003C60FE /* 10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10.jpeg; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/images/10.jpeg; sourceTree = "<group>"; };
 		CDAC02AD16EF62EB00D3BB7F /* TMQuiltView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltView.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltView.h; sourceTree = "<group>"; };
 		CDAC02AE16EF62EB00D3BB7F /* TMQuiltView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltView.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltView.m; sourceTree = "<group>"; };
 		CDAC02AF16EF62EB00D3BB7F /* TMQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltViewCell.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewCell.h; sourceTree = "<group>"; };
@@ -1684,6 +1682,7 @@
 		CDAFB9C316122262002D6E86 = {
 			isa = PBXGroup;
 			children = (
+				CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */,
 				CDAFB9DA16122262002D6E86 /* Trovebox */,
 				CDAFB9FC16122263002D6E86 /* PhotoTests */,
 				CDAFB9D116122262002D6E86 /* Frameworks */,
@@ -1773,7 +1772,6 @@
 		CDAFB9DB16122262002D6E86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */,
 				CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */,
 				CD4613DC161C7B800028619D /* Images */,
 				CDAFB9DC16122262002D6E86 /* Trovebox-Info.plist */,
@@ -2326,8 +2324,6 @@
 				CDCC0A9B16E0C23700BE4481 /* close_camera.png in Resources */,
 				CDCC0A9C16E0C23700BE4481 /* close_camera@2x.png in Resources */,
 				CDCC0A9D16E0C23700BE4481 /* Default-568h@2x.png in Resources */,
-				CDCC0A9E16E0C23700BE4481 /* Default.png in Resources */,
-				CDCC0A9F16E0C23700BE4481 /* Default@2x.png in Resources */,
 				CDCC0AA016E0C23700BE4481 /* done.png in Resources */,
 				CDCC0AA116E0C23700BE4481 /* done@2x.png in Resources */,
 				CDCC0AA216E0C23700BE4481 /* edit.png in Resources */,
@@ -2736,7 +2732,8 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Trovebox-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2756,6 +2753,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2764,8 +2763,8 @@
 		CDAFBA0916122263002D6E86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Trovebox-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2785,7 +2784,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "01F9F7F3-5EDD-4721-AEF5-CEF691EA4FBD";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

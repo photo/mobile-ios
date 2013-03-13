@@ -108,7 +108,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
         }
         
-        LoginViewController *controller = [[LoginViewController alloc]init ];
+        LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
         navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
