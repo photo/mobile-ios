@@ -48,6 +48,11 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+#ifdef TEST_FLIGHT_ENABLED
+    // to start the TestFlight SDK
+    [TestFlight takeOff:@"5713cf3e-f49b-4f0d-ba14-88958f16ec08"];
+#endif
+    
 #ifdef GOOGLE_ANALYTICS_ENABLED
     // Google Analytics SDK
     // Initialize Google Analytics
@@ -61,18 +66,13 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     
-#ifdef TEST_FLIGHT_ENABLED
-    // to start the TestFlight SDK
-    [TestFlight takeOff:@"407f45aed7c5bc2fc88cb567078edb1f_MjMyNTUyMDExLTA5LTEyIDEyOjEyOjU3Ljc1Nzg5MA"];
-#endif
-    
     [self prepareConnectionInformation];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.menuController = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    self.menuController = [[MenuViewController alloc] init];
     
     HomeTableViewController *centerController = [[HomeTableViewController alloc] init];
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];

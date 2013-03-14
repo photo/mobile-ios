@@ -66,7 +66,7 @@ const NSInteger kNumberOfCells = 10;
     UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
     [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
     buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(capturePhoto) forControlEvents:UIControlEventTouchUpInside];
+    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
     self.navigationItem.rightBarButtonItem = customRightButton;
@@ -93,6 +93,11 @@ const NSInteger kNumberOfCells = 10;
     
     
      self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
+}
+
+- (void) openCamera:(id) sender
+{
+    [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
 }
 
 - (void)didReceiveMemoryWarning

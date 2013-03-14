@@ -65,7 +65,7 @@
     UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
     [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
     buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(capturePhoto) forControlEvents:UIControlEventTouchUpInside];
+    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
     self.navigationItem.rightBarButtonItem = customRightButton;
@@ -94,6 +94,10 @@
     }
 }
 
+- (void) openCamera:(id) sender
+{
+    [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
