@@ -20,8 +20,8 @@
 #import "JobUploaderDelegate.h"
 #import "WebService.h"
 #import "NSDictionarySerializer.h"
-#import "Timeline+Photo.h"
-#import "Synced+Photo.h"
+#import "Timeline+Methods.h"
+#import "Synced+Methods.h"
 
 @interface JobUploaderController : NSObject 
 

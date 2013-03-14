@@ -58,6 +58,9 @@
 		CD30D8591636A9DB001A0CA0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */; };
 		CD4613CE161C78B00028619D /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2563161C3A280062E9B0 /* IIViewDeckController.m */; };
 		CD4613D0161C78B00028619D /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
+		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
+		CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4516F20E490044427E /* Photo+Methods.m */; };
+		CD5F5E4C16F245270044427E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4B16F245270044427E /* Photo.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
 		CD764289161ED9BB00E0B657 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD764287161ED9BB00E0B657 /* iRate.m */; };
 		CD76429F161EDAC000E0B657 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76428C161EDAC000E0B657 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -121,7 +124,6 @@
 		CDAC02B316EF62EB00D3BB7F /* TMQuiltView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02AE16EF62EB00D3BB7F /* TMQuiltView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02B016EF62EB00D3BB7F /* TMQuiltViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02B216EF62EB00D3BB7F /* TMQuiltViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CDAC02B816EF682600D3BB7F /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02B716EF682600D3BB7F /* Photo.m */; };
 		CDAC02BE16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAC02BD16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m */; };
 		CDAFB9D316122262002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
 		CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
@@ -313,8 +315,8 @@
 		CDFAF34F16285730007A4FDF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34C16285730007A4FDF /* Tag.m */; };
 		CDFAF35016285730007A4FDF /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34E16285730007A4FDF /* TagViewController.m */; };
 		CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CDFAF35D16285BC6007A4FDF /* Timeline+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */; };
-		CDFAF36016285C4E007A4FDF /* Synced+Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */; };
+		CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */; };
+		CDFAF36016285C4E007A4FDF /* Synced+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -749,6 +751,12 @@
 		CD30D8541636A9BF001A0CA0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CD30D8561636A9CE001A0CA0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CD5F5E4116F20E050044427E /* Gallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
+		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
+		CD5F5E4416F20E490044427E /* Photo+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Methods.h"; sourceTree = "<group>"; };
+		CD5F5E4516F20E490044427E /* Photo+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Methods.m"; sourceTree = "<group>"; };
+		CD5F5E4A16F245270044427E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		CD5F5E4B16F245270044427E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
 		CD764286161ED9BB00E0B657 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
 		CD764287161ED9BB00E0B657 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
@@ -836,8 +844,6 @@
 		CDAC02B016EF62EB00D3BB7F /* TMQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltViewCell.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewCell.m; sourceTree = "<group>"; };
 		CDAC02B116EF62EB00D3BB7F /* TMQuiltViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMQuiltViewController.h; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewController.h; sourceTree = "<group>"; };
 		CDAC02B216EF62EB00D3BB7F /* TMQuiltViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMQuiltViewController.m; path = Frameworks/TMQuiltView/TMQuiltView/TMQuiltView/TMQuiltViewController.m; sourceTree = "<group>"; };
-		CDAC02B616EF682600D3BB7F /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		CDAC02B716EF682600D3BB7F /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		CDAC02BC16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TMPhotoQuiltViewCell.h; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/TMPhotoQuiltViewCell.h; sourceTree = "<group>"; };
 		CDAC02BD16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TMPhotoQuiltViewCell.m; path = ../Frameworks/TMQuiltView/TMQuiltViewDemo/TMQuiltViewDemo/TMPhotoQuiltViewCell.m; sourceTree = "<group>"; };
 		CDAFB9CE16122262002D6E86 /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1084,10 +1090,10 @@
 		CDFAF34E16285730007A4FDF /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagViewController.m; path = Photo/TagViewController.m; sourceTree = "<group>"; };
 		CDFAF35116285892007A4FDF /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		CDFAF35A16285BC6007A4FDF /* Timeline+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Timeline+Photo.h"; sourceTree = "<group>"; };
-		CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Timeline+Photo.m"; sourceTree = "<group>"; };
-		CDFAF35E16285C4E007A4FDF /* Synced+Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Synced+Photo.h"; sourceTree = "<group>"; };
-		CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Synced+Photo.m"; sourceTree = "<group>"; };
+		CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Timeline+Methods.h"; sourceTree = "<group>"; };
+		CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Timeline+Methods.m"; sourceTree = "<group>"; };
+		CDFAF35E16285C4E007A4FDF /* Synced+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Synced+Methods.h"; sourceTree = "<group>"; };
+		CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Synced+Methods.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1247,11 +1253,17 @@
 		CD4613D2161C7A9F0028619D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CDFAF35E16285C4E007A4FDF /* Synced+Photo.h */,
-				CDFAF35F16285C4E007A4FDF /* Synced+Photo.m */,
-				CDFAF35A16285BC6007A4FDF /* Timeline+Photo.h */,
-				CDFAF35B16285BC6007A4FDF /* Timeline+Photo.m */,
+				CD5F5E4416F20E490044427E /* Photo+Methods.h */,
+				CD5F5E4516F20E490044427E /* Photo+Methods.m */,
+				CDFAF35E16285C4E007A4FDF /* Synced+Methods.h */,
+				CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */,
+				CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */,
+				CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */,
+				CD5F5E4A16F245270044427E /* Photo.h */,
+				CD5F5E4B16F245270044427E /* Photo.m */,
 				CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */,
+				CD5F5E4116F20E050044427E /* Gallery.h */,
+				CD5F5E4216F20E050044427E /* Gallery.m */,
 				CD1CDE34162C244200E57F73 /* Timeline.h */,
 				CD1CDE35162C244200E57F73 /* Timeline.m */,
 				CD1CDE31162C244200E57F73 /* Synced.h */,
@@ -1327,8 +1339,6 @@
 				CDA4FC6116EF7117003C60FE /* 8.jpeg */,
 				CDA4FC6216EF7117003C60FE /* 9.jpeg */,
 				CDA4FC6316EF7117003C60FE /* 10.jpeg */,
-				CDAC02B616EF682600D3BB7F /* Photo.h */,
-				CDAC02B716EF682600D3BB7F /* Photo.m */,
 				CDC7AF2B1640156400FC8BC1 /* GalleryViewController.h */,
 				CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */,
 				CDAC02BC16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.h */,
@@ -2523,8 +2533,8 @@
 				CDFAF34F16285730007A4FDF /* Tag.m in Sources */,
 				CDFAF35016285730007A4FDF /* TagViewController.m in Sources */,
 				CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */,
-				CDFAF35D16285BC6007A4FDF /* Timeline+Photo.m in Sources */,
-				CDFAF36016285C4E007A4FDF /* Synced+Photo.m in Sources */,
+				CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */,
+				CDFAF36016285C4E007A4FDF /* Synced+Methods.m in Sources */,
 				CD1528481628DB8500EA08FF /* Account.m in Sources */,
 				CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */,
 				CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */,
@@ -2580,8 +2590,10 @@
 				CDAC02B316EF62EB00D3BB7F /* TMQuiltView.m in Sources */,
 				CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */,
 				CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */,
-				CDAC02B816EF682600D3BB7F /* Photo.m in Sources */,
 				CDAC02BE16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m in Sources */,
+				CD5F5E4316F20E050044427E /* Gallery.m in Sources */,
+				CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */,
+				CD5F5E4C16F245270044427E /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

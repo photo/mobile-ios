@@ -19,8 +19,8 @@
 
 #import "TagViewController.h"
 #import "AFPhotoEditorController.h"
-#import "Synced+Photo.h"
-#import "Timeline+Photo.h"
+#import "Synced+Methods.h"
+#import "Timeline+Methods.h"
 
 #import "ContentTypeUtilities.h"
 #import <AssetsLibrary/AssetsLibrary.h>

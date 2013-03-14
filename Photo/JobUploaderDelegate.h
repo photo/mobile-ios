@@ -19,7 +19,7 @@
 //
 
 #import "ASIProgressDelegate.h"
-#import "Timeline+Photo.h"
+#import "Timeline+Methods.h"
 
 @interface JobUploaderDelegate : NSObject <ASIProgressDelegate>
 

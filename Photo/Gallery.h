@@ -1,5 +1,5 @@
 //
-//  Photo.h
+//  Gallery.h
 //  Trovebox
 //
 //  Created by Patrick Santana on 14/03/13.
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Photo : NSManagedObject
+@interface Gallery : NSManagedObject
 
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * height;
@@ -18,9 +18,7 @@
 @property (nonatomic, retain) NSString * pageUrl;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * url;
+@property (nonatomic, retain) NSString * urlThumb;
 @property (nonatomic, retain) NSNumber * width;
-@property (nonatomic, retain) NSNumber * thumbWidth;
-@property (nonatomic, retain) NSNumber * thumbHeight;
-@property (nonatomic, retain) NSString * thumbUrl;
 
 @end

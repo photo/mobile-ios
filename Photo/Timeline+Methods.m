@@ -18,9 +18,9 @@
 //  limitations under the License.
 //
 
-#import "Timeline+Photo.h"
+#import "Timeline+Methods.h"
 
-@implementation Timeline (Photo)
+@implementation Timeline (Methods)
 
 //
 // Constast for Upload Status

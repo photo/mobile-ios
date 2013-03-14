@@ -19,7 +19,7 @@
 //
 
 
-#import "Timeline+Photo.h"
+#import "Timeline+Methods.h"
 
 @interface UploadCell : UITableViewCell
 

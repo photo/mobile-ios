@@ -22,7 +22,7 @@
 #import "AssetsLibraryUtilities.h"
 #import <ImageIO/ImageIO.h>
 #import "MBProgressHUD.h"
-#import "Synced+Photo.h"
+#import "Synced+Methods.h"
 #import "ELCAsset.h"
 #import "ELCAlbumPickerController.h" 
 #import "ELCAssetCell.h"

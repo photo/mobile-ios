@@ -16,7 +16,7 @@
 #import "TroveboxSubscription.h"
 
 // for clean the cache
-#import "Timeline+Photo.h"
+#import "Timeline+Methods.h"
 #import <SDWebImage/SDImageCache.h>
 
 #import "GAI.h"

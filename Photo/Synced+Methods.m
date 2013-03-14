@@ -18,9 +18,9 @@
 //  limitations under the License.
 //
 
-#import "Synced+Photo.h"
+#import "Synced+Methods.h"
 
-@implementation Synced (Photo)
+@implementation Synced (Methods)
 
 //
 // Constast for sync uploaded

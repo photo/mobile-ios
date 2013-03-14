@@ -1,15 +1,15 @@
 //
-//  Photo.m
+//  Gallery.m
 //  Trovebox
 //
 //  Created by Patrick Santana on 14/03/13.
 //  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
-#import "Photo.h"
+#import "Gallery.h"
 
 
-@implementation Photo
+@implementation Gallery
 
 @dynamic date;
 @dynamic height;
@@ -17,9 +17,7 @@
 @dynamic pageUrl;
 @dynamic title;
 @dynamic url;
+@dynamic urlThumb;
 @dynamic width;
-@dynamic thumbWidth;
-@dynamic thumbHeight;
-@dynamic thumbUrl;
 
 @end

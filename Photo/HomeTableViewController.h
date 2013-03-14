@@ -19,7 +19,7 @@
 //
 
 #import "EGORefreshTableHeaderView.h"
-#import "Timeline+Photo.h"
+#import "Timeline+Methods.h"
 #import "WebService.h"
 
 #import "NewestPhotoCell.h"

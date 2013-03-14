@@ -32,7 +32,7 @@ extern NSString * const kUploadStatusTypeUploadFinished;
 // images already in the server
 extern NSString * const kUploadStatusTypeUploaded;
 
-@interface Timeline (Photo)
+@interface Timeline (Methods)
 
 
 + (NSArray *) getNewestPhotosInManagedObjectContext:(NSManagedObjectContext *)context;

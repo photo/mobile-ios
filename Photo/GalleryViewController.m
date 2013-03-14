@@ -92,7 +92,7 @@ const NSInteger kNumberOfCells = 10;
     
     
     
-     self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
 }
 
 - (void) openCamera:(id) sender
@@ -110,7 +110,7 @@ const NSInteger kNumberOfCells = 10;
 {
     [super viewWillAppear:animated];
     // load photos
-   // [self loadPhotos];
+    [self loadPhotos];
     
     NSMutableArray *imageNames = [NSMutableArray array];
     for(int i = 0; i < kNumberOfCells; i++) {
@@ -136,15 +136,21 @@ const NSInteger kNumberOfCells = 10;
     }
     
     cell.photoView.image = [self imageAtIndexPath:indexPath];
-    cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+    [cell.photoView setImageWithURL:[NSURL URLWithString:@"http://ps.openphoto.me.s3.amazonaws.com/custom/201303/3244B2B0-0014-4708-9935-CB6CACE257E3-898dc6_870x870.jpg"]
+                   placeholderImage:nil
+                          completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                              if (error){
+                                  PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                  [alert showAlert];
+                              }
+                          }];
+    
     return cell;
 }
 
 #pragma mark - TMQuiltViewDelegate
 
 - (NSInteger)quiltViewNumberOfColumns:(TMQuiltView *)quiltView {
-    
-    
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft
         || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
         return 3;
@@ -182,21 +188,11 @@ const NSInteger kNumberOfCells = 10;
                     NSArray *result = [service loadGallery:50 onPage:1];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.photos removeAllObjects];
                         if ([result class] != [NSNull class]) {
                             // Loop through each entry in the dictionary and create an array of photos
+                            
                             for (NSDictionary *photoDetails in result){
-                                // photo url
-                                NSString *name = [photoDetails objectForKey:@"name"];
-                                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                                
-                                // how many images
-                                NSString *qtd = [photoDetails objectForKey:@"count"];
-                                
-                                
-                                // create an album and add to the list
-                                Photo *photo = [[Photo alloc]init];
-                                [self.photos addObject:photo];
+                                [Photo photoWithServerInfo:photoDetails inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                             }}
                         
                         [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];

@@ -422,10 +422,38 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"Photo.sqlite"];
+    // automatic update
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+        
+        NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@.", error, [error userInfo]);
+        NSLog(@"Create the persistent file again.");
+        
+        // let's recreate it
+        [managedObjectContext reset];
+        [managedObjectContext lock];
+        
+        // delete file
+        if ([[NSFileManager defaultManager] fileExistsAtPath:storeURL.path]) {
+            if (![[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
+        }
+        
+        _persistentStoreCoordinator = nil;
+        
+        NSPersistentStoreCoordinator *r = [self persistentStoreCoordinator];
+        [managedObjectContext unlock];
+        
+        return r;
+        
+        
         /*
          Replace this implementation with code to handle the error appropriately.
          
