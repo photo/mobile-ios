@@ -120,7 +120,7 @@
         // problem with internet, show message to user
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
         [alert showAlert];
-    }else{
+    }else if ([AuthenticationService isLogged]){
         
         // display
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
