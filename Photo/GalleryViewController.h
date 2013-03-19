@@ -21,7 +21,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import "Photo+Methods.h"
+#import "WebPhoto.h"
 #import "TMQuiltView.h"
 #import "TMPhotoQuiltViewCell.h"
 

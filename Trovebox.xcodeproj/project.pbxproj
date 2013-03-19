@@ -98,6 +98,7 @@
 		CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */; };
 		CD9115BD16243FCA0099204B /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BC16243FCA0099204B /* Album.m */; };
 		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
+		CD927E4716F8712100843FEE /* WebPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD927E4616F8712100843FEE /* WebPhoto.m */; };
 		CD92F16716E5375200E071CB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2F10C16E5305800D309B9 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15D016E600DC004D22FD /* libEmail.a */; };
 		CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15E416E600DC004D22FD /* libFacebook.a */; };
@@ -822,6 +823,8 @@
 		CD9115BC16243FCA0099204B /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 		CD9115BE16243FE90099204B /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
+		CD927E4516F8712100843FEE /* WebPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPhoto.h; sourceTree = "<group>"; };
+		CD927E4616F8712100843FEE /* WebPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPhoto.m; sourceTree = "<group>"; };
 		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
 		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
@@ -1342,6 +1345,7 @@
 				CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */,
 				CDAC02BC16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.h */,
 				CDAC02BD16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m */,
+				CD927E4516F8712100843FEE /* WebPhoto.h */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -1658,6 +1662,7 @@
 		CD9115BA16243FB10099204B /* Album */ = {
 			isa = PBXGroup;
 			children = (
+				CD927E4616F8712100843FEE /* WebPhoto.m */,
 				CD9115BB16243FCA0099204B /* Album.h */,
 				CD9115BC16243FCA0099204B /* Album.m */,
 				CD9115BE16243FE90099204B /* AlbumViewController.h */,
@@ -2598,6 +2603,7 @@
 				CD5F5E4316F20E050044427E /* Gallery.m in Sources */,
 				CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */,
 				CD5F5E4C16F245270044427E /* Photo.m in Sources */,
+				CD927E4716F8712100843FEE /* WebPhoto.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2748,8 +2754,8 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wide Angle Labs, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -2772,8 +2778,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "13F496CA-B99B-4F99-8DF1-DCFCDB8F5E8E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2451A906-9779-410B-9143-4220983EBD06";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2782,8 +2788,8 @@
 		CDAFBA0916122263002D6E86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Wide Angle Labs, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -2806,8 +2812,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "13F496CA-B99B-4F99-8DF1-DCFCDB8F5E8E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "13F496CA-B99B-4F99-8DF1-DCFCDB8F5E8E";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

@@ -22,8 +22,6 @@
 
 #import "GalleryViewController.h"
 
-const NSInteger kNumberOfCells = 10;
-
 @interface GalleryViewController ()
 - (void) loadPhotos;
 
@@ -90,8 +88,7 @@ const NSInteger kNumberOfCells = 10;
     // title
     self.navigationItem.title = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
     
-    
-    
+    // quilt configuration
     self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
 }
 
@@ -111,13 +108,6 @@ const NSInteger kNumberOfCells = 10;
     [super viewWillAppear:animated];
     // load photos
     [self loadPhotos];
-    
-    NSMutableArray *imageNames = [NSMutableArray array];
-    for(int i = 0; i < kNumberOfCells; i++) {
-        [imageNames addObject:[NSString stringWithFormat:@"%d.jpeg", i % 10 + 1]];
-    }
-    self.photos = imageNames;
-    
 }
 
 #pragma mark - QuiltViewControllerDataSource
@@ -135,8 +125,9 @@ const NSInteger kNumberOfCells = 10;
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-    cell.photoView.image = [self imageAtIndexPath:indexPath];
-    [cell.photoView setImageWithURL:[NSURL URLWithString:@"http://ps.openphoto.me.s3.amazonaws.com/custom/201303/3244B2B0-0014-4708-9935-CB6CACE257E3-898dc6_870x870.jpg"]
+   // cell.photoView.image = [self imageAtIndexPath:indexPath];
+    WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
+    [cell.photoView setImageWithURL:[NSURL URLWithString:photo.thumbUrl]
                    placeholderImage:nil
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                               if (error){
@@ -160,12 +151,13 @@ const NSInteger kNumberOfCells = 10;
 }
 
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
-    return [self imageAtIndexPath:indexPath].size.height / [self quiltViewNumberOfColumns:quiltView];
+    WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
+
+    return [photo.thumbHeight integerValue] / [self quiltViewNumberOfColumns:quiltView];
 }
 
 -(void) loadPhotos
 {
-    
     if (self.isLoading == NO){
         self.isLoading = YES;
         // if there isn't netwok
@@ -192,11 +184,14 @@ const NSInteger kNumberOfCells = 10;
                             // Loop through each entry in the dictionary and create an array of photos
                             
                             for (NSDictionary *photoDetails in result){
-                                [Photo photoWithServerInfo:photoDetails inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-                            }}
+                                WebPhoto *photo = [WebPhoto photoWithServerInfo:photoDetails];
+                                [self.photos addObject:photo];
+                            }
+                        }
                         
                         [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                         self.isLoading = NO;
+                                    [self.quiltView reloadData];
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
