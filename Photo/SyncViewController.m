@@ -162,8 +162,8 @@
     @autoreleasepool {
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"enumerating photos");
-        NSLog("Assets Number %i", assetsNumber);
-        NSLog("numberOfAssets %i", [self.assetGroup numberOfAssets]);
+        NSLog(@"Assets Number %i", assetsNumber);
+        NSLog(@"numberOfAssets %i", [self.assetGroup numberOfAssets]);
 #endif
         
         if ([self.assetGroup numberOfAssets] != assetsNumber){

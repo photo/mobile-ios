@@ -37,6 +37,7 @@
 #import "AuthenticationService.h"
 
 #import "GAI.h"
+#import <Crashlytics/Crashlytics.h>
 
 //for payment
 #import <StoreKit/StoreKit.h>

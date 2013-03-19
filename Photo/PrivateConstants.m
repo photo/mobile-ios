@@ -23,7 +23,6 @@
 @implementation PrivateConstants
 
 NSString * const kPrivateFacebookAppId=@"";
-NSString * const kPrivateTestFlightId=@"";
 
 NSInteger  const kPrivateappStoreID=0;
 NSString * const kPrivateapplicationBundleID=@"";

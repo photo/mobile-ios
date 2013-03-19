@@ -48,10 +48,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-#ifdef TEST_FLIGHT_ENABLED
-    // to start the TestFlight SDK
-    [TestFlight takeOff:@"5713cf3e-f49b-4f0d-ba14-88958f16ec08"];
-#endif
+    [Crashlytics startWithAPIKey:@"263e33cba7a0a8804ec757ba8607fc77514dca33"];
     
 #ifdef GOOGLE_ANALYTICS_ENABLED
     // Google Analytics SDK
@@ -59,11 +56,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [GAI sharedInstance].trackUncaughtExceptions = NO;
     [GAI sharedInstance].dispatchInterval = 20;
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kPrivateGoogleAnalytics];
-#endif
-    
-    // in development phase we use the UID of user
-#ifdef DEVELOPMENT_ENABLED
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
 #endif
     
     [self prepareConnectionInformation];
@@ -168,8 +160,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
             [auth startOAuthProcedure:url];
         }
     }else if ([[url scheme] hasPrefix:@"fb"]){
-        // [SHKFacebook handleOpenURL:url];
-        // return [self.facebook handleOpenURL:url];
+        [SHKFacebook handleOpenURL:url];
+        return [self.facebook handleOpenURL:url];
     }
     
     return YES;

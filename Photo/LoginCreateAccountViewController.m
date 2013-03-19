@@ -268,12 +268,6 @@
                 
                 // send notification to the system that it can shows the screen:
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
-                
-                // check point create new account
-#ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Created account"];
-#endif
-                
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             });
         }@catch (NSException* e) {
@@ -309,12 +303,6 @@
                 
                 // send notification to the system that it can shows the screen:
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
-                
-                // check point create new account
-#ifdef TEST_FLIGHT_ENABLED
-                [TestFlight passCheckpoint:@"Created account"];
-#endif
-                
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             });
         }@catch (NSException* e) {

@@ -455,16 +455,23 @@
                                              groupUrl:nil];
             }
             
-#ifdef TEST_FLIGHT_ENABLED
             // checkpoint
             if (self.imageFiltered){
-                [TestFlight passCheckpoint:@"Image from Aviary"];
+                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
+                                                                  withAction:@"typeImage"
+                                                                   withLabel:@"Image from Aviary"
+                                                                   withValue:nil];
             }else if (self.images){
-                [TestFlight passCheckpoint:@"Image from Sync"];
+                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
+                                                                  withAction:@"typeImage"
+                                                                   withLabel:@"Image from Sync"
+                                                                   withValue:nil];
             }else{
-                [TestFlight passCheckpoint:@"Image from Snapshot"];
+                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
+                                                                  withAction:@"typeImage"
+                                                                   withLabel:@"Image from Snapshot"
+                                                                   withValue:nil];
             }
-#endif
             
             // wait for 2 seconds to go to main screen
             [NSThread sleepForTimeInterval:2];

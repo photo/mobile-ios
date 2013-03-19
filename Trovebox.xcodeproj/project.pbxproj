@@ -75,7 +75,6 @@
 		CD7642AE161EDB8300E0B657 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642AD161EDB8300E0B657 /* SystemConfiguration.framework */; };
 		CD7642B0161EDB8E00E0B657 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642AF161EDB8E00E0B657 /* MobileCoreServices.framework */; };
 		CD7642B2161EDB9E00E0B657 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B1161EDB9E00E0B657 /* libz.dylib */; };
-		CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7642B4161EDF1E00E0B657 /* libTestFlight.a */; };
 		CD7642BA161EDFE400E0B657 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642B9161EDFE400E0B657 /* Constants.m */; };
 		CD7642BE161EE15E00E0B657 /* AuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */; };
 		CD7642BF161EE15E00E0B657 /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */; };
@@ -139,6 +138,7 @@
 		CDAFB9F916122263002D6E86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D816122262002D6E86 /* CoreData.framework */; };
 		CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAFB9FF16122263002D6E86 /* InfoPlist.strings */; };
 		CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFBA0316122263002D6E86 /* PhotoTests.m */; };
+		CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */; };
 		CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */; };
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
 		CDC7AE90163EC7D700FC8BC1 /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */; };
@@ -784,8 +784,6 @@
 		CD7642AD161EDB8300E0B657 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CD7642AF161EDB8E00E0B657 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CD7642B1161EDB9E00E0B657 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		CD7642B4161EDF1E00E0B657 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Frameworks/TestFlight/libTestFlight.a; sourceTree = "<group>"; };
-		CD7642B5161EDF1E00E0B657 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Frameworks/TestFlight/TestFlight.h; sourceTree = "<group>"; };
 		CD7642B8161EDFE400E0B657 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		CD7642B9161EDFE400E0B657 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		CD7642BB161EE15E00E0B657 /* AuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationViewController.h; sourceTree = "<group>"; };
@@ -864,6 +862,7 @@
 		CDAFBA0016122263002D6E86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CDAFBA0216122263002D6E86 /* PhotoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoTests.h; sourceTree = "<group>"; };
 		CDAFBA0316122263002D6E86 /* PhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
+		CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		CDC3A7EC161DFAEA003FDC2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1135,9 +1134,9 @@
 				CDAFB9D916122262002D6E86 /* CoreData.framework in Frameworks */,
 				CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */,
 				CDF2F10716E52EC000D309B9 /* libSDWebImage.a in Frameworks */,
-				CD7642B6161EDF1E00E0B657 /* libTestFlight.a in Frameworks */,
 				CD30D84F1636A94C001A0CA0 /* libAviarySDK.a in Frameworks */,
 				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
+				CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1591,15 +1590,6 @@
 			name = ASIHTTPRequest;
 			sourceTree = "<group>";
 		};
-		CD7642B3161EDF0D00E0B657 /* TestFlight */ = {
-			isa = PBXGroup;
-			children = (
-				CD7642B4161EDF1E00E0B657 /* libTestFlight.a */,
-				CD7642B5161EDF1E00E0B657 /* TestFlight.h */,
-			);
-			name = TestFlight;
-			sourceTree = "<group>";
-		};
 		CD7642B7161EDFCA00E0B657 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -1712,6 +1702,7 @@
 		CDAFB9D116122262002D6E86 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */,
 				CDAC028A16EF62C700D3BB7F /* TMQuiltView */,
 				CD2F159116E600C8004D22FD /* ShareKit */,
 				CDF2F07C16E520AB00D309B9 /* SBJson */,
@@ -1722,7 +1713,6 @@
 				CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */,
 				CD8D9CC1162344A700A76811 /* MBProgressHUD */,
 				CD8D9CBF1623446B00A76811 /* TSAlertView */,
-				CD7642B3161EDF0D00E0B657 /* TestFlight */,
 				CD76428A161ED9E600E0B657 /* ASIHTTPRequest */,
 				CD764283161ED9A900E0B657 /* iRate */,
 				CDEC2560161C39E10062E9B0 /* ViewDeck */,
@@ -1915,6 +1905,7 @@
 				CDAFB9CA16122262002D6E86 /* Sources */,
 				CDAFB9CB16122262002D6E86 /* Frameworks */,
 				CDAFB9CC16122262002D6E86 /* Resources */,
+				CDBD38B016F868AB007D0CC6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -2492,6 +2483,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		CDBD38B016F868AB007D0CC6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 263e33cba7a0a8804ec757ba8607fc77514dca33";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2746,6 +2750,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Trovebox-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2756,7 +2764,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary/AviarySDK\"",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
 				);
@@ -2777,6 +2784,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Photo/Trovebox-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2787,7 +2798,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TestFlight\"",
 					"\"$(SRCROOT)/Frameworks/Aviary/AviarySDK\"",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
 				);
