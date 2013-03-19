@@ -27,12 +27,15 @@
 
 // to avoid multiples loading
 @property (nonatomic) BOOL isLoading;
+// for loading page
+@property (nonatomic) NSInteger page;
 
 @end
 
 @implementation GalleryViewController
 @synthesize photos=_photos;
 @synthesize isLoading=_isLoading;
+@synthesize page=_page;
 
 - (id)init
 {
@@ -41,6 +44,7 @@
         // Custom initialization
         self.photos = [NSMutableArray array];
         self.isLoading = NO;
+        self.page = 1;
     }
     return self;
 }
@@ -136,6 +140,12 @@
                               }
                           }];
     
+    
+    // check if it is the last cell
+    if ([self.photos count] - 1  == indexPath.row ){
+        [self loadPhotos];
+    }
+    
     return cell;
 }
 
@@ -177,7 +187,7 @@
                 @try {
                     // get factory for Service
                     WebService *service = [[WebService alloc] init];
-                    NSArray *result = [service loadGallery:50 onPage:1];
+                    NSArray *result = [service loadGallery:50 onPage:self.page++];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if ([result class] != [NSNull class]) {
@@ -191,7 +201,7 @@
                         
                         [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                         self.isLoading = NO;
-                                    [self.quiltView reloadData];
+                        [self.quiltView reloadData];
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{

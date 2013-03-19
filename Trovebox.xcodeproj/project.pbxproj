@@ -1346,6 +1346,7 @@
 				CDAC02BC16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.h */,
 				CDAC02BD16EF6DC000D3BB7F /* TMPhotoQuiltViewCell.m */,
 				CD927E4516F8712100843FEE /* WebPhoto.h */,
+				CD927E4616F8712100843FEE /* WebPhoto.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -1662,7 +1663,6 @@
 		CD9115BA16243FB10099204B /* Album */ = {
 			isa = PBXGroup;
 			children = (
-				CD927E4616F8712100843FEE /* WebPhoto.m */,
 				CD9115BB16243FCA0099204B /* Album.h */,
 				CD9115BC16243FCA0099204B /* Album.m */,
 				CD9115BE16243FE90099204B /* AlbumViewController.h */,
