@@ -183,14 +183,24 @@
                                                               @"&returnSizes=200x200,640x960"]  httpMethod:@"GET"]];
 }
 
-- (NSArray*)  loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page tag:(Tag*) tag
 {
     return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"%@%@%@%@%@%@%@",
                                                               @"/v1/photos/list.json?pageSize=",
                                                               [NSString stringWithFormat:@"%d", pageSize],
                                                               @"&page=",[NSString stringWithFormat:@"%d", page],
                                                               @"&returnSizes=200x200,640x960",
-                                                              @"&tags=",tag]  httpMethod:@"GET"]];
+                                                              @"&tags=", [[tag.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]    httpMethod:@"GET"]];
+}
+
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album *)album
+{
+    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"%@%@%@%@%@%@%@",
+                                                              @"/v1/photos/list.json?pageSize=",
+                                                              [NSString stringWithFormat:@"%d", pageSize],
+                                                              @"&page=",[NSString stringWithFormat:@"%d", page],
+                                                              @"&returnSizes=200x200,640x960",
+                                                              @"&album=",[[album.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
 - (NSArray*) loadAlbums:(int) pageSize

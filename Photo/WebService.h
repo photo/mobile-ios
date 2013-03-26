@@ -25,6 +25,8 @@
 #import "ASIFormDataRequest.h"
 #import "ContentTypeUtilities.h"
 #import "ASIProgressDelegate.h"
+#import "Tag.h"
+#import "Album.h"
 
 @interface WebService : NSObject{
     
@@ -48,7 +50,10 @@
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page;
 
 // get pictures by tag
-- (NSArray *) loadGallery:(int) pageSize withTag:(NSString*) tag onPage:(int) page;
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page tag:(Tag*) tag;
+
+// get pictures by album
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album*) album;
 
 - (NSArray *) loadAlbums:(int) pageSize;
 

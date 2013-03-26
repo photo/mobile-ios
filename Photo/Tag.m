@@ -22,13 +22,13 @@
 
 @implementation Tag
 
-@synthesize tagName=_tagName,quantity=_quantity,selected=_selected;
+@synthesize name=_name,quantity=_quantity,selected=_selected;
 
 - (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd{
     self = [super init];
     if (self) {
         // Initialization code here.
-        self.tagName=name;
+        self.name=name;
         self.quantity = qtd;
         // by default no tag is selected. This is used for READ ONLY proposal
         self.selected = NO;

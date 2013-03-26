@@ -23,7 +23,7 @@
 // constructor with tag name
 - (id)initWithTagName:(NSString*) name Quantity:(NSInteger) qtd;
 
-@property (nonatomic, copy) NSString *tagName;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic) NSInteger quantity;
 @property (nonatomic) BOOL  selected;
 

@@ -70,7 +70,7 @@
     for (id object in self.tags) {
         Tag *tag = (Tag*) object;
         if (tag.selected == YES){
-            [array addObject:tag.tagName];
+            [array addObject:tag.name];
         }
     }
     
@@ -222,7 +222,7 @@
     NSUInteger row = [indexPath row];
     
     Tag *tag = [self.tags objectAtIndex:row];
-    cell.textLabel.text=tag.tagName;
+    cell.textLabel.text=tag.name;
     if (self.readOnly == NO){
         
         // details quantity

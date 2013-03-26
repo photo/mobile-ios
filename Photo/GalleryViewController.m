@@ -29,16 +29,18 @@
 @property (nonatomic) BOOL isLoading;
 // for loading page
 @property (nonatomic) NSInteger page;
+@property (nonatomic) NSInteger totalPages;
 
 // for albums or tags
-@property (nonatomic,weak) Album *album;
-@property (nonatomic,weak) Tag *tag;
+@property (nonatomic,strong) Album *album;
+@property (nonatomic,strong) Tag *tag;
 @end
 
 @implementation GalleryViewController
 @synthesize photos=_photos;
 @synthesize isLoading=_isLoading;
 @synthesize page=_page;
+@synthesize totalPages=_totalPages;
 @synthesize album=_album;
 @synthesize tag=_tag;
 
@@ -60,7 +62,7 @@
     if (self){
         self.tag = tag;
     }
-   
+    
     return self;
 }
 
@@ -153,7 +155,7 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-   // cell.photoView.image = [self imageAtIndexPath:indexPath];
+    // cell.photoView.image = [self imageAtIndexPath:indexPath];
     WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
     [cell.photoView setImageWithURL:[NSURL URLWithString:photo.thumbUrl]
                    placeholderImage:nil
@@ -166,8 +168,10 @@
     
     
     // check if it is the last cell
-    if ([self.photos count] - 1  == indexPath.row ){
-        [self loadPhotos];
+    if (self.totalPages){
+        if ([self.photos count] - 1  == indexPath.row && self.page <= self.totalPages){
+            [self loadPhotos];
+        }
     }
     
     return cell;
@@ -186,7 +190,7 @@
 
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
     WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
-
+    
     return [photo.thumbHeight integerValue];
 }
 
@@ -211,13 +215,26 @@
                 @try {
                     // get factory for Service
                     WebService *service = [[WebService alloc] init];
-                    NSArray *result = [service loadGallery:50 onPage:self.page++];
+                    NSArray *result;
+                    
+                    if (self.album){
+                        result = [service loadGallery:50 onPage:self.page++ album:self.album];
+                    }else if (self.tag){
+                        result = [service loadGallery:50 onPage:self.page++ tag:self.tag];
+                    }else{
+                        result = [service loadGallery:50 onPage:self.page++];
+                    }
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if ([result class] != [NSNull class]) {
                             // Loop through each entry in the dictionary and create an array of photos
-                            
                             for (NSDictionary *photoDetails in result){
+                                
+                                // get totalPages
+                                if (!self.totalPages){
+                                    self.totalPages = [[photoDetails objectForKey:@"totalPages"] doubleValue];
+                                }
+                                
                                 WebPhoto *photo = [WebPhoto photoWithServerInfo:photoDetails];
                                 [self.photos addObject:photo];
                             }
