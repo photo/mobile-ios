@@ -2754,8 +2754,8 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wide Angle Labs, Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -2778,8 +2778,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				PROVISIONING_PROFILE = "13F496CA-B99B-4F99-8DF1-DCFCDB8F5E8E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2451A906-9779-410B-9143-4220983EBD06";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
