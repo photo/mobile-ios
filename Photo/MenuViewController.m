@@ -213,9 +213,11 @@
                 controller.centerController = nav;
             }else if (  indexPath.row == 5){
                 // Upload & Sync
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[SyncViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
+                ELCImagePickerController *syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
+                [photoPicker setParent:syncController];
+                [syncController setDelegate:photoPicker];
+                controller.centerController = syncController;
             }else if (  indexPath.row == 7){
                 // Account - Profile
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
