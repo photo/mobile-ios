@@ -22,14 +22,15 @@
 
 @implementation Album
 
-@synthesize name=_name,quantity=_quantity;
+@synthesize name=_name,quantity=_quantity,identification=_identification;
 
-- (id)initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd{
+- (id)initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd Identification:(NSString *) identification{
     self = [super init];
     if (self) {
         // Initialization code here.
         self.name=name;
         self.quantity = qtd;
+        self.identification = identification;
     }
     
     return self;

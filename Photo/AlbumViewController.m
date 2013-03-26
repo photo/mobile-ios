@@ -198,8 +198,10 @@
                                 // how many images
                                 NSString *qtd = [albumDetails objectForKey:@"count"];
                                 
+                                NSString *identification = [albumDetails objectForKey:@"id"];
+                                
                                 // create an album and add to the list
-                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue]];
+                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification];
                                 [self.albums addObject:album];
                             }}
                         

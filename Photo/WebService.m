@@ -190,7 +190,7 @@
                                                               [NSString stringWithFormat:@"%d", pageSize],
                                                               @"&page=",[NSString stringWithFormat:@"%d", page],
                                                               @"&returnSizes=200x200,640x960",
-                                                              @"&tags=", [[tag.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]    httpMethod:@"GET"]];
+                                                              @"&tags=", [tag.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]    httpMethod:@"GET"]];
 }
 
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album *)album
@@ -200,7 +200,7 @@
                                                               [NSString stringWithFormat:@"%d", pageSize],
                                                               @"&page=",[NSString stringWithFormat:@"%d", page],
                                                               @"&returnSizes=200x200,640x960",
-                                                              @"&album=",[[album.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
+                                                              @"&album=",[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
 - (NSArray*) loadAlbums:(int) pageSize
