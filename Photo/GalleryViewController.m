@@ -30,12 +30,17 @@
 // for loading page
 @property (nonatomic) NSInteger page;
 
+// for albums or tags
+@property (nonatomic,weak) Album *album;
+@property (nonatomic,weak) Tag *tag;
 @end
 
 @implementation GalleryViewController
 @synthesize photos=_photos;
 @synthesize isLoading=_isLoading;
 @synthesize page=_page;
+@synthesize album=_album;
+@synthesize tag=_tag;
 
 - (id)init
 {
@@ -49,6 +54,25 @@
     return self;
 }
 
+- (id) initWithTag:(Tag *) tag
+{
+    self = [self init];
+    if (self){
+        self.tag = tag;
+    }
+   
+    return self;
+}
+
+- (id) initWithAlbum:(Album *) album
+{
+    self = [self init];
+    if (self){
+        self.album = album;
+    }
+    
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -163,7 +187,7 @@
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
     WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
 
-    return [photo.thumbHeight integerValue] / [self quiltViewNumberOfColumns:quiltView];
+    return [photo.thumbHeight integerValue];
 }
 
 -(void) loadPhotos

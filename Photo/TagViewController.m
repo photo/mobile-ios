@@ -250,12 +250,10 @@
     Tag *tag = [self.tags objectAtIndex:row];
     
     if (tag.quantity >0 && self.readOnly == NO){
-        
-        /*
          // open the gallery with a tag that contains at least one picture.
-         GalleryViewController *galleryController = [[GalleryViewController alloc]initWithTagName:[tag.tagName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-         [self.navigationController pushViewController:galleryController animated:YES];
-         */
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithTag:tag]];
+        self.viewDeckController.centerController = nav;
+        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary        
     }
     
     if (self.readOnly == YES){

@@ -24,9 +24,14 @@
 #import "WebPhoto.h"
 #import "TMQuiltView.h"
 #import "TMPhotoQuiltViewCell.h"
+#import "Album.h"
+#import "Tag.h"
 
 @interface GalleryViewController : TMQuiltViewController
 
 @property (nonatomic, strong) NSMutableArray *photos;
+
+- (id) initWithTag:(Tag *) tag;
+- (id) initWithAlbum:(Album *) album;
 
 @end

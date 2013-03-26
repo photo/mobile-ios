@@ -144,7 +144,21 @@
     return cell;
 }
 
+#pragma mark - Table view delegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // get the tag
+    NSUInteger row = [indexPath row];
+    Album *album = [self.albums objectAtIndex:row];
+    
+    if (album.quantity >0 ){
+        // open the gallery with a tag that contains at least one picture.
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithAlbum:album]];
+        self.viewDeckController.centerController = nav;
+        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
+    }
+}
 
 #pragma mark
 #pragma mark - Methods to get albums via json
