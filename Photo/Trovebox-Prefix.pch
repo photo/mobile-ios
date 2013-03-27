@@ -16,6 +16,9 @@
     #import "Constants.h"
     #import "PrivateConstants.h"
     #import "PhotoAlertView.h"
+    #import <QuartzCore/QuartzCore.h>
+    #import "NimbusCore.h"
+    #import "NimbusPhotos.h"
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 
