@@ -7,15 +7,20 @@
 //
 
 #import "PhotoDetailViewController.h"
+@interface PhotoDetailViewController()
+@property (nonatomic, strong) NSArray *photos;
+@property (nonatomic) NSUInteger index;
+@end
 
 @implementation PhotoDetailViewController
 
-@synthesize photos=_photos;
+@synthesize photos=_photos, index=_index;
 
-- (id)initWithPhotos:(NSArray*) photos
+- (id)initWithPhotos:(NSArray*) photos position:(NSUInteger)index
 {
   if ((self = [self initWithNibName:nil bundle:nil])) {
         self.photos = photos;
+      self.index = index;
     }
     return self;
 }
@@ -58,8 +63,12 @@
     self.title = NSLocalizedString(@"Loading...", @"Navigation bar title - Loading a photo album");
     
     [self loadThumbnails];
+    
     [self.photoAlbumView reloadData];
+    self.photoScrubberView.selectedPhotoIndex = self.index;
+    self.photoAlbumView.
     [self.photoScrubberView reloadData];
+    
     
     [self refreshChromeState];
 }

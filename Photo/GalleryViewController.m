@@ -178,10 +178,9 @@
 
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    // get the photo selected
-    // WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
-    
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[PhotoDetailViewController alloc] initWithPhotos:self.photos]];
+
+    //open the details page
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[PhotoDetailViewController alloc] initWithPhotos:self.photos position:indexPath.row]];
     nav.view.backgroundColor=UIColorFromRGB(0x0000000);
     [self presentModalViewController:nav animated:NO];
 }

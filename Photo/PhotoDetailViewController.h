@@ -12,13 +12,8 @@
 #import "NetworkPhotoAlbumViewController.h"
 #import "WebPhoto.h"
 
-@interface PhotoDetailViewController : NetworkPhotoAlbumViewController <
-NIPhotoAlbumScrollViewDataSource,
-NIPhotoScrubberViewDataSource,
-NIOperationDelegate
->
-- (id)initWithPhotos:(NSArray*) photos;
+@interface PhotoDetailViewController : NetworkPhotoAlbumViewController <NIPhotoAlbumScrollViewDataSource, NIPhotoScrubberViewDataSource, NIOperationDelegate>
 
-@property (nonatomic, strong) NSArray *photos;
+- (id)initWithPhotos:(NSArray*) photos position:(NSUInteger)index;
 
 @end

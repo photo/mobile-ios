@@ -20,6 +20,7 @@
 @synthesize thumbWidth;
 @synthesize thumbHeight;
 @synthesize thumbUrl;
+@synthesize mwphoto;
 
 + (WebPhoto *) photoWithServerInfo:(NSDictionary *) response
 {
@@ -68,6 +69,8 @@
         double d            = [[response objectForKey:@"dateTaken"] doubleValue];
         NSTimeInterval date =  d;
         photo.date          = [NSDate dateWithTimeIntervalSince1970:date];
+        
+        photo.mwphoto = [MWPhoto photoWithURL:photo.url];
     }
     
     // return result
