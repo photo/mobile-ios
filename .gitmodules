@@ -28,6 +28,3 @@
 [submodule "Frameworks/TMQuiltView"]
 	path = Frameworks/TMQuiltView
 	url = git://github.com/1000Memories/TMQuiltView.git
-[submodule "Frameworks/nimbus"]
-	path = Frameworks/nimbus
-	url = https://github.com/jverkoey/nimbus.git

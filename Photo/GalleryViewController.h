@@ -26,9 +26,9 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "Album.h"
 #import "Tag.h"
-#import "PhotoDetailViewController.h"
+#import "MWPhotoBrowser.h"
 
-@interface GalleryViewController : TMQuiltViewController
+@interface GalleryViewController : TMQuiltViewController <MWPhotoBrowserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *photos;
 

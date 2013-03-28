@@ -176,14 +176,48 @@
     return cell;
 }
 
+
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    //open the details page
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[PhotoDetailViewController alloc] initWithPhotos:self.photos position:indexPath.row]];
-    nav.view.backgroundColor=UIColorFromRGB(0x0000000);
-    [self presentModalViewController:nav animated:NO];
+    
+    //open the details page/
+    //   [[PhotoDetailViewController alloc] initWithPhotos:self.photos position:indexPath.row]];
+    //nav.view.backgroundColor=UIColorFromRGB(0x0000000);
+    //
+    
+    
+    NSMutableArray *temp = [NSMutableArray array];
+    for (WebPhoto *photo in self.photos)
+    {
+        [temp addObject:photo.mwphoto];
+    }
+    
+    // Create & present browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    // Set options
+    browser.wantsFullScreenLayout = YES; // Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
+    browser.displayActionButton = YES; // Show action button to save, copy or email photos (defaults to NO)
+    [browser setInitialPageIndex:indexPath.row]; // Example: allows second image to be presented first
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
+    // Present
+[self presentModalViewController:nav animated:NO];
+    
+    
 }
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count){
+        WebPhoto *photo =  [self.photos objectAtIndex:index];
+        return photo.mwphoto;
+    }
+    
+    return nil;
+}
+
 
 #pragma mark - TMQuiltViewDelegate
 
