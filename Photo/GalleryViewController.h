@@ -26,6 +26,7 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "Album.h"
 #import "Tag.h"
+#import "PhotoDetailViewController.h"
 
 @interface GalleryViewController : TMQuiltViewController
 

@@ -155,7 +155,6 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-    // cell.photoView.image = [self imageAtIndexPath:indexPath];
     WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
     [cell.photoView setImageWithURL:[NSURL URLWithString:photo.thumbUrl]
                    placeholderImage:nil
@@ -175,6 +174,16 @@
     }
     
     return cell;
+}
+
+- (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    // get the photo selected
+    // WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[PhotoDetailViewController alloc] initWithPhotos:self.photos]];
+    nav.view.backgroundColor=UIColorFromRGB(0x0000000);
+    [self presentModalViewController:nav animated:NO];
 }
 
 #pragma mark - TMQuiltViewDelegate
