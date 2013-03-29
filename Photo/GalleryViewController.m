@@ -216,8 +216,19 @@
 - (NSInteger)quiltViewNumberOfColumns:(TMQuiltView *)quiltView {
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft
         || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+
+        // is iPad
+        if ([DisplayUtilities isIPad]){
+            return 6;
+        }
+        
         return 3;
     } else {
+        // is iPad
+        if ([DisplayUtilities isIPad]){
+            return 4;
+        }
+        
         return 2;
     }
 }
