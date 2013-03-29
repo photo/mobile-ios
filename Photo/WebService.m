@@ -77,10 +77,10 @@
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
-        [request appendString:@"610x530xCR"];
+        [request appendString:@"610x530xCR,610x530"];
     }else{
         // not retina display
-        [request appendString:@"305x265xCR"];
+        [request appendString:@"305x265xCR,305x265"];
     }
     
     return  [self parseResponse:[self sendSynchronousRequest:request httpMethod:@"GET"]];

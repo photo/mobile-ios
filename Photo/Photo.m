@@ -2,7 +2,7 @@
 //  Photo.m
 //  Trovebox
 //
-//  Created by Patrick Santana on 14/03/13.
+//  Created by Patrick Santana on 29/03/13.
 //  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
@@ -15,11 +15,11 @@
 @dynamic height;
 @dynamic identification;
 @dynamic pageUrl;
+@dynamic thumbHeight;
+@dynamic thumbUrl;
+@dynamic thumbWidth;
 @dynamic title;
 @dynamic url;
 @dynamic width;
-@dynamic thumbWidth;
-@dynamic thumbHeight;
-@dynamic thumbUrl;
 
 @end

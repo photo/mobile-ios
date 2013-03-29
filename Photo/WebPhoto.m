@@ -70,7 +70,7 @@
         NSTimeInterval date =  d;
         photo.date          = [NSDate dateWithTimeIntervalSince1970:date];
         
-        photo.mwphoto = [MWPhoto photoWithURL:photo.url];
+        photo.mwphoto = [MWPhoto photoWithURL:[NSURL URLWithString:photo.url]];
     }
     
     // return result

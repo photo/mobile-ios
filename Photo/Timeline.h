@@ -1,21 +1,9 @@
 //
 //  Timeline.h
-//  Photo
+//  Trovebox
 //
-//  Created by Patrick Santana on 15/10/12.
-//  Copyright 2012 Photo
-//
-//  Licensed under the Apache License, Version 2.0 (the "License");
-//  you may not use this file except in compliance with the License.
-//  You may obtain a copy of the License at
-//
-//  http://www.apache.org/licenses/LICENSE-2.0
-//
-//  Unless required by applicable law or agreed to in writing, software
-//  distributed under the License is distributed on an "AS IS" BASIS,
-//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//  See the License for the specific language governing permissions and
-//  limitations under the License.
+//  Created by Patrick Santana on 29/03/13.
+//  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -34,8 +22,8 @@
 @property (nonatomic, retain) NSNumber * permission;
 @property (nonatomic, retain) NSString * photoDataTempUrl;
 @property (nonatomic, retain) NSData * photoDataThumb;
-@property (nonatomic, retain) NSNumber * photoToUpload;
 @property (nonatomic, retain) NSString * photoPageUrl;
+@property (nonatomic, retain) NSNumber * photoToUpload;
 @property (nonatomic, retain) NSString * photoUploadMultiplesUrl;
 @property (nonatomic, retain) NSNumber * photoUploadProgress;
 @property (nonatomic, retain) NSData * photoUploadResponse;
@@ -46,5 +34,6 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * twitter;
 @property (nonatomic, retain) NSString * userUrl;
+@property (nonatomic, retain) NSString * photoUrlDetail;
 
 @end

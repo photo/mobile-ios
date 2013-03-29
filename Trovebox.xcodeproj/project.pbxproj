@@ -12,6 +12,9 @@
 		CD004A3D161F02DA006B1C6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3C161F02DA006B1C6E /* CoreLocation.framework */; };
 		CD004A3F161F030F006B1C6E /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3E161F030F006B1C6E /* Twitter.framework */; };
 		CD004A41161F0324006B1C6E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A40161F0324006B1C6E /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		CD014602170641C800FFE797 /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014601170641C800FFE797 /* Synced.m */; };
+		CD01462A170641C900FFE797 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014629170641C900FFE797 /* Photo.m */; };
+		CD01462D1706479300FFE797 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD01462C1706479300FFE797 /* Timeline.m */; };
 		CD1528481628DB8500EA08FF /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* Account.m */; };
 		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
 		CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528411628DB8500EA08FF /* LoginViewController.xib */; };
@@ -27,8 +30,6 @@
 		CD1A6D191704959E0002763A /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D101704959E0002763A /* MWTapDetectingImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD1A6D1A1704959E0002763A /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D121704959E0002763A /* MWTapDetectingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD1A6D1B1704959E0002763A /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D141704959E0002763A /* MWZoomingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1CDE33162C244200E57F73 /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE32162C244200E57F73 /* Synced.m */; };
-		CD1CDE36162C244200E57F73 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE35162C244200E57F73 /* Timeline.m */; };
 		CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */; };
 		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
@@ -68,7 +69,6 @@
 		CD4613D0161C78B00028619D /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEC2565161C3A280062E9B0 /* WrapController.m */; };
 		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
 		CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4516F20E490044427E /* Photo+Methods.m */; };
-		CD5F5E4C16F245270044427E /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4B16F245270044427E /* Photo.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
 		CD764289161ED9BB00E0B657 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD764287161ED9BB00E0B657 /* iRate.m */; };
 		CD76429F161EDAC000E0B657 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76428C161EDAC000E0B657 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -676,6 +676,12 @@
 		CD004A3C161F02DA006B1C6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CD004A3E161F030F006B1C6E /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		CD004A40161F0324006B1C6E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		CD014600170641C800FFE797 /* Synced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synced.h; sourceTree = "<group>"; };
+		CD014601170641C800FFE797 /* Synced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synced.m; sourceTree = "<group>"; };
+		CD014628170641C900FFE797 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		CD014629170641C900FFE797 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		CD01462B1706479300FFE797 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
+		CD01462C1706479300FFE797 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
 		CD15283B1628DB8500EA08FF /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CD15283C1628DB8500EA08FF /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CD15283F1628DB8500EA08FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -703,10 +709,6 @@
 		CD1A6D121704959E0002763A /* MWTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWTapDetectingView.m; path = mwphotobrowser/MWTapDetectingView.m; sourceTree = "<group>"; };
 		CD1A6D131704959E0002763A /* MWZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWZoomingScrollView.h; path = mwphotobrowser/MWZoomingScrollView.h; sourceTree = "<group>"; };
 		CD1A6D141704959E0002763A /* MWZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWZoomingScrollView.m; path = mwphotobrowser/MWZoomingScrollView.m; sourceTree = "<group>"; };
-		CD1CDE31162C244200E57F73 /* Synced.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synced.h; sourceTree = "<group>"; };
-		CD1CDE32162C244200E57F73 /* Synced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synced.m; sourceTree = "<group>"; };
-		CD1CDE34162C244200E57F73 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
-		CD1CDE35162C244200E57F73 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
 		CD1CDE37162C275F00E57F73 /* CoreDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataTableViewController.h; sourceTree = "<group>"; };
 		CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataTableViewController.m; sourceTree = "<group>"; };
 		CD1CDE3A162C2AE400E57F73 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
@@ -769,8 +771,6 @@
 		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
 		CD5F5E4416F20E490044427E /* Photo+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Methods.h"; sourceTree = "<group>"; };
 		CD5F5E4516F20E490044427E /* Photo+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Methods.m"; sourceTree = "<group>"; };
-		CD5F5E4A16F245270044427E /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		CD5F5E4B16F245270044427E /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
 		CD764286161ED9BB00E0B657 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
 		CD764287161ED9BB00E0B657 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
@@ -1283,15 +1283,15 @@
 				CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */,
 				CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */,
 				CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */,
-				CD5F5E4A16F245270044427E /* Photo.h */,
-				CD5F5E4B16F245270044427E /* Photo.m */,
 				CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */,
+				CD01462B1706479300FFE797 /* Timeline.h */,
+				CD01462C1706479300FFE797 /* Timeline.m */,
+				CD014628170641C900FFE797 /* Photo.h */,
+				CD014629170641C900FFE797 /* Photo.m */,
+				CD014600170641C800FFE797 /* Synced.h */,
+				CD014601170641C800FFE797 /* Synced.m */,
 				CD5F5E4116F20E050044427E /* Gallery.h */,
 				CD5F5E4216F20E050044427E /* Gallery.m */,
-				CD1CDE34162C244200E57F73 /* Timeline.h */,
-				CD1CDE35162C244200E57F73 /* Timeline.m */,
-				CD1CDE31162C244200E57F73 /* Synced.h */,
-				CD1CDE32162C244200E57F73 /* Synced.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -2552,8 +2552,6 @@
 				CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */,
 				CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */,
 				CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */,
-				CD1CDE33162C244200E57F73 /* Synced.m in Sources */,
-				CD1CDE36162C244200E57F73 /* Timeline.m in Sources */,
 				CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */,
 				CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */,
 				CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */,
@@ -2605,7 +2603,6 @@
 				CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */,
 				CD5F5E4316F20E050044427E /* Gallery.m in Sources */,
 				CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */,
-				CD5F5E4C16F245270044427E /* Photo.m in Sources */,
 				CD927E4716F8712100843FEE /* WebPhoto.m in Sources */,
 				CD1A6CDB1704811B0002763A /* TMPhotoQuiltViewCell.m in Sources */,
 				CD1A6D151704959E0002763A /* MWCaptionView.m in Sources */,
@@ -2614,6 +2611,9 @@
 				CD1A6D191704959E0002763A /* MWTapDetectingImageView.m in Sources */,
 				CD1A6D1A1704959E0002763A /* MWTapDetectingView.m in Sources */,
 				CD1A6D1B1704959E0002763A /* MWZoomingScrollView.m in Sources */,
+				CD014602170641C800FFE797 /* Synced.m in Sources */,
+				CD01462A170641C900FFE797 /* Photo.m in Sources */,
+				CD01462D1706479300FFE797 /* Timeline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

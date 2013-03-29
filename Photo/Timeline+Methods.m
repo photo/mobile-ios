@@ -184,9 +184,11 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
                     // retina display
                     photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
+                    photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530"]];
                 }else{
                     // not retina display
                     photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
+                    photo.photoUrlDetail =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265"]];
                 }
                 
                 NSString *title = [raw objectForKey:@"title"];

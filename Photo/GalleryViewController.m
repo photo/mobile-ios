@@ -179,12 +179,6 @@
 
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *temp = [NSMutableArray array];
-    for (WebPhoto *photo in self.photos)
-    {
-        [temp addObject:photo.mwphoto];
-    }
-    
     // Create & present browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Set options

@@ -23,6 +23,7 @@
 @interface HomeTableViewController ()
 // refresh the list. It is not necessary when comes from photo
 @property (nonatomic) BOOL needsUpdate;
+@property (nonatomic, strong) MWPhoto* mwphoto;
 
 - (void)doneLoadingTableViewData;
 @end
@@ -30,6 +31,7 @@
 @implementation HomeTableViewController
 @synthesize noPhotoImageView=_noPhotoImageView;
 @synthesize needsUpdate = _needsUpdate;
+@synthesize mwphoto=_mwphoto;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -131,7 +133,7 @@
     // now the logo
     UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];
     [self.navigationController.navigationBar.topItem setTitleView:titleView];
-
+    
     
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
@@ -174,7 +176,7 @@
     [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
     buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
     [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
-
+    
     UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
     self.navigationItem.rightBarButtonItem = customRightButton;
     
@@ -423,6 +425,34 @@
         return 44;
     }
 }
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Timeline *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ([photo.status isEqualToString:kUploadStatusTypeUploaded]){
+        
+        // Create & present browser
+        self.mwphoto = [MWPhoto photoWithURL:[NSURL URLWithString:photo.photoUrlDetail]];
+   
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        // Set options
+       // browser.wantsFullScreenLayout = YES;
+        browser.displayActionButton = YES;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
+        
+        // Present
+        [self presentModalViewController:nav animated:NO];
+    }
+}
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+   return self.mwphoto;
+}
+
 
 // Override to support conditional editing of the table view.
 // This only needs to be implemented if you are going to be returning NO

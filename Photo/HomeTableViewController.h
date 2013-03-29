@@ -37,8 +37,10 @@
 // to update profile
 #import "DateUtilities.h"
 
+#import "MWPhotoBrowser.h"
 
-@interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate>
+
+@interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate, MWPhotoBrowserDelegate>
 {
     
     EGORefreshTableHeaderView *_refreshHeaderView;
