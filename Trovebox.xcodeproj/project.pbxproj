@@ -136,6 +136,8 @@
 		CDAFB9F916122263002D6E86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D816122262002D6E86 /* CoreData.framework */; };
 		CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAFB9FF16122263002D6E86 /* InfoPlist.strings */; };
 		CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFBA0316122263002D6E86 /* PhotoTests.m */; };
+		CDB3B3A81705EA1C0010C38A /* home-trovebox-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */; };
+		CDB3B3A91705EA1C0010C38A /* home-trovebox-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */; };
 		CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */; };
 		CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */; };
 		CDC3A7ED161DFAEA003FDC2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDC3A7EB161DFAEA003FDC2E /* Localizable.strings */; };
@@ -174,8 +176,6 @@
 		CDCC0AAD16E0C23700BE4481 /* home-geo-off-sharing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2C16E0C23700BE4481 /* home-geo-off-sharing@2x.png */; };
 		CDCC0AAE16E0C23700BE4481 /* home-geo-on-sharing.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2D16E0C23700BE4481 /* home-geo-on-sharing.png */; };
 		CDCC0AAF16E0C23700BE4481 /* home-geo-on-sharing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2E16E0C23700BE4481 /* home-geo-on-sharing@2x.png */; };
-		CDCC0AB016E0C23700BE4481 /* home-openphoto-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2F16E0C23700BE4481 /* home-openphoto-bar.png */; };
-		CDCC0AB116E0C23700BE4481 /* home-openphoto-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A3016E0C23700BE4481 /* home-openphoto-bar@2x.png */; };
 		CDCC0AB216E0C23700BE4481 /* home-private.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A3116E0C23700BE4481 /* home-private.png */; };
 		CDCC0AB316E0C23700BE4481 /* home-private@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A3216E0C23700BE4481 /* home-private@2x.png */; };
 		CDCC0AB416E0C23700BE4481 /* home-retry.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A3316E0C23700BE4481 /* home-retry.png */; };
@@ -866,6 +866,8 @@
 		CDAFBA0016122263002D6E86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CDAFBA0216122263002D6E86 /* PhotoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoTests.h; sourceTree = "<group>"; };
 		CDAFBA0316122263002D6E86 /* PhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
+		CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo.png"; path = "images/home-trovebox-logo.png"; sourceTree = "<group>"; };
+		CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo@2x.png"; path = "images/home-trovebox-logo@2x.png"; sourceTree = "<group>"; };
 		CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
 		CDC3A7E6161DF89D003FDC2E /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
@@ -916,8 +918,6 @@
 		CDCC0A2C16E0C23700BE4481 /* home-geo-off-sharing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-geo-off-sharing@2x.png"; path = "images/home-geo-off-sharing@2x.png"; sourceTree = "<group>"; };
 		CDCC0A2D16E0C23700BE4481 /* home-geo-on-sharing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-geo-on-sharing.png"; path = "images/home-geo-on-sharing.png"; sourceTree = "<group>"; };
 		CDCC0A2E16E0C23700BE4481 /* home-geo-on-sharing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-geo-on-sharing@2x.png"; path = "images/home-geo-on-sharing@2x.png"; sourceTree = "<group>"; };
-		CDCC0A2F16E0C23700BE4481 /* home-openphoto-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-openphoto-bar.png"; path = "images/home-openphoto-bar.png"; sourceTree = "<group>"; };
-		CDCC0A3016E0C23700BE4481 /* home-openphoto-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-openphoto-bar@2x.png"; path = "images/home-openphoto-bar@2x.png"; sourceTree = "<group>"; };
 		CDCC0A3116E0C23700BE4481 /* home-private.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-private.png"; path = "images/home-private.png"; sourceTree = "<group>"; };
 		CDCC0A3216E0C23700BE4481 /* home-private@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-private@2x.png"; path = "images/home-private@2x.png"; sourceTree = "<group>"; };
 		CDCC0A3316E0C23700BE4481 /* home-retry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-retry.png"; path = "images/home-retry.png"; sourceTree = "<group>"; };
@@ -1491,6 +1491,8 @@
 				CDCC0A2416E0C23700BE4481 /* empty_img@2x.png */,
 				CDCC0A2516E0C23700BE4481 /* gallery-show-tags.png */,
 				CDCC0A2616E0C23700BE4481 /* gallery-show-tags@2x.png */,
+				CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */,
+				CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */,
 				CDCC0A2716E0C23700BE4481 /* home-already-uploaded.png */,
 				CDCC0A2816E0C23700BE4481 /* home-already-uploaded@2x.png */,
 				CDCC0A2916E0C23700BE4481 /* home-brown-arrow.png */,
@@ -1499,8 +1501,6 @@
 				CDCC0A2C16E0C23700BE4481 /* home-geo-off-sharing@2x.png */,
 				CDCC0A2D16E0C23700BE4481 /* home-geo-on-sharing.png */,
 				CDCC0A2E16E0C23700BE4481 /* home-geo-on-sharing@2x.png */,
-				CDCC0A2F16E0C23700BE4481 /* home-openphoto-bar.png */,
-				CDCC0A3016E0C23700BE4481 /* home-openphoto-bar@2x.png */,
 				CDCC0A3116E0C23700BE4481 /* home-private.png */,
 				CDCC0A3216E0C23700BE4481 /* home-private@2x.png */,
 				CDCC0A3316E0C23700BE4481 /* home-retry.png */,
@@ -2359,8 +2359,6 @@
 				CDCC0AAD16E0C23700BE4481 /* home-geo-off-sharing@2x.png in Resources */,
 				CDCC0AAE16E0C23700BE4481 /* home-geo-on-sharing.png in Resources */,
 				CDCC0AAF16E0C23700BE4481 /* home-geo-on-sharing@2x.png in Resources */,
-				CDCC0AB016E0C23700BE4481 /* home-openphoto-bar.png in Resources */,
-				CDCC0AB116E0C23700BE4481 /* home-openphoto-bar@2x.png in Resources */,
 				CDCC0AB216E0C23700BE4481 /* home-private.png in Resources */,
 				CDCC0AB316E0C23700BE4481 /* home-private@2x.png in Resources */,
 				CDCC0AB416E0C23700BE4481 /* home-retry.png in Resources */,
@@ -2465,6 +2463,8 @@
 				CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */,
 				CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */,
 				CD1A6D171704959E0002763A /* MWPhotoBrowser.bundle in Resources */,
+				CDB3B3A81705EA1C0010C38A /* home-trovebox-logo.png in Resources */,
+				CDB3B3A91705EA1C0010C38A /* home-trovebox-logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

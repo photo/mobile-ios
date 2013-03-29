@@ -117,16 +117,21 @@
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"home-openphoto-bar.png"] forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
     }else{
         UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
         if (imageView == nil)
         {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-openphoto-bar.png"]];
+            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
             [imageView setTag:6183746];
             [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
         }
     }
+    
+    // now the logo
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];
+    [self.navigationController.navigationBar.topItem setTitleView:titleView];
+
     
     // check if needs to update the profile
     [self needsUpdateProfileDetails];

@@ -90,7 +90,7 @@
 			<key>Key</key>
 			<string>CleanCache</string>
 			<key>Title</key>
-			<string>Clean cache</string>
+			<string>Clear my cache</string>
 			<key>Type</key>
 			<string>IASKButtonSpecifier</string>
 		</dict>

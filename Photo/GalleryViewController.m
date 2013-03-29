@@ -179,13 +179,6 @@
 
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //open the details page/
-    //   [[PhotoDetailViewController alloc] initWithPhotos:self.photos position:indexPath.row]];
-    //nav.view.backgroundColor=UIColorFromRGB(0x0000000);
-    //
-    
-    
     NSMutableArray *temp = [NSMutableArray array];
     for (WebPhoto *photo in self.photos)
     {
@@ -195,14 +188,13 @@
     // Create & present browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     // Set options
-    browser.wantsFullScreenLayout = YES; // Decide if you want the photo browser full screen, i.e. whether the status bar is affected (defaults to YES)
-    browser.displayActionButton = YES; // Show action button to save, copy or email photos (defaults to NO)
-    [browser setInitialPageIndex:indexPath.row]; // Example: allows second image to be presented first
+    browser.wantsFullScreenLayout = YES;
+    browser.displayActionButton = YES;
+    [browser setInitialPageIndex:indexPath.row]; 
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
+
     // Present
-[self presentModalViewController:nav animated:NO];
-    
-    
+    [self presentModalViewController:nav animated:NO];
 }
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
@@ -297,7 +289,6 @@
             });
             dispatch_release(loadPhotos);
         }
-    }
-    
+    }    
 }
 @end
