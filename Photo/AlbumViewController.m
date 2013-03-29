@@ -140,7 +140,11 @@
     cell.textLabel.text=album.name;
     cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", album.quantity];
     cell.detailTextLabel.textColor = UIColorFromRGB(0xE6501E);
-    
+
+    // Here we use the new provided setImageWithURL: method to load the web image
+    [cell.imageView setImageWithURL:[NSURL URLWithString:album.thumb]
+                   placeholderImage:[UIImage imageNamed:@"empty_img.png"]];
+
     return cell;
 }
 
@@ -200,8 +204,18 @@
                                 
                                 NSString *identification = [albumDetails objectForKey:@"id"];
                                 
-                                // create an album and add to the list
-                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification];
+                                // first get the cover
+                                NSDictionary* cover = [albumDetails objectForKey:@"cover"];
+                                NSString *size;
+                                if ([DisplayUtilities isIPad])
+                                    size = @"photo200x200xCR";
+                                else
+                                    size = @"photo100x100xCR";
+                                NSArray *pathCover = [cover objectForKey:size];
+                                
+                                                                // create an album and add to the list of albums
+                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
+                                
                                 [self.albums addObject:album];
                             }}
                         

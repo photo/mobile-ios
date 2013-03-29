@@ -21,6 +21,9 @@
 #import <UIKit/UIKit.h>
 #import "Album.h"
 
+// image cache
+#import <SDWebImage/UIImageView+WebCache.h>
+
 @interface AlbumViewController : UITableViewController<UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *albums;
