@@ -21,6 +21,7 @@
 
 #import "MenuViewController.h"
 #import "IIViewDeckController.h"
+#import "UINavigationBar+Trovebox.h"
 
 @interface MenuViewController()
 - (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView ;
@@ -300,34 +301,26 @@
 {
     NSLog(@"Open Camera");
     
-    // check if user has camera
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Your device hasn't a camera" duration:5000];
-        [alert showAlert];
-    }else{
-        UIImagePickerController* picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        // start localtion
-        [coreLocationController.locMgr startUpdatingLocation];
-        
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-            picker.sourceType =  UIImagePickerControllerSourceTypeCamera;
-        
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
-            [self.popoverController presentPopoverFromBarButtonItem:nil permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }
-        else {
-            [self presentModalViewController:picker animated:YES];
-        }
+    DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
+    picker.delegate = self;
+    
+    [coreLocationController.locMgr startUpdatingLocation];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
+        [self.popoverController presentPopoverFromBarButtonItem:nil permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else {
+        [self presentViewController:picker animated:YES completion:nil];
     }
 }
 
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(DLCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // the image itself to save in the library
-    UIImage *pickedImage = [info
-                            objectForKey:UIImagePickerControllerOriginalImage];
+    
+    UIImage *pickedImage = [UIImage imageWithData:[info
+                                                   objectForKey:@"data"]];
     
     // User come from Snapshot. We will temporary save in the Library.
     // If in the Settings is configure to not save in the library, we will delete
@@ -357,7 +350,11 @@
             NSLog(@"The photo took by the user could not be saved = %@", [error description]);
         } else {
             PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl image:pickedImage];
-            [picker pushViewController:controller animated:YES];
+            UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+            [navController.navigationBar troveboxStyle];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self presentViewController:navController animated:YES completion:nil];
+            }];
         }
     }];
     
