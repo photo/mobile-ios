@@ -28,6 +28,3 @@
 [submodule "Frameworks/TMQuiltView"]
 	path = Frameworks/TMQuiltView
 	url = git://github.com/1000Memories/TMQuiltView.git
-[submodule "Frameworks/DLCImagePickerController"]
-	path = Frameworks/DLCImagePickerController
-	url = https://github.com/gobackspaces/DLCImagePickerController.git
