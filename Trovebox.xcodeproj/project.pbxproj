@@ -227,6 +227,7 @@
 		03EEFF6117114244008D2FDA /* BlurOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EEFF5A17114244008D2FDA /* BlurOverlayView.m */; };
 		03EEFF6217114244008D2FDA /* DLCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EEFF5C17114244008D2FDA /* DLCImagePickerController.m */; };
 		03EEFF6317114244008D2FDA /* GrayscaleContrastFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 03EEFF5E17114244008D2FDA /* GrayscaleContrastFilter.m */; };
+		03F119C817115A8A00EBBD45 /* UINavigationBar+Trovebox.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F119C717115A8A00EBBD45 /* UINavigationBar+Trovebox.m */; };
 		CD004A39161F02B7006B1C6E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A38161F02B7006B1C6E /* Security.framework */; };
 		CD004A3B161F02C9006B1C6E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3A161F02C9006B1C6E /* MessageUI.framework */; };
 		CD004A3D161F02DA006B1C6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A3C161F02DA006B1C6E /* CoreLocation.framework */; };
@@ -1273,6 +1274,8 @@
 		03EEFFFD17114275008D2FDA /* GPUImageLookupFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageLookupFilter.h; sourceTree = "<group>"; };
 		03EEFFFE17114275008D2FDA /* GPUImageLookupFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPUImageLookupFilter.m; sourceTree = "<group>"; };
 		03EEFFFF17114275008D2FDA /* GPUImageLowPassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPUImageLowPassFilter.h; sourceTree = "<group>"; };
+		03F119C617115A8A00EBBD45 /* UINavigationBar+Trovebox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Trovebox.h"; sourceTree = "<group>"; };
+		03F119C717115A8A00EBBD45 /* UINavigationBar+Trovebox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Trovebox.m"; sourceTree = "<group>"; };
 		CD004A38161F02B7006B1C6E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CD004A3A161F02C9006B1C6E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CD004A3C161F02DA006B1C6E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -2515,6 +2518,8 @@
 				CD1D827116E9412800877A8E /* MenuTableViewSearchCell.h */,
 				CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */,
 				CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */,
+				03F119C617115A8A00EBBD45 /* UINavigationBar+Trovebox.h */,
+				03F119C717115A8A00EBBD45 /* UINavigationBar+Trovebox.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -3930,6 +3935,7 @@
 				03EE012B17114276008D2FDA /* GPUImageWeakPixelInclusionFilter.m in Sources */,
 				03EE012C17114276008D2FDA /* GPUImageWhiteBalanceFilter.m in Sources */,
 				03EE012D17114276008D2FDA /* GPUImageXYDerivativeFilter.m in Sources */,
+				03F119C817115A8A00EBBD45 /* UINavigationBar+Trovebox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

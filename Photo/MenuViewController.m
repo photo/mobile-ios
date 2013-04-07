@@ -21,6 +21,7 @@
 
 #import "MenuViewController.h"
 #import "IIViewDeckController.h"
+#import "UINavigationBar+Trovebox.h"
 
 @interface MenuViewController()
 - (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView ;
@@ -303,6 +304,8 @@
     DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
     picker.delegate = self;
     
+    [coreLocationController.locMgr startUpdatingLocation];
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
         [self.popoverController presentPopoverFromBarButtonItem:nil permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -348,6 +351,7 @@
         } else {
             PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl image:pickedImage];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+            [navController.navigationBar troveboxStyle];
             [self dismissViewControllerAnimated:YES completion:^{
                 [self presentViewController:navController animated:YES completion:nil];
             }];
