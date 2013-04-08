@@ -121,7 +121,7 @@
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
         UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];
-        self.navigationItem.rightBarButtonItem = cancelButton;
+        self.navigationItem.leftBarButtonItem = cancelButton;
     }
     
     // button to done
