@@ -21,6 +21,7 @@
 
 
 #import "GalleryViewController.h"
+#import "UINavigationBar+Trovebox.h"
 
 @interface GalleryViewController ()
 - (void) loadPhotos;
@@ -100,18 +101,7 @@
     self.navigationItem.rightBarButtonItem = customRightButton;
     
     // image for the navigator
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
-        //iOS >=5.0
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
-    }else{
-        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
-        if (imageView == nil)
-        {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
-            [imageView setTag:6183746];
-            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
-        }
-    }
+    [self.navigationController.navigationBar troveboxStyle];
     
     UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];

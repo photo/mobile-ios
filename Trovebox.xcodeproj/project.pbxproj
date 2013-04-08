@@ -2230,13 +2230,6 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		03F1199D1711510700EBBD45 /* PhotoPicker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = PhotoPicker;
-			sourceTree = "<group>";
-		};
 		CD1A6CE41704958C0002763A /* mwphotobrowser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2853,7 +2846,6 @@
 		CDAFB9DA16122262002D6E86 /* Trovebox */ = {
 			isa = PBXGroup;
 			children = (
-				03F1199D1711510700EBBD45 /* PhotoPicker */,
 				CD4613D2161C7A9F0028619D /* CoreData */,
 				CD4613D3161C7AB40028619D /* Authentication */,
 				CD4613DB161C7B3A0028619D /* Menu */,
