@@ -9,6 +9,7 @@
 #import "MenuTableViewCell.h"
 
 @implementation MenuTableViewCell
+@synthesize label=_label,imageDefault=_imageDefault,imageSelected=_imageSelected,imageLine=_imageLine;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -22,8 +23,21 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    
+    if (selected){
+        self.label.textColor = UIColorFromRGB(0xFECD31);
+        // change the image to selected one
+        [self.image setImage:[UIImage imageNamed:self.imageSelected]];
+        // change the narrow in the left
+        self.imageLine.hidden = FALSE;
+    }else{
+        self.label.textColor = [UIColor whiteColor];
+        // change the image to the default
+        [self.image setImage:[UIImage imageNamed:self.imageDefault]];
+        
+        // change the narrow in the left
+          self.imageLine.hidden = TRUE;
+    }
 }
 
 @end

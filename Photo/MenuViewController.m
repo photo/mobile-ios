@@ -24,7 +24,7 @@
 #import "UINavigationBar+Trovebox.h"
 
 @interface MenuViewController()
-- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView ;
+- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView image:(NSString *) imagePath imageSelected:(NSString *) imageSelectedPath;
 @end
 
 @implementation MenuViewController
@@ -43,9 +43,10 @@
                                                      name:kNotificationNeededsUpdate
                                                    object:nil ];
         
-        self.tableView.backgroundColor = UIColorFromRGB(0x958077);
-        // color separator
-        self.tableView.separatorColor = UIColorFromRGB(0xB6A39A);
+        self.tableView.backgroundColor = UIColorFromRGB(0x6B5851);
+        // no separator
+        [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
         
         coreLocationController = [[CoreLocationController alloc] init];
         coreLocationController.delegate = self;
@@ -119,33 +120,28 @@
         return cell;
     }else if ( row ==  1){
         // latest activity
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-latest.png" imageSelected:@"menu-latest-selected.png"];
         cell.label.text = NSLocalizedString(@"Latest Activity", @"Menu - title for Home");
-        [cell.image setImage:[UIImage imageNamed:@"menu-latest.png"]];
         return cell;
     }else if ( row ==  2){
         // photos - gallery
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-gallery.png" imageSelected:@"menu-gallery-selected.png"];
         cell.label.text = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
-        [cell.image setImage:[UIImage imageNamed:@"menu-gallery.png"]];
         return cell;
     }else if ( row ==  3){
         // albums
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-album.png" imageSelected:@"menu-album-selected.png"];
         cell.label.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
-        [cell.image setImage:[UIImage imageNamed:@"menu-album.png"]];
-        return cell;
+       return cell;
     }else if ( row ==  4){
         // tags
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-tags.png" imageSelected:@"menu-tags-selected.png"];
         cell.label.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
-        [cell.image setImage:[UIImage imageNamed:@"menu-tags.png"]];
         return cell;
     }else if ( row ==  5){
         // upload & sync
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-upload.png" imageSelected:@"menu-upload-selected.png"];
         cell.label.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
-        [cell.image setImage:[UIImage imageNamed:@"menu-upload.png"]];
         return cell;
     }else if ( row ==  6){
         // preferences
@@ -161,28 +157,32 @@
         return cell;
     }else if ( row ==  7){
         // my account
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-profile.png" imageSelected:@"menu-profile-selected.png"];
         cell.label.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
-        [cell.image setImage:[UIImage imageNamed:@"menu-profile.png"]];
         return cell;
     }else {
         // settings
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-settings.png" imageSelected:@"menu-settings-selected.png"];
         cell.label.text = NSLocalizedString(@"Settings", @"Menu - title for Settings");
-        [cell.image setImage:[UIImage imageNamed:@"menu-settings.png"]];
         return cell;
     }
     
 }
 
-- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView
+- (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView image:(NSString *) imagePath imageSelected:(NSString *) imageSelectedPath
 {
     static NSString *menuTableViewCellIdentifier = @"menuTableViewCell";
     MenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewCellIdentifier];
+    
     if (cell == nil) {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:nil options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
+
+    cell.imageSelected = imageSelectedPath;
+    cell.imageDefault = imagePath;
+    
+    [cell.image setImage:[UIImage imageNamed:imagePath]];
     
     return cell;
 }
@@ -191,7 +191,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
         
         if ([controller.centerController isKindOfClass:[UINavigationController class]]) {
@@ -248,7 +247,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ( [indexPath row] == 6){
-        return 20;
+        return 37;
     }else{
         return 44;
     }
