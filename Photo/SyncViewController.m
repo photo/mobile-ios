@@ -19,6 +19,7 @@
 //
 
 #import "SyncViewController.h"
+#import "UINavigationBar+Trovebox.h"
 
 @interface SyncViewController (){
     BOOL hidden;
@@ -90,7 +91,6 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = customBarItem;
     
-    
     if (hidden){
         UIImage *buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
         [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
@@ -102,27 +102,26 @@
     }
     
     customBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.buttonHidden];
-    self.navigationItem.leftBarButtonItem = customBarItem;
+     
+    // menu
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = customLeftButton;
+       
+    self.navigationItem.leftBarButtonItems =
+    [NSArray arrayWithObjects:customLeftButton, customBarItem, nil];
+    
+    
     
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"appbar_empty.png"];
-    
-    // image for the navigator
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
-        //iOS >=5.0
-        [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
-    }else{
-        UIImageView *imageView = (UIImageView *)[self.navigationController.navigationBar viewWithTag:6183746];
-        if (imageView == nil)
-        {
-            imageView = [[UIImageView alloc] initWithImage:backgroundImage];
-            [imageView setTag:6183746];
-            [self.navigationController.navigationBar insertSubview:imageView atIndex:0];
-        }
-    }
-    
+    [self.navigationController.navigationBar troveboxStyle];
+
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
