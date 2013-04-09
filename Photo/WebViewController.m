@@ -25,7 +25,6 @@
         self.title=@"Plans";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
-        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     }
     return self;
 }
@@ -40,6 +39,8 @@
     self.view = pWebView;
     pWebView.scalesPageToFit = YES;
     self.m_cWebView = pWebView;
+    
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
 }
 
 

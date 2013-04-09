@@ -134,9 +134,7 @@
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = customBarItem;
     
-    UIImageView *imgView=[[UIImageView alloc]init];
-    imgView.image=[UIImage imageNamed:@"Background.png"];;
-    self.detailsPictureTable.backgroundView=imgView;
+    self.detailsPictureTable.backgroundColor =  UIColorFromRGB(0XFAF3EF);
 }
 
 

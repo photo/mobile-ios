@@ -11,6 +11,7 @@
 @implementation UINavigationBar (Trovebox)
 
 - (void)troveboxStyle {
+   
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0

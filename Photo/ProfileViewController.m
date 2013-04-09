@@ -25,7 +25,7 @@
         self.title=@"Profile";
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
-        self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+        self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
         
         // needs update in screen
         [[NSNotificationCenter defaultCenter] addObserver:self

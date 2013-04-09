@@ -20,6 +20,7 @@
 #import "IASKAppSettingsViewController.h"
 #import "AuthenticationService.h"
 #import "IASKPSToggleSwitchSpecifierViewCell.h"
+#import "IASKSwitch.h"
 #import "IASKPSTextFieldSpecifierViewCell.h"
 #import "IASKSpecifier.h"
 #import "IASKSettingsReader.h"

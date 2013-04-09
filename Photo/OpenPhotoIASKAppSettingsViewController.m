@@ -55,9 +55,8 @@
 
       
     UIImageView *imgView=[[UIImageView alloc]init];
-    imgView.image=[UIImage imageNamed:@"Background.png"];;
+    imgView.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.backgroundView=imgView;
-    
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     // image for the navigator
@@ -105,10 +104,10 @@
     
     // change the color for the Switch
     if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
-//        if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
-//            //iOS 5.0
-//            [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor: UIColorFromRGB(0xEFC005)];
-//        }
+        if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
+            //iOS 5.0
+            [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor: UIColorFromRGB(0xEFC005)];
+        }
     }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
         // change the color for the text 
         cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73);

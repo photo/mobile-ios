@@ -123,8 +123,7 @@
         }
     }
     
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     // no separator

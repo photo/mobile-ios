@@ -110,11 +110,8 @@
         [self.noPhotoImageView removeFromSuperview];
     }
     
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
-    
     // details screen
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     // image for the navigator

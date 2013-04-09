@@ -73,11 +73,7 @@
     
     // title
     self.navigationItem.title = NSLocalizedString(@"Albums", @"Menu - title for Albums");
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
-    
-    // color separator
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
     
     // image for the navigator

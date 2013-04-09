@@ -384,8 +384,6 @@
 		CDCC0A9016E0C23700BE4481 /* appbar_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A0F16E0C23700BE4481 /* appbar_empty@2x.png */; };
 		CDCC0A9116E0C23700BE4481 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1016E0C23700BE4481 /* back.png */; };
 		CDCC0A9216E0C23700BE4481 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1116E0C23700BE4481 /* back@2x.png */; };
-		CDCC0A9316E0C23700BE4481 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1216E0C23700BE4481 /* Background.png */; };
-		CDCC0A9416E0C23700BE4481 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1316E0C23700BE4481 /* Background@2x.png */; };
 		CDCC0A9516E0C23700BE4481 /* button-disclosure-form.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1416E0C23700BE4481 /* button-disclosure-form.png */; };
 		CDCC0A9616E0C23700BE4481 /* button-disclosure-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1516E0C23700BE4481 /* button-disclosure-form@2x.png */; };
 		CDCC0A9716E0C23700BE4481 /* button-upgrade.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1616E0C23700BE4481 /* button-upgrade.png */; };
@@ -1522,8 +1520,6 @@
 		CDCC0A0F16E0C23700BE4481 /* appbar_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "appbar_empty@2x.png"; path = "images/appbar_empty@2x.png"; sourceTree = "<group>"; };
 		CDCC0A1016E0C23700BE4481 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = images/back.png; sourceTree = "<group>"; };
 		CDCC0A1116E0C23700BE4481 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "images/back@2x.png"; sourceTree = "<group>"; };
-		CDCC0A1216E0C23700BE4481 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = images/Background.png; sourceTree = "<group>"; };
-		CDCC0A1316E0C23700BE4481 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "images/Background@2x.png"; sourceTree = "<group>"; };
 		CDCC0A1416E0C23700BE4481 /* button-disclosure-form.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form.png"; path = "images/button-disclosure-form.png"; sourceTree = "<group>"; };
 		CDCC0A1516E0C23700BE4481 /* button-disclosure-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-disclosure-form@2x.png"; path = "images/button-disclosure-form@2x.png"; sourceTree = "<group>"; };
 		CDCC0A1616E0C23700BE4481 /* button-upgrade.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upgrade.png"; path = "images/button-upgrade.png"; sourceTree = "<group>"; };
@@ -2586,8 +2582,6 @@
 				CDCC0A0F16E0C23700BE4481 /* appbar_empty@2x.png */,
 				CDCC0A1016E0C23700BE4481 /* back.png */,
 				CDCC0A1116E0C23700BE4481 /* back@2x.png */,
-				CDCC0A1216E0C23700BE4481 /* Background.png */,
-				CDCC0A1316E0C23700BE4481 /* Background@2x.png */,
 				CDCC0A1416E0C23700BE4481 /* button-disclosure-form.png */,
 				CDCC0A1516E0C23700BE4481 /* button-disclosure-form@2x.png */,
 				CDCC0A1616E0C23700BE4481 /* button-upgrade.png */,
@@ -3471,8 +3465,6 @@
 				CDCC0A9016E0C23700BE4481 /* appbar_empty@2x.png in Resources */,
 				CDCC0A9116E0C23700BE4481 /* back.png in Resources */,
 				CDCC0A9216E0C23700BE4481 /* back@2x.png in Resources */,
-				CDCC0A9316E0C23700BE4481 /* Background.png in Resources */,
-				CDCC0A9416E0C23700BE4481 /* Background@2x.png in Resources */,
 				CDCC0A9516E0C23700BE4481 /* button-disclosure-form.png in Resources */,
 				CDCC0A9616E0C23700BE4481 /* button-disclosure-form@2x.png in Resources */,
 				CDCC0A9716E0C23700BE4481 /* button-upgrade.png in Resources */,

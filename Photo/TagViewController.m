@@ -40,17 +40,11 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        
-        self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
-        
         // initialize the object tags
         self.tags = [NSMutableArray array];
         
         // set the read only by default as NO
         self.readOnly = NO;
-        
-        // color separator
-        self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
         
         // is loading tags
         self.isLoading = NO;
@@ -129,11 +123,7 @@
     
     // title
     self.navigationItem.title = NSLocalizedString(@"Tags", @"Menu - title for Tags");
-    
-    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
-    
-    // color separator
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
 }
 

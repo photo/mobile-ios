@@ -103,13 +103,9 @@
     // image for the navigator
     [self.navigationController.navigationBar troveboxStyle];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"Background.png"];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:backgroundImage];
     // title
     self.navigationItem.title = NSLocalizedString(@"Gallery", @"Menu - title for Gallery");
-    
-    // quilt configuration
-    self.quiltView.backgroundColor =  [[UIColor alloc] initWithPatternImage:backgroundImage];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
 }
 
 - (void) openCamera:(id) sender
