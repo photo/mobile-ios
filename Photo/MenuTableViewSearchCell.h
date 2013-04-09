@@ -11,4 +11,5 @@
 @interface MenuTableViewSearchCell : UITableViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *labelSearch;
+@property (strong, nonatomic) IBOutlet UILabel *labelTroveboxUser;
 @end

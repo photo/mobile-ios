@@ -92,7 +92,7 @@
     
     NSUInteger row = [indexPath row];
     if ( row == 0){
-        // the first one is the search
+         // the first one is the search
         // load the search cell
         MenuTableViewSearchCell  *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSearchCellIdentifier];
         
@@ -110,6 +110,12 @@
         
         cell.contentView.backgroundColor = UIColorFromRGB(0x40332D);
         cell.labelSearch.delegate = cell;
+        
+        // set temporary the user's name
+        NSString *name = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxNameUser];
+        if (name)
+            cell.labelTroveboxUser.text = name;
+        
         return cell;
     }else if ( row ==  1){
         // latest activity

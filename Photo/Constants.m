@@ -32,6 +32,8 @@ NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
 NSString * const kPhotosArePrivate=@"photos_are_private";
 // NSUserDefault variable name for the Trovebox Server
 NSString * const kTroveboxServer=@"account_server";
+// user's name
+NSString * const kTroveboxNameUser=@"account_user_name";
 // user email
 NSString * const kTroveboxEmailUser=@"account_user_email";
 // NSUserDefault variable to hold user pictures

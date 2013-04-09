@@ -142,7 +142,8 @@
                         // email
                         [self.labelServer setText:[result objectForKey:@"email"]];
                         // name
-                        [self.labelName setText:[result objectForKey:@"name"]];
+                        NSString *name = [result objectForKey:@"name"];
+                        [self.labelName setText:name];
                         // url thumb
                         [self.photo  setImageWithURL:[NSURL URLWithString:[result objectForKey:@"photoUrl"]]
                                             placeholderImage:nil
@@ -196,6 +197,7 @@
                         
                         // save details locally
                         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                        [standardUserDefaults setValue:name forKey:kTroveboxNameUser];
                         [standardUserDefaults setValue:[result objectForKey:@"email"] forKey:kTroveboxEmailUser];
                         [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
                         [standardUserDefaults setValue:[result objectForKey:@"paid"] forKey:kProfileAccountType];

@@ -627,9 +627,8 @@
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Variable does not exist, create for the first time");
 #endif
-        // it does not exist, creates with today date
-        [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
-        [standardUserDefaults synchronize];
+        // it does not exist, creates it invoking the method to refresh
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
     }
 }
 

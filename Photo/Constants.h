@@ -24,6 +24,7 @@ extern NSString * const kPhotosSaveCameraRollOrSnapshot;
 extern NSString * const kPhotosSaveFiltered;
 extern NSString * const kPhotosArePrivate;
 extern NSString * const kTroveboxServer;
+extern NSString * const kTroveboxNameUser;
 extern NSString * const kTroveboxEmailUser;
 
 extern NSString * const kHomeScreenPictures;
