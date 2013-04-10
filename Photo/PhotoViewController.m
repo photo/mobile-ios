@@ -117,11 +117,25 @@
     
     if (self.images){
         self.detailsPictureTable.frame = CGRectMake(self.detailsPictureTable.frame.origin.x,self.detailsPictureTable.frame.origin.y - 40, self.detailsPictureTable.frame.size.width,self.detailsPictureTable.frame.size.height+40);
+        // come from sync, change the default back button
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
+        [button setImage:buttonImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+        [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.leftBarButtonItem = customBarItem;
     }else{
         // if user wants to cancel the upload
         // it should be just in the case of snapshot
-        UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelUploadButton)];
-        self.navigationItem.leftBarButtonItem = cancelButton;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"close_camera.png"] ;
+        [button setImage:buttonImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+        [button addTarget:self action:@selector(cancelUploadButton) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.leftBarButtonItem = customBarItem;
+       
     }
     
     // button to done
@@ -146,6 +160,9 @@
                                                        withValue:nil];
 }
 
+-(IBAction)OnClick_btnBack:(id)sender  {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)viewDidUnload{
     [super viewDidUnload];
