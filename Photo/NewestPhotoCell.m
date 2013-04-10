@@ -81,8 +81,8 @@
     if (self.photoPageUrl != nil && self.newestPhotosTableViewController != nil){
               
         // create the item to share
-        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.photoPageUrl] title:self.label.text];
-        
+        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.photoPageUrl] title:self.label.text contentType:SHKURLContentTypeWebpage];
+
         // Get the ShareKit action sheet
         SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
         
