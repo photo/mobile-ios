@@ -24,9 +24,9 @@
 
 NSString * const kPrivateFacebookAppId=@"";
 
-NSInteger  const kPrivateappStoreID=0;
-NSString * const kPrivateapplicationBundleID=@"";
-NSString * const kPrivateapplicationName=@"";
+NSInteger  const kPrivateappStoreID=511845345;
+NSString * const kPrivateapplicationBundleID=@"me.OpenPhoto.ios";
+NSString * const kPrivateapplicationName=@"Trovebox";
 
 NSString * const kPrivateGoogleAnalytics=@"UA-29785237-3";
 

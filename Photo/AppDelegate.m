@@ -139,7 +139,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 + (void) initialize
 {
     //configure iRate
-    [iRate sharedInstance].daysUntilPrompt = 10;
+    [iRate sharedInstance].daysUntilPrompt = 7;
     [iRate sharedInstance].usesUntilPrompt = 6;
     [iRate sharedInstance].appStoreID = kPrivateappStoreID;
     [iRate sharedInstance].applicationBundleID = kPrivateapplicationBundleID;

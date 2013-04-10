@@ -3709,16 +3709,16 @@
 		};
 		CDBD38B016F868AB007D0CC6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "./Frameworks/Crashlytics.framework/run 263e33cba7a0a8804ec757ba8607fc77514dca33";
+			shellScript = "./Frameworks/Crashlytics.framework/run 263e33cba7a0a8804ec757ba8607fc77514dca33\n\nbuildPlist=${INFOPLIST_FILE}\n\n#Short version\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $buildPlist)\necho \"Version id = $CFBundleShortVersionString\"\nCFBundleShortVersionString=`echo $CFBundleShortVersionString + \"0.1\" | bc`;\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleShortVersionString\" $buildPlist\n\n# incremental\n#CFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\n#CFBundleVersion=$(($CFBundleVersion + 1))\n#/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\n\n#date\nCFBuildDate=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
