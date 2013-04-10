@@ -66,6 +66,12 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationUpdateTableWithAllPhotosAgain
                                                    object:nil ];
+        
+        // notification to show the home screen
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationUpdateSyncShouldShowHome
+                                                   object:nil ];
     }
     return self;
 }
@@ -399,6 +405,9 @@
         // just reset the number of photos
         assetsNumber = -1;
         [self loadSavedPhotos];
+    }else if ([notification.name isEqualToString:kNotificationUpdateSyncShouldShowHome]){
+        // set the center controller to the default one.
+        self.viewDeckController.centerController = SharedAppDelegate.centerController;
     }
 }
 
@@ -424,9 +433,6 @@
         // no photo select
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
         [alert showAlert];
-        
-        // go to the home
-        // close the sync
     }
     
 }

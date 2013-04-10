@@ -71,6 +71,7 @@ NSString * const kNotificationNeededsUpdateHome=@"notification_needs_update_home
 NSString * const kNotificationDisableUpdateHome=@"notification_disable_update_home_screen";
 NSString * const kNotificationUpdateTableWithAllPhotosAgain=@"notification_update_table_with_all_pictures";
 NSString * const kNotificationProfileRefresh=@"notification_update_profile_information";
+NSString * const kNotificationUpdateSyncShouldShowHome=@"notification_sync_show_home_controller";
 
 
 /*

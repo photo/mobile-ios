@@ -305,6 +305,7 @@
 - (void) openCamera:(id) sender
 {
     NSLog(@"Open Camera");
+    self.viewDeckController.centerController = SharedAppDelegate.centerController;
     
     DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
     picker.delegate = self;

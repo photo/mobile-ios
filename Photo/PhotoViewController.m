@@ -347,7 +347,7 @@
     NSLog(@"Image changed");
 #endif
     [editor dismissViewControllerAnimated:YES completion:^{
-          self.imageFiltered = image;
+        self.imageFiltered = image;
     }];
 }
 
@@ -482,11 +482,10 @@
                 // go back in the navigation
                 if (self.images){
                     [self.navigationController popViewControllerAnimated:NO];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateSyncShouldShowHome object:nil];
                 }else{
                     [self dismissModalViewControllerAnimated:YES];
                 }
-                
-                 [self.viewDeckController  closeRightViewAnimated:YES];
             });
             
         }@catch (NSException *exception) {
@@ -498,11 +497,10 @@
                 // go to home
                 if (self.images){
                     [self.navigationController popViewControllerAnimated:NO];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateSyncShouldShowHome object:nil];
                 }else{
                     [self dismissModalViewControllerAnimated:YES];
                 }
-                
-                 [self.viewDeckController  closeRightViewAnimated:YES];
             });
         }
     });
@@ -627,7 +625,7 @@
                 if (result){
                     // data to be saved in the database
                     Timeline *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
-                                                                                inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                                                                          inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                     
                     // details form this upload
                     uploadInfo.date = date;
