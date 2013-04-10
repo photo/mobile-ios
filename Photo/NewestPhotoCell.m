@@ -91,7 +91,7 @@
         [SHK setRootViewController:self.newestPhotosTableViewController];
         
         // Display the action sheet
-        [actionSheet showFromTabBar:self.newestPhotosTableViewController.tabBarController.tabBar];
+        [actionSheet showFromToolbar:self.newestPhotosTableViewController.navigationController.toolbar];
     }
 }
 @end
