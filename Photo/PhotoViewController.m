@@ -201,7 +201,7 @@
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
                 self.titleTextField.textColor = UIColorFromRGB(0x8C7B73);
                 
-                self.titleTextField.placeholder = @"title";
+                self.titleTextField.placeholder = NSLocalizedString(@"title",@"Upload - inside text input");
                 self.titleTextField.keyboardType = UIKeyboardTypeDefault;
                 self.titleTextField.returnKeyType = UIReturnKeyNext;
                 self.titleTextField.delegate = self;
@@ -217,7 +217,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Tags";
+            cell.textLabel.text=NSLocalizedString(@"Tags",@"Upload - tags");
             // customised disclosure button
             [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;
@@ -231,7 +231,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Private";
+            cell.textLabel.text=NSLocalizedString(@"Private",@"Upload - Private");
             self.permissionPicture = [[UISwitch alloc] initWithFrame:CGRectZero];
             cell.accessoryView = self.permissionPicture;
             
@@ -253,7 +253,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Facebook";
+            cell.textLabel.text=NSLocalizedString(@"Facebook",@"Upload - Facebook");
             self.shareFacebook = [[UISwitch alloc] initWithFrame:CGRectZero];
             if([self.shareFacebook respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
@@ -273,7 +273,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Twitter";
+            cell.textLabel.text=NSLocalizedString(@"Twitter",@"Upload - Twitter");
             self.shareTwitter = [[UISwitch alloc] initWithFrame:CGRectZero];
             if([self.shareTwitter respondsToSelector:@selector(setOnTintColor:)]){
                 //iOS 5.0
@@ -292,7 +292,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=@"Crop & effects";
+            cell.textLabel.text=NSLocalizedString(@"Crop & effects",@"Upload - Aviary");
             // customised disclosure button
             [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;

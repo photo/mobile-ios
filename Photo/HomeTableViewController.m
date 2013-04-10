@@ -221,7 +221,7 @@
         uploadCell.progressBar.hidden=YES;
         
         if ( [photo.status isEqualToString:kUploadStatusTypeCreated]){
-            uploadCell.status.text=@"Waiting ...";
+            uploadCell.status.text=NSLocalizedString(@"Waiting ...",@"Status upload - waiting");
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
@@ -232,7 +232,7 @@
             
             [uploadCell.progressBar setProgress:[photo.photoUploadProgress floatValue]];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploadFinished]){
-            uploadCell.status.text=@"Upload finished!";
+            uploadCell.status.text=NSLocalizedString(@"Upload finished!",@"Status upload - Upload finished!");
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
@@ -260,10 +260,10 @@
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
-            uploadCell.status.text=@"Retry uploading";
+            uploadCell.status.text=NSLocalizedString(@"Retry uploading",@"Status upload - Retry uploading!");
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeDuplicated]){
-            uploadCell.status.text=@"Already in your account";
+            uploadCell.status.text=NSLocalizedString(@"Already in your account",@"Status upload - Already in your account");
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
@@ -271,13 +271,13 @@
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeCreating]){
-            uploadCell.status.text=@"Creating ...";
+            uploadCell.status.text=NSLocalizedString(@"Creating ...",@"Status upload - Creating ...");
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else{
             // it is invalid
-            uploadCell.status.text=@"Invalid photo";
+            uploadCell.status.text=NSLocalizedString(@"Invalid photo",@"Status upload - Invalid photo!");
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-already-uploaded.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
@@ -314,29 +314,29 @@
         [newestPhotoCell label].text=photo.title;
         
         // days or hours
-        NSMutableString *dateText = [[NSMutableString alloc]initWithString:@"This photo was taken "];
+        NSMutableString *dateText = [[NSMutableString alloc]initWithString:NSLocalizedString(@"This photo was taken ",@"Message for photo details in the home")];
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
         
         NSInteger days = interval/86400;
         if (days >= 2 ){
             if (days > 365){
                 // show in years
-                [dateText appendString:[NSString stringWithFormat:@"%@", days/365 == 1 ? [NSString stringWithFormat:@"%i year ago",days/365] : [NSString stringWithFormat:@"%i years ago",days/365]]];
+                [dateText appendString:[NSString stringWithFormat:@"%@", days/365 == 1 ? [NSString stringWithFormat:@"%i %@", days/365, NSLocalizedString(@"year ago",@"Message for photo details in the home")] : [NSString stringWithFormat:@"%i %@", days/365, NSLocalizedString(@"years ago",@"Message for photo details in the home - plural")]]];
             }else{
                 // lets show in days
-                [dateText appendFormat:@"%i days ago",days];
+                [dateText appendFormat:@"%i %@",days, NSLocalizedString(@"days ago",@"Message for photo details in the home - days")];
             }
             
         }else{
             // lets show in hours
             NSInteger hours = interval / 3600;
             if (hours<1){
-                [dateText appendString:@"less than one hour ago"];
+                [dateText appendString:NSLocalizedString(@"less than one hour ago",@"Message for photo details in the home - less than one hour ago")];
             }else {
                 if (hours == 1){
-                    [dateText appendString:@"one hour ago"];
+                    [dateText appendString:NSLocalizedString(@"one hour ago",@"Message for photo details in the home - one hour ago")];
                 }else {
-                    [dateText appendFormat:@"%i hours ago",hours];
+                    [dateText appendFormat:@"%i %@",hours, NSLocalizedString(@"hours ago",@"Message for photo details in the home - hours ago")];
                 }
             }
         }
@@ -355,7 +355,7 @@
                               placeholderImage:nil
                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                                          if (error){
-                                             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"Message when fail to bring the image from Trovebox server") duration:5000];
                                              [alert showAlert];
                                              NSLog(@"Error: %@",[error localizedDescription]);
                                          }else{
@@ -575,7 +575,7 @@
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! We couldn't get your newest photos." duration:5000];
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Failed! We couldn't get your newest photos.",@"Message in the home when trying to load newest photos") duration:5000];
                         [alert showAlert];
                         
                         // refresh table
@@ -591,7 +591,7 @@
 - (void) notifyUserNoInternet{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     // problem with internet, show message to user
-    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
     [alert showAlert];
 }
 

@@ -10,4 +10,5 @@
 
 @interface MenuTableViewSectionCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *labelPreferences;
 @end

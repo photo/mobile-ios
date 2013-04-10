@@ -70,7 +70,6 @@
 //event handler when event occurs
 -(void)eventHandler: (NSNotification *) notification
 {
-    NSLog(@"Event received: %@",notification);
     if ([notification.name isEqualToString:kFacebookUserConnected]){
         [self checkUser];
     }else if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
@@ -83,7 +82,7 @@
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
         [alert showAlert];
         return;
     }
@@ -93,7 +92,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *email = [defaults valueForKey:kFacebookUserConnectedEmail];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Checking";
+    hud.labelText = NSLocalizedString(@"Checking",@"Check User in the Login");
     
     
     // do it in a queue

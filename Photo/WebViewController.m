@@ -21,8 +21,8 @@
     if (self) {
         // Custom initialization
         self.view.backgroundColor = [UIColor blackColor];
-        self.tabBarItem.title=@"Plans";
-        self.title=@"Plans";
+        self.tabBarItem.title=NSLocalizedString(@"Plans",@"Profile - plans web controller");
+        self.title=NSLocalizedString(@"Plans",@"Profile - plans web controller");
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
     }

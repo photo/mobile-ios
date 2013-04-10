@@ -160,7 +160,7 @@
         // if there isn't netwok
         if ( [SharedAppDelegate internetActive] == NO ){
             // problem with internet, show message to user
-            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Failed! Check your internet connection" duration:5000];
+            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
             [alert showAlert];
             
             self.isLoading = NO;

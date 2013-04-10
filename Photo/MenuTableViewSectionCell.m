@@ -15,6 +15,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        self.labelPreferences.text = NSLocalizedString(@"PREFERENCES",@"Content of the menu for the PREFERENCES");
     }
     return self;
 }

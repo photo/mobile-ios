@@ -66,7 +66,7 @@
             MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate
                                                            addressDictionary:nil];
             MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-            [mapItem setName:@"My Photo"];
+            [mapItem setName:NSLocalizedString(@"My Photo",@"Message to appears in the map when opened an image")];
             // Pass the map item to the Maps app
             [mapItem openInMapsWithLaunchOptions:nil];
         }else{

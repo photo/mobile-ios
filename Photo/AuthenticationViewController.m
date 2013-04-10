@@ -71,7 +71,7 @@
         [self.serverURL.text isEqualToString:@"username.trovebox.com"]){
         
         // user should add URL
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set the URL to the OpenPhoto Server." duration:5000];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set the URL to the Trovebox Server.",@"Used when user don't set the url for the hosted server") duration:5000];
         [alert showAlert];
     }else{
         // save the url method. It removes the last / if exists

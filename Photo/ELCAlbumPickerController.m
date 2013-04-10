@@ -32,7 +32,7 @@
     // color separator
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
 	
-	[self.navigationItem setTitle:@"Loading..."];
+	[self.navigationItem setTitle:NSLocalizedString(@"Loading...",@"Sync")];
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
 	self.assetGroups = tempArray;
@@ -61,7 +61,7 @@
                            
                            // Group Enumerator Failure Block
                            void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
-                               UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Album Error: %@. Please, check if Trovebox has Location Permission in your Mobile Settings.", [error localizedDescription]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                               UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",@"") message:[NSString stringWithFormat:@"%@: %@. %@", NSLocalizedString(@"Album Error",@"Sync"), [error localizedDescription],NSLocalizedString(@"Please, check if Trovebox has Location Permission in your Mobile Settings.",@"Sync")] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                                [alert show];
                                
                                NSLog(@"A problem occured %@", [error description]);
@@ -78,7 +78,7 @@
 
 -(void)reloadTableView {
     [self.tableView reloadData];
-    [self.navigationItem setTitle:@"Sync an Album"];
+    [self.navigationItem setTitle:NSLocalizedString(@"Sync an Album",@"Sync")];
 }
 
 -(void)selectedAssets:(NSArray*)_assets {

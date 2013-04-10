@@ -270,7 +270,7 @@
 
 - (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
     NSLog(@"Error = %@", [error userInfo]);
-    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Authentication failed: try again." duration:5000];
+    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Authentication failed: try again.",@"Authentication method") duration:5000];
     [alert showAlertOnTop];
 }
 

@@ -21,8 +21,8 @@
     if (self) {
         // Custom initialization
         self.view.backgroundColor = [UIColor blackColor];
-        self.tabBarItem.title=@"Profile";
-        self.title=@"Profile";
+        self.tabBarItem.title=NSLocalizedString(@"Profile",@"Title screen Profile");
+        self.title=NSLocalizedString(@"Profile",@"Title screen Profile");
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
         self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
@@ -46,7 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title=@"Profile";
+    self.title=NSLocalizedString(@"Profile",@"Title screen Profile");
     self.trackedViewName = @"Profile Screen";
 }
 
@@ -99,7 +99,7 @@
 }
 
 - (void) logoutButton{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Log out. Are you sure?" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Log out",nil] ;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log out. Are you sure?",@"Message to confirm if user really wants to log out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Log out",@""),nil];
     [alert show];
 }
 
@@ -118,7 +118,7 @@
 {
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
         [alert showAlert];
     }else if ([AuthenticationService isLogged]){
         
@@ -149,7 +149,7 @@
                                             placeholderImage:nil
                                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                                                 if (error){
-                                                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
+                                                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"message when couldn't download the image in the profile screen") duration:5000];
                                                     [alert showAlert];
                                                 }else{
                                                     // Begin a new image that will be the new image with the rounded corners
@@ -172,9 +172,9 @@
 
                         // paid user
                         if ([[result objectForKey:@"paid"] boolValue])
-                            [self.labelAccount setText:@"Pro"];
+                            [self.labelAccount setText:NSLocalizedString(@"Pro",@"Profile - Pro text")];
                         else
-                            [self.labelAccount setText:@"Free"];
+                            [self.labelAccount setText:NSLocalizedString(@"Free",@"Profile - Free text")];
                         
                         
                         NSDictionary* counts = [result objectForKey:@"counts"];
@@ -219,14 +219,14 @@
                             TroveboxSubscription *subscription = [TroveboxSubscription createTroveboxSubscription];
                             SKProduct *product = [subscription product];
                             if( product.price != nil){
-                                [self.labelPriceSubscription setText:[NSString stringWithFormat:@"Just %@/month", [product localizedPrice]]];
+                                [self.labelPriceSubscription setText:[NSString stringWithFormat:@"%@ %@/%@", NSLocalizedString(@"Just",@"Profile - subscription"), [product localizedPrice], NSLocalizedString(@"month",@"Profile - subscription")]];
                                 self.buttonFeatureList.hidden = FALSE;
                                 self.labelPriceSubscription.hidden = FALSE;
                                 self.buttonSubscription.hidden = FALSE;
                             }}
                     }else{
                         // Warn the user that purchases are disabled.
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"App can't do Purchase. Please, check Settings if you want to upgrade the app" duration:7000];
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage: NSLocalizedString(@"App can't do Purchase. Please, check Settings if you want to upgrade the app",@"Message when user can not purchase") duration:7000];
                         [alert showAlert];
                         
                         [self.buttonSubscription setHidden:YES];
@@ -271,16 +271,16 @@
     if(storage < 1048576){
         storage = ceil(storage/kb);
         [self.labelStorage setText:[NSString stringWithFormat:@"%llu",storage]];
-        [self.labelStorageDetails setText:@"KB used"];
+        [self.labelStorageDetails setText:NSLocalizedString(@"KB used",@"Profile - size storage")];
     }else if(storage < 1073741824){
         // less than 1gb
         storage = ceil(storage/pow(kb,2));
         [self.labelStorage setText:[NSString stringWithFormat:@"%llu",storage]];
-        [self.labelStorageDetails setText:@"MB used"];
+        [self.labelStorageDetails setText:NSLocalizedString(@"MB used",@"Profile - size storage")];
     }else{
         storage = ceil(storage/pow(kb,3));
         [self.labelStorage setText:[NSString stringWithFormat:@"%llu",storage]];
-        [self.labelStorageDetails setText:@"GB used"];
+        [self.labelStorageDetails setText:NSLocalizedString(@"GB used",@"Profile - size storage")];
     }
 }
 

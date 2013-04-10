@@ -134,7 +134,7 @@
                         
                         // before check if the photo already exist
                         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
-                            @throw  [NSException exceptionWithName: @"Failed to upload" reason:@"You already uploaded this photo." userInfo: nil];
+                            @throw  [NSException exceptionWithName:NSLocalizedString(@"Failed to upload",@"Upload - job") reason:NSLocalizedString(@"You already uploaded this photo.",@"Upload - job") userInfo: nil];
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
 #ifdef DEVELOPMENT_ENABLED

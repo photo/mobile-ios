@@ -93,27 +93,27 @@
     //
     if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your email.",@"")];
         [alert showAlert];
         return;
         
     }
     if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your password."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your password.",@"")];
         [alert showAlert];
         return;
     }
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
         [alert showAlert];
     }else{
         
         // display
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.labelText = @"Logging";
+        hud.labelText = NSLocalizedString(@"Logging",@"");
         
         
         // do it in a queue
@@ -167,7 +167,7 @@
     
     if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
         //show message
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email to recovery password."];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your email to recovery password.",@"")];
         [alert showAlert];
         return;
         
@@ -175,13 +175,13 @@
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
         [alert showAlert];
     }else{
         
         // display
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        hud.labelText = @"Resetting";
+        hud.labelText = NSLocalizedString(@"Resetting",@"Action to reset the pwd");
         
         
         // do it in a queue

@@ -85,7 +85,7 @@
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     self.elcAssets = tempArray;
 	
-	[self.navigationItem setTitle:@"Loading..."];
+	[self.navigationItem setTitle:NSLocalizedString(@"Loading...",@"")];
     
     // button to sync
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

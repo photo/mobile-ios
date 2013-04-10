@@ -113,7 +113,7 @@
     
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please check your internet connection"];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
         [alert showAlert];
     }else{
         
@@ -122,7 +122,7 @@
             // create the account with username and email
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message
-                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your username.",@"Facebook creation account where user needs to set the username")];
                 [alert showAlert];
                 return;
             }
@@ -137,21 +137,21 @@
             // check for email, username and password
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message
-                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your username."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your username.",@"Creation account where user needs to set the username")];
                 [alert showAlert];
                 return;
             }
             
             if (self.email.text == nil || [[self.email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message
-                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your email."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your email.",@"Creation account where user needs to set the email")];
                 [alert showAlert];
                 return;
             }
             
             if (self.password.text == nil || [[self.password.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message
-                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please, set your password."];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your password",@"")];
                 [alert showAlert];
                 return;
             }
@@ -251,7 +251,7 @@
 {
     // display
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Creating Account";
+    hud.labelText = NSLocalizedString(@"Creating Account",@"");
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_user_pwd", NULL);
     dispatch_async(queue, ^{
@@ -286,7 +286,7 @@
 {
     // display
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    hud.labelText = @"Creating Account";
+    hud.labelText = NSLocalizedString(@"Creating Account",@"");
     
     dispatch_queue_t queue = dispatch_queue_create("create_account_with_facebook", NULL);
     dispatch_async(queue, ^{
