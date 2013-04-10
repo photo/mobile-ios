@@ -124,6 +124,9 @@
     
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
+    
+    // select the first row in the menu
+    [(MenuViewController*) SharedAppDelegate.menuController selectLatestActivity];
 }
 
 - (void)viewDidLoad

@@ -57,5 +57,5 @@
 @property (nonatomic, strong) UIPopoverController* popoverController;
 
 - (void) openCamera:(id) sender;
-
+- (void) selectLatestActivity;
 @end

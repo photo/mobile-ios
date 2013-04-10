@@ -65,7 +65,7 @@
     
     self.tableView.scrollsToTop = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 10.0f)];
-    self.tableView.scrollEnabled = NO;
+    self.tableView.scrollEnabled = NO;    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -432,6 +432,11 @@
             }
         }
     }
+}
+
+- (void) selectLatestActivity
+{
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void)dealloc
