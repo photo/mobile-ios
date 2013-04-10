@@ -357,6 +357,7 @@
                                          if (error){
                                              PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Couldn't download the image" duration:5000];
                                              [alert showAlert];
+                                             NSLog(@"Error: %@",[error localizedDescription]);
                                          }else{
                                              [newestPhotoCell.activity stopAnimating];
                                              newestPhotoCell.photo.layer.masksToBounds = YES;
