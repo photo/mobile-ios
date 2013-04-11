@@ -19,3 +19,4 @@ DerivedData
 
 // private class
 Photo/PrivateAuthenticationService.m
+Photo/PrivateConstants.m
