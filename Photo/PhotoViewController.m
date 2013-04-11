@@ -43,8 +43,6 @@
                                      url:(NSURL *) url
                                 groupUrl:(NSString *) urlGroup;
 
-// this method is used in case of in Multiples Uploads the user choose only one picure. we should enable him to edit the image
-- (void) loadImageToEdit:(NSURL *) url;
 - (void)upload:(id)sender;
 
 @end
@@ -52,7 +50,6 @@
 @implementation PhotoViewController
 
 @synthesize detailsPictureTable=_detailsPictureTable;
-@synthesize originalImage=_originalImage, imageFiltered=_imageFiltered;
 @synthesize titleTextField=_titleTextField, permissionPicture=_permissionPicture, shareFacebook=_shareFacebook, shareTwitter=_shareTwitter;
 @synthesize tagController=_tagController;
 
@@ -62,14 +59,13 @@
 // assets
 @synthesize assetsLibrary = _assetsLibrary;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     
     if (self) {
         // Custom initialization
         self.image = imageFromCamera;
-        self.originalImage = originalImage;
         self.assetsLibrary = [[ALAssetsLibrary alloc] init];
         
         // initialization of tag controller
@@ -94,7 +90,6 @@
             // if there is only one, treat it as a camera image, so user will be able to edit
             if ([self.images count] == 1){
                 self.image = [self.images lastObject];
-                [self loadImageToEdit:self.image];
             }
         }
         
@@ -135,7 +130,7 @@
         [button addTarget:self action:@selector(cancelUploadButton) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
         self.navigationItem.leftBarButtonItem = customBarItem;
-       
+        
     }
     
     // button to done
@@ -176,13 +171,7 @@
 
 #pragma mark - Table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.image == nil){
-        // user comes from the Sync, we don't show Aviary
-        return 5;
-    }else{
-        // show all possibilites
-        return 6;
-    }
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -283,20 +272,6 @@
             cell.accessoryView = self.shareTwitter;
             break;
             
-        case 5:
-            // filter Aviary
-            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierFilter];
-            if (cell == nil)
-            {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierFilter];
-                // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
-            }
-            
-            cell.textLabel.text=NSLocalizedString(@"Crop & effects",@"Upload - Aviary");
-            // customised disclosure button
-            [cell setAccessoryView:[self makeDetailDisclosureButton]];
-            break;
-            
         default:
             break;
     }
@@ -337,12 +312,6 @@
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
-    }else if ( row == 5){
-        // filter
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
-        AFPhotoEditorController *editorController = [[AFPhotoEditorController alloc] initWithImage:self.originalImage];
-        [editorController setDelegate:self];
-        [self presentViewController:editorController animated:YES completion:nil];
     }
 }
 
@@ -356,23 +325,6 @@
     if ([self.shareTwitter isOn]){
         [self.shareFacebook setOn:NO animated:YES];
     }
-}
-
-- (void)photoEditor:(AFPhotoEditorController *)editor finishedWithImage:(UIImage *)image
-{
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Image changed");
-#endif
-    [editor dismissViewControllerAnimated:YES completion:^{
-        self.imageFiltered = image;
-    }];
-}
-
-- (void)photoEditorCanceled:(AFPhotoEditorController *)editor
-{
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Widget canceled");
-#endif
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -396,7 +348,6 @@
     NSNumber *permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     NSString *title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
     NSString *tags = [self.tagController getSelectedTagsInJsonFormat];
-    UIImage  *imageFiltered = self.imageFiltered;
     
     dispatch_queue_t waiting = dispatch_queue_create("waiting_finish_insert_database", NULL);
     dispatch_async(waiting, ^{
@@ -410,19 +361,8 @@
             //
             
             // check the type of image that we are uploading
-            // is it a single image, a bunch of images or the user used Aviary?
-            if (imageFiltered){
-                //image filtered. User used Aviary
-                [self saveEntityUploadDate:[NSDate date]
-                             shareFacebook:facebook
-                              shareTwitter:twitter
-                                     image:UIImageJPEGRepresentation(imageFiltered,0.7)
-                                permission:permission
-                                      tags:tags
-                                     title:title
-                                       url:nil
-                                  groupUrl:nil];
-            }else if (self.images && [self.images count]>1){
+            // is it a single image or a bunch of images?
+            if (self.images && [self.images count]>1){
                 // bunch of photos and more than one
                 int i = [self.images count];
                 for ( NSURL *url in self.images){
@@ -471,12 +411,7 @@
             }
             
             // checkpoint
-            if (self.imageFiltered){
-                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
-                                                                  withAction:@"typeImage"
-                                                                   withLabel:@"Image from Aviary"
-                                                                   withValue:nil];
-            }else if (self.images){
+            if (self.images){
                 [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
                                                                   withAction:@"typeImage"
                                                                    withLabel:@"Image from Sync"
@@ -584,23 +519,6 @@
     
     // schedules the asset read
     [self.assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
-}
-
-- (void) loadImageToEdit:(NSURL *) url
-{
-    ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *asset)
-    {
-        self.originalImage =[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage scale:1.0 orientation:(UIImageOrientation)[asset defaultRepresentation].orientation];
-    };
-    
-    ALAssetsLibraryAccessFailureBlock failureBlock  = ^(NSError *error)
-    {
-        NSLog(@"Unresolved error: %@, %@", error, [error localizedDescription]);
-    };
-    
-    [self.assetsLibrary assetForURL:url
-                        resultBlock:resultBlock
-                       failureBlock:failureBlock];
 }
 
 - (void) saveEntityUploadDate:(NSDate *) date

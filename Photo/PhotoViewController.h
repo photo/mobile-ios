@@ -18,7 +18,6 @@
 //  limitations under the License.
 
 #import "TagViewController.h"
-#import "AFPhotoEditorController.h"
 #import "Synced+Methods.h"
 #import "Timeline+Methods.h"
 
@@ -28,14 +27,9 @@
 
 #import "GAI.h"
 
-@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AFPhotoEditorControllerDelegate>
+@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *detailsPictureTable;
-
-// in case of one image. The user can
-// edit it
-@property (nonatomic, strong) UIImage *originalImage;
-@property (nonatomic, strong) UIImage *imageFiltered;
 
 // in case of user getting an image from the snapshot
 @property (nonatomic, strong) NSURL *image;
@@ -50,7 +44,7 @@
 @property (nonatomic, retain) TagViewController *tagController;
 
 // construct that receive the snapshot
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera image:(UIImage*) originalImage;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera;
 // construct that receives a list with all images URL from Sync
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync;
 

@@ -359,7 +359,7 @@
         if (error) {
             NSLog(@"The photo took by the user could not be saved = %@", [error description]);
         } else {
-            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl image:pickedImage];
+            PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
             [navController.navigationBar troveboxStyle];
             [self dismissViewControllerAnimated:YES completion:^{
