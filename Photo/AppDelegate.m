@@ -137,7 +137,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
     navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
-    
     [self.window.rootViewController presentModalViewController:navController animated:YES];
 }
 

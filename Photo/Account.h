@@ -18,6 +18,8 @@
 //  limitations under the License.
 //
 
+#import "UpdateUtilities.h"
+
 @interface Account : NSObject
 
 @property (nonatomic, strong) NSString *email;

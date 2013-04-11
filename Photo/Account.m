@@ -16,15 +16,16 @@
 - (void) saveToStandardUserDefaults{
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setValue:@"OK" forKey:kAuthenticationValid];
-    [standardUserDefaults setValue:self.host forKey:kTroveboxServer];
-    [standardUserDefaults setValue:self.email forKey:kTroveboxEmailUser];
-    [standardUserDefaults setValue:self.userToken    forKey:kAuthenticationOAuthToken];
-    [standardUserDefaults setValue:self.userSecret   forKey:kAuthenticationOAuthSecret];
-    [standardUserDefaults setValue:self.clientToken  forKey:kAuthenticationConsumerKey];
-    [standardUserDefaults setValue:self.clientSecret forKey:kAuthenticationConsumerSecret];
-    [standardUserDefaults setValue:nil          forKey:kHomeScreenPicturesTimestamp];
-    [standardUserDefaults setValue:nil          forKey:kHomeScreenPictures];
+    [standardUserDefaults setValue:@"OK"                forKey:kAuthenticationValid];
+    [standardUserDefaults setValue:self.host            forKey:kTroveboxServer];
+    [standardUserDefaults setValue:self.email           forKey:kTroveboxEmailUser];
+    [standardUserDefaults setValue:self.userToken       forKey:kAuthenticationOAuthToken];
+    [standardUserDefaults setValue:self.userSecret      forKey:kAuthenticationOAuthSecret];
+    [standardUserDefaults setValue:self.clientToken     forKey:kAuthenticationConsumerKey];
+    [standardUserDefaults setValue:self.clientSecret    forKey:kAuthenticationConsumerSecret];
+    [standardUserDefaults setValue:nil                  forKey:kHomeScreenPicturesTimestamp];
+    [standardUserDefaults setValue:nil                  forKey:kHomeScreenPictures];
+    [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
     
     // synchronize the keys
     [standardUserDefaults synchronize];  

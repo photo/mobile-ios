@@ -27,6 +27,7 @@
 #import "Timeline+Methods.h"
 #import "Synced+Methods.h"
 #import <SDWebImage/SDImageCache.h>
+#import "UpdateUtilities.h"
 
 @interface AuthenticationService : NSObject
 

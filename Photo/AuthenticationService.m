@@ -258,6 +258,7 @@
         [standardUserDefaults setValue:oauthTokenSecret forKey:kAuthenticationOAuthSecret];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPicturesTimestamp];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPictures];
+        [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
         
         // synchronize the keys
         [standardUserDefaults synchronize];
