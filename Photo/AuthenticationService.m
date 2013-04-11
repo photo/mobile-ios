@@ -131,9 +131,14 @@
      if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
      NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
      }
-         
-    // send notification to the system that it can shows the screen:
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginNeeded object:nil];
+    
+    // reset cache
+    [[SDImageCache sharedImageCache] cleanDisk];
+    [[SDImageCache sharedImageCache] clearDisk];
+    [[SDImageCache sharedImageCache] clearMemory];
+    
+    // display
+    [SharedAppDelegate presentLoginViewController];
 }
 
 - (void) startOAuthProcedure:(NSURL*) url{

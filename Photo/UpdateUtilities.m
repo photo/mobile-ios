@@ -31,7 +31,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"3.1";
+    return @"4.0";
 }
 
 - (BOOL) needsUpdate{
@@ -57,6 +57,13 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
     [standardUserDefaults synchronize];
+    
+    // remove old cache
+    [[SDImageCache sharedImageCache] cleanDisk];
+    
+    // update details from the profile
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
+    
 }
 
 //renames the server from OpenPhoto to Trovebox

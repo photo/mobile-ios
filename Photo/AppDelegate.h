@@ -100,4 +100,8 @@ FBSessionDelegate>{
 - (NSString *) userHost;
 - (NSString *) userEmail;
 
+// if we need to forward the user to the login view controller
+- (void) presentLoginViewController;
+
+
 @end

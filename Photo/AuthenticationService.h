@@ -26,6 +26,7 @@
 #import "PrivateAuthenticationService.h"
 #import "Timeline+Methods.h"
 #import "Synced+Methods.h"
+#import <SDWebImage/SDImageCache.h>
 
 @interface AuthenticationService : NSObject
 
