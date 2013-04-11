@@ -27,10 +27,12 @@
 			<string>me.openphoto</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>photo-test</string>
+				<string>openphoto</string>
+				<string>fb283425805036236</string>
 			</array>
 		</dict>
 	</array>
+
 	<key>CFBundleVersion</key>
 	<string>132</string>
 	<key>LSRequiresIPhoneOS</key>
