@@ -71,6 +71,7 @@ extern NSString * const kProfileAccountType;
 extern NSString * const kProfileLimitRemaining;
 extern NSString * const kProfileAccountProReceipt;
 extern NSString * const kProfileLatestUpdateDate;
+extern NSString * const kProfileLimitAllowed;
 
 // when defined, we will use Google Analytics
 #define GOOGLE_ANALYTICS_ENABLED

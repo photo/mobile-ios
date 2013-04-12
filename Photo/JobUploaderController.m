@@ -213,15 +213,12 @@
                                     sync.userUrl = [SharedAppDelegate userHost];
                                 }
                                 photo.status = kUploadStatusTypeDuplicated;
+                            }else if ([[e description] hasPrefix:@"Error: 402"]){
+                                photo.status =kUploadStatusTypeLimitReached;
                             }else {
                                 photo.status = kUploadStatusTypeFailed;
                                 NSLog(@"Error to upload %@", [e description]);
                             }
-                            
-                            
-                            // 402: limited reached
-                            
-                            
                             
                             if ( [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading] == 0 &&
                                 [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){

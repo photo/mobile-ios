@@ -160,6 +160,7 @@
 }
 
 - (void)viewDidUnload{
+    [self setLabelLimitUpload:nil];
     [super viewDidUnload];
     [self setDetailsPictureTable:nil];
 }
@@ -168,6 +169,40 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([SharedAppDelegate isProUser]){
+        self.labelLimitUpload.hidden = TRUE;
+    }else{
+        self.labelLimitUpload.hidden = FALSE;
+        
+        // set lable for the limit
+        NSString *message;
+        if ([SharedAppDelegate limitFreeUser] == 1){
+            message = NSLocalizedString(@"You can upload one more photo this month",@"Message limit - one more photo");
+        }else if([SharedAppDelegate limitFreeUser] > 1){
+            message = NSLocalizedString(([NSString stringWithFormat:@"You can upload %d more photos this month", [SharedAppDelegate limitFreeUser]]), @"Message limit - n more photos");
+        }else{
+            message = NSLocalizedString(@"You can't upload more photos this month", @"Message limit - no more photos");
+        }
+            
+        self.labelLimitUpload.text = message;
+        
+        if ([SharedAppDelegate limitFreeUser] == 0){
+            // limit reached,
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
+                                                            message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+            //disable button
+            self.navigationItem.rightBarButtonItem.enabled = FALSE;
+        }
+    }
+} 
 
 #pragma mark - Table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -201,6 +201,7 @@
                         [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
                         [standardUserDefaults setValue:[result objectForKey:@"paid"] forKey:kProfileAccountType];
                         [standardUserDefaults setValue:[limits objectForKey:@"remaining"] forKey:kProfileLimitRemaining];
+                        [standardUserDefaults setValue:[limits objectForKey:@"allowed"] forKey:kProfileLimitAllowed];
                         
                         [standardUserDefaults synchronize];
                     }

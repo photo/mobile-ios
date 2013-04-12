@@ -102,6 +102,7 @@ FBSessionDelegate>{
 - (BOOL) isProUser;
 - (BOOL) isFreeUser;
 - (NSInteger) limitFreeUser;
+- (NSInteger) limitAllowed;
 
 // if we need to forward the user to the login view controller
 - (void) presentLoginViewController;

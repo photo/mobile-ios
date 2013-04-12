@@ -113,5 +113,6 @@ NSString * const kProfileAccountType=@"profile_account_type";
 NSString * const kProfileLimitRemaining=@"profile_limit_remaining";
 NSString * const kProfileAccountProReceipt=@"profile_account_pro_receipt";
 NSString * const kProfileLatestUpdateDate=@"profile_latest_update_date";
+NSString * const kProfileLimitAllowed=@"profile_limit_allowed";
 
 @end

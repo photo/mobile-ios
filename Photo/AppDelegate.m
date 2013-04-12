@@ -584,6 +584,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     return [[standardUserDefaults valueForKey:kProfileLimitRemaining] integerValue];
 }
 
+- (NSInteger) limitAllowed
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    return [[standardUserDefaults valueForKey:kProfileLimitAllowed] integerValue];
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

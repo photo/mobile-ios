@@ -51,4 +51,6 @@
 // assets library
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
 
+@property (weak, nonatomic) IBOutlet UILabel *labelLimitUpload;
+
 @end

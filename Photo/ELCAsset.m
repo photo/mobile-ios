@@ -61,12 +61,28 @@
 	overlayView.hidden = !overlayView.hidden;
     overlayAlreadyUploadedView.hidden= !overlayAlreadyUploadedView.hidden;
     
-    if([(SyncViewController*)self.parent totalSelectedAssets] >= 60) {
+    if([(SyncViewController*)self.parent totalSelectedAssets] >= 90) {
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Maximum reached",@"Sync") duration:5000];
         [alert showAlert];
 
         
         overlayView.hidden = TRUE;
+    }
+    
+    // check limits
+    if ([SharedAppDelegate isFreeUser]){
+        
+        if ([SharedAppDelegate limitFreeUser] == 0 ||
+            [(SyncViewController*)self.parent totalSelectedAssets] > [SharedAppDelegate limitFreeUser]){
+            // limit reached,
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
+                                                            message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
+                                                           delegate:nil
+                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
+                                                  otherButtonTitles:nil];
+            [alert show];
+            overlayView.hidden = TRUE;
+        }
     }
 }
 

@@ -30,6 +30,7 @@ NSString * const kUploadStatusTypeCreated = @"Created";
 NSString * const kUploadStatusTypeFailed = @"Failed";
 NSString * const kUploadStatusTypeUploaded = @"Uploaded";
 NSString * const kUploadStatusTypeDuplicated = @"Duplicated";
+NSString * const kUploadStatusTypeLimitReached = @"LimitReached";
 NSString * const kUploadStatusTypeUploading = @"Uploading";
 NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 

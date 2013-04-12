@@ -284,6 +284,9 @@
             
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
+        }else if ( [photo.status isEqualToString:kUploadStatusTypeLimitReached]){
+            uploadCell.status.text=NSLocalizedString(@"Limit reached",@"Status upload - Limit reached!");
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeCreating]){
             uploadCell.status.text=NSLocalizedString(@"Creating ...",@"Status upload - Creating ...");
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
@@ -667,6 +670,7 @@
                         [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
                         [standardUserDefaults setValue:[result objectForKey:@"paid"] forKey:kProfileAccountType];
                         [standardUserDefaults setValue:[limits objectForKey:@"remaining"] forKey:kProfileLimitRemaining];
+                        [standardUserDefaults setValue:[limits objectForKey:@"allowed"] forKey:kProfileLimitAllowed];
                         
                         [standardUserDefaults synchronize];
                     }

@@ -26,6 +26,7 @@ extern NSString * const kUploadStatusTypeCreating; // this is used while we are 
 extern NSString * const kUploadStatusTypeCreated;
 extern NSString * const kUploadStatusTypeFailed;
 extern NSString * const kUploadStatusTypeDuplicated;
+extern NSString * const kUploadStatusTypeLimitReached;
 extern NSString * const kUploadStatusTypeUploading;
 extern NSString * const kUploadStatusTypeUploadFinished;
 
