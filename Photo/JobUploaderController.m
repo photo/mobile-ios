@@ -192,7 +192,7 @@
                             });
                         }
                     }@catch (NSException* e) {
-                        NSLog(@"Error to upload image %@",e);
+                        NSLog(@"Error to upload image %@", [e description]);
                         
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -213,11 +213,12 @@
                                     sync.userUrl = [SharedAppDelegate userHost];
                                 }
                                 photo.status = kUploadStatusTypeDuplicated;
-                            }else if ([[e description] hasPrefix:@"Error: 402"]){
-                                photo.status =kUploadStatusTypeLimitReached;
+                            }else if ([[e description] hasPrefix:@"402"]){
+                                photo.status = kUploadStatusTypeLimitReached;
+                                photo.photoUploadProgress = 0;
                             }else {
                                 photo.status = kUploadStatusTypeFailed;
-                                NSLog(@"Error to upload %@", [e description]);
+                                photo.photoUploadProgress = 0;
                             }
                             
                             if ( [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading] == 0 &&

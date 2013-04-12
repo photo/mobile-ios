@@ -305,10 +305,11 @@
         }
         
         // decide if we show retry/cancel
-        if (![photo.status isEqualToString:kUploadStatusTypeFailed]) {
-            uploadCell.btnRetry.hidden  = YES;
-        }else{
+        if ([photo.status isEqualToString:kUploadStatusTypeFailed] ||
+            [photo.status isEqualToString:kUploadStatusTypeLimitReached]) {
             uploadCell.btnRetry.hidden  = NO;
+        }else{
+            uploadCell.btnRetry.hidden  = YES;
         }
         
         return uploadCell;

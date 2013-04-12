@@ -50,6 +50,7 @@
 #endif
     // change status object originalObject
     self.originalObject.status=kUploadStatusTypeCreated;
+    self.progressBar.progress = 0.0;
     self.btnRetry.hidden=YES;
 }
 
