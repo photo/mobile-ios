@@ -27,6 +27,7 @@
 @property (nonatomic, strong) MWPhoto* mwphoto;
 
 - (void)doneLoadingTableViewData;
+- (void) updateProfileDetails;
 @end
 
 @implementation HomeTableViewController
@@ -62,6 +63,7 @@
                                                                                                 cacheName:nil];
         self.fetchedResultsController =  controller;
         
+        
         // needs update in screen
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
@@ -74,6 +76,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationDisableUpdateHome
+                                                   object:nil ];
+        
+        // update profile information
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationProfileRefresh
                                                    object:nil ];
     }
     return self;
@@ -172,6 +180,12 @@
     
     // title
     self.navigationItem.title = @"";
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    _refreshHeaderView=nil;
 }
 
 - (void) openCamera:(id) sender
@@ -424,10 +438,10 @@
         
         // Create & present browser
         self.mwphoto = [MWPhoto photoWithURL:[NSURL URLWithString:photo.photoUrlDetail]];
-   
+        
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         // Set options
-       // browser.wantsFullScreenLayout = YES;
+        // browser.wantsFullScreenLayout = YES;
         browser.displayActionButton = YES;
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
         
@@ -441,7 +455,7 @@
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-   return self.mwphoto;
+    return self.mwphoto;
 }
 
 
@@ -535,12 +549,6 @@
 }
 
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    _refreshHeaderView=nil;
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
@@ -604,6 +612,8 @@
         [self loadNewestPhotosIntoCoreData];
     }else if ([notification.name isEqualToString:kNotificationDisableUpdateHome]){
         self.needsUpdate = NO;
+    }else if ([notification.name isEqualToString:kNotificationProfileRefresh]){
+        [self updateProfileDetails];
     }
 }
 
@@ -620,16 +630,54 @@
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Variable exists, do the check");
 #endif
-        if ([DateUtilities daysBetween:[standardUserDefaults objectForKey:kProfileLatestUpdateDate] and:[NSDate date]] > 10){
+        if ([DateUtilities daysBetween:[standardUserDefaults objectForKey:kProfileLatestUpdateDate] and:[NSDate date]] > 1){
             // update it sending a notification
-            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
+            [self updateProfileDetails];
         }
     }else{
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Variable does not exist, create for the first time");
 #endif
         // it does not exist, creates it invoking the method to refresh
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
+        [self updateProfileDetails];
+    }
+}
+
+- (void) updateProfileDetails
+{
+    if ( [SharedAppDelegate internetActive] == YES && [AuthenticationService isLogged]){
+        dispatch_queue_t get_user_details = dispatch_queue_create("get_user_details", NULL);
+        dispatch_async(get_user_details, ^{
+            
+            @try{
+                WebService *service = [[WebService alloc] init];
+                NSDictionary *rawAnswer = [service getUserDetails];
+                NSDictionary *result = [rawAnswer objectForKey:@"result"];
+                
+                // display details
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([result class] != [NSNull class]) {
+                        // limits
+                        NSDictionary* limits = [result objectForKey:@"limit"];
+                        
+                        // save details locally
+                        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                        [standardUserDefaults setValue:[result objectForKey:@"name"] forKey:kTroveboxNameUser];
+                        [standardUserDefaults setValue:[result objectForKey:@"email"] forKey:kTroveboxEmailUser];
+                        [standardUserDefaults setValue:[NSDate date] forKey:kProfileLatestUpdateDate];
+                        [standardUserDefaults setValue:[result objectForKey:@"paid"] forKey:kProfileAccountType];
+                        [standardUserDefaults setValue:[limits objectForKey:@"remaining"] forKey:kProfileLimitRemaining];
+                        
+                        [standardUserDefaults synchronize];
+                    }
+                });
+            }@catch (NSException* e) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Could not update the probile: %@",[e description]);
+                });
+            }
+        });
+        dispatch_release(get_user_details);
     }
 }
 

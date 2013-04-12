@@ -99,6 +99,9 @@ FBSessionDelegate>{
 // get the user connect
 - (NSString *) userHost;
 - (NSString *) userEmail;
+- (BOOL) isProUser;
+- (BOOL) isFreeUser;
+- (NSInteger) limitFreeUser;
 
 // if we need to forward the user to the login view controller
 - (void) presentLoginViewController;

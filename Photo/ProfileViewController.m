@@ -27,18 +27,12 @@
         self.wantsFullScreenLayout = YES;
         self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
         
+        
         // needs update in screen
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
                                                      name:kInAppPurchaseManagerProductsFetchedNotification
                                                    object:nil ];
-        
-        // get profile information
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(eventHandler:)
-                                                     name:kNotificationProfileRefresh
-                                                   object:nil ];
-        
     }
     return self;
 }
@@ -116,6 +110,11 @@
 
 - (void) loadUserDetails
 {
+
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Loading Profile details");
+#endif
+    
     if ( [SharedAppDelegate internetActive] == NO ){
         // problem with internet, show message to user
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"")];
@@ -289,8 +288,7 @@
     NSLog(@"###### Event triggered: %@", notification);
 #endif
     
-    if ([notification.name isEqualToString:kInAppPurchaseManagerProductsFetchedNotification] ||
-        [notification.name isEqualToString:kNotificationProfileRefresh]){
+    if ([notification.name isEqualToString:kInAppPurchaseManagerProductsFetchedNotification]){
         [self loadUserDetails];
     }
 }

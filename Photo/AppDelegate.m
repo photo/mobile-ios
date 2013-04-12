@@ -567,6 +567,23 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     return [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxEmailUser];
 }
 
+- (BOOL) isProUser
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
+}
+
+- (BOOL) isFreeUser
+{
+    return ![self isProUser];
+}
+
+- (NSInteger) limitFreeUser
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    return [[standardUserDefaults valueForKey:kProfileLimitRemaining] integerValue];
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

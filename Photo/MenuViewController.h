@@ -48,11 +48,16 @@
     CoreLocationController *coreLocationController;
     
     ALAssetsLibrary *library;
-    
-    OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
 }
 
 @property (nonatomic, strong) OpenPhotoIASKAppSettingsViewController *appSettingsViewController;
+@property (nonatomic, strong) UINavigationController *galleryController;
+@property (nonatomic, strong) UINavigationController *albumController;
+@property (nonatomic, strong) UINavigationController *tagController;
+@property (nonatomic, strong) UINavigationController *syncController;
+@property (nonatomic, strong) UINavigationController *profileController;
+
+
 @property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, strong) UIPopoverController* popoverController;
 

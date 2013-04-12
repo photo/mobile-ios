@@ -180,6 +180,8 @@
                                     
                                     // set that needs update - Home
                                     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdateHome object:nil];
+                                    // refresh profile details
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
                                     
                                     // also lets save the Managed Context
                                     NSError *saveError = nil;

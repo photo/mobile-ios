@@ -33,6 +33,12 @@
 @synthesize location = _location;
 @synthesize appSettingsViewController;
 
+@synthesize galleryController=_galleryController;
+@synthesize albumController=_albumController;
+@synthesize tagController=_tagController;
+@synthesize syncController=_syncController;
+@synthesize profileController=_profileController;
+
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
     self = [super initWithNibName:nibName bundle:nibBundle];
@@ -199,36 +205,45 @@
             
             if (indexPath.row == 1){
                 // Latest activity
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[HomeTableViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                controller.centerController = SharedAppDelegate.centerController;
             }else if (indexPath.row ==2){
                 // Gallery
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                if (self.galleryController == nil){
+                    self.galleryController = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc] init]];
+                    self.galleryController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                }
+                controller.centerController = self.galleryController;
             }else if ( indexPath.row == 3){
                 // Albums
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                if (self.albumController == nil){
+                    self.albumController = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
+                    self.albumController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                }
+                controller.centerController = self.albumController;
             }else if (  indexPath.row == 4){
                 // Tags
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                if (self.tagController == nil){
+                    self.tagController = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
+                    self.tagController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                }
+                controller.centerController = self.tagController;
             }else if (  indexPath.row == 5){
                 // Upload & Sync
-                SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
-                ELCImagePickerController *syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
-                [photoPicker setParent:syncController];
-                [syncController setDelegate:photoPicker];
-                controller.centerController = syncController;
+                if (self.syncController == nil){
+                    SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
+                    ELCImagePickerController *syncController = [[ELCImagePickerController alloc] initWithRootViewController:photoPicker] ;
+                    [photoPicker setParent:syncController];
+                    [syncController setDelegate:photoPicker];
+                    self.syncController = syncController;
+                }
+                controller.centerController = self.syncController;
             }else if (  indexPath.row == 7){
                 // Account - Profile
-                UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-                controller.centerController = nav;
+                if (self.profileController == nil){
+                    self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
+                    self.profileController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+                }
+                controller.centerController = self.profileController;
             }else if ( indexPath.row == 8){
                 // Settings
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.appSettingsViewController];
@@ -308,6 +323,9 @@
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Open Camera");
 #endif
+    
+    // refresh profile details
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil];
     
     self.viewDeckController.centerController = SharedAppDelegate.centerController;
     

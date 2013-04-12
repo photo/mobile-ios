@@ -144,6 +144,9 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    // refresh profile details
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil];
+    
     if (loaded == YES){
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
         hud.labelText = @"Loading";
