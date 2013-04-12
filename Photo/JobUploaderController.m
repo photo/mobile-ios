@@ -134,7 +134,7 @@
                         
                         // before check if the photo already exist
                         if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
-                            @throw  [NSException exceptionWithName:NSLocalizedString(@"Failed to upload",@"Upload - job") reason:NSLocalizedString(@"You already uploaded this photo.",@"Upload - job") userInfo: nil];
+                            @throw  [NSException exceptionWithName:@"Failed to upload" reason:@"409" userInfo: nil];
                         }else{
                             NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
 #ifdef DEVELOPMENT_ENABLED
@@ -192,13 +192,13 @@
                             });
                         }
                     }@catch (NSException* e) {
-                        NSLog(@"Error to upload image %@", [e description]);
+                        NSLog(@"Error to upload image:%@", [e description]);
                         
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
                             // check if it is duplicated
                             if ([[e description] hasPrefix:@"Error: 409 - This photo already exists based on a"] ||
-                                [[e description] hasPrefix:@"You already uploaded this photo."]){
+                                [[e description] hasPrefix:@"409"]){
                                 
                                 // this photo is already uploaded
                                 if (photo.syncedUrl){
