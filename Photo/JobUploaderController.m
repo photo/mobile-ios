@@ -217,6 +217,10 @@
                             }
                             
                             
+                            // 402: limited reached
+                            
+                            
+                            
                             if ( [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading] == 0 &&
                                 [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){
                                 

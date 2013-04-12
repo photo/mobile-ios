@@ -46,7 +46,7 @@
         self.tableView.backgroundColor = UIColorFromRGB(0x6B5851);
         // no separator
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+        
         
         coreLocationController = [[CoreLocationController alloc] init];
         coreLocationController.delegate = self;
@@ -65,7 +65,7 @@
     
     self.tableView.scrollsToTop = NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 10.0f)];
-    self.tableView.scrollEnabled = NO;    
+    self.tableView.scrollEnabled = NO;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -93,7 +93,7 @@
     
     NSUInteger row = [indexPath row];
     if ( row == 0){
-         // the first one is the search
+        // the first one is the search
         // load the search cell
         MenuTableViewSearchCell  *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSearchCellIdentifier];
         
@@ -132,7 +132,7 @@
         // albums
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-album.png" imageSelected:@"menu-album-selected.png"];
         cell.label.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
-       return cell;
+        return cell;
     }else if ( row ==  4){
         // tags
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-tags.png" imageSelected:@"menu-tags-selected.png"];
@@ -178,7 +178,7 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MenuTableViewCell" owner:nil options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-
+    
     cell.imageSelected = imageSelectedPath;
     cell.imageDefault = imagePath;
     
@@ -304,7 +304,7 @@
 
 - (void) openCamera:(id) sender
 {
-
+    
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Open Camera");
 #endif
@@ -327,32 +327,27 @@
 
 
 - (void)imagePickerController:(DLCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    // the image itself to save in the library
-    
-    UIImage *pickedImage = [UIImage imageWithData:[info
-                                                   objectForKey:@"data"]];
+    // the image itself to save in the library,
+    // this data must be a raw data on DLCImagePickerController. Remove the PNG representation
+    UIImage *pickedImage = [info objectForKey:@"data"];
     
     // User come from Snapshot. We will temporary save in the Library.
-    // If in the Settings is configure to not save in the library, we will delete
-    NSMutableDictionary *exif = nil;
+    NSData* pngData =  UIImageJPEGRepresentation(pickedImage,1.0);
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)pngData, NULL);
     
-    // check if metadata is available
-    if ([info objectForKey:UIImagePickerControllerMediaMetadata] != nil) {
-        exif = [NSMutableDictionary dictionaryWithDictionary:[info objectForKey:UIImagePickerControllerMediaMetadata]];
-        
-        
-        NSDictionary *gpsDict  = [self currentLocation];
-        if ([gpsDict count] > 0) {
+    NSDictionary *exifTemp = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+    __block NSMutableDictionary *exif = [exifTemp mutableCopy];
+    
+    NSDictionary *gpsDict  = [self currentLocation];
+    if ([gpsDict count] > 0) {
 #ifdef DEVELOPMENT_ENABLED
-            NSLog(@"There is location");
+        NSLog(@"There is location");
 #endif
-            [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
-        }else{
+        [exif setObject:gpsDict forKey:(NSString*) kCGImagePropertyGPSDictionary];
+    }else{
 #ifdef DEVELOPMENT_ENABLED
-            NSLog(@"No location found");
+        NSLog(@"No location found");
 #endif
-        }
-        
     }
     
     [library writeImageToSavedPhotosAlbum:[pickedImage CGImage] metadata:exif completionBlock:^(NSURL *newUrl, NSError *error) {
