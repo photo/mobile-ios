@@ -53,7 +53,7 @@
         [self addSubview:overlayView];
     }
     
-	return self;	
+	return self;
 }
 
 -(void)toggleSelection {
@@ -64,7 +64,7 @@
     if([(SyncViewController*)self.parent totalSelectedAssets] >= 90) {
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Maximum reached",@"Sync") duration:5000];
         [alert showAlert];
-
+        
         
         overlayView.hidden = TRUE;
     }
@@ -77,9 +77,9 @@
             // limit reached,
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
                                                             message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
-                                                           delegate:nil
-                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                  otherButtonTitles:nil];
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Upgrade",nil),nil];
             [alert show];
             overlayView.hidden = TRUE;
         }
@@ -87,14 +87,18 @@
 }
 
 -(BOOL)selected {
-	
 	return !overlayView.hidden;
 }
 
 
 -(void)setSelected:(BOOL)_selected {
-    
 	[overlayView setHidden:!_selected];
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+        [(MenuViewController*) SharedAppDelegate.menuController displayProfileScreen];
+    }
 }
 
 @end

@@ -10,7 +10,7 @@
 #import "SyncViewController.h"
 
 
-@interface ELCAsset : UIView {
+@interface ELCAsset : UIView <UIAlertViewDelegate>{
 	ALAsset *asset;
 	UIImageView *overlayView;
 	UIImageView *overlayAlreadyUploadedView;

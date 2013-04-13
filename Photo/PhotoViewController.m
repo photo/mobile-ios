@@ -194,9 +194,9 @@
             // limit reached,
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
                                                             message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
-                                                           delegate:nil
+                                                           delegate:self
                                                   cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                  otherButtonTitles:nil];
+                                                  otherButtonTitles:NSLocalizedString(@"Upgrade",nil), nil];
             [alert show];
             //disable button
             self.navigationItem.rightBarButtonItem.enabled = FALSE;
@@ -469,7 +469,7 @@
                 // go back in the navigation
                 if (self.images){
                     [self.navigationController popViewControllerAnimated:NO];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateSyncShouldShowHome object:nil];
+                    [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
                 }else{
                     [self dismissModalViewControllerAnimated:YES];
                 }
@@ -484,7 +484,7 @@
                 // go to home
                 if (self.images){
                     [self.navigationController popViewControllerAnimated:NO];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateSyncShouldShowHome object:nil];
+                    [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
                 }else{
                     [self dismissModalViewControllerAnimated:YES];
                 }
@@ -631,5 +631,12 @@
 #endif
     }
 }
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+        [(MenuViewController*) SharedAppDelegate.menuController displayProfileScreen];
+    }
+}
+
 
 @end

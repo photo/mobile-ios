@@ -71,8 +71,6 @@ NSString * const kNotificationDisableUpdateHome=@"notification_disable_update_ho
 NSString * const kNotificationUpdateTableWithAllPhotosAgain=@"notification_update_table_with_all_pictures";
 NSString * const kNotificationProfileRefresh=@"notification_update_profile_information";
 NSString * const kNotificationProfileRemoveProgressBar=@"notification_profile_remove_progress_bar";
-NSString * const kNotificationUpdateSyncShouldShowHome=@"notification_sync_show_home_controller";
-
 
 /*
  * Constants for the table in the upload screen

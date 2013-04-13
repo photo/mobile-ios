@@ -63,4 +63,6 @@
 
 - (void) openCamera:(id) sender;
 - (void) selectLatestActivity;
+- (void) displayProfileScreen;
+- (void) displayHomeScreen;
 @end

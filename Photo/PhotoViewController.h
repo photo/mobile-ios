@@ -27,7 +27,7 @@
 
 #import "GAI.h"
 
-@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *detailsPictureTable;
 

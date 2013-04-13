@@ -328,6 +328,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil];
     
     self.viewDeckController.centerController = SharedAppDelegate.centerController;
+    [self selectLatestActivity];
     
     DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
     picker.delegate = self;
@@ -454,6 +455,35 @@
 - (void) selectLatestActivity
 {
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void) displayProfileScreen
+{
+    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller) {
+        // Account - Profile
+        if (self.profileController == nil){
+            self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
+            self.profileController.title= NSLocalizedString(@"My Account", @"Menu - title for Account");
+        }
+        
+        controller.centerController = self.profileController;
+        // select profile
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+        //sleep a little and close the left view
+        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
+        [self.viewDeckController closeLeftViewAnimated:YES];
+    }];
+}
+
+- (void) displayHomeScreen
+{
+    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller) {
+        controller.centerController = SharedAppDelegate.centerController;
+        [self selectLatestActivity];
+        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
+        [self.viewDeckController closeLeftViewAnimated:YES];
+    }];
 }
 
 - (void)dealloc
