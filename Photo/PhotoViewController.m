@@ -185,7 +185,7 @@
         }else if([SharedAppDelegate limitFreeUser] > 1){
             message = NSLocalizedString(([NSString stringWithFormat:@"You can upload %d more photos this month", [SharedAppDelegate limitFreeUser]]), @"Message limit - n more photos");
         }else{
-            message = NSLocalizedString(@"You can't upload more photos this month", @"Message limit - no more photos");
+            message = NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached on upload screen");
         }
             
         self.labelLimitUpload.text = message;

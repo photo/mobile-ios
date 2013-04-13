@@ -46,6 +46,7 @@ extern NSString * const kNotificationNeededsUpdateHome;
 extern NSString * const kNotificationDisableUpdateHome;
 extern NSString * const kNotificationUpdateTableWithAllPhotosAgain;
 extern NSString * const kNotificationProfileRefresh;
+extern NSString * const kNotificationProfileRemoveProgressBar;
 extern NSString * const kNotificationUpdateSyncShouldShowHome;
 
 extern NSString * const kCellIdentifierTitle;

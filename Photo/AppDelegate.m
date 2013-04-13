@@ -121,11 +121,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // Payment setup
     if ([SKPaymentQueue canMakePayments]) {
-        TroveboxSubscription *subscription = [TroveboxSubscription createTroveboxSubscription];
+        TroveboxSubscription *subscription = [TroveboxSubscription troveboxSubscription];
         [subscription requestProUpgradeProductData];
-        
-        TroveboxPaymentTransactionObserver *observer = [[TroveboxPaymentTransactionObserver alloc] init];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
+        [[SKPaymentQueue defaultQueue] addTransactionObserver:[TroveboxPaymentTransactionObserver troveboxPaymentTransactionObserver]];
     }
     
     return YES;

@@ -10,6 +10,17 @@
 
 @implementation TroveboxPaymentTransactionObserver
 
++ (TroveboxPaymentTransactionObserver*) troveboxPaymentTransactionObserver
+{
+    static dispatch_once_t pred;
+    static TroveboxPaymentTransactionObserver *shared = nil;
+    
+    dispatch_once(&pred, ^{
+        shared = [[TroveboxPaymentTransactionObserver alloc] init];
+    });
+    
+    return shared;
+}
 //
 // saves a record of the transaction by storing the receipt to disk
 //
@@ -53,7 +64,7 @@
     {
         // enable the pro features after 3 seconds
         [NSThread sleepForTimeInterval:3];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kInAppPurchaseManagerProductsFetchedNotification object:nil userInfo:nil];
     }
 }
 
@@ -128,6 +139,9 @@
     {
         // this is fine, the user just cancelled, so don’t notify
         [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+
+        // send notification to remove the progress bar
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRemoveProgressBar object:nil userInfo:nil];
     }
 }
 

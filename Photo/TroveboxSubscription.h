@@ -8,7 +8,6 @@
 
 //for payment
 #import <StoreKit/StoreKit.h>
-#import "TroveboxPaymentTransactionObserver.h"
 
 #define kInAppPurchaseManagerProductsFetchedNotification @"kInAppPurchaseManagerProductsFetchedNotification"
 
@@ -19,7 +18,7 @@
 
 @property (nonatomic, retain) SKProduct *proUpgradeProduct;
 
-+ (TroveboxSubscription*) createTroveboxSubscription;
++ (TroveboxSubscription*) troveboxSubscription;
 
 // init the details for the suscription
 - (void) requestProUpgradeProductData;

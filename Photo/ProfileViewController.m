@@ -33,6 +33,11 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kInAppPurchaseManagerProductsFetchedNotification
                                                    object:nil ];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(eventHandler:)
+                                                     name:kNotificationProfileRemoveProgressBar
+                                                   object:nil ];
     }
     return self;
 }
@@ -63,7 +68,7 @@
     
     UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = customLeftButton;
-        
+    
     // add log out
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *buttonImage = [UIImage imageNamed:@"logout.png"] ;
@@ -110,7 +115,7 @@
 
 - (void) loadUserDetails
 {
-
+    
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Loading Profile details");
 #endif
@@ -145,30 +150,30 @@
                         [self.labelName setText:name];
                         // url thumb
                         [self.photo  setImageWithURL:[NSURL URLWithString:[result objectForKey:@"photoUrl"]]
-                                            placeholderImage:nil
-                                            completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
-                                                if (error){
-                                                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"message when couldn't download the image in the profile screen") duration:5000];
-                                                    [alert showAlert];
-                                                }else{
-                                                    // Begin a new image that will be the new image with the rounded corners
-                                                    // (here with the size of an UIImageView)
-                                                    UIGraphicsBeginImageContextWithOptions(self.photo.bounds.size, NO, 1.0);
-                                                    
-                                                    // Add a clip before drawing anything, in the shape of an rounded rect
-                                                    [[UIBezierPath bezierPathWithRoundedRect:self.photo.bounds
-                                                                                cornerRadius:10.0] addClip];
-                                                    // Draw your image
-                                                    [image drawInRect:self.photo.bounds];
-                                                    
-                                                    // Get the image, here setting the UIImageView image
-                                                    self.photo.image = UIGraphicsGetImageFromCurrentImageContext();
-                                                    
-                                                    // Lets forget about that we were drawing
-                                                    UIGraphicsEndImageContext();
-                                                }
-                                            }];
-
+                                    placeholderImage:nil
+                                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
+                                               if (error){
+                                                   PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"message when couldn't download the image in the profile screen") duration:5000];
+                                                   [alert showAlert];
+                                               }else{
+                                                   // Begin a new image that will be the new image with the rounded corners
+                                                   // (here with the size of an UIImageView)
+                                                   UIGraphicsBeginImageContextWithOptions(self.photo.bounds.size, NO, 1.0);
+                                                   
+                                                   // Add a clip before drawing anything, in the shape of an rounded rect
+                                                   [[UIBezierPath bezierPathWithRoundedRect:self.photo.bounds
+                                                                               cornerRadius:10.0] addClip];
+                                                   // Draw your image
+                                                   [image drawInRect:self.photo.bounds];
+                                                   
+                                                   // Get the image, here setting the UIImageView image
+                                                   self.photo.image = UIGraphicsGetImageFromCurrentImageContext();
+                                                   
+                                                   // Lets forget about that we were drawing
+                                                   UIGraphicsEndImageContext();
+                                               }
+                                           }];
+                        
                         // paid user
                         if ([[result objectForKey:@"paid"] boolValue])
                             [self.labelAccount setText:NSLocalizedString(@"Pro",@"Profile - Pro text")];
@@ -216,7 +221,7 @@
                             self.buttonFeatureList.hidden = TRUE;
                         }else{
                             // set the value
-                            TroveboxSubscription *subscription = [TroveboxSubscription createTroveboxSubscription];
+                            TroveboxSubscription *subscription = [TroveboxSubscription troveboxSubscription];
                             SKProduct *product = [subscription product];
                             if( product.price != nil){
                                 [self.labelPriceSubscription setText:[NSString stringWithFormat:@"%@ %@/%@", NSLocalizedString(@"Just",@"Profile - subscription"), [product localizedPrice], NSLocalizedString(@"month",@"Profile - subscription")]];
@@ -250,7 +255,8 @@
 - (IBAction)subscribe:(id)sender {
     
     if ([SKPaymentQueue canMakePayments]) {
-        SKPayment *payment = [SKPayment paymentWithProductIdentifier:kInAppPurchaseProUpgradeProductId];
+        SKPayment *payment = [SKPayment paymentWithProduct:[TroveboxSubscription troveboxSubscription].proUpgradeProduct];
+        [[SKPaymentQueue defaultQueue] transactions];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
         [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     }
@@ -291,6 +297,8 @@
     
     if ([notification.name isEqualToString:kInAppPurchaseManagerProductsFetchedNotification]){
         [self loadUserDetails];
+    }else if ([notification.name isEqualToString:kNotificationProfileRemoveProgressBar]){
+        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }
 }
 

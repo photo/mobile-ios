@@ -16,4 +16,6 @@
 
 @interface TroveboxPaymentTransactionObserver : NSObject <SKPaymentTransactionObserver>
 
++ (TroveboxPaymentTransactionObserver*) troveboxPaymentTransactionObserver;
+
 @end

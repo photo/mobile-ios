@@ -12,14 +12,13 @@
 
 @synthesize proUpgradeProduct=_proUpgradeProduct;
 
-+ (TroveboxSubscription*) createTroveboxSubscription
++ (TroveboxSubscription*) troveboxSubscription
 {
     static dispatch_once_t pred;
     static TroveboxSubscription *shared = nil;
     
     dispatch_once(&pred, ^{
         shared = [[TroveboxSubscription alloc] init];
-        
     });
     
     return shared;
@@ -69,7 +68,7 @@
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Request did finish = %@",request);
 #endif
-}
+} 
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
