@@ -101,30 +101,47 @@
 {
     [super viewDidLoad];
     
-    // menu
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
-    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
-    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = customLeftButton;
-    
-    // camera
-    UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
-    [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
-    buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-    self.navigationItem.rightBarButtonItem = customRightButton;
+    if ( self.readOnly){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
+        [button setImage:buttonImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+        [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.leftBarButtonItem = customBarItem;
+    }else{
+        // menu
+        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+        [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+        leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+        [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+        self.navigationItem.leftBarButtonItem = customLeftButton;
+        
+        
+        // camera
+        UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
+        [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
+        buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
+        [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
+        self.navigationItem.rightBarButtonItem = customRightButton;
+        
+    }
     
     // title
     self.navigationItem.title = NSLocalizedString(@"Tags", @"Menu - title for Tags");
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+}
+
+-(IBAction)OnClick_btnBack:(id)sender  {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) openCamera:(id) sender
@@ -230,10 +247,10 @@
     Tag *tag = [self.tags objectAtIndex:row];
     
     if (tag.quantity >0 && self.readOnly == NO){
-         // open the gallery with a tag that contains at least one picture.
+        // open the gallery with a tag that contains at least one picture.
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithTag:tag]];
         self.viewDeckController.centerController = nav;
-        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary        
+        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
     }
     
     if (self.readOnly == YES){
@@ -268,7 +285,15 @@
             
             self.isLoading = NO;
         }else {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+            MBProgressHUD *hud;
+            
+            if ( self.readOnly){
+                hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            }    else{
+                hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+            }
+            
+            
             hud.labelText = @"Loading";
             
             dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
@@ -298,7 +323,13 @@
                             }}
                         
                         [self.tableView reloadData];
-                        [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        if ( self.readOnly){
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }    else{
+                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        }
+                        
+                        
                         self.isLoading = NO;
                         
                     });
