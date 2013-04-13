@@ -481,6 +481,7 @@
     [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller) {
         controller.centerController = SharedAppDelegate.centerController;
         [self selectLatestActivity];
+        [MBProgressHUD hideAllHUDsForView:self.viewDeckController.view animated:YES];
         [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
         [self.viewDeckController closeLeftViewAnimated:YES];
     }];
