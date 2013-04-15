@@ -24,7 +24,6 @@
 @interface NewestPhotoCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UIImageView *photo;
-@property (nonatomic, weak) IBOutlet UIImageView *photoDetailBox;
 @property (nonatomic, weak) IBOutlet UILabel *date;
 @property (nonatomic, weak) IBOutlet UILabel *tags;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activity;
