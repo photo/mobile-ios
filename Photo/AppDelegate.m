@@ -155,7 +155,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 #endif
     
     // the "photo-test" is used for TestFlight tester and community contributors
-    if ([[url scheme] isEqualToString:@"photo-test"]){
+    if ([[url scheme] isEqualToString:@"openphoto"]){
         AuthenticationService *auth = [[AuthenticationService alloc]init];
         
         if ([AuthenticationService isLogged] == NO){

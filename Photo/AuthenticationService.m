@@ -24,7 +24,7 @@
 -(NSURL*) getOAuthInitialUrl{
     // get the url
     NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxServer];
-    NSString *path = @"/v1/oauth/authorize?oauth_callback=photo-test://&name=";
+    NSString *path = @"/v1/oauth/authorize?oauth_callback=openphoto://&name=";
     NSString *appName = [[UIDevice currentDevice] name];
     NSString *fullPath = [[NSString alloc]initWithFormat:@"%@%@%@",server,path,[appName stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ] ;
     
@@ -35,7 +35,7 @@
     
     if (!url){
         NSLog(@"URL is invalid, use the default.");
-        return [NSURL URLWithString:[[NSString alloc]initWithFormat:@"%@%@%@",server,path,@"Photo%20App"] ];
+        return [NSURL URLWithString:[[NSString alloc]initWithFormat:@"%@%@%@",server,path,@"Trovebox%20App"] ];
     }
     
     return url;
