@@ -1,6 +1,3 @@
-[submodule "Frameworks/ViewDeck"]
-	path = Frameworks/ViewDeck
-	url = git://github.com/Inferis/ViewDeck.git
 [submodule "Frameworks/iRate"]
 	path = Frameworks/iRate
 	url = git://github.com/nicklockwood/iRate.git

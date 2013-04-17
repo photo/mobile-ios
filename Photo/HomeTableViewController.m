@@ -188,6 +188,22 @@
     _refreshHeaderView=nil;
 }
 
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
 - (void) openCamera:(id) sender
 {
     [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
@@ -546,13 +562,6 @@
 {
     return [NSDate date]; // should return date data source was last changed
 }
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 
 #pragma mark -
 #pragma mark Population core data

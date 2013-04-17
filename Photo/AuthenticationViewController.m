@@ -61,6 +61,21 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (IBAction)login:(id)sender {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Url Login %@",self.serverURL.text);
