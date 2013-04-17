@@ -22,7 +22,7 @@
 
 @implementation Album
 
-@synthesize name=_name,quantity=_quantity,identification=_identification, thumb=_thumb;
+@synthesize name=_name,quantity=_quantity,identification=_identification, thumb=_thumb, selected=_selected;
 
 - (id)initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd Identification:(NSString *) identification AlbumImageUrl:(NSString *) thumb
 {
@@ -33,6 +33,9 @@
         self.quantity = qtd;
         self.identification = identification;
         self.thumb=thumb;
+        
+        // by default no tag is selected. This is used for READ ONLY proposal
+        self.selected = NO;
     }
     
     return self;

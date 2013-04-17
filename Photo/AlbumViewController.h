@@ -28,4 +28,7 @@
 
 @property (nonatomic, strong) NSMutableArray *albums;
 
+-(void) setReadOnly;
+-(NSArray*) getSelectedAlbums;
+
 @end

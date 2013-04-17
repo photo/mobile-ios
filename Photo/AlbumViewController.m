@@ -26,13 +26,14 @@
 
 // to avoid multiples loading
 @property (nonatomic) BOOL isLoading;
+//used for create new albums
+@property (nonatomic) BOOL readOnly;
 
 @end
 
 @implementation AlbumViewController
 
-@synthesize albums = _albums;
-@synthesize isLoading = _isLoading;
+@synthesize albums = _albums, isLoading = _isLoading, readOnly=_readOnly;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,9 +44,17 @@
         
         // is loading albums
         self.isLoading = NO;
+        
+        self.readOnly = NO;
     }
     return self;
 }
+
+- (void) setReadOnly
+{
+    self.readOnly = YES;
+}
+
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
@@ -124,8 +133,19 @@
     
     Album *album = [self.albums objectAtIndex:row];
     cell.textLabel.text=album.name;
-    cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", album.quantity];
-    cell.detailTextLabel.textColor = UIColorFromRGB(0xE6501E);
+    
+    if (self.readOnly == NO){
+        // details quantity
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%d", album.quantity];
+        cell.detailTextLabel.textColor = UIColorFromRGB(0xE6501E);
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }else{
+        // check if it selected or not
+        if(album.selected == YES)
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        else
+            cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     // Here we use the new provided setImageWithURL: method to load the web image
     [cell.imageView setImageWithURL:[NSURL URLWithString:album.thumb]
@@ -148,7 +168,20 @@
         self.viewDeckController.centerController = nav;
         [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
     }
+      
+    if (self.readOnly == YES){
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            album.selected = NO;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            album.selected = YES;
+        }
+    }
 }
+
 
 #pragma mark
 #pragma mark - Methods to get albums via json
@@ -205,6 +238,10 @@
                                     Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
                                     
                                     [self.albums addObject:album];
+                                }else if (self.readOnly){
+                                    // in this case add just with the name and count
+                                    Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:@"" AlbumImageUrl:nil];
+                                     [self.albums addObject:album];
                                 }
                             }}
                         
@@ -226,4 +263,37 @@
         }
     }
 }
+
+-(void) addNewAlbum
+{
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Adding new album");
+#endif
+    
+    TSAlertView* av = [[TSAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new album name",@"Album screen - create a new album") message:nil delegate:self
+                                       cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                       otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
+    av.style = TSAlertViewStyleInput;
+    [av show];
+}
+
+// after animation
+- (void) alertView: (TSAlertView *) alertView didDismissWithButtonIndex: (NSInteger) buttonIndex
+{
+    // cancel
+    if( buttonIndex == 0 || alertView.inputTextField.text == nil || alertView.inputTextField.text.length==0)
+        return;
+    
+    // add the new tag in the list and select it
+  //  Tag *newTag = [[Tag alloc]initWithTagName:alertView.inputTextField.text Quantity:0];
+  //  newTag.selected = YES;
+  //  [self.tags addObject:newTag];
+  //  [self.tableView reloadData];
+}
+
+-(NSArray*) getSelectedAlbums
+{
+    return [NSArray array];
+}
+
 @end

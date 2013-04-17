@@ -30,4 +30,7 @@
 @property (nonatomic, strong) NSString *thumb;
 @property (nonatomic) NSInteger quantity;
 
+// used for upload with an album
+@property (nonatomic) BOOL  selected;
+
 @end
