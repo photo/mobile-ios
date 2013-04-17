@@ -110,6 +110,17 @@
         [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
         self.navigationItem.leftBarButtonItem = customBarItem;
+        
+        // button for create a new tag
+        UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];
+        self.navigationItem.rightBarButtonItem = addNewTagButton;
+        
+        if ([self.tags count] == 0 ){
+            // just load in case there is no tags.
+            // we do that to keep the past selection
+            [self loadTags];
+        }
+        
     }else{
         // menu
         UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -173,9 +184,9 @@
     NSLog(@"Adding new tag");
 #endif
     
-    TSAlertView* av = [[TSAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new tag name",@"Tag screen") message:nil delegate:self
-                                       cancelButtonTitle:NSLocalizedString(@"Cancel",@"")
-                                       otherButtonTitles:NSLocalizedString(@"OK",@""),nil];
+    TSAlertView* av = [[TSAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new tag name",@"Tag screen - create a new screen") message:nil delegate:self
+                                       cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
+                                       otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
     av.style = TSAlertViewStyleInput;
     [av show];
 }
