@@ -22,7 +22,20 @@
 
 @implementation Album
 
-@synthesize name=_name,quantity=_quantity,identification=_identification, thumb=_thumb, selected=_selected;
+@synthesize name=_name, quantity=_quantity, identification=_identification, thumb=_thumb, selected=_selected;
+
+- (id) initWithAlbumName:(NSString*) name
+{
+    self = [super init];
+    if (self) {
+        // Initialization code here.
+        self.name=name;
+        
+        // by default no tag is selected. This is used for READ ONLY proposal
+        self.selected = NO;
+    }
+    return self;
+}
 
 - (id)initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd Identification:(NSString *) identification AlbumImageUrl:(NSString *) thumb
 {

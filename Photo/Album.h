@@ -23,7 +23,8 @@
 @interface Album : NSObject
 
 // constructor with tag name
-- (id)initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd Identification:(NSString *) identification AlbumImageUrl:(NSString *) thumb;
+- (id) initWithAlbumName:(NSString*) name;
+- (id) initWithAlbumName:(NSString*) name Quantity:(NSInteger) qtd Identification:(NSString *) identification AlbumImageUrl:(NSString *) thumb;
 
 @property (nonatomic, strong) NSString *identification;
 @property (nonatomic, strong) NSString *name;

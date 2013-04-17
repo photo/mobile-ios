@@ -18,17 +18,20 @@
 //  limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "TSAlertView.h"
+#import "WebService.h"
+#import "MBProgressHUD.h"
+#import "PhotoAlertView.h"
 #import "Album.h"
 
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface AlbumViewController : UITableViewController<UINavigationControllerDelegate>
+@interface AlbumViewController : UITableViewController<TSAlertViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *albums;
 
 -(void) setReadOnly;
--(NSArray*) getSelectedAlbums;
+-(NSString*) getSelectedAlbumsIdentification;
 
 @end

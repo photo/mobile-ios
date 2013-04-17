@@ -77,6 +77,7 @@ NSString * const kNotificationProfileRemoveProgressBar=@"notification_profile_re
  */
 NSString * const kCellIdentifierTitle = @"cellIdentifierTitle";
 NSString * const kCellIdentifierTags=@"cellIdentifierTags";
+NSString * const kCellIdentifierAlbums=@"cellIdentifierAlbums";
 NSString * const kCellIdentifierFilter=@"cellIdentifierFilter";
 NSString * const kCellIdentifierPrivate=@"cellIdentifierPrivate";
 NSString * const kCellIdentifierShareFacebook=@"cellIdentifierShareToFacebook";

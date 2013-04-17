@@ -2,7 +2,7 @@
 //  Timeline.m
 //  Trovebox
 //
-//  Created by Patrick Santana on 29/03/13.
+//  Created by Patrick Santana on 17/04/13.
 //  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
@@ -27,12 +27,13 @@
 @dynamic photoUploadProgress;
 @dynamic photoUploadResponse;
 @dynamic photoUrl;
+@dynamic photoUrlDetail;
 @dynamic status;
 @dynamic syncedUrl;
 @dynamic tags;
 @dynamic title;
 @dynamic twitter;
 @dynamic userUrl;
-@dynamic photoUrlDetail;
+@dynamic albums;
 
 @end

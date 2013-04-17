@@ -314,8 +314,8 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 
 - (NSDictionary *) toDictionary
 {
-    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"status", @"title", @"twitter", @"image", @"fileName",@"tags", nil];  
-    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permission,self.status,self.title,self.twitter,self.photoDataTempUrl,self.fileName,self.tags, nil];  
+    NSArray *keys = [NSArray arrayWithObjects: @"date", @"facebook", @"permission", @"status", @"title", @"twitter", @"image", @"fileName",@"tags",@"albums", nil];
+    NSArray *objects = [NSArray arrayWithObjects:self.date,self.facebook,self.permission,self.status,self.title,self.twitter,self.photoDataTempUrl,self.fileName,self.tags, self.albums, nil];
     
     return [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 }

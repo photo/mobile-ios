@@ -23,6 +23,7 @@
 
 @interface AlbumViewController ()
 - (void) loadAlbums;
+- (NSArray *) getSelectedAlbums;
 
 // to avoid multiples loading
 @property (nonatomic) BOOL isLoading;
@@ -60,26 +61,46 @@
 {
     [super viewDidLoad];
     
-    // menu
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
-    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
-    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = customLeftButton;
-    
-    // camera
-    UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
-    [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
-    buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-    self.navigationItem.rightBarButtonItem = customRightButton;
-    
+    if ( self.readOnly){
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
+        [button setImage:buttonImage forState:UIControlStateNormal];
+        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
+        [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+        self.navigationItem.leftBarButtonItem = customBarItem;
+        
+        // button for create a new album
+        UIBarButtonItem *addNewAlbumButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewAlbum)];
+        self.navigationItem.rightBarButtonItem = addNewAlbumButton;
+        
+        if ([self.albums count] == 0 ){
+            // just load in case there is no album.
+            // we do that to keep the past selection
+            [self loadAlbums];
+        }
+        
+    }else{
+        // menu
+        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+        [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+        leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+        [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+        self.navigationItem.leftBarButtonItem = customLeftButton;
+        
+        // camera
+        UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
+        [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
+        buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
+        [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
+        self.navigationItem.rightBarButtonItem = customRightButton;
+    }
     // title
     self.navigationItem.title = NSLocalizedString(@"Albums", @"Menu - title for Albums");
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
@@ -94,11 +115,21 @@
     [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
 }
 
+-(IBAction)OnClick_btnBack:(id)sender  {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // load all albums
-    [self loadAlbums];
+    
+    // image for the navigator
+    [self.navigationController.navigationBar troveboxStyle];
+    
+    if ([self.albums count] == 0 ){
+        // load all albums
+        [self loadAlbums];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -147,9 +178,13 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    // Here we use the new provided setImageWithURL: method to load the web image
-    [cell.imageView setImageWithURL:[NSURL URLWithString:album.thumb]
-                   placeholderImage:[UIImage imageNamed:@"empty_img.png"]];
+    if (album.thumb != nil){
+        // Here we use the new provided setImageWithURL: method to load the web image
+        [cell.imageView setImageWithURL:[NSURL URLWithString:album.thumb]
+                       placeholderImage:[UIImage imageNamed:@"empty_img.png"]];
+    }else{
+        [cell.imageView setImage:[UIImage imageNamed:@"empty_img.png"]];
+    }
     
     return cell;
 }
@@ -162,13 +197,6 @@
     NSUInteger row = [indexPath row];
     Album *album = [self.albums objectAtIndex:row];
     
-    if (album.quantity >0 ){
-        // open the gallery with a tag that contains at least one picture.
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithAlbum:album]];
-        self.viewDeckController.centerController = nav;
-        [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
-    }
-      
     if (self.readOnly == YES){
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         
@@ -178,6 +206,13 @@
         } else {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             album.selected = YES;
+        }
+    }else{
+        if (album.quantity >0 ){
+            // open the gallery with a tag that contains at least one picture.
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithAlbum:album]];
+            self.viewDeckController.centerController = nav;
+            [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
         }
     }
 }
@@ -198,8 +233,14 @@
             
             self.isLoading = NO;
         }else {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-            hud.labelText = @"Loading";
+            MBProgressHUD *hud;
+            
+            if ( self.readOnly){
+                hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            }    else{
+                hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+            }
+            hud.labelText = NSLocalizedString(@"Loading",nil);
             
             dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
             dispatch_async(loadAlbums, ^{
@@ -220,11 +261,9 @@
                                 
                                 // how many images
                                 NSString *qtd = [albumDetails objectForKey:@"count"];
+                                NSString *identification = [albumDetails objectForKey:@"id"];
                                 
                                 if ([qtd integerValue] >0 ){
-                                    
-                                    NSString *identification = [albumDetails objectForKey:@"id"];
-                                    
                                     // first get the cover
                                     NSDictionary* cover = [albumDetails objectForKey:@"cover"];
                                     NSString *size;
@@ -240,19 +279,27 @@
                                     [self.albums addObject:album];
                                 }else if (self.readOnly){
                                     // in this case add just with the name and count
-                                    Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:@"" AlbumImageUrl:nil];
-                                     [self.albums addObject:album];
+                                    Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
+                                    [self.albums addObject:album];
                                 }
                             }}
                         
                         [self.tableView reloadData];
-                        [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        if ( self.readOnly){
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }else{
+                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        }
                         self.isLoading = NO;
                         
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        if ( self.readOnly){
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        }else{
+                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                        }
                         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                         [alert showAlert];
                         self.isLoading = NO;
@@ -285,15 +332,85 @@
         return;
     
     // add the new tag in the list and select it
-  //  Tag *newTag = [[Tag alloc]initWithTagName:alertView.inputTextField.text Quantity:0];
-  //  newTag.selected = YES;
-  //  [self.tags addObject:newTag];
-  //  [self.tableView reloadData];
+    Album *album = [[Album alloc] initWithAlbumName:alertView.inputTextField.text];
+    
+    MBProgressHUD *hud;
+    
+    if ( self.readOnly){
+        hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    }    else{
+        hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
+    }
+    hud.labelText = NSLocalizedString(@"Creating",@"Creating Album");
+    
+    dispatch_queue_t createAlbum = dispatch_queue_create("createAlbum", NULL);
+    dispatch_async(createAlbum, ^{
+        @try {
+            // get factory for Trovebox Service
+            WebService *service = [[WebService alloc] init];
+            NSString *identification = [service createAlbum:album];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                album.identification = identification;
+                album.selected = YES;
+                [self.albums addObject:album];
+                [self.tableView reloadData];
+                if ( self.readOnly){
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                }
+                self.isLoading = NO;
+            });
+        }@catch (NSException *exception) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if ( self.readOnly){
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
+                }
+                
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                [alert showAlert];
+                self.isLoading = NO;
+            });
+        }
+    });
+    dispatch_release(createAlbum);
 }
 
--(NSArray*) getSelectedAlbums
+-(NSString*) getSelectedAlbumsIdentification
 {
-    return [NSArray array];
+    NSMutableString *result = [NSMutableString string];
+    NSArray *selectedAlbums = [self getSelectedAlbums];
+    int counter = 1;
+    
+    if (selectedAlbums != nil && [selectedAlbums count]>0){
+        for (Album* album in selectedAlbums) {
+            [result appendFormat:@"%@",album.identification];
+            
+            // add the ,
+            if ( counter < [selectedAlbums count]){
+                [result appendFormat:@", "];
+            }
+            
+            counter++;
+        }
+    }
+    
+    return result;
+}
+
+- (NSArray *) getSelectedAlbums
+{
+    NSMutableArray *array = [NSMutableArray array];
+    for (Album* album in self.albums) {
+        if (album.selected == YES){
+            [array addObject:album];
+        }
+    }
+    
+    return array;
 }
 
 @end

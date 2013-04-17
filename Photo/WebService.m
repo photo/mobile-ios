@@ -1,5 +1,5 @@
 //
-//  OpenPhotoService.m
+//  WebService.m
 //  iPhone and iPad Example
 //
 //  Created by Patrick Santana on 20/03/12.
@@ -25,6 +25,7 @@
 - (OAMutableURLRequest*) getUrlRequest:(NSURL *) url;
 - (NSArray *) parseResponse:(ASIHTTPRequest *) response;
 - (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response;
++ (BOOL) isMessageValid:(NSDictionary *)response;
 
 @property (nonatomic, retain, readwrite) NSString *server;
 @property (nonatomic, retain, readwrite) NSString *oAuthKey;
@@ -99,6 +100,7 @@
     NSLog(@"Title = %@",[values objectForKey:@"title"] );
     NSLog(@"Permission = %@",[values objectForKey:@"permission"]);
     NSLog(@"Tags = %@",[values objectForKey:@"tags"]);
+    NSLog(@"Albums = %@",[values objectForKey:@"albums"]);
 #endif
     
     OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
@@ -109,9 +111,12 @@
     OARequestParameter *permissionParam = [[OARequestParameter alloc] initWithName:@"permission"
                                                                              value:[NSString stringWithFormat:@"%@",[values objectForKey:@"permission"]]];
     
-    OARequestParameter *tagParam = [[OARequestParameter alloc] initWithName:@"tags"
+    OARequestParameter *tagsParam = [[OARequestParameter alloc] initWithName:@"tags"
                                                                       value:[values objectForKey:@"tags"]];
-    NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagParam, nil];
+    OARequestParameter *albumsParam = [[OARequestParameter alloc] initWithName:@"albums"
+                                                                      value:[values objectForKey:@"albums"]];
+    
+    NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagsParam, albumsParam, nil];
     [oaUrlRequest setParameters:params];
     
     // prepare the request. This will be used to get the Authorization header and add in the multipart component
@@ -123,7 +128,7 @@
      *
      */
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
-    asiRequest.userAgentString=@"OpenPhoto iOS";
+    asiRequest.userAgentString=@"Trovebox iOS";
     
     // set the authorization header to be used in the OAuth
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -133,6 +138,7 @@
     [asiRequest addPostValue:[values objectForKey:@"title"] forKey:@"title"];
     [asiRequest addPostValue:[values objectForKey:@"permission"] forKey:@"permission"];
     [asiRequest addPostValue:[values objectForKey:@"tags"] forKey:@"tags"];
+    [asiRequest addPostValue:[values objectForKey:@"albums"] forKey:@"albums"];
     
     if (delegate){
         // set the progress bar
@@ -208,11 +214,64 @@
     return  [self parseResponse:[self sendSynchronousRequest:@"/v1/albums/list.json" httpMethod:@"GET"]];
 }
 
+// return identification
+- (NSString *) createAlbum:(Album *) album
+{
+    [self validateCredentials];
+    
+    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/album/create.json", self.server];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Url upload = [%@]. Execute OAuth and Multipart",urlString);
+    NSLog(@"Album name = %@",album.name);
+#endif
+    
+    OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
+    [oaUrlRequest setHTTPMethod:@"POST"];
+    
+    OARequestParameter *nameParam = [[OARequestParameter alloc] initWithName:@"name"
+                                                                        value:album.name];
+
+    NSArray *params = [NSArray arrayWithObjects:nameParam, nil];
+    [oaUrlRequest setParameters:params];
+    
+    // prepare the request. This will be used to get the Authorization header and add in the multipart component
+    [oaUrlRequest prepare];
+    
+    /*
+     *
+     *   Using ASIHTTPRequest for Multipart. The authentication come from the OAMutableURLRequest
+     *
+     */
+    ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    asiRequest.userAgentString=@"Trovebox iOS";
+    
+    // set the authorization header to be used in the OAuth
+    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
+    [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+    
+    // set the parameter already added in the signature
+    [asiRequest addPostValue:album.name forKey:@"name"];
+    [asiRequest startSynchronous];
+    
+    NSDictionary *result =  [self parseResponseAsNSDictionary:asiRequest];
+    NSDictionary *dics = [result objectForKey:@"result"] ;
+    
+    // check if it is null
+    if ([dics class] == [NSNull class]){
+        // if it is null, return an empty array
+        return @"";
+    }else {
+        return [dics objectForKey:@"id"];
+    }
+}
+
 
 - (ASIHTTPRequest *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
     [self validateCredentials];
     
-    // create the url to connect to OpenPhoto
+    // create the url to connect to Trovebox
     NSString *urlString =     [NSString stringWithFormat: @"%@%@", self.server, request];
     
 #ifdef DEVELOPMENT_ENABLED
@@ -237,7 +296,7 @@
         // GET
         ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
         [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        asiHttpRequest.userAgentString=@"OpenPhoto iOS";
+        asiHttpRequest.userAgentString=@"Trovebox iOS";
         [asiHttpRequest setTimeOutSeconds:60];
         
         // send the request synchronous
@@ -248,7 +307,7 @@
         // POST
         ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
         [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        asiRequest.userAgentString=@"OpenPhoto iOS";
+        asiRequest.userAgentString=@"Trovebox iOS";
         [asiRequest setTimeOutSeconds:60];
         
         [asiRequest startSynchronous];

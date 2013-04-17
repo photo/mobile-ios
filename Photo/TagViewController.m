@@ -101,7 +101,6 @@
 {
     [super viewDidLoad];
     
-    
     if ( self.readOnly){
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
@@ -168,7 +167,9 @@
     [self.navigationController.navigationBar troveboxStyle];
     
     // load all tags
+    if ([self.tags count] == 0 ){
     [self loadTags];
+    }
 }
 
 

@@ -30,6 +30,7 @@
                         image:(NSData *) image
                    permission:(NSNumber *) permission
                          tags:(NSString *) tags
+                       albums:(NSString *) albums
                         title:(NSString *) title
                           url:(NSURL *) url
                      groupUrl:(NSString *) urlGroup;
@@ -39,6 +40,7 @@
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
                                     tags:(NSString *) tags
+                                  albums:(NSString *) albums
                                    title:(NSString *) title
                                      url:(NSURL *) url
                                 groupUrl:(NSString *) urlGroup;
@@ -51,7 +53,7 @@
 
 @synthesize detailsPictureTable=_detailsPictureTable;
 @synthesize titleTextField=_titleTextField, permissionPicture=_permissionPicture, shareFacebook=_shareFacebook, shareTwitter=_shareTwitter;
-@synthesize tagController=_tagController;
+@synthesize tagController=_tagController, albumController=_albumController;
 
 @synthesize image= _image;
 @synthesize images = _images;
@@ -72,6 +74,9 @@
         self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
         
+        // initialization of algum controller
+        self.albumController = [[AlbumViewController alloc] init];
+        [self.albumController setReadOnly];
     }
     return self;
 }
@@ -96,6 +101,10 @@
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
         [self.tagController setReadOnly];
+        
+        // initialization of algum controller
+        self.albumController = [[AlbumViewController alloc] init];
+        [self.albumController setReadOnly];
     }
     return self;
 }
@@ -187,7 +196,7 @@
         }else{
             message = NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached on upload screen");
         }
-            
+        
         self.labelLimitUpload.text = message;
         
         if ([SharedAppDelegate limitFreeUser] == 0){
@@ -202,11 +211,11 @@
             self.navigationItem.rightBarButtonItem.enabled = FALSE;
         }
     }
-} 
+}
 
 #pragma mark - Table
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -247,6 +256,19 @@
             break;
             
         case 2:
+            // albums
+            cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierAlbums];
+            if (cell == nil)
+            {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierAlbums];
+            }
+            
+            cell.textLabel.text=NSLocalizedString(@"Albums",@"Upload - Albums");
+            // customised disclosure button
+            [cell setAccessoryView:[self makeDetailDisclosureButton]];
+            break;
+            
+        case 3:
             // private flag
             cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierPrivate];
             if (cell == nil)
@@ -268,7 +290,7 @@
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosArePrivate]];
             break;
             
-        case 3:
+        case 4:
             // Facebook
             cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierShareFacebook];
             if (cell == nil)
@@ -288,7 +310,7 @@
             cell.accessoryView = self.shareFacebook;
             break;
             
-        case 4:
+        case 5:
             // Twitter
             cell=[tableView dequeueReusableCellWithIdentifier:kCellIdentifierShareTwitter];
             if (cell == nil)
@@ -347,6 +369,10 @@
         // tags
         [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
         [self.navigationController pushViewController:self.tagController animated:YES];
+    }else if (row == 2){
+        // albums
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:0];
+        [self.navigationController pushViewController:self.albumController animated:YES];
     }
 }
 
@@ -383,6 +409,7 @@
     NSNumber *permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     NSString *title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
     NSString *tags = [self.tagController getSelectedTagsInJsonFormat];
+    NSString *albums = [self.albumController getSelectedAlbumsIdentification];
     
     dispatch_queue_t waiting = dispatch_queue_create("waiting_finish_insert_database", NULL);
     dispatch_async(waiting, ^{
@@ -407,6 +434,7 @@
                                                  shareTwitter:[NSNumber numberWithBool:NO]
                                                    permission:permission
                                                          tags:tags
+                                                       albums:albums
                                                         title:title
                                                           url:url
                                                      groupUrl:nil];
@@ -425,6 +453,7 @@
                                                  shareTwitter:twitter
                                                    permission:permission
                                                          tags:tags
+                                                       albums:albums
                                                         title:title
                                                           url:url
                                                      groupUrl:urlString];
@@ -440,6 +469,7 @@
                                          shareTwitter:twitter
                                            permission:permission
                                                  tags:tags
+                                               albums:albums
                                                 title:title
                                                   url:self.image
                                              groupUrl:nil];
@@ -506,6 +536,7 @@
                             shareTwitter:(NSNumber *) twitter
                               permission:(NSNumber *) permission
                                     tags:(NSString *) tags
+                                  albums:(NSString *) albums
                                    title:(NSString *) title
                                      url:(NSURL *) url
                                 groupUrl:(NSString *) urlGroup
@@ -536,6 +567,7 @@
                                  image:data
                             permission:permission
                                   tags:tags
+                                albums:albums
                                  title:title
                                    url:url
                               groupUrl:urlGroup];
@@ -562,6 +594,7 @@
                         image:(NSData *) image
                    permission:(NSNumber *) permission
                          tags:(NSString *) tags
+                       albums:(NSString *) albums
                         title:(NSString *) title
                           url:(NSURL *) url
                      groupUrl:(NSString *) urlGroup
@@ -605,6 +638,7 @@
                     uploadInfo.permission = permission;
                     uploadInfo.title =  title;
                     uploadInfo.tags=tags;
+                    uploadInfo.albums=albums;
                     uploadInfo.status=kUploadStatusTypeCreated;
                     uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
                     uploadInfo.photoDataThumb = data;

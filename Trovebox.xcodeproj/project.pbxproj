@@ -235,7 +235,7 @@
 		CD004A41161F0324006B1C6E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A40161F0324006B1C6E /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CD014602170641C800FFE797 /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014601170641C800FFE797 /* Synced.m */; };
 		CD01462A170641C900FFE797 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014629170641C900FFE797 /* Photo.m */; };
-		CD01462D1706479300FFE797 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD01462C1706479300FFE797 /* Timeline.m */; };
+		CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1D0171F251D0043D1DC /* Timeline.m */; };
 		CD1528481628DB8500EA08FF /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* Account.m */; };
 		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
 		CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528411628DB8500EA08FF /* LoginViewController.xib */; };
@@ -1295,8 +1295,8 @@
 		CD014601170641C800FFE797 /* Synced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synced.m; sourceTree = "<group>"; };
 		CD014628170641C900FFE797 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		CD014629170641C900FFE797 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		CD01462B1706479300FFE797 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
-		CD01462C1706479300FFE797 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
+		CD0DE1CF171F251D0043D1DC /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
+		CD0DE1D0171F251D0043D1DC /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
 		CD15283B1628DB8500EA08FF /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CD15283C1628DB8500EA08FF /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CD15283F1628DB8500EA08FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -2353,9 +2353,9 @@
 				CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */,
 				CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */,
 				CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */,
+				CD0DE1CF171F251D0043D1DC /* Timeline.h */,
+				CD0DE1D0171F251D0043D1DC /* Timeline.m */,
 				CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */,
-				CD01462B1706479300FFE797 /* Timeline.h */,
-				CD01462C1706479300FFE797 /* Timeline.m */,
 				CD014628170641C900FFE797 /* Photo.h */,
 				CD014629170641C900FFE797 /* Photo.m */,
 				CD014600170641C800FFE797 /* Synced.h */,
@@ -3800,7 +3800,6 @@
 				CD1A6D1B1704959E0002763A /* MWZoomingScrollView.m in Sources */,
 				CD014602170641C800FFE797 /* Synced.m in Sources */,
 				CD01462A170641C900FFE797 /* Photo.m in Sources */,
-				CD01462D1706479300FFE797 /* Timeline.m in Sources */,
 				03EEFF6117114244008D2FDA /* BlurOverlayView.m in Sources */,
 				03EEFF6217114244008D2FDA /* DLCImagePickerController.m in Sources */,
 				03EEFF6317114244008D2FDA /* GrayscaleContrastFilter.m in Sources */,
@@ -3948,6 +3947,7 @@
 				03EE012C17114276008D2FDA /* GPUImageWhiteBalanceFilter.m in Sources */,
 				03EE012D17114276008D2FDA /* GPUImageXYDerivativeFilter.m in Sources */,
 				03F119C817115A8A00EBBD45 /* UINavigationBar+Trovebox.m in Sources */,
+				CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

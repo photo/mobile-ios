@@ -18,6 +18,7 @@
 //  limitations under the License.
 
 #import "TagViewController.h"
+#import "AlbumViewController.h"
 #import "Synced+Methods.h"
 #import "Timeline+Methods.h"
 
@@ -41,7 +42,8 @@
 @property (nonatomic, strong) UISwitch *shareFacebook;
 @property (nonatomic, strong) UISwitch *shareTwitter;
 
-@property (nonatomic, retain) TagViewController *tagController;
+@property (nonatomic, strong) TagViewController *tagController;
+@property (nonatomic, strong) AlbumViewController *albumController;
 
 // construct that receive the snapshot
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera;

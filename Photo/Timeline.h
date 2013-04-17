@@ -2,7 +2,7 @@
 //  Timeline.h
 //  Trovebox
 //
-//  Created by Patrick Santana on 29/03/13.
+//  Created by Patrick Santana on 17/04/13.
 //  Copyright (c) 2013 Trovebox. All rights reserved.
 //
 
@@ -28,12 +28,13 @@
 @property (nonatomic, retain) NSNumber * photoUploadProgress;
 @property (nonatomic, retain) NSData * photoUploadResponse;
 @property (nonatomic, retain) NSString * photoUrl;
+@property (nonatomic, retain) NSString * photoUrlDetail;
 @property (nonatomic, retain) NSString * status;
 @property (nonatomic, retain) NSString * syncedUrl;
 @property (nonatomic, retain) NSString * tags;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * twitter;
 @property (nonatomic, retain) NSString * userUrl;
-@property (nonatomic, retain) NSString * photoUrlDetail;
+@property (nonatomic, retain) NSString * albums;
 
 @end
