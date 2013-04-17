@@ -97,6 +97,23 @@
     [self loadUserDetails];
 }
 
+#pragma mark - Rotation
+
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (void) logoutButton{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Log out. Are you sure?",@"Message to confirm if user really wants to log out") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Log out",@""),nil];
     [alert show];

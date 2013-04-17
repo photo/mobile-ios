@@ -71,8 +71,13 @@
         self.navigationItem.leftBarButtonItem = customBarItem;
         
         // button for create a new album
-        UIBarButtonItem *addNewAlbumButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewAlbum)];
-        self.navigationItem.rightBarButtonItem = addNewAlbumButton;
+        UIButton *buttonAdd = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImageAdd = [UIImage imageNamed:@"add.png"] ;
+        [buttonAdd setImage:buttonImageAdd forState:UIControlStateNormal];
+        buttonAdd.frame = CGRectMake(0, 0, buttonImageAdd.size.width, buttonImageAdd.size.height);
+        [buttonAdd addTarget:self action:@selector(addNewAlbum) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItemAdd = [[UIBarButtonItem alloc] initWithCustomView:buttonAdd];
+        self.navigationItem.rightBarButtonItem = customBarItemAdd;
         
         if ([self.albums count] == 0 ){
             // just load in case there is no album.

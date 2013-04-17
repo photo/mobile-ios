@@ -111,8 +111,13 @@
         self.navigationItem.leftBarButtonItem = customBarItem;
         
         // button for create a new tag
-        UIBarButtonItem *addNewTagButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewTag)];
-        self.navigationItem.rightBarButtonItem = addNewTagButton;
+        UIButton *buttonAdd = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *buttonImageAdd = [UIImage imageNamed:@"add.png"] ;
+        [buttonAdd setImage:buttonImageAdd forState:UIControlStateNormal];
+        buttonAdd.frame = CGRectMake(0, 0, buttonImageAdd.size.width, buttonImageAdd.size.height);
+        [buttonAdd addTarget:self action:@selector(addNewTag) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *customBarItemAdd = [[UIBarButtonItem alloc] initWithCustomView:buttonAdd];
+        self.navigationItem.rightBarButtonItem = customBarItemAdd;
         
         if ([self.tags count] == 0 ){
             // just load in case there is no tags.
@@ -168,7 +173,7 @@
     
     // load all tags
     if ([self.tags count] == 0 ){
-    [self loadTags];
+        [self loadTags];
     }
 }
 

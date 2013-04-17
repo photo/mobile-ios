@@ -126,6 +126,23 @@
     [self loadPhotos];
 }
 
+#pragma mark - Rotation
+
+- (BOOL) shouldAutorotate
+{
+    return YES;
+}
+
+- (NSUInteger) supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 #pragma mark - QuiltViewControllerDataSource
 - (UIImage *)imageAtIndexPath:(NSIndexPath *)indexPath {
     return [UIImage imageNamed:[self.photos objectAtIndex:indexPath.row]];

@@ -20,7 +20,6 @@
 
 #import <UIKit/UIKit.h>
 #import "IIViewDeckController.h"
-#import "ViewController.h"
 #import "MenuViewController.h"
 #import "SyncViewController.h"
 #import "iRate.h"
