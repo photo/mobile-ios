@@ -34,7 +34,7 @@
 
 -(void)layoutSubviews {
     
-	CGRect frame = CGRectMake(4, 2, 75, 75);
+	CGRect frame = CGRectMake(5, 3, 81, 81);
 	
 	for(ELCAsset *elcAsset in self.rowAssets) {
 		

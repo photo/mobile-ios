@@ -102,7 +102,7 @@
     }
     
     customBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.buttonHidden];
-     
+    
     // menu
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
@@ -112,7 +112,7 @@
     
     UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = customLeftButton;
-       
+    
     self.navigationItem.leftBarButtonItems =
     [NSArray arrayWithObjects:customLeftButton, customBarItem, nil];
     
@@ -121,7 +121,7 @@
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
     [self.navigationController.navigationBar troveboxStyle];
-
+    
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
@@ -132,7 +132,7 @@
     loaded = NO;
     
     // load all urls
-    self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];    
+    self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     [self loadSavedPhotos];
 }
 
@@ -235,43 +235,106 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ceil([self.elcAssets count] / 4.0);
+    if ([DisplayUtilities isIPad]){
+        return ceil([self.elcAssets count] / 9.0);
+    }else{
+        return ceil([self.elcAssets count] / 4.0);
+    }
 }
 
 - (NSArray*)assetsForIndexPath:(NSIndexPath*)_indexPath {
-    
-	int index = (_indexPath.row*4);
-	int maxIndex = (_indexPath.row*4+3);
-    
-	if(maxIndex < [self.elcAssets count]) {
+    if ([DisplayUtilities isIPad]){
+        int index = (_indexPath.row*9);
+        int maxIndex = (_indexPath.row*9+8);
         
-		return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
-				[self.elcAssets objectAtIndex:index+1],
-				[self.elcAssets objectAtIndex:index+2],
-				[self.elcAssets objectAtIndex:index+3],
-				nil];
-	}
-    
-	else if(maxIndex-1 < [self.elcAssets count]) {
+        if(maxIndex < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    [self.elcAssets objectAtIndex:index+4],
+                    [self.elcAssets objectAtIndex:index+5],
+                    [self.elcAssets objectAtIndex:index+6],
+                    [self.elcAssets objectAtIndex:index+7],
+                    [self.elcAssets objectAtIndex:index+8],
+                    nil];
+        }else if(maxIndex-1 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    [self.elcAssets objectAtIndex:index+4],
+                    [self.elcAssets objectAtIndex:index+5],
+                    [self.elcAssets objectAtIndex:index+6],
+                    [self.elcAssets objectAtIndex:index+7],
+                    nil];
+        }else if(maxIndex-2 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    [self.elcAssets objectAtIndex:index+4],
+                    [self.elcAssets objectAtIndex:index+5],
+                    [self.elcAssets objectAtIndex:index+6],
+                    nil];
+        }else if(maxIndex-3 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    [self.elcAssets objectAtIndex:index+4],
+                    [self.elcAssets objectAtIndex:index+5],
+                    nil];
+        }else if(maxIndex-4 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    [self.elcAssets objectAtIndex:index+4],
+                    nil];
+        }else if(maxIndex-5 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    nil];
+        }else if(maxIndex-6 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    nil];
+        }else if(maxIndex-7 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    nil];
+        }else if(maxIndex-8 < [self.elcAssets count]) {
+            return [NSArray arrayWithObject:[self.elcAssets objectAtIndex:index]];
+        }
         
-		return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
-				[self.elcAssets objectAtIndex:index+1],
-				[self.elcAssets objectAtIndex:index+2],
-				nil];
-	}
-    
-	else if(maxIndex-2 < [self.elcAssets count]) {
         
-		return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
-				[self.elcAssets objectAtIndex:index+1],
-				nil];
-	}
-    
-	else if(maxIndex-3 < [self.elcAssets count]) {
+    }else{
+        int index = (_indexPath.row*4);
+        int maxIndex = (_indexPath.row*4+3);
         
-		return [NSArray arrayWithObject:[self.elcAssets objectAtIndex:index]];
-	}
-    
+        if(maxIndex < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    [self.elcAssets objectAtIndex:index+3],
+                    nil];
+        }else if(maxIndex-1 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    [self.elcAssets objectAtIndex:index+2],
+                    nil];
+        }else if(maxIndex-2 < [self.elcAssets count]) {
+            return [NSArray arrayWithObjects:[self.elcAssets objectAtIndex:index],
+                    [self.elcAssets objectAtIndex:index+1],
+                    nil];
+        }else if(maxIndex-3 < [self.elcAssets count]) {
+            return [NSArray arrayWithObject:[self.elcAssets objectAtIndex:index]];
+        }
+    }
 	return nil;
 }
 
