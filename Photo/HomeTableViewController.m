@@ -19,7 +19,6 @@
 //
 
 #import "HomeTableViewController.h"
-#import "UINavigationBar+Trovebox.h"
 
 @interface HomeTableViewController ()
 // refresh the list. It is not necessary when comes from photo
@@ -121,20 +120,15 @@
     // details screen
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    // image for the navigator
-    [self.navigationController.navigationBar troveboxStyle];
-    
-    // now the logo
-    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];
-    [self.navigationController.navigationBar.topItem setTitleView:titleView];
-    
-    
+            
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
     
     // select the first row in the menu
     [(MenuViewController*) SharedAppDelegate.menuController selectLatestActivity];
+    
+    // image for the navigator
+    [self.navigationController.navigationBar troveboxStyle:YES];
 }
 
 - (void)viewDidLoad
@@ -158,28 +152,8 @@
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
     
-    // menu
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
-    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
-    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = customLeftButton;
-    
-    // camera
-    UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
-    [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
-    buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-    [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-    self.navigationItem.rightBarButtonItem = customRightButton;
-    
-    // title
-    self.navigationItem.title = @"";
+    // items and text
+    [self.navigationItem troveboxStyle:@"" defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
 }
 
 - (void)viewDidUnload
@@ -203,11 +177,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-- (void) openCamera:(id) sender
-{
-    [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
-}
 
 #pragma mark -
 #pragma mark UITableViewDataSource

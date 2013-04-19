@@ -21,7 +21,6 @@
 
 #import "MenuViewController.h"
 #import "IIViewDeckController.h"
-#import "UINavigationBar+Trovebox.h"
 
 @interface MenuViewController()
 - (MenuTableViewCell *) getDefaultUITableViewCell:(UITableView *)tableView image:(NSString *) imagePath imageSelected:(NSString *) imageSelectedPath;
@@ -209,9 +208,6 @@
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
         
         if ([controller.centerController isKindOfClass:[UINavigationController class]]) {
-            UITableViewController* cc = (UITableViewController*)((UINavigationController*)controller.centerController).topViewController;
-            cc.navigationItem.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-            
             if (indexPath.row == 1){
                 // Latest activity
                 controller.centerController = SharedAppDelegate.centerController;
@@ -219,21 +215,18 @@
                 // Gallery
                 if (self.galleryController == nil){
                     self.galleryController = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc] init]];
-                    self.galleryController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 }
                 controller.centerController = self.galleryController;
             }else if ( indexPath.row == 3){
                 // Albums
                 if (self.albumController == nil){
                     self.albumController = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
-                    self.albumController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 }
                 controller.centerController = self.albumController;
             }else if (  indexPath.row == 4){
                 // Tags
                 if (self.tagController == nil){
                     self.tagController = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
-                    self.tagController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 }
                 controller.centerController = self.tagController;
             }else if (  indexPath.row == 5){
@@ -250,18 +243,12 @@
                 // Account - Profile
                 if (self.profileController == nil){
                     self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
-                    self.profileController.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 }
                 controller.centerController = self.profileController;
             }else if ( indexPath.row == 8){
                 // Settings
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.appSettingsViewController];
-                nav.title=[tableView cellForRowAtIndexPath:indexPath].textLabel.text;
                 controller.centerController = nav;
-            }
-            
-            if ([cc respondsToSelector:@selector(tableView)]) {
-                [cc.tableView deselectRowAtIndexPath:[cc.tableView indexPathForSelectedRow] animated:NO];
             }
         }
         
@@ -377,7 +364,7 @@
         } else {
             PhotoViewController* controller = [[PhotoViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"PhotoViewController"] bundle:nil url:newUrl];
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-            [navController.navigationBar troveboxStyle];
+            [navController.navigationBar troveboxStyle:NO];
             [self dismissViewControllerAnimated:YES completion:^{
                 [self presentViewController:navController animated:YES completion:nil];
             }];

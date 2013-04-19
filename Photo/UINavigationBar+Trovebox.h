@@ -10,6 +10,6 @@
 
 @interface UINavigationBar (Trovebox)
 
-- (void)troveboxStyle;
+- (void)troveboxStyle:(BOOL) defaultLogo;
 
 @end

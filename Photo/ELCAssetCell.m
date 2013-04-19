@@ -24,8 +24,8 @@
 
 -(void)setAssets:(NSArray*)_assets {
 	
-	for(UIView *view in [self subviews]) 
-    {		
+	for(UIView *view in [self subviews])
+    {
 		[view removeFromSuperview];
 	}
 	
@@ -34,8 +34,13 @@
 
 -(void)layoutSubviews {
     
-	CGRect frame = CGRectMake(5, 3, 81, 81);
-	
+	CGRect frame;
+    if ([DisplayUtilities isIPad]){
+        frame = CGRectMake(4, 3, 81, 81);
+    }else{
+        frame = CGRectMake(4, 2, 75, 75);
+	}
+    
 	for(ELCAsset *elcAsset in self.rowAssets) {
 		
 		[elcAsset setFrame:frame];

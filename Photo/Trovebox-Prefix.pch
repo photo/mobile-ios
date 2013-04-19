@@ -18,6 +18,8 @@
     #import "PrivateConstants.h"
     #import "PhotoAlertView.h"
     #import "DisplayUtilities.h"
+    #import "UINavigationBar+Trovebox.h"
+    #import "UINavigationItem+Trovebox.h"
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 

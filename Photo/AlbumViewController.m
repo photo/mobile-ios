@@ -19,7 +19,6 @@
 //
 
 #import "AlbumViewController.h"
-#import "UINavigationBar+Trovebox.h"
 
 @interface AlbumViewController ()
 - (void) loadAlbums;
@@ -61,7 +60,13 @@
 {
     [super viewDidLoad];
     
+    // image for the navigator
+    [self.navigationController.navigationBar troveboxStyle:NO];
+    
     if ( self.readOnly){
+        
+        [self.navigationItem troveboxStyle:NSLocalizedString(@"Albums", @"Menu - title for Albums")  defaultButtons:NO viewController:nil menuViewController:nil];
+       
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
         [button setImage:buttonImage forState:UIControlStateNormal];
@@ -86,39 +91,13 @@
         }
         
     }else{
-        // menu
-        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
-        [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
-        leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
-        [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-        self.navigationItem.leftBarButtonItem = customLeftButton;
-        
-        // camera
-        UIButton *buttonRight = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *buttonRightImage = [UIImage imageNamed:@"button-navigation-camera.png"] ;
-        [buttonRight setImage:buttonRightImage forState:UIControlStateNormal];
-        buttonRight.frame = CGRectMake(0, 0, buttonRightImage.size.width, buttonRightImage.size.height);
-        [buttonRight addTarget:self action:@selector(openCamera:) forControlEvents:UIControlEventTouchUpInside];
-        
-        UIBarButtonItem *customRightButton = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-        self.navigationItem.rightBarButtonItem = customRightButton;
+        [self.navigationItem troveboxStyle:NSLocalizedString(@"Albums", @"Menu - title for Albums") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
     }
     // title
-    self.navigationItem.title = NSLocalizedString(@"Albums", @"Menu - title for Albums");
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
-    
-    // image for the navigator
-    [self.navigationController.navigationBar troveboxStyle];
 }
 
-- (void) openCamera:(id) sender
-{
-    [(MenuViewController*)self.viewDeckController.leftController openCamera:sender];
-}
 
 -(IBAction)OnClick_btnBack:(id)sender  {
     [self.navigationController popViewControllerAnimated:YES];
@@ -127,9 +106,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // image for the navigator
-    [self.navigationController.navigationBar troveboxStyle];
     
     if ([self.albums count] == 0 ){
         // load all albums

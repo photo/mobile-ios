@@ -10,7 +10,8 @@
 
 @implementation UINavigationBar (Trovebox)
 
-- (void)troveboxStyle {
+- (void)troveboxStyle:(BOOL) defaultLogo
+{
    
     // image for the navigator
     if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
@@ -24,6 +25,11 @@
             [imageView setTag:6183746];
             [self insertSubview:imageView atIndex:0];
         }
+    }
+    
+    if (defaultLogo){
+        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];
+        [self.topItem setTitleView:titleView];
     }
 }
 

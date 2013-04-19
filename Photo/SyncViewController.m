@@ -19,7 +19,6 @@
 //
 
 #import "SyncViewController.h"
-#import "UINavigationBar+Trovebox.h"
 
 @interface SyncViewController (){
     BOOL hidden;
@@ -120,7 +119,7 @@
     
     self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
     [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar troveboxStyle];
+    [self.navigationController.navigationBar troveboxStyle:NO];
     
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);

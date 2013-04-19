@@ -333,6 +333,7 @@
 		CD84B3A8162D5F150008FE7D /* InitializerService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B3A7162D5F140008FE7D /* InitializerService.m */; };
 		CD899287161F08AB00026DBB /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* WebService.m */; };
 		CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD901279172167D000BB30EF /* UploadCelliPad.xib */; };
+		CD90127F17218B0700BB30EF /* UINavigationItem+Trovebox.m in Sources */ = {isa = PBXBuildFile; fileRef = CD90127E17218B0700BB30EF /* UINavigationItem+Trovebox.m */; };
 		CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157216234A5A0099204B /* MBProgressHUD.m */; };
 		CD91157C16234A820099204B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157516234A820099204B /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157616234A820099204B /* TSAlertViewBackground.png */; };
@@ -1453,6 +1454,8 @@
 		CD899283161F08AB00026DBB /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		CD899284161F08AB00026DBB /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
 		CD901279172167D000BB30EF /* UploadCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCelliPad.xib; sourceTree = "<group>"; };
+		CD90127D17218B0700BB30EF /* UINavigationItem+Trovebox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Trovebox.h"; sourceTree = "<group>"; };
+		CD90127E17218B0700BB30EF /* UINavigationItem+Trovebox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Trovebox.m"; sourceTree = "<group>"; };
 		CD91157116234A5A0099204B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD91157216234A5A0099204B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD91157416234A820099204B /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
@@ -2519,6 +2522,8 @@
 				CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */,
 				03F119C617115A8A00EBBD45 /* UINavigationBar+Trovebox.h */,
 				03F119C717115A8A00EBBD45 /* UINavigationBar+Trovebox.m */,
+				CD90127D17218B0700BB30EF /* UINavigationItem+Trovebox.h */,
+				CD90127E17218B0700BB30EF /* UINavigationItem+Trovebox.m */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -3962,6 +3967,7 @@
 				CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */,
 				CD0DE1FB171F31360043D1DC /* IIViewDeckController.m in Sources */,
 				CD0DE1FC171F31360043D1DC /* WrapController.m in Sources */,
+				CD90127F17218B0700BB30EF /* UINavigationItem+Trovebox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
