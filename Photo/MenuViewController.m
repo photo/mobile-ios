@@ -343,14 +343,7 @@
     picker.delegate = self;
     
     [coreLocationController.locMgr startUpdatingLocation];
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.popoverController = [[UIPopoverController alloc] initWithContentViewController:picker];
-        [self.popoverController presentPopoverFromBarButtonItem:nil permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
-    else {
-        [self presentViewController:picker animated:YES completion:nil];
-    }
+    [self presentViewController:picker animated:YES completion:nil];
 }
 
 
