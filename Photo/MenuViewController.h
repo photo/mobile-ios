@@ -27,7 +27,6 @@
 #import "AccountViewController.h"
 #import "ProfileViewController.h"
 #import "GalleryViewController.h"
-#import "DisplayUtilities.h"
 #import "CoreLocationController.h"
 
 // for settings

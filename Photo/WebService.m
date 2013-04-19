@@ -78,7 +78,11 @@
     
     if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
         // retina display
-        [request appendString:@"610x530xCR,610x530"];
+        if ([DisplayUtilities isIPad]){
+            [request appendString:@"775x492xCR,1024x768"];
+        }else{
+            [request appendString:@"610x530xCR,610x530"];
+        }
     }else{
         // not retina display
         [request appendString:@"305x265xCR,305x265"];
@@ -112,9 +116,9 @@
                                                                              value:[NSString stringWithFormat:@"%@",[values objectForKey:@"permission"]]];
     
     OARequestParameter *tagsParam = [[OARequestParameter alloc] initWithName:@"tags"
-                                                                      value:[values objectForKey:@"tags"]];
+                                                                       value:[values objectForKey:@"tags"]];
     OARequestParameter *albumsParam = [[OARequestParameter alloc] initWithName:@"albums"
-                                                                      value:[values objectForKey:@"albums"]];
+                                                                         value:[values objectForKey:@"albums"]];
     
     NSArray *params = [NSArray arrayWithObjects:titleParam, permissionParam, tagsParam, albumsParam, nil];
     [oaUrlRequest setParameters:params];
@@ -231,8 +235,8 @@
     [oaUrlRequest setHTTPMethod:@"POST"];
     
     OARequestParameter *nameParam = [[OARequestParameter alloc] initWithName:@"name"
-                                                                        value:album.name];
-
+                                                                       value:album.name];
+    
     NSArray *params = [NSArray arrayWithObjects:nameParam, nil];
     [oaUrlRequest setParameters:params];
     
@@ -346,7 +350,7 @@
     // parse response
     SBJsonParser *parser =[[SBJsonParser alloc] init];
     NSDictionary *result = [parser objectWithString:[response responseString]];
-
+    
     // check the valid result
     if (![WebService isMessageValid:result]){
         // invalid message
@@ -413,17 +417,17 @@
     
     // token to send. We get the details from the user defaults
     OAToken *token = [[OAToken alloc] initWithKey:self.oAuthKey
-                                            secret:self.oAuthSecret];
+                                           secret:self.oAuthSecret];
     
     // consumer to send. We get the details from the user defaults
     OAConsumer *consumer = [[OAConsumer alloc] initWithKey:self.consumerKey
-                                                     secret:self.consumerSecret];
+                                                    secret:self.consumerSecret];
     
     return [[OAMutableURLRequest alloc] initWithURL:url
-                                            consumer:consumer
-                                               token:token
-                                               realm:nil
-                                   signatureProvider:nil];
+                                           consumer:consumer
+                                              token:token
+                                              realm:nil
+                                  signatureProvider:nil];
 }
 
 + (BOOL) isMessageValid:(NSDictionary *)response{

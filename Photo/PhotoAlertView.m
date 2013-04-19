@@ -65,8 +65,13 @@
 - (void)showOnTop:(BOOL) top{
     [self.viewAlert removeFromSuperview];
     
+    int sizeWidth = 320;
+    if ([DisplayUtilities isIPad]){
+        sizeWidth = 768;
+    }
+    
     UIFont *font = [UIFont systemFontOfSize:12];
-	CGSize textSize = [self.message sizeWithFont:font constrainedToSize:CGSizeMake(280, 60)];
+	CGSize textSize = [self.message sizeWithFont:font constrainedToSize:CGSizeMake(sizeWidth, 60)];
     
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, textSize.width + 5, textSize.height + 5)];
 	label.font = font;
@@ -80,9 +85,9 @@
 	button.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7];
     
     if (!top){
-        button.frame = CGRectMake(0, 64, 320, textSize.height + 10);
+        button.frame = CGRectMake(0, 64, sizeWidth, textSize.height + 10);
     }else{
-        button.frame = CGRectMake(0, 20, 320, textSize.height + 10);
+        button.frame = CGRectMake(0, 20, sizeWidth, textSize.height + 10);
     }
     
     button.alpha = 0;

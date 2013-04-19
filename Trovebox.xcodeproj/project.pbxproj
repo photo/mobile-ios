@@ -240,6 +240,7 @@
 		CD0DE1FC171F31360043D1DC /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1FA171F31360043D1DC /* WrapController.m */; };
 		CD0DE1FF171F31D10043D1DC /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DE1FD171F31D10043D1DC /* add.png */; };
 		CD0DE200171F31D10043D1DC /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DE1FE171F31D10043D1DC /* add@2x.png */; };
+		CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD128353172153A800D61DB9 /* NewestPhotoCelliPad.xib */; };
 		CD1528481628DB8500EA08FF /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* Account.m */; };
 		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
 		CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528411628DB8500EA08FF /* LoginViewController.xib */; };
@@ -331,6 +332,7 @@
 		CD84B3A5162D58330008FE7D /* PhotoSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B3A4162D58330008FE7D /* PhotoSHKConfigurator.m */; };
 		CD84B3A8162D5F150008FE7D /* InitializerService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD84B3A7162D5F140008FE7D /* InitializerService.m */; };
 		CD899287161F08AB00026DBB /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* WebService.m */; };
+		CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD901279172167D000BB30EF /* UploadCelliPad.xib */; };
 		CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157216234A5A0099204B /* MBProgressHUD.m */; };
 		CD91157C16234A820099204B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157516234A820099204B /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157616234A820099204B /* TSAlertViewBackground.png */; };
@@ -1303,6 +1305,7 @@
 		CD0DE1FA171F31360043D1DC /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WrapController.m; path = Frameworks/ViewDeck/WrapController.m; sourceTree = "<group>"; };
 		CD0DE1FD171F31D10043D1DC /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add.png; path = images/add.png; sourceTree = "<group>"; };
 		CD0DE1FE171F31D10043D1DC /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add@2x.png"; path = "images/add@2x.png"; sourceTree = "<group>"; };
+		CD128353172153A800D61DB9 /* NewestPhotoCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotoCelliPad.xib; sourceTree = "<group>"; };
 		CD15283B1628DB8500EA08FF /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CD15283C1628DB8500EA08FF /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
 		CD15283F1628DB8500EA08FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -1449,6 +1452,7 @@
 		CD84B3A7162D5F140008FE7D /* InitializerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitializerService.m; sourceTree = "<group>"; };
 		CD899283161F08AB00026DBB /* WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebService.h; sourceTree = "<group>"; };
 		CD899284161F08AB00026DBB /* WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebService.m; sourceTree = "<group>"; };
+		CD901279172167D000BB30EF /* UploadCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCelliPad.xib; sourceTree = "<group>"; };
 		CD91157116234A5A0099204B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD91157216234A5A0099204B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD91157416234A820099204B /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
@@ -2415,9 +2419,11 @@
 				CDFAF33F16285495007A4FDF /* NewestPhotoCell.h */,
 				CDFAF34016285495007A4FDF /* NewestPhotoCell.m */,
 				CDFAF34116285495007A4FDF /* NewestPhotoCell.xib */,
+				CD128353172153A800D61DB9 /* NewestPhotoCelliPad.xib */,
 				CDFAF34216285495007A4FDF /* UploadCell.h */,
 				CDFAF34316285495007A4FDF /* UploadCell.m */,
 				CDFAF34416285495007A4FDF /* UploadCell.xib */,
+				CD901279172167D000BB30EF /* UploadCelliPad.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -3658,6 +3664,8 @@
 				CD31DEDB17143FFA0071D3E1 /* menu-upload-selected@2x.png in Resources */,
 				CD0DE1FF171F31D10043D1DC /* add.png in Resources */,
 				CD0DE200171F31D10043D1DC /* add@2x.png in Resources */,
+				CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */,
+				CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

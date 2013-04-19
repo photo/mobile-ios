@@ -226,7 +226,14 @@
         UploadCell *uploadCell= (UploadCell *)[tableView dequeueReusableCellWithIdentifier:uploadCellIdentifier];
         
         if (uploadCell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"UploadCell" owner:nil options:nil];
+            NSString *cellNibName;
+            if ([DisplayUtilities isIPad]){
+                cellNibName=@"UploadCelliPad";
+            }else{
+                cellNibName=@"UploadCell";
+            }
+            
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellNibName owner:nil options:nil];
             uploadCell = [topLevelObjects objectAtIndex:0];
             if([[UITabBar class] respondsToSelector:@selector(appearance)]){
                 // from iOS 5.0
@@ -334,7 +341,13 @@
         NewestPhotoCell *newestPhotoCell = (NewestPhotoCell *)[tableView dequeueReusableCellWithIdentifier:photoCellIdentifier];
         
         if (newestPhotoCell == nil) {
-            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"NewestPhotoCell" owner:nil options:nil];
+            NSString *cellNibName;
+            if ([DisplayUtilities isIPad]){
+                cellNibName=@"NewestPhotoCelliPad";
+            }else{
+                cellNibName=@"NewestPhotoCell";
+            }
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellNibName owner:nil options:nil];
             newestPhotoCell = [topLevelObjects objectAtIndex:0];
             
             // change the color if it is allowed
@@ -440,7 +453,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     Timeline *photo = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([photo.status isEqualToString:kUploadStatusTypeUploaded]){
-        return 365;
+        if ([DisplayUtilities isIPad])
+            return 600;
+        else
+            return 365;
     }else{
         return 44;
     }

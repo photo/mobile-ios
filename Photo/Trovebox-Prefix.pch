@@ -17,6 +17,7 @@
     #import "Constants.h"
     #import "PrivateConstants.h"
     #import "PhotoAlertView.h"
+    #import "DisplayUtilities.h"
 
 #define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
 

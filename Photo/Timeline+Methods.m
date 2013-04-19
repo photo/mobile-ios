@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -54,7 +54,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     }
     
     // return an array of Uploads
-    return result; 
+    return result;
 }
 
 + (NSArray *) getUploadsNotUploadedInManagedObjectContext:(NSManagedObjectContext *)context
@@ -62,7 +62,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
     
     // status not Uploaded
-    request.predicate= [NSPredicate predicateWithFormat:@"status != %@", kUploadStatusTypeUploaded];   
+    request.predicate= [NSPredicate predicateWithFormat:@"status != %@", kUploadStatusTypeUploaded];
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -80,7 +80,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 + (int) howEntitiesTimelineInManagedObjectContext:(NSManagedObjectContext *)context type:(NSString*) type
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
-    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", type];  
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", type];
     [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
     NSError *error = nil;
@@ -94,7 +94,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 
 + (void) resetEntitiesOnStateUploadingInManagedObjectContext:(NSManagedObjectContext *)context{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
-    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];  
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeUploading];
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];
@@ -163,7 +163,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
             }
             
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
-            request.predicate= [NSPredicate predicateWithFormat:@"key==%@",[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]]];   
+            request.predicate= [NSPredicate predicateWithFormat:@"key==%@",[NSString stringWithFormat:@"%@",[raw objectForKey:@"id"]]];
             [request setIncludesPropertyValues:NO]; //only fetch the managedObjectID
             
             NSError *error = nil;
@@ -174,18 +174,23 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
             }
             
             if (!matches || [matches count] > 0){
-#ifdef DEVELOPMENT_ENABLED              
+#ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Object already exist");
 #endif
             }else {
-                Timeline *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Timeline" 
-                                                                      inManagedObjectContext:context];
+                Timeline *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
+                                                                inManagedObjectContext:context];
                 
                 // get details URL
                 if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-                    // retina display
-                    photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
-                    photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530"]];
+                    // retirn display
+                    if ([DisplayUtilities isIPad]){
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path775x492xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path1024x768"]];
+                    }else{
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530"]];
+                    }
                 }else{
                     // not retina display
                     photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
@@ -216,12 +221,12 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
                 // get the date taken since 1970
                 double d            = [[raw objectForKey:@"dateTaken"] doubleValue];
                 NSTimeInterval date =  d;
-                photo.date          = [NSDate dateWithTimeIntervalSince1970:date];    
+                photo.date          = [NSDate dateWithTimeIntervalSince1970:date];
                 
                 // permission
                 if ([[raw objectForKey:@"permission"] isEqualToString:@"1"])
                     photo.permission = [NSNumber numberWithBool:YES];
-                else 
+                else
                     photo.permission = [NSNumber numberWithBool:NO];
                 
                 // latitude
@@ -237,7 +242,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
                 // get the date since 1970
                 double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
                 NSTimeInterval dateUpload =  dUpload;
-                photo.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];  
+                photo.dateUploaded       = [NSDate dateWithTimeIntervalSince1970:dateUpload];
                 
                 // page url
                 photo.photoPageUrl =  [raw objectForKey:@"url"];
@@ -260,7 +265,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
     
     // status not Uploaded
-    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreated];   
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreated];
     
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"dateUploaded" ascending:NO];
     request.sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -282,7 +287,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"Timeline" inManagedObjectContext:context]];
-    fetchRequest.predicate= [NSPredicate predicateWithFormat:@"status == %@", state];  
+    fetchRequest.predicate= [NSPredicate predicateWithFormat:@"status == %@", state];
     [fetchRequest setIncludesPropertyValues:NO]; //only fetch the managedObjectID
     
     NSError *error = nil;
@@ -299,7 +304,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
 + (void) setUploadsStatusToCreatedInManagedObjectContext:(NSManagedObjectContext *)context
 {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Timeline"];
-    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreating];  
+    request.predicate= [NSPredicate predicateWithFormat:@"status == %@", kUploadStatusTypeCreating];
     
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:request error:&error];

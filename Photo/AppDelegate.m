@@ -71,6 +71,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController];
     
+    if ([DisplayUtilities isIPad]){
+        deckController.leftLedge = 490.0;
+    }
+    
     // FACEBOOK
     self.facebook = [[Facebook alloc] initWithAppId:kPrivateFacebookAppId andDelegate:self];
     
