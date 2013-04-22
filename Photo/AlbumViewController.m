@@ -107,7 +107,7 @@
 {
     [super viewWillAppear:animated];
     
-    if ([self.albums count] == 0 ){
+    if (self.readOnly == NO || [self.tags count] == 0 ){
         // load all albums
         [self loadAlbums];
     }

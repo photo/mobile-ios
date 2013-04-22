@@ -149,7 +149,7 @@
     [super viewWillAppear:animated];
     
     // load all tags
-    if ([self.tags count] == 0 ){
+    if (self.readOnly == NO || [self.tags count] == 0 ){
         [self loadTags];
     }
 }
