@@ -114,7 +114,8 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.trackedViewName = @"Upload Screen";
-    self.title = @"Upload";
+    
+    [self.navigationItem troveboxStyle:NSLocalizedString(@"Upload", @"Title in the upload form") defaultButtons:NO viewController:nil menuViewController:nil];
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -153,6 +154,7 @@
     self.navigationItem.rightBarButtonItem = customBarItem;
     
     self.detailsPictureTable.backgroundColor =  UIColorFromRGB(0XFAF3EF);
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
 }
 
 
@@ -242,7 +244,15 @@
             {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierTitle];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-                self.titleTextField = [[UITextField alloc] initWithFrame:CGRectMake(17 , 13, 260, 21)];
+                
+                // position based if it is ipad or not
+                CGRect position;
+                if ([DisplayUtilities isIPad])
+                    position = CGRectMake(55 , 13, 460, 21);
+                else
+                    position = CGRectMake(17 , 13, 260, 21);
+                
+                self.titleTextField = [[UITextField alloc] initWithFrame:position];
                 self.titleTextField.adjustsFontSizeToFitWidth = YES;
                 self.titleTextField.textColor = UIColorFromRGB(0x8C7B73);
                 

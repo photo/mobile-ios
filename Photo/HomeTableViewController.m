@@ -127,6 +127,9 @@
     // select the first row in the menu
     [(MenuViewController*) SharedAppDelegate.menuController selectLatestActivity];
     
+    // items and text
+    [self.navigationItem troveboxStyle:@"" defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
+    
     // image for the navigator
     [self.navigationController.navigationBar troveboxStyle:YES];
 }
@@ -151,10 +154,8 @@
     
 	//  update the last update date
 	[_refreshHeaderView refreshLastUpdatedDate];
-    
-    // items and text
-    [self.navigationItem troveboxStyle:@"" defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
 }
+
 
 - (void)viewDidUnload
 {
