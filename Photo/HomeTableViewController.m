@@ -40,9 +40,9 @@
     self = [super initWithStyle:style];
     if (self) {
         
-        CGRect imageSize = CGRectMake(0, 63, 320, 367);
-        self.noPhotoImageView = [[UIImageView alloc] initWithFrame:imageSize];
-        self.noPhotoImageView.image = [UIImage imageNamed:@"home-upload-now.png"];
+        CGPoint imageSize = CGPointMake(self.view.frame.size.width / 2.0, self.view.frame.size.height / 2.0);
+        self.noPhotoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-upload-now.png"]];
+        self.noPhotoImageView.center = imageSize;
         self.noPhotoImageView.hidden = YES;
         
         coreLocationController = [[CoreLocationController alloc] init];

@@ -334,6 +334,7 @@
 		CD899287161F08AB00026DBB /* WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = CD899284161F08AB00026DBB /* WebService.m */; };
 		CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD901279172167D000BB30EF /* UploadCelliPad.xib */; };
 		CD90127F17218B0700BB30EF /* UINavigationItem+Trovebox.m in Sources */ = {isa = PBXBuildFile; fileRef = CD90127E17218B0700BB30EF /* UINavigationItem+Trovebox.m */; };
+		CD9013471726C66800BB30EF /* ProfileViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9013461726C66800BB30EF /* ProfileViewControlleriPad.xib */; };
 		CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157216234A5A0099204B /* MBProgressHUD.m */; };
 		CD91157C16234A820099204B /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD91157516234A820099204B /* TSAlertView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD91157D16234A820099204B /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157616234A820099204B /* TSAlertViewBackground.png */; };
@@ -480,7 +481,6 @@
 		CDCC0AF316E0C23700BE4481 /* sync-show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A7216E0C23700BE4481 /* sync-show@2x.png */; };
 		CDCC0B6416E0C49D00BE4481 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */; };
 		CDCC0B6516E0C49D00BE4481 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */; };
-		CDCC0B6616E0C49D00BE4481 /* ProfileViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0B5B16E0C49D00BE4481 /* ProfileViewController5.xib */; };
 		CDCC0B6716E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */; };
 		CDCC0B6816E0C49D00BE4481 /* TroveboxSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5F16E0C49D00BE4481 /* TroveboxSubscription.m */; };
 		CDCC0B6916E0C49D00BE4481 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B6116E0C49D00BE4481 /* SKProduct+LocalizedPrice.m */; };
@@ -1456,6 +1456,7 @@
 		CD901279172167D000BB30EF /* UploadCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCelliPad.xib; sourceTree = "<group>"; };
 		CD90127D17218B0700BB30EF /* UINavigationItem+Trovebox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+Trovebox.h"; sourceTree = "<group>"; };
 		CD90127E17218B0700BB30EF /* UINavigationItem+Trovebox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+Trovebox.m"; sourceTree = "<group>"; };
+		CD9013461726C66800BB30EF /* ProfileViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewControlleriPad.xib; sourceTree = "<group>"; };
 		CD91157116234A5A0099204B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Frameworks/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		CD91157216234A5A0099204B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Frameworks/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		CD91157416234A820099204B /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSAlertView.h; path = Frameworks/TSAlertView/TSAlertView/TSAlertView.h; sourceTree = "<group>"; };
@@ -1619,7 +1620,6 @@
 		CDCC0B5816E0C49D00BE4481 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		CDCC0B5B16E0C49D00BE4481 /* ProfileViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController5.xib; sourceTree = "<group>"; };
 		CDCC0B5C16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TroveboxPaymentTransactionObserver.h; sourceTree = "<group>"; };
 		CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TroveboxPaymentTransactionObserver.m; sourceTree = "<group>"; };
 		CDCC0B5E16E0C49D00BE4481 /* TroveboxSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TroveboxSubscription.h; sourceTree = "<group>"; };
@@ -2492,7 +2492,7 @@
 				CDCC0B5816E0C49D00BE4481 /* ProfileViewController.h */,
 				CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */,
 				CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */,
-				CDCC0B5B16E0C49D00BE4481 /* ProfileViewController5.xib */,
+				CD9013461726C66800BB30EF /* ProfileViewControlleriPad.xib */,
 				CDCC0B5C16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.h */,
 				CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */,
 				CDCC0B5E16E0C49D00BE4481 /* TroveboxSubscription.h */,
@@ -3544,7 +3544,6 @@
 				CDCC0AF216E0C23700BE4481 /* sync-show.png in Resources */,
 				CDCC0AF316E0C23700BE4481 /* sync-show@2x.png in Resources */,
 				CDCC0B6516E0C49D00BE4481 /* ProfileViewController.xib in Resources */,
-				CDCC0B6616E0C49D00BE4481 /* ProfileViewController5.xib in Resources */,
 				CDCC0BEE16E0C66400BE4481 /* AuthenticationViewController5.xib in Resources */,
 				CDCC0BF516E0C66400BE4481 /* LoginConnectViewController5.xib in Resources */,
 				CDCC0BF616E0C66400BE4481 /* LoginViewController5.xib in Resources */,
@@ -3671,6 +3670,7 @@
 				CD0DE200171F31D10043D1DC /* add@2x.png in Resources */,
 				CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */,
 				CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */,
+				CD9013471726C66800BB30EF /* ProfileViewControlleriPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

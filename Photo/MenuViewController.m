@@ -242,7 +242,11 @@
             }else if (  indexPath.row == 7){
                 // Account - Profile
                 if (self.profileController == nil){
+                    if ([DisplayUtilities isIPad]){
+                        self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] initWithNibName:@"ProfileViewControlleriPad" bundle:nil]];
+                    }else{
                     self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
+                    }
                 }
                 controller.centerController = self.profileController;
             }else if ( indexPath.row == 8){
