@@ -98,10 +98,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    // load photos
     self.page = 1;
     self.totalPages = nil;
-    [self.photos removeAllObjects];
+    // load photos
     [self loadPhotos];
 }
 
@@ -247,8 +246,13 @@
                     }
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                      //  NSMutableArray *temp = [NSMutableArray array];
                         if ([result class] != [NSNull class]) {
+                            
+                            if ( self.page == 2 ){
+                                // first time loadin
+                                [self.photos removeAllObjects];
+                            }
+                            
                             // Loop through each entry in the dictionary and create an array of photos
                             for (NSDictionary *photoDetails in result){
                                 
