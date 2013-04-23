@@ -42,6 +42,7 @@ NSString * const kHomeScreenPictures=@"home_pictures";
 NSString * const kHomeScreenPicturesTimestamp=@"home_pictures_timestamp";
 // NSUserDefault variable with information about the server
 NSString * const kServerDetails=@"server_details";
+NSString * const kServerDetailsIsHosted=@"server_details_is_hosted";
 
 /*
  * OAuth 1.0a

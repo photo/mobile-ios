@@ -58,7 +58,7 @@
 - (NSArray *) loadAlbums:(int) pageSize;
 
 // get details from the system
-- (NSArray *)  getSystemVersion;
+- (NSDictionary *)  getSystemVersion;
 
 // get user details
 - (NSDictionary*) getUserDetails;

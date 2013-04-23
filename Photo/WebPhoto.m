@@ -77,4 +77,25 @@
     return photo;
 }
 
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToWidget:other];
+}
+
+- (BOOL)isEqualToWidget:(WebPhoto *)aWidget {
+    if (self == aWidget)
+        return YES;
+    if (![(id)[self identification] isEqual:[aWidget identification]])
+        return NO;
+    if (![[self thumbUrl] isEqual:[aWidget thumbUrl]])
+        return NO;
+    if (![[self url] isEqual:[aWidget url]])
+        return NO;
+    return YES;
+}
+
 @end

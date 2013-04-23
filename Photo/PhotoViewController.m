@@ -196,7 +196,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([SharedAppDelegate isProUser]){
+    if ([SharedAppDelegate isProUser] || ![SharedAppDelegate isHosted]){
         self.labelLimitUpload.hidden = TRUE;
     }else{
         self.labelLimitUpload.hidden = FALSE;

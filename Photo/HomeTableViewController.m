@@ -27,6 +27,7 @@
 
 - (void)doneLoadingTableViewData;
 - (void) updateProfileDetails;
+- (void) updateServerDetails;
 @end
 
 @implementation HomeTableViewController
@@ -132,6 +133,9 @@
     
     // image for the navigator
     [self.navigationController.navigationBar troveboxStyle:YES];
+    
+    // update server details
+    [self updateServerDetails];
 }
 
 - (void)viewDidLoad
@@ -634,6 +638,42 @@
 #endif
         // it does not exist, creates it invoking the method to refresh
         [self updateProfileDetails];
+    }
+}
+
+- (void) updateServerDetails
+{
+    if ( [SharedAppDelegate internetActive] == YES && [AuthenticationService isLogged]){
+        dispatch_queue_t get_server_details = dispatch_queue_create("get_server_details", NULL);
+        dispatch_async(get_server_details, ^{
+            
+            @try{
+                WebService *service = [[WebService alloc] init];
+                NSDictionary *rawAnswer = [service getSystemVersion];
+                NSDictionary *result = [rawAnswer objectForKey:@"result"];
+
+                // display details
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([result class] != [NSNull class]) {
+                        // save details locally
+                        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+                        [standardUserDefaults setValue:result forKey:kServerDetails];
+                        
+                        if ([result objectForKey:@"isHosted"] == nil){
+                             [standardUserDefaults setValue:NO forKey:kServerDetailsIsHosted];
+                        }else{
+                            [standardUserDefaults setValue:[result objectForKey:@"isHosted"] forKey:kServerDetailsIsHosted];
+                        }
+                        [standardUserDefaults synchronize];
+                    }
+                });
+            }@catch (NSException* e) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Could not load server details: %@",[e description]);
+                });
+            }
+        });
+        dispatch_release(get_server_details);
     }
 }
 

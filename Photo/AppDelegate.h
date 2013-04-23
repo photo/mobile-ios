@@ -98,6 +98,7 @@ FBSessionDelegate>{
 // get the user connect
 - (NSString *) userHost;
 - (NSString *) userEmail;
+- (BOOL) isHosted;
 - (BOOL) isProUser;
 - (BOOL) isFreeUser;
 - (NSInteger) limitFreeUser;

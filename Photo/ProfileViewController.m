@@ -84,7 +84,7 @@
     
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = logoutButton;
-       
+    
     // load the data from the server and show in the screen
     [self loadUserDetails];
 }
@@ -184,11 +184,14 @@
                                            }];
                         
                         // paid user
-                        if ([[result objectForKey:@"paid"] boolValue])
-                            [self.labelAccount setText:NSLocalizedString(@"Pro",@"Profile - Pro text")];
-                        else
-                            [self.labelAccount setText:NSLocalizedString(@"Free",@"Profile - Free text")];
-                        
+                        if (![SharedAppDelegate isHosted]){
+                            [self.labelAccount setText:NSLocalizedString(@"Self-hosted",@"Profile - Self-hosted text")];
+                        }else{
+                            if ([[result objectForKey:@"paid"] boolValue])
+                                [self.labelAccount setText:NSLocalizedString(@"Pro",@"Profile - Pro text")];
+                            else
+                                [self.labelAccount setText:NSLocalizedString(@"Free",@"Profile - Free text")];
+                        }
                         
                         NSDictionary* counts = [result objectForKey:@"counts"];
                         // albums
@@ -223,7 +226,7 @@
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     
                     if ([SKPaymentQueue canMakePayments]) {
-                        if ([[result objectForKey:@"paid"] boolValue]){
+                        if (![SharedAppDelegate isHosted] || [[result objectForKey:@"paid"] boolValue]){
                             // PRO User, don't show button or label
                             self.labelPriceSubscription.hidden = TRUE;
                             self.buttonSubscription.hidden = TRUE;

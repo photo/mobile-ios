@@ -99,6 +99,9 @@
 {
     [super viewWillAppear:animated];
     // load photos
+    self.page = 1;
+    self.totalPages = nil;
+    [self.photos removeAllObjects];
     [self loadPhotos];
 }
 
@@ -244,6 +247,7 @@
                     }
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
+                      //  NSMutableArray *temp = [NSMutableArray array];
                         if ([result class] != [NSNull class]) {
                             // Loop through each entry in the dictionary and create an array of photos
                             for (NSDictionary *photoDetails in result){
@@ -254,9 +258,18 @@
                                 }
                                 
                                 WebPhoto *photo = [WebPhoto photoWithServerInfo:photoDetails];
+                              //  if (![self.photos containsObject:photo]){
                                 [self.photos addObject:photo];
+                              //  }
                             }
                         }
+                        
+                        /*
+                        if ([self.photos count] != [temp count]){
+                            [self.photos removeAllObjects];
+                            self.photos = temp;
+                        }
+                         */
                         
                         [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                         self.isLoading = NO;

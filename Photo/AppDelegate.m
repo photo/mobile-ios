@@ -569,6 +569,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     return [[NSUserDefaults standardUserDefaults] valueForKey:kTroveboxEmailUser];
 }
 
+- (BOOL) isHosted
+{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    return [[standardUserDefaults valueForKey:kServerDetailsIsHosted] boolValue];
+}
+
 - (BOOL) isProUser
 {
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];

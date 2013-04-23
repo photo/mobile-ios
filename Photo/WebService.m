@@ -167,9 +167,9 @@
 }
 
 // get details from the system
-- (NSArray*)  getSystemVersion
+- (NSDictionary*)  getSystemVersion
 {
-    return  [self parseResponse:[self sendSynchronousRequest:@"/v1/system/version.json" httpMethod:@"GET"]];
+    return  [self parseResponseAsNSDictionary:[self sendSynchronousRequest:@"/v1/system/version.json" httpMethod:@"GET"]];
 }
 
 // get user details

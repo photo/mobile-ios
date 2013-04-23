@@ -70,7 +70,7 @@
     }
     
     // check limits
-    if ([SharedAppDelegate isFreeUser]){
+    if ([SharedAppDelegate isHosted] && [SharedAppDelegate isFreeUser]){
         
         if ([SharedAppDelegate limitFreeUser] == 0 ||
             [(SyncViewController*)self.parent totalSelectedAssets] > [SharedAppDelegate limitFreeUser]){
