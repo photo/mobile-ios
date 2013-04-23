@@ -258,18 +258,9 @@
                                 }
                                 
                                 WebPhoto *photo = [WebPhoto photoWithServerInfo:photoDetails];
-                              //  if (![self.photos containsObject:photo]){
                                 [self.photos addObject:photo];
-                              //  }
                             }
                         }
-                        
-                        /*
-                        if ([self.photos count] != [temp count]){
-                            [self.photos removeAllObjects];
-                            self.photos = temp;
-                        }
-                         */
                         
                         [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                         self.isLoading = NO;

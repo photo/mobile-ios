@@ -56,7 +56,7 @@
         [standardUserDefaults setBool:YES forKey:kPhotosSaveFiltered];
         
         // Privacy
-        [standardUserDefaults setBool:NO forKey:kPhotosArePrivate];
+        [standardUserDefaults setBool:YES forKey:kPhotosArePrivate];
         
         
         // set that the initialization is okay.
