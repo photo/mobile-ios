@@ -50,6 +50,8 @@
 #import "SHKConfiguration.h"
 #import "FBConnect.h"
 
+#import "GoogleConversionPing.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate, FBRequestDelegate,
 FBDialogDelegate,
 FBSessionDelegate>{

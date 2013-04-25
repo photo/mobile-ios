@@ -539,6 +539,7 @@
 		CDDFDA51172973E100D992DC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */; };
 		CDDFDA53172973E500D992DC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */; };
 		CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA541729740F00D992DC /* Default-568h@2x.png */; };
+		CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
 		CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F0CE16E520FC00D309B9 /* libsbjson-ios.a */; };
 		CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */; };
@@ -1711,6 +1712,8 @@
 		CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		CDDFDA541729740F00D992DC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		CDDFDA5717297C7800D992DC /* GoogleConversionPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleConversionPing.h; path = "Frameworks/Google Conversion Tracking SDK/GoogleConversionPing.h"; sourceTree = "<group>"; };
+		CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = "Frameworks/Google Conversion Tracking SDK/libGoogleConversionTracking.a"; sourceTree = "<group>"; };
 		CDF2F06D16E4D87A00D309B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CDF2F0C216E520FC00D309B9 /* SBJson.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBJson.xcodeproj; path = "Frameworks/json-framework/SBJson.xcodeproj"; sourceTree = "<group>"; };
 		CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = SOURCE_ROOT; };
@@ -1784,6 +1787,7 @@
 				CDF2F10716E52EC000D309B9 /* libSDWebImage.a in Frameworks */,
 				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
 				CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */,
+				CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2846,6 +2850,7 @@
 				CD2F159116E600C8004D22FD /* ShareKit */,
 				CDF2F07C16E520AB00D309B9 /* SBJson */,
 				CDCC0C6516E0FD6300BE4481 /* InAppSettingsKit */,
+				CDDFDA5617297C3400D992DC /* Google Conversion Tracking SDK */,
 				CD2FE8E01639837D0032105A /* Google Analytics SDK */,
 				CD1CDE3D162C2B4B00E57F73 /* SDWebImage */,
 				CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */,
@@ -2980,6 +2985,15 @@
 				CDCC0CE816E1023D00BE4481 /* IASKSpecifierValuesView.xib */,
 			);
 			name = InAppSettingsKit;
+			sourceTree = "<group>";
+		};
+		CDDFDA5617297C3400D992DC /* Google Conversion Tracking SDK */ = {
+			isa = PBXGroup;
+			children = (
+				CDDFDA5717297C7800D992DC /* GoogleConversionPing.h */,
+				CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */,
+			);
+			name = "Google Conversion Tracking SDK";
 			sourceTree = "<group>";
 		};
 		CDE0B11E1622DB1A00CB4FBC /* Tag */ = {
@@ -4158,6 +4172,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
+					"\"$(SRCROOT)/Frameworks/Google Conversion Tracking SDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -4193,6 +4208,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
+					"\"$(SRCROOT)/Frameworks/Google Conversion Tracking SDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
