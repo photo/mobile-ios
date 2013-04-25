@@ -135,7 +135,15 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (void) presentLoginViewController
 {
-    LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
+    LoginViewController *controller;
+    
+    if ([DisplayUtilities isIPad]){
+        controller = [[LoginViewController alloc]initWithNibName:@"LoginViewControlleriPad" bundle:nil ];
+        
+    }else{
+        controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
+    }
+    
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     navController.navigationBar.barStyle=UIBarStyleBlackTranslucent;
     navController.navigationController.navigationBar.barStyle=UIBarStyleBlackTranslucent;

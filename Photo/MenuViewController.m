@@ -271,7 +271,7 @@
 - (void) openLoginViewController
 {
     // open the login
-    LoginViewController *controller = [[LoginViewController alloc]init ];
+    LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentModalViewController:navController animated:YES];
 }

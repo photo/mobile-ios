@@ -16,6 +16,8 @@
 
 @property (retain, nonatomic) IBOutlet UITextField *email;
 @property (retain, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundEmail;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundPassword;
 
 // actions
 - (IBAction)login:(id)sender;

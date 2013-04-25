@@ -265,7 +265,6 @@
 		CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */; };
 		CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */; };
 		CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */; };
-		CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
 		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
@@ -396,7 +395,6 @@
 		CDCC0A9A16E0C23700BE4481 /* button-upload-form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1916E0C23700BE4481 /* button-upload-form@2x.png */; };
 		CDCC0A9B16E0C23700BE4481 /* close_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1A16E0C23700BE4481 /* close_camera.png */; };
 		CDCC0A9C16E0C23700BE4481 /* close_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1B16E0C23700BE4481 /* close_camera@2x.png */; };
-		CDCC0A9D16E0C23700BE4481 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1C16E0C23700BE4481 /* Default-568h@2x.png */; };
 		CDCC0AA016E0C23700BE4481 /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A1F16E0C23700BE4481 /* done.png */; };
 		CDCC0AA116E0C23700BE4481 /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2016E0C23700BE4481 /* done@2x.png */; };
 		CDCC0AA216E0C23700BE4481 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A2116E0C23700BE4481 /* edit.png */; };
@@ -532,6 +530,15 @@
 		CDD1A3C716E89A2600CDC33C /* menu-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B716E89A2600CDC33C /* menu-tags@2x.png */; };
 		CDD1A3C816E89A2600CDC33C /* menu-upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B816E89A2600CDC33C /* menu-upload.png */; };
 		CDD1A3C916E89A2600CDC33C /* menu-upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B916E89A2600CDC33C /* menu-upload@2x.png */; };
+		CDDFDA3F1729422A00D992DC /* LoginViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA3E1729422A00D992DC /* LoginViewControlleriPad.xib */; };
+		CDDFDA4117294A3200D992DC /* trovebox-logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA4017294A3200D992DC /* trovebox-logo-ipad.png */; };
+		CDDFDA49172970CB00D992DC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA48172970CA00D992DC /* Default@2x.png */; };
+		CDDFDA4B172970D300D992DC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA4A172970D200D992DC /* Default.png */; };
+		CDDFDA4D172973D700D992DC /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA4C172973D700D992DC /* Default-Portrait~ipad.png */; };
+		CDDFDA4F172973DC00D992DC /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA4E172973DC00D992DC /* Default-Portrait@2x~ipad.png */; };
+		CDDFDA51172973E100D992DC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */; };
+		CDDFDA53172973E500D992DC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */; };
+		CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA541729740F00D992DC /* Default-568h@2x.png */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
 		CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F0CE16E520FC00D309B9 /* libsbjson-ios.a */; };
 		CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */; };
@@ -1349,7 +1356,6 @@
 		CD1D827116E9412800877A8E /* MenuTableViewSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewSearchCell.h; sourceTree = "<group>"; };
 		CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSearchCell.m; sourceTree = "<group>"; };
 		CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSearchCell.xib; sourceTree = "<group>"; };
-		CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewControlleriPad.xib; sourceTree = "<group>"; };
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
 		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
@@ -1532,9 +1538,6 @@
 		CDCC0A1916E0C23700BE4481 /* button-upload-form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-upload-form@2x.png"; path = "images/button-upload-form@2x.png"; sourceTree = "<group>"; };
 		CDCC0A1A16E0C23700BE4481 /* close_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close_camera.png; path = images/close_camera.png; sourceTree = "<group>"; };
 		CDCC0A1B16E0C23700BE4481 /* close_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "close_camera@2x.png"; path = "images/close_camera@2x.png"; sourceTree = "<group>"; };
-		CDCC0A1C16E0C23700BE4481 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "images/Default-568h@2x.png"; sourceTree = "<group>"; };
-		CDCC0A1D16E0C23700BE4481 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
-		CDCC0A1E16E0C23700BE4481 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "images/Default@2x.png"; sourceTree = "<group>"; };
 		CDCC0A1F16E0C23700BE4481 /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = done.png; path = images/done.png; sourceTree = "<group>"; };
 		CDCC0A2016E0C23700BE4481 /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "done@2x.png"; path = "images/done@2x.png"; sourceTree = "<group>"; };
 		CDCC0A2116E0C23700BE4481 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit.png; path = images/edit.png; sourceTree = "<group>"; };
@@ -1699,6 +1702,15 @@
 		CDD1A3B716E89A2600CDC33C /* menu-tags@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-tags@2x.png"; path = "images/menu-tags@2x.png"; sourceTree = "<group>"; };
 		CDD1A3B816E89A2600CDC33C /* menu-upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload.png"; path = "images/menu-upload.png"; sourceTree = "<group>"; };
 		CDD1A3B916E89A2600CDC33C /* menu-upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload@2x.png"; path = "images/menu-upload@2x.png"; sourceTree = "<group>"; };
+		CDDFDA3E1729422A00D992DC /* LoginViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewControlleriPad.xib; sourceTree = "<group>"; };
+		CDDFDA4017294A3200D992DC /* trovebox-logo-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "trovebox-logo-ipad.png"; path = "images/trovebox-logo-ipad.png"; sourceTree = "<group>"; };
+		CDDFDA48172970CA00D992DC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		CDDFDA4A172970D200D992DC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		CDDFDA4C172973D700D992DC /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		CDDFDA4E172973DC00D992DC /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
+		CDDFDA541729740F00D992DC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		CDF2F06D16E4D87A00D309B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CDF2F0C216E520FC00D309B9 /* SBJson.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBJson.xcodeproj; path = "Frameworks/json-framework/SBJson.xcodeproj"; sourceTree = "<group>"; };
 		CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = SOURCE_ROOT; };
@@ -2382,11 +2394,11 @@
 				CD1528401628DB8500EA08FF /* LoginViewController.m */,
 				CD1528411628DB8500EA08FF /* LoginViewController.xib */,
 				CDCC0BC616E0C66400BE4481 /* LoginViewController5.xib */,
+				CDDFDA3E1729422A00D992DC /* LoginViewControlleriPad.xib */,
 				CD1528421628DB8500EA08FF /* LoginCreateAccountViewController.h */,
 				CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */,
 				CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */,
 				CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */,
-				CD20692F163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib */,
 				CD1528451628DB8500EA08FF /* LoginConnectViewController.h */,
 				CD1528461628DB8500EA08FF /* LoginConnectViewController.m */,
 				CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */,
@@ -2531,6 +2543,14 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDDFDA541729740F00D992DC /* Default-568h@2x.png */,
+				CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */,
+				CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */,
+				CDDFDA4E172973DC00D992DC /* Default-Portrait@2x~ipad.png */,
+				CDDFDA4C172973D700D992DC /* Default-Portrait~ipad.png */,
+				CDDFDA4A172970D200D992DC /* Default.png */,
+				CDDFDA48172970CA00D992DC /* Default@2x.png */,
+				CDDFDA4017294A3200D992DC /* trovebox-logo-ipad.png */,
 				CD0DE1FD171F31D10043D1DC /* add.png */,
 				CD0DE1FE171F31D10043D1DC /* add@2x.png */,
 				CD31DEC017143FF90071D3E1 /* menu-album-selected.png */,
@@ -2579,9 +2599,6 @@
 				CDCC0A1916E0C23700BE4481 /* button-upload-form@2x.png */,
 				CDCC0A1A16E0C23700BE4481 /* close_camera.png */,
 				CDCC0A1B16E0C23700BE4481 /* close_camera@2x.png */,
-				CDCC0A1C16E0C23700BE4481 /* Default-568h@2x.png */,
-				CDCC0A1D16E0C23700BE4481 /* Default.png */,
-				CDCC0A1E16E0C23700BE4481 /* Default@2x.png */,
 				CDCC0A1F16E0C23700BE4481 /* done.png */,
 				CDCC0A2016E0C23700BE4481 /* done@2x.png */,
 				CDCC0A2116E0C23700BE4481 /* edit.png */,
@@ -3445,7 +3462,6 @@
 				CD30D57416303E54001A0CA0 /* ELCImagePickerController.xib in Resources */,
 				CD30D57716303E54001A0CA0 /* SyncViewController.xib in Resources */,
 				CD30D84216369CF1001A0CA0 /* PhotoViewController.xib in Resources */,
-				CD206931163B22F200F92F8A /* LoginCreateAccountViewControlleriPad.xib in Resources */,
 				CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */,
 				CDC7AF39164028E100FC8BC1 /* PhotoViewController5.xib in Resources */,
 				CDCC0A8F16E0C23700BE4481 /* appbar_empty.png in Resources */,
@@ -3460,7 +3476,6 @@
 				CDCC0A9A16E0C23700BE4481 /* button-upload-form@2x.png in Resources */,
 				CDCC0A9B16E0C23700BE4481 /* close_camera.png in Resources */,
 				CDCC0A9C16E0C23700BE4481 /* close_camera@2x.png in Resources */,
-				CDCC0A9D16E0C23700BE4481 /* Default-568h@2x.png in Resources */,
 				CDCC0AA016E0C23700BE4481 /* done.png in Resources */,
 				CDCC0AA116E0C23700BE4481 /* done@2x.png in Resources */,
 				CDCC0AA216E0C23700BE4481 /* edit.png in Resources */,
@@ -3671,6 +3686,15 @@
 				CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */,
 				CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */,
 				CD9013471726C66800BB30EF /* ProfileViewControlleriPad.xib in Resources */,
+				CDDFDA3F1729422A00D992DC /* LoginViewControlleriPad.xib in Resources */,
+				CDDFDA4117294A3200D992DC /* trovebox-logo-ipad.png in Resources */,
+				CDDFDA49172970CB00D992DC /* Default@2x.png in Resources */,
+				CDDFDA4B172970D300D992DC /* Default.png in Resources */,
+				CDDFDA4D172973D700D992DC /* Default-Portrait~ipad.png in Resources */,
+				CDDFDA4F172973DC00D992DC /* Default-Portrait@2x~ipad.png in Resources */,
+				CDDFDA51172973E100D992DC /* Default-Landscape~ipad.png in Resources */,
+				CDDFDA53172973E500D992DC /* Default-Landscape@2x~ipad.png in Resources */,
+				CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4142,7 +4166,7 @@
 				PRODUCT_NAME = Trovebox;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4177,7 +4201,7 @@
 				PRODUCT_NAME = Trovebox;
 				PROVISIONING_PROFILE = "7BBFBBD6-C2AB-47DC-8A3D-B0CA89390399";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BBFBBD6-C2AB-47DC-8A3D-B0CA89390399";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
 			};

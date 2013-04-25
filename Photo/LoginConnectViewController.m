@@ -41,10 +41,22 @@
 {
     [self setEmail:nil];
     [self setPassword:nil];
+    [self setBackgroundEmail:nil];
+    [self setBackgroundPassword:nil];
     [super viewDidUnload];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // if ipad, lets centralize fields
+    if([DisplayUtilities isIPad]){
+        self.email.center=self.backgroundEmail.center;
+        self.password.center=self.backgroundPassword.center;
+    }
+}
+
 
 - (BOOL) shouldAutorotate
 {
@@ -63,13 +75,14 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (self.isViewUp == NO){
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y - 42)];
-        }completion:^(BOOL finished){
-            self.isViewUp = YES;
-        }];
-    }
+    if(![DisplayUtilities isIPad]){
+        if (self.isViewUp == NO){
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y - 42)];
+            }completion:^(BOOL finished){
+                self.isViewUp = YES;
+            }];
+        }}
 }
 
 
@@ -86,13 +99,14 @@
 }
 - (IBAction)login:(id)sender {
     // put view down
-    if (self.isViewUp == YES){
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
-        }completion:^(BOOL finished){
-            self.isViewUp = NO;
-        }];
-    }
+    if(![DisplayUtilities isIPad]){
+        if (self.isViewUp == YES){
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
+            }completion:^(BOOL finished){
+                self.isViewUp = NO;
+            }];
+        }}
     
     // no keyboard
     [self.email resignFirstResponder];
@@ -163,13 +177,14 @@
 - (IBAction)recoverPassword:(id)sender {
     
     // put view down
-    if (self.isViewUp == YES){
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-            [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
-        }completion:^(BOOL finished){
-            self.isViewUp = NO;
-        }];
-    }
+    if(![DisplayUtilities isIPad]){
+        if (self.isViewUp == YES){
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
+            }completion:^(BOOL finished){
+                self.isViewUp = NO;
+            }];
+        }}
     
     // no keyboard
     [self.email resignFirstResponder];

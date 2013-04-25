@@ -89,6 +89,16 @@
     }
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    // if ipad, lets centralize fields
+    if([DisplayUtilities isIPad]){
+        self.email.center=self.backgroundEmail.center;
+        self.password.center=self.backgroundPassword.center;
+        self.username.center=self.backgroundUsername.center;
+    }
+}
+
 - (BOOL) shouldAutorotate
 {
     return YES;
@@ -113,13 +123,14 @@
 - (IBAction)createAccount:(id)sender
 {
     
-    if ( self.isViewUp == YES){
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-            [self moveFieldsUpOrDown:+1];
-        }completion:^(BOOL finished){
-            self.isViewUp = NO;
-        }];
-    }
+    if (![DisplayUtilities isIPad]){
+        if ( self.isViewUp == YES){
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+                [self moveFieldsUpOrDown:+1];
+            }completion:^(BOOL finished){
+                self.isViewUp = NO;
+            }];
+        }}
     
     // no keyboard
     [self.username resignFirstResponder];
@@ -180,13 +191,15 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (!self.isFacebookCreationAccount && self.isViewUp == NO){
-        self.isViewUp = YES;
-        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-            [self moveFieldsUpOrDown:-1];
-        }completion:^(BOOL finished){
-        }];
-    }
+    if (![DisplayUtilities isIPad]){
+        
+        if (!self.isFacebookCreationAccount && self.isViewUp == NO){
+            self.isViewUp = YES;
+            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
+                [self moveFieldsUpOrDown:-1];
+            }completion:^(BOOL finished){
+            }];
+        }}
 }
 
 // direction should be -1 for go up or +1 to go down.

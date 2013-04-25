@@ -56,9 +56,18 @@
 - (void)viewDidUnload
 {
     [self setServerURL:nil];
+    [self setBackgroundServerUrl:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    // if ipad, lets centralize fields
+    if([DisplayUtilities isIPad]){
+        self.serverURL.center=self.backgroundServerUrl.center;
+    }
 }
 
 - (BOOL) shouldAutorotate

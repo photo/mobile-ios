@@ -23,6 +23,7 @@
 @interface AuthenticationViewController : GAITrackedViewController<UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *serverURL;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundServerUrl;
 - (IBAction)login:(id)sender;
 
 @end
