@@ -334,36 +334,41 @@
         // title
         [newestPhotoCell label].text=photo.title;
         
+        
+        
+              
+        
+        
         // days or hours
-        NSMutableString *dateText = [[NSMutableString alloc]initWithString:NSLocalizedString(@"This photo was taken ",@"Message for photo details in the home")];
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
         
         NSInteger days = interval/86400;
         if (days >= 2 ){
             if (days > 365){
                 // show in years
-                [dateText appendString:[NSString stringWithFormat:@"%@", days/365 == 1 ? [NSString stringWithFormat:@"%i %@", days/365, NSLocalizedString(@"year ago",@"Message for photo details in the home")] : [NSString stringWithFormat:@"%i %@", days/365, NSLocalizedString(@"years ago",@"Message for photo details in the home - plural")]]];
+                if (days/365 == 1){
+                    [newestPhotoCell date].text = NSLocalizedString(@"This photo was taken one year ago",@"Message for photo details in the home - This photo was taken one year ago");
+                }else{
+                    [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i years ago", days/365]), @"Message for photo details in the home - This photo was taken %i years ago");
+                }
             }else{
                 // lets show in days
-                [dateText appendFormat:@"%i %@",days, NSLocalizedString(@"days ago",@"Message for photo details in the home - days")];
+                [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i days ago", days]), @"Message for photo details in the home - This photo was taken %i days ago");
             }
-            
         }else{
             // lets show in hours
             NSInteger hours = interval / 3600;
             if (hours<1){
-                [dateText appendString:NSLocalizedString(@"less than one hour ago",@"Message for photo details in the home - less than one hour ago")];
+                [newestPhotoCell date].text = NSLocalizedString(@"This photo was taken less than one hour ago",@"Message for photo details in the home - less than one hour ago");
             }else {
                 if (hours == 1){
-                    [dateText appendString:NSLocalizedString(@"one hour ago",@"Message for photo details in the home - one hour ago")];
+                    [newestPhotoCell date].text = NSLocalizedString(@"This photo was taken one hour ago",@"Message for photo details in the home - This photo was taken one hour ago");
                 }else {
-                    [dateText appendFormat:@"%i %@",hours, NSLocalizedString(@"hours ago",@"Message for photo details in the home - hours ago")];
+                    [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i hours ago", hours]), @"Message for photo details in the home - This photo was taken %i hours ago");
                 }
             }
         }
-        
-        [newestPhotoCell date].text=dateText;
-        
+                
         // tags
         [newestPhotoCell tags].text=photo.tags;
         newestPhotoCell.private.hidden=YES;

@@ -43,6 +43,24 @@
             
             @try{
                 [AuthenticationService sendToServerReceipt:transaction.transactionReceipt forUser:[SharedAppDelegate userEmail]];
+                
+                /*
+                // (NSString) Transaction ID, should be unique.
+                GAITransaction *gAITransaction =
+                [GAITransaction transactionWithId:transaction.transactionIdentifier withAffiliation:[@"In-App Store"]]; 
+               //  transaction.taxMicros = (int64_t)(0.17 * 1000000);           // (int64_t) Total tax (in micros)
+               //  transaction.shippingMicros = (int64_t)(0);                   // (int64_t) Total shipping (in micros)
+               //  transaction.revenueMicros = (int64_t)(2.16 * 1000000);       // (int64_t) Total revenue (in micros)
+                 
+                 [gAITransaction addItemWithSKU:@"openphoto"                         // (NSString) Product SKU
+                                        name:@"Pro Upgrade"             // (NSString) Product name
+                                    category:@"Subscrption"               // (NSString) Product category
+                                 priceMicros:(int64_t)(2.99 * 1000000)        // (int64_t)  Product price (in micros)
+                                    quantity:1];                              // (NSInteger)  Product quantity
+                 
+                 [[GAI sharedInstance].defaultTracker sendTransaction:gAITransaction]; // Send the transaction.
+                 */
+                 
             }@catch (NSException* exception) {
                 NSLog(@"Error sending receipt to server %@", [exception description]);
             }

@@ -9,6 +9,7 @@
 //for payment
 #import <StoreKit/StoreKit.h>
 #import "AuthenticationService.h"
+#import "GAI.h"
 
 #define kInAppPurchaseManagerTransactionFailedNotification @"kInAppPurchaseManagerTransactionFailedNotification"
 #define kInAppPurchaseManagerTransactionSucceededNotification @"kInAppPurchaseManagerTransactionSucceededNotification"
