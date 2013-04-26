@@ -148,7 +148,7 @@
             // create the account with username and email
             if (self.username.text == nil || [[self.username.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length ] == 0){
                 //show message
-                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your username.",@"Facebook creation account where user needs to set the username")];
+                PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please, set your username.",nil)];
                 [alert showAlert];
                 return;
             }

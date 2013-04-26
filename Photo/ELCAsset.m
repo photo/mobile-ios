@@ -75,8 +75,8 @@
         if ([SharedAppDelegate limitFreeUser] == 0 ||
             [(SyncViewController*)self.parent totalSelectedAssets] > [SharedAppDelegate limitFreeUser]){
             // limit reached,
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
-                                                            message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", nil)
+                                                            message: [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.",@"Message when limit is reached"), [SharedAppDelegate limitAllowed]]
                                                            delegate:self
                                                   cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                                   otherButtonTitles:NSLocalizedString(@"Upgrade",nil),nil];

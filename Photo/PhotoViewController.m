@@ -206,17 +206,17 @@
         if ([SharedAppDelegate limitFreeUser] == 1){
             message = NSLocalizedString(@"You can upload one more photo this month",@"Message limit - one more photo");
         }else if([SharedAppDelegate limitFreeUser] > 1){
-            message = NSLocalizedString(([NSString stringWithFormat:@"You can upload %d more photos this month", [SharedAppDelegate limitFreeUser]]), @"Message limit - n more photos");
+            message = [NSString stringWithFormat:NSLocalizedString(@"You can upload %d more photos this month",@"Message limit - n more photos"), [SharedAppDelegate limitFreeUser]];
         }else{
-            message = NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached on upload screen");
+            message = [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of %d photos",@"Message when limit is reached on upload screen"), [SharedAppDelegate limitAllowed]];
         }
         
         self.labelLimitUpload.text = message;
         
         if ([SharedAppDelegate limitFreeUser] == 0){
             // limit reached,
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", @"Upload - text in the upload form for limits")
-                                                            message: NSLocalizedString(([NSString stringWithFormat:@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.", [SharedAppDelegate limitAllowed]]), @"Message when limit is reached")
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Limit reached", nil)
+                                                            message: [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.",@"Message when limit is reached"), [SharedAppDelegate limitAllowed]]
                                                            delegate:self
                                                   cancelButtonTitle:NSLocalizedString(@"OK",nil)
                                                   otherButtonTitles:NSLocalizedString(@"Upgrade",nil), nil];
@@ -272,7 +272,7 @@
                 // Do anything that should be the same on EACH cell here.  Fonts, colors, etc.
             }
             
-            cell.textLabel.text=NSLocalizedString(@"Tags",@"Upload - tags");
+            cell.textLabel.text=NSLocalizedString(@"Tags",nil);
             // customised disclosure button
             [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;
@@ -285,7 +285,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifierAlbums];
             }
             
-            cell.textLabel.text=NSLocalizedString(@"Albums",@"Upload - Albums");
+            cell.textLabel.text=NSLocalizedString(@"Albums",nil);
             // customised disclosure button
             [cell setAccessoryView:[self makeDetailDisclosureButton]];
             break;

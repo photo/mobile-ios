@@ -334,11 +334,6 @@
         // title
         [newestPhotoCell label].text=photo.title;
         
-        
-        
-              
-        
-        
         // days or hours
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
         
@@ -349,11 +344,11 @@
                 if (days/365 == 1){
                     [newestPhotoCell date].text = NSLocalizedString(@"This photo was taken one year ago",@"Message for photo details in the home - This photo was taken one year ago");
                 }else{
-                    [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i years ago", days/365]), @"Message for photo details in the home - This photo was taken %i years ago");
+                    [newestPhotoCell date].text = [NSString stringWithFormat:NSLocalizedString(@"This photo was taken %i years ago",@"Message for photo details in the home - This photo was taken %i years ago"), days/365];
                 }
             }else{
                 // lets show in days
-                [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i days ago", days]), @"Message for photo details in the home - This photo was taken %i days ago");
+                [newestPhotoCell date].text = [NSString stringWithFormat:NSLocalizedString(@"This photo was taken %i days ago",@"Message for photo details in the home - This photo was taken %i days ago"), days];
             }
         }else{
             // lets show in hours
@@ -364,7 +359,7 @@
                 if (hours == 1){
                     [newestPhotoCell date].text = NSLocalizedString(@"This photo was taken one hour ago",@"Message for photo details in the home - This photo was taken one hour ago");
                 }else {
-                    [newestPhotoCell date].text = NSLocalizedString(([NSString stringWithFormat:@"This photo was taken %i hours ago", hours]), @"Message for photo details in the home - This photo was taken %i hours ago");
+                    [newestPhotoCell date].text = [NSString stringWithFormat:NSLocalizedString(@"This photo was taken %i hours ago",@"Message for photo details in the home - This photo was taken %i hours ago"), hours];
                 }
             }
         }
@@ -381,7 +376,7 @@
                               placeholderImage:nil
                                      completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
                                          if (error){
-                                             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"Message when fail to bring the image from Trovebox server") duration:5000];
+                                             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",nil) duration:5000];
                                              [alert showAlert];
                                              NSLog(@"Error: %@",[error localizedDescription]);
                                          }else{

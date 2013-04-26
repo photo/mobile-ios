@@ -1515,10 +1515,7 @@
 		CDC3A7E7161DF89D003FDC2E /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		CDC3A7EC161DFAEA003FDC2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC3A7EE161DFAF3003FDC2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CDC3A7EF161DFAFD003FDC2E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC3A7F0161DFC37003FDC2E /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CDC3A7F3161DFFC3003FDC2E /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CDC3A7F4161DFFCD003FDC2E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDC7AE6F163EBFA300FC8BC1 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		CDC7AE8E163EC7D700FC8BC1 /* DisplayUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayUtilities.h; sourceTree = "<group>"; };
 		CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayUtilities.m; sourceTree = "<group>"; };
@@ -4089,10 +4086,7 @@
 			children = (
 				CDC3A7EC161DFAEA003FDC2E /* de */,
 				CDC3A7EE161DFAF3003FDC2E /* en */,
-				CDC3A7EF161DFAFD003FDC2E /* fr */,
 				CDC3A7F0161DFC37003FDC2E /* pt */,
-				CDC3A7F3161DFFC3003FDC2E /* nl */,
-				CDC3A7F4161DFFCD003FDC2E /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
