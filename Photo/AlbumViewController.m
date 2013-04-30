@@ -29,6 +29,10 @@
 //used for create new albums
 @property (nonatomic) BOOL readOnly;
 
+// for infinite scroll
+@property (nonatomic) NSInteger page;
+@property (nonatomic) NSInteger totalPages;
+
 @end
 
 @implementation AlbumViewController
@@ -44,8 +48,11 @@
         
         // is loading albums
         self.isLoading = NO;
-        
         self.readOnly = NO;
+        
+        // for infinite scroll
+        self.page = 1;
+        self.totalPages = 2; // it will contain always on page more until we find that there is no answer anymore, then me make them equal
     }
     return self;
 }
@@ -66,7 +73,7 @@
     if ( self.readOnly){
         
         [self.navigationItem troveboxStyle:NSLocalizedString(@"Albums", @"Menu - title for Albums")  defaultButtons:NO viewController:nil menuViewController:nil];
-       
+        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
         [button setImage:buttonImage forState:UIControlStateNormal];
@@ -107,9 +114,15 @@
 {
     [super viewWillAppear:animated];
     
-    if (self.readOnly == NO || [self.albums count] == 0 ){
+    if (self.readOnly == NO){
+        [self.albums removeAllObjects];
+        [self.tableView reloadData];
+        
         // load all albums
         [self loadAlbums];
+        
+        self.totalPages=2;
+        self.page=1;
     }
 }
 
@@ -165,6 +178,13 @@
                        placeholderImage:[UIImage imageNamed:@"empty_img.png"]];
     }else{
         [cell.imageView setImage:[UIImage imageNamed:@"empty_img.png"]];
+    }
+    
+    
+    if (self.totalPages){
+        if ([self.albums count] - 1  == indexPath.row && self.page <= self.totalPages){
+            [self loadAlbums];
+        }
     }
     
     return cell;
@@ -229,11 +249,15 @@
                 @try {
                     // get factory for OpenPhoto Service
                     WebService *service = [[WebService alloc] init];
-                    NSArray *result = [service loadAlbums:25];
+                    NSArray *result = [service loadAlbums:15 onPage:self.page];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.albums removeAllObjects];
-                        if ([result class] != [NSNull class]) {
+                        
+                        if ([result class] != [NSNull class] && [result count] > 0) {
+                            // we may try to load more albums again
+                            self.totalPages++;
+                            self.page++;
+                            
                             // Loop through each entry in the dictionary and create an array Albums
                             for (NSDictionary *albumDetails in result){
                                 // tag name
@@ -263,16 +287,19 @@
                                     Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
                                     [self.albums addObject:album];
                                 }
-                            }}
+                            }
+                            
+                            [self.tableView reloadData];
+                        }else{
+                            self.totalPages = self.page;
+                        }
                         
-                        [self.tableView reloadData];
                         if ( self.readOnly){
                             [MBProgressHUD hideHUDForView:self.view animated:YES];
                         }else{
                             [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
                         }
                         self.isLoading = NO;
-                        
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{

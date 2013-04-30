@@ -213,9 +213,9 @@
                                                               @"&album=",[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
-- (NSArray*) loadAlbums:(int) pageSize
+- (NSArray*) loadAlbums:(int) pageSize onPage:(int) page
 {
-    return  [self parseResponse:[self sendSynchronousRequest:@"/v1/albums/list.json" httpMethod:@"GET"]];
+    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"/v1/albums/list.json?pageSize=%d&page=%d", pageSize, page] httpMethod:@"GET"]];
 }
 
 // return identification
