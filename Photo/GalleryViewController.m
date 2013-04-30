@@ -249,7 +249,7 @@
                         if ([result class] != [NSNull class]) {
                             
                             if ( self.page == 2 ){
-                                // first time loadin
+                                // first time loading
                                 [self.photos removeAllObjects];
                             }
                             
