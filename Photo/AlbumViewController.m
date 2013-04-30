@@ -249,7 +249,7 @@
                 @try {
                     // get factory for OpenPhoto Service
                     WebService *service = [[WebService alloc] init];
-                    NSArray *result = [service loadAlbums:15 onPage:self.page];
+                    NSArray *result = [service loadAlbums:25 onPage:self.page];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
