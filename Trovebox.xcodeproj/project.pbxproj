@@ -155,6 +155,9 @@
 		CD31DED917143FFA0071D3E1 /* menu-tags-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECB17143FFA0071D3E1 /* menu-tags-selected@2x.png */; };
 		CD31DEDA17143FFA0071D3E1 /* menu-upload-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECC17143FFA0071D3E1 /* menu-upload-selected.png */; };
 		CD31DEDB17143FFA0071D3E1 /* menu-upload-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECD17143FFA0071D3E1 /* menu-upload-selected@2x.png */; };
+		CD4B593F1733CD730023C199 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593C1733CD730023C199 /* Icon-72.png */; };
+		CD4B59401733CD730023C199 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593D1733CD730023C199 /* Icon-Small-50.png */; };
+		CD4B59411733CD730023C199 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593E1733CD730023C199 /* Icon-Small.png */; };
 		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
 		CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4516F20E490044427E /* Photo+Methods.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
@@ -972,6 +975,9 @@
 		CD31DECB17143FFA0071D3E1 /* menu-tags-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-tags-selected@2x.png"; path = "images/menu-tags-selected@2x.png"; sourceTree = "<group>"; };
 		CD31DECC17143FFA0071D3E1 /* menu-upload-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload-selected.png"; path = "images/menu-upload-selected.png"; sourceTree = "<group>"; };
 		CD31DECD17143FFA0071D3E1 /* menu-upload-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload-selected@2x.png"; path = "images/menu-upload-selected@2x.png"; sourceTree = "<group>"; };
+		CD4B593C1733CD730023C199 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
+		CD4B593D1733CD730023C199 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "images/Icon-Small-50.png"; sourceTree = "<group>"; };
+		CD4B593E1733CD730023C199 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "images/Icon-Small.png"; sourceTree = "<group>"; };
 		CD5F5E4116F20E050044427E /* Gallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
 		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
 		CD5F5E4416F20E490044427E /* Photo+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Methods.h"; sourceTree = "<group>"; };
@@ -1794,6 +1800,9 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD4B593C1733CD730023C199 /* Icon-72.png */,
+				CD4B593D1733CD730023C199 /* Icon-Small-50.png */,
+				CD4B593E1733CD730023C199 /* Icon-Small.png */,
 				CDDFDA541729740F00D992DC /* Default-568h@2x.png */,
 				CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */,
 				CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */,
@@ -2952,6 +2961,9 @@
 				CDDFDA51172973E100D992DC /* Default-Landscape~ipad.png in Resources */,
 				CDDFDA53172973E500D992DC /* Default-Landscape@2x~ipad.png in Resources */,
 				CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */,
+				CD4B593F1733CD730023C199 /* Icon-72.png in Resources */,
+				CD4B59401733CD730023C199 /* Icon-Small-50.png in Resources */,
+				CD4B59411733CD730023C199 /* Icon-Small.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
