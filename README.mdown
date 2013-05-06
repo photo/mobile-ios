@@ -79,6 +79,6 @@ cd Photo
 find . -name \*.m | xargs genstrings -o en.lproj
 ````
 
-#### Missing implementation
+### Missing implementation
 After download our code, Xcode will complain that a PrivateAuthenticationService.m is missing. This happens because it is the implementation applied by Trovebox. 
-You can download it at https://dl.dropboxusercontent.com/u/138224/Github/PrivateAuthenticationService.m. It will be an empty implementation. Then to connect to your service use the OAuth Procedure. Click in `Login with email` > `Own Server`
+You can download it [here](https://dl.dropboxusercontent.com/u/138224/Github/PrivateAuthenticationService.m). It will be an empty implementation. Then to connect to your service use the OAuth Procedure. Click in `Login with email` > `Own Server`
