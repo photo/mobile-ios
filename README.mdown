@@ -43,17 +43,9 @@ The more photos and time you invest on a proprietary photo sharing service the m
 There are importing tools available to make the switch easy.
 
 ----------------------------------------
+# DEVELOPERS
 
-[aws]: http://aws.amazon.com/
-[s3]: http://aws.amazon.com/s3/
-[simpledb]: http://aws.amazon.com/simpledb/
-[api]: https://github.com/photo/frontend/blob/master/documentation/api/Api.markdown
-[faq]: https://github.com/photo/frontend/blob/master/documentation/faq/Faq.markdown
-[schemas]: https://github.com/photo/frontend/blob/master/documentation/schemas/Schemas.markdown
-[guides]: https://github.com/photo/frontend/blob/master/documentation/guides/Guides.markdown
----------------------------------------
-
-### IMPORTANT
+### Reachability problems
 
 `Reachability / gcc-4.2 failed with exit code 1 / Duplicate symbol`
 The Reachability class is included in ShareKit. As this class already exists in the project, you'll need to remove it from ShareKit. Open the ShareKit group and delete the Reachability group.
@@ -62,13 +54,7 @@ The Reachability class is included in ShareKit. As this class already exists in 
 ### Modules
 Don't forget to execute
 ````
-$ git submodule update --init
-````
-
-ShareKit also has some submodule, for this one:
-````
-cd Frameworks/ShareKit
-git submodule update --init --recursive
+$ git submodule update --init -- recursive
 ````
 
 ### Localization
@@ -82,3 +68,12 @@ find . -name \*.m | xargs genstrings -o en.lproj
 ### Missing implementation
 After download our code, Xcode will complain that a PrivateAuthenticationService.m is missing. This happens because it is the implementation applied by Trovebox. 
 You can download it [here](https://dl.dropboxusercontent.com/u/138224/Github/PrivateAuthenticationService.m). It will be an empty implementation. Then to connect to your service use the OAuth Procedure. Click in `Login with email` > `Own Server`
+
+
+[aws]: http://aws.amazon.com/
+[s3]: http://aws.amazon.com/s3/
+[simpledb]: http://aws.amazon.com/simpledb/
+[api]: https://github.com/photo/frontend/blob/master/documentation/api/Api.markdown
+[faq]: https://github.com/photo/frontend/blob/master/documentation/faq/Faq.markdown
+[schemas]: https://github.com/photo/frontend/blob/master/documentation/schemas/Schemas.markdown
+[guides]: https://github.com/photo/frontend/blob/master/documentation/guides/Guides.markdown
