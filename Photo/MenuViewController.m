@@ -341,7 +341,7 @@
 - (void)imagePickerController:(DLCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // the image itself to save in the library,
     // this data must be a raw data on DLCImagePickerController. Remove the PNG representation
-    UIImage *pickedImage = [info objectForKey:@"data"];
+    UIImage *pickedImage = [info objectForKey:@"image"];
     
     // User come from Snapshot. We will temporary save in the Library.
     NSData* pngData =  UIImageJPEGRepresentation(pickedImage,1.0);
