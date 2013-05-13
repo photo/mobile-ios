@@ -379,6 +379,8 @@
                                              PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",nil) duration:5000];
                                              [alert showAlert];
                                              NSLog(@"Error: %@",[error localizedDescription]);
+                                             
+                                             [[SharedAppDelegate managedObjectContext] deleteObject:photo];
                                          }else{
                                              [newestPhotoCell.activity stopAnimating];
                                              newestPhotoCell.photo.superview.layer.masksToBounds = NO;
