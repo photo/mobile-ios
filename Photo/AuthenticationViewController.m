@@ -160,10 +160,11 @@
     
     
     NSURL *url;
-    if ([text rangeOfString:@"http://"].location == NSNotFound) {
+    if ([text rangeOfString:@"http://"].location == NSNotFound
+        && [text rangeOfString:@"https://"].location == NSNotFound) {
         
 #ifdef DEVELOPMENT_ENABLED
-        NSLog(@"URL does not contain http://");
+        NSLog(@"URL does not contain http:// or https://");
 #endif
         
         NSString *urlString = [[NSString alloc] initWithFormat:@"http://%@",text];
