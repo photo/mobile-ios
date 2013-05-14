@@ -43,7 +43,7 @@
 					<object class="IBUITableView" id="893303267">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{9, 51}, {300, 389}}</string>
+						<string key="NSFrame">{{10, 71}, {300, 389}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:392</string>
@@ -193,8 +193,8 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="893303267"/>
 							<reference ref="102654968"/>
+							<reference ref="893303267"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
