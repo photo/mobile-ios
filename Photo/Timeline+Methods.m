@@ -181,20 +181,26 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
                 Timeline *photo = [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
                                                                 inManagedObjectContext:context];
                 
-                // get details URL
-                if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-                    // retirn display
-                    if ([DisplayUtilities isIPad]){
-                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path775x492xCR"]];
-                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path1024x768"]];
+                // check if it is for iPad and get details URL
+                if ([DisplayUtilities isIPad]){
+                    // check if ipad is retina
+                    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path1510x984xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path2024x1536"]];
                     }else{
-                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530xCR"]];
-                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path610x530"]];
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path755x492xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path1024x768"]];
                     }
                 }else{
-                    // not retina display
-                    photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265xCR"]];
-                    photo.photoUrlDetail =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path305x265"]];
+                    // iphone/ipod => check retina
+                    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path620x540xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path1136x640"]];
+                    }else{
+                        // old models
+                        photo.photoUrl =  [NSString stringWithFormat:@"%@",[raw objectForKey:@"path310x270xCR"]];
+                        photo.photoUrlDetail = [NSString stringWithFormat:@"%@",[raw objectForKey:@"path480x320"]];
+                    }
                 }
                 
                 NSString *title = [raw objectForKey:@"title"];

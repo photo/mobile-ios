@@ -11,7 +11,7 @@
 @implementation Photo (Methods)
 
 + (Photo *) photoWithServerInfo:(NSDictionary *) response
-                           inManagedObjectContext:(NSManagedObjectContext *) context
+         inManagedObjectContext:(NSManagedObjectContext *) context
 {
     Photo *photo = nil;
     
@@ -36,8 +36,8 @@
         title = @"";
     
     // small url and url
-    NSString *thumbUrl  = [NSString stringWithFormat:@"%@", [response objectForKey:@"path200x200"]];
-    NSString *url       = [NSString stringWithFormat:@"%@", [response objectForKey:@"path640x960"]];
+    NSString *thumbUrl  = [NSString stringWithFormat:@"%@", [response objectForKey:[self getPathThumb]]];
+    NSString *url       = [NSString stringWithFormat:@"%@", [response objectForKey:[self getPathUrl]]];
     NSString *pageUrl   = [NSString stringWithFormat:@"%@", [response objectForKey:@"url"]];
     
     // matches should never be null and also never more than 1
@@ -52,26 +52,12 @@
         float height = [[response objectForKey:@"height"] floatValue];
         
         // get width and height for the thumb
-        NSArray* thumbPhotoDetails = [response objectForKey:@"photo200x200"];
+        NSArray* thumbPhotoDetails = [response objectForKey:[self getDetailsThumb]];
         float thumbWidth = [[thumbPhotoDetails objectAtIndex:1] floatValue];
         float thumbHeight = [[thumbPhotoDetails objectAtIndex:2] floatValue];
         
-        // calculate the real size of the image. It will keep the aspect ratio.
-        float realWidth = 0;
-        float realHeight = 0;
-        
-        if(width/height >= 1) {
-            // portrait or square
-            realWidth = 640;
-            realHeight = height/width*640;
-        } else {
-            // landscape
-            realHeight = 960;
-            realWidth = width/height*960;
-        }
-        
-        photo.width          = [NSNumber numberWithFloat:realWidth];
-        photo.height         = [NSNumber numberWithFloat:realHeight];
+        photo.width          = [NSNumber numberWithFloat:width];
+        photo.height         = [NSNumber numberWithFloat:height];
         photo.thumbUrl       = thumbUrl;
         photo.thumbHeight    = [NSNumber numberWithFloat:thumbHeight];
         photo.thumbWidth     = [NSNumber numberWithFloat:thumbWidth];
@@ -147,5 +133,38 @@
     }
 }
 
++ (NSString*) getDetailsThumb
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+        return @"photo300x300";
+    }else{
+        return @"photo200x200";
+    }}
+
++ (NSString*) getPathThumb
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+        return @"path300x300";
+    }else{
+        return @"path200x200";
+    }
+}
+
++ (NSString*) getPathUrl
+{
+    if ([DisplayUtilities isIPad]){
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"path2024x1536";
+        }else{
+            return @"path1024x768";
+        }
+    }else{
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"path1136x640";
+        }else{
+            return @"path480x320";
+        }
+    }
+}
 
 @end

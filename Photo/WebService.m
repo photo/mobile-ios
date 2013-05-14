@@ -26,6 +26,7 @@
 - (NSArray *) parseResponse:(ASIHTTPRequest *) response;
 - (NSDictionary *) parseResponseAsNSDictionary:(ASIHTTPRequest *) response;
 + (BOOL) isMessageValid:(NSDictionary *)response;
+- (NSString *) getScreenSizesForRequest;
 
 @property (nonatomic, retain, readwrite) NSString *server;
 @property (nonatomic, retain, readwrite) NSString *oAuthKey;
@@ -75,19 +76,24 @@
 
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult{
     NSMutableString *request = [NSMutableString stringWithFormat: @"%@%i%@",@"/v1/photos/list.json?sortBy=dateUploaded,DESC&pageSize=", maxResult, @"&returnSizes="];
-    
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
-        // retina display
-        if ([DisplayUtilities isIPad]){
-            [request appendString:@"775x492xCR,1024x768"];
+        
+    // check if it is for iPad
+    if ([DisplayUtilities isIPad]){
+        // check if ipad is retina
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            [request appendString:@"1510x984xCR,2024x1536"];
         }else{
-            [request appendString:@"610x530xCR,610x530"];
+            [request appendString:@"755x492xCR,1024x768"];
         }
     }else{
-        // not retina display
-        [request appendString:@"305x265xCR,305x265"];
+        // iphone/ipod => check retina
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            [request appendString:@"620x540xCR,1136x640"];
+        }else{
+            // old models
+            [request appendString:@"310x270xCR,480x320"];
+        }
     }
-    
     return  [self parseResponse:[self sendSynchronousRequest:request httpMethod:@"GET"]];
 }
 
@@ -186,31 +192,17 @@
 
 - (NSArray*)  loadGallery:(int) pageSize onPage:(int) page
 {
-    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"%@%@%@%@%@",
-                                                              @"/v1/photos/list.json?pageSize=",
-                                                              [NSString stringWithFormat:@"%d", pageSize],
-                                                              @"&page=",[NSString stringWithFormat:@"%d", page],
-                                                              @"&returnSizes=200x200,640x960"]  httpMethod:@"GET"]];
+    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@", pageSize,page,[self getScreenSizesForRequest]]  httpMethod:@"GET"]];
 }
 
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page tag:(Tag*) tag
 {
-    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"%@%@%@%@%@%@%@",
-                                                              @"/v1/photos/list.json?pageSize=",
-                                                              [NSString stringWithFormat:@"%d", pageSize],
-                                                              @"&page=",[NSString stringWithFormat:@"%d", page],
-                                                              @"&returnSizes=200x200,640x960",
-                                                              @"&tags=", [tag.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]    httpMethod:@"GET"]];
+    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@&tags=%@", pageSize,page,[self getScreenSizesForRequest],[tag.name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album *)album
 {
-    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"%@%@%@%@%@%@%@",
-                                                              @"/v1/photos/list.json?pageSize=",
-                                                              [NSString stringWithFormat:@"%d", pageSize],
-                                                              @"&page=",[NSString stringWithFormat:@"%d", page],
-                                                              @"&returnSizes=200x200,640x960",
-                                                              @"&album=",[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
+    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@&album=%@", pageSize,page,[self getScreenSizesForRequest],[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
 - (NSArray*) loadAlbums:(int) pageSize onPage:(int) page
@@ -443,4 +435,24 @@
     return YES;
 }
 
+- (NSString *) getScreenSizesForRequest
+{
+    // check if it is for iPad
+    if ([DisplayUtilities isIPad]){
+        // check if ipad is retina
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"300x300,2024x1536";
+        }else{
+            return @"200x200,1024x768";
+        }
+    }else{
+        // iphone/ipod => check retina
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"300x300,1136x640";
+        }else{
+            // old models
+            return @"200x200,480x320";
+        }
+    }
+}
 @end

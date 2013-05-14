@@ -58,6 +58,9 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
     [standardUserDefaults synchronize];
     
+    // delete timeline
+    [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+    
     // remove old cache
     [[SDImageCache sharedImageCache] cleanDisk];
     
