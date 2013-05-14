@@ -299,7 +299,6 @@
 - (void)settingsViewController:(IASKAppSettingsViewController*)sender buttonTappedForKey:(NSString*)key {
     if ([key isEqualToString:@"CleanCache"]){
         [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-        [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
         NSError *saveError = nil;
         if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
             NSLog(@"Error to save context = %@",[saveError localizedDescription]);

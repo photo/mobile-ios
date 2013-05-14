@@ -123,7 +123,7 @@
     // synchronize the keys
     [standardUserDefaults synchronize];
     
-    // reset core data
+     // reset core data
      [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
      [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     
