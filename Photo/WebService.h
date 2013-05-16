@@ -72,4 +72,9 @@
 // return the identification of this album
 - (NSString *) createAlbum:(Album *) album;
 
+// return a shared token
+// - :type = photo | album - for now we just implement for type photo
+// - :id = id of photo or album
+- (NSString *) shareToken:(NSString *) id
+
 @end

@@ -215,7 +215,7 @@
 {
     [self validateCredentials];
     
-    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/album/create.json", self.server];
+    NSString *urlString = [NSString stringWithFormat: @"%@/v1/album/create.json", self.server];
     NSURL *url = [NSURL URLWithString:urlString];
     
 #ifdef DEVELOPMENT_ENABLED
@@ -263,6 +263,38 @@
     }
 }
 
+- (NSString *) shareToken:(NSString *) id
+{
+    [self validateCredentials];
+    
+    NSString *urlString = [NSString stringWithFormat: @"%@/v1/token/photo/%@/create.json", self.server, id];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
+    [oaUrlRequest setHTTPMethod:@"POST"];
+    
+    // prepare the request. This will be used to get the Authorization header and add in the multipart component
+    [oaUrlRequest prepare];
+ 
+    ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    asiRequest.userAgentString=@"Trovebox iOS";
+    
+    // set the authorization header to be used in the OAuth
+    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
+    [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+    [asiRequest startSynchronous];
+    
+    NSDictionary *result =  [self parseResponseAsNSDictionary:asiRequest];
+    NSDictionary *dics = [result objectForKey:@"result"] ;
+    
+    // check if it is null
+    if ([dics class] == [NSNull class]){
+        // if it is null, return an empty array
+        return @"";
+    }else {
+        return [NSString stringWithFormat:@"/token-%@", [dics objectForKey:@"id"]];
+    }
+}
 
 - (ASIHTTPRequest *) sendSynchronousRequest:(NSString *) request httpMethod:(NSString*) method{
     [self validateCredentials];
