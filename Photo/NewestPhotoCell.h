@@ -20,6 +20,7 @@
 
 #import <MapKit/MapKit.h>
 #import "SHK.h"
+#import "Timeline+Methods.h"
 
 @interface NewestPhotoCell : UITableViewCell
 
@@ -33,9 +34,10 @@
 @property (nonatomic, weak) IBOutlet UIButton *shareButton;
 @property (nonatomic, weak) IBOutlet UIImageView *geoSharingImage;
 
-@property (nonatomic, strong) NSString *geoPositionLatitude;
-@property (nonatomic, strong) NSString *geoPositionLongitude;
-@property (nonatomic, strong) NSString *photoPageUrl;
+@property (nonatomic, strong) Timeline *timeline;
+//@property (nonatomic, strong) NSString *geoPositionLatitude;
+//@property (nonatomic, strong) NSString *geoPositionLongitude;
+//@property (nonatomic, strong) NSString *photoPageUrl;
 @property (nonatomic, strong) UITableViewController *newestPhotosTableViewController;
 
 - (IBAction)openGeoPosition:(id)sender;

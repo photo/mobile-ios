@@ -32,8 +32,10 @@
 @synthesize label=_label;
 @synthesize shareButton = _shareButton;
 
-@synthesize geoPositionLatitude=_geoPositionLatitude;
-@synthesize geoPositionLongitude=_geoPositionLongitude;
+@synthesize timeline=_timeline;
+
+//@synthesize geoPositionLatitude=_geoPositionLatitude;
+//@synthesize geoPositionLongitude=_geoPositionLongitude;
 
 @synthesize photoPageUrl=_photoPageUrl;
 @synthesize newestPhotosTableViewController=_newestPhotosTableViewController;
@@ -52,16 +54,24 @@
     [super setSelected:selected animated:animated];
 }
 
+
+// newestPhotoCell.photoPageUrl = photo.photoPageUrl;
+// set the latitude and longitude
+// newestPhotoCell.geoPositionLatitude = photo.latitude;
+// newestPhotoCell.geoPositionLongitude = photo.longitude;
+
+
+
 - (IBAction)openGeoPosition:(id)sender {
-    if (self.geoPositionLatitude != 0){
+    if (self.timeline.latitude != 0){
         
         // Check for iOS 6
         Class mapItemClass = [MKMapItem class];
         if (mapItemClass && [mapItemClass respondsToSelector:@selector(openMapsWithItems:launchOptions:)])
         {
             // Create an MKMapItem to pass to the Maps app
-            CLLocationDegrees lat = [self.geoPositionLatitude doubleValue];
-            CLLocationDegrees lon = [self.geoPositionLongitude doubleValue];
+            CLLocationDegrees lat = [self.timeline.latitude doubleValue];
+            CLLocationDegrees lon = [self.timeline.longitude doubleValue];
             CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(lat,lon );
             MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate
                                                            addressDictionary:nil];
@@ -71,17 +81,20 @@
             [mapItem openInMapsWithLaunchOptions:nil];
         }else{
             NSString *url = [NSString stringWithFormat: @"http://maps.google.com/maps?q=%@",
-                             [[NSString stringWithFormat:@"%@,%@",self.geoPositionLatitude,self.geoPositionLongitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                             [[NSString stringWithFormat:@"%@,%@",self.timeline.latitude,self.timeline.longitude] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
         }
     }
 }
 
 - (IBAction)sharePhoto:(id)sender {
-    if (self.photoPageUrl != nil && self.newestPhotosTableViewController != nil){
+    if (self.timeline.photoPageUrl != nil && self.newestPhotosTableViewController != nil){
+        
+        // check if photo is a private version. If it is, generate a token
+        
               
         // create the item to share
-        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.photoPageUrl] title:self.label.text contentType:SHKURLContentTypeWebpage];
+        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.timeline.photoPageUrl] title:self.label.text contentType:SHKURLContentTypeWebpage];
 
         // Get the ShareKit action sheet
         SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];

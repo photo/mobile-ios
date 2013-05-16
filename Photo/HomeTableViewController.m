@@ -121,7 +121,7 @@
     // details screen
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-            
+    
     // check if needs to update the profile
     [self needsUpdateProfileDetails];
     
@@ -363,7 +363,7 @@
                 }
             }
         }
-                
+        
         // tags
         [newestPhotoCell tags].text=photo.tags;
         newestPhotoCell.private.hidden=YES;
@@ -391,6 +391,9 @@
                                              [newestPhotoCell.photo.superview.layer setShadowPath:[UIBezierPath bezierPathWithRect:[newestPhotoCell.photo.superview.layer bounds]].CGPath];
                                              
                                              
+                                             // set objects
+                                             newestPhotoCell.timeline = photo;
+                                             newestPhotoCell.newestPhotosTableViewController = self;
                                              
                                              // set details of private or not
                                              if ([photo.permission boolValue] == NO){
@@ -400,21 +403,12 @@
                                              // user can share
                                              if (photo.photoUrl != nil){
                                                  newestPhotoCell.shareButton.hidden=NO;
-                                                 newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-                                                 newestPhotoCell.newestPhotosTableViewController = self;
                                              }
-                                             
-                                             // set details geoposition
-                                             newestPhotoCell.geoSharingImage.hidden=NO;
                                              
                                              if (photo.latitude != nil && photo.longitude != nil){
                                                  // show button
                                                  newestPhotoCell.geoPositionButton.hidden=NO;
                                                  newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-on-sharing.png"];
-                                                 
-                                                 // set the latitude and longitude
-                                                 newestPhotoCell.geoPositionLatitude = photo.latitude;
-                                                 newestPhotoCell.geoPositionLongitude = photo.longitude;
                                              }else {
                                                  newestPhotoCell.geoPositionButton.hidden=YES;
                                                  newestPhotoCell.geoSharingImage.image = [UIImage imageNamed:@"home-geo-off-sharing.png"];
@@ -653,7 +647,7 @@
                 WebService *service = [[WebService alloc] init];
                 NSDictionary *rawAnswer = [service getSystemVersion];
                 NSDictionary *result = [rawAnswer objectForKey:@"result"];
-
+                
                 // display details
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if ([result class] != [NSNull class]) {
@@ -662,7 +656,7 @@
                         [standardUserDefaults setValue:result forKey:kServerDetails];
                         
                         if ([result objectForKey:@"isHosted"] == nil){
-                             [standardUserDefaults setValue:NO forKey:kServerDetailsIsHosted];
+                            [standardUserDefaults setValue:NO forKey:kServerDetailsIsHosted];
                         }else{
                             [standardUserDefaults setValue:[result objectForKey:@"isHosted"] forKey:kServerDetailsIsHosted];
                         }
