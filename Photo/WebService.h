@@ -1,6 +1,6 @@
 //
 //  OpenPhotoService.h
-//  iPhone and iPad Example
+//  Trovebox
 //
 //  Created by Patrick Santana on 20/03/12.
 //  Copyright 2013 Trovebox

@@ -1,9 +1,9 @@
 //
 //  PhotoTests.m
-//  PhotoTests
+//  TroveboxTest
 //
 //  Created by Patrick Santana on 25/09/12.
-//  Copyright 2012 OpenPhoto
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.

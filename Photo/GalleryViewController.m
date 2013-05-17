@@ -1,9 +1,9 @@
 //
 //  GalleryViewController.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 30/10/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -17,8 +17,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-
 
 #import "GalleryViewController.h"
 

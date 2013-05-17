@@ -1,9 +1,9 @@
 //
 //  AssetsLibraryUtilities.m
-//  Photo
+//  Trovebox
 //
 //  Created by Patrick Santana on 04/03/12.
-//  Copyright 2012 Photo
+//  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@
 
 @interface AssetsLibraryUtilities()
 +(NSDictionary*) parseAssetUrl:(NSURL*) url;
++ (NSDate*) getFileDate:(NSURL*) url;
 @end
 
 @implementation AssetsLibraryUtilities
@@ -56,9 +57,16 @@
     return pairs;
 }
 
-+ (NSString *) getFileNameForImage:(NSData*)data 
++ (NSString*) getFileNameForImage:(NSData*)data 
                                url:(NSURL*) url
 {
+    
+    CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);    
+    NSDictionary *exif = (__bridge NSDictionary *) CGImageSourceCopyPropertiesAtIndex(source,0,NULL);
+    
+    // check if there is date, if not returns 
+    
+    
     if (!url){
         CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
         CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
@@ -70,6 +78,18 @@
     }else{
         // no filter, image is located on Library
         return [NSString stringWithFormat:@"%@.%@",[AssetsLibraryUtilities getAssetsUrlId:url],[AssetsLibraryUtilities getAssetsUrlExtension:url]];
+    }
+}
+
++ (NSDate*) getFileDate:(NSURL*) url
+{
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSDictionary* attrs = [fm attributesOfItemAtPath:[url absoluteString] error:nil];
+    
+    if (attrs != nil) {
+        return (NSDate*)[attrs objectForKey: NSFileCreationDate];
+    }else {
+        return nil;
     }
 }
 
