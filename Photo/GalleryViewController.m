@@ -157,7 +157,6 @@
     return cell;
 }
 
-
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath
 {
     // Create & present browser
@@ -272,6 +271,7 @@
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        NSLog(@"Exception %@",exception.description);
                         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                         [alert showAlert];

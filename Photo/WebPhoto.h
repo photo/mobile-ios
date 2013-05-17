@@ -12,17 +12,14 @@
 @interface WebPhoto : NSObject
 
 @property (nonatomic, strong) NSDate * date;
-@property (nonatomic, strong) NSNumber * height;
 @property (nonatomic, strong) NSString * identification;
 @property (nonatomic, strong) NSString * pageUrl;
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) NSString * url;
-@property (nonatomic, strong) NSNumber * width;
 @property (nonatomic, strong) NSNumber * thumbWidth;
 @property (nonatomic, strong) NSNumber * thumbHeight;
 @property (nonatomic, strong) NSString * thumbUrl;
 @property (nonatomic, strong) MWPhoto * mwphoto;
-
 
 + (WebPhoto *) photoWithServerInfo:(NSDictionary *) response;
 

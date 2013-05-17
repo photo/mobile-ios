@@ -159,7 +159,6 @@
 		CD4B59401733CD730023C199 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593D1733CD730023C199 /* Icon-Small-50.png */; };
 		CD4B59411733CD730023C199 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593E1733CD730023C199 /* Icon-Small.png */; };
 		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
-		CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4516F20E490044427E /* Photo+Methods.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
 		CD764289161ED9BB00E0B657 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD764287161ED9BB00E0B657 /* iRate.m */; };
 		CD76429F161EDAC000E0B657 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = CD76428C161EDAC000E0B657 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -980,8 +979,6 @@
 		CD4B593E1733CD730023C199 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "images/Icon-Small.png"; sourceTree = "<group>"; };
 		CD5F5E4116F20E050044427E /* Gallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
 		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
-		CD5F5E4416F20E490044427E /* Photo+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+Methods.h"; sourceTree = "<group>"; };
-		CD5F5E4516F20E490044427E /* Photo+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+Methods.m"; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
 		CD764286161ED9BB00E0B657 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iRate.h; path = Frameworks/iRate/iRate/iRate.h; sourceTree = "<group>"; };
 		CD764287161ED9BB00E0B657 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iRate.m; path = Frameworks/iRate/iRate/iRate.m; sourceTree = "<group>"; };
@@ -1625,8 +1622,6 @@
 		CD4613D2161C7A9F0028619D /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				CD5F5E4416F20E490044427E /* Photo+Methods.h */,
-				CD5F5E4516F20E490044427E /* Photo+Methods.m */,
 				CDFAF35E16285C4E007A4FDF /* Synced+Methods.h */,
 				CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */,
 				CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */,
@@ -3099,7 +3094,6 @@
 				CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */,
 				CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */,
 				CD5F5E4316F20E050044427E /* Gallery.m in Sources */,
-				CD5F5E4616F20E490044427E /* Photo+Methods.m in Sources */,
 				CD927E4716F8712100843FEE /* WebPhoto.m in Sources */,
 				CD1A6CDB1704811B0002763A /* TMPhotoQuiltViewCell.m in Sources */,
 				CD1A6D151704959E0002763A /* MWCaptionView.m in Sources */,
