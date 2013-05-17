@@ -33,12 +33,9 @@
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-
 // to update profile
 #import "DateUtilities.h"
-
 #import "MWPhotoBrowser.h"
-
 
 @interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate, MWPhotoBrowserDelegate>
 {

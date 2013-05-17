@@ -267,7 +267,7 @@
 {
     [self validateCredentials];
     
-    NSString *urlString = [NSString stringWithFormat: @"%@/v1/token/photo/%@/create.json", self.server, id];
+    NSString *urlString = [NSString stringWithFormat: @"%@/token/photo/%@/create.json", self.server, id];
     NSURL *url = [NSURL URLWithString:urlString];
     
     OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];

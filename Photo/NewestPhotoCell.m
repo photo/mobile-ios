@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -34,10 +34,6 @@
 
 @synthesize timeline=_timeline;
 
-//@synthesize geoPositionLatitude=_geoPositionLatitude;
-//@synthesize geoPositionLongitude=_geoPositionLongitude;
-
-@synthesize photoPageUrl=_photoPageUrl;
 @synthesize newestPhotosTableViewController=_newestPhotosTableViewController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -53,14 +49,6 @@
 {
     [super setSelected:selected animated:animated];
 }
-
-
-// newestPhotoCell.photoPageUrl = photo.photoPageUrl;
-// set the latitude and longitude
-// newestPhotoCell.geoPositionLatitude = photo.latitude;
-// newestPhotoCell.geoPositionLongitude = photo.longitude;
-
-
 
 - (IBAction)openGeoPosition:(id)sender {
     if (self.timeline.latitude != 0){
@@ -90,21 +78,70 @@
 - (IBAction)sharePhoto:(id)sender {
     if (self.timeline.photoPageUrl != nil && self.newestPhotosTableViewController != nil){
         
+        __block NSString *url = self.timeline.photoPageUrl;
+        
         // check if photo is a private version. If it is, generate a token
-        
-              
-        // create the item to share
-        SHKItem *item = [SHKItem URL:[NSURL URLWithString:self.timeline.photoPageUrl] title:self.label.text contentType:SHKURLContentTypeWebpage];
-
-        // Get the ShareKit action sheet
-        SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-        
-        // ShareKit detects top view controller (the one intended to present ShareKit UI) automatically,
-        // but sometimes it may not find one. To be safe, set it explicitly
-        [SHK setRootViewController:self.newestPhotosTableViewController];
-        
-        // Display the action sheet
-        [actionSheet showFromToolbar:self.newestPhotosTableViewController.navigationController.toolbar];
+        if ([self.timeline.permission boolValue] == NO){
+            [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                              withAction:@"buttonPress"
+                                                               withLabel:@"Share private photo"
+                                                               withValue:nil];
+            
+            dispatch_queue_t token = dispatch_queue_create("generate_token_for_private_image", NULL);
+            dispatch_async(token, ^{
+                @try {
+                    // get's token from website
+                    WebService *service = [[WebService alloc] init];
+                    
+                    // set in url
+                    url = [service shareToken:self.timeline.key];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        // stop loading
+                        [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
+                        
+                        // share the private photo
+                        [self shareUrl:[NSString stringWithFormat:@"%@%@",self.timeline.photoPageUrl, url]];
+                    });
+                    
+                }@catch (NSException *exception) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                        [alert showAlert];
+                    });
+                }
+            });
+            dispatch_release(token);
+            
+            // show progress bar
+            [MBProgressHUD showHUDAddedTo:self.newestPhotosTableViewController.view animated:YES];
+        }else{
+            [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                              withAction:@"buttonPress"
+                                                               withLabel:@"Share public photo"
+                                                               withValue:nil];
+            
+            // share the public photo
+            [self shareUrl:url];
+        }
     }
+}
+
+- (void) shareUrl:(NSString*) url
+{
+    // create the item to share
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:url] title:self.label.text contentType:SHKURLContentTypeWebpage];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // ShareKit detects top view controller (the one intended to present ShareKit UI) automatically,
+    // but sometimes it may not find one. To be safe, set it explicitly
+    [SHK setRootViewController:self.newestPhotosTableViewController];
+    
+    // Display the action sheet
+    [actionSheet showFromToolbar:self.newestPhotosTableViewController.navigationController.toolbar];
 }
 @end

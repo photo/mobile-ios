@@ -405,6 +405,8 @@
                                                  newestPhotoCell.shareButton.hidden=NO;
                                              }
                                              
+                                             // set details geoposition
+                                             newestPhotoCell.geoSharingImage.hidden=NO;
                                              if (photo.latitude != nil && photo.longitude != nil){
                                                  // show button
                                                  newestPhotoCell.geoPositionButton.hidden=NO;
