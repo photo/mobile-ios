@@ -21,6 +21,6 @@
 @interface DateUtilities : NSObject
 
 + (int)daysBetween:(NSDate*) dt1 and:(NSDate*) dt2;
-+ (NSString*) formatDatePhoto:(NSDate*) date;
++ (NSString*) formatDate:(NSDate*) date;
 
 @end

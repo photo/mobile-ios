@@ -30,9 +30,12 @@
     return [components day]+1;
 }
 
-+ (NSString *) formatDatePhoto:(NSDate *) date
++ (NSString *) formatDate:(NSDate *) date
 {
-    return nil;
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormat setTimeStyle:NSDateFormatterShortStyle];
+    return [dateFormat stringFromDate:date];
 }
 
 @end
