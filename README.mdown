@@ -53,7 +53,7 @@ The Reachability class is included in ShareKit. As this class already exists in 
 ### Modules
 Don't forget to execute
 ````
-$ git submodule update --init -- recursive
+$ git submodule update --init --recursive
 ````
 
 ### Localization
