@@ -22,5 +22,6 @@
 
 + (int)daysBetween:(NSDate*) dt1 and:(NSDate*) dt2;
 + (NSString*) formatDate:(NSDate*) date;
++ (NSDate*) getDateFrom:(NSString*) string withFormat:(NSString*) format;
 
 @end
