@@ -19,11 +19,14 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "DateUtilities.h"
 
 @interface AssetsLibraryUtilities : NSObject
 
 + (NSString *) getAssetsUrlExtension:(NSURL *) url;
 + (NSString *) getAssetsUrlId:(NSURL *) url;
 + (NSString *) getFileNameForImage:(NSData*)data 
+                               url:(NSURL*) url;
++ (NSString *) getPhotoTitleForImage:(NSData*)data
                                url:(NSURL*) url;
 @end

@@ -429,7 +429,7 @@
     NSNumber *facebook = ([self.shareFacebook isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]) ;
     NSNumber *twitter = ([self.shareTwitter isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
     NSNumber *permission = (![self.permissionPicture isOn] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]);
-    NSString *title = self.titleTextField.text.length > 0 ? self.titleTextField.text : @"";
+    NSString *title = self.titleTextField.text.length > 0 ? self.titleTextField.text : nil;
     NSString *tags = [self.tagController getSelectedTagsInJsonFormat];
     NSString *albums = [self.albumController getSelectedAlbumsIdentification];
     
@@ -511,7 +511,7 @@
             }
             
             // wait for 2 seconds to go to main screen
-            [NSThread sleepForTimeInterval:2];
+            [NSThread sleepForTimeInterval:4];
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 // stop loading
@@ -625,6 +625,11 @@
         
         // generate a file name
         NSString *name = [AssetsLibraryUtilities getFileNameForImage:image url:url];
+        
+        // check title of photo
+        if (title == nil){
+            title = [AssetsLibraryUtilities getPhotoTitleForImage:image url:url];
+        }
         
         // generate path of temporary file
         NSURL *pathTemporaryFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:name]];

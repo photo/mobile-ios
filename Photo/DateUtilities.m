@@ -32,6 +32,9 @@
 
 + (NSString *) formatDate:(NSDate *) date
 {
+    if (date == nil)
+        return nil;
+    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateStyle:NSDateFormatterMediumStyle];
     [dateFormat setTimeStyle:NSDateFormatterShortStyle];
@@ -40,9 +43,16 @@
 
 + (NSDate*) getDateFrom:(NSString*) string withFormat:(NSString*) format
 {
+    if (string == nil)
+    {
+        return nil;
+    }
+    
     // Convert string to date object
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:format];
+    if (format !=nil){
+        [dateFormat setDateFormat:format];
+    }
     return [dateFormat dateFromString:string];
 }
 
