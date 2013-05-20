@@ -92,10 +92,10 @@ NSString *const kExifDateFormat = @"yyyy:MM:dd HH:mm:ss";
     }
     
 #ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Date for file = %@",[[DateUtilities formatDate:date] stringByReplacingOccurrencesOfString:@":" withString:@"."]);
+    NSLog(@"Date for file = %@", [DateUtilities formatDate:date]);
 #endif
     
-    return [[DateUtilities formatDate:date] stringByReplacingOccurrencesOfString:@":" withString:@"."];
+    return [DateUtilities formatDate:date];
 }
 + (NSString*) getFileNameForImage:(NSData*)data
                               url:(NSURL*) url
