@@ -27,26 +27,6 @@
 			<string>Photos</string>
 		</dict>
 		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>photos_save_camera_roll_or_snapshot</string>
-			<key>Title</key>
-			<string>Save original to Library</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>photos_save_filtered</string>
-			<key>Title</key>
-			<string>Save filtered to Library</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>

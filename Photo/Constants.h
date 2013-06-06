@@ -20,8 +20,6 @@
 @interface Constants : NSObject
 
 extern NSString * const kAppInitialized;
-extern NSString * const kPhotosSaveCameraRollOrSnapshot;
-extern NSString * const kPhotosSaveFiltered;
 extern NSString * const kPhotosArePrivate;
 extern NSString * const kTroveboxServer;
 extern NSString * const kTroveboxNameUser;

@@ -23,7 +23,8 @@
 @interface JobUploaderController (){
     BOOL running;
 }
-- (void) executeJob;
+- (void) executeUploadJob;
+- (void) executeSyncJob;
 
 @end
 
@@ -53,8 +54,11 @@
             while (running) {
                 // sleep for 3 seconds
                 [NSThread sleepForTimeInterval:3];
+                
                 // execute the method
-                [self executeJob];
+                [self executeUploadJob];
+                
+                // check if users enabled Sync
             }
         }@catch (NSException *exception) {
             NSLog(@"Error in the job %@", [exception description]);
@@ -74,8 +78,12 @@
     return running;
 }
 
+- (void) executeSyncJob
+{
+    
+}
 
-- (void) executeJob
+- (void) executeUploadJob
 {
     dispatch_async(dispatch_get_main_queue(), ^{
 #ifdef DEVELOPMENT_ENABLED

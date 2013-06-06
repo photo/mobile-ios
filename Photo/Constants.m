@@ -24,10 +24,6 @@
 
 // Const for the app initialization variable
 NSString * const kAppInitialized = @"app_initialized";
-// Save original to Library - NSUserDefaults name
-NSString * const kPhotosSaveCameraRollOrSnapshot=@"photos_save_camera_roll_or_snapshot";
-// Save filtered to Library - NSUserDefaults name
-NSString * const kPhotosSaveFiltered=@"photos_save_filtered";
 // Privacy - NSUserDefaults name
 NSString * const kPhotosArePrivate=@"photos_are_private";
 // NSUserDefault variable name for the Trovebox Server

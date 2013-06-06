@@ -49,12 +49,7 @@
     /*
      * set the initial configuration for the user properties
      */
-    if (standardUserDefaults) {
-        // Save original to Library
-        [standardUserDefaults setBool:YES forKey:kPhotosSaveCameraRollOrSnapshot];
-        // Save filtered to Library
-        [standardUserDefaults setBool:YES forKey:kPhotosSaveFiltered];
-        
+    if (standardUserDefaults) {        
         // Privacy
         [standardUserDefaults setBool:YES forKey:kPhotosArePrivate];
         
