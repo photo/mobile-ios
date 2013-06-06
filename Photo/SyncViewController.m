@@ -216,6 +216,12 @@
         }
         
         [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
+        
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Sync - next pressed"
+                                                           withValue:nil];
+        
     }@catch (NSException *exception) {
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Error to select your photos" duration:3000];
         [alert showAlert];
@@ -390,10 +396,21 @@
         buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
         message = @"Showing all of your photos";
         [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
+        
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Sync - showing all photos"
+                                                           withValue:nil];
+        
     }else{
         buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
         message = @"Hiding photos you've already uploaded";
         [standardUserDefaults setBool:NO forKey:kSyncShowUploadedPhotos];
+        
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Sync - hiding photos uploaded"
+                                                           withValue:nil];
     }
     [standardUserDefaults synchronize];
     

@@ -65,8 +65,12 @@
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Maximum reached",@"Sync") duration:5000];
         [alert showAlert];
         
-        
         overlayView.hidden = TRUE;
+
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Sync - maximum reached"
+                                                           withValue:nil];
     }
     
     // check limits
