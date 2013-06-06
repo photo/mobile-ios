@@ -628,7 +628,7 @@
         
         // check title of photo
         if (title == nil){
-            title = [AssetsLibraryUtilities getPhotoTitleForImage:image url:url];
+            title = [[NSString alloc]initWithFormat:@"\t%@",[AssetsLibraryUtilities getPhotoTitleForImage:image url:url]];
         }
         
         // generate path of temporary file
