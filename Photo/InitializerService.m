@@ -67,6 +67,10 @@
         // show photos uploades
         [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
         
+        // for auto-sync
+        [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
+        [standardUserDefaults setBool:NO forKey:kAutoSyncMessageDisplayed];
+        
         // synchronize the keys
         [standardUserDefaults synchronize];
     }
@@ -86,6 +90,9 @@
     // clean images saved localy
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
+    // for auto-sync
+    [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
+    [standardUserDefaults setBool:NO forKey:kAutoSyncMessageDisplayed];
     
     // synchronize the keys
     [standardUserDefaults synchronize];

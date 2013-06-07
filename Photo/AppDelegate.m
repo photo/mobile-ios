@@ -90,6 +90,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [initializer initialize];
     }
     
+    // updater
+    UpdateUtilities *updater = [UpdateUtilities instance];
+    if ([updater needsUpdate]) {
+        [updater update];
+    }
+    
     self.window.rootViewController = deckController;
     [self.window makeKeyAndVisible];
     

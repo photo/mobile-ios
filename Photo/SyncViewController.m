@@ -150,6 +150,19 @@
     }else{
         loaded = YES;
     }
+    
+    // check if users wants to enable auto sync
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:kAutoSyncMessageDisplayed] || [[NSUserDefaults standardUserDefaults] boolForKey:kAutoSyncMessageDisplayed] == NO){
+        // show message
+        // limit reached,
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Enable Auto Sync", nil)
+                                                        message: NSLocalizedString(@"Would you like to enable auto sync? Your photos will be upload as private over wifi only.", @"Message to enable auto sync")
+                                                       delegate:self
+                                              cancelButtonTitle:NSLocalizedString(@"No",nil)
+                                              otherButtonTitles:NSLocalizedString(@"Yes",nil), nil];
+        [alert show];
+    }
+    
 }
 
 -(void)preparePhotos {
@@ -197,7 +210,7 @@
             NSLog(@"done enumerating photos");
 #endif
             [self.tableView reloadData];
-            [self.navigationItem setTitle:@"Pick Photos"];
+            [self.navigationItem setTitle:@"Select Photos"];
         }
     }
     
@@ -394,7 +407,7 @@
     NSString *message;
     if (!hidden){
         buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
-        message = @"Showing all of your photos";
+        message = NSLocalizedString(@"Showing all of your photos", @"Message sync to show the photos");
         [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
         
         [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
@@ -404,7 +417,7 @@
         
     }else{
         buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
-        message = @"Hiding photos you've already uploaded";
+        message = NSLocalizedString(@"Hiding photos you've already uploaded", @"Message sync to hiden the photos");;
         [standardUserDefaults setBool:NO forKey:kSyncShowUploadedPhotos];
         
         [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
@@ -417,7 +430,7 @@
     [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-    hud.labelText = @"Loading";
+    hud.labelText = NSLocalizedString(@"Loading", nil);
     
     // load all urls
     self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
@@ -446,7 +459,7 @@
                                self.assetGroup = group;
                                [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-                               hud.labelText = @"Loading";
+                               hud.labelText = NSLocalizedString(@"Loading", nil);
                                assetsNumber = [self.assetGroup numberOfAssets];
                                
                                // with the local group, we can load the images
@@ -542,5 +555,30 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if (buttonIndex == 1){
+        // Yes
+        [standardUserDefaults setBool:YES forKey:kAutoSyncEnabled];
+        
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Auto Sync - select YES"
+                                                           withValue:nil];
+    }else{
+        // No
+        [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
+        
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Auto Sync - select NO"
+                                                           withValue:nil];
+    }
+    
+    // set any value in the variable that we showed the message
+    [standardUserDefaults setBool:YES forKey:kAutoSyncMessageDisplayed];
 }
 @end

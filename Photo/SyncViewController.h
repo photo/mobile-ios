@@ -31,7 +31,7 @@
 
 #import "GAI.h"
 
-@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate>
+@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate, UIAlertViewDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	

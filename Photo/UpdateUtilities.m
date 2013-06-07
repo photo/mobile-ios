@@ -31,7 +31,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"4.1.2";
+    return @"4.1.3";
 }
 
 - (BOOL) needsUpdate{
@@ -56,6 +56,8 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
+    [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
+    [standardUserDefaults setBool:NO forKey:kAutoSyncMessageDisplayed];
     [standardUserDefaults synchronize];
     
     // delete timeline

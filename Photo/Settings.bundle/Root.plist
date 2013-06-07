@@ -24,7 +24,7 @@
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string>Defaults</string>
+			<string>Photos</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
@@ -32,7 +32,17 @@
 			<key>Key</key>
 			<string>photos_are_private</string>
 			<key>Title</key>
-			<string>Photos are private</string>
+			<string>Private by default</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Key</key>
+			<string>photos_auto_sync</string>
+			<key>Title</key>
+			<string>Auto Sync by WiFi</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

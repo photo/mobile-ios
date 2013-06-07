@@ -112,4 +112,10 @@ NSString * const kProfileAccountProReceipt=@"profile_account_pro_receipt";
 NSString * const kProfileLatestUpdateDate=@"profile_latest_update_date";
 NSString * const kProfileLimitAllowed=@"profile_limit_allowed";
 
+
+// Auto Sync
+NSString * const kAutoSyncEnabled=@"photos_auto_sync";
+NSString * const kAutoSyncMessageDisplayed=@"photos_auto_sync_message_displayed";
+
+
 @end
