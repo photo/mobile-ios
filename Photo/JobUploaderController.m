@@ -58,7 +58,10 @@
                 // execute the method
                 [self executeUploadJob];
                 
-                // check if users enabled Sync
+                // execute Sync
+                [self executeSyncJob];
+                
+                
             }
         }@catch (NSException *exception) {
             NSLog(@"Error in the job %@", [exception description]);
@@ -80,14 +83,31 @@
 
 - (void) executeSyncJob
 {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Job: sync");
+#endif
+        
+        // check if users enables sync
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kAutoSyncEnabled] == YES){
+            
+            if ([Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){
+                // queue is EMPTY, take some pictures from the gallery
+#ifdef DEVELOPMENT_ENABLED
+                NSLog(@"Job: queue is empty");
+#endif
+            }
+        }
+    });
 }
 
 - (void) executeUploadJob
 {
     dispatch_async(dispatch_get_main_queue(), ^{
+        
 #ifdef DEVELOPMENT_ENABLED
-        NSLog(@"Executing job");
+        NSLog(@"Job: uploader");
 #endif
         
         int i = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
@@ -133,7 +153,7 @@
                     @try{
                         // prepare the data to upload
                         NSString *filename = photo.fileName;
-   
+                        
                         // set size
                         delegate.totalSize = [NSNumber numberWithInteger:data.length];
                         
@@ -155,7 +175,7 @@
                                     // add to the sync list, with that we don't need to show photos already uploaded.
                                     // in the case of edited images via Aviary, we don't save it.
                                     Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
-                                                                                        inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                                                                                  inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                                     sync.filePath = photo.syncedUrl;
                                     sync.status = kSyncedStatusTypeUploaded;
                                     
