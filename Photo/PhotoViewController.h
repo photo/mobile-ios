@@ -22,11 +22,9 @@
 #import "Synced+Methods.h"
 #import "Timeline+Methods.h"
 
-#import "ContentTypeUtilities.h"
-#import <AssetsLibrary/AssetsLibrary.h>
-#import "AssetsLibraryUtilities.h"
-
 #import "GAI.h"
+
+#import "PhotoUploader.h"
 
 @interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
 
@@ -50,9 +48,9 @@
 // construct that receives a list with all images URL from Sync
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil images:(NSArray *) imagesFromSync;
 
-// assets library
-@property (nonatomic, strong) ALAssetsLibrary *assetsLibrary;
-
 @property (weak, nonatomic) IBOutlet UILabel *labelLimitUpload;
+
+// for upload
+@property (nonatomic, strong) PhotoUploader *uploader;
 
 @end

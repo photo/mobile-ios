@@ -22,6 +22,10 @@
 #import "NSDictionarySerializer.h"
 #import "Timeline+Methods.h"
 #import "Synced+Methods.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "AssetsLibraryUtilities.h"
+#import <ImageIO/ImageIO.h>
+
 
 @interface JobUploaderController : NSObject 
 

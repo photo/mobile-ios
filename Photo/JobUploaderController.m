@@ -19,12 +19,17 @@
 //
 
 #import "JobUploaderController.h"
+#import "PhotoUploader.h"
 
 @interface JobUploaderController (){
     BOOL running;
+    ALAssetsLibrary *library;
+    NSArray *imagesAlreadySynced;
+    PhotoUploader *uploader;
 }
 - (void) executeUploadJob;
 - (void) executeSyncJob;
+- (void) loadPhotosToDatabase:(ALAssetsGroup *) group;
 
 @end
 
@@ -41,6 +46,16 @@
     });
     
     return shared;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        library = [[ALAssetsLibrary alloc] init];
+        uploader = [[PhotoUploader alloc]init];
+    }
+    return self;
 }
 
 - (void) start
@@ -97,10 +112,96 @@
 #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Job: queue is empty");
 #endif
+                
+                // load images from sync already uploded
+                imagesAlreadySynced = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                
+                // get 30 images from the Gallery that were not uploaded yet
+                
+                // Group enumerator Block
+                void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
+                {
+                    if (group == nil)
+                    {
+                        return;
+                    }
+                    
+                    if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
+                        // with the local group, we can load the images
+                        [self performSelectorInBackground:@selector(loadPhotosToDatabase:) withObject:group];
+                    }
+                };
+                
+                // Group Enumerator Failure Block
+                void (^assetGroupEnumberatorFailure)(NSError *) = ^(NSError *error) {
+                    NSLog(@"A problem occured %@", [error description]);
+                };
+                
+                // Show only the Saved Photos
+                [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                       usingBlock:assetGroupEnumerator
+                                     failureBlock:assetGroupEnumberatorFailure];
             }
         }
     });
 }
+
+-(void)loadPhotosToDatabase:(ALAssetsGroup *) group {
+    // put them in the table to upload
+    [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+    int assetsNumber = [group numberOfAssets];
+    __block int assetsNotUploaded = 0;
+    
+    @autoreleasepool {
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"numberOfAssets %i", assetsNumber);
+#endif
+        
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
+         {
+             if(result == nil)
+             {
+                 return;
+             }
+             
+             if ( assetsNotUploaded < 30){
+                 
+                 // check if user already uploaded
+                 NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
+                 
+                 BOOL alreadyUploaded = [imagesAlreadySynced containsObject:asset];
+                 if (!alreadyUploaded){
+                     assetsNotUploaded++;
+                     
+#ifdef DEVELOPMENT_ENABLED
+                     NSLog(@"Photo not uploaded, adding %d", assetsNotUploaded);
+#endif
+                     NSURL *url = [[result valueForProperty:ALAssetPropertyURLs] valueForKey:[[[result valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]];
+                     [uploader loadDataAndSaveEntityUploadDate:[NSDate date]
+                                             shareFacebook:[NSNumber numberWithBool:NO]
+                                              shareTwitter:[NSNumber numberWithBool:NO]
+                                                permission:[NSNumber numberWithBool:NO]
+                                                      tags:@""
+                                                    albums:@""
+                                                     title:@""
+                                                       url:url
+                                                  groupUrl:nil];
+                 }
+             }else{
+                 // stop the enumeration
+                 *stop = YES;
+                 // send to database
+             }
+         }];
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"done enumerating photos");
+#endif
+        
+    }
+}
+
+
 
 - (void) executeUploadJob
 {
@@ -147,8 +248,8 @@
                 NSURL *storedURL = [NSURL URLWithString:photo.photoDataTempUrl];
                 NSData *data = [[NSData alloc] initWithContentsOfURL:storedURL];
                 
-                dispatch_queue_t uploader = dispatch_queue_create("job_uploader", NULL);
-                dispatch_async(uploader, ^{
+                dispatch_queue_t uploaderQueue = dispatch_queue_create("job_uploader", NULL);
+                dispatch_async(uploaderQueue, ^{
                     
                     @try{
                         // prepare the data to upload
@@ -274,7 +375,7 @@
                         
                     }
                 });
-                dispatch_release(uploader);
+                dispatch_release(uploaderQueue);
             }
         }
     });

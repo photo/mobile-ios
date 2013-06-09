@@ -21,30 +21,7 @@
 
 @interface PhotoViewController()
 - (void) switchedFacebook;
-
 - (void) switchedTwitter;
-
-- (void) saveEntityUploadDate:(NSDate *) date
-                shareFacebook:(NSNumber *) facebook
-                 shareTwitter:(NSNumber *) twitter
-                        image:(NSData *) image
-                   permission:(NSNumber *) permission
-                         tags:(NSString *) tags
-                       albums:(NSString *) albums
-                        title:(NSString *) title
-                          url:(NSURL *) url
-                     groupUrl:(NSString *) urlGroup;
-
-- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date
-                           shareFacebook:(NSNumber *) facebook
-                            shareTwitter:(NSNumber *) twitter
-                              permission:(NSNumber *) permission
-                                    tags:(NSString *) tags
-                                  albums:(NSString *) albums
-                                   title:(NSString *) title
-                                     url:(NSURL *) url
-                                groupUrl:(NSString *) urlGroup;
-
 - (void)upload:(id)sender;
 
 @end
@@ -58,8 +35,8 @@
 @synthesize image= _image;
 @synthesize images = _images;
 
-// assets
-@synthesize assetsLibrary = _assetsLibrary;
+// to upload
+@synthesize uploader=_uploader;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL *) imageFromCamera
 {
@@ -68,7 +45,7 @@
     if (self) {
         // Custom initialization
         self.image = imageFromCamera;
-        self.assetsLibrary = [[ALAssetsLibrary alloc] init];
+        self.uploader = [[PhotoUploader alloc] init];
         
         // initialization of tag controller
         self.tagController = [[TagViewController alloc] init];
@@ -88,7 +65,7 @@
     if (self) {
         // Custom initialization
         self.images = imagesFromSync;
-        self.assetsLibrary = [[ALAssetsLibrary alloc] init];
+        self.uploader = [[PhotoUploader alloc] init];
         
         // how many images we need to process?
         if (self.images){
@@ -451,7 +428,7 @@
                 int i = [self.images count];
                 for ( NSURL *url in self.images){
                     if ( i != 1 ){
-                        [self loadDataAndSaveEntityUploadDate:[NSDate date]
+                        [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
                                                 shareFacebook:[NSNumber numberWithBool:NO]
                                                  shareTwitter:[NSNumber numberWithBool:NO]
                                                    permission:permission
@@ -470,7 +447,7 @@
                         // create the url to connect to OpenPhoto
                         NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kTroveboxServer], [self.images count]];
                         
-                        [self loadDataAndSaveEntityUploadDate:[NSDate date]
+                        [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
                                                 shareFacebook:facebook
                                                  shareTwitter:twitter
                                                    permission:permission
@@ -486,7 +463,7 @@
                 }
             }else{
                 // just one photo to share
-                [self loadDataAndSaveEntityUploadDate:[NSDate date]
+                [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
                                         shareFacebook:facebook
                                          shareTwitter:twitter
                                            permission:permission
@@ -551,136 +528,6 @@
     
     // next visit to Newest Home does not need update
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDisableUpdateHome object:nil];
-}
-
-- (void) loadDataAndSaveEntityUploadDate:(NSDate *) date
-                           shareFacebook:(NSNumber *) facebook
-                            shareTwitter:(NSNumber *) twitter
-                              permission:(NSNumber *) permission
-                                    tags:(NSString *) tags
-                                  albums:(NSString *) albums
-                                   title:(NSString *) title
-                                     url:(NSURL *) url
-                                groupUrl:(NSString *) urlGroup
-{
-    // load image and then save it to database
-    // via block
-    ALAssetsLibraryAssetForURLResultBlock resultBlock = ^(ALAsset *asset)
-    {
-        
-        ALAssetRepresentation *rep = [asset defaultRepresentation];
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"GOT ASSET, File size: %f", [rep size] / (1024.0f*1024.0f));
-#endif
-        uint8_t* buffer = malloc([rep size]);
-        
-        NSError* error = NULL;
-        NSUInteger bytes = [rep getBytes:buffer fromOffset:0 length:[rep size] error:&error];
-        NSData *data = nil;
-        
-        if (bytes == [rep size]){
-#ifdef DEVELOPMENT_ENABLED
-            NSLog(@"Asset %@ loaded from Asset Library OK", url);
-#endif
-            data = [NSData dataWithBytes:buffer length:bytes];
-            [self saveEntityUploadDate:date
-                         shareFacebook:facebook
-                          shareTwitter:twitter
-                                 image:data
-                            permission:permission
-                                  tags:tags
-                                albums:albums
-                                 title:title
-                                   url:url
-                              groupUrl:urlGroup];
-        }else{
-            NSLog(@"Error '%@' reading bytes from asset: '%@'", [error localizedDescription], url);
-        }
-        
-        free(buffer);
-    };
-    
-    // block for failed image
-    ALAssetsLibraryAccessFailureBlock failureBlock  = ^(NSError *error)
-    {
-        NSLog(@"Error '%@' getting asset from library", [error localizedDescription]);
-    };
-    
-    // schedules the asset read
-    [self.assetsLibrary assetForURL:url resultBlock:resultBlock failureBlock:failureBlock];
-}
-
-- (void) saveEntityUploadDate:(NSDate *) date
-                shareFacebook:(NSNumber *) facebook
-                 shareTwitter:(NSNumber *) twitter
-                        image:(NSData *) image
-                   permission:(NSNumber *) permission
-                         tags:(NSString *) tags
-                       albums:(NSString *) albums
-                        title:(NSString *) title
-                          url:(NSURL *) url
-                     groupUrl:(NSString *) urlGroup
-{
-    if ( image != nil){
-        
-        // generate a file name
-        NSString *name = [AssetsLibraryUtilities getFileNameForImage:image url:url];
-        
-        // check title of photo
-        if (title == nil){
-            title = [[NSString alloc]initWithFormat:@"\t%@",[AssetsLibraryUtilities getPhotoTitleForImage:image url:url]];
-        }
-        
-        // generate path of temporary file
-        NSURL *pathTemporaryFile = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:name]];
-        
-        // save in a temporary folder
-        BOOL result = [image writeToURL:pathTemporaryFile atomically:NO];
-        
-        // generate a thumb
-        CGSize itemSize = CGSizeMake(70, 70);
-        UIGraphicsBeginImageContext(itemSize);
-        
-        UIImage *imageTemp =  [UIImage imageWithData:image];
-        [imageTemp drawInRect:CGRectMake(0, 0, 70, 70)];
-        imageTemp = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        NSData* data =[NSData dataWithData:UIImagePNGRepresentation (imageTemp)];
-        
-        
-        //in the main queue, generate TimelinePhotos
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @autoreleasepool{
-                if (result){
-                    // data to be saved in the database
-                    Timeline *uploadInfo =  [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
-                                                                          inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-                    
-                    // details form this upload
-                    uploadInfo.date = date;
-                    uploadInfo.dateUploaded = date;
-                    uploadInfo.facebook = facebook;
-                    uploadInfo.twitter = twitter;
-                    uploadInfo.permission = permission;
-                    uploadInfo.title =  title;
-                    uploadInfo.tags=tags;
-                    uploadInfo.albums=albums;
-                    uploadInfo.status=kUploadStatusTypeCreated;
-                    uploadInfo.photoDataTempUrl = [pathTemporaryFile absoluteString];
-                    uploadInfo.photoDataThumb = data;
-                    uploadInfo.fileName = name;
-                    uploadInfo.userUrl = [SharedAppDelegate userHost];
-                    uploadInfo.photoToUpload = [NSNumber numberWithBool:YES];
-                    uploadInfo.photoUploadMultiplesUrl = urlGroup;
-                    
-                    if (url){
-                        // add to the sync list, with that we don't need to show photos already uploaded.
-                        uploadInfo.syncedUrl = [AssetsLibraryUtilities getAssetsUrlId:url];
-                    }
-                }}
-        });
-    }
 }
 
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
