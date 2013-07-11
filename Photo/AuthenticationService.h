@@ -44,10 +44,8 @@
 - (void) startOAuthProcedure:(NSURL*) url;
 
 // for login
-+ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email;
 + (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
 + (Account *) signIn:(NSString*) email password:(NSString*) pwd;
-+ (BOOL) checkUserFacebookEmail:(NSString*) email;
 + (NSString *) recoverPassword:(NSString *) email;
 
 + (void) sendToServerReceipt:(NSData *) receipt forUser:(NSString *) email;

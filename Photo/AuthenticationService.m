@@ -123,14 +123,14 @@
     // synchronize the keys
     [standardUserDefaults synchronize];
     
-     // reset core data
-     [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-     [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+    // reset core data
+    [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+    [Synced deleteAllSyncedPhotosInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     
-     NSError *saveError = nil;
-     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
-     NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
-     }
+    NSError *saveError = nil;
+    if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+        NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+    }
     
     // reset cache
     [[SDImageCache sharedImageCache] cleanDisk];
@@ -280,11 +280,6 @@
     [alert showAlertOnTop];
 }
 
-+ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email
-{
-    return [PrivateAuthenticationService createNewAccountWithUser:user email:email];
-}
-
 + (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
 {
     return [PrivateAuthenticationService createNewAccountWithUser:user email:email password:pwd];
@@ -294,11 +289,6 @@
 + (Account *) signIn:(NSString*) email password:(NSString*) pwd
 {
     return [PrivateAuthenticationService signIn:email password:pwd];
-}
-
-+ (BOOL) checkUserFacebookEmail:(NSString*) email
-{
-    return [PrivateAuthenticationService checkUserFacebookEmail:email];
 }
 
 + (NSString *) recoverPassword:(NSString *) email

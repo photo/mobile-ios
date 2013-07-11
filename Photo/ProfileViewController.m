@@ -176,6 +176,9 @@
                                                if (error){
                                                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",@"message when couldn't download the image in the profile screen") duration:5000];
                                                    [alert showAlert];
+#ifdef DEVELOPMENT_ENABLED
+                                                   NSLog(@"URL failed to load %@", [result objectForKey:@"photoUrl"]);
+#endif
                                                }else{
                                                    // Begin a new image that will be the new image with the rounded corners
                                                    // (here with the size of an UIImageView)

@@ -28,7 +28,6 @@
 
 @interface LoginViewController : GAITrackedViewController
 
-- (IBAction)connectUsingFacebook:(id)sender;
 - (IBAction)signUpWithEmail:(id)sender;
 - (IBAction)signInWithEmail:(id)sender;
 

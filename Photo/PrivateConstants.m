@@ -22,8 +22,6 @@
 
 @implementation PrivateConstants
 
-NSString * const kPrivateFacebookAppId=@"";
-
 NSInteger  const kPrivateappStoreID=511845345;
 NSString * const kPrivateapplicationBundleID=@"me.OpenPhoto.ios";
 NSString * const kPrivateapplicationName=@"Trovebox";

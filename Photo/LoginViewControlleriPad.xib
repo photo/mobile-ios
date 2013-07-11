@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.SystemVersion">12E55</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.AppKitVersion">1187.39</string>
 		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -14,7 +14,6 @@
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
 			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -37,14 +36,12 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIButton" id="852977528">
+					<object class="IBUIButton" id="446049266">
 						<reference key="NSNextResponder" ref="786396739"/>
 						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{241, 460}, {285, 40}}</string>
+						<string key="NSFrame">{{241, 602}, {285, 40}}</string>
 						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="324875956"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUIContentMode">4</int>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -63,149 +60,17 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">login-facebook.png</string>
+							<string key="NSResourceName">login-login-with.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="899524038">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="247146081">
+						<object class="NSFont" key="IBUIFont" id="27816843">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
-					</object>
-					<object class="IBUILabel" id="589293380">
-						<reference key="NSNextResponder" ref="786396739"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{369, 507}, {162, 21}}</string>
-						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="70326448"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">with a single tap</string>
-						<object class="NSColor" key="IBUITextColor" id="995506861">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-						</object>
-						<reference key="IBUIHighlightedColor" ref="422078943"/>
-						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="261561913">
-							<string key="name">HelveticaNeue</string>
-							<string key="family">Helvetica Neue</string>
-							<int key="traits">0</int>
-							<double key="pointSize">14</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="522606835">
-							<string key="NSName">HelveticaNeue-Medium</string>
-							<double key="NSSize">14</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-					</object>
-					<object class="IBUILabel" id="928999585">
-						<reference key="NSNextResponder" ref="786396739"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{329, 507}, {17, 21}}</string>
-						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="822027164"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">or</string>
-						<reference key="IBUITextColor" ref="995506861"/>
-						<reference key="IBUIHighlightedColor" ref="422078943"/>
-						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="261561913"/>
-						<reference key="IBUIFont" ref="522606835"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-					</object>
-					<object class="IBUIButton" id="446049266">
-						<reference key="NSNextResponder" ref="786396739"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{241, 602}, {285, 40}}</string>
-						<reference key="NSSuperview" ref="786396739"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">4</int>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIHighlightedTitleColor" ref="422078943"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="423135633"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">login-login-with.png</string>
-						</object>
-						<reference key="IBUIFontDescription" ref="899524038"/>
-						<reference key="IBUIFont" ref="247146081"/>
-					</object>
-					<object class="IBUILabel" id="324875956">
-						<reference key="NSNextResponder" ref="786396739"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{273, 508}, {56, 21}}</string>
-						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="928999585"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Sign up</string>
-						<reference key="IBUITextColor" ref="995506861"/>
-						<reference key="IBUIHighlightedColor" ref="422078943"/>
-						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="478621976">
-							<string key="name">HelveticaNeue-Bold</string>
-							<string key="family">Helvetica Neue</string>
-							<int key="traits">2</int>
-							<double key="pointSize">14</double>
-						</object>
-						<object class="NSFont" key="IBUIFont" id="135402145">
-							<string key="NSName">HelveticaNeue-Bold</string>
-							<double key="NSSize">14</double>
-							<int key="NSfFlags">16</int>
-						</object>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-					</object>
-					<object class="IBUILabel" id="822027164">
-						<reference key="NSNextResponder" ref="786396739"/>
-						<int key="NSvFlags">290</int>
-						<string key="NSFrame">{{343, 508}, {57, 21}}</string>
-						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="589293380"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">7</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">sign in</string>
-						<reference key="IBUITextColor" ref="995506861"/>
-						<reference key="IBUIHighlightedColor" ref="422078943"/>
-						<int key="IBUIBaselineAdjustment">0</int>
-						<float key="IBUIMinimumFontSize">10</float>
-						<int key="IBUITextAlignment">1</int>
-						<reference key="IBUIFontDescription" ref="478621976"/>
-						<reference key="IBUIFont" ref="135402145"/>
-						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 					</object>
 					<object class="IBUIButton" id="70326448">
 						<reference key="NSNextResponder" ref="786396739"/>
@@ -229,14 +94,14 @@
 							<string key="NSResourceName">login-signup.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="899524038"/>
-						<reference key="IBUIFont" ref="247146081"/>
+						<reference key="IBUIFont" ref="27816843"/>
 					</object>
 					<object class="IBUIImageView" id="908594300">
 						<reference key="NSNextResponder" ref="786396739"/>
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{208, 206}, {352, 91}}</string>
 						<reference key="NSSuperview" ref="786396739"/>
-						<reference key="NSNextKeyView" ref="852977528"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<int key="IBUIContentMode">1</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -303,15 +168,6 @@
 					</object>
 					<int key="connectionID">45</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">connectUsingFacebook:</string>
-						<reference key="source" ref="852977528"/>
-						<reference key="destination" ref="841351856"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -336,49 +192,15 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="786396739"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="852977528"/>
 							<reference ref="70326448"/>
 							<reference ref="446049266"/>
-							<reference ref="324875956"/>
-							<reference ref="928999585"/>
-							<reference ref="822027164"/>
-							<reference ref="589293380"/>
 							<reference ref="908594300"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="852977528"/>
-						<reference key="parent" ref="786396739"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="589293380"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="786396739"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">7</int>
-						<reference key="object" ref="928999585"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="786396739"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">6</int>
 						<reference key="object" ref="446049266"/>
-						<reference key="parent" ref="786396739"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">5</int>
-						<reference key="object" ref="324875956"/>
-						<array class="NSMutableArray" key="children"/>
-						<reference key="parent" ref="786396739"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">4</int>
-						<reference key="object" ref="822027164"/>
-						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="786396739"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -401,13 +223,8 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -421,7 +238,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="login-facebook.png">{281, 37}</string>
 			<string key="login-login-with.png">{282, 37}</string>
 			<string key="login-signup.png">{282, 37}</string>
 			<string key="trovebox-logo-ipad.png">{840, 222}</string>

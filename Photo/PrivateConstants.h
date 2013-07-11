@@ -22,7 +22,6 @@
 
 @interface PrivateConstants : NSObject
 
-extern NSString * const kPrivateFacebookAppId;
 extern NSInteger  const kPrivateappStoreID;
 extern NSString * const kPrivateapplicationBundleID;
 extern NSString * const kPrivateapplicationName;

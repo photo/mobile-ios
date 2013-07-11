@@ -34,7 +34,6 @@
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundEmail;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundPassword;
 
-
 // message for Create account with email
 @property (nonatomic, weak) IBOutlet UILabel *createAccountLabelEnter;
 @property (nonatomic, weak) IBOutlet UILabel *createAccountLabelYourUsername;
@@ -42,12 +41,5 @@
 @property (nonatomic, weak) IBOutlet UILabel *createAccountLabelOpenPhoto;
 
 
-// message for create account with facebook
-@property (nonatomic, weak) IBOutlet UILabel *facebookCreateAccountCreate;
-@property (nonatomic, weak) IBOutlet UILabel *facebookCreateAccountUsername;
-@property (nonatomic, weak) IBOutlet UILabel *facebookCreateAccountOpenPhoto;
-
-
 - (IBAction)createAccount:(id)sender;
-- (void) setFacebookCreateAccount;
 @end

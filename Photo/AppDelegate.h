@@ -52,9 +52,7 @@
 
 #import "GoogleConversionPing.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, FBRequestDelegate,
-FBDialogDelegate,
-FBSessionDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
     
 @private
     NSManagedObjectContext *managedObjectContext;
@@ -64,10 +62,7 @@ FBSessionDelegate>{
     // for internet checks
     Reachability* internetReachable;
     Reachability* hostReachable;
-    
-    // facebook sdk
-    Facebook *facebook;
-    
+       
 @public
     BOOL internetActive, hostActive;
 }
@@ -86,9 +81,6 @@ FBSessionDelegate>{
 // for internet check
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
-
-// for facebook single sign in
-@property (nonatomic, strong) Facebook *facebook;
 
 //google analytics
 @property(nonatomic, strong) id<GAITracker> tracker;

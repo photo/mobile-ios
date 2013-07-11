@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,9 +58,9 @@ NSString * const kAuthenticationConsumerSecret=@"authentication_consumer_secret"
 /*
  * Constants for Notification
  */
-NSString * const kNotificationLoginAuthorize=@"notification_login_authorized";          
-NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures"; 
-NSString * const kNotificationCheckRefreshPictures=@"notification_check_refresh_pictures"; 
+NSString * const kNotificationLoginAuthorize=@"notification_login_authorized";
+NSString * const kNotificationRefreshPictures=@"notification_refresh_pictures";
+NSString * const kNotificationCheckRefreshPictures=@"notification_check_refresh_pictures";
 NSString * const kNotificationShareInformationToFacebookOrTwitter=@"notification_share_information_to_facebook_or_twitter";
 NSString * const kNotificationNeededsUpdate=@"notification_needs_update";
 NSString * const kNotificationNeededsUpdateHome=@"notification_needs_update_home_screen";
@@ -85,7 +85,7 @@ NSString * const kCellIdentifierShareTwitter=@"cellIdentifierShareToTwitter";
  * Constants for the Updater
  */
 NSString * const kVersionApplicationInstalled=@"version_application_installed";
- 
+
 /*
  * Constants for Statistic
  */
@@ -95,14 +95,6 @@ NSString * const kValidateNotAllowedLocation=@"validate_not_allowed_location";
  * Constants for Sync
  */
 NSString * const kSyncShowUploadedPhotos=@"sync_show_uploaded_photos";
- 
-
-/*
- * Facebook
- */
-NSString * const kFacebookUserConnected=@"facebook_user_connected";
-NSString * const kFacebookUserConnectedEmail=@"facebook_user_connected_email";
-NSString * const kFacebookUserConnectedUsername=@"facebook_user_connected_username";
 
 
 // For profile

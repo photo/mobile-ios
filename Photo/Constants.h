@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ extern NSString * const kAuthenticationOAuthSecret;
 extern NSString * const kAuthenticationConsumerKey;
 extern NSString * const kAuthenticationConsumerSecret;
 
-extern NSString * const kNotificationLoginAuthorize;        
+extern NSString * const kNotificationLoginAuthorize;
 extern NSString * const kNotificationRefreshPictures;
 extern NSString * const kNotificationCheckRefreshPictures;
 extern NSString * const kNotificationShareInformationToFacebookOrTwitter;
@@ -60,11 +60,6 @@ extern NSString * const kVersionApplicationInstalled;
 extern NSString * const kValidateNotAllowedLocation;
 
 extern NSString * const kSyncShowUploadedPhotos;
-
-// Facebook
-extern NSString * const kFacebookUserConnected;
-extern NSString * const kFacebookUserConnectedEmail;
-extern NSString * const kFacebookUserConnectedUsername;
 
 // For profile
 extern NSString * const kProfileAccountType;
