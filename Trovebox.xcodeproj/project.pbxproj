@@ -203,6 +203,7 @@
 		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
 		CD927E4716F8712100843FEE /* WebPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD927E4616F8712100843FEE /* WebPhoto.m */; };
 		CD92F16716E5375200E071CB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2F10C16E5305800D309B9 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD9380931794050300C09B9D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9380921794050300C09B9D /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15D016E600DC004D22FD /* libEmail.a */; };
 		CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15E416E600DC004D22FD /* libFacebook.a */; };
 		CDA1855C16E601CB00D617CB /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15C216E600DC004D22FD /* libJSONKit.a */; };
@@ -1055,6 +1056,8 @@
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		CD927E4516F8712100843FEE /* WebPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPhoto.h; sourceTree = "<group>"; };
 		CD927E4616F8712100843FEE /* WebPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPhoto.m; sourceTree = "<group>"; };
+		CD9380911794050300C09B9D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
+		CD9380921794050300C09B9D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
 		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
@@ -2027,6 +2030,8 @@
 				CDC7AE8F163EC7D700FC8BC1 /* DisplayUtilities.m */,
 				CDF2F10B16E5305800D309B9 /* Reachability.h */,
 				CDF2F10C16E5305800D309B9 /* Reachability.m */,
+				CD9380911794050300C09B9D /* KeychainItemWrapper.h */,
+				CD9380921794050300C09B9D /* KeychainItemWrapper.m */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -3126,6 +3131,7 @@
 				CD0DE1FC171F31360043D1DC /* WrapController.m in Sources */,
 				CD90127F17218B0700BB30EF /* UINavigationItem+Trovebox.m in Sources */,
 				CDE4A0E517642CC8002604CC /* PhotoUploader.m in Sources */,
+				CD9380931794050300C09B9D /* KeychainItemWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

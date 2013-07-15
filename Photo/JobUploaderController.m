@@ -123,7 +123,6 @@
                 imagesAlreadySynced = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
                 
                 // get 30 images from the Gallery that were not uploaded yet
-                
                 // Group enumerator Block
                 void (^assetGroupEnumerator)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop)
                 {

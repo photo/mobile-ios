@@ -2,7 +2,7 @@
 //  UpdateUtilities.m
 //  Trovebox
 //
-//  Created by Patrick Santana on 31/10/11.
+//  Created by Patrick Santana on 25/02/13.
 //  Copyright 2013 Trovebox
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +16,8 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
+
 
 #import "UpdateUtilities.h"
 
