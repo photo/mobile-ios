@@ -104,11 +104,17 @@
         NSLog(@"Job: sync");
 #endif
         
-        // check if users enables sync
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kAutoSyncEnabled] == YES){
+        // check if users enables sync and there is internet
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:kAutoSyncEnabled] == YES &&
+            [SharedAppDelegate internetActive] == YES){
             
-            if ([Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated] == 0){
-                // queue is EMPTY, take some pictures from the gallery
+            
+            int uploading = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
+            int created = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
+            
+            if (created == 0 && uploading == 0){
+                // queue is EMPTY, take some pictures from the camera roll. But just
+                // do it in the case where there are no pictures being uploaded.
 #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Job: queue is empty");
 #endif
