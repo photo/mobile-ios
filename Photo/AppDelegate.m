@@ -88,6 +88,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // updater
     UpdateUtilities *updater = [UpdateUtilities instance];
+    [updater fixOpenPhotoToTroveboxServer];
+    [updater fixServerLowerCase];
+    [updater fixKeyChain];
+    
     if ([updater needsUpdate]) {
         [updater update];
     }

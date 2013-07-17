@@ -85,10 +85,11 @@
 - (void) logout{
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
     
     // remove the credentials from the server in case of internet
     if ([SharedAppDelegate internetActive]){
-        NSString *consumerKey = [standardUserDefaults objectForKey:kAuthenticationConsumerKey ];
+        NSString *consumerKey = [keychainItem objectForKey:kAuthenticationConsumerKey];
         
         dispatch_queue_t removeCredentials = dispatch_queue_create("remove_credentials", NULL);
         dispatch_async(removeCredentials, ^{
@@ -107,10 +108,6 @@
     
     // set the variable client id to INVALID
     [standardUserDefaults setValue:@"INVALID" forKey:kAuthenticationValid];
-    [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthToken];
-    [standardUserDefaults setValue:@"" forKey:kAuthenticationOAuthSecret];
-    [standardUserDefaults setValue:@"" forKey:kAuthenticationConsumerKey];
-    [standardUserDefaults setValue:@"" forKey:kAuthenticationConsumerSecret];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     
@@ -122,6 +119,9 @@
     
     // synchronize the keys
     [standardUserDefaults synchronize];
+    
+    // keychain for credentials reset
+    [keychainItem resetKeychainItem];
     
     // reset core data
     [Timeline deleteAllTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
@@ -180,13 +180,11 @@
         }
     }
     
-    
     // save consumer data
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setValue:oauthConsumerKey forKey:kAuthenticationConsumerKey];
-    [standardUserDefaults setValue:oauthConsumerSecret forKey:kAuthenticationConsumerSecret];
-    [standardUserDefaults synchronize];
-    
+    // keychain for credentials
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+    [keychainItem setObject:oauthConsumerKey forKey:kAuthenticationConsumerKey];
+    [keychainItem setObject:oauthConsumerSecret  forKey:kAuthenticationConsumerSecret];
     
     /*
      * With the token and verifier, we can request the ACCESS
@@ -254,14 +252,20 @@
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         
         [standardUserDefaults setValue:@"OK" forKey:kAuthenticationValid];
-        [standardUserDefaults setValue:oauthToken forKey:kAuthenticationOAuthToken];
-        [standardUserDefaults setValue:oauthTokenSecret forKey:kAuthenticationOAuthSecret];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPicturesTimestamp];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPictures];
         [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
         
         // synchronize the keys
         [standardUserDefaults synchronize];
+        
+        // save credentials
+        // keychain for credentials
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+        
+        [keychainItem setObject:oauthToken forKey:kAuthenticationOAuthToken];
+        [keychainItem setObject:oauthTokenSecret forKey:kAuthenticationOAuthSecret];
+        
         
         // send notification to the system that it can shows the screen:
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil];

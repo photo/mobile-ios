@@ -87,7 +87,9 @@ static UpdateUtilities* instance = nil;
         NSString *server = [standardUserDefaults  valueForKey:kTroveboxServer];
         
         if ([server hasSuffix:@"openphoto.me"]){
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"We need to change the url");
+#endif
             server = [server stringByReplacingOccurrencesOfString:@"openphoto.me"
                                                        withString:@"trovebox.com"];
             
@@ -100,7 +102,6 @@ static UpdateUtilities* instance = nil;
 
 - (void) fixServerLowerCase
 {
-    
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
     // check if the app has been already initialized and has a server.
@@ -116,6 +117,12 @@ static UpdateUtilities* instance = nil;
         [standardUserDefaults setValue:server forKey:kTroveboxServer];
         [standardUserDefaults synchronize];
     }
+}
+
+- (void) fixKeyChain
+{
+    // check if user is still using the old version of saving password
+    // we should always use the keychain instead of properties
 }
 
 @end

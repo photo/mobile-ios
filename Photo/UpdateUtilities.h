@@ -31,5 +31,6 @@
 - (void) update;
 - (void) fixOpenPhotoToTroveboxServer;
 - (void) fixServerLowerCase;
+- (void) fixKeyChain;
 
 @end

@@ -27,6 +27,7 @@
 #import "ASIProgressDelegate.h"
 #import "Tag.h"
 #import "Album.h"
+#import "KeychainItemWrapper.h"
 
 @interface WebService : NSObject{
     

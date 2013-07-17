@@ -44,12 +44,16 @@
 {
     self = [super init];
     if (self) {
+        // keychain for credentials
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+        // user defaults values for server url
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        
         self =  [[WebService alloc] initForServer:[standardUserDefaults valueForKey:kTroveboxServer]
-                                         oAuthKey:[standardUserDefaults valueForKey:kAuthenticationOAuthToken]
-                                      oAuthSecret:[standardUserDefaults valueForKey:kAuthenticationOAuthSecret]
-                                      consumerKey:[standardUserDefaults valueForKey:kAuthenticationConsumerKey]
-                                   consumerSecret:[standardUserDefaults valueForKey:kAuthenticationConsumerSecret]] ;
+                                         oAuthKey:[keychainItem objectForKey:kAuthenticationOAuthToken]
+                                      oAuthSecret:[keychainItem objectForKey:kAuthenticationOAuthSecret]
+                                      consumerKey:[keychainItem objectForKey:kAuthenticationConsumerKey]
+                                   consumerSecret:[keychainItem objectForKey:kAuthenticationConsumerSecret]];
     }
     return self;
 }
@@ -76,7 +80,7 @@
 
 - (NSArray*) fetchNewestPhotosMaxResult:(int) maxResult{
     NSMutableString *request = [NSMutableString stringWithFormat: @"%@%i%@",@"/v1/photos/list.json?sortBy=dateUploaded,DESC&pageSize=", maxResult, @"&returnSizes="];
-        
+    
     // check if it is for iPad
     if ([DisplayUtilities isIPad]){
         // check if ipad is retina
@@ -275,7 +279,7 @@
     
     // prepare the request. This will be used to get the Authorization header and add in the multipart component
     [oaUrlRequest prepare];
- 
+    
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
     asiRequest.userAgentString=@"Trovebox iOS";
     
