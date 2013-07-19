@@ -92,9 +92,14 @@
 @synthesize keychainItemData, genericPasswordQuery;
 
 
-- (id)initWithTrovebox
+- (id)initWithTroveboxOAuth
 {
-    return [self initWithIdentifier:@"TroveboxLogin" accessGroup:nil];
+    return [self initWithIdentifier:@"TroveboxLoginOAuth" accessGroup:nil];
+}
+
+- (id)initWithTroveboxConsumer
+{
+    return [self initWithIdentifier:@"TroveboxLoginConsumer" accessGroup:nil];
 }
 
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;

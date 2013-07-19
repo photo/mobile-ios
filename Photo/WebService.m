@@ -44,16 +44,18 @@
 {
     self = [super init];
     if (self) {
-        // keychain for credentials
-        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+        // keychains for credentials
+        KeychainItemWrapper *keychainItemOAuth = [[KeychainItemWrapper alloc]initWithTroveboxOAuth];
+        KeychainItemWrapper *keychainItemConsumer = [[KeychainItemWrapper alloc]initWithTroveboxConsumer];
+        
         // user defaults values for server url
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         
         self =  [[WebService alloc] initForServer:[standardUserDefaults valueForKey:kTroveboxServer]
-                                         oAuthKey:[keychainItem objectForKey:kAuthenticationOAuthToken]
-                                      oAuthSecret:[keychainItem objectForKey:kAuthenticationOAuthSecret]
-                                      consumerKey:[keychainItem objectForKey:kAuthenticationConsumerKey]
-                                   consumerSecret:[keychainItem objectForKey:kAuthenticationConsumerSecret]];
+                                         oAuthKey:[keychainItemOAuth objectForKey:(__bridge id)(kSecAttrAccount)]
+                                      oAuthSecret:[keychainItemOAuth objectForKey:(__bridge id)(kSecValueData)]
+                                      consumerKey:[keychainItemConsumer objectForKey:(__bridge id)(kSecAttrAccount)]
+                                   consumerSecret:[keychainItemConsumer objectForKey:(__bridge id)(kSecValueData)]];
     }
     return self;
 }

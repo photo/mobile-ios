@@ -19,6 +19,7 @@
 //
 
 #import <SDWebImage/SDImageCache.h>
+#import "KeychainItemWrapper.h"
 
 @interface UpdateUtilities : NSObject
 
@@ -29,8 +30,19 @@
 - (NSString*) getVersion;
 - (BOOL) needsUpdate;
 - (void) update;
+
+// rename the server form OpenPhoto to Trovebox
 - (void) fixOpenPhotoToTroveboxServer;
+
+// this fix the problem with some servers being handle with upper case.
+// There is some problems with token in this situation.
+// So we just lower case the server url and it is solved.
 - (void) fixServerLowerCase;
+
+// check if user is still using the old version of saving password on the NSUserDefaults
+// we should always use the keychain instead of properties
+// and delete it from there
+// for new users will be saved on Keychain
 - (void) fixKeyChain;
 
 @end

@@ -31,10 +31,6 @@ extern NSString * const kServerDetails;
 extern NSString * const kServerDetailsIsHosted;
 
 extern NSString * const kAuthenticationValid;
-extern NSString * const kAuthenticationOAuthToken;
-extern NSString * const kAuthenticationOAuthSecret;
-extern NSString * const kAuthenticationConsumerKey;
-extern NSString * const kAuthenticationConsumerSecret;
 
 extern NSString * const kNotificationLoginAuthorize;
 extern NSString * const kNotificationRefreshPictures;

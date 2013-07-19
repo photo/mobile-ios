@@ -85,11 +85,11 @@
 - (void) logout{
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTroveboxConsumer];
     
     // remove the credentials from the server in case of internet
     if ([SharedAppDelegate internetActive]){
-        NSString *consumerKey = [keychainItem objectForKey:kAuthenticationConsumerKey];
+        NSString *consumerKey = [keychainItem objectForKey:(__bridge id)(kSecAttrAccount)];
         
         dispatch_queue_t removeCredentials = dispatch_queue_create("remove_credentials", NULL);
         dispatch_async(removeCredentials, ^{
@@ -182,9 +182,9 @@
     
     // save consumer data
     // keychain for credentials
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
-    [keychainItem setObject:oauthConsumerKey forKey:kAuthenticationConsumerKey];
-    [keychainItem setObject:oauthConsumerSecret  forKey:kAuthenticationConsumerSecret];
+    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTroveboxConsumer];
+    [keychainItem setObject:oauthConsumerKey forKey:(__bridge id)(kSecAttrAccount)];
+    [keychainItem setObject:oauthConsumerSecret  forKey:(__bridge id)(kSecValueData)];
     
     /*
      * With the token and verifier, we can request the ACCESS
@@ -261,10 +261,10 @@
         
         // save credentials
         // keychain for credentials
-        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];
+        KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTroveboxOAuth];
         
-        [keychainItem setObject:oauthToken forKey:kAuthenticationOAuthToken];
-        [keychainItem setObject:oauthTokenSecret forKey:kAuthenticationOAuthSecret];
+        [keychainItem setObject:oauthToken forKey:(__bridge id)(kSecAttrAccount)];
+        [keychainItem setObject:oauthTokenSecret forKey:(__bridge id)(kSecValueData)];
         
         
         // send notification to the system that it can shows the screen:

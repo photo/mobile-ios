@@ -19,6 +19,7 @@
 //
 
 #import "UpdateUtilities.h"
+#import "KeychainItemWrapper.h"
 
 @interface Account : NSObject
 

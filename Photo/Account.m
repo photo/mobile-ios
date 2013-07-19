@@ -40,11 +40,13 @@
     
     // save credentials
     // keychain for credentials
-    KeychainItemWrapper *keychainItem = [[KeychainItemWrapper alloc]initWithTrovebox];    
-    [keychainItem setObject:self.userToken forKey:kAuthenticationOAuthToken];
-    [keychainItem setObject:self.userSecret forKey:kAuthenticationOAuthSecret];
-    [keychainItem setObject:self.clientToken forKey:kAuthenticationConsumerKey];
-    [keychainItem setObject:self.clientSecret  forKey:kAuthenticationConsumerSecret];
+    KeychainItemWrapper *keychainItemOAuth = [[KeychainItemWrapper alloc]initWithTroveboxOAuth];
+    KeychainItemWrapper *keychainItemConsumer = [[KeychainItemWrapper alloc]initWithTroveboxConsumer];
+    
+    [keychainItemOAuth setObject:self.userToken forKey:(__bridge id)(kSecAttrAccount)];
+    [keychainItemOAuth setObject:self.userSecret forKey:(__bridge id)(kSecValueData)];
+    [keychainItemConsumer setObject:self.clientToken forKey:(__bridge id)(kSecAttrAccount)];
+    [keychainItemConsumer setObject:self.clientSecret  forKey:(__bridge id)(kSecValueData)];
 }
 
 @end

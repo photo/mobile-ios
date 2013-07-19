@@ -63,8 +63,12 @@
 @property (nonatomic, retain) NSMutableDictionary *keychainItemData;
 @property (nonatomic, retain) NSMutableDictionary *genericPasswordQuery;
 
+
+// Methos for speed up get oauth and consumer credentials
+- (id)initWithTroveboxOAuth;
+- (id)initWithTroveboxConsumer;
+
 // Designated initializer.
-- (id) initWithTrovebox;
 - (id) initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup;
 - (void) setObject:(id)inObject forKey:(id)key;
 - (id) objectForKey:(id)key;
