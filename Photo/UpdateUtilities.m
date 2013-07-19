@@ -47,7 +47,7 @@ static UpdateUtilities* instance = nil;
 }
 
 - (NSString*) getVersion{
-    return @"4.1.2";
+    return @"4.1.4";
 }
 
 - (BOOL) needsUpdate{
@@ -72,8 +72,10 @@ static UpdateUtilities* instance = nil;
     [standardUserDefaults setValue:nil forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[self getVersion] forKey:kVersionApplicationInstalled];
     [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
-    [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
-    [standardUserDefaults setBool:NO forKey:kAutoSyncMessageDisplayed];
+    if ([standardUserDefaults stringForKey:kAutoSyncEnabled] == nil){
+        [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
+        [standardUserDefaults setBool:NO forKey:kAutoSyncMessageDisplayed];
+    }
     [standardUserDefaults synchronize];
     
     // delete timeline
@@ -82,9 +84,12 @@ static UpdateUtilities* instance = nil;
     // remove old cache
     [[SDImageCache sharedImageCache] cleanDisk];
     
+    [self fixOpenPhotoToTroveboxServer];
+    [self fixServerLowerCase];
+    [self fixKeyChain];
+    
     // update details from the profile
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
-    
 }
 
 //renames the server from OpenPhoto to Trovebox

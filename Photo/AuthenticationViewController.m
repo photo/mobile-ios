@@ -174,11 +174,14 @@
     }
     
     // removes form the URL if it ends with "/"
+    NSString *server;
     if ([[url lastPathComponent] isEqualToString:@"/"]){
-        [standardUserDefaults setValue:[text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""] forKey:kTroveboxServer];
+        server = [text stringByReplacingCharactersInRange:NSMakeRange(text.length-1, 1) withString:@""];
     }else{
-        [standardUserDefaults setValue:[url relativeString] forKey:kTroveboxServer];
+        server = [url relativeString];
     }
+    
+    [standardUserDefaults setValue:[server lowercaseString] forKey:kTroveboxServer];
     [standardUserDefaults synchronize];
 }
 

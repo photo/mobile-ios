@@ -29,7 +29,7 @@
     // save information related to host and email
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     [standardUserDefaults setValue:@"OK"                forKey:kAuthenticationValid];
-    [standardUserDefaults setValue:self.host            forKey:kTroveboxServer];
+    [standardUserDefaults setValue:[self.host lowercaseString]            forKey:kTroveboxServer];
     [standardUserDefaults setValue:self.email           forKey:kTroveboxEmailUser];
     [standardUserDefaults setValue:nil                  forKey:kHomeScreenPicturesTimestamp];
     [standardUserDefaults setValue:nil                  forKey:kHomeScreenPictures];
