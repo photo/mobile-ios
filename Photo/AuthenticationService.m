@@ -116,6 +116,7 @@
     [standardUserDefaults setValue:nil forKey:kProfileLatestUpdateDate];
     [standardUserDefaults setValue:nil forKey:kProfileAccountType];
     [standardUserDefaults setValue:nil forKey:kProfileLimitRemaining];
+    [standardUserDefaults setValue:nil forKey:kTroveboxNameUser];
     
     // synchronize the keys
     [standardUserDefaults synchronize];
