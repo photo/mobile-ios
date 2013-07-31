@@ -86,46 +86,44 @@
                                                               withAction:@"buttonPress"
                                                                withLabel:@"Share private photo"
                                                                withValue:nil];
-            
-            dispatch_queue_t token = dispatch_queue_create("generate_token_for_private_image", NULL);
-            dispatch_async(token, ^{
-                @try {
-                    // get's token from website
-                    WebService *service = [[WebService alloc] init];
-                    
-                    // set in url
-                    url = [service shareToken:self.timeline.key];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        // stop loading
-                        [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
-                        
-                        // share the private photo
-                        [self shareUrl:[NSString stringWithFormat:@"%@%@",self.timeline.photoPageUrl, url]];
-                    });
-                    
-                }@catch (NSException *exception) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
-                        [alert showAlert];
-                    });
-                }
-            });
-            dispatch_release(token);
-            
-            // show progress bar
-            [MBProgressHUD showHUDAddedTo:self.newestPhotosTableViewController.view animated:YES];
         }else{
             [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
                                                               withAction:@"buttonPress"
                                                                withLabel:@"Share public photo"
                                                                withValue:nil];
-            
-            // share the public photo
-            [self shareUrl:url];
         }
+        
+        // create a dispatch to generate a token
+        dispatch_queue_t token = dispatch_queue_create("generate_token_for_image", NULL);
+        dispatch_async(token, ^{
+            @try {
+                // get's token from website
+                WebService *service = [[WebService alloc] init];
+                
+                // set in url
+                url = [service shareToken:self.timeline.key];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    // stop loading
+                    [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
+                    
+                    // share the photo
+                    [self shareUrl:[NSString stringWithFormat:@"%@%@",self.timeline.photoPageUrl, url]];
+                });
+                
+            }@catch (NSException *exception) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.newestPhotosTableViewController.view animated:YES];
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                    [alert showAlert];
+                });
+            }
+        });
+        dispatch_release(token);
+        
+        // show progress bar
+        [MBProgressHUD showHUDAddedTo:self.newestPhotosTableViewController.view animated:YES];
     }
 }
 
@@ -144,4 +142,5 @@
     // Display the action sheet
     [actionSheet showFromToolbar:self.newestPhotosTableViewController.navigationController.toolbar];
 }
+
 @end
