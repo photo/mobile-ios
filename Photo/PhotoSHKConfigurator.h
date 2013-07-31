@@ -23,8 +23,8 @@
 
 @interface PhotoSHKConfigurator : DefaultSHKConfigurator
 
-#define SHKMyAppName			@"App for OpenPhoto"
-#define SHKMyAppURL				@"https://openphoto.me/for/iphone"
+#define SHKMyAppName			@"App for Trovebox"
+#define SHKMyAppURL				@"https://trovebox.com/for/iphone"
 
 #define SHKFacebookUseSessionProxy  NO
 #define SHKFacebookAppID      @""

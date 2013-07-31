@@ -21,7 +21,7 @@
 #import "AssetsLibraryUtilities.h"
 
 @interface AssetsLibraryUtilities()
-+(NSDictionary*) parseAssetUrl:(NSURL*) url;
++ (NSDictionary*) parseAssetUrl:(NSURL*) url;
 + (NSDate*) getDefaultFileDate:(NSURL*) url;
 + (NSDate*) getFileDate:(NSURL*) url;
 @end
