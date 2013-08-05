@@ -134,7 +134,7 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-    WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
+    MWPhoto *photo = [self.photos objectAtIndex:indexPath.row];
     [cell.photoView setImageWithURL:[NSURL URLWithString:photo.thumbUrl]
                    placeholderImage:nil
                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType){
@@ -175,8 +175,7 @@
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < self.photos.count){
-        WebPhoto *photo =  [self.photos objectAtIndex:index];
-        return photo.mwphoto;
+        return [self.photos objectAtIndex:index];
     }
     
     return nil;
@@ -206,8 +205,7 @@
 }
 
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
-    WebPhoto *photo = [self.photos objectAtIndex:indexPath.row];
-    
+    MWPhoto *photo = [self.photos objectAtIndex:indexPath.row];
     return [photo.thumbHeight integerValue];
 }
 
@@ -258,7 +256,7 @@
                                     self.totalPages = [[photoDetails objectForKey:@"totalPages"] doubleValue];
                                 }
                                 
-                                WebPhoto *photo = [WebPhoto photoWithServerInfo:photoDetails];
+                                MWPhoto *photo = [MWPhoto photoWithServerInfo:photoDetails];
                                 [self.photos addObject:photo];
                             }
                         }

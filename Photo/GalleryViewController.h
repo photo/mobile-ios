@@ -19,7 +19,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WebPhoto.h"
 #import "TMQuiltView.h"
 #import "TMPhotoQuiltViewCell.h"
 #import "Album.h"

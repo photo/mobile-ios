@@ -11,18 +11,18 @@
 
 // Private
 @interface MWPhoto () {
-
+    
     // Image Sources
     NSString *_photoPath;
     NSURL *_photoURL;
-
+    
     // Image
     UIImage *_underlyingImage;
-
+    
     // Other
     NSString *_caption;
     BOOL _loadingInProgress;
-        
+    
 }
 
 // Properties
@@ -38,8 +38,16 @@
 @implementation MWPhoto
 
 // Properties
-@synthesize underlyingImage = _underlyingImage, 
-caption = _caption;
+@synthesize underlyingImage = _underlyingImage;
+@synthesize caption = _caption;
+@synthesize date = _date;
+@synthesize identification = _identification;
+@synthesize pageUrl = _pageUrl;
+@synthesize title = _title;
+@synthesize thumbWidth = _thumbWidth;
+@synthesize thumbHeight = _thumbHeight;
+@synthesize thumbUrl = _thumbUrl;
+@synthesize url = _url;
 
 #pragma mark Class Methods
 
@@ -83,6 +91,15 @@ caption = _caption;
 	[_photoPath release];
 	[_photoURL release];
 	[_underlyingImage release];
+    [_caption release];
+    [_date release];
+    [_identification release];
+    [_pageUrl release];
+    [_title release];
+    [_thumbWidth release];
+    [_thumbHeight release];
+    [_thumbUrl release];
+    [_url release];
 	[super dealloc];
 }
 
@@ -105,18 +122,18 @@ caption = _caption;
         } else if (_photoURL) {
             // Load async from web (using SDWebImage)
             SDWebImageManager *manager = [SDWebImageManager sharedManager];
-              [manager downloadWithURL:_photoURL
-                                   options:0
-                                  progress:nil
-                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
-                                 {
-                                         if (image)
-                                             {
-                                                     // do something with image
-                                                     self.underlyingImage = image;
-                                                     [self imageLoadingComplete];
-                                                 }
-                                     }];
+            [manager downloadWithURL:_photoURL
+                             options:0
+                            progress:nil
+                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished)
+             {
+                 if (image)
+                 {
+                     // do something with image
+                     self.underlyingImage = image;
+                     [self imageLoadingComplete];
+                 }
+             }];
         } else {
             // Failed - no source
             self.underlyingImage = nil;
@@ -162,5 +179,104 @@ caption = _caption;
     [[NSNotificationCenter defaultCenter] postNotificationName:MWPHOTO_LOADING_DID_END_NOTIFICATION
                                                         object:self];
 }
+
+
+#pragma mark - Internal code from Trovebox
++ (MWPhoto *) photoWithServerInfo:(NSDictionary *) response
+{
+    
+    if ([response objectForKey:@"id"] != nil){
+        // Get title of the image
+        NSString *title = [response objectForKey:@"title"];
+        if ([title class] == [NSNull class])
+            title = @"";
+        
+        // small url and url
+        NSString *thumbUrl  = [NSString stringWithFormat:@"%@", [response objectForKey:[self getPathThumb]]];
+        NSString *url       = [NSString stringWithFormat:@"%@", [response objectForKey:[self getPathUrl]]];
+        NSString *pageUrl   = [NSString stringWithFormat:@"%@", [response objectForKey:@"url"]];
+        
+        // get width and height for the thumb
+        NSArray* thumbPhotoDetails = [response objectForKey:[self getDetailsThumb]];
+        float thumbWidth = [[thumbPhotoDetails objectAtIndex:1] floatValue];
+        float thumbHeight = [[thumbPhotoDetails objectAtIndex:2] floatValue];
+        
+        // get the date since 1970
+        double d            = [[response objectForKey:@"dateTaken"] doubleValue];
+        NSTimeInterval date =  d;
+        
+        // create object
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:url]];
+        photo.url            = [url copy];
+        photo.thumbUrl       = [thumbUrl copy];
+        photo.thumbHeight    = [NSNumber numberWithFloat:thumbHeight];
+        photo.thumbWidth     = [NSNumber numberWithFloat:thumbWidth];
+        photo.pageUrl        = [pageUrl copy];
+        photo.identification = [NSString stringWithFormat:@"%@",[response objectForKey:@"id"]];
+        photo.date           = [NSDate dateWithTimeIntervalSince1970:date];
+        
+        // return result
+        return photo;
+    }
+    
+    // error
+    return nil;
+    
+}
+
+- (BOOL)isEqual:(id)other {
+    if (other == self)
+        return YES;
+    if (!other || ![other isKindOfClass:[self class]])
+        return NO;
+    return [self isEqualToWidget:other];
+}
+
+- (BOOL)isEqualToWidget:(MWPhoto *)aWidget {
+    if (self == aWidget)
+        return YES;
+    if (![(id)[self identification] isEqual:[aWidget identification]])
+        return NO;
+    if (![[self thumbUrl] isEqual:[aWidget thumbUrl]])
+        return NO;
+    if (![[self url] isEqual:[aWidget url]])
+        return NO;
+    return YES;
+}
+
++ (NSString*) getDetailsThumb
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+        return @"photo300x300";
+    }else{
+        return @"photo200x200";
+    }}
+
++ (NSString*) getPathThumb
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+        return @"path300x300";
+    }else{
+        return @"path200x200";
+    }
+}
+
++ (NSString*) getPathUrl
+{
+    if ([DisplayUtilities isIPad]){
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"path2024x1536";
+        }else{
+            return @"path1024x768";
+        }
+    }else{
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)] == YES && [[UIScreen mainScreen] scale] == 2.00) {
+            return @"path1136x640";
+        }else{
+            return @"path480x320";
+        }
+    }
+}
+
 
 @end

@@ -201,7 +201,6 @@
 		CD91158216234A820099204B /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD91157B16234A820099204B /* TSAlertViewMessageListViewShadow.png */; };
 		CD9115BD16243FCA0099204B /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BC16243FCA0099204B /* Album.m */; };
 		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
-		CD927E4716F8712100843FEE /* WebPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD927E4616F8712100843FEE /* WebPhoto.m */; };
 		CD92F16716E5375200E071CB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2F10C16E5305800D309B9 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9380931794050300C09B9D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9380921794050300C09B9D /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15D016E600DC004D22FD /* libEmail.a */; };
@@ -1054,8 +1053,6 @@
 		CD9115BC16243FCA0099204B /* Album.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Album.m; sourceTree = "<group>"; };
 		CD9115BE16243FE90099204B /* AlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewController.h; sourceTree = "<group>"; };
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
-		CD927E4516F8712100843FEE /* WebPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPhoto.h; sourceTree = "<group>"; };
-		CD927E4616F8712100843FEE /* WebPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPhoto.m; sourceTree = "<group>"; };
 		CD9380911794050300C09B9D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CD9380921794050300C09B9D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
@@ -1528,27 +1525,6 @@
 			name = GPUImage;
 			sourceTree = "<group>";
 		};
-		CD1A6CE41704958C0002763A /* mwphotobrowser */ = {
-			isa = PBXGroup;
-			children = (
-				CD1A6D071704959E0002763A /* MWCaptionView.h */,
-				CD1A6D081704959E0002763A /* MWCaptionView.m */,
-				CD1A6D091704959E0002763A /* MWPhoto.h */,
-				CD1A6D0A1704959E0002763A /* MWPhoto.m */,
-				CD1A6D0B1704959E0002763A /* MWPhotoBrowser.bundle */,
-				CD1A6D0C1704959E0002763A /* MWPhotoBrowser.h */,
-				CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */,
-				CD1A6D0E1704959E0002763A /* MWPhotoProtocol.h */,
-				CD1A6D0F1704959E0002763A /* MWTapDetectingImageView.h */,
-				CD1A6D101704959E0002763A /* MWTapDetectingImageView.m */,
-				CD1A6D111704959E0002763A /* MWTapDetectingView.h */,
-				CD1A6D121704959E0002763A /* MWTapDetectingView.m */,
-				CD1A6D131704959E0002763A /* MWZoomingScrollView.h */,
-				CD1A6D141704959E0002763A /* MWZoomingScrollView.m */,
-			);
-			name = mwphotobrowser;
-			sourceTree = "<group>";
-		};
 		CD1CDE3D162C2B4B00E57F73 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1708,13 +1684,24 @@
 		CD4613D6161C7AEA0028619D /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				CD1A6CE41704958C0002763A /* mwphotobrowser */,
+				CD1A6D071704959E0002763A /* MWCaptionView.h */,
+				CD1A6D081704959E0002763A /* MWCaptionView.m */,
+				CD1A6D091704959E0002763A /* MWPhoto.h */,
+				CD1A6D0A1704959E0002763A /* MWPhoto.m */,
+				CD1A6D0B1704959E0002763A /* MWPhotoBrowser.bundle */,
+				CD1A6D0C1704959E0002763A /* MWPhotoBrowser.h */,
+				CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */,
+				CD1A6D0E1704959E0002763A /* MWPhotoProtocol.h */,
+				CD1A6D0F1704959E0002763A /* MWTapDetectingImageView.h */,
+				CD1A6D101704959E0002763A /* MWTapDetectingImageView.m */,
+				CD1A6D111704959E0002763A /* MWTapDetectingView.h */,
+				CD1A6D121704959E0002763A /* MWTapDetectingView.m */,
+				CD1A6D131704959E0002763A /* MWZoomingScrollView.h */,
+				CD1A6D141704959E0002763A /* MWZoomingScrollView.m */,
 				CDC7AF2B1640156400FC8BC1 /* GalleryViewController.h */,
 				CDC7AF2C1640156400FC8BC1 /* GalleryViewController.m */,
 				CD1A6CD9170481190002763A /* TMPhotoQuiltViewCell.h */,
 				CD1A6CDA1704811A0002763A /* TMPhotoQuiltViewCell.m */,
-				CD927E4516F8712100843FEE /* WebPhoto.h */,
-				CD927E4616F8712100843FEE /* WebPhoto.m */,
 			);
 			name = Gallery;
 			sourceTree = "<group>";
@@ -3112,7 +3099,6 @@
 				CDAC02B416EF62EB00D3BB7F /* TMQuiltViewCell.m in Sources */,
 				CDAC02B516EF62EB00D3BB7F /* TMQuiltViewController.m in Sources */,
 				CD5F5E4316F20E050044427E /* Gallery.m in Sources */,
-				CD927E4716F8712100843FEE /* WebPhoto.m in Sources */,
 				CD1A6CDB1704811B0002763A /* TMPhotoQuiltViewCell.m in Sources */,
 				CD1A6D151704959E0002763A /* MWCaptionView.m in Sources */,
 				CD1A6D161704959E0002763A /* MWPhoto.m in Sources */,

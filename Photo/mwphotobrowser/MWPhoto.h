@@ -21,10 +21,21 @@
 // Properties
 @property (nonatomic, retain) NSString *caption;
 
+// Properties from our side
+@property (nonatomic, retain) NSDate   *date;
+@property (nonatomic, retain) NSString *identification;
+@property (nonatomic, retain) NSString *pageUrl;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSNumber *thumbWidth;
+@property (nonatomic, retain) NSNumber *thumbHeight;
+@property (nonatomic, retain) NSString *thumbUrl;
+@property (nonatomic, retain) NSString *url;
+
 // Class
-+ (MWPhoto *)photoWithImage:(UIImage *)image;
-+ (MWPhoto *)photoWithFilePath:(NSString *)path;
-+ (MWPhoto *)photoWithURL:(NSURL *)url;
++ (MWPhoto *) photoWithImage:(UIImage *)image;
++ (MWPhoto *) photoWithFilePath:(NSString *)path;
++ (MWPhoto *) photoWithURL:(NSURL *)url;
++ (MWPhoto *) photoWithServerInfo:(NSDictionary *) response;
 
 // Init
 - (id)initWithImage:(UIImage *)image;

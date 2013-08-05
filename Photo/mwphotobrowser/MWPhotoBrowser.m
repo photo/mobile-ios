@@ -1026,13 +1026,11 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
             } else {
                 [_actionsSheet showInView:self.view];
             }
-            
         }
     }
 }
 
 #pragma mark - Action Sheet Delegate
-
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet == _actionsSheet) {           
         // Actions 
