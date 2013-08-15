@@ -47,7 +47,7 @@
     MBProgressHUD *_progressHUD;
     
     // Appearance
-    UIImage *_navigationBarBackgroundImageDefault, 
+    UIImage *_navigationBarBackgroundImageDefault,
     *_navigationBarBackgroundImageLandscapePhone;
     UIColor *_previousNavBarTintColor;
     UIBarStyle _previousNavBarStyle;
@@ -752,7 +752,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     NSUInteger i;
     if (index > 0) {
         // Release anything < index - 1
-        for (i = 0; i < index-1; i++) { 
+        for (i = 0; i < index-1; i++) {
             id photo = [_photos objectAtIndex:i];
             if (photo != [NSNull null]) {
                 [photo unloadUnderlyingImage];
@@ -870,7 +870,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
     
 	// Title
 	if ([self numberOfPhotos] > 1) {
-		self.title = [NSString stringWithFormat:@"%i %@ %i", _currentPageIndex+1, NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), [self numberOfPhotos]];		
+		self.title = [NSString stringWithFormat:@"%i %@ %i", _currentPageIndex+1, NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), [self numberOfPhotos]];
 	} else {
 		self.title = nil;
 	}
@@ -1000,6 +1000,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 }
 
 - (void)actionButtonPressed:(id)sender {
+    
     if (_actionsSheet) {
         // Dismiss
         [_actionsSheet dismissWithClickedButtonIndex:_actionsSheet.cancelButtonIndex animated:YES];
@@ -1010,36 +1011,83 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
             // Keep controls hidden
             [self setControlsHidden:NO animated:YES permanent:YES];
             
-            // Sheet
-            if ([MFMailComposeViewController canSendMail]) {
-                self.actionsSheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                        otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), NSLocalizedString(@"Email", nil), nil] autorelease];
-            } else {
-                self.actionsSheet = [[[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                        cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                        otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), nil] autorelease];
-            }
-            _actionsSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                [_actionsSheet showFromBarButtonItem:sender animated:YES];
-            } else {
-                [_actionsSheet showInView:self.view];
+            if (photo.pageUrl != nil){
+                
+                // check if photo is a private version. If it is, generate a token
+                if ([photo.permission boolValue] == NO){
+                    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                                      withAction:@"buttonPress"
+                                                                       withLabel:@"Share private photo"
+                                                                       withValue:nil];
+                }else{
+                    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                                      withAction:@"buttonPress"
+                                                                       withLabel:@"Share public photo"
+                                                                       withValue:nil];
+                }
+                
+                // create a dispatch to generate a token
+                dispatch_queue_t token = dispatch_queue_create("generate_token_for_image", NULL);
+                dispatch_async(token, ^{
+                    @try {
+                        // get's token from website
+                        WebService *service = [[WebService alloc] init];
+                        
+                        // set in url
+                        NSString *url = [service shareToken:photo.identification];
+                        
+                        [service release];
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // stop loading
+                            [[self progressHUD] hide:YES];
+                            
+                            // share the photo
+                            [self shareUrl:[NSString stringWithFormat:@"%@%@",photo.pageUrl, url] sender:sender];
+                        });
+                        
+                    }@catch (NSException *exception) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [[self progressHUD] hide:YES];
+                            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                            [alert showAlert];
+                        });
+                    }
+                });
+                dispatch_release(token);
+                
+                // show progress bar
+                [[self progressHUD] show:YES];
             }
         }
     }
 }
+- (void) shareUrl:(NSString*) url sender:(id)sender
+{
+    // create the item to share
+    SHKItem *item = [SHKItem URL:[NSURL URLWithString:url] title:@"" contentType:SHKURLContentTypeWebpage];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [actionSheet showFromBarButtonItem:sender animated:YES];
+    } else {
+        [actionSheet showInView:self.view];
+    }
+    
+}
 
 #pragma mark - Action Sheet Delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (actionSheet == _actionsSheet) {           
-        // Actions 
+    if (actionSheet == _actionsSheet) {
+        // Actions
         self.actionsSheet = nil;
         if (buttonIndex != actionSheet.cancelButtonIndex) {
             if (buttonIndex == actionSheet.firstOtherButtonIndex) {
                 [self savePhoto]; return;
             } else if (buttonIndex == actionSheet.firstOtherButtonIndex + 1) {
-                [self copyPhoto]; return;	
+                [self copyPhoto]; return;
             } else if (buttonIndex == actionSheet.firstOtherButtonIndex + 2) {
                 [self emailPhoto]; return;
             }
@@ -1100,7 +1148,7 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 
 - (void)actuallySavePhoto:(id<MWPhoto>)photo {
     if ([photo underlyingImage]) {
-        UIImageWriteToSavedPhotosAlbum([photo underlyingImage], self, 
+        UIImageWriteToSavedPhotosAlbum([photo underlyingImage], self,
                                        @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 }

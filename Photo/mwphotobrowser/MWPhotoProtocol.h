@@ -51,6 +51,18 @@
 // as long as the image can be re-loaded (from cache, file, or URL)
 - (void)unloadUnderlyingImage;
 
+
+// now the properties that are mandatory
+@property (nonatomic, retain) NSDate   *date;
+@property (nonatomic, retain) NSString *identification;
+@property (nonatomic, retain) NSString *pageUrl;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSNumber *thumbWidth;
+@property (nonatomic, retain) NSNumber *thumbHeight;
+@property (nonatomic, retain) NSString *thumbUrl;
+@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSNumber * permission;
+
 @optional
 
 // Return a caption string to be displayed over the image

@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSNumber *thumbHeight;
 @property (nonatomic, retain) NSString *thumbUrl;
 @property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSNumber * permission;
 
 // Class
 + (MWPhoto *) photoWithImage:(UIImage *)image;

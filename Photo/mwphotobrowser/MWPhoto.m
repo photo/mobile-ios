@@ -48,6 +48,7 @@
 @synthesize thumbHeight = _thumbHeight;
 @synthesize thumbUrl = _thumbUrl;
 @synthesize url = _url;
+@synthesize permission = _permission;
 
 #pragma mark Class Methods
 
@@ -100,6 +101,7 @@
     [_thumbHeight release];
     [_thumbUrl release];
     [_url release];
+    [_permission release];
 	[super dealloc];
 }
 
@@ -172,6 +174,11 @@
     }
 }
 
+- (void)imageDidFinishLoadingSoDecompress
+{
+    
+}
+
 - (void)imageLoadingComplete {
     NSAssert([[NSThread currentThread] isMainThread], @"This method must be called on the main thread.");
     // Complete so notify
@@ -214,6 +221,12 @@
         photo.pageUrl        = [pageUrl copy];
         photo.identification = [NSString stringWithFormat:@"%@",[response objectForKey:@"id"]];
         photo.date           = [NSDate dateWithTimeIntervalSince1970:date];
+        
+        // permission
+        if ([[response objectForKey:@"permission"] isEqualToString:@"1"])
+            photo.permission = [NSNumber numberWithBool:YES];
+        else
+            photo.permission = [NSNumber numberWithBool:NO];
         
         // return result
         return photo;

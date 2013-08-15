@@ -442,6 +442,11 @@
         // Create & present browser
         self.mwphoto = [MWPhoto photoWithURL:[NSURL URLWithString:photo.photoUrlDetail]];
         
+        // set details
+        self.mwphoto.identification = photo.key;
+        self.mwphoto.pageUrl = photo.photoPageUrl;
+        self.mwphoto.permission = photo.permission;
+        
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         // Set options
         // browser.wantsFullScreenLayout = YES;

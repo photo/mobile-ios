@@ -517,7 +517,7 @@
         [picker pushViewController:controller animated:YES];
     }else{
         // no photo select
-        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo!" duration:5000];
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Please select at least 1 photo." duration:5000];
         [alert showAlert];
     }
     
