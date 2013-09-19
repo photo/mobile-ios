@@ -170,13 +170,19 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     NSLog(@"Application should handleOpenUrl = %@",url);
 #endif
     
-    // the "photo-test" is used for TestFlight tester and community contributors
     if ([[url scheme] isEqualToString:@"openphoto"]){
         AuthenticationService *auth = [[AuthenticationService alloc]init];
         
         if ([AuthenticationService isLogged] == NO){
             [auth startOAuthProcedure:url];
         }
+        
+        
+        // check details
+        // openphoto://open=/p/:id // photo
+        // openphoto://open=/v/:id // video
+        // openphoto://open=/m/:id // media
+        
     }else if ([[url scheme] hasPrefix:@"fb"]){
         return [SHKFacebook handleOpenURL:url];
     }

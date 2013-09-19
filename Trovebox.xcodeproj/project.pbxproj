@@ -203,6 +203,9 @@
 		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
 		CD92F16716E5375200E071CB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2F10C16E5305800D309B9 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9380931794050300C09B9D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9380921794050300C09B9D /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD9ECD1617C6694500D4585B /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD1417C6694500D4585B /* 45-movie-1.png */; };
+		CD9ECD1717C6694500D4585B /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */; };
+		CD9ECD3D17C66DC900D4585B /* video-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */; };
 		CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15D016E600DC004D22FD /* libEmail.a */; };
 		CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15E416E600DC004D22FD /* libFacebook.a */; };
 		CDA1855C16E601CB00D617CB /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15C216E600DC004D22FD /* libJSONKit.a */; };
@@ -1055,6 +1058,9 @@
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		CD9380911794050300C09B9D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CD9380921794050300C09B9D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		CD9ECD1417C6694500D4585B /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1.png"; sourceTree = "<group>"; };
+		CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1@2x.png"; sourceTree = "<group>"; };
+		CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-placeholder@2x.png"; sourceTree = "<group>"; };
 		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
 		CDA1856B16E61BBF00D617CB /* button-navigation-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-menu.png"; path = "images/button-navigation-menu.png"; sourceTree = "<group>"; };
@@ -1794,6 +1800,9 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */,
+				CD9ECD1417C6694500D4585B /* 45-movie-1.png */,
+				CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */,
 				CD47755817600DD7001AF36E /* button-more.png */,
 				CD47755917600DD7001AF36E /* button-more@2x.png */,
 				CD4B593C1733CD730023C199 /* Icon-72.png */,
@@ -2964,6 +2973,9 @@
 				CD4B59411733CD730023C199 /* Icon-Small.png in Resources */,
 				CD47755A17600DD7001AF36E /* button-more.png in Resources */,
 				CD47755B17600DD7001AF36E /* button-more@2x.png in Resources */,
+				CD9ECD1617C6694500D4585B /* 45-movie-1.png in Resources */,
+				CD9ECD1717C6694500D4585B /* 45-movie-1@2x.png in Resources */,
+				CD9ECD3D17C66DC900D4585B /* video-placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

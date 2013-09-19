@@ -108,7 +108,7 @@
 {
     [self validateCredentials];
     
-    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/photo/upload.json", self.server];
+    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/media/upload.json", self.server];
     NSURL *url = [NSURL URLWithString:urlString];
     
 #ifdef DEVELOPMENT_ENABLED

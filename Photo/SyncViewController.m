@@ -196,7 +196,7 @@
                  
                  BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
                  if (!hidden || (hidden && !alreadyUploaded)){
-                     ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded];
+                     ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded type:[result valueForProperty:ALAssetPropertyType] duration:[result valueForProperty:ALAssetPropertyDuration]];
                      [elcAsset setParent:self];
                      [startArray addObject:elcAsset];
                  }
@@ -457,7 +457,7 @@
                            
                            if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
-                               [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                           //    [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
                                hud.labelText = NSLocalizedString(@"Loading", nil);
                                assetsNumber = [self.assetGroup numberOfAssets];

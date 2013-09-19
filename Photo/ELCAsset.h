@@ -21,7 +21,7 @@
 @property (nonatomic, weak) id parent;
 
 
--(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded;
+-(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded type:(NSString*) type duration:(NSString*) time;
 -(BOOL) selected;
 
 @end
