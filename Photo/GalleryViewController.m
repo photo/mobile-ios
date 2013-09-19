@@ -275,7 +275,6 @@
                     });
                 }
             });
-            dispatch_release(loadPhotos);
         }
     }    
 }

@@ -336,7 +336,6 @@
                     });
                 }
             });
-            dispatch_release(loadTags);
         }
     }
     

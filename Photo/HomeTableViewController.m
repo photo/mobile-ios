@@ -592,7 +592,6 @@
                     });
                 }
             });
-            dispatch_release(loadNewestPhotos);
         }
     }
 }
@@ -676,7 +675,6 @@
                 });
             }
         });
-        dispatch_release(get_server_details);
     }
 }
 
@@ -715,7 +713,6 @@
                 });
             }
         });
-        dispatch_release(get_user_details);
     }
 }
 

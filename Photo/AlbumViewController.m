@@ -314,7 +314,6 @@
                     });
                 }
             });
-            dispatch_release(loadAlbums);
         }
     }
 }
@@ -384,7 +383,6 @@
             });
         }
     });
-    dispatch_release(createAlbum);
 }
 
 -(NSString*) getSelectedAlbumsIdentification

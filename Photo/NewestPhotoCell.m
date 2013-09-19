@@ -120,7 +120,6 @@
                 });
             }
         });
-        dispatch_release(token);
         
         // show progress bar
         [MBProgressHUD showHUDAddedTo:self.newestPhotosTableViewController.view animated:YES];

@@ -252,6 +252,5 @@
             
         }
     });
-    dispatch_release(queue);
 }
 @end

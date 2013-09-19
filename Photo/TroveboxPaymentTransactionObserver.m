@@ -74,7 +74,6 @@
                 NSLog(@"Error sending receipt to server %@", [exception description]);
             }
         });
-        dispatch_release(send_receipt_server);
     }
 }
 

@@ -82,7 +82,6 @@
             NSLog(@"Error in the job %@", [exception description]);
         }
     });
-    dispatch_release(jobQueue);
 }
 
 - (void) stop
@@ -380,7 +379,6 @@
                         
                     }
                 });
-                dispatch_release(uploaderQueue);
             }
         }
     });

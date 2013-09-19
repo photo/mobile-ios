@@ -102,8 +102,6 @@
             }
             
         });
-        dispatch_release(removeCredentials);
-        
     }
     
     // set the variable client id to INVALID

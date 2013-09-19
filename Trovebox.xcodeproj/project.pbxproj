@@ -401,6 +401,7 @@
 		CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA541729740F00D992DC /* Default-568h@2x.png */; };
 		CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */; };
 		CDE4A0E517642CC8002604CC /* PhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE4A0E417642CC8002604CC /* PhotoUploader.m */; };
+		CDF2C4DD17EB641C006C78A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDF2C4DC17EB641C006C78A9 /* Images.xcassets */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
 		CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F0CE16E520FC00D309B9 /* libsbjson-ios.a */; };
 		CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */; };
@@ -1294,6 +1295,7 @@
 		CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = "Frameworks/Google Conversion Tracking SDK/libGoogleConversionTracking.a"; sourceTree = "<group>"; };
 		CDE4A0E317642CC8002604CC /* PhotoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploader.h; sourceTree = "<group>"; };
 		CDE4A0E417642CC8002604CC /* PhotoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploader.m; sourceTree = "<group>"; };
+		CDF2C4DC17EB641C006C78A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Trovebox/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CDF2F06D16E4D87A00D309B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CDF2F0C216E520FC00D309B9 /* SBJson.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SBJson.xcodeproj; path = "Frameworks/json-framework/SBJson.xcodeproj"; sourceTree = "<group>"; };
 		CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = SOURCE_ROOT; };
@@ -2170,6 +2172,7 @@
 				CDAFB9DB16122262002D6E86 /* Supporting Files */,
 				CDAFB9E316122263002D6E86 /* AppDelegate.h */,
 				CDAFB9E416122263002D6E86 /* AppDelegate.m */,
+				CDF2C4DC17EB641C006C78A9 /* Images.xcassets */,
 			);
 			name = Trovebox;
 			path = Photo;
@@ -2367,6 +2370,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = Trovebox;
+				TargetAttributes = {
+					CDAFB9CD16122262002D6E86 = {
+						DevelopmentTeam = 7396XV45JF;
+					};
+				};
 			};
 			buildConfigurationList = CDAFB9C816122262002D6E86 /* Build configuration list for PBXProject "Trovebox" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2868,6 +2876,7 @@
 				CDD1A3C616E89A2600CDC33C /* menu-tags.png in Resources */,
 				CDD1A3C716E89A2600CDC33C /* menu-tags@2x.png in Resources */,
 				CDD1A3C816E89A2600CDC33C /* menu-upload.png in Resources */,
+				CDF2C4DD17EB641C006C78A9 /* Images.xcassets in Resources */,
 				CDD1A3C916E89A2600CDC33C /* menu-upload@2x.png in Resources */,
 				CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */,
 				CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */,
@@ -3280,6 +3289,8 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3294,7 +3305,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 				);
 				INFOPLIST_FILE = "Photo/Trovebox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
@@ -3316,7 +3327,9 @@
 		CDAFBA0916122263002D6E86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Wide Angle Labs, Inc.";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Wide Angle Labs, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3330,7 +3343,7 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 				);
 				INFOPLIST_FILE = "Photo/Trovebox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",

@@ -519,9 +519,7 @@
                 }
             });
         }
-    });
-    dispatch_release(waiting);
-    
+    });    
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Preparing";

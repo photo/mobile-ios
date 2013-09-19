@@ -182,7 +182,6 @@
                 
             }
         });
-        dispatch_release(loggin_account);
     }
 }
 
@@ -247,7 +246,6 @@
                 });
             }
         });
-        dispatch_release(reset_user_pwd);
     }
 }
 

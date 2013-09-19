@@ -274,7 +274,6 @@
                 
             }
         });
-        dispatch_release(get_user_details);
     }
     
 }
