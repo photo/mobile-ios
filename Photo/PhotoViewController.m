@@ -136,11 +136,12 @@
 
 
 - (void) cancelUploadButton{
-    [self dismissModalViewControllerAnimated:YES];
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                      withAction:@"buttonPress"
-                                                       withLabel:@"Cancel Upload"
-                                                       withValue:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
+                                                          withAction:@"buttonPress"
+                                                           withLabel:@"Cancel Upload"
+                                                           withValue:nil];
+    }];
 }
 
 -(IBAction)OnClick_btnBack:(id)sender  {
@@ -500,7 +501,7 @@
                     [self.navigationController popViewControllerAnimated:NO];
                     [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
                 }else{
-                    [self dismissModalViewControllerAnimated:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }
             });
             
@@ -515,7 +516,7 @@
                     [self.navigationController popViewControllerAnimated:NO];
                     [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
                 }else{
-                    [self dismissModalViewControllerAnimated:YES];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }
             });
         }

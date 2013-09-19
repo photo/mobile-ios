@@ -194,7 +194,7 @@
     
     if ([notification.name isEqualToString:kNotificationLoginAuthorize]){
         // we don't need the screen anymore
-        [self dismissModalViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

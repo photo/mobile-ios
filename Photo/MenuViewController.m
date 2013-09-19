@@ -273,7 +273,7 @@
     // open the login
     LoginViewController *controller = [[LoginViewController alloc]initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginViewController"] bundle:nil ];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    [self presentModalViewController:navController animated:YES];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void) eventHandler: (NSNotification *) notification{
@@ -313,7 +313,7 @@
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController*)sender {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) openCamera:(id) sender
@@ -381,8 +381,9 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
-    [picker dismissModalViewControllerAnimated:YES];
-    [coreLocationController.locMgr stopUpdatingLocation];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [coreLocationController.locMgr stopUpdatingLocation];
+    }];
 }
 
 

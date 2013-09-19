@@ -166,7 +166,7 @@
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
 
     // Present
-    [self presentModalViewController:nav animated:NO];
+    [self presentViewController:nav animated:NO completion:nil];
 }
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
