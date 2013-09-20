@@ -78,7 +78,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
-
+    
     // image for the navigator
     [self.navigationController.navigationBar troveboxStyle:NO];
     
@@ -162,9 +162,9 @@
     // Set options
     browser.wantsFullScreenLayout = YES;
     browser.displayActionButton = YES;
-    [browser setInitialPageIndex:indexPath.row]; 
+    [browser setInitialPageIndex:indexPath.row];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
-
+    
     // Present
     [self presentViewController:nav animated:NO completion:nil];
 }
@@ -187,7 +187,7 @@
 - (NSInteger)quiltViewNumberOfColumns:(TMQuiltView *)quiltView {
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft
         || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
-
+        
         // is iPad
         if ([DisplayUtilities isIPad]){
             return 6;
@@ -257,7 +257,9 @@
                                 }
                                 
                                 MWPhoto *photo = [MWPhoto photoWithServerInfo:photoDetails];
-                                [self.photos addObject:photo];
+                                if (photo != nil){
+                                    [self.photos addObject:photo];
+                                }
                             }
                         }
                         

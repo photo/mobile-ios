@@ -45,18 +45,26 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.trackedViewName = @"Login Screen";
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    
 }
 
 #pragma mark - Rotation
 
 - (BOOL) shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 - (NSUInteger) supportedInterfaceOrientations
@@ -70,12 +78,14 @@
 }
 
 - (IBAction)signUpWithEmail:(id)sender {
-    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginCreateAccountViewController"] bundle:nil] ;
+    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginCreateAccountViewController"] bundle:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)signInWithEmail:(id)sender {
     LoginConnectViewController *controller = [[LoginConnectViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginConnectViewController"] bundle:nil];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -92,7 +102,5 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
+
 @end

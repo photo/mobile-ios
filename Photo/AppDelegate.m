@@ -134,6 +134,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [[SKPaymentQueue defaultQueue] addTransactionObserver:[TroveboxPaymentTransactionObserver troveboxPaymentTransactionObserver]];
     }
     
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
 
