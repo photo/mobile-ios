@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0318496F1711468C009C9214 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9F516122263002D6E86 /* SenTestingKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		03184971171146B3009C9214 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03184970171146B2009C9214 /* AVFoundation.framework */; };
 		03184973171146E0009C9214 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03184972171146E0009C9214 /* CoreMedia.framework */; };
 		03184975171146E6009C9214 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03184974171146E6009C9214 /* CoreVideo.framework */; };
@@ -228,12 +227,6 @@
 		CDAFB9E116122262002D6E86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9E016122262002D6E86 /* main.m */; };
 		CDAFB9E516122263002D6E86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9E416122263002D6E86 /* AppDelegate.m */; };
 		CDAFB9EE16122263002D6E86 /* Photo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */; };
-		CDAFB9F616122263002D6E86 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9F516122263002D6E86 /* SenTestingKit.framework */; };
-		CDAFB9F716122263002D6E86 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D216122262002D6E86 /* UIKit.framework */; };
-		CDAFB9F816122263002D6E86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D416122262002D6E86 /* Foundation.framework */; };
-		CDAFB9F916122263002D6E86 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAFB9D816122262002D6E86 /* CoreData.framework */; };
-		CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDAFB9FF16122263002D6E86 /* InfoPlist.strings */; };
-		CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFBA0316122263002D6E86 /* PhotoTests.m */; };
 		CDB3B3A81705EA1C0010C38A /* home-trovebox-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */; };
 		CDB3B3A91705EA1C0010C38A /* home-trovebox-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */; };
 		CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */; };
@@ -751,13 +744,6 @@
 			remoteGlobalIDString = 7A1AFD2B160E14340086B98A;
 			remoteInfo = Twitter;
 		};
-		CDAFB9FA16122263002D6E86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CDAFB9C516122262002D6E86 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CDAFB9CD16122262002D6E86;
-			remoteInfo = Photo;
-		};
 		CDD1A39A16E76E6300CDC33C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */;
@@ -1084,12 +1070,7 @@
 		CDAFB9E316122263002D6E86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CDAFB9E416122263002D6E86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CDAFB9ED16122263002D6E86 /* Photo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photo.xcdatamodel; sourceTree = "<group>"; };
-		CDAFB9F416122263002D6E86 /* TroveboxTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TroveboxTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDAFB9F516122263002D6E86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		CDAFB9FE16122263002D6E86 /* TroveboxTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TroveboxTests-Info.plist"; sourceTree = "<group>"; };
-		CDAFBA0016122263002D6E86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CDAFBA0216122263002D6E86 /* PhotoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoTests.h; sourceTree = "<group>"; };
-		CDAFBA0316122263002D6E86 /* PhotoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoTests.m; sourceTree = "<group>"; };
 		CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo.png"; path = "images/home-trovebox-logo.png"; sourceTree = "<group>"; };
 		CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo@2x.png"; path = "images/home-trovebox-logo@2x.png"; sourceTree = "<group>"; };
 		CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1334,7 +1315,6 @@
 				03184975171146E6009C9214 /* CoreVideo.framework in Frameworks */,
 				03184973171146E0009C9214 /* CoreMedia.framework in Frameworks */,
 				03184971171146B3009C9214 /* AVFoundation.framework in Frameworks */,
-				0318496F1711468C009C9214 /* SenTestingKit.framework in Frameworks */,
 				CDD1A39C16E76E7600CDC33C /* libSSKeyChain.a in Frameworks */,
 				CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */,
 				CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */,
@@ -1371,17 +1351,6 @@
 				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
 				CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */,
 				CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CDAFB9F016122263002D6E86 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDAFB9F616122263002D6E86 /* SenTestingKit.framework in Frameworks */,
-				CDAFB9F716122263002D6E86 /* UIKit.framework in Frameworks */,
-				CDAFB9F816122263002D6E86 /* Foundation.framework in Frameworks */,
-				CDAFB9F916122263002D6E86 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2087,7 +2056,6 @@
 			children = (
 				CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */,
 				CDAFB9DA16122262002D6E86 /* Trovebox */,
-				CDAFB9FC16122263002D6E86 /* PhotoTests */,
 				CDAFB9D116122262002D6E86 /* Frameworks */,
 				CDAFB9CF16122262002D6E86 /* Products */,
 			);
@@ -2097,7 +2065,6 @@
 			isa = PBXGroup;
 			children = (
 				CDAFB9CE16122262002D6E86 /* Trovebox.app */,
-				CDAFB9F416122263002D6E86 /* TroveboxTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2187,25 +2154,6 @@
 				CDAFB9DD16122262002D6E86 /* InfoPlist.strings */,
 				CDAFB9E016122262002D6E86 /* main.m */,
 				CDAFB9E216122263002D6E86 /* Trovebox-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CDAFB9FC16122263002D6E86 /* PhotoTests */ = {
-			isa = PBXGroup;
-			children = (
-				CDAFBA0216122263002D6E86 /* PhotoTests.h */,
-				CDAFBA0316122263002D6E86 /* PhotoTests.m */,
-				CDAFB9FD16122263002D6E86 /* Supporting Files */,
-			);
-			path = PhotoTests;
-			sourceTree = "<group>";
-		};
-		CDAFB9FD16122263002D6E86 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				CDAFB9FE16122263002D6E86 /* TroveboxTests-Info.plist */,
-				CDAFB9FF16122263002D6E86 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2343,25 +2291,6 @@
 			productReference = CDAFB9CE16122262002D6E86 /* Trovebox.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CDAFB9F316122263002D6E86 /* TroveboxTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CDAFBA0A16122263002D6E86 /* Build configuration list for PBXNativeTarget "TroveboxTests" */;
-			buildPhases = (
-				CDAFB9EF16122263002D6E86 /* Sources */,
-				CDAFB9F016122263002D6E86 /* Frameworks */,
-				CDAFB9F116122263002D6E86 /* Resources */,
-				CDAFB9F216122263002D6E86 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CDAFB9FB16122263002D6E86 /* PBXTargetDependency */,
-			);
-			name = TroveboxTests;
-			productName = PhotoTests;
-			productReference = CDAFB9F416122263002D6E86 /* TroveboxTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2414,7 +2343,6 @@
 			projectRoot = "";
 			targets = (
 				CDAFB9CD16122262002D6E86 /* Trovebox */,
-				CDAFB9F316122263002D6E86 /* TroveboxTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2988,30 +2916,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDAFB9F116122263002D6E86 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDAFBA0116122263002D6E86 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		CDAFB9F216122263002D6E86 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		CDBD38B016F868AB007D0CC6 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 8;
@@ -3142,14 +3049,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDAFB9EF16122263002D6E86 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CDAFBA0416122263002D6E86 /* PhotoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -3193,11 +3092,6 @@
 			name = Twitter;
 			targetProxy = CDA1852E16E6019A00D617CB /* PBXContainerItemProxy */;
 		};
-		CDAFB9FB16122263002D6E86 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CDAFB9CD16122262002D6E86 /* Trovebox */;
-			targetProxy = CDAFB9FA16122263002D6E86 /* PBXContainerItemProxy */;
-		};
 		CDD1A39B16E76E6300CDC33C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SSKeyChain;
@@ -3210,14 +3104,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				CDAFB9DE16122262002D6E86 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CDAFB9FF16122263002D6E86 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CDAFBA0016122263002D6E86 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -3362,40 +3248,6 @@
 			};
 			name = Release;
 		};
-		CDAFBA0B16122263002D6E86 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Photo.app/Photo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
-				INFOPLIST_FILE = "PhotoTests/TroveboxTests-Info.plist";
-				PRODUCT_NAME = TroveboxTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		CDAFBA0C16122263002D6E86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Photo.app/Photo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Photo/Photo-Prefix.pch";
-				INFOPLIST_FILE = "PhotoTests/TroveboxTests-Info.plist";
-				PRODUCT_NAME = TroveboxTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3413,15 +3265,6 @@
 			buildConfigurations = (
 				CDAFBA0816122263002D6E86 /* Debug */,
 				CDAFBA0916122263002D6E86 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CDAFBA0A16122263002D6E86 /* Build configuration list for PBXNativeTarget "TroveboxTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CDAFBA0B16122263002D6E86 /* Debug */,
-				CDAFBA0C16122263002D6E86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
