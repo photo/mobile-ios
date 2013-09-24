@@ -24,7 +24,7 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username.trovebox.com" placeholder="url" minimumFontSize="13" clearButtonMode="always" id="12">
                     <rect key="frame" x="28" y="189" width="265" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="15"/>
@@ -45,10 +45,13 @@
                         <action selector="login:" destination="-1" eventType="touchUpInside" id="21"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="trovebox-logo-ipad.png" id="25">
-                    <rect key="frame" x="40" y="28" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We don't officially support self hosted instances. But if you have one then enter your username below and follow the steps." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" adjustsFontSizeToFit="NO" id="rSw-fV-p0K">
+                    <rect key="frame" x="20" y="77" width="280" height="99"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.26666668059999998" green="0.16078431900000001" blue="0.1019607931" alpha="1" colorSpace="deviceRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -58,6 +61,5 @@
     <resources>
         <image name="login-field-background.png" width="282" height="38"/>
         <image name="login-login.png" width="282" height="37"/>
-        <image name="trovebox-logo-ipad.png" width="840" height="222"/>
     </resources>
 </document>

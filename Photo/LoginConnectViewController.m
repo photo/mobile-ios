@@ -87,10 +87,11 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if(![DisplayUtilities isIPad]){
+    // in the case of iphone 5 or ipad we don't need to move the screen
+    if (![DisplayUtilities isIPad] && ![DisplayUtilities is4InchRetina]){
         if (self.isViewUp == NO){
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y - 42)];
+                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y - 30)];
             }completion:^(BOOL finished){
                 self.isViewUp = YES;
             }];
@@ -111,10 +112,11 @@
 }
 - (IBAction)login:(id)sender {
     // put view down
-    if(![DisplayUtilities isIPad]){
+    // in the case of iphone 5 or ipad we don't need to move the screen
+    if (![DisplayUtilities isIPad] && ![DisplayUtilities is4InchRetina]){
         if (self.isViewUp == YES){
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
-                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
+                [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 30)];
             }completion:^(BOOL finished){
                 self.isViewUp = NO;
             }];
@@ -188,7 +190,8 @@
 - (IBAction)recoverPassword:(id)sender {
     
     // put view down
-    if(![DisplayUtilities isIPad]){
+    // in the case of iphone 5 or ipad we don't need to move the screen
+    if (![DisplayUtilities isIPad] && ![DisplayUtilities is4InchRetina]){
         if (self.isViewUp == YES){
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
                 [self.view setCenter:CGPointMake([self.view  center].x, [self.view center].y + 42)];
