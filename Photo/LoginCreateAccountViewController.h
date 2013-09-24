@@ -34,12 +34,8 @@
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundEmail;
 @property (nonatomic, weak) IBOutlet UIImageView *backgroundPassword;
 
-// message for Create account with email
-@property (nonatomic, weak) IBOutlet UILabel *createAccountLabelEnter;
-@property (nonatomic, weak) IBOutlet UILabel *createAccountLabelYourUsername;
-@property (nonatomic, weak) IBOutlet UILabel *createAccountLabelForYour;
-@property (nonatomic, weak) IBOutlet UILabel *createAccountLabelOpenPhoto;
-
+// label
+@property (nonatomic, weak) IBOutlet UILabel *createAccountLabel;
 
 - (IBAction)createAccount:(id)sender;
 @end

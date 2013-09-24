@@ -38,10 +38,7 @@
 @synthesize backgroundUsername;
 @synthesize backgroundEmail;
 @synthesize backgroundPassword;
-@synthesize createAccountLabelEnter;
-@synthesize createAccountLabelYourUsername;
-@synthesize createAccountLabelForYour;
-@synthesize createAccountLabelOpenPhoto;
+@synthesize createAccountLabel;
 
 @synthesize isViewUp = _isViewUp;
 
@@ -62,10 +59,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.trackedViewName = @"Create Account Screen";
     
-    self.createAccountLabelEnter.hidden = NO;
-    self.createAccountLabelYourUsername.hidden = NO;
-    self.createAccountLabelForYour.hidden = NO;
-    self.createAccountLabelOpenPhoto.hidden = NO;
+    self.createAccountLabel.hidden = NO;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -96,7 +90,8 @@
 - (IBAction)createAccount:(id)sender
 {
     
-    if (![DisplayUtilities isIPad]){
+    // in the case of iphone 5 or ipad we don't need to move the screen
+    if (![DisplayUtilities isIPad] && ![DisplayUtilities is4InchRetina]){
         if ( self.isViewUp == YES){
             [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseOut animations:^{
                 [self moveFieldsUpOrDown:+1];
@@ -146,7 +141,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (![DisplayUtilities isIPad]){
+    if (![DisplayUtilities isIPad] && ![DisplayUtilities is4InchRetina]){
         
         if (self.isViewUp == NO){
             self.isViewUp = YES;
@@ -160,17 +155,14 @@
 // direction should be -1 for go up or +1 to go down.
 -(void) moveFieldsUpOrDown:(int) direction
 {
-    
+
     if (direction != -1 && direction != +1){
         // we don't allow others values
         return;
     }
     
     // move up or down everything because we don't have space enough
-    [self.createAccountLabelEnter setCenter:CGPointMake([self.createAccountLabelEnter  center].x, [self.createAccountLabelEnter center].y + (35 * direction))];
-    [self.createAccountLabelYourUsername setCenter:CGPointMake([self.createAccountLabelYourUsername  center].x, [self.createAccountLabelYourUsername center].y + (35 * direction))];
-    [self.createAccountLabelForYour setCenter:CGPointMake([self.createAccountLabelForYour  center].x, [self.createAccountLabelForYour center].y + (35 * direction))];
-    [self.createAccountLabelOpenPhoto setCenter:CGPointMake([self.createAccountLabelOpenPhoto  center].x, [self.createAccountLabelOpenPhoto center].y + (35 * direction))];
+    [self.createAccountLabel setCenter:CGPointMake([self.createAccountLabel  center].x, [self.createAccountLabel center].y + (35 * direction))];
     [self.username setCenter:CGPointMake([self.username  center].x, [self.username center].y + (35 * direction))];
     [self.email setCenter:CGPointMake([self.email  center].x, [self.email center].y + (35 * direction))];
     [self.password setCenter:CGPointMake([self.password  center].x, [self.password center].y + (35 * direction))];
@@ -208,10 +200,7 @@
     [self setBackgroundUsername:nil];
     [self setBackgroundEmail:nil];
     [self setBackgroundPassword:nil];
-    [self setCreateAccountLabelEnter:nil];
-    [self setCreateAccountLabelYourUsername:nil];
-    [self setCreateAccountLabelForYour:nil];
-    [self setCreateAccountLabelOpenPhoto:nil];
+    [self setCreateAccountLabel:nil];
     
     [super viewDidUnload];
 }
