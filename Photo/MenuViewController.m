@@ -52,7 +52,6 @@
         // no separator
         [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
         
-        
         coreLocationController = [[CoreLocationController alloc] init];
         coreLocationController.delegate = self;
         
@@ -261,7 +260,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ( [indexPath row] == 6){
+    if ( [indexPath row] == 0){
+        return 64;
+    }else if ( [indexPath row] == 6){
         return 37;
     }else{
         return 44;

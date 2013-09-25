@@ -25,7 +25,7 @@
 @property (nonatomic) BOOL needsUpdate;
 @property (nonatomic, strong) MWPhoto* mwphoto;
 
-- (void)doneLoadingTableViewData;
+- (void) doneLoadingTableViewData;
 - (void) updateProfileDetails;
 - (void) updateServerDetails;
 @end
@@ -83,6 +83,8 @@
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationProfileRefresh
                                                    object:nil ];
+        
+        
     }
     return self;
 }
@@ -142,29 +144,10 @@
 {
     [super viewDidLoad];
     
-	if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height) arrowImageName:@"home-brown-arrow.png" textColor:UIColorFromRGB(0x645840)];
-		view.delegate = self;
-        
-        // set background
-        view.backgroundColor = [UIColor clearColor];
-        view.opaque = NO;
-        
-        
-		[self.tableView addSubview:view];
-		_refreshHeaderView = view;
-	}
-    
-	//  update the last update date
-	[_refreshHeaderView refreshLastUpdatedDate];
-}
-
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    _refreshHeaderView=nil;
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = UIColorFromRGB(0x3B2414);
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(changeSorting) forControlEvents:UIControlEventValueChanged];
 }
 
 - (BOOL) shouldAutorotate
@@ -512,7 +495,7 @@
 - (void)doneLoadingTableViewData
 {
     _reloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    [self.refreshControl endRefreshing];
     
     // if no picture, show image to upload
     if ([[self.fetchedResultsController fetchedObjects] count]== 0){
@@ -523,37 +506,12 @@
     }
 }
 
-
-
 #pragma mark -
-#pragma mark UIScrollViewDelegate Methods
+#pragma mark Refresh Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)changeSorting
 {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-    // via GCD, get the newest photos and save it on database
-    [self loadNewestPhotosIntoCoreData];
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-    return _reloading; // should return if data source model is reloading
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{
-    return [NSDate date]; // should return date data source was last changed
+ [self loadNewestPhotosIntoCoreData];
 }
 
 #pragma mark -

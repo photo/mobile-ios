@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBuildDate</key>
-	<date>2013-08-22T22:15:34Z</date>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -61,11 +61,11 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.066371366381645203</real>
+				<real>0.0663713663816452</real>
 				<key>Green</key>
 				<real>0.1054482683539391</real>
 				<key>Red</key>
-				<real>0.17748937010765081</real>
+				<real>0.1774893701076508</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
@@ -83,7 +83,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
 </dict>
 </plist>

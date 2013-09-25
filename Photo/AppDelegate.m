@@ -64,6 +64,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+
     
     self.menuController = [[MenuViewController alloc] init];
     
@@ -133,9 +134,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         [subscription requestProUpgradeProductData];
         [[SKPaymentQueue defaultQueue] addTransactionObserver:[TroveboxPaymentTransactionObserver troveboxPaymentTransactionObserver]];
     }
-    
-    
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }

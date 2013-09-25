@@ -24,20 +24,17 @@
 
 - (void)troveboxStyle:(BOOL) defaultLogo
 {
-   
-    // image for the navigator
-    if([[UINavigationBar class] respondsToSelector:@selector(appearance)]){
         //iOS >=5.0
-        [self setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
-    }else{
-        UIImageView *imageView = (UIImageView *)[self viewWithTag:6183746];
-        if (imageView == nil)
-        {
-            imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"appbar_empty.png"]];
-            [imageView setTag:6183746];
-            [self insertSubview:imageView atIndex:0];
-        }
-    }
+   // [self setTintColor:[UIColor redColor]];
+    //    [self setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+
+   /// self.tintColor = [UIColor whiteColor];
+   // self.barTintColor = UIColorFromRGB(0x40332D);
+     // self.barTintColor =  UIColorFromRGB(0xFECD31);
+      self.barTintColor =  UIColorFromRGB(0x3B2414);
+        self.tintColor = [UIColor whiteColor];
+    
+    //     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     if (defaultLogo){
         UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];

@@ -96,6 +96,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     self.page = 1;
     self.totalPages = nil;
     // load photos

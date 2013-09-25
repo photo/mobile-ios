@@ -520,6 +520,13 @@ __typeof__(h) __h = (h);                                    \
     self.originalShadowColor = nil;
     self.originalShadowOffset = CGSizeZero;
     self.originalShadowPath = nil;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidUnload
@@ -1985,6 +1992,5 @@ static const char* viewDeckControllerKey = "ViewDeckController";
     
     [self viewDidDisappear:animated];
 }
-
 
 @end

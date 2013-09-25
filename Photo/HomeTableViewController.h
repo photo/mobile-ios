@@ -18,7 +18,6 @@
 //  limitations under the License.
 //
 
-#import "EGORefreshTableHeaderView.h"
 #import "Timeline+Methods.h"
 #import "WebService.h"
 
@@ -37,13 +36,10 @@
 #import "DateUtilities.h"
 #import "MWPhotoBrowser.h"
 
-@interface HomeTableViewController : CoreDataTableViewController<EGORefreshTableHeaderDelegate, MWPhotoBrowserDelegate>
+@interface HomeTableViewController : CoreDataTableViewController<MWPhotoBrowserDelegate>
 {
-    
-    EGORefreshTableHeaderView *_refreshHeaderView;
-    
+
     //  Reloading var should really be your tableviews datasource
-    //  Putting it here for demo purposes
     BOOL _reloading;
     
     UIImageView *noPhotoImageView;

@@ -409,7 +409,6 @@
 		CDFAF34916285495007A4FDF /* UploadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDFAF34416285495007A4FDF /* UploadCell.xib */; };
 		CDFAF34F16285730007A4FDF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34C16285730007A4FDF /* Tag.m */; };
 		CDFAF35016285730007A4FDF /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF34E16285730007A4FDF /* TagViewController.m */; };
-		CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */; };
 		CDFAF36016285C4E007A4FDF /* Synced+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDFAF35F16285C4E007A4FDF /* Synced+Methods.m */; };
 /* End PBXBuildFile section */
@@ -1297,8 +1296,6 @@
 		CDFAF34C16285730007A4FDF /* Tag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tag.m; path = Photo/Tag.m; sourceTree = "<group>"; };
 		CDFAF34D16285730007A4FDF /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TagViewController.h; path = Photo/TagViewController.h; sourceTree = "<group>"; };
 		CDFAF34E16285730007A4FDF /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TagViewController.m; path = Photo/TagViewController.m; sourceTree = "<group>"; };
-		CDFAF35116285892007A4FDF /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EGORefreshTableHeaderView.h; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EGORefreshTableHeaderView.m; path = Frameworks/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		CDFAF35A16285BC6007A4FDF /* Timeline+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Timeline+Methods.h"; sourceTree = "<group>"; };
 		CDFAF35B16285BC6007A4FDF /* Timeline+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Timeline+Methods.m"; sourceTree = "<group>"; };
 		CDFAF35E16285C4E007A4FDF /* Synced+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Synced+Methods.h"; sourceTree = "<group>"; };
@@ -2085,7 +2082,6 @@
 				CDDFDA5617297C3400D992DC /* Google Conversion Tracking SDK */,
 				CD2FE8E01639837D0032105A /* Google Analytics SDK */,
 				CD1CDE3D162C2B4B00E57F73 /* SDWebImage */,
-				CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */,
 				CD8D9CC1162344A700A76811 /* MBProgressHUD */,
 				CD8D9CBF1623446B00A76811 /* TSAlertView */,
 				CD76428A161ED9E600E0B657 /* ASIHTTPRequest */,
@@ -2250,15 +2246,6 @@
 				CDF2F0D016E520FC00D309B9 /* sbjson-iosTests.octest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CDFAF34A162854C1007A4FDF /* EGORefreshTableHeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				CDFAF35116285892007A4FDF /* EGORefreshTableHeaderView.h */,
-				CDFAF35216285892007A4FDF /* EGORefreshTableHeaderView.m */,
-			);
-			name = EGORefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2970,7 +2957,6 @@
 				CDFAF34816285495007A4FDF /* UploadCell.m in Sources */,
 				CDFAF34F16285730007A4FDF /* Tag.m in Sources */,
 				CDFAF35016285730007A4FDF /* TagViewController.m in Sources */,
-				CDFAF35316285892007A4FDF /* EGORefreshTableHeaderView.m in Sources */,
 				CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */,
 				CDFAF36016285C4E007A4FDF /* Synced+Methods.m in Sources */,
 				CD1528481628DB8500EA08FF /* Account.m in Sources */,
