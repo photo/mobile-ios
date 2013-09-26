@@ -24,18 +24,9 @@
 
 - (void)troveboxStyle:(BOOL) defaultLogo
 {
-        //iOS >=5.0
-   // [self setTintColor:[UIColor redColor]];
-    //    [self setBackgroundImage:[UIImage imageNamed:@"appbar_empty.png"] forBarMetrics:UIBarMetricsDefault];
+    self.barTintColor =  UIColorFromRGB(0x3B2414);
+    self.tintColor = [UIColor whiteColor];
 
-   /// self.tintColor = [UIColor whiteColor];
-   // self.barTintColor = UIColorFromRGB(0x40332D);
-     // self.barTintColor =  UIColorFromRGB(0xFECD31);
-      self.barTintColor =  UIColorFromRGB(0x3B2414);
-        self.tintColor = [UIColor whiteColor];
-    
-    //     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     if (defaultLogo){
         UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-trovebox-logo.png"]];
         [self.topItem setTitleView:titleView];
