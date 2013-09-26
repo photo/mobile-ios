@@ -383,6 +383,7 @@
 		CDD1A3C716E89A2600CDC33C /* menu-tags@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B716E89A2600CDC33C /* menu-tags@2x.png */; };
 		CDD1A3C816E89A2600CDC33C /* menu-upload.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B816E89A2600CDC33C /* menu-upload.png */; };
 		CDD1A3C916E89A2600CDC33C /* menu-upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3B916E89A2600CDC33C /* menu-upload@2x.png */; };
+		CDD935BF17F3A55D002CE92D /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F0CE16E520FC00D309B9 /* libsbjson-ios.a */; };
 		CDDFDA3F1729422A00D992DC /* LoginViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA3E1729422A00D992DC /* LoginViewControlleriPad.xib */; };
 		CDDFDA4117294A3200D992DC /* trovebox-logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA4017294A3200D992DC /* trovebox-logo-ipad.png */; };
 		CDDFDA49172970CB00D992DC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA48172970CA00D992DC /* Default@2x.png */; };
@@ -396,7 +397,6 @@
 		CDE4A0E517642CC8002604CC /* PhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE4A0E417642CC8002604CC /* PhotoUploader.m */; };
 		CDF2C4DD17EB641C006C78A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDF2C4DC17EB641C006C78A9 /* Images.xcassets */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
-		CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F0CE16E520FC00D309B9 /* libsbjson-ios.a */; };
 		CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = CDF2F0F416E52A8D00D309B9 /* Entitlements.entitlements */; };
 		CDF2F10216E52DCC00D309B9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F10116E52DCC00D309B9 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CDF2F10416E52DDD00D309B9 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F10316E52DDD00D309B9 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -1343,8 +1343,8 @@
 				CDAFB9D516122262002D6E86 /* Foundation.framework in Frameworks */,
 				CDAFB9D716122262002D6E86 /* CoreGraphics.framework in Frameworks */,
 				CDAFB9D916122262002D6E86 /* CoreData.framework in Frameworks */,
-				CDF2F0D116E5210F00D309B9 /* libsbjson-ios.a in Frameworks */,
 				CDF2F10716E52EC000D309B9 /* libSDWebImage.a in Frameworks */,
+				CDD935BF17F3A55D002CE92D /* libsbjson-ios.a in Frameworks */,
 				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
 				CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */,
 				CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */,
