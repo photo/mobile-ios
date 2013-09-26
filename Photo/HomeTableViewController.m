@@ -315,7 +315,7 @@
         
         
         // title
-        [newestPhotoCell label].text=photo.title;
+        [newestPhotoCell label].text=[photo.title stringByReplacingOccurrencesOfString:@"\t" withString:@""];
         
         // days or hours
         NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:photo.date];
