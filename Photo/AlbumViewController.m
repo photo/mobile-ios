@@ -100,6 +100,7 @@
     }else{
         [self.navigationItem troveboxStyle:NSLocalizedString(@"Albums", @"Menu - title for Albums") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
     }
+    
     // title
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
@@ -151,9 +152,12 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        cell.backgroundColor = [UIColor clearColor];
     }
+    
     NSUInteger row = [indexPath row];
     
     Album *album = [self.albums objectAtIndex:row];
