@@ -118,6 +118,7 @@
 		CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */; };
 		CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
+		CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
 		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
 		CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */; };
@@ -919,6 +920,8 @@
 		CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSearchCell.m; sourceTree = "<group>"; };
 		CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSearchCell.xib; sourceTree = "<group>"; };
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
+		CD25838D17F4C24900A62574 /* UploadStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadStatusTableViewController.h; sourceTree = "<group>"; };
+		CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadStatusTableViewController.m; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
 		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
@@ -1638,11 +1641,13 @@
 			name = Server;
 			sourceTree = "<group>";
 		};
-		CD4613D5161C7ACB0028619D /* Home */ = {
+		CD4613D5161C7ACB0028619D /* Home & Upload Status */ = {
 			isa = PBXGroup;
 			children = (
 				CDFAF33D16285495007A4FDF /* HomeTableViewController.h */,
 				CDFAF33E16285495007A4FDF /* HomeTableViewController.m */,
+				CD25838D17F4C24900A62574 /* UploadStatusTableViewController.h */,
+				CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */,
 				CDFAF33F16285495007A4FDF /* NewestPhotoCell.h */,
 				CDFAF34016285495007A4FDF /* NewestPhotoCell.m */,
 				CDFAF34116285495007A4FDF /* NewestPhotoCell.xib */,
@@ -1652,7 +1657,7 @@
 				CDFAF34416285495007A4FDF /* UploadCell.xib */,
 				CD901279172167D000BB30EF /* UploadCelliPad.xib */,
 			);
-			name = Home;
+			name = "Home & Upload Status";
 			sourceTree = "<group>";
 		};
 		CD4613D6161C7AEA0028619D /* Gallery */ = {
@@ -2123,7 +2128,7 @@
 				CD4613D2161C7A9F0028619D /* CoreData */,
 				CD4613D3161C7AB40028619D /* Authentication */,
 				CD4613DB161C7B3A0028619D /* Menu */,
-				CD4613D5161C7ACB0028619D /* Home */,
+				CD4613D5161C7ACB0028619D /* Home & Upload Status */,
 				CD4613DA161C7B190028619D /* Settings */,
 				CD4613D9161C7B0C0028619D /* Upload */,
 				CD4613D7161C7AFA0028619D /* Sync */,
@@ -2955,6 +2960,7 @@
 				CDFAF34516285495007A4FDF /* HomeTableViewController.m in Sources */,
 				CDFAF34616285495007A4FDF /* NewestPhotoCell.m in Sources */,
 				CDFAF34816285495007A4FDF /* UploadCell.m in Sources */,
+				CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */,
 				CDFAF34F16285730007A4FDF /* Tag.m in Sources */,
 				CDFAF35016285730007A4FDF /* TagViewController.m in Sources */,
 				CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */,
