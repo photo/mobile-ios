@@ -313,7 +313,6 @@
             }
         }
         
-        
         // title
         [newestPhotoCell label].text=[photo.title stringByReplacingOccurrencesOfString:@"\t" withString:@""];
         
