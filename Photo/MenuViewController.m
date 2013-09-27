@@ -238,6 +238,7 @@
                     self.syncController = syncController;
                 }
                 controller.centerController = self.syncController;
+                controller.centerController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
             }else if (  indexPath.row == 7){
                 // Account - Profile
                 if (self.profileController == nil){
@@ -370,7 +371,7 @@
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
             [navController.navigationBar troveboxStyle:NO];
             [self dismissViewControllerAnimated:YES completion:^{
-                [self presentViewController:navController animated:YES completion:nil];
+            [self presentViewController:navController animated:YES completion:nil];
             }];
         }
     }];

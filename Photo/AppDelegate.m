@@ -94,6 +94,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     }
     
     self.window.rootViewController = deckController;
+    self.window.tintColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     
