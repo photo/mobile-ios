@@ -1,27 +1,30 @@
 //
 //  Asset.h
 //
-//  Created by Matt Tuzzolo on 2/15/11.
+//  Created by ELC on 2/15/11.
 //  Copyright 2011 ELC Technologies. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "SyncViewController.h"
 
+@class ELCAsset;
 
-@interface ELCAsset : UIView <UIAlertViewDelegate>{
-	ALAsset *asset;
-	UIImageView *overlayView;
-	UIImageView *overlayAlreadyUploadedView;
-	id parent;
-}
+@protocol ELCAssetDelegate <NSObject>
+
+@optional
+- (void)assetSelected:(ELCAsset *)asset;
+
+@end
+
+@interface ELCAsset : UIView <UIAlertViewDelegate>
+
 
 @property (nonatomic, strong) ALAsset *asset;
-@property (nonatomic, weak) id parent;
+@property (nonatomic, weak) id<ELCAssetDelegate> parent;
+@property (nonatomic) BOOL selected;
+@property (nonatomic) BOOL uploaded;
 
-
--(id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded type:(NSString*) type duration:(NSString*) time;
--(BOOL) selected;
+- (id)initWithAsset:(ALAsset*)_asset alreadyUploaded:(BOOL) uploaded type:(NSString*) type duration:(NSString*) time;
 
 @end

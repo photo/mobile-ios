@@ -106,9 +106,11 @@
 
 - (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName delegate:(id) delegate
 {
-    [self validateCredentials];
+    [self validateCredentials];    
     
-    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/media/upload.json", self.server];
+    // for video:       /v1/media/upload.json"
+    // just for images: /v1/photo/upload.json
+    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/photo/upload.json", self.server];
     NSURL *url = [NSURL URLWithString:urlString];
     
 #ifdef DEVELOPMENT_ENABLED

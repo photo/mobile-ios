@@ -20,10 +20,7 @@
 
 #import "SyncViewController.h"
 
-@interface SyncViewController (){
-    BOOL hidden;
-}
--(void) switchedShowUploaded;
+@interface SyncViewController ()
 -(void) loadSavedPhotos;
 @end
 
@@ -33,32 +30,11 @@
 @synthesize assetGroup=_assetGroup, elcAssets=_elcAssets;
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
-@synthesize buttonHidden =_buttonHidden;
-
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
     self = [super initWithNibName:nibName bundle:nibBundle];
     if (self) {
-        
-        self.buttonHidden = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.buttonHidden  addTarget:self action:@selector(switchedShowUploaded) forControlEvents:UIControlEventTouchUpInside];
-        
-        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-        if (![standardUserDefaults valueForKey:kSyncShowUploadedPhotos]){
-            // it does not exist
-            // create as YES
-            [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
-            [standardUserDefaults synchronize];
-            hidden = NO;
-        }
-        
-        if  ([standardUserDefaults boolForKey:kSyncShowUploadedPhotos] == YES){
-            // set the sync to NO
-            hidden = NO;
-        }else{
-            hidden = YES;
-        }
         
         // notification for update the table
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -76,7 +52,9 @@
     self.trackedViewName = @"Sync Screen";
     
     [self.navigationController.navigationBar troveboxStyle:NO];
-    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
+    
+    // table colors
+    self.tableView.backgroundColor = UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     
@@ -84,6 +62,9 @@
     self.elcAssets = tempArray;
 	
 	[self.navigationItem setTitle:NSLocalizedString(@"Loading...",@"")];
+    
+    // title and buttons
+    [self.navigationItem troveboxStyle:NSLocalizedString(@"Sync", @"Menu - title for Sync") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
     
     // button to sync
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,31 +75,6 @@
     
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = customBarItem;
-    
-    if (hidden){
-        UIImage *buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
-        [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
-        self.buttonHidden.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    }else{
-        UIImage *buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
-        [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
-        self.buttonHidden.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    }
-    
-    customBarItem = [[UIBarButtonItem alloc] initWithCustomView:self.buttonHidden];
-    
-    // menu
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
-    [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
-    leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
-    [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
-    self.navigationItem.leftBarButtonItem = customLeftButton;
-    
-    self.navigationItem.leftBarButtonItems =
-    [NSArray arrayWithObjects:customLeftButton, customBarItem, nil];
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -191,11 +147,9 @@
                  NSString *asset =  [AssetsLibraryUtilities getAssetsUrlId:result.defaultRepresentation.url] ;
                  
                  BOOL alreadyUploaded = [self.imagesAlreadyUploaded containsObject:asset];
-                 if (!hidden || (hidden && !alreadyUploaded)){
-                     ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded type:[result valueForProperty:ALAssetPropertyType] duration:[result valueForProperty:ALAssetPropertyDuration]];
-                     [elcAsset setParent:self];
-                     [startArray addObject:elcAsset];
-                 }
+                 ELCAsset *elcAsset = [[ELCAsset alloc] initWithAsset:result alreadyUploaded:alreadyUploaded type:[result valueForProperty:ALAssetPropertyType] duration:[result valueForProperty:ALAssetPropertyDuration]];
+                 [elcAsset setParent:self];
+                 [startArray addObject:elcAsset];
              }];
             
             //revert the order
@@ -366,7 +320,7 @@
     }else{
 		[cell setAssets:[self assetsForIndexPath:indexPath]];
 	}
-
+    
     return cell;
 }
 
@@ -390,53 +344,6 @@
     return count;
 }
 
-- (void) switchedShowUploaded
-{
-    // change the boolean
-    hidden = !hidden;
-    
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    
-    // set details of the button
-    UIImage *buttonImage;
-    NSString *message;
-    if (!hidden){
-        buttonImage = [UIImage imageNamed:@"sync-hide.png"] ;
-        message = NSLocalizedString(@"Showing all of your photos", @"Message sync to show the photos");
-        [standardUserDefaults setBool:YES forKey:kSyncShowUploadedPhotos];
-        
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Sync - showing all photos"
-                                                           withValue:nil];
-        
-    }else{
-        buttonImage = [UIImage imageNamed:@"sync-show.png"] ;
-        message = NSLocalizedString(@"Hiding photos you've already uploaded", @"Message sync to hiden the photos");;
-        [standardUserDefaults setBool:NO forKey:kSyncShowUploadedPhotos];
-        
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Sync - hiding photos uploaded"
-                                                           withValue:nil];
-    }
-    [standardUserDefaults synchronize];
-    
-    [self.buttonHidden setImage:buttonImage forState:UIControlStateNormal];
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-    hud.labelText = NSLocalizedString(@"Loading", nil);
-    
-    // load all urls
-    self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-    [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-    
-    
-    // show explanations
-    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:message duration:3000];
-    [alert showAlert];
-}
-
 - (void) loadSavedPhotos
 {
     // the Saved Photos Album
@@ -452,7 +359,7 @@
                            
                            if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
-                           //    [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                               //    [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
                                hud.labelText = NSLocalizedString(@"Loading", nil);
                                assetsNumber = [self.assetGroup numberOfAssets];

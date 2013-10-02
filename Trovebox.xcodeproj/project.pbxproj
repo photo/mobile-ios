@@ -120,8 +120,6 @@
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */; };
 		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
-		CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */; };
-		CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */; };
 		CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56216303E54001A0CA0 /* ELCAsset.m */; };
 		CD30D57116303E54001A0CA0 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56416303E54001A0CA0 /* ELCAssetCell.m */; };
 		CD30D57216303E54001A0CA0 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56516303E54001A0CA0 /* ELCAssetPicker.xib */; };
@@ -922,11 +920,9 @@
 		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD25838D17F4C24900A62574 /* UploadStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadStatusTableViewController.h; sourceTree = "<group>"; };
 		CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadStatusTableViewController.m; sourceTree = "<group>"; };
+		CD2583E317FCB3B000A62574 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
 		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
-		CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
-		CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
-		CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ELCAlbumPickerController.xib; sourceTree = "<group>"; };
 		CD30D56116303E54001A0CA0 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
 		CD30D56216303E54001A0CA0 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
 		CD30D56316303E54001A0CA0 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
@@ -1688,9 +1684,7 @@
 		CD4613D7161C7AFA0028619D /* Sync */ = {
 			isa = PBXGroup;
 			children = (
-				CD30D55E16303E54001A0CA0 /* ELCAlbumPickerController.h */,
-				CD30D55F16303E54001A0CA0 /* ELCAlbumPickerController.m */,
-				CD30D56016303E54001A0CA0 /* ELCAlbumPickerController.xib */,
+				CD2583E317FCB3B000A62574 /* ELCAssetSelectionDelegate.h */,
 				CD30D56116303E54001A0CA0 /* ELCAsset.h */,
 				CD30D56216303E54001A0CA0 /* ELCAsset.m */,
 				CD30D56316303E54001A0CA0 /* ELCAssetCell.h */,
@@ -2663,7 +2657,6 @@
 				CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */,
 				CD15284D1628DB8500EA08FF /* LoginCreateAccountViewController.xib in Resources */,
 				CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */,
-				CD30D56F16303E54001A0CA0 /* ELCAlbumPickerController.xib in Resources */,
 				CD30D57216303E54001A0CA0 /* ELCAssetPicker.xib in Resources */,
 				CD30D57416303E54001A0CA0 /* ELCImagePickerController.xib in Resources */,
 				CD30D57716303E54001A0CA0 /* SyncViewController.xib in Resources */,
@@ -2974,7 +2967,6 @@
 				CD84B36F162D49180008FE7D /* PrivateConstants.m in Sources */,
 				CD84B3A5162D58330008FE7D /* PhotoSHKConfigurator.m in Sources */,
 				CD84B3A8162D5F150008FE7D /* InitializerService.m in Sources */,
-				CD30D56E16303E54001A0CA0 /* ELCAlbumPickerController.m in Sources */,
 				CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */,
 				CD30D57116303E54001A0CA0 /* ELCAssetCell.m in Sources */,
 				CD30D57316303E54001A0CA0 /* ELCImagePickerController.m in Sources */,

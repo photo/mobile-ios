@@ -2,55 +2,61 @@
 //  ELCImagePickerController.m
 //  ELCImagePickerDemo
 //
-//  Created by Collin Ruffenach on 9/9/10.
+//  Created by ELC on 9/9/10.
 //  Copyright 2010 ELC Technologies. All rights reserved.
 //
 
 #import "ELCImagePickerController.h"
+#import "ELCAsset.h"
+#import "ELCAssetCell.h"
+#import "ELCAssetTablePicker.h"
+#import "ELCAlbumPickerController.h"
 
 @implementation ELCImagePickerController
 
-@synthesize delegate;
+@synthesize delegate = _myDelegate;
 
--(void)cancelImagePicker {
-	if([delegate respondsToSelector:@selector(elcImagePickerControllerDidCancel:)]) {
-		[delegate performSelector:@selector(elcImagePickerControllerDidCancel:) withObject:self];
+- (void)cancelImagePicker
+{
+	if([_myDelegate respondsToSelector:@selector(elcImagePickerControllerDidCancel:)]) {
+		[_myDelegate performSelector:@selector(elcImagePickerControllerDidCancel:) withObject:self];
 	}
 }
 
--(void)selectedAssets:(NSArray*)_assets {
+- (void)selectedAssets:(NSArray *)assets
+{
 	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
 	
-	for(ALAsset *asset in _assets) {
-		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
-		[workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:@"UIImagePickerControllerReferenceURL"];
+	for(ALAsset *asset in assets) {
         
+		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+		[workingDictionary setObject:[asset valueForProperty:ALAssetPropertyType] forKey:@"UIImagePickerControllerMediaType"];
+        ALAssetRepresentation *assetRep = [asset defaultRepresentation];
+        
+        CGImageRef imgRef = [assetRep fullScreenImage];
+        UIImage *img = [UIImage imageWithCGImage:imgRef
+                                           scale:[UIScreen mainScreen].scale
+                                     orientation:(UIImageOrientation)assetRep.orientation];
+        [workingDictionary setObject:img forKey:@"UIImagePickerControllerOriginalImage"];
+		[workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:@"UIImagePickerControllerReferenceURL"];
+		
 		[returnArray addObject:workingDictionary];
+        
 	}
-	
-    [self popToRootViewControllerAnimated:NO];
-    [[self parentViewController] dismissViewControllerAnimated:YES completion:nil];
-    
-	if([delegate respondsToSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:)]) {
-		[delegate performSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:) withObject:self withObject:[NSArray arrayWithArray:returnArray]];
-	}
+	if(_myDelegate != nil && [_myDelegate respondsToSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:)]) {
+		[_myDelegate performSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:) withObject:self withObject:[NSArray arrayWithArray:returnArray]];
+	} else {
+        [self popToRootViewControllerAnimated:NO];
+    }
 }
 
-#pragma mark - Rotation
-
-- (BOOL) shouldAutorotate
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    return YES;
-}
-
-- (NSUInteger) supportedInterfaceOrientations
-{
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return YES;
+    } else {
+        return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    }
 }
 
 @end

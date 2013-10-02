@@ -24,14 +24,14 @@
 #import "MBProgressHUD.h"
 #import "Synced+Methods.h"
 #import "ELCAsset.h"
-#import "ELCAlbumPickerController.h" 
+#import "ELCAlbumPickerController.h"
 #import "ELCAssetCell.h"
 #import "ELCImagePickerController.h"
 #import "PhotoViewController.h"
 
 #import "GAI.h"
 
-@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate, UIAlertViewDelegate>
+@interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate, ELCAssetDelegate, UIAlertViewDelegate>
 {
 	ALAssetsGroup *assetGroup;
 	
@@ -54,7 +54,6 @@
 @property (nonatomic, strong) NSMutableArray *elcAssets;
 @property (nonatomic, strong) NSMutableArray *imagesAlreadyUploaded;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) UIButton *buttonHidden;
 
 -(int)  totalSelectedAssets;
 -(void) preparePhotos;
