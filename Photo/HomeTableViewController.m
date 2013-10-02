@@ -666,7 +666,7 @@
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"Could not update the probile: %@",[e description]);
+                    NSLog(@"Could not update the profile: %@",[e description]);
                 });
             }
         });

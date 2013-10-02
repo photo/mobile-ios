@@ -75,6 +75,11 @@
 	[self.tableView setAllowsSelection:NO];
     self.trackedViewName = @"Sync Screen";
     
+    [self.navigationController.navigationBar troveboxStyle:NO];
+    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
+    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
+    
+    
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     self.elcAssets = tempArray;
 	
@@ -114,15 +119,6 @@
     
     self.navigationItem.leftBarButtonItems =
     [NSArray arrayWithObjects:customLeftButton, customBarItem, nil];
-    
-    
-    
-    self.navigationController.navigationBar.barStyle=UIBarStyleBlackOpaque;
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor blackColor]];
-    [self.navigationController.navigationBar troveboxStyle:NO];
-    
-    self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
-    self.tableView.separatorColor = UIColorFromRGB(0xCDC9C1);
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -211,6 +207,7 @@
 #endif
             [self.tableView reloadData];
             [self.navigationItem setTitle:@"Select Photos"];
+            
         }
     }
     
@@ -363,15 +360,13 @@
     
     ELCAssetCell *cell = (ELCAssetCell*)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil)
-    {
+    if (cell == nil){
         cell = [[ELCAssetCell alloc] initWithAssets:[self assetsForIndexPath:indexPath] reuseIdentifier:CellIdentifier];
-    }
-	else
-    {
+        cell.backgroundColor = [UIColor clearColor];
+    }else{
 		[cell setAssets:[self assetsForIndexPath:indexPath]];
 	}
-    
+
     return cell;
 }
 
