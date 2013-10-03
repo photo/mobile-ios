@@ -9,8 +9,6 @@
 #import "ELCImagePickerController.h"
 #import "ELCAsset.h"
 #import "ELCAssetCell.h"
-#import "ELCAssetTablePicker.h"
-#import "ELCAlbumPickerController.h"
 
 @implementation ELCImagePickerController
 

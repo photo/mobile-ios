@@ -31,20 +31,6 @@
 @synthesize imagesAlreadyUploaded;
 @synthesize tableView=_tableView;
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
-{
-    self = [super initWithNibName:nibName bundle:nibBundle];
-    if (self) {
-        
-        // notification for update the table
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(eventHandler:)
-                                                     name:kNotificationUpdateTableWithAllPhotosAgain
-                                                   object:nil ];
-    }
-    return self;
-}
-
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -98,7 +84,6 @@
         // load all urls
         self.imagesAlreadyUploaded = [Synced getPathsInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
         [self performSelectorInBackground:@selector(preparePhotos) withObject:nil];
-        
     }else{
         loaded = YES;
     }
@@ -179,8 +164,7 @@
             }
         }
         
-        [(ELCAlbumPickerController*)self.parent selectedAssets:selectedAssetsImages];
-        
+        [self.parent selectedAssets:selectedAssetsImages];        
         [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
                                                           withAction:@"buttonPress"
                                                            withLabel:@"Sync - next pressed"
@@ -387,6 +371,7 @@
     
 }
 
+/*
 - (void) eventHandler: (NSNotification *) notification{
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"###### Event triggered: %@", notification);
@@ -398,6 +383,7 @@
         [self loadSavedPhotos];
     }
 }
+ */
 
 
 // Sync
@@ -432,10 +418,6 @@
 #endif
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 - (void)viewDidUnload {
     [self setTableView:nil];

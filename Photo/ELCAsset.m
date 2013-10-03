@@ -6,8 +6,6 @@
 //
 
 #import "ELCAsset.h"
-#import "ELCAssetTablePicker.h"
-
 
 @interface ELCAsset(){
     NSString* _type;

@@ -12,13 +12,13 @@
 
 @property (nonatomic, strong) NSArray *rowAssets;
 @property (nonatomic, strong) NSMutableArray *imageViewArray;
+@property (nonatomic, strong) NSMutableArray *uploadedViewArray;
 @property (nonatomic, strong) NSMutableArray *overlayViewArray;
 
 @end
 
 @implementation ELCAssetCell
 
-@synthesize rowAssets = _rowAssets;
 
 - (id)initWithAssets:(NSArray *)assets reuseIdentifier:(NSString *)identifier
 {
@@ -33,6 +33,9 @@
         NSMutableArray *overlayArray = [[NSMutableArray alloc] initWithCapacity:4];
         self.overlayViewArray = overlayArray;
         
+        NSMutableArray *uploadedViewArray = [[NSMutableArray alloc] initWithCapacity:4];
+        self.uploadedViewArray = uploadedViewArray;
+        
         [self setAssets:assets];
 	}
 	return self;
@@ -44,9 +47,15 @@
 	for (UIImageView *view in _imageViewArray) {
         [view removeFromSuperview];
 	}
+    
+    for (UIImageView *view in _uploadedViewArray) {
+        [view removeFromSuperview];
+	}
+    
     for (UIImageView *view in _overlayViewArray) {
         [view removeFromSuperview];
 	}
+    
     //set up a pointer here so we don't keep calling [UIImage imageNamed:] if creating overlays
     UIImage *overlayImage = nil;
     UIImage *overlayUploaded = nil;
@@ -55,36 +64,29 @@
         
         ELCAsset *asset = [_rowAssets objectAtIndex:i];
         
+        // IMAGE
         if (i < [_imageViewArray count]) {
             UIImageView *imageView = [_imageViewArray objectAtIndex:i];
             imageView.image = [UIImage imageWithCGImage:asset.asset.thumbnail];
-            
-            
-            // check if the user already uploaded this image
-            if ( asset.uploaded){
-                if (overlayUploaded == nil)
-                    overlayUploaded = [UIImage imageNamed:@"sync-already-uploaded.png"];
-                UIImageView *overlayUploadedView = [[UIImageView alloc] initWithImage:overlayUploaded];
-                overlayUploadedView.frame =  CGRectMake(0, 0, 75, 75);
-                [imageView addSubview:overlayUploadedView];
-            }
-             
-            
         } else {
             UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:asset.asset.thumbnail]];
-            
-            // check if the user already uploaded this image
-            if ( asset.uploaded){
-                if (overlayUploaded == nil)
-                    overlayUploaded = [UIImage imageNamed:@"sync-already-uploaded.png"];
-                UIImageView *overlayUploadedView = [[UIImageView alloc] initWithImage:overlayUploaded];
-                overlayUploadedView.frame =  CGRectMake(0, 0, 75, 75);
-                [imageView addSubview:overlayUploadedView];
-            }
-            
             [_imageViewArray addObject:imageView];
         }
         
+        // UPLOADED
+        if (i < [_uploadedViewArray count]){
+            UIImageView *uploadedView = [_uploadedViewArray objectAtIndex:i];
+            uploadedView.hidden = asset.uploaded ? NO :YES;
+        }else{
+            if (overlayUploaded == nil){
+                overlayUploaded = [UIImage imageNamed:@"sync-already-uploaded.png"];
+            }
+            UIImageView *uploadedView = [[UIImageView alloc] initWithImage:overlayUploaded];
+            [_uploadedViewArray addObject:uploadedView];
+            uploadedView.hidden = asset.uploaded ? NO :YES;
+        }
+        
+        // OVERLAY
         if (i < [_overlayViewArray count]) {
             UIImageView *overlayView = [_overlayViewArray objectAtIndex:i];
             overlayView.hidden = asset.selected ? NO : YES;
@@ -163,6 +165,10 @@
 		UIImageView *imageView = [_imageViewArray objectAtIndex:i];
 		[imageView setFrame:frame];
 		[self addSubview:imageView];
+
+        UIImageView *updatedView = [_uploadedViewArray objectAtIndex:i];
+		[updatedView setFrame:frame];
+		[self addSubview:updatedView];
         
         UIImageView *overlayView = [_overlayViewArray objectAtIndex:i];
         [overlayView setFrame:frame];

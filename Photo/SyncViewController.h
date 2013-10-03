@@ -24,7 +24,6 @@
 #import "MBProgressHUD.h"
 #import "Synced+Methods.h"
 #import "ELCAsset.h"
-#import "ELCAlbumPickerController.h"
 #import "ELCAssetCell.h"
 #import "ELCImagePickerController.h"
 #import "PhotoViewController.h"

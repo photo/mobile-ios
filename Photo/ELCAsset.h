@@ -21,7 +21,7 @@
 
 
 @property (nonatomic, strong) ALAsset *asset;
-@property (nonatomic, weak) id<ELCAssetDelegate> parent;
+@property (nonatomic, strong) id<ELCAssetDelegate> parent;
 @property (nonatomic) BOOL selected;
 @property (nonatomic) BOOL uploaded;
 
