@@ -24,8 +24,6 @@
 - (void) loadAlbums;
 - (NSArray *) getSelectedAlbums;
 
-// to avoid multiples loading
-@property (nonatomic) BOOL isLoading;
 //used for create new albums
 @property (nonatomic) BOOL readOnly;
 
@@ -37,7 +35,7 @@
 
 @implementation AlbumViewController
 
-@synthesize albums = _albums, isLoading = _isLoading, readOnly=_readOnly;
+@synthesize albums = _albums, readOnly=_readOnly;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,9 +43,6 @@
     if (self) {
         // initialize the object albums
         self.albums = [NSMutableArray array];
-        
-        // is loading albums
-        self.isLoading = NO;
         self.readOnly = NO;
         
         // for infinite scroll
@@ -104,6 +99,11 @@
     // title
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = UIColorFromRGB(0x3B2414);
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(loadingData) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -222,103 +222,85 @@
     }
 }
 
+#pragma mark -
+#pragma mark Refresh Methods
+
+- (void)loadingData
+{
+    [self loadAlbums];
+}
 
 #pragma mark
 #pragma mark - Methods to get albums via json
 - (void) loadAlbums
 {
-    
-    if (self.isLoading == NO){
-        self.isLoading = YES;
-        // if there isn't netwok
-        if ( [SharedAppDelegate internetActive] == NO ){
-            // problem with internet, show message to user
-            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
-            [alert showAlert];
-            
-            self.isLoading = NO;
-        }else {
-            MBProgressHUD *hud;
-            
-            if ( self.readOnly){
-                hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            }    else{
-                hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-            }
-            hud.labelText = NSLocalizedString(@"Loading",nil);
-            
-            dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
-            dispatch_async(loadAlbums, ^{
-                // call the method and get the details
-                @try {
-                    // get factory for OpenPhoto Service
-                    WebService *service = [[WebService alloc] init];
-                    NSArray *result = [service loadAlbums:25 onPage:self.page];
+    // if there isn't netwok
+    if ( [SharedAppDelegate internetActive] == NO ){
+        // problem with internet, show message to user
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
+        [alert showAlert];
+    }else {
+        dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
+        dispatch_async(loadAlbums, ^{
+            // call the method and get the details
+            @try {
+                // get factory for OpenPhoto Service
+                WebService *service = [[WebService alloc] init];
+                NSArray *result = [service loadAlbums:25 onPage:self.page];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([result class] != [NSNull class] && [result count] > 0) {
+                        // we may try to load more albums again
+                        self.totalPages++;
+                        self.page++;
                         
-                        if ([result class] != [NSNull class] && [result count] > 0) {
-                            // we may try to load more albums again
-                            self.totalPages++;
-                            self.page++;
+                        // Loop through each entry in the dictionary and create an array Albums
+                        for (NSDictionary *albumDetails in result){
+                            // tag name
+                            NSString *name = [albumDetails objectForKey:@"name"];
+                            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                             
-                            // Loop through each entry in the dictionary and create an array Albums
-                            for (NSDictionary *albumDetails in result){
-                                // tag name
-                                NSString *name = [albumDetails objectForKey:@"name"];
-                                name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            // how many images
+                            NSString *qtd = [albumDetails objectForKey:@"count"];
+                            NSString *identification = [albumDetails objectForKey:@"id"];
+                            
+                            if ([qtd integerValue] >0 ){
+                                // first get the cover
+                                NSDictionary* cover = [albumDetails objectForKey:@"cover"];
+                                NSString *size;
+                                if ([DisplayUtilities isIPad])
+                                    size = @"photo200x200xCR";
+                                else
+                                    size = @"photo100x100xCR";
+                                NSArray *pathCover = [cover objectForKey:size];
                                 
-                                // how many images
-                                NSString *qtd = [albumDetails objectForKey:@"count"];
-                                NSString *identification = [albumDetails objectForKey:@"id"];
+                                // create an album and add to the list of albums
+                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
                                 
-                                if ([qtd integerValue] >0 ){
-                                    // first get the cover
-                                    NSDictionary* cover = [albumDetails objectForKey:@"cover"];
-                                    NSString *size;
-                                    if ([DisplayUtilities isIPad])
-                                        size = @"photo200x200xCR";
-                                    else
-                                        size = @"photo100x100xCR";
-                                    NSArray *pathCover = [cover objectForKey:size];
-                                    
-                                    // create an album and add to the list of albums
-                                    Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
-                                    
-                                    [self.albums addObject:album];
-                                }else if (self.readOnly){
-                                    // in this case add just with the name and count
-                                    Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
-                                    [self.albums addObject:album];
-                                }
+                                [self.albums addObject:album];
+                            }else if (self.readOnly){
+                                // in this case add just with the name and count
+                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
+                                [self.albums addObject:album];
                             }
-                            
-                            [self.tableView reloadData];
-                        }else{
-                            self.totalPages = self.page;
                         }
                         
-                        if ( self.readOnly){
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        }else{
-                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                        }
-                        self.isLoading = NO;
-                    });
-                }@catch (NSException *exception) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if ( self.readOnly){
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        }else{
-                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                        }
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
-                        [alert showAlert];
-                        self.isLoading = NO;
-                    });
-                }
-            });
-        }
+                        [self.tableView reloadData];
+                    }else{
+                        self.totalPages = self.page;
+                    }
+                    
+                    [self.refreshControl endRefreshing];
+                });
+            }@catch (NSException *exception) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                    [alert showAlert];
+                    [self.refreshControl endRefreshing];
+                });
+            }
+        });
     }
 }
 
@@ -345,13 +327,7 @@
     // add the new tag in the list and select it
     Album *album = [[Album alloc] initWithAlbumName:alertView.inputTextField.text];
     
-    MBProgressHUD *hud;
-    
-    if ( self.readOnly){
-        hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    }    else{
-        hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-    }
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"Creating",@"Creating Album");
     
     dispatch_queue_t createAlbum = dispatch_queue_create("createAlbum", NULL);
@@ -366,24 +342,14 @@
                 album.selected = YES;
                 [self.albums addObject:album];
                 [self.tableView reloadData];
-                if ( self.readOnly){
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                }else{
-                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                }
-                self.isLoading = NO;
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         }@catch (NSException *exception) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if ( self.readOnly){
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                }else{
-                    [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                }
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 
                 PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                 [alert showAlert];
-                self.isLoading = NO;
             });
         }
     });

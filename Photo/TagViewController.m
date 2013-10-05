@@ -24,16 +24,12 @@
 - (void) loadTags;
 @property (nonatomic) BOOL readOnly;
 
-// to avoid multiples loading
-@property (nonatomic) BOOL isLoading;
-
 @end
 
 @implementation TagViewController
 
-@synthesize tags = _tags;
-@synthesize readOnly = _readOnly;
-@synthesize isLoading = _isLoading;
+@synthesize tags = _tags, readOnly = _readOnly;
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,9 +40,6 @@
         
         // set the read only by default as NO
         self.readOnly = NO;
-        
-        // is loading tags
-        self.isLoading = NO;
     }
     return self;
 }
@@ -137,6 +130,19 @@
     
     self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.separatorColor = UIColorFromRGB(0xC8BEA0);
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = UIColorFromRGB(0x3B2414);
+    self.refreshControl = refreshControl;
+    [refreshControl addTarget:self action:@selector(loadingData) forControlEvents:UIControlEventValueChanged];
+    
+}
+
+#pragma mark -
+#pragma mark Refresh Methods
+- (void)loadingData
+{
+    [self loadTags];
 }
 
 -(IBAction)OnClick_btnBack:(id)sender  {
@@ -269,28 +275,12 @@
 - (void) loadTags
 {
     
-    if (self.isLoading == NO){
-        self.isLoading = YES;
         // if there isn't netwok
-        
         if ( [SharedAppDelegate internetActive] == NO ){
             // problem with internet, show message to user
             PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
             [alert showAlert];
-            
-            self.isLoading = NO;
         }else {
-            MBProgressHUD *hud;
-            
-            if ( self.readOnly){
-                hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            }    else{
-                hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-            }
-            
-            
-            hud.labelText = @"Loading";
-            
             dispatch_queue_t loadTags = dispatch_queue_create("loadTags", NULL);
             dispatch_async(loadTags, ^{
                 // call the method and get the details
@@ -318,27 +308,19 @@
                             }}
                         
                         [self.tableView reloadData];
-                        if ( self.readOnly){
-                            [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        }    else{
-                            [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                        }
-                        
-                        
-                        self.isLoading = NO;
-                        
+                        [self.refreshControl endRefreshing];
                     });
                 }@catch (NSException *exception) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                         [alert showAlert];
-                        self.isLoading = NO;
+                        
+                        [self.refreshControl endRefreshing];
                     });
                 }
             });
         }
-    }
     
 }
 @end

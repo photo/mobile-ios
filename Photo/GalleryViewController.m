@@ -21,10 +21,8 @@
 #import "GalleryViewController.h"
 
 @interface GalleryViewController ()
-- (void) loadPhotos;
+- (void) loadPhotos:(UIRefreshControl *)refreshControl;
 
-// to avoid multiples loading
-@property (nonatomic) BOOL isLoading;
 // for loading page
 @property (nonatomic) NSInteger page;
 @property (nonatomic) NSInteger totalPages;
@@ -36,7 +34,6 @@
 
 @implementation GalleryViewController
 @synthesize photos=_photos;
-@synthesize isLoading=_isLoading;
 @synthesize page=_page;
 @synthesize totalPages=_totalPages;
 @synthesize album=_album;
@@ -48,7 +45,6 @@
     if (self) {
         // Custom initialization
         self.photos = [NSMutableArray array];
-        self.isLoading = NO;
         self.page = 1;
     }
     return self;
@@ -85,6 +81,11 @@
     // title and buttons
     [self.navigationItem troveboxStyle:NSLocalizedString(@"Gallery", @"Menu - title for Gallery") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
     
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = UIColorFromRGB(0x3B2414);
+    [refreshControl addTarget:self action:@selector(loadPhotos:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.view addSubview:refreshControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,11 +97,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     self.page = 1;
     self.totalPages = nil;
     // load photos
-    [self loadPhotos];
+    [self loadPhotos:nil];
 }
 
 #pragma mark - Rotation
@@ -149,7 +150,7 @@
     // check if it is the last cell
     if (self.totalPages){
         if ([self.photos count] - 1  == indexPath.row && self.page <= self.totalPages){
-            [self loadPhotos];
+            [self loadPhotos:nil];
         }
     }
     
@@ -210,75 +211,72 @@
     return [photo.thumbHeight integerValue];
 }
 
--(void) loadPhotos
+-(void) loadPhotos:(UIRefreshControl *)refreshControl
 {
-    if (self.isLoading == NO){
-        self.isLoading = YES;
-        // if there isn't netwok
-        if ( [SharedAppDelegate internetActive] == NO ){
-            // problem with internet, show message to user
-            PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
-            [alert showAlert];
-            
-            self.isLoading = NO;
-        }else {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
-            hud.labelText = @"Loading";
-            
-            dispatch_queue_t loadPhotos = dispatch_queue_create("loadPhotos", NULL);
-            dispatch_async(loadPhotos, ^{
-                // call the method and get the details
-                @try {
-                    // get factory for Service
-                    WebService *service = [[WebService alloc] init];
-                    NSArray *result;
-                    
-                    if (self.album){
-                        result = [service loadGallery:50 onPage:self.page++ album:self.album];
-                    }else if (self.tag){
-                        result = [service loadGallery:50 onPage:self.page++ tag:self.tag];
-                    }else{
-                        result = [service loadGallery:50 onPage:self.page++];
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if ([result class] != [NSNull class]) {
-                            
-                            if ( self.page == 2 ){
-                                // first time loading
-                                [self.photos removeAllObjects];
-                            }
-                            
-                            // Loop through each entry in the dictionary and create an array of photos
-                            for (NSDictionary *photoDetails in result){
-                                
-                                // get totalPages
-                                if (!self.totalPages){
-                                    self.totalPages = [[photoDetails objectForKey:@"totalPages"] doubleValue];
-                                }
-                                
-                                MWPhoto *photo = [MWPhoto photoWithServerInfo:photoDetails];
-                                if (photo != nil){
-                                    [self.photos addObject:photo];
-                                }
-                            }
+    // if there isn't netwok
+    if ( [SharedAppDelegate internetActive] == NO ){
+        // problem with internet, show message to user
+        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
+        [alert showAlert];
+    }else {
+        dispatch_queue_t loadPhotos = dispatch_queue_create("loadPhotos", NULL);
+        dispatch_async(loadPhotos, ^{
+            // call the method and get the details
+            @try {
+                // get factory for Service
+                WebService *service = [[WebService alloc] init];
+                NSArray *result;
+                
+                // if user is refreshing that means we must load the initial data
+                if (refreshControl != nil){
+                    self.page = 1;
+                    self.totalPages = nil;
+                }
+                
+                if (self.album){
+                    result = [service loadGallery:50 onPage:self.page++ album:self.album];
+                }else if (self.tag){
+                    result = [service loadGallery:50 onPage:self.page++ tag:self.tag];
+                }else{
+                    result = [service loadGallery:50 onPage:self.page++];
+                }
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([result class] != [NSNull class]) {
+                        
+                        if ( self.page == 2 ){
+                            // first time loading
+                            [self.photos removeAllObjects];
                         }
                         
-                        [MBProgressHUD hideHUDForView:self.viewDeckController.view animated:YES];
-                        self.isLoading = NO;
-                        [self.quiltView reloadData];
-                    });
-                }@catch (NSException *exception) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSLog(@"Exception %@",exception.description);
-                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
-                        [alert showAlert];
-                        self.isLoading = NO;
-                    });
-                }
-            });
-        }
-    }    
+                        // Loop through each entry in the dictionary and create an array of photos
+                        for (NSDictionary *photoDetails in result){
+                            
+                            // get totalPages
+                            if (!self.totalPages){
+                                self.totalPages = [[photoDetails objectForKey:@"totalPages"] doubleValue];
+                            }
+                            
+                            MWPhoto *photo = [MWPhoto photoWithServerInfo:photoDetails];
+                            if (photo != nil){
+                                [self.photos addObject:photo];
+                            }
+                        }
+                    }
+
+                    [self.quiltView reloadData];
+                    [refreshControl endRefreshing];
+                });
+            }@catch (NSException *exception) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Exception %@",exception.description);
+                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
+                    [alert showAlert];
+                    [refreshControl endRefreshing];
+                });
+            }
+        });
+    }
 }
 @end

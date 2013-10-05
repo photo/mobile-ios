@@ -147,7 +147,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = UIColorFromRGB(0x3B2414);
     self.refreshControl = refreshControl;
-    [refreshControl addTarget:self action:@selector(changeSorting) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(loadingData) forControlEvents:UIControlEventValueChanged];
 }
 
 - (BOOL) shouldAutorotate
@@ -507,8 +507,7 @@
 
 #pragma mark -
 #pragma mark Refresh Methods
-
-- (void)changeSorting
+- (void)loadingData
 {
  [self loadNewestPhotosIntoCoreData];
 }
