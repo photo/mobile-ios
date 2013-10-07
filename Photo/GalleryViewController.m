@@ -161,10 +161,11 @@
 {
     // Create & present browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
     // Set options
     browser.wantsFullScreenLayout = YES;
     browser.displayActionButton = YES;
-    [browser setInitialPageIndex:indexPath.row];
+    [browser setCurrentPhotoIndex:indexPath.row];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
     
     // Present

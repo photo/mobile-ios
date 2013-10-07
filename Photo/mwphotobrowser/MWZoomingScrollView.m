@@ -9,6 +9,7 @@
 #import "MWZoomingScrollView.h"
 #import "MWPhotoBrowser.h"
 #import "MWPhoto.h"
+#import "DACircularProgressView.h"
 
 // Declare private methods of browser
 @interface MWPhotoBrowser ()
@@ -18,15 +19,22 @@
 @end
 
 // Private methods and properties
-@interface MWZoomingScrollView ()
-@property (nonatomic, assign) MWPhotoBrowser *photoBrowser;
+@interface MWZoomingScrollView () {
+    
+	MWTapDetectingView *_tapView; // for background taps
+	MWTapDetectingImageView *_photoImageView;
+	DACircularProgressView *_loadingIndicator;
+    
+}
+
+@property (nonatomic, weak) MWPhotoBrowser *photoBrowser;
+
 - (void)handleSingleTap:(CGPoint)touchPoint;
 - (void)handleDoubleTap:(CGPoint)touchPoint;
+
 @end
 
 @implementation MWZoomingScrollView
-
-@synthesize photoBrowser = _photoBrowser, photo = _photo, captionView = _captionView;
 
 - (id)initWithPhotoBrowser:(MWPhotoBrowser *)browser {
     if ((self = [super init])) {
@@ -48,13 +56,26 @@
 		_photoImageView.backgroundColor = [UIColor blackColor];
 		[self addSubview:_photoImageView];
 		
-		// Spinner
-		_spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		_spinner.hidesWhenStopped = YES;
-		_spinner.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
+		// Loading indicator
+		_loadingIndicator = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
+        _loadingIndicator.userInteractionEnabled = NO;
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
+            _loadingIndicator.thicknessRatio = 0.1;
+            _loadingIndicator.roundedCorners = NO;
+        } else {
+            _loadingIndicator.thicknessRatio = 0.2;
+            _loadingIndicator.roundedCorners = YES;
+        }
+		_loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
         UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-		[self addSubview:_spinner];
-		
+		[self addSubview:_loadingIndicator];
+
+        // Listen progress notifications
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(setProgressFromNotification:)
+                                                     name:MWPHOTO_PROGRESS_NOTIFICATION
+                                                   object:nil];
+        
 		// Setup
 		self.backgroundColor = [UIColor blackColor];
 		self.delegate = self;
@@ -68,19 +89,13 @@
 }
 
 - (void)dealloc {
-	[_tapView release];
-	[_photoImageView release];
-	[_spinner release];
-    [_photo release];
-    [_captionView release];
-	[super dealloc];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setPhoto:(id<MWPhoto>)photo {
     _photoImageView.image = nil; // Release image
     if (_photo != photo) {
-        [_photo release];
-        _photo = [photo retain];
+        _photo = photo;
     }
     [self displayImage];
 }
@@ -107,8 +122,8 @@
 		UIImage *img = [self.photoBrowser imageForPhoto:_photo];
 		if (img) {
 			
-			// Hide spinner
-			[_spinner stopAnimating];
+			// Hide indicator
+			[self hideLoadingIndicator];
 			
 			// Set image
 			_photoImageView.image = img;
@@ -128,7 +143,7 @@
 			
 			// Hide image view
 			_photoImageView.hidden = YES;
-			[_spinner startAnimating];
+			[self showLoadingIndicator];
 			
 		}
 		[self setNeedsLayout];
@@ -137,7 +152,27 @@
 
 // Image failed so just show black!
 - (void)displayImageFailure {
-	[_spinner stopAnimating];
+    [self hideLoadingIndicator];
+}
+
+#pragma mark - Loading Progress
+
+- (void)setProgressFromNotification:(NSNotification *)notification {
+    NSDictionary *dict = [notification object];
+    MWPhoto *photoWithProgress = (MWPhoto *)[dict objectForKey:@"photo"];
+    if (photoWithProgress == self.photo) {
+        float progress = [[dict valueForKey:@"progress"] floatValue];
+        _loadingIndicator.progress = MAX(MIN(1, progress), 0);
+    }
+}
+
+- (void)hideLoadingIndicator {
+    _loadingIndicator.hidden = YES;
+}
+
+- (void)showLoadingIndicator {
+    _loadingIndicator.progress = 0;
+    _loadingIndicator.hidden = NO;
 }
 
 #pragma mark - Setup
@@ -160,28 +195,47 @@
     CGFloat xScale = boundsSize.width / imageSize.width;    // the scale needed to perfectly fit the image width-wise
     CGFloat yScale = boundsSize.height / imageSize.height;  // the scale needed to perfectly fit the image height-wise
     CGFloat minScale = MIN(xScale, yScale);                 // use minimum of these to allow the image to become fully visible
-	
-	// If image is smaller than the screen then ensure we show it at
-	// min scale of 1
-	if (xScale > 1 && yScale > 1) {
+
+    // Calculate Max
+	CGFloat maxScale = 3;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // Let them go a bit bigger on a bigger screen!
+        maxScale = 4;
+    }
+    
+    // Image is smaller than screen so no zooming!
+	if (xScale >= 1 && yScale >= 1) {
 		minScale = 1.0;
 	}
-    
-	// Calculate Max
-	CGFloat maxScale = 2.0; // Allow double scale
-    // on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the
-    // maximum zoom scale to 0.5.
-	if ([UIScreen instancesRespondToSelector:@selector(scale)]) {
-		maxScale = maxScale / [[UIScreen mainScreen] scale];
-	}
+
+    // Initial zoom
+    CGFloat zoomScale = minScale;
+    if (self.photoBrowser.zoomPhotosToFill) {
+        // Zoom image to fill if the aspect ratios are fairly similar
+        CGFloat boundsAR = boundsSize.width / boundsSize.height;
+        CGFloat imageAR = imageSize.width / imageSize.height;
+        if (ABS(boundsAR - imageAR) < 0.3) {
+            zoomScale = MAX(xScale, yScale);
+            // Ensure we don't zoom in or out too far, just in case
+            zoomScale = MIN(MAX(minScale, zoomScale), maxScale);
+        }
+    }
 	
 	// Set
 	self.maximumZoomScale = maxScale;
 	self.minimumZoomScale = minScale;
-	self.zoomScale = minScale;
-	
+	self.zoomScale = zoomScale;
+    
 	// Reset position
 	_photoImageView.frame = CGRectMake(0, 0, _photoImageView.frame.size.width, _photoImageView.frame.size.height);
+    
+    // If we're zooming to full then centralise
+    if (zoomScale != minScale) {
+        self.contentOffset = CGPointMake((imageSize.width * zoomScale - boundsSize.width) / 2.0,
+                                         (imageSize.height * zoomScale - boundsSize.height) / 2.0);
+    }
+    
+    // Layout
 	[self setNeedsLayout];
 
 }
@@ -193,9 +247,10 @@
 	// Update tap view frame
 	_tapView.frame = self.bounds;
 	
-	// Spinner
-	if (!_spinner.hidden) _spinner.center = CGPointMake(floorf(self.bounds.size.width/2.0),
-													  floorf(self.bounds.size.height/2.0));
+	// Indicator
+	if (!_loadingIndicator.hidden)
+        _loadingIndicator.center = CGPointMake(floorf(self.bounds.size.width/2.0),
+                                               floorf(self.bounds.size.height/2.0));
 	// Super
 	[super layoutSubviews];
 	
@@ -261,8 +316,18 @@
 	} else {
 		
 		// Zoom in
-		[self zoomToRect:CGRectMake(touchPoint.x, touchPoint.y, 1, 1) animated:YES];
-		
+        CGFloat newZoomScale;
+        if (((self.zoomScale - self.minimumZoomScale) / self.maximumZoomScale) >= 0.3) { // we're zoomed in a fair bit, so zoom to max now
+            // Go to max zoom
+            newZoomScale = self.maximumZoomScale;
+        } else {
+            // Zoom to 50%
+            newZoomScale = ((self.maximumZoomScale + self.minimumZoomScale) / 2);
+        }
+        CGFloat xsize = self.bounds.size.width / newZoomScale;
+        CGFloat ysize = self.bounds.size.height / newZoomScale;
+        [self zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
+
 	}
 	
 	// Delay controls
@@ -280,10 +345,24 @@
 
 // Background View
 - (void)view:(UIView *)view singleTapDetected:(UITouch *)touch {
-    [self handleSingleTap:[touch locationInView:view]];
+    // Translate touch location to image view location
+    CGFloat touchX = [touch locationInView:view].x;
+    CGFloat touchY = [touch locationInView:view].y;
+    touchX *= 1/self.zoomScale;
+    touchY *= 1/self.zoomScale;
+    touchX += self.contentOffset.x;
+    touchY += self.contentOffset.y;
+    [self handleSingleTap:CGPointMake(touchX, touchY)];
 }
 - (void)view:(UIView *)view doubleTapDetected:(UITouch *)touch {
-    [self handleDoubleTap:[touch locationInView:view]];
+    // Translate touch location to image view location
+    CGFloat touchX = [touch locationInView:view].x;
+    CGFloat touchY = [touch locationInView:view].y;
+    touchX *= 1/self.zoomScale;
+    touchY *= 1/self.zoomScale;
+    touchX += self.contentOffset.x;
+    touchY += self.contentOffset.y;
+    [self handleDoubleTap:CGPointMake(touchX, touchY)];
 }
 
 @end

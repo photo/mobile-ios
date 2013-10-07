@@ -101,13 +101,12 @@
 		CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528461628DB8500EA08FF /* LoginConnectViewController.m */; };
 		CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */; };
 		CD1A6CDB1704811B0002763A /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6CDA1704811A0002763A /* TMPhotoQuiltViewCell.m */; };
-		CD1A6D151704959E0002763A /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D081704959E0002763A /* MWCaptionView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1A6D161704959E0002763A /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D0A1704959E0002763A /* MWPhoto.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1A6D171704959E0002763A /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD1A6D0B1704959E0002763A /* MWPhotoBrowser.bundle */; };
-		CD1A6D181704959E0002763A /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1A6D191704959E0002763A /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D101704959E0002763A /* MWTapDetectingImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1A6D1A1704959E0002763A /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D121704959E0002763A /* MWTapDetectingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD1A6D1B1704959E0002763A /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D141704959E0002763A /* MWZoomingScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD1A6D151704959E0002763A /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D081704959E0002763A /* MWCaptionView.m */; };
+		CD1A6D161704959E0002763A /* MWPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D0A1704959E0002763A /* MWPhoto.m */; };
+		CD1A6D181704959E0002763A /* MWPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */; };
+		CD1A6D191704959E0002763A /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D101704959E0002763A /* MWTapDetectingImageView.m */; };
+		CD1A6D1A1704959E0002763A /* MWTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D121704959E0002763A /* MWTapDetectingView.m */; };
+		CD1A6D1B1704959E0002763A /* MWZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6D141704959E0002763A /* MWZoomingScrollView.m */; };
 		CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE38162C275F00E57F73 /* CoreDataTableViewController.m */; };
 		CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1CDE3B162C2AE400E57F73 /* CoreLocationController.m */; };
 		CD1CDE51162C2D8300E57F73 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1CDE50162C2D8300E57F73 /* ImageIO.framework */; };
@@ -365,6 +364,8 @@
 		CDCC0CEC16E1023D00BE4481 /* IASKPSTextFieldSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE616E1023D00BE4481 /* IASKPSTextFieldSpecifierViewCell.xib */; };
 		CDCC0CED16E1023D00BE4481 /* IASKPSToggleSwitchSpecifierViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE716E1023D00BE4481 /* IASKPSToggleSwitchSpecifierViewCell.xib */; };
 		CDCC0CEE16E1023D00BE4481 /* IASKSpecifierValuesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0CE816E1023D00BE4481 /* IASKSpecifierValuesView.xib */; };
+		CDCF864C18036ED3002E7A39 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CDCF864B18036ED3002E7A39 /* MWPhotoBrowser.bundle */; };
+		CDCF8650180371C2002E7A39 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCF864E180371C2002E7A39 /* DACircularProgressView.m */; };
 		CDD1A39C16E76E7600CDC33C /* libSSKeyChain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15C416E600DC004D22FD /* libSSKeyChain.a */; };
 		CDD1A3BA16E89A2600CDC33C /* menu-album.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3AA16E89A2600CDC33C /* menu-album.png */; };
 		CDD1A3BB16E89A2600CDC33C /* menu-album@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDD1A3AB16E89A2600CDC33C /* menu-album@2x.png */; };
@@ -892,7 +893,6 @@
 		CD1A6D081704959E0002763A /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWCaptionView.m; path = mwphotobrowser/MWCaptionView.m; sourceTree = "<group>"; };
 		CD1A6D091704959E0002763A /* MWPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhoto.h; path = mwphotobrowser/MWPhoto.h; sourceTree = "<group>"; };
 		CD1A6D0A1704959E0002763A /* MWPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWPhoto.m; path = mwphotobrowser/MWPhoto.m; sourceTree = "<group>"; };
-		CD1A6D0B1704959E0002763A /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = mwphotobrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		CD1A6D0C1704959E0002763A /* MWPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhotoBrowser.h; path = mwphotobrowser/MWPhotoBrowser.h; sourceTree = "<group>"; };
 		CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MWPhotoBrowser.m; path = mwphotobrowser/MWPhotoBrowser.m; sourceTree = "<group>"; };
 		CD1A6D0E1704959E0002763A /* MWPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPhotoProtocol.h; path = mwphotobrowser/MWPhotoProtocol.h; sourceTree = "<group>"; };
@@ -1245,6 +1245,10 @@
 		CDCC0CE616E1023D00BE4481 /* IASKPSTextFieldSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSTextFieldSpecifierViewCell.xib; path = Frameworks/InAppSettingsKit/Xibs/IASKPSTextFieldSpecifierViewCell.xib; sourceTree = "<group>"; };
 		CDCC0CE716E1023D00BE4481 /* IASKPSToggleSwitchSpecifierViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKPSToggleSwitchSpecifierViewCell.xib; path = Frameworks/InAppSettingsKit/Xibs/IASKPSToggleSwitchSpecifierViewCell.xib; sourceTree = "<group>"; };
 		CDCC0CE816E1023D00BE4481 /* IASKSpecifierValuesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IASKSpecifierValuesView.xib; path = Frameworks/InAppSettingsKit/Xibs/IASKSpecifierValuesView.xib; sourceTree = "<group>"; };
+		CDCF864B18036ED3002E7A39 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = mwphotobrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
+		CDCF864D180371C2002E7A39 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DACircularProgressView.h; path = mwphotobrowser/DACircularProgressView.h; sourceTree = "<group>"; };
+		CDCF864E180371C2002E7A39 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DACircularProgressView.m; path = mwphotobrowser/DACircularProgressView.m; sourceTree = "<group>"; };
+		CDCF864F180371C2002E7A39 /* MWPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPreprocessor.h; path = mwphotobrowser/MWPreprocessor.h; sourceTree = "<group>"; };
 		CDD1A3AA16E89A2600CDC33C /* menu-album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-album.png"; path = "images/menu-album.png"; sourceTree = "<group>"; };
 		CDD1A3AB16E89A2600CDC33C /* menu-album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-album@2x.png"; path = "images/menu-album@2x.png"; sourceTree = "<group>"; };
 		CDD1A3AC16E89A2600CDC33C /* menu-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-gallery.png"; path = "images/menu-gallery.png"; sourceTree = "<group>"; };
@@ -1659,11 +1663,14 @@
 		CD4613D6161C7AEA0028619D /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				CDCF864D180371C2002E7A39 /* DACircularProgressView.h */,
+				CDCF864E180371C2002E7A39 /* DACircularProgressView.m */,
+				CDCF864F180371C2002E7A39 /* MWPreprocessor.h */,
+				CDCF864B18036ED3002E7A39 /* MWPhotoBrowser.bundle */,
 				CD1A6D071704959E0002763A /* MWCaptionView.h */,
 				CD1A6D081704959E0002763A /* MWCaptionView.m */,
 				CD1A6D091704959E0002763A /* MWPhoto.h */,
 				CD1A6D0A1704959E0002763A /* MWPhoto.m */,
-				CD1A6D0B1704959E0002763A /* MWPhotoBrowser.bundle */,
 				CD1A6D0C1704959E0002763A /* MWPhotoBrowser.h */,
 				CD1A6D0D1704959E0002763A /* MWPhotoBrowser.m */,
 				CD1A6D0E1704959E0002763A /* MWPhotoProtocol.h */,
@@ -2721,6 +2728,7 @@
 				CDCC0ACD16E0C23700BE4481 /* login-signup.png in Resources */,
 				CDCC0ACE16E0C23700BE4481 /* login-signup@2x.png in Resources */,
 				CDCC0ACF16E0C23700BE4481 /* login-using-own-domain.png in Resources */,
+				CDCF864C18036ED3002E7A39 /* MWPhotoBrowser.bundle in Resources */,
 				CDCC0AD016E0C23700BE4481 /* login-using-own-domain@2x.png in Resources */,
 				CDCC0AD116E0C23700BE4481 /* logout.png in Resources */,
 				CDCC0AD216E0C23700BE4481 /* logout@2x.png in Resources */,
@@ -2794,7 +2802,6 @@
 				CD1D826E16E9213800877A8E /* MenuTableViewCell.xib in Resources */,
 				CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */,
 				CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */,
-				CD1A6D171704959E0002763A /* MWPhotoBrowser.bundle in Resources */,
 				CDB3B3A81705EA1C0010C38A /* home-trovebox-logo.png in Resources */,
 				CDB3B3A91705EA1C0010C38A /* home-trovebox-logo@2x.png in Resources */,
 				0318498117114966009C9214 /* DLCImagePicker.xib in Resources */,
@@ -2983,6 +2990,7 @@
 				CDCC0B6716E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m in Sources */,
 				CDCC0B6816E0C49D00BE4481 /* TroveboxSubscription.m in Sources */,
 				CDCC0B6916E0C49D00BE4481 /* SKProduct+LocalizedPrice.m in Sources */,
+				CDCF8650180371C2002E7A39 /* DACircularProgressView.m in Sources */,
 				CDCC0B6A16E0C49D00BE4481 /* WebViewController.m in Sources */,
 				CDCC0BF016E0C66400BE4481 /* DateUtilities.m in Sources */,
 				CDCC0BF316E0C66400BE4481 /* ImageManipulation.m in Sources */,
