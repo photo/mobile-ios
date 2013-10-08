@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<true/>
+	<key>CFBuildDate</key>
+	<date>2013-10-08T00:07:37Z</date>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -23,7 +23,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>13.1</string>
+	<string>13.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -39,7 +39,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>150</string>
+	<string>152</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIPrerenderedIcon</key>
@@ -61,11 +61,11 @@
 			<key>TintColor</key>
 			<dict>
 				<key>Blue</key>
-				<real>0.0663713663816452</real>
+				<real>0.066371366381645203</real>
 				<key>Green</key>
 				<real>0.1054482683539391</real>
 				<key>Red</key>
-				<real>0.1774893701076508</real>
+				<real>0.17748937010765081</real>
 			</dict>
 			<key>Translucent</key>
 			<false/>
@@ -83,5 +83,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
 </dict>
 </plist>
