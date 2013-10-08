@@ -343,7 +343,9 @@
                            
                            if ( [[group valueForProperty:ALAssetsGroupPropertyType] intValue] == ALAssetsGroupSavedPhotos) {
                                self.assetGroup = group;
-                               //    [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                               // just bring photos
+                               [self.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                               
                                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewDeckController.view animated:YES];
                                hud.labelText = NSLocalizedString(@"Loading", nil);
                                assetsNumber = [self.assetGroup numberOfAssets];
@@ -370,21 +372,6 @@
                    });
     
 }
-
-/*
-- (void) eventHandler: (NSNotification *) notification{
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"###### Event triggered: %@", notification);
-#endif
-    
-    if ([notification.name isEqualToString:kNotificationUpdateTableWithAllPhotosAgain]){
-        // just reset the number of photos
-        assetsNumber = -1;
-        [self loadSavedPhotos];
-    }
-}
- */
-
 
 // Sync
 #pragma mark ELCImagePickerControllerDelegate Methods

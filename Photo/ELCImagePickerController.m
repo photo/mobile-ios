@@ -25,6 +25,7 @@
 {
 	NSMutableArray *returnArray = [[NSMutableArray alloc] init];
 	
+    /*
 	for(ALAsset *asset in assets) {
         
 		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
@@ -41,6 +42,17 @@
 		[returnArray addObject:workingDictionary];
         
 	}
+     */
+    
+    for(ALAsset *asset in assets) {
+		NSMutableDictionary *workingDictionary = [[NSMutableDictionary alloc] init];
+		[workingDictionary setObject:[[asset valueForProperty:ALAssetPropertyURLs] valueForKey:[[[asset valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]] forKey:@"UIImagePickerControllerReferenceURL"];
+        
+		[returnArray addObject:workingDictionary];
+	}
+    
+    
+    
 	if(_myDelegate != nil && [_myDelegate respondsToSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:)]) {
 		[_myDelegate performSelector:@selector(elcImagePickerController:didFinishPickingMediaWithInfo:) withObject:self withObject:[NSArray arrayWithArray:returnArray]];
 	} else {
