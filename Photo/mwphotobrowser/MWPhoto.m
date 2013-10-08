@@ -8,8 +8,8 @@
 
 #import "MWPhoto.h"
 #import "MWPhotoBrowser.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "SDWebImageDecoder.h"
-#import "SDWebImageManager.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 // Private

@@ -750,6 +750,13 @@
 			remoteGlobalIDString = 7A1AFCB1160E11F90086B98A;
 			remoteInfo = SSKeyChain;
 		};
+		CDDF9285180378A800D5C509 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CD1CDE3E162C2D2B00E57F73 /* SDWebImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 537D95C117ECC1FE0097C263;
+			remoteInfo = "SDWebImage+WebP";
+		};
 		CDF2F0C916E520FC00D309B9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CDF2F0C216E520FC00D309B9 /* SBJson.xcodeproj */;
@@ -1248,7 +1255,6 @@
 		CDCF864B18036ED3002E7A39 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = mwphotobrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		CDCF864D180371C2002E7A39 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DACircularProgressView.h; path = mwphotobrowser/DACircularProgressView.h; sourceTree = "<group>"; };
 		CDCF864E180371C2002E7A39 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DACircularProgressView.m; path = mwphotobrowser/DACircularProgressView.m; sourceTree = "<group>"; };
-		CDCF864F180371C2002E7A39 /* MWPreprocessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MWPreprocessor.h; path = mwphotobrowser/MWPreprocessor.h; sourceTree = "<group>"; };
 		CDD1A3AA16E89A2600CDC33C /* menu-album.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-album.png"; path = "images/menu-album.png"; sourceTree = "<group>"; };
 		CDD1A3AB16E89A2600CDC33C /* menu-album@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-album@2x.png"; path = "images/menu-album@2x.png"; sourceTree = "<group>"; };
 		CDD1A3AC16E89A2600CDC33C /* menu-gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-gallery.png"; path = "images/menu-gallery.png"; sourceTree = "<group>"; };
@@ -1514,6 +1520,7 @@
 			isa = PBXGroup;
 			children = (
 				CD1CDE48162C2D2C00E57F73 /* libSDWebImage.a */,
+				CDDF9286180378A800D5C509 /* libSDWebImage+WebP.a */,
 				CD1CDE4C162C2D2C00E57F73 /* libSDWebImage+MKAnnotation.a */,
 			);
 			name = Products;
@@ -1665,7 +1672,6 @@
 			children = (
 				CDCF864D180371C2002E7A39 /* DACircularProgressView.h */,
 				CDCF864E180371C2002E7A39 /* DACircularProgressView.m */,
-				CDCF864F180371C2002E7A39 /* MWPreprocessor.h */,
 				CDCF864B18036ED3002E7A39 /* MWPhotoBrowser.bundle */,
 				CD1A6D071704959E0002763A /* MWCaptionView.h */,
 				CD1A6D081704959E0002763A /* MWCaptionView.m */,
@@ -2612,6 +2618,13 @@
 			fileType = archive.ar;
 			path = libReadability.a;
 			remoteRef = CD2F15FD16E600DC004D22FD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDDF9286180378A800D5C509 /* libSDWebImage+WebP.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libSDWebImage+WebP.a";
+			remoteRef = CDDF9285180378A800D5C509 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		CDF2F0CA16E520FC00D309B9 /* SBJson.framework */ = {

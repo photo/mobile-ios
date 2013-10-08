@@ -59,17 +59,13 @@
 		// Loading indicator
 		_loadingIndicator = [[DACircularProgressView alloc] initWithFrame:CGRectMake(140.0f, 30.0f, 40.0f, 40.0f)];
         _loadingIndicator.userInteractionEnabled = NO;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-            _loadingIndicator.thicknessRatio = 0.1;
-            _loadingIndicator.roundedCorners = NO;
-        } else {
-            _loadingIndicator.thicknessRatio = 0.2;
-            _loadingIndicator.roundedCorners = YES;
-        }
+        _loadingIndicator.thicknessRatio = 0.1;
+        _loadingIndicator.roundedCorners = NO;
+        
 		_loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin |
         UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		[self addSubview:_loadingIndicator];
-
+        
         // Listen progress notifications
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(setProgressFromNotification:)
@@ -135,7 +131,7 @@
 			photoImageViewFrame.size = img.size;
 			_photoImageView.frame = photoImageViewFrame;
 			self.contentSize = photoImageViewFrame.size;
-
+            
 			// Set zoom to minimum zoom
 			[self setMaxMinZoomScalesForCurrentBounds];
 			
@@ -195,7 +191,7 @@
     CGFloat xScale = boundsSize.width / imageSize.width;    // the scale needed to perfectly fit the image width-wise
     CGFloat yScale = boundsSize.height / imageSize.height;  // the scale needed to perfectly fit the image height-wise
     CGFloat minScale = MIN(xScale, yScale);                 // use minimum of these to allow the image to become fully visible
-
+    
     // Calculate Max
 	CGFloat maxScale = 3;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
@@ -207,7 +203,7 @@
 	if (xScale >= 1 && yScale >= 1) {
 		minScale = 1.0;
 	}
-
+    
     // Initial zoom
     CGFloat zoomScale = minScale;
     if (self.photoBrowser.zoomPhotosToFill) {
@@ -237,7 +233,7 @@
     
     // Layout
 	[self setNeedsLayout];
-
+    
 }
 
 #pragma mark - Layout
@@ -327,7 +323,7 @@
         CGFloat xsize = self.bounds.size.width / newZoomScale;
         CGFloat ysize = self.bounds.size.height / newZoomScale;
         [self zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
-
+        
 	}
 	
 	// Delay controls
@@ -336,7 +332,7 @@
 }
 
 // Image View
-- (void)imageView:(UIImageView *)imageView singleTapDetected:(UITouch *)touch { 
+- (void)imageView:(UIImageView *)imageView singleTapDetected:(UITouch *)touch {
     [self handleSingleTap:[touch locationInView:imageView]];
 }
 - (void)imageView:(UIImageView *)imageView doubleTapDetected:(UITouch *)touch {

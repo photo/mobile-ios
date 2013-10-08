@@ -10,7 +10,7 @@
 #import "MWPhotoBrowser.h"
 #import "MWZoomingScrollView.h"
 #import "MBProgressHUD.h"
-#import "SDImageCache.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #define PADDING                 10
 #define PAGE_INDEX_TAG_OFFSET   1000
@@ -211,7 +211,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-
+    
 	// Release any cached data, images, etc that aren't in use.
     [self releaseAllUnderlyingPhotos:YES];
 	[_recycledPages removeAllObjects];
@@ -244,7 +244,7 @@
 	
     // Toolbar
     _toolbar = [[UIToolbar alloc] initWithFrame:[self frameForToolbarAtOrientation:self.interfaceOrientation]];
-    _toolbar.tintColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? [UIColor whiteColor] : nil;
+    _toolbar.tintColor = [UIColor whiteColor];
     if ([[UIToolbar class] respondsToSelector:@selector(appearance)]) {
         [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
         [_toolbar setBackgroundImage:nil forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsLandscapePhone];
@@ -254,12 +254,7 @@
     
     // Toolbar Items
     if (self.displayNavArrows) {
-        NSString *arrowPathFormat;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-            arrowPathFormat = @"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowOutline%@.png";
-        } else {
-            arrowPathFormat = @"MWPhotoBrowser.bundle/images/UIBarButtonItemArrow%@.png";
-        }
+        NSString *arrowPathFormat = @"MWPhotoBrowser.bundle/images/UIBarButtonItemArrowOutline%@.png";
         _previousButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:arrowPathFormat, @"Left"]] style:UIBarButtonItemStylePlain target:self action:@selector(gotoPreviousPage)];
         _nextButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:arrowPathFormat, @"Right"]] style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     }
@@ -322,7 +317,7 @@
     if (_actionButton && actionButtonOnNavBar) {
         self.navigationItem.rightBarButtonItem = _actionButton;
     }
-
+    
     // Toolbar items
     UIBarButtonItem *fixedLeftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     fixedLeftSpace.width = 32; // To balance action button
@@ -338,7 +333,7 @@
     [items addObject:flexSpace];
     if (_actionButton && !actionButtonOnNavBar) [items addObject:_actionButton];
     [_toolbar setItems:items];
-
+    
     // Toolbar visibility
     BOOL hideToolbar = YES;
     for (UIBarButtonItem* item in _toolbar.items) {
@@ -470,7 +465,7 @@
 - (void)setNavBarAppearance:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     UINavigationBar *navBar = self.navigationController.navigationBar;
-    navBar.tintColor = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7") ? [UIColor whiteColor] : nil;
+    navBar.tintColor = [UIColor whiteColor];
     if ([navBar respondsToSelector:@selector(setBarTintColor:)]) {
         navBar.barTintColor = nil;
         navBar.shadowImage = nil;
@@ -556,7 +551,7 @@
             [page setMaxMinZoomScalesForCurrentBounds];
             previousBounds = self.view.bounds;
         }
-
+        
 	}
 	
 	// Adjust contentOffset to preserve page location based on values collected prior to location
@@ -845,7 +840,7 @@
     NSUInteger i;
     if (index > 0) {
         // Release anything < index - 1
-        for (i = 0; i < index-1; i++) { 
+        for (i = 0; i < index-1; i++) {
             id photo = [_photos objectAtIndex:i];
             if (photo != [NSNull null]) {
                 [photo unloadUnderlyingImage];
@@ -976,7 +971,7 @@
     
 	// Title
 	if ([self numberOfPhotos] > 1) {
-		self.title = [NSString stringWithFormat:@"%i %@ %i", _currentPageIndex+1, NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), [self numberOfPhotos]];		
+		self.title = [NSString stringWithFormat:@"%i %@ %i", _currentPageIndex+1, NSLocalizedString(@"of", @"Used in the context: 'Showing 1 of 3 items'"), [self numberOfPhotos]];
 	} else {
 		self.title = nil;
 	}
@@ -1031,7 +1026,6 @@
     [self cancelControlHiding];
     
     // Animations & positions
-    BOOL slideAndFade = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7");
     CGFloat animatonOffset = 20;
     CGFloat animationDuration = (animated ? 0.35 : 0);
     
@@ -1054,7 +1048,7 @@
                 } completion:^(BOOL finished) {}];
                 
             }
-
+            
         } else {
             
             // Status bar and nav bar positioning
@@ -1090,7 +1084,7 @@
     
     // Toolbar, nav bar and captions
     // Pre-appear animation positions for iOS 7 sliding
-    if (slideAndFade && [self areControlsHidden] && !hidden && animated) {
+    if ([self areControlsHidden] && !hidden && animated) {
         
         // Toolbar
         _toolbar.frame = CGRectOffset([self frameForToolbarAtOrientation:self.interfaceOrientation], 0, animatonOffset);
@@ -1110,28 +1104,25 @@
     [UIView animateWithDuration:animationDuration animations:^(void) {
         
         CGFloat alpha = hidden ? 0 : 1;
-
+        
         // Nav bar slides up on it's own on iOS 7
         [self.navigationController.navigationBar setAlpha:alpha];
         
         // Toolbar
-        if (slideAndFade) {
-            _toolbar.frame = [self frameForToolbarAtOrientation:self.interfaceOrientation];
-            if (hidden) _toolbar.frame = CGRectOffset(_toolbar.frame, 0, animatonOffset);
-        }
+        _toolbar.frame = [self frameForToolbarAtOrientation:self.interfaceOrientation];
+        if (hidden) _toolbar.frame = CGRectOffset(_toolbar.frame, 0, animatonOffset);
         _toolbar.alpha = alpha;
-
+        
         // Captions
         for (MWZoomingScrollView *page in _visiblePages) {
             if (page.captionView) {
                 MWCaptionView *v = page.captionView;
-                if (slideAndFade) {
-                    // Pass any index, all we're interested in is the Y
-                    CGRect captionFrame = [self frameForCaptionView:v atIndex:0];
-                    captionFrame.origin.x = v.frame.origin.x; // Reset X
-                    if (hidden) captionFrame = CGRectOffset(captionFrame, 0, animatonOffset);
-                    v.frame = captionFrame;
-                }
+                
+                // Pass any index, all we're interested in is the Y
+                CGRect captionFrame = [self frameForCaptionView:v atIndex:0];
+                captionFrame.origin.x = v.frame.origin.x; // Reset X
+                if (hidden) captionFrame = CGRectOffset(captionFrame, 0, animatonOffset);
+                v.frame = captionFrame;
                 v.alpha = alpha;
             }
         }
@@ -1223,62 +1214,35 @@
                 [self.delegate photoBrowser:self actionButtonPressedForPhotoAtIndex:_currentPageIndex];
                 
             } else {
-                
-                // Handle default actions
-                if (SYSTEM_VERSION_LESS_THAN(@"6")) {
-                    
-                    // Old handling of activities with action sheet
-                    if ([MFMailComposeViewController canSendMail]) {
-                        _actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                               otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), NSLocalizedString(@"Email", nil), nil];
-                    } else {
-                        _actionsSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self
-                                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil
-                                                               otherButtonTitles:NSLocalizedString(@"Save", nil), NSLocalizedString(@"Copy", nil), nil];
-                    }
-                    _actionsSheet.tag = ACTION_SHEET_OLD_ACTIONS;
-                    _actionsSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-                    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-                        [_actionsSheet showFromBarButtonItem:sender animated:YES];
-                    } else {
-                        [_actionsSheet showInView:self.view];
-                    }
-                    
-                } else {
-                    
-                    // Show activity view controller
-                    NSMutableArray *items = [NSMutableArray arrayWithObject:[photo underlyingImage]];
-                    if (photo.caption) {
-                        [items addObject:photo.caption];
-                    }
-                    self.activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
-                    
-                    // Show loading spinner after a couple of seconds
-                    double delayInSeconds = 2.0;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        if (self.activityViewController) {
-                            [self showProgressHUDWithMessage:nil];
-                        }
-                    });
-
-                    // Show
-                    __weak typeof(self) weakSelf = self;
-                    [self.activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
-                        weakSelf.activityViewController = nil;
-                        [weakSelf hideControlsAfterDelay];
-                        [weakSelf hideProgressHUD:YES];
-                    }];
-                    [self presentViewController:self.activityViewController animated:YES completion:nil];
-                    
+                // Show activity view controller
+                NSMutableArray *items = [NSMutableArray arrayWithObject:[photo underlyingImage]];
+                if (photo.caption) {
+                    [items addObject:photo.caption];
                 }
+                self.activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
                 
+                // Show loading spinner after a couple of seconds
+                double delayInSeconds = 2.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    if (self.activityViewController) {
+                        [self showProgressHUDWithMessage:nil];
+                    }
+                });
+                
+                // Show
+                __weak typeof(self) weakSelf = self;
+                [self.activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+                    weakSelf.activityViewController = nil;
+                    [weakSelf hideControlsAfterDelay];
+                    [weakSelf hideProgressHUD:YES];
+                }];
+                [self presentViewController:self.activityViewController animated:YES completion:nil];
             }
             
             // Keep controls hidden
             [self setControlsHidden:NO animated:YES permanent:YES];
-
+            
         }
     }
 }
@@ -1293,7 +1257,7 @@
             if (buttonIndex == actionSheet.firstOtherButtonIndex) {
                 [self savePhoto]; return;
             } else if (buttonIndex == actionSheet.firstOtherButtonIndex + 1) {
-                [self copyPhoto]; return;	
+                [self copyPhoto]; return;
             } else if (buttonIndex == actionSheet.firstOtherButtonIndex + 2) {
                 [self emailPhoto]; return;
             }
@@ -1354,7 +1318,7 @@
 
 - (void)actuallySavePhoto:(id<MWPhoto>)photo {
     if ([photo underlyingImage]) {
-        UIImageWriteToSavedPhotosAlbum([photo underlyingImage], self, 
+        UIImageWriteToSavedPhotosAlbum([photo underlyingImage], self,
                                        @selector(image:didFinishSavingWithError:contextInfo:), nil);
     }
 }
@@ -1398,16 +1362,17 @@
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             emailer.modalPresentationStyle = UIModalPresentationPageSheet;
         }
-        [self presentModalViewController:emailer animated:YES];
-        [self hideProgressHUD:NO];
+        [self presentViewController:emailer animated:YES completion:^{
+            [self hideProgressHUD:NO];
+        }];
     }
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     if (result == MFMailComposeResultFailed) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Email", nil)
-                                                         message:NSLocalizedString(@"Email failed to send. Please try again.", nil)
-                                                        delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil];
+                                                        message:NSLocalizedString(@"Email failed to send. Please try again.", nil)
+                                                       delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", nil) otherButtonTitles:nil];
 		[alert show];
     }
     [self dismissViewControllerAnimated:YES completion:nil];

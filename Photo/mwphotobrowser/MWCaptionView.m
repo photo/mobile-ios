@@ -14,7 +14,7 @@ static const CGFloat labelPadding = 10;
 // Private
 @interface MWCaptionView () {
     id <MWPhoto> _photo;
-    UILabel *_label;    
+    UILabel *_label;
 }
 @end
 
@@ -25,20 +25,10 @@ static const CGFloat labelPadding = 10;
     if (self) {
         self.userInteractionEnabled = NO;
         _photo = photo;
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7")) {
-            // Use iOS 7 blurry goodness
-            self.barStyle = UIBarStyleBlackTranslucent;
-        } else {
-            // Transparent black with no gloss
-            CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-            UIGraphicsBeginImageContext(rect.size);
-            CGContextRef context = UIGraphicsGetCurrentContext();
-            CGContextSetFillColorWithColor(context, [[UIColor colorWithWhite:0 alpha:0.6] CGColor]);
-            CGContextFillRect(context, rect);
-            UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            [self setBackgroundImage:image forToolbarPosition:UIBarPositionAny barMetrics:INTMAX_MAX];
-        }
+        
+        // Use iOS 7 blurry goodness
+        self.barStyle = UIBarStyleBlackTranslucent;
+        
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
         [self setupCaption];
     }
@@ -48,7 +38,7 @@ static const CGFloat labelPadding = 10;
 - (CGSize)sizeThatFits:(CGSize)size {
     CGFloat maxHeight = 9999;
     if (_label.numberOfLines > 0) maxHeight = _label.font.leading*_label.numberOfLines;
-    CGSize textSize = [_label.text sizeWithFont:_label.font 
+    CGSize textSize = [_label.text sizeWithFont:_label.font
                               constrainedToSize:CGSizeMake(size.width - labelPadding*2, maxHeight)
                                   lineBreakMode:_label.lineBreakMode];
     return CGSizeMake(size.width, textSize.height + labelPadding * 2);
@@ -56,20 +46,15 @@ static const CGFloat labelPadding = 10;
 
 - (void)setupCaption {
     _label = [[UILabel alloc] initWithFrame:CGRectIntegral(CGRectMake(labelPadding, 0,
-                                                       self.bounds.size.width-labelPadding*2,
-                                                       self.bounds.size.height))];
+                                                                      self.bounds.size.width-labelPadding*2,
+                                                                      self.bounds.size.height))];
     _label.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _label.opaque = NO;
     _label.backgroundColor = [UIColor clearColor];
-    _label.textAlignment = UITextAlignmentCenter;
+    _label.textAlignment = NSTextAlignmentCenter;
     _label.lineBreakMode = UILineBreakModeWordWrap;
     _label.numberOfLines = 0;
     _label.textColor = [UIColor whiteColor];
-    if (SYSTEM_VERSION_LESS_THAN(@"7")) {
-        // Shadow on 6 and below
-        _label.shadowColor = [UIColor blackColor];
-        _label.shadowOffset = CGSizeMake(1, 1);
-    }
     _label.font = [UIFont systemFontOfSize:17];
     if ([_photo respondsToSelector:@selector(caption)]) {
         _label.text = [_photo caption] ? [_photo caption] : @" ";
