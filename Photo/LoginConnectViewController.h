@@ -22,8 +22,6 @@
 #import "Account.h"
 #import "MBProgressHUD.h"
 
-#import "GAI.h"
-
 @interface LoginConnectViewController : GAITrackedViewController<UITextFieldDelegate>
 
 @property (retain, nonatomic) IBOutlet UITextField *email;

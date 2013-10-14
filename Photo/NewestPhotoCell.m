@@ -82,15 +82,16 @@
         
         // check if photo is a private version. If it is, generate a token
         if ([self.timeline.permission boolValue] == NO){
-            [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                              withAction:@"buttonPress"
-                                                               withLabel:@"Share private photo"
-                                                               withValue:nil];
+            [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                                action:@"buttonPress"
+                                                                                                 label:@"Share private photo"
+                                                                                                 value:nil] build]];
         }else{
-            [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                              withAction:@"buttonPress"
-                                                               withLabel:@"Share public photo"
-                                                               withValue:nil];
+            [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                                action:@"buttonPress"
+                                                                                                 label:@"Share public photo"
+                                                                                                 value:nil] build]];
+            
         }
         
         // create a dispatch to generate a token

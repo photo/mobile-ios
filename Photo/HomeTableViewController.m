@@ -102,10 +102,10 @@
         }
     }
 #ifdef GOOGLE_ANALYTICS_ENABLED
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Screens"
-                                                      withAction:@"Loaded"
-                                                       withLabel:@"Home"
-                                                       withValue:nil];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screens"
+                                                                                        action:@"Loaded"
+                                                                                         label:@"Home"
+                                                                                         value:nil] build]];
 #endif
     
     // ask if user wants to enable location
@@ -509,7 +509,7 @@
 #pragma mark Refresh Methods
 - (void)loadingData
 {
- [self loadNewestPhotosIntoCoreData];
+    [self loadNewestPhotosIntoCoreData];
 }
 
 #pragma mark -

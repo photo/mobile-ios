@@ -35,7 +35,6 @@
 #import "LoginViewController.h"
 #import "AuthenticationService.h"
 
-#import "GAI.h"
 #import <Crashlytics/Crashlytics.h>
 
 //for payment
@@ -49,8 +48,6 @@
 #import "SHKFacebook.h"
 #import "SHKConfiguration.h"
 #import "FBConnect.h"
-
-#import "GoogleConversionPing.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     

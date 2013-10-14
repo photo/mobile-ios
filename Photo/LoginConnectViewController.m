@@ -46,7 +46,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.trackedViewName = @"Login Screen";
+    self.screenName = @"Login Screen";
 }
 
 - (void)viewDidUnload

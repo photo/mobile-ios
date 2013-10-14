@@ -124,10 +124,10 @@
                 asset.selected = NO;
                 overlayView.hidden = TRUE;
                 
-                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                                  withAction:@"buttonPress"
-                                                                   withLabel:@"Sync - maximum reached"
-                                                                   withValue:nil];
+                [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                                    action:@"buttonPress"
+                                                                                                     label:@"Sync - maximum reached"
+                                                                                                     value:nil] build]];
             }
             
             // check limits
@@ -165,7 +165,7 @@
 		UIImageView *imageView = [_imageViewArray objectAtIndex:i];
 		[imageView setFrame:frame];
 		[self addSubview:imageView];
-
+        
         UIImageView *updatedView = [_uploadedViewArray objectAtIndex:i];
 		[updatedView setFrame:frame];
 		[self addSubview:updatedView];

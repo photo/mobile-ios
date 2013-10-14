@@ -24,8 +24,6 @@
 #import "Account.h"
 #import "MBProgressHUD.h"
 
-#import "GAI.h"
-
 @interface LoginViewController : GAITrackedViewController
 
 - (IBAction)signUpWithEmail:(id)sender;

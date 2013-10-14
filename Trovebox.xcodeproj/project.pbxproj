@@ -118,7 +118,6 @@
 		CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */; };
 		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */; };
-		CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FE8E2163983910032105A /* libGoogleAnalytics.a */; };
 		CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56216303E54001A0CA0 /* ELCAsset.m */; };
 		CD30D57116303E54001A0CA0 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56416303E54001A0CA0 /* ELCAssetCell.m */; };
 		CD30D57216303E54001A0CA0 /* ELCAssetPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D56516303E54001A0CA0 /* ELCAssetPicker.xib */; };
@@ -152,6 +151,7 @@
 		CD31DED917143FFA0071D3E1 /* menu-tags-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECB17143FFA0071D3E1 /* menu-tags-selected@2x.png */; };
 		CD31DEDA17143FFA0071D3E1 /* menu-upload-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECC17143FFA0071D3E1 /* menu-upload-selected.png */; };
 		CD31DEDB17143FFA0071D3E1 /* menu-upload-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DECD17143FFA0071D3E1 /* menu-upload-selected@2x.png */; };
+		CD44F034180C82B30019B307 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD44F002180C77560019B307 /* libGoogleAnalyticsServices.a */; };
 		CD47755A17600DD7001AF36E /* button-more.png in Resources */ = {isa = PBXBuildFile; fileRef = CD47755817600DD7001AF36E /* button-more.png */; };
 		CD47755B17600DD7001AF36E /* button-more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD47755917600DD7001AF36E /* button-more@2x.png */; };
 		CD4B593F1733CD730023C199 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593C1733CD730023C199 /* Icon-72.png */; };
@@ -393,7 +393,6 @@
 		CDDFDA51172973E100D992DC /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */; };
 		CDDFDA53172973E500D992DC /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */; };
 		CDDFDA551729741000D992DC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDDFDA541729740F00D992DC /* Default-568h@2x.png */; };
-		CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */; };
 		CDE4A0E517642CC8002604CC /* PhotoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDE4A0E417642CC8002604CC /* PhotoUploader.m */; };
 		CDF2C4DD17EB641C006C78A9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDF2C4DC17EB641C006C78A9 /* Images.xcassets */; };
 		CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF2F06D16E4D87A00D309B9 /* MapKit.framework */; };
@@ -929,7 +928,6 @@
 		CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadStatusTableViewController.m; sourceTree = "<group>"; };
 		CD2583E317FCB3B000A62574 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
 		CD2F159216E600DC004D22FD /* ShareKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShareKit.xcodeproj; path = Frameworks/ShareKit/ShareKit.xcodeproj; sourceTree = "<group>"; };
-		CD2FE8E2163983910032105A /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Frameworks/Google Analytics SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		CD30D56116303E54001A0CA0 /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
 		CD30D56216303E54001A0CA0 /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
 		CD30D56316303E54001A0CA0 /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
@@ -972,6 +970,13 @@
 		CD31DECB17143FFA0071D3E1 /* menu-tags-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-tags-selected@2x.png"; path = "images/menu-tags-selected@2x.png"; sourceTree = "<group>"; };
 		CD31DECC17143FFA0071D3E1 /* menu-upload-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload-selected.png"; path = "images/menu-upload-selected.png"; sourceTree = "<group>"; };
 		CD31DECD17143FFA0071D3E1 /* menu-upload-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-upload-selected@2x.png"; path = "images/menu-upload-selected@2x.png"; sourceTree = "<group>"; };
+		CD44F002180C77560019B307 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Frameworks/Google Analytics SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
+		CD44F004180C77790019B307 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAI.h"; sourceTree = "<group>"; };
+		CD44F005180C77790019B307 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAIDictionaryBuilder.h"; sourceTree = "<group>"; };
+		CD44F006180C77790019B307 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAIFields.h"; sourceTree = "<group>"; };
+		CD44F007180C77790019B307 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
+		CD44F008180C77790019B307 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
+		CD44F009180C77790019B307 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Frameworks/Google Analytics SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
 		CD47755817600DD7001AF36E /* button-more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-more.png"; path = "images/button-more.png"; sourceTree = "<group>"; };
 		CD47755917600DD7001AF36E /* button-more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-more@2x.png"; path = "images/button-more@2x.png"; sourceTree = "<group>"; };
 		CD4B593C1733CD730023C199 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
@@ -1211,11 +1216,6 @@
 		CDCC0BE716E0C66400BE4481 /* TransformationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransformationUtilities.m; sourceTree = "<group>"; };
 		CDCC0BE816E0C66400BE4481 /* UpdateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUtilities.h; sourceTree = "<group>"; };
 		CDCC0BE916E0C66400BE4481 /* UpdateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUtilities.m; sourceTree = "<group>"; };
-		CDCC0C0A16E0C73000BE4481 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = "Frameworks/Google Analytics SDK/Library/GAI.h"; sourceTree = "<group>"; };
-		CDCC0C0B16E0C73000BE4481 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Frameworks/Google Analytics SDK/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
-		CDCC0C0C16E0C73000BE4481 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Frameworks/Google Analytics SDK/Library/GAITracker.h"; sourceTree = "<group>"; };
-		CDCC0C0D16E0C73000BE4481 /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = "Frameworks/Google Analytics SDK/Library/GAITransaction.h"; sourceTree = "<group>"; };
-		CDCC0C0E16E0C73000BE4481 /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITransactionItem.h; path = "Frameworks/Google Analytics SDK/Library/GAITransactionItem.h"; sourceTree = "<group>"; };
 		CDCC0CB616E1021700BE4481 /* IASKAppSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IASKAppSettingsViewController.h; path = Frameworks/InAppSettingsKit/Controllers/IASKAppSettingsViewController.h; sourceTree = "<group>"; };
 		CDCC0CB716E1021700BE4481 /* IASKAppSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IASKAppSettingsViewController.m; path = Frameworks/InAppSettingsKit/Controllers/IASKAppSettingsViewController.m; sourceTree = "<group>"; };
 		CDCC0CB816E1021700BE4481 /* IASKAppSettingsWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IASKAppSettingsWebViewController.h; path = Frameworks/InAppSettingsKit/Controllers/IASKAppSettingsWebViewController.h; sourceTree = "<group>"; };
@@ -1280,8 +1280,6 @@
 		CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		CDDFDA541729740F00D992DC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
-		CDDFDA5717297C7800D992DC /* GoogleConversionPing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoogleConversionPing.h; path = "Frameworks/Google Conversion Tracking SDK/GoogleConversionPing.h"; sourceTree = "<group>"; };
-		CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleConversionTracking.a; path = "Frameworks/Google Conversion Tracking SDK/libGoogleConversionTracking.a"; sourceTree = "<group>"; };
 		CDE4A0E317642CC8002604CC /* PhotoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoUploader.h; sourceTree = "<group>"; };
 		CDE4A0E417642CC8002604CC /* PhotoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoUploader.m; sourceTree = "<group>"; };
 		CDF2C4DC17EB641C006C78A9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Trovebox/Images.xcassets; sourceTree = SOURCE_ROOT; };
@@ -1354,9 +1352,8 @@
 				CDAFB9D916122262002D6E86 /* CoreData.framework in Frameworks */,
 				CDF2F10716E52EC000D309B9 /* libSDWebImage.a in Frameworks */,
 				CDD935BF17F3A55D002CE92D /* libsbjson-ios.a in Frameworks */,
-				CD2FE8E3163983910032105A /* libGoogleAnalytics.a in Frameworks */,
 				CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */,
-				CDDFDA5917297C7800D992DC /* libGoogleConversionTracking.a in Frameworks */,
+				CD44F034180C82B30019B307 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1579,12 +1576,13 @@
 		CD2FE8E01639837D0032105A /* Google Analytics SDK */ = {
 			isa = PBXGroup;
 			children = (
-				CDCC0C0A16E0C73000BE4481 /* GAI.h */,
-				CDCC0C0B16E0C73000BE4481 /* GAITrackedViewController.h */,
-				CDCC0C0C16E0C73000BE4481 /* GAITracker.h */,
-				CDCC0C0D16E0C73000BE4481 /* GAITransaction.h */,
-				CDCC0C0E16E0C73000BE4481 /* GAITransactionItem.h */,
-				CD2FE8E2163983910032105A /* libGoogleAnalytics.a */,
+				CD44F004180C77790019B307 /* GAI.h */,
+				CD44F005180C77790019B307 /* GAIDictionaryBuilder.h */,
+				CD44F006180C77790019B307 /* GAIFields.h */,
+				CD44F007180C77790019B307 /* GAILogger.h */,
+				CD44F008180C77790019B307 /* GAITrackedViewController.h */,
+				CD44F009180C77790019B307 /* GAITracker.h */,
+				CD44F002180C77560019B307 /* libGoogleAnalyticsServices.a */,
 			);
 			name = "Google Analytics SDK";
 			sourceTree = "<group>";
@@ -2091,7 +2089,6 @@
 				CD2F159116E600C8004D22FD /* ShareKit */,
 				CDF2F07C16E520AB00D309B9 /* SBJson */,
 				CDCC0C6516E0FD6300BE4481 /* InAppSettingsKit */,
-				CDDFDA5617297C3400D992DC /* Google Conversion Tracking SDK */,
 				CD2FE8E01639837D0032105A /* Google Analytics SDK */,
 				CD1CDE3D162C2B4B00E57F73 /* SDWebImage */,
 				CD8D9CC1162344A700A76811 /* MBProgressHUD */,
@@ -2209,15 +2206,6 @@
 			name = InAppSettingsKit;
 			sourceTree = "<group>";
 		};
-		CDDFDA5617297C3400D992DC /* Google Conversion Tracking SDK */ = {
-			isa = PBXGroup;
-			children = (
-				CDDFDA5717297C7800D992DC /* GoogleConversionPing.h */,
-				CDDFDA5817297C7800D992DC /* libGoogleConversionTracking.a */,
-			);
-			name = "Google Conversion Tracking SDK";
-			sourceTree = "<group>";
-		};
 		CDE0B11E1622DB1A00CB4FBC /* Tag */ = {
 			isa = PBXGroup;
 			children = (
@@ -2296,7 +2284,7 @@
 		CDAFB9C516122262002D6E86 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Trovebox;
 				TargetAttributes = {
 					CDAFB9CD16122262002D6E86 = {
@@ -3149,6 +3137,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3196,11 +3185,11 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 				);
 				INFOPLIST_FILE = "Photo/Trovebox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
-					"\"$(SRCROOT)/Frameworks/Google Conversion Tracking SDK\"",
+					"/Users/patrick/Projects/mobile-ios/Frameworks/Google\\ Conversion\\ Tracking\\ SDK",
+					"/Users/patrick/Projects/mobile-ios/Frameworks/Google\\ Analytics\\ SDK",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -3234,11 +3223,11 @@
 					"\"$(OBJROOT)/UninstalledProducts/include\"",
 				);
 				INFOPLIST_FILE = "Photo/Trovebox-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/Google Analytics SDK/Library\"",
-					"\"$(SRCROOT)/Frameworks/Google Conversion Tracking SDK\"",
+					"/Users/patrick/Projects/mobile-ios/Frameworks/Google\\ Conversion\\ Tracking\\ SDK",
+					"/Users/patrick/Projects/mobile-ios/Frameworks/Google\\ Analytics\\ SDK",
 				);
 				OTHER_LDFLAGS = (
 					"-all_load",

@@ -28,8 +28,6 @@
 #import "ELCImagePickerController.h"
 #import "PhotoViewController.h"
 
-#import "GAI.h"
-
 @interface SyncViewController : GAITrackedViewController <UITableViewDelegate, UITableViewDataSource, ELCImagePickerControllerDelegate, ELCAssetDelegate, UIAlertViewDelegate>
 {
 	ALAssetsGroup *assetGroup;

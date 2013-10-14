@@ -90,7 +90,7 @@
 #pragma mark - View lifecycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.trackedViewName = @"Upload Screen";
+    self.screenName = @"Upload Screen";
     
     [self.navigationItem troveboxStyle:NSLocalizedString(@"Upload", @"Title in the upload form") defaultButtons:NO viewController:nil menuViewController:nil];
     
@@ -137,10 +137,10 @@
 
 - (void) cancelUploadButton{
     [self dismissViewControllerAnimated:YES completion:^{
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Cancel Upload"
-                                                           withValue:nil];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                            action:@"buttonPress"
+                                                                                             label:@"Cancel Upload"
+                                                                                             value:nil] build]];
     }];
 }
 
@@ -394,10 +394,11 @@
 }
 
 - (void)upload:(id)sender {
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                      withAction:@"buttonPress"
-                                                       withLabel:@"Upload"
-                                                       withValue:nil];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                        action:@"buttonPress"
+                                                                                         label:@"Upload"
+                                                                                         value:nil] build]];
+    
     
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Upload button clicked. Save all details in the database");
@@ -430,14 +431,14 @@
                 for ( NSURL *url in self.images){
                     if ( i != 1 ){
                         [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
-                                                shareFacebook:[NSNumber numberWithBool:NO]
-                                                 shareTwitter:[NSNumber numberWithBool:NO]
-                                                   permission:permission
-                                                         tags:tags
-                                                       albums:albums
-                                                        title:title
-                                                          url:url
-                                                     groupUrl:nil];
+                                                         shareFacebook:[NSNumber numberWithBool:NO]
+                                                          shareTwitter:[NSNumber numberWithBool:NO]
+                                                            permission:permission
+                                                                  tags:tags
+                                                                albums:albums
+                                                                 title:title
+                                                                   url:url
+                                                              groupUrl:nil];
                         
                         
                     }else{
@@ -449,14 +450,14 @@
                         NSString *urlString =     [NSString stringWithFormat: @"%@/photos/list?sortBy=dateUploaded,DESC&pageSize=%i", [standardUserDefaults valueForKey:kTroveboxServer], [self.images count]];
                         
                         [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
-                                                shareFacebook:facebook
-                                                 shareTwitter:twitter
-                                                   permission:permission
-                                                         tags:tags
-                                                       albums:albums
-                                                        title:title
-                                                          url:url
-                                                     groupUrl:urlString];
+                                                         shareFacebook:facebook
+                                                          shareTwitter:twitter
+                                                            permission:permission
+                                                                  tags:tags
+                                                                albums:albums
+                                                                 title:title
+                                                                   url:url
+                                                              groupUrl:urlString];
                     }
                     
                     // decrease until the first one
@@ -465,27 +466,27 @@
             }else{
                 // just one photo to share
                 [self.uploader loadDataAndSaveEntityUploadDate:[NSDate date]
-                                        shareFacebook:facebook
-                                         shareTwitter:twitter
-                                           permission:permission
-                                                 tags:tags
-                                               albums:albums
-                                                title:title
-                                                  url:self.image
-                                             groupUrl:nil];
+                                                 shareFacebook:facebook
+                                                  shareTwitter:twitter
+                                                    permission:permission
+                                                          tags:tags
+                                                        albums:albums
+                                                         title:title
+                                                           url:self.image
+                                                      groupUrl:nil];
             }
             
             // checkpoint
             if (self.images){
-                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
-                                                                  withAction:@"typeImage"
-                                                                   withLabel:@"Image from Sync"
-                                                                   withValue:nil];
+                [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Upload"
+                                                                                                    action:@"typeImage"
+                                                                                                     label:@"Image from Sync"
+                                                                                                     value:nil] build]];
             }else{
-                [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Upload"
-                                                                  withAction:@"typeImage"
-                                                                   withLabel:@"Image from Snapshot"
-                                                                   withValue:nil];
+                [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Upload"
+                                                                                                    action:@"typeImage"
+                                                                                                     label:@"Image from Snapshot"
+                                                                                                     value:nil] build]];
             }
             
             // wait for 2 seconds to go to main screen
@@ -520,7 +521,7 @@
                 }
             });
         }
-    });    
+    });
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = @"Preparing";

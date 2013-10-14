@@ -35,7 +35,7 @@
 {
     [super viewDidLoad];
 	[self.tableView setAllowsSelection:NO];
-    self.trackedViewName = @"Sync Screen";
+    self.screenName = @"Sync Screen";
     
     [self.navigationController.navigationBar troveboxStyle:NO];
     
@@ -60,7 +60,15 @@
     [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    customBarItem.title = @"Next";
     self.navigationItem.rightBarButtonItem = customBarItem;
+    
+    
+    //  UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+    //  temporaryBarButtonItem.title = @"Back";
+    //  self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
+    
+    
     
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -164,12 +172,11 @@
             }
         }
         
-        [self.parent selectedAssets:selectedAssetsImages];        
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Sync - next pressed"
-                                                           withValue:nil];
-        
+        [self.parent selectedAssets:selectedAssetsImages];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                            action:@"buttonPress"
+                                                                                             label:@"Sync - next pressed"
+                                                                                             value:nil] build]];
     }@catch (NSException *exception) {
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:@"Error to select your photos" duration:3000];
         [alert showAlert];
@@ -434,19 +441,17 @@
     if (buttonIndex == 1){
         // Yes
         [standardUserDefaults setBool:YES forKey:kAutoSyncEnabled];
-        
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Auto Sync - select YES"
-                                                           withValue:nil];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                            action:@"buttonPress"
+                                                                                             label:@"Auto Sync - select YES"
+                                                                                             value:nil] build]];
     }else{
         // No
         [standardUserDefaults setBool:NO forKey:kAutoSyncEnabled];
-        
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"UI Action"
-                                                          withAction:@"buttonPress"
-                                                           withLabel:@"Auto Sync - select NO"
-                                                           withValue:nil];
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"UI Action"
+                                                                                            action:@"buttonPress"
+                                                                                             label:@"Auto Sync - select NO"
+                                                                                             value:nil] build]];
     }
     
     // set any value in the variable that we showed the message

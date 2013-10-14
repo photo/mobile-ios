@@ -58,7 +58,7 @@
 {
     [super viewDidLoad];
     self.title=NSLocalizedString(@"Profile",@"Title screen Profile");
-    self.trackedViewName = @"Profile Screen";
+    self.screenName = @"Profile Screen";
 }
 
 - (void)didReceiveMemoryWarning

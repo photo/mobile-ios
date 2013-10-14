@@ -57,7 +57,7 @@
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.trackedViewName = @"Create Account Screen";
+    self.screenName = @"Create Account Screen";
     
     self.createAccountLabel.hidden = NO;
 }
@@ -155,7 +155,7 @@
 // direction should be -1 for go up or +1 to go down.
 -(void) moveFieldsUpOrDown:(int) direction
 {
-
+    
     if (direction != -1 && direction != +1){
         // we don't allow others values
         return;

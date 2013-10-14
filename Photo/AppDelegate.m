@@ -55,8 +55,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [GAI sharedInstance].trackUncaughtExceptions = NO;
     [GAI sharedInstance].dispatchInterval = 20;
     self.tracker = [[GAI sharedInstance] trackerWithTrackingId:kPrivateGoogleAnalytics];
-    
-    [GoogleConversionPing pingWithConversionId:@"1000325738" label:@"QHgDCN6SygQQ6oT_3AM" value:@"0" isRepeatable:NO];
 #endif
     
     [self prepareConnectionInformation];

@@ -44,7 +44,7 @@
 -(void) viewDidLoad{
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.trackedViewName = @"Login Screen";
+    self.screenName = @"Login Screen";
     
     [self setNeedsStatusBarAppearanceUpdate];
 }

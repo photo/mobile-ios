@@ -31,8 +31,6 @@
 #import "Timeline+Methods.h"
 #import <SDWebImage/SDImageCache.h>
 
-#import "GAI.h"
-
 #import <QuartzCore/QuartzCore.h>
 #import "WebViewController.h"
 
