@@ -87,6 +87,8 @@
 		CD004A41161F0324006B1C6E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD004A40161F0324006B1C6E /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CD014602170641C800FFE797 /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014601170641C800FFE797 /* Synced.m */; };
 		CD01462A170641C900FFE797 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CD014629170641C900FFE797 /* Photo.m */; };
+		CD043EBB180CDF79002E0524 /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CD043EB9180CDF79002E0524 /* 45-movie-1.png */; };
+		CD043EBC180CDF79002E0524 /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD043EBA180CDF79002E0524 /* 45-movie-1@2x.png */; };
 		CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1D0171F251D0043D1DC /* Timeline.m */; };
 		CD0DE1FB171F31360043D1DC /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1F8171F31360043D1DC /* IIViewDeckController.m */; };
 		CD0DE1FC171F31360043D1DC /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1FA171F31360043D1DC /* WrapController.m */; };
@@ -200,8 +202,6 @@
 		CD9115C016243FE90099204B /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9115BF16243FE90099204B /* AlbumViewController.m */; };
 		CD92F16716E5375200E071CB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF2F10C16E5305800D309B9 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD9380931794050300C09B9D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9380921794050300C09B9D /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD9ECD1617C6694500D4585B /* 45-movie-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD1417C6694500D4585B /* 45-movie-1.png */; };
-		CD9ECD1717C6694500D4585B /* 45-movie-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */; };
 		CD9ECD3D17C66DC900D4585B /* video-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */; };
 		CDA1855A16E601CB00D617CB /* libEmail.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15D016E600DC004D22FD /* libEmail.a */; };
 		CDA1855B16E601CB00D617CB /* libFacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2F15E416E600DC004D22FD /* libFacebook.a */; };
@@ -869,6 +869,8 @@
 		CD014601170641C800FFE797 /* Synced.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Synced.m; sourceTree = "<group>"; };
 		CD014628170641C900FFE797 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		CD014629170641C900FFE797 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		CD043EB9180CDF79002E0524 /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "45-movie-1.png"; path = "images/45-movie-1.png"; sourceTree = "<group>"; };
+		CD043EBA180CDF79002E0524 /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "45-movie-1@2x.png"; path = "images/45-movie-1@2x.png"; sourceTree = "<group>"; };
 		CD0DE1CF171F251D0043D1DC /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
 		CD0DE1D0171F251D0043D1DC /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
 		CD0DE1F7171F31360043D1DC /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IIViewDeckController.h; path = Frameworks/ViewDeck/IIViewDeckController.h; sourceTree = "<group>"; };
@@ -1051,8 +1053,6 @@
 		CD9115BF16243FE90099204B /* AlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewController.m; sourceTree = "<group>"; };
 		CD9380911794050300C09B9D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CD9380921794050300C09B9D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
-		CD9ECD1417C6694500D4585B /* 45-movie-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1.png"; sourceTree = "<group>"; };
-		CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "45-movie-1@2x.png"; sourceTree = "<group>"; };
 		CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-placeholder@2x.png"; sourceTree = "<group>"; };
 		CDA1856916E61BBC00D617CB /* button-navigation-camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera.png"; path = "images/button-navigation-camera.png"; sourceTree = "<group>"; };
 		CDA1856A16E61BBE00D617CB /* button-navigation-camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-navigation-camera@2x.png"; path = "images/button-navigation-camera@2x.png"; sourceTree = "<group>"; };
@@ -1770,9 +1770,9 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD043EB9180CDF79002E0524 /* 45-movie-1.png */,
+				CD043EBA180CDF79002E0524 /* 45-movie-1@2x.png */,
 				CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */,
-				CD9ECD1417C6694500D4585B /* 45-movie-1.png */,
-				CD9ECD1517C6694500D4585B /* 45-movie-1@2x.png */,
 				CD47755817600DD7001AF36E /* button-more.png */,
 				CD47755917600DD7001AF36E /* button-more@2x.png */,
 				CD4B593C1733CD730023C199 /* Icon-72.png */,
@@ -2696,6 +2696,7 @@
 				CDCC0AB816E0C23700BE4481 /* home-uploaded.png in Resources */,
 				CDCC0AB916E0C23700BE4481 /* home-uploaded@2x.png in Resources */,
 				CDCC0ABA16E0C23700BE4481 /* home-waiting.png in Resources */,
+				CD043EBC180CDF79002E0524 /* 45-movie-1@2x.png in Resources */,
 				CDCC0ABB16E0C23700BE4481 /* home-waiting@2x.png in Resources */,
 				CDCC0ABC16E0C23700BE4481 /* Icon.png in Resources */,
 				CDCC0ABD16E0C23700BE4481 /* Icon@2x.png in Resources */,
@@ -2734,6 +2735,7 @@
 				CDCC0AE116E0C23700BE4481 /* profile-tagsico.png in Resources */,
 				CDCC0AE216E0C23700BE4481 /* profile-tagsico@2x.png in Resources */,
 				CDCC0AE316E0C23700BE4481 /* profilepic.png in Resources */,
+				CD043EBB180CDF79002E0524 /* 45-movie-1.png in Resources */,
 				CDCC0AE416E0C23700BE4481 /* profilepic@2x.png in Resources */,
 				CDCC0AE516E0C23700BE4481 /* refresh.png in Resources */,
 				CDCC0AE616E0C23700BE4481 /* refresh@2x.png in Resources */,
@@ -2887,8 +2889,6 @@
 				CD4B59411733CD730023C199 /* Icon-Small.png in Resources */,
 				CD47755A17600DD7001AF36E /* button-more.png in Resources */,
 				CD47755B17600DD7001AF36E /* button-more@2x.png in Resources */,
-				CD9ECD1617C6694500D4585B /* 45-movie-1.png in Resources */,
-				CD9ECD1717C6694500D4585B /* 45-movie-1@2x.png in Resources */,
 				CD9ECD3D17C66DC900D4585B /* video-placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2907,7 +2907,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "./Frameworks/Crashlytics.framework/run 263e33cba7a0a8804ec757ba8607fc77514dca33\n\nbuildPlist=${INFOPLIST_FILE}\n\n#Short version\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $buildPlist)\necho \"Version id = $CFBundleShortVersionString\"\nCFBundleShortVersionString=`echo $CFBundleShortVersionString + \"0.1\" | bc`;\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleShortVersionString\" $buildPlist\n\n# incremental\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nCFBundleVersion=$(($CFBundleVersion + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\n\n#date\nCFBuildDate=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
+			shellScript = "./Frameworks/Crashlytics.framework/run 263e33cba7a0a8804ec757ba8607fc77514dca33\n\nbuildPlist=${INFOPLIST_FILE}\n\n#Short version\nCFBundleShortVersionString=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $buildPlist)\necho \"Version id = $CFBundleShortVersionString\"\n#CFBundleShortVersionString=`echo $CFBundleShortVersionString + \"0.1\" | bc`;\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $CFBundleShortVersionString\" $buildPlist\n\n# incremental\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $buildPlist)\nCFBundleVersion=$(($CFBundleVersion + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" $buildPlist\n\n#date\nCFBuildDate=$(date)\n/usr/libexec/PlistBuddy -c \"Set :CFBuildDate $CFBuildDate\" $buildPlist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
