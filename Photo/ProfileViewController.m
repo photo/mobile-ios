@@ -87,15 +87,9 @@
     UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = customLeftButton;
     
-    // add log out
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"logout.png"] ;
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action:@selector(logoutButton) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = logoutButton;
+    // button Logout
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Sign out", @"Sign out on Profile") style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton)];
+    self.navigationItem.rightBarButtonItem = customBarItem;
     
     // load the data from the server and show in the screen
     [self loadUserDetails];

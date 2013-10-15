@@ -293,10 +293,6 @@
 		CDCC0ACE16E0C23700BE4481 /* login-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A4D16E0C23700BE4481 /* login-signup@2x.png */; };
 		CDCC0ACF16E0C23700BE4481 /* login-using-own-domain.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A4E16E0C23700BE4481 /* login-using-own-domain.png */; };
 		CDCC0AD016E0C23700BE4481 /* login-using-own-domain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A4F16E0C23700BE4481 /* login-using-own-domain@2x.png */; };
-		CDCC0AD116E0C23700BE4481 /* logout.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5016E0C23700BE4481 /* logout.png */; };
-		CDCC0AD216E0C23700BE4481 /* logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5116E0C23700BE4481 /* logout@2x.png */; };
-		CDCC0AD316E0C23700BE4481 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5216E0C23700BE4481 /* next.png */; };
-		CDCC0AD416E0C23700BE4481 /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5316E0C23700BE4481 /* next@2x.png */; };
 		CDCC0AD516E0C23700BE4481 /* profile-albumsico.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5416E0C23700BE4481 /* profile-albumsico.png */; };
 		CDCC0AD616E0C23700BE4481 /* profile-albumsico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5516E0C23700BE4481 /* profile-albumsico@2x.png */; };
 		CDCC0AD716E0C23700BE4481 /* profile-button-upgrade-pro.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A5616E0C23700BE4481 /* profile-button-upgrade-pro.png */; };
@@ -1156,10 +1152,6 @@
 		CDCC0A4D16E0C23700BE4481 /* login-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-signup@2x.png"; path = "images/login-signup@2x.png"; sourceTree = "<group>"; };
 		CDCC0A4E16E0C23700BE4481 /* login-using-own-domain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-using-own-domain.png"; path = "images/login-using-own-domain.png"; sourceTree = "<group>"; };
 		CDCC0A4F16E0C23700BE4481 /* login-using-own-domain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-using-own-domain@2x.png"; path = "images/login-using-own-domain@2x.png"; sourceTree = "<group>"; };
-		CDCC0A5016E0C23700BE4481 /* logout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logout.png; path = images/logout.png; sourceTree = "<group>"; };
-		CDCC0A5116E0C23700BE4481 /* logout@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout@2x.png"; path = "images/logout@2x.png"; sourceTree = "<group>"; };
-		CDCC0A5216E0C23700BE4481 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = next.png; path = images/next.png; sourceTree = "<group>"; };
-		CDCC0A5316E0C23700BE4481 /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "next@2x.png"; path = "images/next@2x.png"; sourceTree = "<group>"; };
 		CDCC0A5416E0C23700BE4481 /* profile-albumsico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile-albumsico.png"; path = "images/profile-albumsico.png"; sourceTree = "<group>"; };
 		CDCC0A5516E0C23700BE4481 /* profile-albumsico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile-albumsico@2x.png"; path = "images/profile-albumsico@2x.png"; sourceTree = "<group>"; };
 		CDCC0A5616E0C23700BE4481 /* profile-button-upgrade-pro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "profile-button-upgrade-pro.png"; path = "images/profile-button-upgrade-pro.png"; sourceTree = "<group>"; };
@@ -1891,10 +1883,6 @@
 				CDCC0A4D16E0C23700BE4481 /* login-signup@2x.png */,
 				CDCC0A4E16E0C23700BE4481 /* login-using-own-domain.png */,
 				CDCC0A4F16E0C23700BE4481 /* login-using-own-domain@2x.png */,
-				CDCC0A5016E0C23700BE4481 /* logout.png */,
-				CDCC0A5116E0C23700BE4481 /* logout@2x.png */,
-				CDCC0A5216E0C23700BE4481 /* next.png */,
-				CDCC0A5316E0C23700BE4481 /* next@2x.png */,
 				CDCC0A5416E0C23700BE4481 /* profile-albumsico.png */,
 				CDCC0A5516E0C23700BE4481 /* profile-albumsico@2x.png */,
 				CDCC0A5616E0C23700BE4481 /* profile-button-upgrade-pro.png */,
@@ -2731,10 +2719,6 @@
 				CDCC0ACF16E0C23700BE4481 /* login-using-own-domain.png in Resources */,
 				CDCF864C18036ED3002E7A39 /* MWPhotoBrowser.bundle in Resources */,
 				CDCC0AD016E0C23700BE4481 /* login-using-own-domain@2x.png in Resources */,
-				CDCC0AD116E0C23700BE4481 /* logout.png in Resources */,
-				CDCC0AD216E0C23700BE4481 /* logout@2x.png in Resources */,
-				CDCC0AD316E0C23700BE4481 /* next.png in Resources */,
-				CDCC0AD416E0C23700BE4481 /* next@2x.png in Resources */,
 				CDCC0AD516E0C23700BE4481 /* profile-albumsico.png in Resources */,
 				CDCC0AD616E0C23700BE4481 /* profile-albumsico@2x.png in Resources */,
 				CDCC0AD716E0C23700BE4481 /* profile-button-upgrade-pro.png in Resources */,

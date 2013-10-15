@@ -43,17 +43,10 @@
     UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
     self.navigationItem.leftBarButtonItem = customLeftButton;
     
-    // add log out
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"logout.png"] ;
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action:@selector(logoutButton) forControlEvents:UIControlEventTouchUpInside];
+    // button Log out
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Sign out", @"Sign out on Settings") style:UIBarButtonItemStylePlain target:self action:@selector(logoutButton)];
+    self.navigationItem.rightBarButtonItem = customBarItem;
     
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = logoutButton;
-
-      
     UIImageView *imgView=[[UIImageView alloc]init];
     imgView.backgroundColor =  UIColorFromRGB(0XFAF3EF);
     self.tableView.backgroundView=imgView;

@@ -46,30 +46,14 @@
     
     NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     self.elcAssets = tempArray;
-	
-	[self.navigationItem setTitle:NSLocalizedString(@"Loading...",@"")];
-    
+	   
     // title and buttons
     [self.navigationItem troveboxStyle:NSLocalizedString(@"Sync", @"Menu - title for Sync") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
-    
-    // button to sync
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *buttonImage = [UIImage imageNamed:@"next.png"] ;
-    [button setImage:buttonImage forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-    [button addTarget:self action:@selector(doneAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    customBarItem.title = @"Next";
+
+    // button NEXT
+    UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Next", @"Next button on Sync") style:UIBarButtonItemStylePlain target:self action:@selector(doneAction:)];
     self.navigationItem.rightBarButtonItem = customBarItem;
-    
-    
-    //  UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
-    //  temporaryBarButtonItem.title = @"Back";
-    //  self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
-    
-    
-    
+
     // no separator
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -153,8 +137,6 @@
             NSLog(@"done enumerating photos");
 #endif
             [self.tableView reloadData];
-            [self.navigationItem setTitle:@"Select Photos"];
-            
         }
     }
     
