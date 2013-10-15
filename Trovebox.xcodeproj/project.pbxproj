@@ -159,6 +159,9 @@
 		CD4B593F1733CD730023C199 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593C1733CD730023C199 /* Icon-72.png */; };
 		CD4B59401733CD730023C199 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593D1733CD730023C199 /* Icon-Small-50.png */; };
 		CD4B59411733CD730023C199 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = CD4B593E1733CD730023C199 /* Icon-Small.png */; };
+		CD53E2B1180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2B0180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m */; };
+		CD53E2DC180D950B00F9DB80 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2DB180D950B00F9DB80 /* Profile.m */; };
+		CD53E2DF180DC47300F9DB80 /* Permission.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2DE180DC47300F9DB80 /* Permission.m */; };
 		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
 		CD764289161ED9BB00E0B657 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD764287161ED9BB00E0B657 /* iRate.m */; };
@@ -980,6 +983,12 @@
 		CD4B593C1733CD730023C199 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "images/Icon-72.png"; sourceTree = "<group>"; };
 		CD4B593D1733CD730023C199 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "images/Icon-Small-50.png"; sourceTree = "<group>"; };
 		CD4B593E1733CD730023C199 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "images/Icon-Small.png"; sourceTree = "<group>"; };
+		CD53E2AF180D8DBA00F9DB80 /* MultiSiteSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSiteSelectionViewController.h; sourceTree = "<group>"; };
+		CD53E2B0180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSiteSelectionViewController.m; sourceTree = "<group>"; };
+		CD53E2DA180D950B00F9DB80 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		CD53E2DB180D950B00F9DB80 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
+		CD53E2DD180DC47300F9DB80 /* Permission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Permission.h; sourceTree = "<group>"; };
+		CD53E2DE180DC47300F9DB80 /* Permission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Permission.m; sourceTree = "<group>"; };
 		CD5F5E4116F20E050044427E /* Gallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
 		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
@@ -1619,6 +1628,8 @@
 				CD7642BC161EE15E00E0B657 /* AuthenticationViewController.m */,
 				CD7642BD161EE15E00E0B657 /* AuthenticationViewController.xib */,
 				CDCC0BB816E0C66400BE4481 /* AuthenticationViewController5.xib */,
+				CD53E2AF180D8DBA00F9DB80 /* MultiSiteSelectionViewController.h */,
+				CD53E2B0180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -1628,6 +1639,10 @@
 			children = (
 				CD15283B1628DB8500EA08FF /* Account.h */,
 				CD15283C1628DB8500EA08FF /* Account.m */,
+				CD53E2DA180D950B00F9DB80 /* Profile.h */,
+				CD53E2DB180D950B00F9DB80 /* Profile.m */,
+				CD53E2DD180DC47300F9DB80 /* Permission.h */,
+				CD53E2DE180DC47300F9DB80 /* Permission.m */,
 				CD7642CF161EE27D00E0B657 /* AuthenticationService.h */,
 				CD7642D0161EE27D00E0B657 /* AuthenticationService.m */,
 				CDC7AEDA163EDD3900FC8BC1 /* PrivateAuthenticationService.h */,
@@ -2918,6 +2933,7 @@
 			files = (
 				CDAFB9E116122262002D6E86 /* main.m in Sources */,
 				CDAFB9E516122263002D6E86 /* AppDelegate.m in Sources */,
+				CD53E2DF180DC47300F9DB80 /* Permission.m in Sources */,
 				CDAFB9EE16122263002D6E86 /* Photo.xcdatamodeld in Sources */,
 				CDC3A7E9161DF89D003FDC2E /* MenuViewController.m in Sources */,
 				CD92F16716E5375200E071CB /* Reachability.m in Sources */,
@@ -2946,6 +2962,7 @@
 				CDFAF34616285495007A4FDF /* NewestPhotoCell.m in Sources */,
 				CDFAF34816285495007A4FDF /* UploadCell.m in Sources */,
 				CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */,
+				CD53E2B1180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m in Sources */,
 				CDFAF34F16285730007A4FDF /* Tag.m in Sources */,
 				CDFAF35016285730007A4FDF /* TagViewController.m in Sources */,
 				CDFAF35D16285BC6007A4FDF /* Timeline+Methods.m in Sources */,
@@ -3015,6 +3032,7 @@
 				CD01462A170641C900FFE797 /* Photo.m in Sources */,
 				03EEFF6117114244008D2FDA /* BlurOverlayView.m in Sources */,
 				03EEFF6217114244008D2FDA /* DLCImagePickerController.m in Sources */,
+				CD53E2DC180D950B00F9DB80 /* Profile.m in Sources */,
 				03EEFF6317114244008D2FDA /* GrayscaleContrastFilter.m in Sources */,
 				03F119C817115A8A00EBBD45 /* UINavigationBar+Trovebox.m in Sources */,
 				CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */,

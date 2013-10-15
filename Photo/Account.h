@@ -21,14 +21,27 @@
 #import "UpdateUtilities.h"
 #import "KeychainItemWrapper.h"
 
+#import "Profile.h"
+#import "Permission.h"
+
 @interface Account : NSObject
 
+// general
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *host;
+
+// token
 @property (nonatomic, strong) NSString *clientToken;
 @property (nonatomic, strong) NSString *clientSecret;
 @property (nonatomic, strong) NSString *userToken;
 @property (nonatomic, strong) NSString *userSecret;
+
+// profile
+@property (nonatomic, strong) Profile *profile;
+
+
+// collaborators
+@property (nonatomic, strong) Permission *permission;
 
 
 - (void) saveToStandardUserDefaults;

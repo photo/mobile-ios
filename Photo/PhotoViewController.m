@@ -261,11 +261,7 @@
             cell.textLabel.text=NSLocalizedString(@"Private",@"Upload - Private");
             self.permissionPicture = [[UISwitch alloc] initWithFrame:CGRectZero];
             cell.accessoryView = self.permissionPicture;
-            
-            if([self.permissionPicture respondsToSelector:@selector(setOnTintColor:)]){
-                //iOS 5.0
-                [self.permissionPicture setOnTintColor:UIColorFromRGB(0xEFC005)];
-            }
+            [self.permissionPicture setOnTintColor:UIColorFromRGB(0xEFC005)];
             
             // get from user configuration if pictures should be private or not
             [(UISwitch *)cell.accessoryView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:kPhotosArePrivate]];
@@ -282,10 +278,7 @@
             
             cell.textLabel.text=NSLocalizedString(@"Facebook",@"Upload - Facebook");
             self.shareFacebook = [[UISwitch alloc] initWithFrame:CGRectZero];
-            if([self.shareFacebook respondsToSelector:@selector(setOnTintColor:)]){
-                //iOS 5.0
-                [self.shareFacebook setOnTintColor:UIColorFromRGB(0xEFC005)];
-            }
+            [self.shareFacebook setOnTintColor:UIColorFromRGB(0xEFC005)];
             [self.shareFacebook addTarget:self action:@selector(switchedFacebook) forControlEvents:UIControlEventValueChanged];
             [self.shareFacebook setOn:NO];
             cell.accessoryView = self.shareFacebook;
@@ -302,10 +295,7 @@
             
             cell.textLabel.text=NSLocalizedString(@"Twitter",@"Upload - Twitter");
             self.shareTwitter = [[UISwitch alloc] initWithFrame:CGRectZero];
-            if([self.shareTwitter respondsToSelector:@selector(setOnTintColor:)]){
-                //iOS 5.0
-                [self.shareTwitter setOnTintColor:UIColorFromRGB(0xEFC005)];
-            }
+            [self.shareTwitter setOnTintColor:UIColorFromRGB(0xEFC005)];
             [self.shareTwitter addTarget:self action:@selector(switchedTwitter) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = self.shareTwitter;
             break;

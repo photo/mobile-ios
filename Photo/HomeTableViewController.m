@@ -192,11 +192,8 @@
             
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellNibName owner:nil options:nil];
             uploadCell = [topLevelObjects objectAtIndex:0];
-            if([[UITabBar class] respondsToSelector:@selector(appearance)]){
-                // from iOS 5.0
-                uploadCell.progressBar.progressTintColor = UIColorFromRGB(0xFECD31);
-                uploadCell.progressBar.trackTintColor = UIColorFromRGB(0x3B2414);
-            }
+            uploadCell.progressBar.progressTintColor = UIColorFromRGB(0xFECD31);
+            uploadCell.progressBar.trackTintColor = UIColorFromRGB(0x3B2414);
         }
         
         // set the upload photo object in the cell for restart or cancel
