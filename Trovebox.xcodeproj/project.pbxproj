@@ -162,6 +162,11 @@
 		CD53E2B1180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2B0180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m */; };
 		CD53E2DC180D950B00F9DB80 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2DB180D950B00F9DB80 /* Profile.m */; };
 		CD53E2DF180DC47300F9DB80 /* Permission.m in Sources */ = {isa = PBXBuildFile; fileRef = CD53E2DE180DC47300F9DB80 /* Permission.m */; };
+		CD53E2E6180DCC4700F9DB80 /* trovebox_29.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53E2E1180DCC4700F9DB80 /* trovebox_29.png */; };
+		CD53E2E7180DCC4700F9DB80 /* trovebox_58.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53E2E2180DCC4700F9DB80 /* trovebox_58.png */; };
+		CD53E2E8180DCC4700F9DB80 /* trovebox_76.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53E2E3180DCC4700F9DB80 /* trovebox_76.png */; };
+		CD53E2E9180DCC4700F9DB80 /* trovebox_120.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53E2E4180DCC4700F9DB80 /* trovebox_120.png */; };
+		CD53E2EA180DCC4700F9DB80 /* trovebox_152.png in Resources */ = {isa = PBXBuildFile; fileRef = CD53E2E5180DCC4700F9DB80 /* trovebox_152.png */; };
 		CD5F5E4316F20E050044427E /* Gallery.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5F5E4216F20E050044427E /* Gallery.m */; };
 		CD764288161ED9BB00E0B657 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CD764285161ED9BB00E0B657 /* iRate.bundle */; };
 		CD764289161ED9BB00E0B657 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD764287161ED9BB00E0B657 /* iRate.m */; };
@@ -989,6 +994,11 @@
 		CD53E2DB180D950B00F9DB80 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		CD53E2DD180DC47300F9DB80 /* Permission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Permission.h; sourceTree = "<group>"; };
 		CD53E2DE180DC47300F9DB80 /* Permission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Permission.m; sourceTree = "<group>"; };
+		CD53E2E1180DCC4700F9DB80 /* trovebox_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trovebox_29.png; sourceTree = "<group>"; };
+		CD53E2E2180DCC4700F9DB80 /* trovebox_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trovebox_58.png; sourceTree = "<group>"; };
+		CD53E2E3180DCC4700F9DB80 /* trovebox_76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trovebox_76.png; sourceTree = "<group>"; };
+		CD53E2E4180DCC4700F9DB80 /* trovebox_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trovebox_120.png; sourceTree = "<group>"; };
+		CD53E2E5180DCC4700F9DB80 /* trovebox_152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trovebox_152.png; sourceTree = "<group>"; };
 		CD5F5E4116F20E050044427E /* Gallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gallery.h; sourceTree = "<group>"; };
 		CD5F5E4216F20E050044427E /* Gallery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gallery.m; sourceTree = "<group>"; };
 		CD764285161ED9BB00E0B657 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = iRate.bundle; path = Frameworks/iRate/iRate/iRate.bundle; sourceTree = "<group>"; };
@@ -1785,14 +1795,12 @@
 		CD4613DC161C7B800028619D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD53E2E0180DCBB900F9DB80 /* icons */,
 				CD043EB9180CDF79002E0524 /* 45-movie-1.png */,
 				CD043EBA180CDF79002E0524 /* 45-movie-1@2x.png */,
 				CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */,
 				CD47755817600DD7001AF36E /* button-more.png */,
 				CD47755917600DD7001AF36E /* button-more@2x.png */,
-				CD4B593C1733CD730023C199 /* Icon-72.png */,
-				CD4B593D1733CD730023C199 /* Icon-Small-50.png */,
-				CD4B593E1733CD730023C199 /* Icon-Small.png */,
 				CDDFDA541729740F00D992DC /* Default-568h@2x.png */,
 				CDDFDA52172973E500D992DC /* Default-Landscape@2x~ipad.png */,
 				CDDFDA50172973E100D992DC /* Default-Landscape~ipad.png */,
@@ -1877,8 +1885,6 @@
 				CDCC0A3816E0C23700BE4481 /* home-uploaded@2x.png */,
 				CDCC0A3916E0C23700BE4481 /* home-waiting.png */,
 				CDCC0A3A16E0C23700BE4481 /* home-waiting@2x.png */,
-				CDCC0A3B16E0C23700BE4481 /* Icon.png */,
-				CDCC0A3C16E0C23700BE4481 /* Icon@2x.png */,
 				CDCC0A3D16E0C23700BE4481 /* login-background-568h@2x.png */,
 				CDCC0A3E16E0C23700BE4481 /* login-background.png */,
 				CDCC0A3F16E0C23700BE4481 /* login-background@2x.png */,
@@ -1931,6 +1937,23 @@
 				CDCC0A7216E0C23700BE4481 /* sync-show@2x.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		CD53E2E0180DCBB900F9DB80 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				CD53E2E1180DCC4700F9DB80 /* trovebox_29.png */,
+				CD53E2E2180DCC4700F9DB80 /* trovebox_58.png */,
+				CD53E2E3180DCC4700F9DB80 /* trovebox_76.png */,
+				CD53E2E4180DCC4700F9DB80 /* trovebox_120.png */,
+				CD53E2E5180DCC4700F9DB80 /* trovebox_152.png */,
+				CDCC0A3B16E0C23700BE4481 /* Icon.png */,
+				CDCC0A3C16E0C23700BE4481 /* Icon@2x.png */,
+				CD4B593C1733CD730023C199 /* Icon-72.png */,
+				CD4B593D1733CD730023C199 /* Icon-Small-50.png */,
+				CD4B593E1733CD730023C199 /* Icon-Small.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		CD764283161ED9A900E0B657 /* iRate */ = {
@@ -2764,6 +2787,7 @@
 				CDCC0AEE16E0C23700BE4481 /* sync-hide.png in Resources */,
 				CDCC0AEF16E0C23700BE4481 /* sync-hide@2x.png in Resources */,
 				CDCC0AF016E0C23700BE4481 /* sync-overlay.png in Resources */,
+				CD53E2E8180DCC4700F9DB80 /* trovebox_76.png in Resources */,
 				CDCC0AF116E0C23700BE4481 /* sync-overlay@2x.png in Resources */,
 				CDCC0AF216E0C23700BE4481 /* sync-show.png in Resources */,
 				CDCC0AF316E0C23700BE4481 /* sync-show@2x.png in Resources */,
@@ -2782,6 +2806,7 @@
 				CDF2F0F516E52A8D00D309B9 /* Entitlements.entitlements in Resources */,
 				CDA1856D16E61BC200D617CB /* button-navigation-camera.png in Resources */,
 				CDA1856E16E61BC200D617CB /* button-navigation-camera@2x.png in Resources */,
+				CD53E2E7180DCC4700F9DB80 /* trovebox_58.png in Resources */,
 				CDA1856F16E61BC200D617CB /* button-navigation-menu.png in Resources */,
 				CDA1857016E61BC200D617CB /* button-navigation-menu@2x.png in Resources */,
 				CDD1A3BA16E89A2600CDC33C /* menu-album.png in Resources */,
@@ -2822,6 +2847,7 @@
 				031849CC17114990009C9214 /* 2@2x.jpg in Resources */,
 				031849CD17114990009C9214 /* 3.jpg in Resources */,
 				031849CE17114990009C9214 /* 3@2x.jpg in Resources */,
+				CD53E2EA180DCC4700F9DB80 /* trovebox_152.png in Resources */,
 				031849CF17114990009C9214 /* 4.jpg in Resources */,
 				031849D017114990009C9214 /* 4@2x.jpg in Resources */,
 				031849D117114990009C9214 /* 5.jpg in Resources */,
@@ -2888,6 +2914,8 @@
 				CD0DE1FF171F31D10043D1DC /* add.png in Resources */,
 				CD0DE200171F31D10043D1DC /* add@2x.png in Resources */,
 				CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */,
+				CD53E2E6180DCC4700F9DB80 /* trovebox_29.png in Resources */,
+				CD53E2E9180DCC4700F9DB80 /* trovebox_120.png in Resources */,
 				CD90127A172167D000BB30EF /* UploadCelliPad.xib in Resources */,
 				CD9013471726C66800BB30EF /* ProfileViewControlleriPad.xib in Resources */,
 				CDDFDA3F1729422A00D992DC /* LoginViewControlleriPad.xib in Resources */,
@@ -3171,7 +3199,6 @@
 		CDAFBA0816122263002D6E86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -3209,7 +3236,6 @@
 		CDAFBA0916122263002D6E86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
