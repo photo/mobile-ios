@@ -96,5 +96,8 @@ NSString * const kProfileLimitAllowed=@"profile_limit_allowed";
 NSString * const kAutoSyncEnabled=@"photos_auto_sync";
 NSString * const kAutoSyncMessageDisplayed=@"photos_auto_sync_message_displayed";
 
+// Account Details
+NSString * const kAccountDetailsProfile=@"account_details_profile_object";
+NSString * const kAccountDetailsPermission=@"account_details_permission_object";
 
 @end

@@ -67,6 +67,10 @@ extern NSString * const kProfileLimitAllowed;
 extern NSString * const kAutoSyncEnabled;
 extern NSString * const kAutoSyncMessageDisplayed;
 
+// Account Details
+extern NSString * const kAccountDetailsProfile;
+extern NSString * const kAccountDetailsPermission;
+
 // when defined, we will use Google Analytics
 #define GOOGLE_ANALYTICS_ENABLED
 

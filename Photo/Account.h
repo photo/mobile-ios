@@ -39,10 +39,8 @@
 // profile
 @property (nonatomic, strong) Profile *profile;
 
-
 // collaborators
 @property (nonatomic, strong) Permission *permission;
-
 
 - (void) saveToStandardUserDefaults;
 

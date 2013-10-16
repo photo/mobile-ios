@@ -36,6 +36,12 @@
     [standardUserDefaults setValue:nil                  forKey:kHomeScreenPictures];
     [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
     
+    // profile
+    [standardUserDefaults setValue:self.profile         forKey:kAccountDetailsProfile];
+
+    // permissions
+    [standardUserDefaults setValue:self.permission      forKey:kAccountDetailsPermission];
+
     // synchronize the keys
     [standardUserDefaults synchronize];
     
