@@ -23,7 +23,7 @@
 
 @implementation Account
 
-@synthesize email=_email, host=_host, clientToken=_clientToken, clientSecret=_clientSecret, userToken=_userToken, userSecret=_userSecret;
+@synthesize email=_email, host=_host, type=_type, clientToken=_clientToken, clientSecret=_clientSecret, userToken=_userToken, userSecret=_userSecret;
 @synthesize profile=_profile, permission=_permission;
 
 - (void) saveToStandardUserDefaults{

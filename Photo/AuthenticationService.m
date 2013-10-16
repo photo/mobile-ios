@@ -289,7 +289,7 @@
     
 }
 
-+ (Account *) signIn:(NSString*) email password:(NSString*) pwd
++ (NSArray *) signIn:(NSString*) email password:(NSString*) pwd
 {
     return [PrivateAuthenticationService signIn:email password:pwd];
 }

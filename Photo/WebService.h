@@ -64,7 +64,7 @@
 // get user details
 - (NSDictionary*) getUserDetails;
 
-// remove credentials form the server when log out
+// remove credentials form the server when sign out
 - (NSArray *)  removeCredentialsForKey:(NSString *) consumerKey;
 
 // check via SHA1 is photo is already in the server

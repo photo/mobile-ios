@@ -10,5 +10,5 @@
 
 @implementation Profile
 
-@synthesize accountType=_accountType, limitRemaining=_limitRemaining, limitAllowed=_limitAllowed, name=_name, photos=_photos, albums=_albums, storage=_storage, photoUrl=_photoUrl;
+@synthesize paid=_paid, limitRemaining=_limitRemaining, limitAllowed=_limitAllowed, name=_name, photos=_photos, albums=_albums, storage=_storage, photoUrl=_photoUrl, tags=_tags;
 @end

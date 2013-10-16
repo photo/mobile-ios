@@ -29,6 +29,7 @@
 // general
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *host;
+@property (nonatomic, strong) NSString *type;
 
 // token
 @property (nonatomic, strong) NSString *clientToken;

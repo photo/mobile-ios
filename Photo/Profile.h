@@ -10,7 +10,7 @@
 
 @interface Profile : NSObject
 
-@property (nonatomic, strong) NSString *accountType;
+@property (nonatomic) BOOL paid;
 @property (nonatomic, strong) NSString *limitRemaining;
 @property (nonatomic, strong) NSString *limitAllowed;
 
@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *photos;
 @property (nonatomic, strong) NSString *albums;
 @property (nonatomic, strong) NSString *storage;
+@property (nonatomic, strong) NSString *tags;
 
 @property (nonatomic, strong) NSString *photoUrl;
 

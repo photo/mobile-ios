@@ -45,7 +45,8 @@
 
 // for login
 + (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
-+ (Account *) signIn:(NSString*) email password:(NSString*) pwd;
+// returns a list of Account
++ (NSArray *) signIn:(NSString*) email password:(NSString*) pwd;
 + (NSString *) recoverPassword:(NSString *) email;
 
 + (void) sendToServerReceipt:(NSData *) receipt forUser:(NSString *) email;
