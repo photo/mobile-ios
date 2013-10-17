@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Profile : NSObject
+@interface Profile : NSObject <NSCoding> 
 
 @property (nonatomic) BOOL paid;
 @property (nonatomic, strong) NSString *limitRemaining;

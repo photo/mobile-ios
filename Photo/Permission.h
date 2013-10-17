@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Permission : NSObject
+@interface Permission : NSObject <NSCoding> 
 
 @property (nonatomic, strong) id c;
 @property (nonatomic, strong) id r;
