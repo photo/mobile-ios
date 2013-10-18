@@ -58,7 +58,7 @@
     }
     
     Account *account =[_accounts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [account.host stringByReplacingOccurrencesOfString:@"https://" withString:@""];
+    cell.textLabel.text = [account.host stringByReplacingOccurrencesOfString:@"http://" withString:@""];
     cell.textLabel.textColor = [UIColor whiteColor];
     
     NSLog(@"Profile photo %@", account.profile.photoUrl);
