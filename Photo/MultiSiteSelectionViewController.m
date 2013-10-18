@@ -50,23 +50,56 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"MultiSiteSelectionCell";
+    Account *account =[_accounts objectAtIndex:indexPath.row];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([DisplayUtilities isIPad]){
+        // if iPad just use the simple cell
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        }
+        
+        cell.textLabel.text = [account.host stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Profile photo %@", account.profile.photoUrl);
+#endif
+        
+        [cell.imageView setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"] completed:nil];
+
+        return cell;
+    }else{
+        // if iPhone uses a more complex
+        MultiSiteSelectionCell *multiSiteSelectionCell = (MultiSiteSelectionCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (multiSiteSelectionCell == nil) {
+            NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"MultiSiteSelectionCell" owner:nil options:nil];
+            multiSiteSelectionCell = [topLevelObjects objectAtIndex:0];
+        }
+        
+        multiSiteSelectionCell.host.text=[account.host stringByReplacingOccurrencesOfString:@"http://" withString:@""];
+        
+        multiSiteSelectionCell.type.text=account.type;
+        
+         [multiSiteSelectionCell.userImage setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"] completed:nil];
+        
+        return multiSiteSelectionCell;
+        
     }
     
-    Account *account =[_accounts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [account.host stringByReplacingOccurrencesOfString:@"http://" withString:@""];
-    cell.textLabel.textColor = [UIColor whiteColor];
     
-    NSLog(@"Profile photo %@", account.profile.photoUrl);
     
-    [cell.imageView setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"]];
-    
-    return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

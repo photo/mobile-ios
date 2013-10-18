@@ -233,6 +233,10 @@
 		CDAFB9E116122262002D6E86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9E016122262002D6E86 /* main.m */; };
 		CDAFB9E516122263002D6E86 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9E416122263002D6E86 /* AppDelegate.m */; };
 		CDAFB9EE16122263002D6E86 /* Photo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CDAFB9EC16122263002D6E86 /* Photo.xcdatamodeld */; };
+		CDB1A9161811BD660049DF8C /* multiselection-cell-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A9141811BD660049DF8C /* multiselection-cell-bg.png */; };
+		CDB1A9171811BD660049DF8C /* multiselection-cell-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A9151811BD660049DF8C /* multiselection-cell-bg@2x.png */; };
+		CDB1A93E1811C0BC0049DF8C /* MultiSiteSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDB1A93D1811C0BC0049DF8C /* MultiSiteSelectionCell.xib */; };
+		CDB1A9411811C1150049DF8C /* MultiSiteSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDB1A9401811C1150049DF8C /* MultiSiteSelectionCell.m */; };
 		CDB3B3A81705EA1C0010C38A /* home-trovebox-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */; };
 		CDB3B3A91705EA1C0010C38A /* home-trovebox-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */; };
 		CDBD38D416F868F1007D0CC6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */; };
@@ -1096,6 +1100,11 @@
 		CDAFB9E416122263002D6E86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CDAFB9ED16122263002D6E86 /* Photo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photo.xcdatamodel; sourceTree = "<group>"; };
 		CDAFB9F516122263002D6E86 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		CDB1A9141811BD660049DF8C /* multiselection-cell-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "multiselection-cell-bg.png"; path = "images/multiselection-cell-bg.png"; sourceTree = "<group>"; };
+		CDB1A9151811BD660049DF8C /* multiselection-cell-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "multiselection-cell-bg@2x.png"; path = "images/multiselection-cell-bg@2x.png"; sourceTree = "<group>"; };
+		CDB1A93D1811C0BC0049DF8C /* MultiSiteSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiSiteSelectionCell.xib; sourceTree = "<group>"; };
+		CDB1A93F1811C1150049DF8C /* MultiSiteSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSiteSelectionCell.h; sourceTree = "<group>"; };
+		CDB1A9401811C1150049DF8C /* MultiSiteSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSiteSelectionCell.m; sourceTree = "<group>"; };
 		CDB3B3A61705EA020010C38A /* home-trovebox-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo.png"; path = "images/home-trovebox-logo.png"; sourceTree = "<group>"; };
 		CDB3B3A71705EA0D0010C38A /* home-trovebox-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-trovebox-logo@2x.png"; path = "images/home-trovebox-logo@2x.png"; sourceTree = "<group>"; };
 		CDBD38D316F868F1007D0CC6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Frameworks/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1640,6 +1649,9 @@
 				CDCC0BB816E0C66400BE4481 /* AuthenticationViewController5.xib */,
 				CD53E2AF180D8DBA00F9DB80 /* MultiSiteSelectionViewController.h */,
 				CD53E2B0180D8DBA00F9DB80 /* MultiSiteSelectionViewController.m */,
+				CDB1A93F1811C1150049DF8C /* MultiSiteSelectionCell.h */,
+				CDB1A9401811C1150049DF8C /* MultiSiteSelectionCell.m */,
+				CDB1A93D1811C0BC0049DF8C /* MultiSiteSelectionCell.xib */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -1796,6 +1808,8 @@
 			isa = PBXGroup;
 			children = (
 				CD53E2E0180DCBB900F9DB80 /* icons */,
+				CDB1A9141811BD660049DF8C /* multiselection-cell-bg.png */,
+				CDB1A9151811BD660049DF8C /* multiselection-cell-bg@2x.png */,
 				CD043EB9180CDF79002E0524 /* 45-movie-1.png */,
 				CD043EBA180CDF79002E0524 /* 45-movie-1@2x.png */,
 				CD9ECD3C17C66DC900D4585B /* video-placeholder@2x.png */,
@@ -2807,6 +2821,7 @@
 				CDA1856D16E61BC200D617CB /* button-navigation-camera.png in Resources */,
 				CDA1856E16E61BC200D617CB /* button-navigation-camera@2x.png in Resources */,
 				CD53E2E7180DCC4700F9DB80 /* trovebox_58.png in Resources */,
+				CDB1A9161811BD660049DF8C /* multiselection-cell-bg.png in Resources */,
 				CDA1856F16E61BC200D617CB /* button-navigation-menu.png in Resources */,
 				CDA1857016E61BC200D617CB /* button-navigation-menu@2x.png in Resources */,
 				CDD1A3BA16E89A2600CDC33C /* menu-album.png in Resources */,
@@ -2848,6 +2863,7 @@
 				031849CD17114990009C9214 /* 3.jpg in Resources */,
 				031849CE17114990009C9214 /* 3@2x.jpg in Resources */,
 				CD53E2EA180DCC4700F9DB80 /* trovebox_152.png in Resources */,
+				CDB1A93E1811C0BC0049DF8C /* MultiSiteSelectionCell.xib in Resources */,
 				031849CF17114990009C9214 /* 4.jpg in Resources */,
 				031849D017114990009C9214 /* 4@2x.jpg in Resources */,
 				031849D117114990009C9214 /* 5.jpg in Resources */,
@@ -2899,6 +2915,7 @@
 				031849FF17114991009C9214 /* photo_bar@2x.png in Resources */,
 				CD31DECE17143FFA0071D3E1 /* menu-album-selected.png in Resources */,
 				CD31DECF17143FFA0071D3E1 /* menu-album-selected@2x.png in Resources */,
+				CDB1A9171811BD660049DF8C /* multiselection-cell-bg@2x.png in Resources */,
 				CD31DED017143FFA0071D3E1 /* menu-gallery-selected.png in Resources */,
 				CD31DED117143FFA0071D3E1 /* menu-gallery-selected@2x.png in Resources */,
 				CD31DED217143FFA0071D3E1 /* menu-latest-selected.png in Resources */,
@@ -2981,6 +2998,7 @@
 				CD7642DA161EF3DD00E0B657 /* SHA1.m in Sources */,
 				CD7642DD161EF45700E0B657 /* NSDictionarySerializer.m in Sources */,
 				CD7642E0161EF4F500E0B657 /* ContentTypeUtilities.m in Sources */,
+				CDB1A9411811C1150049DF8C /* MultiSiteSelectionCell.m in Sources */,
 				CD899287161F08AB00026DBB /* WebService.m in Sources */,
 				CD91157316234A5A0099204B /* MBProgressHUD.m in Sources */,
 				CD91157C16234A820099204B /* TSAlertView.m in Sources */,

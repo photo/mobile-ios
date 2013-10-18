@@ -34,7 +34,9 @@
     NSURL *url = [NSURL URLWithString:fullPath];
     
     if (!url){
+        #ifdef DEVELOPMENT_ENABLED
         NSLog(@"URL is invalid, use the default.");
+#endif
         return [NSURL URLWithString:[[NSString alloc]initWithFormat:@"%@%@%@",server,path,@"Trovebox%20App"] ];
     }
     
@@ -98,7 +100,9 @@
                 WebService *service = [[WebService alloc] init];
                 [service removeCredentialsForKey:consumerKey];
             }@catch (NSException *exception) {
+                #ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Error to remove the credentials from server %@",exception.description);
+#endif
             }
             
         });
@@ -128,7 +132,9 @@
     
     NSError *saveError = nil;
     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+        #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+#endif
     }
     
     // reset cache
@@ -278,7 +284,9 @@
 }
 
 - (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
+    #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Error = %@", [error userInfo]);
+#endif
     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Authentication failed: try again.",@"Authentication method") duration:5000];
     [alert showAlertOnTop];
 }

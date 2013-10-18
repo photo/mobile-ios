@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Account.h"
+#import "MultiSiteSelectionCell.h"
+
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 

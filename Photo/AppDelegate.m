@@ -62,7 +62,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-
+    
     
     self.menuController = [[MenuViewController alloc] init];
     
@@ -74,7 +74,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     if ([DisplayUtilities isIPad]){
         deckController.leftLedge = 490.0;
     }
-       
+    
     //ShareKit
     DefaultSHKConfigurator *configurator = [[PhotoSHKConfigurator alloc] init];
     [SHKConfiguration sharedInstanceWithConfigurator:configurator];
@@ -105,7 +105,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         
         NSError *saveError = nil;
         if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
+#endif
         }
         
         [self presentLoginViewController];
@@ -290,8 +292,10 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Unresolved error with PersistStoreCoordinator %@, %@.", error, [error userInfo]);
         NSLog(@"Create the persistent file again.");
+#endif
         
         // let's recreate it
         [managedObjectContext reset];
@@ -300,7 +304,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         // delete file
         if ([[NSFileManager defaultManager] fileExistsAtPath:storeURL.path]) {
             if (![[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error]) {
+#ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+#endif
                 abort();
             }
         }
@@ -336,7 +342,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
          Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
          
          */
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+#endif
         abort();
     }
     
@@ -351,7 +359,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         if ([localManagedObjectContext hasChanges] && ![localManagedObjectContext save:&error]) {
             // Replace this implementation with code to handle the error appropriately.
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+#endif
             abort();
         }
     }
@@ -483,12 +493,16 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 ////////////
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
+    #ifdef DEVELOPMENT_ENABLED
 	NSLog(@"My token is: %@", deviceToken);
+#endif
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
+    #ifdef DEVELOPMENT_ENABLED
 	NSLog(@"Failed to get token, error: %@", error);
+#endif
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary *)userInfo

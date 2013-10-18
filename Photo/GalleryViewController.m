@@ -264,13 +264,15 @@
                             }
                         }
                     }
-
+                    
                     [self.quiltView reloadData];
                     [refreshControl endRefreshing];
                 });
             }@catch (NSException *exception) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEVELOPMENT_ENABLED
                     NSLog(@"Exception %@",exception.description);
+#endif
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
                     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:exception.description duration:5000];
                     [alert showAlert];

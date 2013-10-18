@@ -303,11 +303,7 @@
             }
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:cellNibName owner:nil options:nil];
             newestPhotoCell = [topLevelObjects objectAtIndex:0];
-            
-            // change the color if it is allowed
-            if( [[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0){
-                newestPhotoCell.activity.color=UIColorFromRGB(0x3B2414);
-            }
+            newestPhotoCell.activity.color=UIColorFromRGB(0x3B2414);
         }
         
         // title
@@ -357,7 +353,9 @@
                                          if (error){
                                              PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Couldn't download the image",nil) duration:5000];
                                              [alert showAlert];
+#ifdef DEVELOPMENT_ENABLED
                                              NSLog(@"Error: %@",[error localizedDescription]);
+#endif
                                              
                                              [[SharedAppDelegate managedObjectContext] deleteObject:photo];
                                          }else{
@@ -475,7 +473,9 @@
         //delete the file
         NSError *error = nil;
         if ([[NSFileManager defaultManager] removeItemAtPath:photo.photoDataTempUrl error:&error] != YES)
+#ifdef DEVELOPMENT_ENABLED
             NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+#endif
         
         [[SharedAppDelegate managedObjectContext] deleteObject:photo];
     }
@@ -624,7 +624,9 @@
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEVELOPMENT_ENABLED
                     NSLog(@"Could not load server details: %@",[e description]);
+#endif
                 });
             }
         });
@@ -662,7 +664,9 @@
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEVELOPMENT_ENABLED
                     NSLog(@"Could not update the profile: %@",[e description]);
+#endif
                 });
             }
         });
