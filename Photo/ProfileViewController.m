@@ -125,6 +125,7 @@
         
         AuthenticationService* helper = [[AuthenticationService alloc]init];
         [helper logout];
+        [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
     }
 }
 

@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -91,12 +91,12 @@
             [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor: UIColorFromRGB(0xEFC005)];
         }
     }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
-        // change the color for the text 
+        // change the color for the text
         cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73);
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     }else if ([[specifier type] isEqualToString:kIASKOpenURLSpecifier]) {
-        // change the color for the text 
-        cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73); 
+        // change the color for the text
+        cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73);
         cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
     } else if ([[specifier type] isEqualToString:kIASKButtonSpecifier]) {
         if (!cell) {
@@ -124,6 +124,7 @@
         
         AuthenticationService* helper = [[AuthenticationService alloc]init];
         [helper logout];
+        [(MenuViewController*) SharedAppDelegate.menuController displayHomeScreen];
     }
 }
 
