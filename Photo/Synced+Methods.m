@@ -20,7 +20,7 @@
 
 #import "Synced+Methods.h"
 
-@implementation Synced (Methods)
+@implementation Synced (Methods) 
 
 //
 // Constast for sync uploaded

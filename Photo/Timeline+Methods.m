@@ -236,14 +236,30 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
                     photo.permission = [NSNumber numberWithBool:NO];
                 
                 // latitude
+                // TODO: API does not return the number in float sometimes,
+                // in this case the framework will convert the NSString to NSDecimal
+                // https://github.com/photo/frontend/issues/1402
                 NSString *latitude = [raw objectForKey:@"latitude"];
-                if ([latitude class] != [NSNull class] && ![latitude isEqualToString:@""])
-                    photo.latitude = latitude;
+                if ([latitude class] != [NSNull class]){
+                    if ( [latitude isKindOfClass: [NSString class]] && ![latitude isEqualToString:@""]) {
+                        photo.latitude = latitude;
+                    }else if ( [latitude isKindOfClass: [NSNumber class]] ) {
+                        photo.latitude = [((NSNumber*)latitude) stringValue];
+                    }
+                }
                 
                 // longitude
+                // TODO: API does not return the number in float sometimes,
+                // in this case the framework will convert the NSString to NSDecimal
+                // https://github.com/photo/frontend/issues/1402
                 NSString *longitude = [raw objectForKey:@"longitude"];
-                if ([longitude class] != [NSNull class] && ![longitude isEqualToString:@""])
-                    photo.longitude = longitude;
+                if ([longitude class] != [NSNull class]){
+                    if ( [longitude isKindOfClass: [NSString class]] && ![longitude isEqualToString:@""]) {
+                        photo.longitude = longitude;
+                    }else if ( [longitude isKindOfClass: [NSNumber class]] ) {
+                        photo.longitude = [((NSNumber*)longitude) stringValue];
+                    }
+                }
                 
                 // get the date since 1970
                 double dUpload            = [[raw objectForKey:@"dateUploaded"] doubleValue];
