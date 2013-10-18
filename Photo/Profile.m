@@ -24,34 +24,42 @@
 
 - (void) encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeBool:self.paid forKey:kPaid];
-    [encoder encodeObject:self.limitRemaining forKey:kLimitRemaining];
-    [encoder encodeObject:self.limitAllowed forKey:kLimitAllowed];
-    [encoder encodeObject:self.name forKey:kName];
-    [encoder encodeObject:self.photos forKey:kPhotos];
-    [encoder encodeObject:self.albums forKey:kAlbums];
-    [encoder encodeObject:self.storage forKey:kStorage];
-    [encoder encodeObject:self.photoUrl forKey:kPhotoUrl];
-    [encoder encodeObject:self.tags forKey:kTags];
+    if (self.limitRemaining)
+        [encoder encodeObject:self.limitRemaining forKey:kLimitRemaining];
+    if (self.limitAllowed)
+        [encoder encodeObject:self.limitAllowed forKey:kLimitAllowed];
+    if (self.name)
+        [encoder encodeObject:self.name forKey:kName];
+    if (self.photos)
+        [encoder encodeObject:self.photos forKey:kPhotos];
+    if (self.albums)
+        [encoder encodeObject:self.albums forKey:kAlbums];
+    if(self.storage)
+        [encoder encodeObject:self.storage forKey:kStorage];
+    if (self.photoUrl)
+        [encoder encodeObject:self.photoUrl forKey:kPhotoUrl];
+    if (self.tags)
+        [encoder encodeObject:self.tags forKey:kTags];
     
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
     // create a object and set all details
-    Profile *profile = [self init];
-    
-    profile.paid = [decoder decodeBoolForKey:kPaid];
-    profile.limitRemaining = [decoder decodeObjectForKey:kLimitRemaining];
-    profile.limitAllowed= [decoder decodeObjectForKey:kLimitAllowed];
-    profile.name= [decoder decodeObjectForKey:kName];
-    profile.photos= [decoder decodeObjectForKey:kPhotos];
-    profile.albums= [decoder decodeObjectForKey:kAlbums];
-    profile.storage= [decoder decodeObjectForKey:kStorage];
-    profile.tags= [decoder decodeObjectForKey:kTags];
-    profile.photoUrl= [decoder decodeObjectForKey:kPhotoUrl];
+    self = [[Profile alloc] init];
+    if (self != nil){
+        self.paid = [decoder decodeBoolForKey:kPaid];
+        self.limitRemaining = [decoder decodeObjectForKey:kLimitRemaining];
+        self.limitAllowed= [decoder decodeObjectForKey:kLimitAllowed];
+        self.name= [decoder decodeObjectForKey:kName];
+        self.photos= [decoder decodeObjectForKey:kPhotos];
+        self.albums= [decoder decodeObjectForKey:kAlbums];
+        self.storage= [decoder decodeObjectForKey:kStorage];
+        self.tags= [decoder decodeObjectForKey:kTags];
+        self.photoUrl= [decoder decodeObjectForKey:kPhotoUrl];
+    }
     
     // return the object saved
-    
-    return profile;
+    return self;
 }
 
 @end

@@ -44,5 +44,6 @@
 @property (nonatomic, strong) Permission *permission;
 
 - (void) saveToStandardUserDefaults;
+- (void) readFromStandardUserDefaults;
 
 @end

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Account.h"
+// image cache
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface MultiSiteSelectionViewController : UITableViewController
+
+-(id) initWithAccounts:(NSArray*) accounts;
 
 @end

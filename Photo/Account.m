@@ -37,11 +37,13 @@
     [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
     
     // profile
-    [standardUserDefaults setValue:self.profile         forKey:kAccountDetailsProfile];
-
+    if (self.profile)
+        [standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.profile] forKey:kAccountDetailsProfile];
+    
     // permissions
-    [standardUserDefaults setValue:self.permission      forKey:kAccountDetailsPermission];
-
+    if (self.permission)
+        [standardUserDefaults setObject:[NSKeyedArchiver archivedDataWithRootObject:self.permission] forKey:kAccountDetailsPermission];
+    
     // synchronize the keys
     [standardUserDefaults synchronize];
     
@@ -54,6 +56,10 @@
     [keychainItemOAuth setObject:self.userSecret forKey:(__bridge id)(kSecValueData)];
     [keychainItemConsumer setObject:self.clientToken forKey:(__bridge id)(kSecAttrAccount)];
     [keychainItemConsumer setObject:self.clientSecret  forKey:(__bridge id)(kSecValueData)];
+}
+
+- (void) readFromStandardUserDefaults{
+    
 }
 
 @end

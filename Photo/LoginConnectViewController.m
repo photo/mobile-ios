@@ -162,18 +162,32 @@
             
             @try{
                 // gcd to sign in
-                Account *account = [AuthenticationService signIn:postEmail password:postPassword];
+                NSArray *accounts = [AuthenticationService signIn:postEmail password:postPassword];
                 
-                // save the details of account and remove the progress
+                // if there is just one account in the response
+                // save it and move on.
+                // if there is more than one account, user needs to select one of them
+                
+                
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    // save data to the user information
-                    [account saveToStandardUserDefaults];
-                    
-                    // send notification to the system that it can shows the screen:
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
-                    
-                    [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    if ([accounts count] == 1){
+                        // save the details of account and remove the progress
+                        
+                        Account *account =[accounts objectAtIndex:0];
+                        [account saveToStandardUserDefaults];
+                        
+                        // send notification to the system that it can shows the screen:
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                        
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                    }else{
+                        [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+                        
+                        // display the MultiSelectionViewController
+                        MultiSiteSelectionViewController *controller = [[MultiSiteSelectionViewController alloc] initWithAccounts:accounts];
+                        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+                        [self.navigationController pushViewController:controller animated:YES];
+                    }
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{

@@ -26,15 +26,17 @@
 
 - (id)initWithCoder:(NSCoder *)decoder {
     // create a object and set all details
-    Permission *permission = [self init];
+    self = [[Permission alloc] init];
     
-    permission.c = [decoder decodeObjectForKey:kPermissionC];
-    permission.r = [decoder decodeObjectForKey:kPermissionR];
-    permission.u = [decoder decodeObjectForKey:kPermissionU];
-    permission.d = [decoder decodeObjectForKey:kPermissionD];
+    if (self != nil){
+        self.c = [decoder decodeObjectForKey:kPermissionC];
+        self.r = [decoder decodeObjectForKey:kPermissionR];
+        self.u = [decoder decodeObjectForKey:kPermissionU];
+        self.d = [decoder decodeObjectForKey:kPermissionD];
+    }
     
     // return the object saved
-    return permission;
+    return self;
 }
 
 @end

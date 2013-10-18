@@ -21,6 +21,7 @@
 #import "AuthenticationService.h"
 #import "Account.h"
 #import "MBProgressHUD.h"
+#import "MultiSiteSelectionViewController.h"
 
 @interface LoginConnectViewController : GAITrackedViewController<UITextFieldDelegate>
 
