@@ -444,7 +444,7 @@
     NSLog(@"auth key = %@",self.oAuthKey);
     NSLog(@"auth secret = %@",self.oAuthSecret);
     NSLog(@"consumer key = %@",self.consumerKey);
-    NSLog(@"consumer key = %@",self.consumerSecret);
+    NSLog(@"consumer Secret = %@",self.consumerSecret);
 #endif
     
     // token to send. We get the details from the user defaults
