@@ -21,8 +21,7 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self){
         _accounts = accounts;
-        self.title=@"Select a Trovebox account";
-        
+        self.title=@"Select account";
     }
     
     return self;
@@ -90,9 +89,6 @@
         return multiSiteSelectionCell;
         
     }
-    
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
