@@ -230,6 +230,7 @@
                 
                 // send notification to the system that it can shows the screen:
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
                 [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
             });
         }@catch (NSException* e) {

@@ -32,6 +32,10 @@ NSString * const kTroveboxServer=@"account_server";
 NSString * const kTroveboxNameUser=@"account_user_name";
 // user email
 NSString * const kTroveboxEmailUser=@"account_user_email";
+// if user is owner, admin or group
+NSString * const kTroveboxTypeUser=@"account_user_type";
+
+
 // NSUserDefault variable to hold user pictures
 NSString * const kHomeScreenPictures=@"home_pictures";
 // NSUserDefault variable with information about the last time that the pictures were refreshed

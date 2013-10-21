@@ -28,8 +28,13 @@
         [encoder encodeObject:self.limitRemaining forKey:kLimitRemaining];
     if (self.limitAllowed)
         [encoder encodeObject:self.limitAllowed forKey:kLimitAllowed];
-    if (self.name)
+    if (self.name){
         [encoder encodeObject:self.name forKey:kName];
+        // legacy code: we also save this as a separeted parameter
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        [standardUserDefaults setValue:self.name forKey:kTroveboxNameUser];
+        [standardUserDefaults synchronize];
+    }
     if (self.photos)
         [encoder encodeObject:self.photos forKey:kPhotos];
     if (self.albums)
@@ -40,7 +45,6 @@
         [encoder encodeObject:self.photoUrl forKey:kPhotoUrl];
     if (self.tags)
         [encoder encodeObject:self.tags forKey:kTags];
-    
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {

@@ -24,6 +24,7 @@ extern NSString * const kPhotosArePrivate;
 extern NSString * const kTroveboxServer;
 extern NSString * const kTroveboxNameUser;
 extern NSString * const kTroveboxEmailUser;
+extern NSString * const kTroveboxTypeUser;
 
 extern NSString * const kHomeScreenPictures;
 extern NSString * const kHomeScreenPicturesTimestamp;

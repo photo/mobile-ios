@@ -658,8 +658,9 @@
                         [standardUserDefaults setValue:[result objectForKey:@"paid"] forKey:kProfileAccountType];
                         [standardUserDefaults setValue:[limits objectForKey:@"remaining"] forKey:kProfileLimitRemaining];
                         [standardUserDefaults setValue:[limits objectForKey:@"allowed"] forKey:kProfileLimitAllowed];
-                        
                         [standardUserDefaults synchronize];
+                        
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
                     }
                 });
             }@catch (NSException* e) {

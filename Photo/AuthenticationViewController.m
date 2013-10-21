@@ -187,6 +187,7 @@
     }
     
     [standardUserDefaults setValue:[server lowercaseString] forKey:kTroveboxServer];
+    [standardUserDefaults setValue:@"owner"                                forKey:kTroveboxTypeUser];
     [standardUserDefaults synchronize];
 }
 

@@ -69,7 +69,7 @@
 #endif
         
         [cell.imageView setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"] completed:nil];
-
+        
         return cell;
     }else{
         // if iPhone uses a more complex
@@ -84,7 +84,7 @@
         
         multiSiteSelectionCell.type.text=account.type;
         
-         [multiSiteSelectionCell.userImage setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"] completed:nil];
+        [multiSiteSelectionCell.userImage setImageWithURL:[NSURL URLWithString:account.profile.photoUrl] placeholderImage:[UIImage imageNamed:@"empty_img.png"] completed:nil];
         
         return multiSiteSelectionCell;
         
@@ -108,6 +108,7 @@
     
     // send notification to the system that it can shows the screen:
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationLoginAuthorize object:nil ];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
 }
 
 - (void)tableView:(UITableView *)tableView   willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

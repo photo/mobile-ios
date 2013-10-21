@@ -96,13 +96,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 9;
+    // if type = group, returns only 7: We need to remove Tags and My Profile
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"]){
+        return 7;
+    }else{
+        return 9;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *menuTableViewSectionCellIdentifier = @"menuTableViewSectionCell";
     static NSString *menuTableViewSearchCellIdentifier = @"menuTableViewSearchCell";
+    
+    BOOL groupUser = NO;
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"]){
+        groupUser = YES;
+    }
     
     NSUInteger row = [indexPath row];
     if ( row == 0){
@@ -129,6 +141,9 @@
         NSString *name = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxNameUser];
         if (name)
             cell.labelTroveboxUser.text = name;
+        else{
+            cell.labelTroveboxUser.text = @"Trovebox User";
+        }
         
         return cell;
     }else if ( row ==  1){
@@ -146,17 +161,17 @@
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-album.png" imageSelected:@"menu-album-selected.png"];
         cell.label.text = NSLocalizedString(@"Albums", @"Menu - title for Albums");
         return cell;
-    }else if ( row ==  4){
+    }else if ( row ==  4 && !groupUser){
         // tags
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-tags.png" imageSelected:@"menu-tags-selected.png"];
         cell.label.text = NSLocalizedString(@"Tags", @"Menu - title for Tags");
         return cell;
-    }else if ( row ==  5){
+    }else if ( (row ==  5 && !groupUser) || (row == 4 && groupUser) ){
         // upload & sync
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-upload.png" imageSelected:@"menu-upload-selected.png"];
         cell.label.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
         return cell;
-    }else if ( row ==  6){
+    }else if ( (row ==  6 && !groupUser) || (row == 5 && groupUser) ){
         // preferences
         // load preference cell
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSectionCellIdentifier];
@@ -168,7 +183,7 @@
         cell.contentView.backgroundColor = UIColorFromRGB(0x40332D);
         
         return cell;
-    }else if ( row ==  7){
+    }else if ( row ==  7 && !groupUser){
         // my account
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-profile.png" imageSelected:@"menu-profile-selected.png"];
         cell.label.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
@@ -204,6 +219,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BOOL groupUser = NO;
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"]){
+        groupUser = YES;
+    }
+    
+    
     [self.viewDeckController closeLeftViewBouncing:^(IIViewDeckController *controller) {
         
         if ([controller.centerController isKindOfClass:[UINavigationController class]]) {
@@ -222,13 +244,13 @@
                     self.albumController = [[UINavigationController alloc]initWithRootViewController:[[AlbumViewController alloc] init]];
                 }
                 controller.centerController = self.albumController;
-            }else if (  indexPath.row == 4){
+            }else if (  indexPath.row == 4 && !groupUser){
                 // Tags
                 if (self.tagController == nil){
                     self.tagController = [[UINavigationController alloc]initWithRootViewController:[[TagViewController alloc] init]];
                 }
                 controller.centerController = self.tagController;
-            }else if (  indexPath.row == 5){
+            }else if (  (indexPath.row == 5 && !groupUser) || (indexPath.row == 4 && groupUser) ){
                 // Upload & Sync
                 if (self.syncController == nil){
                     SyncViewController *photoPicker = [[SyncViewController alloc] initWithNibName:@"SyncViewController" bundle:nil];
@@ -239,17 +261,17 @@
                 }
                 controller.centerController = self.syncController;
                 controller.centerController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-            }else if (  indexPath.row == 7){
+            }else if (  indexPath.row == 7 && !groupUser){
                 // Account - Profile
                 if (self.profileController == nil){
                     if ([DisplayUtilities isIPad]){
                         self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] initWithNibName:@"ProfileViewControlleriPad" bundle:nil]];
                     }else{
-                    self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
+                        self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
                     }
                 }
                 controller.centerController = self.profileController;
-            }else if ( indexPath.row == 8){
+            }else{
                 // Settings
                 UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:self.appSettingsViewController];
                 controller.centerController = nav;
@@ -261,9 +283,17 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    // if type = group, returns only 7: We need to remove Tags and My Profile
+    BOOL groupUser = NO;
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"]){
+        groupUser = YES;
+    }
+
     if ( [indexPath row] == 0){
         return 64;
-    }else if ( [indexPath row] == 6){
+    }else if ( ([indexPath row] == 6) || (([indexPath row] == 5) && groupUser)){
         return 37;
     }else{
         return 44;
@@ -371,7 +401,7 @@
             UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
             [navController.navigationBar troveboxStyle:NO];
             [self dismissViewControllerAnimated:YES completion:^{
-            [self presentViewController:navController animated:YES completion:nil];
+                [self presentViewController:navController animated:YES completion:nil];
             }];
         }
     }];
@@ -464,7 +494,7 @@
         controller.centerController = self.profileController;
         // select profile
         [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:7 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-
+        
         //sleep a little and close the left view
         [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
         [self.viewDeckController closeLeftViewAnimated:YES];

@@ -34,7 +34,7 @@
     NSURL *url = [NSURL URLWithString:fullPath];
     
     if (!url){
-        #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"URL is invalid, use the default.");
 #endif
         return [NSURL URLWithString:[[NSString alloc]initWithFormat:@"%@%@%@",server,path,@"Trovebox%20App"] ];
@@ -100,7 +100,7 @@
                 WebService *service = [[WebService alloc] init];
                 [service removeCredentialsForKey:consumerKey];
             }@catch (NSException *exception) {
-                #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
                 NSLog(@"Error to remove the credentials from server %@",exception.description);
 #endif
             }
@@ -132,7 +132,7 @@
     
     NSError *saveError = nil;
     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
-        #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Error deleting objects from core data = %@",[saveError localizedDescription]);
 #endif
     }
@@ -141,6 +141,9 @@
     [[SDImageCache sharedImageCache] cleanDisk];
     [[SDImageCache sharedImageCache] clearDisk];
     [[SDImageCache sharedImageCache] clearMemory];
+    
+    // send notification to clear the Menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationNeededsUpdate object:nil];
     
     // display
     [SharedAppDelegate presentLoginViewController];
@@ -256,7 +259,7 @@
         // save data to the user information
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         
-        [standardUserDefaults setValue:@"OK" forKey:kAuthenticationValid];
+        [standardUserDefaults setValue:@"OK"        forKey:kAuthenticationValid];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPicturesTimestamp];
         [standardUserDefaults setValue:nil          forKey:kHomeScreenPictures];
         [standardUserDefaults setValue:[[UpdateUtilities instance] getVersion] forKey:kVersionApplicationInstalled];
@@ -284,7 +287,7 @@
 }
 
 - (void)requestToken:(OAServiceTicket *)ticket didFailWithError:(NSError *)error {
-    #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
     NSLog(@"Error = %@", [error userInfo]);
 #endif
     PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Authentication failed: try again.",@"Authentication method") duration:5000];
