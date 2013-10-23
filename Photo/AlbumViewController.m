@@ -240,13 +240,25 @@
         PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Please check your internet connection",@"") duration:5000];
         [alert showAlert];
     }else {
+        //read the version of the system.
+        // In the case of Albums we need to support version v1 and v2
+        NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *serverDetails = [standardUserDefaults dictionaryForKey:kServerDetails];
+        NSString *versionServer = @"v2";
+        
+        if ([serverDetails valueForKey:@"api"] != nil && [[serverDetails valueForKey:@"api"] isEqualToString:@"v1"]){
+            // in this case if api is not null and the api is v1, we change the value
+            // this will be used for the old installation of Trovebox
+            versionServer = @"v1";
+        }
+        
         dispatch_queue_t loadAlbums = dispatch_queue_create("loadAlbums", NULL);
         dispatch_async(loadAlbums, ^{
             // call the method and get the details
             @try {
                 // get factory for OpenPhoto Service
                 WebService *service = [[WebService alloc] init];
-                NSArray *result = [service loadAlbums:25 onPage:self.page];
+                NSArray *result = [service loadAlbums:25 onPage:self.page version:versionServer];
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     

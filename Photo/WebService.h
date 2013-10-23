@@ -56,7 +56,7 @@
 // get pictures by album
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album*) album;
 
-- (NSArray *) loadAlbums:(int) pageSize onPage:(int) page;
+- (NSArray *) loadAlbums:(int) pageSize onPage:(int) page version:(NSString *) serverVersion;
 
 // get details from the system
 - (NSDictionary *)  getSystemVersion;

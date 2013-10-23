@@ -106,7 +106,7 @@
 
 - (NSDictionary*) uploadPicture:(NSData*) data metadata:(NSDictionary*) values fileName:(NSString *)fileName delegate:(id) delegate
 {
-    [self validateCredentials];    
+    [self validateCredentials];
     
     // for video:       /v1/media/upload.json"
     // just for images: /v1/photo/upload.json
@@ -213,9 +213,17 @@
     return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@&album=%@", pageSize,page,[self getScreenSizesForRequest],[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]  httpMethod:@"GET"]];
 }
 
-- (NSArray*) loadAlbums:(int) pageSize onPage:(int) page
+- (NSArray*) loadAlbums:(int) pageSize onPage:(int) page version:(NSString *) serverVersion
 {
-    return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"/v1/albums/list.json?pageSize=%d&page=%d", pageSize, page] httpMethod:@"GET"]];
+    if ([serverVersion isEqualToString:@"v1"] ||
+        [serverVersion isEqualToString:@"v2"]){
+        return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"/%@/albums/list.json?pageSize=%d&page=%d", serverVersion, pageSize, page] httpMethod:@"GET"]];
+    }else{
+        NSException *exception = [NSException exceptionWithName: @"Incorrect server version"
+                                                         reason: @"Only version v1 and v2 are accept"
+                                                       userInfo: nil];
+        @throw exception;
+    }
 }
 
 // return identification
@@ -364,7 +372,9 @@
     
     NSError *error = [response error];
     if (error) {
+#ifdef DEVELOPMENT_ENABLED
         NSLog(@"Error: %@", error);
+#endif
         NSException *exception = [NSException exceptionWithName: @"Response error"
                                                          reason: [error localizedDescription]
                                                        userInfo: nil];
