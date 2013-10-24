@@ -23,6 +23,8 @@
 @interface AlbumViewController ()
 - (void) loadAlbums;
 - (NSArray *) getSelectedAlbums;
+- (void) loadAlbumsForV1:(NSArray *) result;
+- (void) loadAlbumsForV2:(NSArray *) result;
 
 //used for create new albums
 @property (nonatomic) BOOL readOnly;
@@ -103,7 +105,7 @@
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = UIColorFromRGB(0x3B2414);
     self.refreshControl = refreshControl;
-    [refreshControl addTarget:self action:@selector(loadingData) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(loadAlbums) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -186,7 +188,7 @@
     
     
     if (self.totalPages){
-        if ([self.albums count] - 1  == indexPath.row && self.page <= self.totalPages){
+        if ([self.albums count] - 1  == indexPath.row && self.page != self.totalPages){
             [self loadAlbums];
         }
     }
@@ -222,14 +224,6 @@
     }
 }
 
-#pragma mark -
-#pragma mark Refresh Methods
-
-- (void)loadingData
-{
-    [self loadAlbums];
-}
-
 #pragma mark
 #pragma mark - Methods to get albums via json
 - (void) loadAlbums
@@ -244,8 +238,8 @@
         // In the case of Albums we need to support version v1 and v2
         NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *serverDetails = [standardUserDefaults dictionaryForKey:kServerDetails];
-        NSString *versionServer = @"v2";
         
+        NSString *versionServer = @"v2";
         if ([serverDetails valueForKey:@"api"] != nil && [[serverDetails valueForKey:@"api"] isEqualToString:@"v1"]){
             // in this case if api is not null and the api is v1, we change the value
             // this will be used for the old installation of Trovebox
@@ -262,42 +256,23 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    if ([result class] != [NSNull class] && [result count] > 0) {
+                    if ([result class] != [NSNull class] && [result count] >0) {
                         // we may try to load more albums again
                         self.totalPages++;
                         self.page++;
                         
-                        // Loop through each entry in the dictionary and create an array Albums
-                        for (NSDictionary *albumDetails in result){
-                            // tag name
-                            NSString *name = [albumDetails objectForKey:@"name"];
-                            name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                            
-                            // how many images
-                            NSString *qtd = [albumDetails objectForKey:@"count"];
-                            NSString *identification = [albumDetails objectForKey:@"id"];
-                            
-                            if ([qtd integerValue] >0 ){
-                                // first get the cover
-                                NSDictionary* cover = [albumDetails objectForKey:@"cover"];
-                                NSString *size;
-                                if ([DisplayUtilities isIPad])
-                                    size = @"photo200x200xCR";
-                                else
-                                    size = @"photo100x100xCR";
-                                NSArray *pathCover = [cover objectForKey:size];
-                                
-                                // create an album and add to the list of albums
-                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
-                                
-                                [self.albums addObject:album];
-                            }else if (self.readOnly){
-                                // in this case add just with the name and count
-                                Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
-                                [self.albums addObject:album];
-                            }
+                        // check based on version
+                        if ([versionServer isEqualToString:@"v1"]){
+                            // in the v1, we just need to check if the result has
+                            // more than one position in the array
+                            [self loadAlbumsForV1:result];
+                        }else if ([versionServer isEqualToString:@"v2"]){
+                            // here the content will be always the same
+                            // but we need to check the totalPages or totalRows
+                            [self loadAlbumsForV2:result];
                         }
                         
+                        // load data
                         [self.tableView reloadData];
                     }else{
                         self.totalPages = self.page;
@@ -316,7 +291,62 @@
     }
 }
 
--(void) addNewAlbum
+- (void) loadAlbumsForV1:(NSArray *) result
+{
+    // Loop through each entry in the dictionary and create an array Albums
+    for (NSDictionary *albumDetails in result){
+        [self processAlbumDetails:albumDetails];
+    }
+}
+
+- (void) loadAlbumsForV2:(NSArray *) result
+{
+    // Loop through each entry in the dictionary and create an array Albums
+    for (NSDictionary *albumDetails in result){
+        
+        // see if totalRows is null or totalPages = 0
+        if ([albumDetails objectForKey:@"totalPages"] != nil &&
+            [[albumDetails objectForKey:@"totalPages"] intValue] == 0){
+            self.totalPages = self.page;
+            break;
+        }
+        
+        [self processAlbumDetails:albumDetails];
+    }
+}
+
+
+- (void) processAlbumDetails:(NSDictionary *) albumDetails
+{
+    // tag name
+    NSString *name = [albumDetails objectForKey:@"name"];
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    // how many images
+    NSString *qtd = [albumDetails objectForKey:@"count"];
+    NSString *identification = [albumDetails objectForKey:@"id"];
+    
+    if ([qtd integerValue] >0 ){
+        // first get the cover
+        NSDictionary* cover = [albumDetails objectForKey:@"cover"];
+        NSString *size;
+        if ([DisplayUtilities isIPad])
+            size = @"photo200x200xCR";
+        else
+            size = @"photo100x100xCR";
+        NSArray *pathCover = [cover objectForKey:size];
+        
+        // create an album and add to the list of albums
+        Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
+        
+        [self.albums addObject:album];
+    }else if (self.readOnly){
+        // in this case add just with the name and count
+        Album *album = [[Album alloc]initWithAlbumName:name Quantity:0 Identification:identification AlbumImageUrl:nil];
+        [self.albums addObject:album];
+    }
+}
+- (void) addNewAlbum
 {
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Adding new album");

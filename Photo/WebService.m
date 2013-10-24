@@ -217,7 +217,7 @@
 {
     if ([serverVersion isEqualToString:@"v1"] ||
         [serverVersion isEqualToString:@"v2"]){
-        return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"/%@/albums/list.json?pageSize=%d&page=%d", serverVersion, pageSize, page] httpMethod:@"GET"]];
+        return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat: @"/%@/albums/list.json?pageSize=%d&page=%d&skipEmpty=1", serverVersion, pageSize, page] httpMethod:@"GET"]];
     }else{
         NSException *exception = [NSException exceptionWithName: @"Incorrect server version"
                                                          reason: @"Only version v1 and v2 are accept"
