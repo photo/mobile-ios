@@ -137,10 +137,9 @@
                     [(SyncViewController*) asset.parent totalSelectedAssets] > [SharedAppDelegate limitFreeUser]){
                     // limit reached,
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Limit reached", nil)
-                                                                    message: [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.",@"Message when limit is reached"), [SharedAppDelegate limitAllowed]]
-                                                                   delegate:self
-                                                          cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
-                                                          otherButtonTitles:NSLocalizedString(@"Upgrade",nil),nil];
+                                                                    message: [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of 100 photos.",@"Message when limit is reached")]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:nil                                                          otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
                     [alert show];
                     asset.selected = NO;
                     overlayView.hidden = TRUE;
