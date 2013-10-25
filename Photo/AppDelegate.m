@@ -451,8 +451,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (BOOL) isProUser
 {
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
+ //   NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+ //   return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
+    
+    // this is a workaround
+    
+    return YES;
 }
 
 - (BOOL) isFreeUser

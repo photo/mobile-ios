@@ -3187,8 +3187,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -3212,8 +3212,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "3D7B945D-E406-4D34-A304-9DFEC371170F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7B945D-E406-4D34-A304-9DFEC371170F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
@@ -3224,8 +3224,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Frameworks\"",
@@ -3249,8 +3249,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Trovebox;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7BBFBBD6-C2AB-47DC-8A3D-B0CA89390399";
+				PROVISIONING_PROFILE = "3D7B945D-E406-4D34-A304-9DFEC371170F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3D7B945D-E406-4D34-A304-9DFEC371170F";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Frameworks/**";
 				WRAPPER_EXTENSION = app;
