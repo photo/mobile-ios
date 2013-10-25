@@ -77,12 +77,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)signUpWithEmail:(id)sender {
-    LoginCreateAccountViewController *controller = [[LoginCreateAccountViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginCreateAccountViewController"] bundle:nil];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 - (IBAction)signInWithEmail:(id)sender {
     LoginConnectViewController *controller = [[LoginConnectViewController alloc] initWithNibName:[DisplayUtilities getCorrectNibName:@"LoginConnectViewController"] bundle:nil];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];

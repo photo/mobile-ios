@@ -19,14 +19,12 @@
 //
 
 #import "LoginConnectViewController.h"
-#import "LoginCreateAccountViewController.h"
 #import "AuthenticationService.h"
 #import "Account.h"
 #import "MBProgressHUD.h"
 
 @interface LoginViewController : GAITrackedViewController
 
-- (IBAction)signUpWithEmail:(id)sender;
 - (IBAction)signInWithEmail:(id)sender;
 
 @end

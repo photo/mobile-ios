@@ -294,12 +294,6 @@
     [alert showAlertOnTop];
 }
 
-+ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd
-{
-    return [PrivateAuthenticationService createNewAccountWithUser:user email:email password:pwd];
-    
-}
-
 + (NSArray *) signIn:(NSString*) email password:(NSString*) pwd
 {
     return [PrivateAuthenticationService signIn:email password:pwd];

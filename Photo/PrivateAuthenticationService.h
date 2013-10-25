@@ -24,8 +24,6 @@
 
 @interface PrivateAuthenticationService : NSObject
 
-+ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
-+ (BOOL) checkUserFacebookEmail:(NSString*) email;
 + (NSArray *) signIn:(NSString*) email password:(NSString*) pwd;
 + (NSString *) recoverPassword:(NSString *) email;
 + (void) sendToServerReceipt:(NSData *) receipt forUser:(NSString *) email;

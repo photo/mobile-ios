@@ -44,7 +44,6 @@
 - (void) startOAuthProcedure:(NSURL*) url;
 
 // for login
-+ (Account *) createNewAccountWithUser:(NSString*) user email:(NSString*) email password:(NSString*) pwd;
 // returns a list of Account
 + (NSArray *) signIn:(NSString*) email password:(NSString*) pwd;
 + (NSString *) recoverPassword:(NSString *) email;

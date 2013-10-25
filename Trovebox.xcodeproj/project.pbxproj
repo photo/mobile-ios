@@ -98,8 +98,6 @@
 		CD1528481628DB8500EA08FF /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* Account.m */; };
 		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
 		CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528411628DB8500EA08FF /* LoginViewController.xib */; };
-		CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */; };
-		CD15284D1628DB8500EA08FF /* LoginCreateAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */; };
 		CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528461628DB8500EA08FF /* LoginConnectViewController.m */; };
 		CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */; };
 		CD1A6CDB1704811B0002763A /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1A6CDA1704811A0002763A /* TMPhotoQuiltViewCell.m */; };
@@ -118,7 +116,6 @@
 		CD1D827016E9215600877A8E /* MenuTableViewSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D826F16E9215600877A8E /* MenuTableViewSectionCell.xib */; };
 		CD1D827316E9412800877A8E /* MenuTableViewSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */; };
 		CD1D827516E9413A00877A8E /* MenuTableViewSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */; };
-		CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */; };
 		CD25838F17F4C24900A62574 /* UploadStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */; };
 		CD30D57016303E54001A0CA0 /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56216303E54001A0CA0 /* ELCAsset.m */; };
 		CD30D57116303E54001A0CA0 /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD30D56416303E54001A0CA0 /* ELCAssetCell.m */; };
@@ -893,9 +890,6 @@
 		CD15283F1628DB8500EA08FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		CD1528401628DB8500EA08FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		CD1528411628DB8500EA08FF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		CD1528421628DB8500EA08FF /* LoginCreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCreateAccountViewController.h; sourceTree = "<group>"; };
-		CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCreateAccountViewController.m; sourceTree = "<group>"; };
-		CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController.xib; sourceTree = "<group>"; };
 		CD1528451628DB8500EA08FF /* LoginConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginConnectViewController.h; sourceTree = "<group>"; };
 		CD1528461628DB8500EA08FF /* LoginConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginConnectViewController.m; sourceTree = "<group>"; };
 		CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginConnectViewController.xib; sourceTree = "<group>"; };
@@ -929,7 +923,6 @@
 		CD1D827116E9412800877A8E /* MenuTableViewSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuTableViewSearchCell.h; sourceTree = "<group>"; };
 		CD1D827216E9412800877A8E /* MenuTableViewSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuTableViewSearchCell.m; sourceTree = "<group>"; };
 		CD1D827416E9413900877A8E /* MenuTableViewSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuTableViewSearchCell.xib; sourceTree = "<group>"; };
-		CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginCreateAccountViewController5.xib; sourceTree = "<group>"; };
 		CD25838D17F4C24900A62574 /* UploadStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadStatusTableViewController.h; sourceTree = "<group>"; };
 		CD25838E17F4C24900A62574 /* UploadStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadStatusTableViewController.m; sourceTree = "<group>"; };
 		CD2583E317FCB3B000A62574 /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
@@ -1623,10 +1616,6 @@
 				CD1528411628DB8500EA08FF /* LoginViewController.xib */,
 				CDCC0BC616E0C66400BE4481 /* LoginViewController5.xib */,
 				CDDFDA3E1729422A00D992DC /* LoginViewControlleriPad.xib */,
-				CD1528421628DB8500EA08FF /* LoginCreateAccountViewController.h */,
-				CD1528431628DB8500EA08FF /* LoginCreateAccountViewController.m */,
-				CD1528441628DB8500EA08FF /* LoginCreateAccountViewController.xib */,
-				CD206934163B232C00F92F8A /* LoginCreateAccountViewController5.xib */,
 				CD1528451628DB8500EA08FF /* LoginConnectViewController.h */,
 				CD1528461628DB8500EA08FF /* LoginConnectViewController.m */,
 				CD1528471628DB8500EA08FF /* LoginConnectViewController.xib */,
@@ -2689,13 +2678,11 @@
 				CDFAF34716285495007A4FDF /* NewestPhotoCell.xib in Resources */,
 				CDFAF34916285495007A4FDF /* UploadCell.xib in Resources */,
 				CD15284B1628DB8500EA08FF /* LoginViewController.xib in Resources */,
-				CD15284D1628DB8500EA08FF /* LoginCreateAccountViewController.xib in Resources */,
 				CD15284F1628DB8500EA08FF /* LoginConnectViewController.xib in Resources */,
 				CD30D57216303E54001A0CA0 /* ELCAssetPicker.xib in Resources */,
 				CD30D57416303E54001A0CA0 /* ELCImagePickerController.xib in Resources */,
 				CD30D57716303E54001A0CA0 /* SyncViewController.xib in Resources */,
 				CD30D84216369CF1001A0CA0 /* PhotoViewController.xib in Resources */,
-				CD206936163B232C00F92F8A /* LoginCreateAccountViewController5.xib in Resources */,
 				CDC7AF39164028E100FC8BC1 /* PhotoViewController5.xib in Resources */,
 				CDCC0A8F16E0C23700BE4481 /* appbar_empty.png in Resources */,
 				CDCC0A9016E0C23700BE4481 /* appbar_empty@2x.png in Resources */,
@@ -3001,7 +2988,6 @@
 				CDFAF36016285C4E007A4FDF /* Synced+Methods.m in Sources */,
 				CD1528481628DB8500EA08FF /* Account.m in Sources */,
 				CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */,
-				CD15284C1628DB8500EA08FF /* LoginCreateAccountViewController.m in Sources */,
 				CD15284E1628DB8500EA08FF /* LoginConnectViewController.m in Sources */,
 				CD1CDE39162C275F00E57F73 /* CoreDataTableViewController.m in Sources */,
 				CD1CDE3C162C2AE400E57F73 /* CoreLocationController.m in Sources */,
