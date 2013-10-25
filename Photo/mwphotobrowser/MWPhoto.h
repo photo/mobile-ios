@@ -33,15 +33,15 @@
 @property (nonatomic, strong) NSNumber *permission;
 
 // Class
-+ (MWPhoto *)photoWithImage:(UIImage *)image;
-+ (MWPhoto *)photoWithFilePath:(NSString *)path  __attribute__((deprecated("Use photoWithURL: with a file URL"))); // Depreciated
-+ (MWPhoto *)photoWithURL:(NSURL *)url;
++ (MWPhoto *) photoWithImage:(UIImage *)image;
++ (MWPhoto *) photoWithFilePath:(NSString *)path  __attribute__((deprecated("Use photoWithURL: with a file URL"))); // Depreciated
++ (MWPhoto *) photoWithURL:(NSURL *)url;
 + (MWPhoto *) photoWithServerInfo:(NSDictionary *) response;
 
 // Init
-- (id)initWithImage:(UIImage *)image;
-- (id)initWithURL:(NSURL *)url;
-- (id)initWithFilePath:(NSString *)path  __attribute__((deprecated("Use initWithURL: with a file URL"))); // Depreciated
+- (id) initWithImage:(UIImage *)image;
+- (id) initWithURL:(NSURL *)url;
+- (id) initWithFilePath:(NSString *)path  __attribute__((deprecated("Use initWithURL: with a file URL"))); // Depreciated
 
 @end
 

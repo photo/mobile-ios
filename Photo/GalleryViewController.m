@@ -164,7 +164,16 @@
     
     // Set options
     browser.wantsFullScreenLayout = YES;
-    browser.displayActionButton = YES;
+    
+    // check if user is type GROUP
+    // if yes, he should not have access to actions
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"]){
+        browser.displayActionButton = NO;
+    }else{
+        browser.displayActionButton = YES;
+    }
+    
     [browser setCurrentPhotoIndex:indexPath.row];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
     
