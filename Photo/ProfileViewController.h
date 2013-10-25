@@ -23,16 +23,11 @@
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-//for payment
-#import "SKProduct+LocalizedPrice.h"
-#import "TroveboxSubscription.h"
-
 // for clean the cache
 #import "Timeline+Methods.h"
 #import <SDWebImage/SDImageCache.h>
 
 #import <QuartzCore/QuartzCore.h>
-#import "WebViewController.h"
 
 @interface ProfileViewController : GAITrackedViewController <UIAlertViewDelegate>
 
@@ -45,11 +40,5 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelStorageDetails;
 @property (nonatomic, weak) IBOutlet UILabel *labelServer;
 @property (nonatomic, weak) IBOutlet UILabel *labelAccount;
-@property (nonatomic, weak) IBOutlet UILabel *labelPriceSubscription;
-@property (nonatomic, weak) IBOutlet UIButton *buttonSubscription;
-- (IBAction)subscribe:(id)sender;
-- (IBAction)openFeaturesList:(id)sender;
-@property (nonatomic, weak) IBOutlet UIButton *buttonFeatureList;
-
 
 @end

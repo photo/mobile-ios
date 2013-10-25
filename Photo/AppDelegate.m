@@ -122,20 +122,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // start the job
     [[JobUploaderController getController] start];
     
-    // Let the device know we want to receive push notifications
-    //	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:
-    //     (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    
     // remove badges
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-    
-    // Payment setup
-    if ([SKPaymentQueue canMakePayments]) {
-        TroveboxSubscription *subscription = [TroveboxSubscription troveboxSubscription];
-        [subscription requestProUpgradeProductData];
-        [[SKPaymentQueue defaultQueue] addTransactionObserver:[TroveboxPaymentTransactionObserver troveboxPaymentTransactionObserver]];
-    }
-    
+        
     return YES;
 }
 

@@ -37,11 +37,7 @@
 
 #import <Crashlytics/Crashlytics.h>
 
-//for payment
-#import <StoreKit/StoreKit.h>
-#import "TroveboxPaymentTransactionObserver.h"
-#import "TroveboxSubscription.h"
-
+// sharing
 #import "SHK.h"
 #import "SHKItem.h"
 #import "SHKTwitter.h"

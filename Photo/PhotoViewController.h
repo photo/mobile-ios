@@ -24,7 +24,7 @@
 
 #import "PhotoUploader.h"
 
-@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UIAlertViewDelegate>
+@interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *detailsPictureTable;
 

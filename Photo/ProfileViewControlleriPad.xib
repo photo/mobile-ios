@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1536" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController">
             <connections>
-                <outlet property="buttonFeatureList" destination="23" id="26"/>
-                <outlet property="buttonSubscription" destination="20" id="27"/>
                 <outlet property="labelAccount" destination="19" id="35"/>
                 <outlet property="labelAlbums" destination="8" id="30"/>
                 <outlet property="labelName" destination="11" id="34"/>
                 <outlet property="labelPhotos" destination="7" id="31"/>
-                <outlet property="labelPriceSubscription" destination="21" id="38"/>
                 <outlet property="labelServer" destination="18" id="36"/>
                 <outlet property="labelStorage" destination="10" id="33"/>
                 <outlet property="labelStorageDetails" destination="5" id="32"/>
@@ -119,47 +116,10 @@
                     <color key="textColor" red="0.55294120309999995" green="0.48235297199999999" blue="0.45490199329999997" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="20">
-                    <rect key="frame" x="225" y="551" width="318" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal" image="profile-button-upgrade-pro.png">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="subscribe:" destination="-1" eventType="touchUpInside" id="29"/>
-                    </connections>
-                </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="21">
-                    <rect key="frame" x="244" y="603" width="281" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" image="profile-line.png" id="22">
                     <rect key="frame" x="470" y="296" width="50" height="114"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="23">
-                    <rect key="frame" x="549" y="563" width="22" height="22"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal">
-                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <state key="highlighted">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="openFeaturesList:" destination="-1" eventType="touchUpInside" id="28"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
@@ -169,7 +129,6 @@
     </objects>
     <resources>
         <image name="profile-albumsico.png" width="26" height="26"/>
-        <image name="profile-button-upgrade-pro.png" width="282" height="37"/>
         <image name="profile-details-server-account.png" width="314" height="87"/>
         <image name="profile-line.png" width="3" height="57"/>
         <image name="profile-photosico.png" width="31" height="26"/>

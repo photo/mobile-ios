@@ -39,13 +39,6 @@
         self.wantsFullScreenLayout = YES;
         self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
         
-        
-        // needs update in screen
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(eventHandler:)
-                                                     name:kInAppPurchaseManagerProductsFetchedNotification
-                                                   object:nil ];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(eventHandler:)
                                                      name:kNotificationProfileRemoveProgressBar
@@ -234,31 +227,6 @@
                     }
                     
                     [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
-                    
-                    if ([SKPaymentQueue canMakePayments]) {
-                        if (![SharedAppDelegate isHosted] || [[result objectForKey:@"paid"] boolValue]){
-                            // PRO User, don't show button or label
-                            self.labelPriceSubscription.hidden = TRUE;
-                            self.buttonSubscription.hidden = TRUE;
-                            self.buttonFeatureList.hidden = TRUE;
-                        }else{
-                            // set the value
-                            TroveboxSubscription *subscription = [TroveboxSubscription troveboxSubscription];
-                            SKProduct *product = [subscription product];
-                            if( product.price != nil){
-                                [self.labelPriceSubscription setText:[NSString stringWithFormat:@"%@ %@/%@", NSLocalizedString(@"Just",@"Profile - subscription"), [product localizedPrice], NSLocalizedString(@"month",@"Profile - subscription")]];
-                                self.buttonFeatureList.hidden = FALSE;
-                                self.labelPriceSubscription.hidden = FALSE;
-                                self.buttonSubscription.hidden = FALSE;
-                            }}
-                    }else{
-                        // Warn the user that purchases are disabled.
-                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage: NSLocalizedString(@"App can't do Purchase. Please, check Settings if you want to upgrade the app",@"Message when user can not purchase") duration:7000];
-                        [alert showAlert];
-                        
-                        [self.buttonSubscription setHidden:YES];
-                        [self.labelPriceSubscription setHidden:YES];
-                    }
                 });
             }@catch (NSException* e) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -271,23 +239,6 @@
         });
     }
     
-}
-
-- (IBAction)subscribe:(id)sender {
-    
-    if ([SKPaymentQueue canMakePayments]) {
-        SKPayment *payment = [SKPayment paymentWithProduct:[TroveboxSubscription troveboxSubscription].proUpgradeProduct];
-        [[SKPaymentQueue defaultQueue] transactions];
-        [[SKPaymentQueue defaultQueue] addPayment:payment];
-        [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    }
-}
-
-- (IBAction)openFeaturesList:(id)sender
-{
-    // open a web view for the link: https://trovebox.com/plans/mobile
-    WebViewController* webViewController = [[WebViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 - (void) formatStorage:(long long) storage
@@ -316,9 +267,7 @@
     NSLog(@"###### Event triggered: %@", notification);
 #endif
     
-    if ([notification.name isEqualToString:kInAppPurchaseManagerProductsFetchedNotification]){
-        [self loadUserDetails];
-    }else if ([notification.name isEqualToString:kNotificationProfileRemoveProgressBar]){
+    if ([notification.name isEqualToString:kNotificationProfileRemoveProgressBar]){
         [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
     }
 }
@@ -334,9 +283,7 @@
     [self setLabelStorageDetails:nil];
     [self setLabelServer:nil];
     [self setLabelAccount:nil];
-    [self setLabelPriceSubscription:nil];
-    [self setButtonSubscription:nil];
-    [self setButtonFeatureList:nil];
+
     [super viewDidUnload];
 }
 @end

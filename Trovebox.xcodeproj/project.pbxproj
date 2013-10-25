@@ -136,7 +136,6 @@
 		CD30D84216369CF1001A0CA0 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD30D84016369CF1001A0CA0 /* PhotoViewController.xib */; };
 		CD30D8511636A98C001A0CA0 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8501636A98C001A0CA0 /* Accelerate.framework */; };
 		CD30D8531636A9AB001A0CA0 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8521636A9AB001A0CA0 /* libsqlite3.0.dylib */; };
-		CD30D8551636A9C0001A0CA0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8541636A9BF001A0CA0 /* StoreKit.framework */; };
 		CD30D8571636A9CE001A0CA0 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8561636A9CE001A0CA0 /* CoreText.framework */; };
 		CD30D8591636A9DB001A0CA0 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */; };
 		CD31DECE17143FFA0071D3E1 /* menu-album-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = CD31DEC017143FF90071D3E1 /* menu-album-selected.png */; };
@@ -338,9 +337,6 @@
 		CDCC0AF316E0C23700BE4481 /* sync-show@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0A7216E0C23700BE4481 /* sync-show@2x.png */; };
 		CDCC0B6416E0C49D00BE4481 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */; };
 		CDCC0B6516E0C49D00BE4481 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */; };
-		CDCC0B6716E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */; };
-		CDCC0B6816E0C49D00BE4481 /* TroveboxSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B5F16E0C49D00BE4481 /* TroveboxSubscription.m */; };
-		CDCC0B6916E0C49D00BE4481 /* SKProduct+LocalizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B6116E0C49D00BE4481 /* SKProduct+LocalizedPrice.m */; };
 		CDCC0B6A16E0C49D00BE4481 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0B6316E0C49D00BE4481 /* WebViewController.m */; };
 		CDCC0BEE16E0C66400BE4481 /* AuthenticationViewController5.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDCC0BB816E0C66400BE4481 /* AuthenticationViewController5.xib */; };
 		CDCC0BF016E0C66400BE4481 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCC0BBC16E0C66400BE4481 /* DateUtilities.m */; };
@@ -963,7 +959,6 @@
 		CD30D84016369CF1001A0CA0 /* PhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		CD30D8501636A98C001A0CA0 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		CD30D8521636A9AB001A0CA0 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		CD30D8541636A9BF001A0CA0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CD30D8561636A9CE001A0CA0 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CD31DEC017143FF90071D3E1 /* menu-album-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-album-selected.png"; path = "images/menu-album-selected.png"; sourceTree = "<group>"; };
@@ -1214,12 +1209,6 @@
 		CDCC0B5816E0C49D00BE4481 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		CDCC0B5C16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TroveboxPaymentTransactionObserver.h; sourceTree = "<group>"; };
-		CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TroveboxPaymentTransactionObserver.m; sourceTree = "<group>"; };
-		CDCC0B5E16E0C49D00BE4481 /* TroveboxSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TroveboxSubscription.h; sourceTree = "<group>"; };
-		CDCC0B5F16E0C49D00BE4481 /* TroveboxSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TroveboxSubscription.m; sourceTree = "<group>"; };
-		CDCC0B6016E0C49D00BE4481 /* SKProduct+LocalizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+LocalizedPrice.h"; sourceTree = "<group>"; };
-		CDCC0B6116E0C49D00BE4481 /* SKProduct+LocalizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+LocalizedPrice.m"; sourceTree = "<group>"; };
 		CDCC0B6216E0C49D00BE4481 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		CDCC0B6316E0C49D00BE4481 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		CDCC0BB816E0C66400BE4481 /* AuthenticationViewController5.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticationViewController5.xib; sourceTree = "<group>"; };
@@ -1350,7 +1339,6 @@
 				CDF2F10416E52DDD00D309B9 /* Accounts.framework in Frameworks */,
 				CDF2F10216E52DCC00D309B9 /* AdSupport.framework in Frameworks */,
 				CDF2F06E16E4D87A00D309B9 /* MapKit.framework in Frameworks */,
-				CD30D8551636A9C0001A0CA0 /* StoreKit.framework in Frameworks */,
 				CD30D8571636A9CE001A0CA0 /* CoreText.framework in Frameworks */,
 				CD30D8531636A9AB001A0CA0 /* libsqlite3.0.dylib in Frameworks */,
 				CD30D8511636A98C001A0CA0 /* Accelerate.framework in Frameworks */,
@@ -1769,14 +1757,6 @@
 				CDCC0B5916E0C49D00BE4481 /* ProfileViewController.m */,
 				CDCC0B5A16E0C49D00BE4481 /* ProfileViewController.xib */,
 				CD9013461726C66800BB30EF /* ProfileViewControlleriPad.xib */,
-				CDCC0B5C16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.h */,
-				CDCC0B5D16E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m */,
-				CDCC0B5E16E0C49D00BE4481 /* TroveboxSubscription.h */,
-				CDCC0B5F16E0C49D00BE4481 /* TroveboxSubscription.m */,
-				CDCC0B6016E0C49D00BE4481 /* SKProduct+LocalizedPrice.h */,
-				CDCC0B6116E0C49D00BE4481 /* SKProduct+LocalizedPrice.m */,
-				CDCC0B6216E0C49D00BE4481 /* WebViewController.h */,
-				CDCC0B6316E0C49D00BE4481 /* WebViewController.m */,
 				CDCC0BDD16E0C66400BE4481 /* Settings.bundle */,
 			);
 			name = Settings;
@@ -2010,6 +1990,8 @@
 		CD7642B7161EDFCA00E0B657 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				CDCC0B6216E0C49D00BE4481 /* WebViewController.h */,
+				CDCC0B6316E0C49D00BE4481 /* WebViewController.m */,
 				CDCC0BE816E0C66400BE4481 /* UpdateUtilities.h */,
 				CDCC0BE916E0C66400BE4481 /* UpdateUtilities.m */,
 				CDCC0BE616E0C66400BE4481 /* TransformationUtilities.h */,
@@ -2153,7 +2135,6 @@
 				CD30D5F7163041A4001A0CA0 /* AssetsLibrary.framework */,
 				CD30D8581636A9DA001A0CA0 /* OpenGLES.framework */,
 				CD30D8561636A9CE001A0CA0 /* CoreText.framework */,
-				CD30D8541636A9BF001A0CA0 /* StoreKit.framework */,
 				CD30D8521636A9AB001A0CA0 /* libsqlite3.0.dylib */,
 				CD30D8501636A98C001A0CA0 /* Accelerate.framework */,
 				CD7642B1161EDB9E00E0B657 /* libz.dylib */,
@@ -2329,6 +2310,11 @@
 				TargetAttributes = {
 					CDAFB9CD16122262002D6E86 = {
 						DevelopmentTeam = 7396XV45JF;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -3035,9 +3021,6 @@
 				CDC7AEDC163EDD3A00FC8BC1 /* PrivateAuthenticationService.m in Sources */,
 				CDC7AF2E1640156400FC8BC1 /* GalleryViewController.m in Sources */,
 				CDCC0B6416E0C49D00BE4481 /* ProfileViewController.m in Sources */,
-				CDCC0B6716E0C49D00BE4481 /* TroveboxPaymentTransactionObserver.m in Sources */,
-				CDCC0B6816E0C49D00BE4481 /* TroveboxSubscription.m in Sources */,
-				CDCC0B6916E0C49D00BE4481 /* SKProduct+LocalizedPrice.m in Sources */,
 				CDCF8650180371C2002E7A39 /* DACircularProgressView.m in Sources */,
 				CDCC0B6A16E0C49D00BE4481 /* WebViewController.m in Sources */,
 				CDCC0BF016E0C66400BE4481 /* DateUtilities.m in Sources */,

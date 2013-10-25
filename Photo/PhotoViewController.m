@@ -171,18 +171,6 @@
         }
         
         self.labelLimitUpload.text = message;
-        
-        if ([SharedAppDelegate limitFreeUser] == 0){
-            // limit reached,
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"Limit reached", nil)
-                                                            message: [NSString stringWithFormat:NSLocalizedString(@"You've reached your monthly limit of %d photos. Upgrade today for an unlimited Pro account.",@"Message when limit is reached"), [SharedAppDelegate limitAllowed]]
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"OK",nil)
-                                                  otherButtonTitles:NSLocalizedString(@"Upgrade",nil), nil];
-            [alert show];
-            //disable button
-            self.navigationItem.rightBarButtonItem.enabled = FALSE;
-        }
     }
 }
 
@@ -510,12 +498,5 @@
 #endif
     }
 }
-
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1){
-        [(MenuViewController*) SharedAppDelegate.menuController displayProfileScreen];
-    }
-}
-
 
 @end
