@@ -371,6 +371,66 @@
     NSString *tags = [self.tagController getSelectedTagsInJsonFormat];
     NSString *albums = [self.albumController getSelectedAlbumsIdentification];
     
+    
+    NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
+    if (type && [type isEqualToString:@"group"] && [SharedAppDelegate isHosted]){
+        // user needs to select an album
+        // if there is no album, he can't upload
+        Account *account = [[Account alloc]init];
+        [account readFromStandardUserDefaults];
+        
+        // now we should have access to all information from this user
+        Permission *permission = account.permission;
+        if ([permission.c isKindOfClass:[NSArray class]]){
+            // has one or more albums that he can upload.
+            if ([permission.c count] == 1){
+                            // if there is one, needs to set this one as identifier
+                id albumAllowed = [permission.c objectAtIndex:0];
+                if ([albumAllowed isKindOfClass:[NSString class]]){
+                    albums = [permission.c objectAtIndex:0];
+                } else{
+                    albums = [[permission.c objectAtIndex:0] stringValue];
+                }
+            }else{
+                // check if it is one of the selected
+                NSArray *albumsAllowed = permission.c;
+                
+                // if not, ask user to select one
+                BOOL found=NO;
+                for (id s in albumsAllowed)
+                {
+                    if ([s isKindOfClass:[NSString class]]){
+                        if ([albums rangeOfString:s].location != NSNotFound) {
+                            found = YES;
+                            break;
+                        }
+                    } else{
+                        if ([albums rangeOfString:[s stringValue]].location != NSNotFound) {
+                            found = YES;
+                            break;
+                        }
+                    }
+                }
+                
+                if (!found){
+                    // show message and return
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: nil
+                                                                    message: NSLocalizedString(@"Please select an album.", @"Message to select one album to upload your photos")
+                                                                   delegate:nil
+                                                          cancelButtonTitle:nil
+                                                          otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+                    [alert show];
+                    return;
+                }
+                    
+            }
+        }else if ([permission.c isKindOfClass:[NSNumber class]]){
+            // if 1, YES for all
+            // if 0, NO for all, so just display an alert he doesn't have permission and return
+        }
+        
+    }
+    
     dispatch_queue_t waiting = dispatch_queue_create("waiting_finish_insert_database", NULL);
     dispatch_async(waiting, ^{
         @try {

@@ -61,7 +61,28 @@
 }
 
 - (void) readFromStandardUserDefaults{
+    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
     
+    self.email = [standardUserDefaults objectForKey:kTroveboxEmailUser];
+    self.host =[standardUserDefaults objectForKey:kTroveboxServer];
+    self.type =[standardUserDefaults objectForKey:kTroveboxTypeUser];
+    
+    NSData *profileData =  [standardUserDefaults objectForKey:kAccountDetailsProfile];
+    if (profileData != nil)
+        self.profile =[NSKeyedUnarchiver unarchiveObjectWithData:profileData];
+    
+    NSData *permissionData =[standardUserDefaults objectForKey:kAccountDetailsPermission];
+    if (permissionData != nil)
+        self.permission =[NSKeyedUnarchiver unarchiveObjectWithData:permissionData];
+    
+    // keychains for credentials
+    KeychainItemWrapper *keychainItemOAuth = [[KeychainItemWrapper alloc]initWithTroveboxOAuth];
+    KeychainItemWrapper *keychainItemConsumer = [[KeychainItemWrapper alloc]initWithTroveboxConsumer];
+    
+    self.userToken = [keychainItemOAuth objectForKey:(__bridge id)(kSecAttrAccount)];
+    self.userSecret = [keychainItemOAuth objectForKey:(__bridge id)(kSecValueData)];
+    self.clientToken = [keychainItemConsumer objectForKey:(__bridge id)(kSecAttrAccount)];
+    self.clientSecret = [keychainItemConsumer objectForKey:(__bridge id)(kSecValueData)];
 }
 
 @end

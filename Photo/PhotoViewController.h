@@ -23,6 +23,7 @@
 #import "Timeline+Methods.h"
 
 #import "PhotoUploader.h"
+#import "Account.h"
 
 @interface PhotoViewController : GAITrackedViewController  <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 

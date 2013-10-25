@@ -129,7 +129,8 @@
                                                                                                      label:@"Sync - maximum reached"
                                                                                                      value:nil] build]];
             }
-            
+      
+            /*
             // check limits
             if ([SharedAppDelegate isHosted] && [SharedAppDelegate isFreeUser]){
                 
@@ -145,6 +146,7 @@
                     overlayView.hidden = TRUE;
                 }
             }
+             */
             
             
             break;
