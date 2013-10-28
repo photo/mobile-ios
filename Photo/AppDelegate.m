@@ -455,7 +455,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
  //   return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
     
     // this is a workaround
-    
     return YES;
 }
 
