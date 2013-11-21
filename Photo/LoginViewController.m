@@ -83,6 +83,10 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (IBAction)openTroveboxWebsite:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"http://www.trovebox.com"]];
+}
+
 //event handler when event occurs
 -(void)eventHandler: (NSNotification *) notification
 {

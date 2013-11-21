@@ -26,5 +26,6 @@
 @interface LoginViewController : GAITrackedViewController
 
 - (IBAction)signInWithEmail:(id)sender;
+- (IBAction)openTroveboxWebsite:(id)sender;
 
 @end
