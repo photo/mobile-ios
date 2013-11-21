@@ -99,15 +99,6 @@
     if ( self.readOnly){
         [self.navigationItem troveboxStyle:NSLocalizedString(@"Tags", @"Menu - title for Tags") defaultButtons:NO viewController:nil menuViewController:nil];
         
-        // specific buttons
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
-        [button setImage:buttonImage forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-        [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-        self.navigationItem.leftBarButtonItem = customBarItem;
-        
         // button for create a new tag
         UIBarButtonItem *customBarItem2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Add", @"Add") style:UIBarButtonItemStylePlain target:self action:@selector(addNewTag)];
         self.navigationItem.rightBarButtonItem = customBarItem2;
@@ -139,11 +130,6 @@
 {
     [self loadTags];
 }
-
--(IBAction)OnClick_btnBack:(id)sender  {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 - (void)viewWillAppear:(BOOL)animated
 {

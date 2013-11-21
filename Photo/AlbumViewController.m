@@ -71,14 +71,6 @@
         
         [self.navigationItem troveboxStyle:NSLocalizedString(@"Albums", @"Menu - title for Albums")  defaultButtons:NO viewController:nil menuViewController:nil];
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *buttonImage = [UIImage imageNamed:@"back.png"] ;
-        [button setImage:buttonImage forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height);
-        [button addTarget:self action:@selector(OnClick_btnBack:) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-        self.navigationItem.leftBarButtonItem = customBarItem;
-        
         // button for create a new album
         UIBarButtonItem *customBarItem2 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Add", @"Add") style:UIBarButtonItemStylePlain target:self action:@selector(addNewAlbum)];
         self.navigationItem.rightBarButtonItem = customBarItem2;
@@ -101,11 +93,6 @@
     refreshControl.tintColor = UIColorFromRGB(0x3B2414);
     self.refreshControl = refreshControl;
     [refreshControl addTarget:self action:@selector(loadAlbums) forControlEvents:UIControlEventValueChanged];
-}
-
-
--(IBAction)OnClick_btnBack:(id)sender  {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
