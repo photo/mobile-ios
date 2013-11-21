@@ -170,7 +170,11 @@
                 
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    if ([accounts count] == 1){
+                    if ([accounts count] == 0){
+                        // there is a problem. Users needs to contact support
+                        PhotoAlertView *alert = [[PhotoAlertView alloc] initWithMessage:NSLocalizedString(@"Unable to determine which site connect.",@"")];
+                        [alert showAlert];
+                    }else if ([accounts count] == 1){
                         // save the details of account and remove the progress
                         
                         Account *account =[accounts objectAtIndex:0];
