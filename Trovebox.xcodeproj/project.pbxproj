@@ -92,8 +92,6 @@
 		CD0DE1D1171F251D0043D1DC /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1D0171F251D0043D1DC /* Timeline.m */; };
 		CD0DE1FB171F31360043D1DC /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1F8171F31360043D1DC /* IIViewDeckController.m */; };
 		CD0DE1FC171F31360043D1DC /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD0DE1FA171F31360043D1DC /* WrapController.m */; };
-		CD0DE1FF171F31D10043D1DC /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DE1FD171F31D10043D1DC /* add.png */; };
-		CD0DE200171F31D10043D1DC /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD0DE1FE171F31D10043D1DC /* add@2x.png */; };
 		CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD128353172153A800D61DB9 /* NewestPhotoCelliPad.xib */; };
 		CD1528481628DB8500EA08FF /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = CD15283C1628DB8500EA08FF /* Account.m */; };
 		CD15284A1628DB8500EA08FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD1528401628DB8500EA08FF /* LoginViewController.m */; };
@@ -882,8 +880,6 @@
 		CD0DE1F8171F31360043D1DC /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IIViewDeckController.m; path = Frameworks/ViewDeck/IIViewDeckController.m; sourceTree = "<group>"; };
 		CD0DE1F9171F31360043D1DC /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WrapController.h; path = Frameworks/ViewDeck/WrapController.h; sourceTree = "<group>"; };
 		CD0DE1FA171F31360043D1DC /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WrapController.m; path = Frameworks/ViewDeck/WrapController.m; sourceTree = "<group>"; };
-		CD0DE1FD171F31D10043D1DC /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add.png; path = images/add.png; sourceTree = "<group>"; };
-		CD0DE1FE171F31D10043D1DC /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "add@2x.png"; path = "images/add@2x.png"; sourceTree = "<group>"; };
 		CD128353172153A800D61DB9 /* NewestPhotoCelliPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewestPhotoCelliPad.xib; sourceTree = "<group>"; };
 		CD15283B1628DB8500EA08FF /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 		CD15283C1628DB8500EA08FF /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
@@ -1792,8 +1788,6 @@
 				CDDFDA4A172970D200D992DC /* Default.png */,
 				CDDFDA48172970CA00D992DC /* Default@2x.png */,
 				CDDFDA4017294A3200D992DC /* trovebox-logo-ipad.png */,
-				CD0DE1FD171F31D10043D1DC /* add.png */,
-				CD0DE1FE171F31D10043D1DC /* add@2x.png */,
 				CD31DEC017143FF90071D3E1 /* menu-album-selected.png */,
 				CD31DEC117143FF90071D3E1 /* menu-album-selected@2x.png */,
 				CD31DEC217143FF90071D3E1 /* menu-gallery-selected.png */,
@@ -2901,8 +2895,6 @@
 				CD31DED917143FFA0071D3E1 /* menu-tags-selected@2x.png in Resources */,
 				CD31DEDA17143FFA0071D3E1 /* menu-upload-selected.png in Resources */,
 				CD31DEDB17143FFA0071D3E1 /* menu-upload-selected@2x.png in Resources */,
-				CD0DE1FF171F31D10043D1DC /* add.png in Resources */,
-				CD0DE200171F31D10043D1DC /* add@2x.png in Resources */,
 				CD128354172153A800D61DB9 /* NewestPhotoCelliPad.xib in Resources */,
 				CD53E2E6180DCC4700F9DB80 /* trovebox_29.png in Resources */,
 				CD53E2E9180DCC4700F9DB80 /* trovebox_120.png in Resources */,
