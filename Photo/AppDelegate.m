@@ -37,6 +37,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 @synthesize internetActive = _internetActive;
 @synthesize hostActive = _hostActive;
+@synthesize wifi = _wifi;
 
 @synthesize centerController = _viewController;
 @synthesize menuController = _menuController;
@@ -373,6 +374,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     // no internet assume
     self.internetActive = NO;
     self.hostActive = NO;
+    self.wifi = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
     
@@ -397,16 +399,19 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         case NotReachable:
         {
             self.internetActive = NO;
+            self.wifi = NO;
             break;
         }
         case ReachableViaWiFi:
         {
             self.internetActive = YES;
+            self.wifi = YES;
             break;
         }
         case ReachableViaWWAN:
         {
             self.internetActive = YES;
+            self.wifi = NO;
             break;
         }
     }

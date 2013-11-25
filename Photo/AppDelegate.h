@@ -74,6 +74,7 @@
 // for internet check
 @property (nonatomic) BOOL  internetActive;
 @property (nonatomic) BOOL  hostActive;
+@property (nonatomic) BOOL  wifi;
 
 //google analytics
 @property(nonatomic, strong) id<GAITracker> tracker;

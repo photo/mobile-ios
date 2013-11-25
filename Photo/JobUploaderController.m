@@ -105,8 +105,7 @@
         
         // check if users enables sync and there is internet
         if ([[NSUserDefaults standardUserDefaults] boolForKey:kAutoSyncEnabled] == YES &&
-            [SharedAppDelegate internetActive] == YES){
-            
+            [SharedAppDelegate internetActive] == YES && [SharedAppDelegate wifi] == YES){
             
             int uploading = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeUploading];
             int created = [Timeline howEntitiesTimelineInManagedObjectContext:[SharedAppDelegate managedObjectContext] type:kUploadStatusTypeCreated];
