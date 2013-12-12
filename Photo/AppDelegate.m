@@ -125,7 +125,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     
     // remove badges
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-        
+    
     return YES;
 }
 
@@ -208,6 +208,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Saves changes in the application's managed object context before the application terminates.
+    [Timeline resetEntitiesOnStateUploadingInManagedObjectContext:[SharedAppDelegate managedObjectContext]];
     [self saveContext];
 }
 
@@ -456,8 +457,8 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 
 - (BOOL) isProUser
 {
- //   NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
- //   return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
+    //   NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+    //   return [[standardUserDefaults valueForKey:kProfileAccountType] boolValue];
     
     // this is a workaround
     return YES;
@@ -490,14 +491,14 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 ////////////
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-    #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
 	NSLog(@"My token is: %@", deviceToken);
 #endif
 }
 
 - (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
 {
-    #ifdef DEVELOPMENT_ENABLED
+#ifdef DEVELOPMENT_ENABLED
 	NSLog(@"Failed to get token, error: %@", error);
 #endif
 }

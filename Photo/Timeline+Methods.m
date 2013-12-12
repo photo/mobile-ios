@@ -103,7 +103,7 @@ NSString * const kUploadStatusTypeUploadFinished =@"A_UploadFinished";
     }
     
     for (Timeline *model in matches) {
-        model.status = kUploadStatusTypeFailed;
+        model.status = kUploadStatusTypeCreated;
     }
 }
 
