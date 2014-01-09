@@ -152,7 +152,6 @@
 -(void)loadPhotosToDatabase:(ALAssetsGroup *) group {
     // put them in the table to upload
     [group setAssetsFilter:[ALAssetsFilter allPhotos]];
-    int assetsNumber = [group numberOfAssets];
     __block int assetsNotUploaded = 0;
     
     @autoreleasepool {

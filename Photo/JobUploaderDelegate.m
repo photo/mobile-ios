@@ -21,9 +21,6 @@
 #import "JobUploaderDelegate.h"
 
 @interface JobUploaderDelegate()
-{
-    BOOL needsUpdate;
-}
 
 @property (nonatomic, strong) NSNumber *alreadySent;
 @property (nonatomic, strong) Timeline* photoDelegate;
@@ -41,7 +38,6 @@
         self.photoDelegate = photo;
         self.totalSize = bytes;
         self.alreadySent = [NSNumber numberWithInt:0];
-        needsUpdate = YES;
     }
     return self;
 }
@@ -50,18 +46,9 @@
 {
     self.alreadySent = [NSNumber numberWithUnsignedLongLong:[self.alreadySent longLongValue] + bytes ];
     
-    // update the object.
-    // let's update the data only in 50% of the case. 
-    // trying to avoid less updates on the database
-    if (needsUpdate){
         dispatch_async(dispatch_get_main_queue(), ^{
             self.photoDelegate.photoUploadProgress =[ NSNumber numberWithFloat:[self.alreadySent floatValue]/[self.totalSize floatValue]];
         });
-        needsUpdate = NO;
-    }else{
-        needsUpdate = YES;
-    }
-    
 }
 
 @end
