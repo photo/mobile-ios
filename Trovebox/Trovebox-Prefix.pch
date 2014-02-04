@@ -1,0 +1,31 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_3_0
+#warning "This project uses features only available in iOS SDK 3.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <QuartzCore/QuartzCore.h>
+    #import "GAI.h"
+    #import "GAIDictionaryBuilder.h"
+    #import "AppDelegate.h"
+    #import "Constants.h"
+    #import "PrivateConstants.h"
+    #import "PhotoAlertView.h"
+    #import "DisplayUtilities.h"
+    #import "UINavigationBar+Trovebox.h"
+    #import "UINavigationItem+Trovebox.h"
+
+
+#define SharedAppDelegate ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+
+#endif
