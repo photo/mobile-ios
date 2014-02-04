@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		352084D3053E411883B01EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C70016612945A8B28FA125 /* libPods.a */; };
-		CD490A1B18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FB18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m */; };
-		CD490A1C18A1628700CFECE0 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FD18A1628700CFECE0 /* NSString+URLEncoding.m */; };
-		CD490A1D18A1628700CFECE0 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FF18A1628700CFECE0 /* NSURL+Base.m */; };
-		CD490A1E18A1628700CFECE0 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0118A1628700CFECE0 /* Base64Transcoder.c */; };
-		CD490A1F18A1628700CFECE0 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0318A1628700CFECE0 /* hmac.c */; };
-		CD490A2018A1628700CFECE0 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0518A1628700CFECE0 /* sha1.c */; };
-		CD490A2118A1628700CFECE0 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0818A1628700CFECE0 /* OAAsynchronousDataFetcher.m */; };
-		CD490A2218A1628700CFECE0 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0A18A1628700CFECE0 /* OAConsumer.m */; };
-		CD490A2318A1628700CFECE0 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0C18A1628700CFECE0 /* OADataFetcher.m */; };
-		CD490A2418A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0E18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m */; };
-		CD490A2518A1628700CFECE0 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1018A1628700CFECE0 /* OAMutableURLRequest.m */; };
-		CD490A2618A1628700CFECE0 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1218A1628700CFECE0 /* OAPlaintextSignatureProvider.m */; };
-		CD490A2718A1628700CFECE0 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1418A1628700CFECE0 /* OARequestParameter.m */; };
-		CD490A2818A1628700CFECE0 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1618A1628700CFECE0 /* OAServiceTicket.m */; };
-		CD490A2918A1628700CFECE0 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1918A1628700CFECE0 /* OAToken.m */; };
+		CD490A1B18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FB18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A1C18A1628700CFECE0 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FD18A1628700CFECE0 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A1D18A1628700CFECE0 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FF18A1628700CFECE0 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A1E18A1628700CFECE0 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0118A1628700CFECE0 /* Base64Transcoder.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A1F18A1628700CFECE0 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0318A1628700CFECE0 /* hmac.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2018A1628700CFECE0 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0518A1628700CFECE0 /* sha1.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2118A1628700CFECE0 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0818A1628700CFECE0 /* OAAsynchronousDataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2218A1628700CFECE0 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0A18A1628700CFECE0 /* OAConsumer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2318A1628700CFECE0 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0C18A1628700CFECE0 /* OADataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2418A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0E18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2518A1628700CFECE0 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1018A1628700CFECE0 /* OAMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2618A1628700CFECE0 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1218A1628700CFECE0 /* OAPlaintextSignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2718A1628700CFECE0 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1418A1628700CFECE0 /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2818A1628700CFECE0 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1618A1628700CFECE0 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD490A2918A1628700CFECE0 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1918A1628700CFECE0 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD490A4A18A1639600CFECE0 /* TSAVDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A3318A1639600CFECE0 /* TSAVDemoAppDelegate.m */; };
 		CD490A4B18A1639600CFECE0 /* TSAVDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A3518A1639600CFECE0 /* TSAVDemoViewController.m */; };
 		CD490A4C18A1639600CFECE0 /* TSAVDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3618A1639600CFECE0 /* TSAVDemoViewController.xib */; };
