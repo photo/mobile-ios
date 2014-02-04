@@ -19,7 +19,7 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "SHK.h"
+//#import "SHK.h"
 #import "Timeline+Methods.h"
 
 @interface NewestPhotoCell : UITableViewCell

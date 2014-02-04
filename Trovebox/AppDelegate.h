@@ -25,8 +25,6 @@
 #import "AuthenticationService.h"
 #import "AuthenticationViewController.h"
 #import "Reachability.h"
-
-#import "PhotoSHKConfigurator.h"
 #import "InitializerService.h"
 #import "HomeTableViewController.h"
 #import "JobUploaderController.h"

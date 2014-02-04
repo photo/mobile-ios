@@ -86,10 +86,12 @@
     
     // change the color for the Switch
     if ([[specifier type] isEqualToString:kIASKPSToggleSwitchSpecifier]) {
+        /*
         if([((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  respondsToSelector:@selector(setOnTintColor:)]){
             //iOS 5.0
             [((IASKPSToggleSwitchSpecifierViewCell*)cell).toggle  setOnTintColor: UIColorFromRGB(0xEFC005)];
         }
+         */
     }else if ([[specifier type] isEqualToString:kIASKPSTitleValueSpecifier]){
         // change the color for the text
         cell.detailTextLabel.textColor =  UIColorFromRGB(0x8C7B73);

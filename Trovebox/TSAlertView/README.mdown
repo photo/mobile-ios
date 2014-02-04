@@ -1,0 +1,70 @@
+TSAlertView
+===========
+
+TSAlertView is a drop-in replacement for UIAlertView in iOS, offering additional functionality:
+
+* "buttonLayout" property.  This is useful when you have two buttons and you want them to be "stacked" instead of side-by-side.
+* "width" property.  Controls the display width of the alert view.  Make better-looking alert views on larger screens.
+* "maxHeight" property.  Control how tall the alert view can grow before it displays the message in a scrolling UITextView instead of a UILabel.
+* "style" property. Can be TSAlertViewStyleNormal for a normal alert view.  Or it can be TSAlertViewStyleInput for an alert view that contains an input text field.  When it's an input alert view, the keyboard is shown right away, and the alert view will slide up and possibly resize if necessary. 
+* "usesMessageTextView" property.  Set to YES to force the alert view to use a textview for the message area.
+* "backgroundImage" property.  Can be set to a custom background image.  You should set this to a UIImage which you created with stretchableImageWithLeftCapWidth:topCapHeight:
+* "inputTextField" property.  Use to access the input value before the alert view is shown.  Could also set the font or text alignment prior to showing the alert view.
+
+TSAlertView is NOT derived from UIAlertView.  It is a clean implementation based on UIView.
+
+[![](http://dl.dropbox.com/u/47535/TSAlertView/1-thumb.png)](http://dl.dropbox.com/u/47535/TSAlertView/1.png)
+[![](http://dl.dropbox.com/u/47535/TSAlertView/2-thumb.png)](http://dl.dropbox.com/u/47535/TSAlertView/2.png)
+[![](http://dl.dropbox.com/u/47535/TSAlertView/3-thumb.png)](http://dl.dropbox.com/u/47535/TSAlertView/3.png)
+
+Adding TSAlertView to your project
+====================================
+
+The simplest way to add the TSAlertView to your project is to directly add the `TSAlertView` folder with source filees and resources to your project.
+
+1. Download the latest code version from the repository (you can simply use the Download Source button and get the zip or tar archive of the master branch).
+2. Extract the archive.
+3. Open your project in Xcode, than drag and drop the `TSAlertView` folder, with all of its contents, to your classes group (in the Groups & Files view). 
+4. Make sure to select Copy items when asked. 
+
+If you have a git tracked project, you can add TSAlertView as a submodule to your project. 
+
+1. Move inside your git tracked project.
+2. Add TSAlertView as a submodule using `git submodule add git://github.com/TomSwift/TSAlertView.git TSAlertView` .
+3. Open your project in Xcode, than drag and drop the `TSAlertView` folder to your classes group (in the Groups & Files view). 
+4. Don't select Copy items and select a suitable Reference type (relative to project should work fine most of the time). 
+
+Usage
+=====
+
+A demo project is included in the Demo directory. This should give you an idea how to use the class. 
+
+Donate
+======
+
+Please consider a small donation if you use TSAlertView in your projects.  It'll make me feel good.
+
+<a href="https://www.wepay.com/donate/130885"  target="_blank" ><img src="https://www.wepay.com/img/widgets/donate_with_wepay.png" alt="Donate with WePay" height="40" width="200" /></a>
+
+License and Warranty
+====================
+
+The license for the code is included with the project; it's basically a BSD license with attribution.
+
+You're welcome to use it in commercial, closed-source, open source, free or any other kind of software, as long as you credit me appropriately.
+
+The TSAlertView code comes with no warranty of any kind. I hope it'll be useful to you (it certainly is to me), but I make no guarantees regarding its functionality or otherwise.
+
+
+Change-log
+==========
+
+**Version 0.1** @ 01.23.11
+
+- Initial release.  Probably has a lot of bugs.  The demo project isn't very good.
+
+
+Thanks
+======
+
+* Matej Bukovinski, Matt Gemmell:  I used your MBProgressHUD and MGSplitViewController projects as best-practice examples and templates for how to publish TSAlertView on github.  Thanks!

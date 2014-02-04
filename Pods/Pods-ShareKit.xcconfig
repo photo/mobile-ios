@@ -1,0 +1,3 @@
+PODS_SHAREKIT_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/ShareKit/Frameworks" "$(PODS_ROOT)/ShareKit/Frameworks"
+PODS_SHAREKIT_HEADER_SEARCH_PATHS = $(SDKROOT)/usr/include/libxml2 "${PODS_ROOT}/ShareKit/Frameworks/GoogleOpenSource.framework/Versions/A/Headers"
+PODS_SHAREKIT_OTHER_LDFLAGS = -lxml2 -framework AVFoundation -framework AddressBook -framework AssetsLibrary -framework CFNetwork -framework CoreGraphics -framework CoreLocation -framework CoreMedia -framework CoreMotion -framework CoreText -framework GoogleOpenSource -framework GooglePlus -framework MediaPlayer -framework MessageUI -framework MobileCoreServices -framework Security -framework Social -framework SystemConfiguration -framework Twitter

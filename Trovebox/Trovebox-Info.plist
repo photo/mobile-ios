@@ -54,7 +54,6 @@
                 <key>CFBundleURLSchemes</key>
                 <array>
                     <string>openphoto</string>
-                    <string>fb283425805036236</string>
                 </array>
             </dict>
         </array>

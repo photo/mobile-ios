@@ -1,0 +1,5 @@
+#include "Pods-PocketAPI.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/PocketAPI" "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/ASIHTTPRequest" "${PODS_ROOT}/Headers/Dropbox-iOS-SDK" "${PODS_ROOT}/Headers/Evernote-SDK-iOS" "${PODS_ROOT}/Headers/Facebook-iOS-SDK" "${PODS_ROOT}/Headers/Facebook-iOS-SDK/FacebookSDK" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/InAppSettingsKit" "${PODS_ROOT}/Headers/MBProgressHUD" "${PODS_ROOT}/Headers/PocketAPI" "${PODS_ROOT}/Headers/Reachability" "${PODS_ROOT}/Headers/SBJson" "${PODS_ROOT}/Headers/SDWebImage" "${PODS_ROOT}/Headers/SSKeychain" "${PODS_ROOT}/Headers/SSToolkit" "${PODS_ROOT}/Headers/ShareKit" "${PODS_ROOT}/Headers/TMQuiltView" "${PODS_ROOT}/Headers/ViewDeck" "${PODS_ROOT}/Headers/iRate" "${PODS_ROOT}/Headers/objectiveflickr"
+OTHER_LDFLAGS = -ObjC ${PODS_POCKETAPI_OTHER_LDFLAGS}
+PODS_ROOT = ${SRCROOT}

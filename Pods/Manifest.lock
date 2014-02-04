@@ -1,24 +1,49 @@
 PODS:
+  - ASIHTTPRequest (1.8.1):
+    - ASIHTTPRequest/ASIWebPageRequest
+    - ASIHTTPRequest/CloudFiles
+    - ASIHTTPRequest/S3
+    - Reachability
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.1):
+    - Reachability
+  - ASIHTTPRequest/CloudFiles (1.8.1):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.1):
+    - Reachability
   - GoogleAnalytics-iOS-SDK (3.0.3)
+  - InAppSettingsKit (2.0)
+  - iRate (1.9.2)
   - MBProgressHUD (0.8)
   - Reachability (3.1.1)
   - SBJson (3.2)
   - SDWebImage (3.5.2):
     - SDWebImage/Core
   - SDWebImage/Core (3.5.2)
+  - TMQuiltView (0.0.1)
+  - ViewDeck (2.3.1)
 
 DEPENDENCIES:
+  - ASIHTTPRequest (~> 1.8.1)
   - GoogleAnalytics-iOS-SDK (~> 3.0.3)
-  - MBProgressHUD (= 0.8)
+  - InAppSettingsKit (~> 2.0)
+  - iRate (~> 1.9.2)
+  - MBProgressHUD (~> 0.8)
   - Reachability (~> 3.1.1)
   - SBJson (~> 3.2)
   - SDWebImage (~> 3.5.2)
+  - TMQuiltView (~> 0.0.1)
+  - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
+  ASIHTTPRequest: 162783e0cd71bdd3ff1ceed0cd5fa9505e0116a8
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
+  InAppSettingsKit: 2b85ba925a81634860461c21274f54b130c84614
+  iRate: 7c4bc22ab4a8752185d84bed7a98dc111c8212a5
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
   SDWebImage: fe7ce01ae4e0a884d168f59c9dd82d35baf8429e
+  TMQuiltView: 520d09d6a98f1a6aa75ed92a91123ecc79bab62c
+  ViewDeck: 2cdc67c4b41a10cafc7556b982f028409e33604d
 
 COCOAPODS: 0.29.0

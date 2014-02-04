@@ -71,14 +71,12 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     self.centerController = [[UINavigationController alloc] initWithRootViewController:centerController];
     IIViewDeckController* deckController =  [[IIViewDeckController alloc] initWithCenterViewController:self.centerController
                                                                                     leftViewController:self.menuController];
-    
+
+    /*
     if ([DisplayUtilities isIPad]){
         deckController.leftLedge = 490.0;
     }
-    
-    //ShareKit
-    DefaultSHKConfigurator *configurator = [[PhotoSHKConfigurator alloc] init];
-    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+     */
     
     // initializer
     InitializerService *initializer = [[InitializerService alloc]init];
@@ -174,9 +172,6 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         // openphoto://open=/p/:id // photo
         // openphoto://open=/v/:id // video
         // openphoto://open=/m/:id // media
-        
-    }else if ([[url scheme] hasPrefix:@"fb"]){
-        return [SHKFacebook handleOpenURL:url];
     }
     
     return YES;
@@ -223,6 +218,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 - (void) shareTwitterOrFacebook:(NSNotification*) notification{
     NSDictionary *dictionary = [notification object];
     
+    /*
     // create the item
     SHKItem *item = [SHKItem URL:[NSURL URLWithString:[dictionary objectForKey:@"url"]] title:[dictionary objectForKey:@"title"] contentType:SHKURLContentTypeWebpage];
     
@@ -233,6 +229,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
         // facebook
         [SHKFacebook shareItem:item];
     }
+     */
 }
 
 #pragma mark - Core Data stack
