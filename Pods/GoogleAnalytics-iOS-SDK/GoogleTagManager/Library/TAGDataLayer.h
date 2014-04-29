@@ -119,7 +119,8 @@ extern NSObject *kTAGDataLayerObjectNotPresent;
  * will be evaluated and matching tags will fire.
  *
  * @param update The update object to process
- */- (void)push:(NSDictionary*)update;
+ */
+- (void)push:(NSDictionary*)update;
 
 /**
  * Returns the object in the model associated with the given key.

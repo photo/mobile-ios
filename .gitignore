@@ -17,6 +17,10 @@ profile
 DerivedData
 .idea/
 
-// private class
+# private class
 Photo/PrivateAuthenticationService.m
 Photo/PrivateConstants.m
+
+
+# cocoa Pods
+Pods

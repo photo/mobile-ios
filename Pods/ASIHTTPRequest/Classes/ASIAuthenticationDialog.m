@@ -133,7 +133,7 @@ static const NSUInteger kDomainSection = 1;
 {
 	[self showTitle];
 	
-	UIInterfaceOrientation o = [[UIApplication sharedApplication] statusBarOrientation];
+	UIInterfaceOrientation o = (UIInterfaceOrientation)[[UIApplication sharedApplication] statusBarOrientation];
 	CGFloat angle = 0;
 	switch (o) {
 		case UIDeviceOrientationLandscapeLeft: angle = 90; break;
@@ -216,7 +216,20 @@ static const NSUInteger kDomainSection = 1;
 
 + (void)dismiss
 {
-	[[sharedDialog parentViewController] dismissModalViewControllerAnimated:YES];
+    UIViewController* dismisser = nil;
+    if ([sharedDialog respondsToSelector:@selector(presentingViewController)]){
+        dismisser = [sharedDialog presentingViewController];
+    }else{
+        dismisser = [sharedDialog parentViewController];
+    }
+    if([dismisser respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]){
+        [dismisser dismissViewControllerAnimated:YES completion:nil];
+    }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [dismisser dismissModalViewControllerAnimated:YES];
+#pragma clang diagnostic pop
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -233,7 +246,20 @@ static const NSUInteger kDomainSection = 1;
 	if (self == sharedDialog) {
 		[[self class] dismiss];
 	} else {
-		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+        UIViewController* dismisser = nil;
+		if ([self respondsToSelector:@selector(presentingViewController)]){
+            dismisser = [self presentingViewController];
+        }else{
+            dismisser = [self parentViewController];
+        }
+        if([dismisser respondsToSelector:@selector(dismissViewControllerAnimated:completion:)]){
+            [dismisser dismissViewControllerAnimated:YES completion:nil];
+        }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+            [dismisser dismissModalViewControllerAnimated:YES];
+#pragma clang diagnostic pop
+        }
 	}
 }
 
@@ -309,7 +335,14 @@ static const NSUInteger kDomainSection = 1;
 	}
 #endif
 
-	[[self presentingController] presentModalViewController:self animated:YES];
+    if([[self presentingController] respondsToSelector:@selector(presentViewController:animated:completion:)]){
+        [[self presentingController] presentViewController:self animated:YES completion:nil];
+    }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [[self presentingController] presentModalViewController:self animated:YES];
+#pragma clang diagnostic pop
+    }
 }
 
 #pragma mark button callbacks

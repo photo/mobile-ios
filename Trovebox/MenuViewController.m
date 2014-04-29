@@ -361,15 +361,17 @@
     self.viewDeckController.centerController = SharedAppDelegate.centerController;
     [self selectLatestActivity];
     
-    DLCImagePickerController *picker = [[DLCImagePickerController alloc] init];
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     
     [coreLocationController.locMgr startUpdatingLocation];
     [self presentViewController:picker animated:YES completion:nil];
 }
 
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
 
-- (void)imagePickerController:(DLCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+/*
     // the image itself to save in the library,
     // this data must be a raw data on DLCImagePickerController. Remove the PNG representation
     UIImage *pickedImage = [info objectForKey:@"image"];
@@ -409,15 +411,17 @@
     
     // stop location
     [coreLocationController.locMgr stopUpdatingLocation];
+ 
+ */
     
 }
 
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [picker dismissViewControllerAnimated:YES completion:^{
         [coreLocationController.locMgr stopUpdatingLocation];
     }];
 }
-
 
 //Creates an EXIF field for the current geo location.
 - (NSMutableDictionary*)currentLocation {

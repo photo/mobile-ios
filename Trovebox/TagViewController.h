@@ -19,12 +19,11 @@
 //
 
 #import "Tag.h"
-#import "TSAlertView.h"
 #import "WebService.h"
 #import "MBProgressHUD.h"
 #import "PhotoAlertView.h"
 
-@interface TagViewController : UITableViewController<TSAlertViewDelegate, UINavigationControllerDelegate>
+@interface TagViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *tags;
 

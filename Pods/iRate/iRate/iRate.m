@@ -1,7 +1,7 @@
 //
 //  iRate.m
 //
-//  Version 1.9.2
+//  Version 1.9.3
 //
 //  Created by Nick Lockwood on 26/01/2011.
 //  Copyright 2011 Charcoal Design
@@ -275,7 +275,7 @@ static NSString *const iRateMacAppStoreURLFormat = @"macappstore://itunes.apple.
         return _ratingsURL;
     }
     
-    if (!self.appStoreID)
+    if (!self.appStoreID && self.verboseLogging)
     {
         NSLog(@"iRate could not find the App Store ID for this application. If the application is not intended for App Store release then you must specify a custom ratingsURL.");
     }

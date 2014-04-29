@@ -18,7 +18,6 @@
 //  limitations under the License.
 //
 
-#import "TSAlertView.h"
 #import "WebService.h"
 #import "MBProgressHUD.h"
 #import "PhotoAlertView.h"
@@ -27,7 +26,7 @@
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface AlbumViewController : UITableViewController<TSAlertViewDelegate, UINavigationControllerDelegate>
+@interface AlbumViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *albums;
 

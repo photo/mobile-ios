@@ -23,22 +23,6 @@
 		CD490A2718A1628700CFECE0 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1418A1628700CFECE0 /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD490A2818A1628700CFECE0 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1618A1628700CFECE0 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD490A2918A1628700CFECE0 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1918A1628700CFECE0 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A4A18A1639600CFECE0 /* TSAVDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A3318A1639600CFECE0 /* TSAVDemoAppDelegate.m */; };
-		CD490A4B18A1639600CFECE0 /* TSAVDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A3518A1639600CFECE0 /* TSAVDemoViewController.m */; };
-		CD490A4C18A1639600CFECE0 /* TSAVDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3618A1639600CFECE0 /* TSAVDemoViewController.xib */; };
-		CD490A4D18A1639600CFECE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A3718A1639600CFECE0 /* main.m */; };
-		CD490A4E18A1639600CFECE0 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3818A1639600CFECE0 /* MainWindow-iPad.xib */; };
-		CD490A4F18A1639600CFECE0 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3918A1639600CFECE0 /* MainWindow.xib */; };
-		CD490A5018A1639600CFECE0 /* TSAVDemo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3A18A1639600CFECE0 /* TSAVDemo-Info.plist */; };
-		CD490A5118A1639600CFECE0 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = CD490A3F18A1639600CFECE0 /* README.mdown */; };
-		CD490A5218A1639600CFECE0 /* Source Code License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4018A1639600CFECE0 /* Source Code License.rtf */; };
-		CD490A5318A1639600CFECE0 /* TSAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A4318A1639600CFECE0 /* TSAlertView.m */; };
-		CD490A5418A1639600CFECE0 /* TSAlertViewBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4418A1639600CFECE0 /* TSAlertViewBackground.png */; };
-		CD490A5518A1639600CFECE0 /* TSAlertViewBackground2.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4518A1639600CFECE0 /* TSAlertViewBackground2.png */; };
-		CD490A5618A1639600CFECE0 /* TSAlertViewButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4618A1639600CFECE0 /* TSAlertViewButtonBackground.png */; };
-		CD490A5718A1639600CFECE0 /* TSAlertViewButtonBackground_Highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4718A1639600CFECE0 /* TSAlertViewButtonBackground_Highlighted.png */; };
-		CD490A5818A1639600CFECE0 /* TSAlertViewCancelButtonBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4818A1639600CFECE0 /* TSAlertViewCancelButtonBackground.png */; };
-		CD490A5918A1639600CFECE0 /* TSAlertViewMessageListViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = CD490A4918A1639600CFECE0 /* TSAlertViewMessageListViewShadow.png */; };
 		CDD9E4F818A144E4006EEC0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F718A144E4006EEC0D /* Foundation.framework */; };
 		CDD9E4FA18A144E4006EEC0D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */; };
 		CDD9E4FC18A144E4006EEC0D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4FB18A144E4006EEC0D /* UIKit.framework */; };
@@ -175,13 +159,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CD490A5B18A1639600CFECE0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CD490A3B18A1639600CFECE0 /* TSAVDemo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1D6058910D05DD3D006BFB54;
-			remoteInfo = TSAVDemo;
-		};
 		CDD9E51A18A144E4006EEC0D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CDD9E4EC18A144E4006EEC0D /* Project object */;
@@ -225,27 +202,6 @@
 		CD490A1818A1628700CFECE0 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
 		CD490A1918A1628700CFECE0 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
 		CD490A1A18A1628700CFECE0 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
-		CD490A3218A1639600CFECE0 /* TSAVDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAVDemoAppDelegate.h; sourceTree = "<group>"; };
-		CD490A3318A1639600CFECE0 /* TSAVDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAVDemoAppDelegate.m; sourceTree = "<group>"; };
-		CD490A3418A1639600CFECE0 /* TSAVDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAVDemoViewController.h; sourceTree = "<group>"; };
-		CD490A3518A1639600CFECE0 /* TSAVDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAVDemoViewController.m; sourceTree = "<group>"; };
-		CD490A3618A1639600CFECE0 /* TSAVDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSAVDemoViewController.xib; sourceTree = "<group>"; };
-		CD490A3718A1639600CFECE0 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CD490A3818A1639600CFECE0 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
-		CD490A3918A1639600CFECE0 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		CD490A3A18A1639600CFECE0 /* TSAVDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TSAVDemo-Info.plist"; sourceTree = "<group>"; };
-		CD490A3B18A1639600CFECE0 /* TSAVDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = TSAVDemo.xcodeproj; sourceTree = "<group>"; };
-		CD490A3E18A1639600CFECE0 /* TSAVDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAVDemo_Prefix.pch; sourceTree = "<group>"; };
-		CD490A3F18A1639600CFECE0 /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.mdown; sourceTree = "<group>"; };
-		CD490A4018A1639600CFECE0 /* Source Code License.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Source Code License.rtf"; sourceTree = "<group>"; };
-		CD490A4218A1639600CFECE0 /* TSAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSAlertView.h; sourceTree = "<group>"; };
-		CD490A4318A1639600CFECE0 /* TSAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSAlertView.m; sourceTree = "<group>"; };
-		CD490A4418A1639600CFECE0 /* TSAlertViewBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewBackground.png; sourceTree = "<group>"; };
-		CD490A4518A1639600CFECE0 /* TSAlertViewBackground2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewBackground2.png; sourceTree = "<group>"; };
-		CD490A4618A1639600CFECE0 /* TSAlertViewButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground.png; sourceTree = "<group>"; };
-		CD490A4718A1639600CFECE0 /* TSAlertViewButtonBackground_Highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewButtonBackground_Highlighted.png; sourceTree = "<group>"; };
-		CD490A4818A1639600CFECE0 /* TSAlertViewCancelButtonBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewCancelButtonBackground.png; sourceTree = "<group>"; };
-		CD490A4918A1639600CFECE0 /* TSAlertViewMessageListViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TSAlertViewMessageListViewShadow.png; sourceTree = "<group>"; };
 		CDD9E4F418A144E4006EEC0D /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD9E4F718A144E4006EEC0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -564,72 +520,10 @@
 			path = Crypto;
 			sourceTree = "<group>";
 		};
-		CD490A2F18A1639600CFECE0 /* TSAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A3018A1639600CFECE0 /* Demo */,
-				CD490A3F18A1639600CFECE0 /* README.mdown */,
-				CD490A4018A1639600CFECE0 /* Source Code License.rtf */,
-				CD490A4118A1639600CFECE0 /* TSAlertView */,
-			);
-			name = TSAlertView;
-			path = Trovebox/TSAlertView;
-			sourceTree = "<group>";
-		};
-		CD490A3018A1639600CFECE0 /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A3118A1639600CFECE0 /* Classes */,
-				CD490A3718A1639600CFECE0 /* main.m */,
-				CD490A3818A1639600CFECE0 /* MainWindow-iPad.xib */,
-				CD490A3918A1639600CFECE0 /* MainWindow.xib */,
-				CD490A3A18A1639600CFECE0 /* TSAVDemo-Info.plist */,
-				CD490A3B18A1639600CFECE0 /* TSAVDemo.xcodeproj */,
-				CD490A3E18A1639600CFECE0 /* TSAVDemo_Prefix.pch */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		CD490A3118A1639600CFECE0 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A3218A1639600CFECE0 /* TSAVDemoAppDelegate.h */,
-				CD490A3318A1639600CFECE0 /* TSAVDemoAppDelegate.m */,
-				CD490A3418A1639600CFECE0 /* TSAVDemoViewController.h */,
-				CD490A3518A1639600CFECE0 /* TSAVDemoViewController.m */,
-				CD490A3618A1639600CFECE0 /* TSAVDemoViewController.xib */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		CD490A3C18A1639600CFECE0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A5C18A1639600CFECE0 /* TSAVDemo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		CD490A4118A1639600CFECE0 /* TSAlertView */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A4218A1639600CFECE0 /* TSAlertView.h */,
-				CD490A4318A1639600CFECE0 /* TSAlertView.m */,
-				CD490A4418A1639600CFECE0 /* TSAlertViewBackground.png */,
-				CD490A4518A1639600CFECE0 /* TSAlertViewBackground2.png */,
-				CD490A4618A1639600CFECE0 /* TSAlertViewButtonBackground.png */,
-				CD490A4718A1639600CFECE0 /* TSAlertViewButtonBackground_Highlighted.png */,
-				CD490A4818A1639600CFECE0 /* TSAlertViewCancelButtonBackground.png */,
-				CD490A4918A1639600CFECE0 /* TSAlertViewMessageListViewShadow.png */,
-			);
-			path = TSAlertView;
-			sourceTree = "<group>";
-		};
 		CD490A5D18A1639A00CFECE0 /* Others Codes */ = {
 			isa = PBXGroup;
 			children = (
 				CD4909F818A1628700CFECE0 /* OAuth */,
-				CD490A2F18A1639600CFECE0 /* TSAlertView */,
 			);
 			name = "Others Codes";
 			sourceTree = "<group>";
@@ -1060,12 +954,6 @@
 			mainGroup = CDD9E4EB18A144E4006EEC0D;
 			productRefGroup = CDD9E4F518A144E4006EEC0D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = CD490A3C18A1639600CFECE0 /* Products */;
-					ProjectRef = CD490A3B18A1639600CFECE0 /* TSAVDemo.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				CDD9E4F318A144E4006EEC0D /* Trovebox */,
@@ -1074,58 +962,36 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXReferenceProxy section */
-		CD490A5C18A1639600CFECE0 /* TSAVDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = TSAVDemo.app;
-			remoteRef = CD490A5B18A1639600CFECE0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
-
 /* Begin PBXResourcesBuildPhase section */
 		CDD9E4F218A144E4006EEC0D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD490A5818A1639600CFECE0 /* TSAlertViewCancelButtonBackground.png in Resources */,
 				CDD9E5C018A14707006EEC0D /* ProfileViewController.xib in Resources */,
 				CDD9E58318A1469E006EEC0D /* AuthenticationViewController5.xib in Resources */,
 				CDD9E5B118A146EB006EEC0D /* NewestPhotoCelliPad.xib in Resources */,
 				CDD9E5B418A146EB006EEC0D /* UploadCelliPad.xib in Resources */,
 				CDD9E66618A147F2006EEC0D /* Localizable.strings in Resources */,
 				CDD9E58218A1469E006EEC0D /* AuthenticationViewController.xib in Resources */,
-				CD490A5918A1639600CFECE0 /* TSAlertViewMessageListViewShadow.png in Resources */,
-				CD490A5718A1639600CFECE0 /* TSAlertViewButtonBackground_Highlighted.png in Resources */,
 				CDD9E59B18A146CC006EEC0D /* MenuTableViewSectionCell.xib in Resources */,
 				CDD9E5B318A146EB006EEC0D /* UploadCell.xib in Resources */,
-				CD490A5418A1639600CFECE0 /* TSAlertViewBackground.png in Resources */,
 				CDD9E59D18A146CC006EEC0D /* MenuTableViewSearchCell.xib in Resources */,
 				CDD9E5C118A14707006EEC0D /* ProfileViewControlleriPad.xib in Resources */,
-				CD490A4E18A1639600CFECE0 /* MainWindow-iPad.xib in Resources */,
-				CD490A5618A1639600CFECE0 /* TSAlertViewButtonBackground.png in Resources */,
 				CDD9E60118A14754006EEC0D /* MWPhotoBrowser.bundle in Resources */,
 				CDD9E5CF18A1472A006EEC0D /* PhotoViewController.xib in Resources */,
-				CD490A5118A1639600CFECE0 /* README.mdown in Resources */,
 				CDD9E50418A144E4006EEC0D /* InfoPlist.strings in Resources */,
 				CDD9E58618A1469E006EEC0D /* MultiSiteSelectionCell.xib in Resources */,
 				CDD9E5B018A146EB006EEC0D /* NewestPhotoCell.xib in Resources */,
 				CDD9E5C218A14707006EEC0D /* Settings.bundle in Resources */,
-				CD490A5518A1639600CFECE0 /* TSAlertViewBackground2.png in Resources */,
-				CD490A5218A1639600CFECE0 /* Source Code License.rtf in Resources */,
 				CDD9E5E718A1473B006EEC0D /* ELCImagePickerController.xib in Resources */,
 				CDD9E5EA18A1473B006EEC0D /* SyncViewController.xib in Resources */,
 				CDD9E57F18A1469E006EEC0D /* LoginConnectViewController.xib in Resources */,
 				CDD9E50F18A144E4006EEC0D /* Images.xcassets in Resources */,
 				CDD9E57C18A1469E006EEC0D /* LoginViewController5.xib in Resources */,
-				CD490A4C18A1639600CFECE0 /* TSAVDemoViewController.xib in Resources */,
 				CDD9E57D18A1469E006EEC0D /* LoginViewControlleriPad.xib in Resources */,
 				CDD9E59918A146CC006EEC0D /* MenuTableViewCell.xib in Resources */,
 				CDD9E5E518A1473B006EEC0D /* ELCAssetPicker.xib in Resources */,
-				CD490A4F18A1639600CFECE0 /* MainWindow.xib in Resources */,
 				CDD9E5D018A1472A006EEC0D /* PhotoViewController5.xib in Resources */,
-				CD490A5018A1639600CFECE0 /* TSAVDemo-Info.plist in Resources */,
 				CDD9E57B18A1469E006EEC0D /* LoginViewController.xib in Resources */,
 				CDD9E58018A1469E006EEC0D /* LoginConnectViewController5.xib in Resources */,
 			);
@@ -1205,7 +1071,6 @@
 				CDD9E58118A1469E006EEC0D /* AuthenticationViewController.m in Sources */,
 				CD490A2618A1628700CFECE0 /* OAPlaintextSignatureProvider.m in Sources */,
 				CDD9E59F18A146CC006EEC0D /* UINavigationItem+Trovebox.m in Sources */,
-				CD490A4D18A1639600CFECE0 /* main.m in Sources */,
 				CDD9E60818A14754006EEC0D /* GalleryViewController.m in Sources */,
 				CD490A2018A1628700CFECE0 /* sha1.c in Sources */,
 				CDD9E59818A146CC006EEC0D /* MenuTableViewCell.m in Sources */,
@@ -1213,7 +1078,6 @@
 				CDD9E66018A147A7006EEC0D /* PhotoSHKConfigurator.m in Sources */,
 				CD490A1D18A1628700CFECE0 /* NSURL+Base.m in Sources */,
 				CDD9E65518A147A7006EEC0D /* DateUtilities.m in Sources */,
-				CD490A4B18A1639600CFECE0 /* TSAVDemoViewController.m in Sources */,
 				CDD9E59E18A146CC006EEC0D /* UINavigationBar+Trovebox.m in Sources */,
 				CD490A1E18A1628700CFECE0 /* Base64Transcoder.c in Sources */,
 				CDD9E60718A14754006EEC0D /* MWZoomingScrollView.m in Sources */,
@@ -1239,9 +1103,7 @@
 				CDD9E57A18A1469E006EEC0D /* LoginViewController.m in Sources */,
 				CDD9E65618A147A7006EEC0D /* ImageManipulation.m in Sources */,
 				CDD9E59C18A146CC006EEC0D /* MenuTableViewSearchCell.m in Sources */,
-				CD490A4A18A1639600CFECE0 /* TSAVDemoAppDelegate.m in Sources */,
 				CDD9E65318A147A7006EEC0D /* UpdateUtilities.m in Sources */,
-				CD490A5318A1639600CFECE0 /* TSAlertView.m in Sources */,
 				CDD9E58518A1469E006EEC0D /* MultiSiteSelectionCell.m in Sources */,
 				CDD9E56518A1467F006EEC0D /* Synced.m in Sources */,
 				CDD9E50A18A144E4006EEC0D /* AppDelegate.m in Sources */,

@@ -38,10 +38,8 @@
 #import "MenuTableViewSectionCell.h"
 #import "MenuTableViewCell.h"
 
-// photo picker
-#import "DLCImagePickerController.h"
 
-@interface MenuViewController : UITableViewController<IASKSettingsDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate, DLCImagePickerDelegate>
+@interface MenuViewController : UITableViewController<IASKSettingsDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CoreLocationControllerDelegate, UIImagePickerControllerDelegate>
 {
     // ask the user about location int the home screen
     CoreLocationController *coreLocationController;

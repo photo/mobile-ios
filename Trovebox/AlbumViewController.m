@@ -334,22 +334,25 @@
     NSLog(@"Adding new album");
 #endif
     
-    TSAlertView* av = [[TSAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new album name",@"Album screen - create a new album") message:nil delegate:self
+    UIAlertView* av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new album name",@"Album screen - create a new album") message:nil delegate:self
                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                        otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
-    av.style = TSAlertViewStyleInput;
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [av show];
 }
 
 // after animation
-- (void) alertView: (TSAlertView *) alertView didDismissWithButtonIndex: (NSInteger) buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    
+     UITextField *textField = [alertView textFieldAtIndex:0];
+    
     // cancel
-    if( buttonIndex == 0 || alertView.inputTextField.text == nil || alertView.inputTextField.text.length==0)
+    if( buttonIndex == 0 || textField.text == nil || textField.text.length==0)
         return;
     
     // add the new tag in the list and select it
-    Album *album = [[Album alloc] initWithAlbumName:alertView.inputTextField.text];
+    Album *album = [[Album alloc] initWithAlbumName:textField.text];
     
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = NSLocalizedString(@"Creating",@"Creating Album");

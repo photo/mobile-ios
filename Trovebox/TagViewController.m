@@ -154,22 +154,24 @@
     NSLog(@"Adding new tag");
 #endif
     
-    TSAlertView* av = [[TSAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new tag name",@"Tag screen - create a new screen") message:nil delegate:self
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new tag name",@"Tag screen - create a new screen") message:nil delegate:self
                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                        otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
-    av.style = TSAlertViewStyleInput;
+    av.style = UIAlertViewStylePlainTextInput;
     [av show];
 }
 
 // after animation
-- (void) alertView: (TSAlertView *) alertView didDismissWithButtonIndex: (NSInteger) buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+     UITextField *textField = [alertView textFieldAtIndex:0];
+    
     // cancel
-    if( buttonIndex == 0 || alertView.inputTextField.text == nil || alertView.inputTextField.text.length==0)
+    if( buttonIndex == 0 || textField.text == nil ||  textField.text.length==0)
         return;
     
     // add the new tag in the list and select it
-    Tag *newTag = [[Tag alloc]initWithTagName:alertView.inputTextField.text Quantity:0];
+    Tag *newTag = [[Tag alloc]initWithTagName: textField.text Quantity:0];
     newTag.selected = YES;
     [self.tags addObject:newTag];
     [self.tableView reloadData];
