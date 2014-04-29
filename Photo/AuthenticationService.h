@@ -18,7 +18,6 @@
 //  limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import "OAMutableURLRequest.h"
 #import "OAToken.h"
 #import "OAServiceTicket.h"
 #import "OADataFetcher.h"
