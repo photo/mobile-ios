@@ -23,4 +23,5 @@ Photo/PrivateConstants.m
 
 
 # cocoa Pods
-Pods
+Pods/
+Podfile.lock
