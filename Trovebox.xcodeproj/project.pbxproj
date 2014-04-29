@@ -922,6 +922,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Trovebox;
 				TargetAttributes = {
+					CDD9E4F318A144E4006EEC0D = {
+						DevelopmentTeam = 7396XV45JF;
+					};
 					CDD9E51318A144E4006EEC0D = {
 						TestTargetID = CDD9E4F318A144E4006EEC0D;
 					};
@@ -1241,6 +1244,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Projects/mobile-ios",
@@ -1259,6 +1263,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/patrick/Projects/mobile-ios",
