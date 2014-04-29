@@ -28,12 +28,12 @@
 
 @interface OAAsynchronousDataFetcher : NSObject {
     OAMutableURLRequest *request;
-    NSHTTPURLResponse *response;
+    NSURLResponse *response;
     NSURLConnection *connection;
     NSMutableData *responseData;
     id delegate;
     SEL didFinishSelector;
-    SEL didFailSelector;
+    SEL didFailSelector;	
 }
 
 + (id)asynchronousFetcherWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;

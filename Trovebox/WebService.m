@@ -146,7 +146,8 @@
      *
      */
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
-    asiRequest.userAgent=@"Trovebox iOS";
+    asiRequest.userAgentString=@"Trovebox iOS";
+    
     
     // set the authorization header to be used in the OAuth
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -264,7 +265,7 @@
      *
      */
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
-    asiRequest.userAgent=@"Trovebox iOS";
+    asiRequest.userAgentString=@"Trovebox iOS";
     
     // set the authorization header to be used in the OAuth
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -300,7 +301,7 @@
     [oaUrlRequest prepare];
     
     ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
-    asiRequest.userAgent=@"Trovebox iOS";
+    asiRequest.userAgentString=@"Trovebox iOS";
     
     // set the authorization header to be used in the OAuth
     NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
@@ -347,7 +348,7 @@
         // GET
         ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
         [asiHttpRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        asiHttpRequest.userAgent=@"Trovebox iOS";
+        asiHttpRequest.userAgentString=@"Trovebox iOS";
         [asiHttpRequest setTimeOutSeconds:60];
         
         // send the request synchronous
@@ -358,7 +359,7 @@
         // POST
         ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
         [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
-        asiRequest.userAgent=@"Trovebox iOS";
+        asiRequest.userAgentString=@"Trovebox iOS";
         [asiRequest setTimeOutSeconds:60];
         
         [asiRequest startSynchronous];

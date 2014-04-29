@@ -8,21 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		352084D3053E411883B01EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C70016612945A8B28FA125 /* libPods.a */; };
-		CD490A1B18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FB18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A1C18A1628700CFECE0 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FD18A1628700CFECE0 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A1D18A1628700CFECE0 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4909FF18A1628700CFECE0 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A1E18A1628700CFECE0 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0118A1628700CFECE0 /* Base64Transcoder.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A1F18A1628700CFECE0 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0318A1628700CFECE0 /* hmac.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2018A1628700CFECE0 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0518A1628700CFECE0 /* sha1.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2118A1628700CFECE0 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0818A1628700CFECE0 /* OAAsynchronousDataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2218A1628700CFECE0 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0A18A1628700CFECE0 /* OAConsumer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2318A1628700CFECE0 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0C18A1628700CFECE0 /* OADataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2418A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A0E18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2518A1628700CFECE0 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1018A1628700CFECE0 /* OAMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2618A1628700CFECE0 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1218A1628700CFECE0 /* OAPlaintextSignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2718A1628700CFECE0 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1418A1628700CFECE0 /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2818A1628700CFECE0 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1618A1628700CFECE0 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CD490A2918A1628700CFECE0 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD490A1918A1628700CFECE0 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE6B191065C300153F49 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE36191065C300153F49 /* Base64Transcoder.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE6C191065C300153F49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD63EE39191065C300153F49 /* InfoPlist.strings */; };
+		CD63EE6D191065C300153F49 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE3C191065C300153F49 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE6F191065C300153F49 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE40191065C300153F49 /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE71191065C300153F49 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE44191065C300153F49 /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE73191065C300153F49 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE48191065C300153F49 /* OAAsynchronousDataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE74191065C300153F49 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE4A191065C300153F49 /* OAConsumer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE76191065C300153F49 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE4E191065C300153F49 /* OADataFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE78191065C300153F49 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE52191065C300153F49 /* OAHMAC_SHA1SignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE7A191065C300153F49 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE56191065C300153F49 /* OAMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE7C191065C300153F49 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE5A191065C300153F49 /* OAPlaintextSignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE7E191065C300153F49 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE5E191065C300153F49 /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE80191065C300153F49 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE62191065C300153F49 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CD63EE82191065C300153F49 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE67191065C300153F49 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDD9E4F818A144E4006EEC0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F718A144E4006EEC0D /* Foundation.framework */; };
 		CDD9E4FA18A144E4006EEC0D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */; };
 		CDD9E4FC18A144E4006EEC0D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4FB18A144E4006EEC0D /* UIKit.framework */; };
@@ -127,11 +126,9 @@
 		CDD9E65D18A147A7006EEC0D /* SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64318A147A7006EEC0D /* SHA1.m */; };
 		CDD9E65E18A147A7006EEC0D /* NSDictionarySerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64518A147A7006EEC0D /* NSDictionarySerializer.m */; };
 		CDD9E65F18A147A7006EEC0D /* ContentTypeUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64718A147A7006EEC0D /* ContentTypeUtilities.m */; };
-		CDD9E66018A147A7006EEC0D /* PhotoSHKConfigurator.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64918A147A7006EEC0D /* PhotoSHKConfigurator.m */; };
 		CDD9E66118A147A7006EEC0D /* AssetsLibraryUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64B18A147A7006EEC0D /* AssetsLibraryUtilities.m */; };
 		CDD9E66218A147A7006EEC0D /* DisplayUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64D18A147A7006EEC0D /* DisplayUtilities.m */; };
-		CDD9E66318A147A7006EEC0D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E64F18A147A7006EEC0D /* Reachability.m */; };
-		CDD9E66418A147A7006EEC0D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E65118A147A7006EEC0D /* KeychainItemWrapper.m */; };
+		CDD9E66418A147A7006EEC0D /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E65118A147A7006EEC0D /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CDD9E66618A147F2006EEC0D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDD9E66518A147F2006EEC0D /* Localizable.strings */; };
 		CDD9E66E18A15528006EEC0D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E66D18A15528006EEC0D /* CoreVideo.framework */; };
 		CDD9E67018A15531006EEC0D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E66F18A15531006EEC0D /* CoreMedia.framework */; };
@@ -170,38 +167,35 @@
 
 /* Begin PBXFileReference section */
 		17419F6492FF466FA193AFC0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		CD4909FA18A1628700CFECE0 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
-		CD4909FB18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
-		CD4909FC18A1628700CFECE0 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
-		CD4909FD18A1628700CFECE0 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
-		CD4909FE18A1628700CFECE0 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
-		CD4909FF18A1628700CFECE0 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
-		CD490A0118A1628700CFECE0 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
-		CD490A0218A1628700CFECE0 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
-		CD490A0318A1628700CFECE0 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
-		CD490A0418A1628700CFECE0 /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
-		CD490A0518A1628700CFECE0 /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
-		CD490A0618A1628700CFECE0 /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
-		CD490A0718A1628700CFECE0 /* OAAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAsynchronousDataFetcher.h; sourceTree = "<group>"; };
-		CD490A0818A1628700CFECE0 /* OAAsynchronousDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAAsynchronousDataFetcher.m; sourceTree = "<group>"; };
-		CD490A0918A1628700CFECE0 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
-		CD490A0A18A1628700CFECE0 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
-		CD490A0B18A1628700CFECE0 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
-		CD490A0C18A1628700CFECE0 /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OADataFetcher.m; sourceTree = "<group>"; };
-		CD490A0D18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
-		CD490A0E18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
-		CD490A0F18A1628700CFECE0 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
-		CD490A1018A1628700CFECE0 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
-		CD490A1118A1628700CFECE0 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
-		CD490A1218A1628700CFECE0 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
-		CD490A1318A1628700CFECE0 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
-		CD490A1418A1628700CFECE0 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
-		CD490A1518A1628700CFECE0 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
-		CD490A1618A1628700CFECE0 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServiceTicket.m; sourceTree = "<group>"; };
-		CD490A1718A1628700CFECE0 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
-		CD490A1818A1628700CFECE0 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
-		CD490A1918A1628700CFECE0 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
-		CD490A1A18A1628700CFECE0 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		CD63EE36191065C300153F49 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
+		CD63EE37191065C300153F49 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		CD63EE3A191065C300153F49 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = InfoPlist.strings; sourceTree = "<group>"; };
+		CD63EE3B191065C300153F49 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		CD63EE3C191065C300153F49 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
+		CD63EE3F191065C300153F49 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		CD63EE40191065C300153F49 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		CD63EE43191065C300153F49 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
+		CD63EE44191065C300153F49 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
+		CD63EE47191065C300153F49 /* OAAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAsynchronousDataFetcher.h; sourceTree = "<group>"; };
+		CD63EE48191065C300153F49 /* OAAsynchronousDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAAsynchronousDataFetcher.m; sourceTree = "<group>"; };
+		CD63EE49191065C300153F49 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		CD63EE4A191065C300153F49 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
+		CD63EE4D191065C300153F49 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
+		CD63EE4E191065C300153F49 /* OADataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OADataFetcher.m; sourceTree = "<group>"; };
+		CD63EE51191065C300153F49 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		CD63EE52191065C300153F49 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		CD63EE55191065C300153F49 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		CD63EE56191065C300153F49 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
+		CD63EE59191065C300153F49 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		CD63EE5A191065C300153F49 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
+		CD63EE5D191065C300153F49 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		CD63EE5E191065C300153F49 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
+		CD63EE61191065C300153F49 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
+		CD63EE62191065C300153F49 /* OAServiceTicket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAServiceTicket.m; sourceTree = "<group>"; };
+		CD63EE63191065C300153F49 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		CD63EE66191065C300153F49 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
+		CD63EE67191065C300153F49 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
+		CD63EE6A191065C300153F49 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		CDD9E4F418A144E4006EEC0D /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD9E4F718A144E4006EEC0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -377,14 +371,10 @@
 		CDD9E64518A147A7006EEC0D /* NSDictionarySerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionarySerializer.m; sourceTree = "<group>"; };
 		CDD9E64618A147A7006EEC0D /* ContentTypeUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentTypeUtilities.h; sourceTree = "<group>"; };
 		CDD9E64718A147A7006EEC0D /* ContentTypeUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentTypeUtilities.m; sourceTree = "<group>"; };
-		CDD9E64818A147A7006EEC0D /* PhotoSHKConfigurator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSHKConfigurator.h; sourceTree = "<group>"; };
-		CDD9E64918A147A7006EEC0D /* PhotoSHKConfigurator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSHKConfigurator.m; sourceTree = "<group>"; };
 		CDD9E64A18A147A7006EEC0D /* AssetsLibraryUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetsLibraryUtilities.h; sourceTree = "<group>"; };
 		CDD9E64B18A147A7006EEC0D /* AssetsLibraryUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetsLibraryUtilities.m; sourceTree = "<group>"; };
 		CDD9E64C18A147A7006EEC0D /* DisplayUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayUtilities.h; sourceTree = "<group>"; };
 		CDD9E64D18A147A7006EEC0D /* DisplayUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayUtilities.m; sourceTree = "<group>"; };
-		CDD9E64E18A147A7006EEC0D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		CDD9E64F18A147A7006EEC0D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		CDD9E65018A147A7006EEC0D /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		CDD9E65118A147A7006EEC0D /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		CDD9E66518A147F2006EEC0D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -467,57 +457,37 @@
 		CD4909F818A1628700CFECE0 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
-				CD4909F918A1628700CFECE0 /* Categories */,
-				CD490A0018A1628700CFECE0 /* Crypto */,
-				CD490A0718A1628700CFECE0 /* OAAsynchronousDataFetcher.h */,
-				CD490A0818A1628700CFECE0 /* OAAsynchronousDataFetcher.m */,
-				CD490A0918A1628700CFECE0 /* OAConsumer.h */,
-				CD490A0A18A1628700CFECE0 /* OAConsumer.m */,
-				CD490A0B18A1628700CFECE0 /* OADataFetcher.h */,
-				CD490A0C18A1628700CFECE0 /* OADataFetcher.m */,
-				CD490A0D18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.h */,
-				CD490A0E18A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m */,
-				CD490A0F18A1628700CFECE0 /* OAMutableURLRequest.h */,
-				CD490A1018A1628700CFECE0 /* OAMutableURLRequest.m */,
-				CD490A1118A1628700CFECE0 /* OAPlaintextSignatureProvider.h */,
-				CD490A1218A1628700CFECE0 /* OAPlaintextSignatureProvider.m */,
-				CD490A1318A1628700CFECE0 /* OARequestParameter.h */,
-				CD490A1418A1628700CFECE0 /* OARequestParameter.m */,
-				CD490A1518A1628700CFECE0 /* OAServiceTicket.h */,
-				CD490A1618A1628700CFECE0 /* OAServiceTicket.m */,
-				CD490A1718A1628700CFECE0 /* OASignatureProviding.h */,
-				CD490A1818A1628700CFECE0 /* OAToken.h */,
-				CD490A1918A1628700CFECE0 /* OAToken.m */,
-				CD490A1A18A1628700CFECE0 /* OAuthConsumer.h */,
+				CD63EE35191065C300153F49 /* Crypto */,
+				CD63EE38191065C300153F49 /* English.lproj */,
+				CD63EE3B191065C300153F49 /* NSMutableURLRequest+Parameters.h */,
+				CD63EE3C191065C300153F49 /* NSMutableURLRequest+Parameters.m */,
+				CD63EE3F191065C300153F49 /* NSString+URLEncoding.h */,
+				CD63EE40191065C300153F49 /* NSString+URLEncoding.m */,
+				CD63EE43191065C300153F49 /* NSURL+Base.h */,
+				CD63EE44191065C300153F49 /* NSURL+Base.m */,
+				CD63EE47191065C300153F49 /* OAAsynchronousDataFetcher.h */,
+				CD63EE48191065C300153F49 /* OAAsynchronousDataFetcher.m */,
+				CD63EE49191065C300153F49 /* OAConsumer.h */,
+				CD63EE4A191065C300153F49 /* OAConsumer.m */,
+				CD63EE4D191065C300153F49 /* OADataFetcher.h */,
+				CD63EE4E191065C300153F49 /* OADataFetcher.m */,
+				CD63EE51191065C300153F49 /* OAHMAC_SHA1SignatureProvider.h */,
+				CD63EE52191065C300153F49 /* OAHMAC_SHA1SignatureProvider.m */,
+				CD63EE55191065C300153F49 /* OAMutableURLRequest.h */,
+				CD63EE56191065C300153F49 /* OAMutableURLRequest.m */,
+				CD63EE59191065C300153F49 /* OAPlaintextSignatureProvider.h */,
+				CD63EE5A191065C300153F49 /* OAPlaintextSignatureProvider.m */,
+				CD63EE5D191065C300153F49 /* OARequestParameter.h */,
+				CD63EE5E191065C300153F49 /* OARequestParameter.m */,
+				CD63EE61191065C300153F49 /* OAServiceTicket.h */,
+				CD63EE62191065C300153F49 /* OAServiceTicket.m */,
+				CD63EE63191065C300153F49 /* OASignatureProviding.h */,
+				CD63EE66191065C300153F49 /* OAToken.h */,
+				CD63EE67191065C300153F49 /* OAToken.m */,
+				CD63EE6A191065C300153F49 /* OAuthConsumer.h */,
 			);
 			name = OAuth;
 			path = Trovebox/OAuth;
-			sourceTree = "<group>";
-		};
-		CD4909F918A1628700CFECE0 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				CD4909FA18A1628700CFECE0 /* NSMutableURLRequest+Parameters.h */,
-				CD4909FB18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m */,
-				CD4909FC18A1628700CFECE0 /* NSString+URLEncoding.h */,
-				CD4909FD18A1628700CFECE0 /* NSString+URLEncoding.m */,
-				CD4909FE18A1628700CFECE0 /* NSURL+Base.h */,
-				CD4909FF18A1628700CFECE0 /* NSURL+Base.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		CD490A0018A1628700CFECE0 /* Crypto */ = {
-			isa = PBXGroup;
-			children = (
-				CD490A0118A1628700CFECE0 /* Base64Transcoder.c */,
-				CD490A0218A1628700CFECE0 /* Base64Transcoder.h */,
-				CD490A0318A1628700CFECE0 /* hmac.c */,
-				CD490A0418A1628700CFECE0 /* hmac.h */,
-				CD490A0518A1628700CFECE0 /* sha1.c */,
-				CD490A0618A1628700CFECE0 /* sha1.h */,
-			);
-			path = Crypto;
 			sourceTree = "<group>";
 		};
 		CD490A5D18A1639A00CFECE0 /* Others Codes */ = {
@@ -526,6 +496,23 @@
 				CD4909F818A1628700CFECE0 /* OAuth */,
 			);
 			name = "Others Codes";
+			sourceTree = "<group>";
+		};
+		CD63EE35191065C300153F49 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				CD63EE36191065C300153F49 /* Base64Transcoder.c */,
+				CD63EE37191065C300153F49 /* Base64Transcoder.h */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		CD63EE38191065C300153F49 /* English.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				CD63EE39191065C300153F49 /* InfoPlist.strings */,
+			);
+			path = English.lproj;
 			sourceTree = "<group>";
 		};
 		CDD9E4EB18A144E4006EEC0D = {
@@ -876,14 +863,10 @@
 				CDD9E64518A147A7006EEC0D /* NSDictionarySerializer.m */,
 				CDD9E64618A147A7006EEC0D /* ContentTypeUtilities.h */,
 				CDD9E64718A147A7006EEC0D /* ContentTypeUtilities.m */,
-				CDD9E64818A147A7006EEC0D /* PhotoSHKConfigurator.h */,
-				CDD9E64918A147A7006EEC0D /* PhotoSHKConfigurator.m */,
 				CDD9E64A18A147A7006EEC0D /* AssetsLibraryUtilities.h */,
 				CDD9E64B18A147A7006EEC0D /* AssetsLibraryUtilities.m */,
 				CDD9E64C18A147A7006EEC0D /* DisplayUtilities.h */,
 				CDD9E64D18A147A7006EEC0D /* DisplayUtilities.m */,
-				CDD9E64E18A147A7006EEC0D /* Reachability.h */,
-				CDD9E64F18A147A7006EEC0D /* Reachability.m */,
 				CDD9E65018A147A7006EEC0D /* KeychainItemWrapper.h */,
 				CDD9E65118A147A7006EEC0D /* KeychainItemWrapper.m */,
 			);
@@ -936,7 +919,7 @@
 		CDD9E4EC18A144E4006EEC0D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Trovebox;
 				TargetAttributes = {
 					CDD9E51318A144E4006EEC0D = {
@@ -950,6 +933,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				English,
 			);
 			mainGroup = CDD9E4EB18A144E4006EEC0D;
 			productRefGroup = CDD9E4F518A144E4006EEC0D /* Products */;
@@ -968,6 +952,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDD9E5C018A14707006EEC0D /* ProfileViewController.xib in Resources */,
+				CD63EE6C191065C300153F49 /* InfoPlist.strings in Resources */,
 				CDD9E58318A1469E006EEC0D /* AuthenticationViewController5.xib in Resources */,
 				CDD9E5B118A146EB006EEC0D /* NewestPhotoCelliPad.xib in Resources */,
 				CDD9E5B418A146EB006EEC0D /* UploadCelliPad.xib in Resources */,
@@ -1045,61 +1030,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD490A2818A1628700CFECE0 /* OAServiceTicket.m in Sources */,
-				CD490A1F18A1628700CFECE0 /* hmac.c in Sources */,
 				CDD9E65918A147A7006EEC0D /* CoreDataTableViewController.m in Sources */,
 				CDD9E62A18A1478F006EEC0D /* WebService.m in Sources */,
 				CDD9E60218A14754006EEC0D /* MWCaptionView.m in Sources */,
 				CDD9E56218A1467F006EEC0D /* Timeline.m in Sources */,
 				CDD9E59A18A146CC006EEC0D /* MenuTableViewSectionCell.m in Sources */,
 				CDD9E57E18A1469E006EEC0D /* LoginConnectViewController.m in Sources */,
+				CD63EE7A191065C300153F49 /* OAMutableURLRequest.m in Sources */,
 				CDD9E56318A1467F006EEC0D /* Photo.xcdatamodel in Sources */,
+				CD63EE71191065C300153F49 /* NSURL+Base.m in Sources */,
 				CDD9E66118A147A7006EEC0D /* AssetsLibraryUtilities.m in Sources */,
 				CDD9E56618A1467F006EEC0D /* Gallery.m in Sources */,
 				CDD9E5E918A1473B006EEC0D /* SyncViewController.m in Sources */,
 				CDD9E5E618A1473B006EEC0D /* ELCImagePickerController.m in Sources */,
 				CDD9E59718A146CC006EEC0D /* MenuViewController.m in Sources */,
+				CD63EE80191065C300153F49 /* OAServiceTicket.m in Sources */,
 				CDD9E61718A14779006EEC0D /* TagViewController.m in Sources */,
 				CDD9E61618A14779006EEC0D /* Tag.m in Sources */,
-				CD490A2218A1628700CFECE0 /* OAConsumer.m in Sources */,
 				CDD9E65818A147A7006EEC0D /* CoreLocationController.m in Sources */,
+				CD63EE6B191065C300153F49 /* Base64Transcoder.c in Sources */,
+				CD63EE82191065C300153F49 /* OAToken.m in Sources */,
 				CDD9E65718A147A7006EEC0D /* InitializerService.m in Sources */,
-				CD490A2518A1628700CFECE0 /* OAMutableURLRequest.m in Sources */,
 				CDD9E65418A147A7006EEC0D /* TransformationUtilities.m in Sources */,
 				CDD9E62618A1478F006EEC0D /* Profile.m in Sources */,
 				CDD9E5CE18A1472A006EEC0D /* PhotoViewController.m in Sources */,
+				CD63EE7C191065C300153F49 /* OAPlaintextSignatureProvider.m in Sources */,
 				CDD9E58118A1469E006EEC0D /* AuthenticationViewController.m in Sources */,
-				CD490A2618A1628700CFECE0 /* OAPlaintextSignatureProvider.m in Sources */,
 				CDD9E59F18A146CC006EEC0D /* UINavigationItem+Trovebox.m in Sources */,
+				CD63EE78191065C300153F49 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				CD63EE74191065C300153F49 /* OAConsumer.m in Sources */,
 				CDD9E60818A14754006EEC0D /* GalleryViewController.m in Sources */,
-				CD490A2018A1628700CFECE0 /* sha1.c in Sources */,
 				CDD9E59818A146CC006EEC0D /* MenuTableViewCell.m in Sources */,
 				CDD9E60618A14754006EEC0D /* MWTapDetectingView.m in Sources */,
-				CDD9E66018A147A7006EEC0D /* PhotoSHKConfigurator.m in Sources */,
-				CD490A1D18A1628700CFECE0 /* NSURL+Base.m in Sources */,
 				CDD9E65518A147A7006EEC0D /* DateUtilities.m in Sources */,
 				CDD9E59E18A146CC006EEC0D /* UINavigationBar+Trovebox.m in Sources */,
-				CD490A1E18A1628700CFECE0 /* Base64Transcoder.c in Sources */,
 				CDD9E60718A14754006EEC0D /* MWZoomingScrollView.m in Sources */,
 				CDD9E60018A14754006EEC0D /* DACircularProgressView.m in Sources */,
 				CDD9E65C18A147A7006EEC0D /* PrivateConstants.m in Sources */,
+				CD63EE7E191065C300153F49 /* OARequestParameter.m in Sources */,
 				CDD9E5AD18A146EB006EEC0D /* HomeTableViewController.m in Sources */,
 				CDD9E56018A1467F006EEC0D /* Synced+Methods.m in Sources */,
+				CD63EE6F191065C300153F49 /* NSString+URLEncoding.m in Sources */,
 				CDD9E62918A1478F006EEC0D /* PrivateAuthenticationService.m in Sources */,
 				CDD9E66218A147A7006EEC0D /* DisplayUtilities.m in Sources */,
-				CDD9E66318A147A7006EEC0D /* Reachability.m in Sources */,
 				CDD9E62818A1478F006EEC0D /* AuthenticationService.m in Sources */,
 				CDD9E5E818A1473B006EEC0D /* SyncService.m in Sources */,
 				CDD9E65A18A147A7006EEC0D /* PhotoAlertView.m in Sources */,
 				CDD9E60518A14754006EEC0D /* MWTapDetectingImageView.m in Sources */,
 				CDD9E60418A14754006EEC0D /* MWPhotoBrowser.m in Sources */,
+				CD63EE76191065C300153F49 /* OADataFetcher.m in Sources */,
 				CDD9E65B18A147A7006EEC0D /* Constants.m in Sources */,
 				CDD9E5D218A1472A006EEC0D /* JobUploaderController.m in Sources */,
 				CDD9E65E18A147A7006EEC0D /* NSDictionarySerializer.m in Sources */,
 				CDD9E5BE18A14707006EEC0D /* OpenPhotoIASKAppSettingsViewController.m in Sources */,
 				CDD9E5B218A146EB006EEC0D /* UploadCell.m in Sources */,
 				CDD9E60918A14754006EEC0D /* TMPhotoQuiltViewCell.m in Sources */,
-				CD490A1B18A1628700CFECE0 /* NSMutableURLRequest+Parameters.m in Sources */,
 				CDD9E57A18A1469E006EEC0D /* LoginViewController.m in Sources */,
 				CDD9E65618A147A7006EEC0D /* ImageManipulation.m in Sources */,
 				CDD9E59C18A146CC006EEC0D /* MenuTableViewSearchCell.m in Sources */,
@@ -1107,31 +1092,27 @@
 				CDD9E58518A1469E006EEC0D /* MultiSiteSelectionCell.m in Sources */,
 				CDD9E56518A1467F006EEC0D /* Synced.m in Sources */,
 				CDD9E50A18A144E4006EEC0D /* AppDelegate.m in Sources */,
-				CD490A2318A1628700CFECE0 /* OADataFetcher.m in Sources */,
 				CDD9E5D118A1472A006EEC0D /* PhotoUploader.m in Sources */,
 				CDD9E60F18A14769006EEC0D /* Album.m in Sources */,
 				CDD9E58418A1469E006EEC0D /* MultiSiteSelectionViewController.m in Sources */,
+				CD63EE73191065C300153F49 /* OAAsynchronousDataFetcher.m in Sources */,
 				CDD9E66418A147A7006EEC0D /* KeychainItemWrapper.m in Sources */,
 				CDD9E60318A14754006EEC0D /* MWPhoto.m in Sources */,
 				CDD9E62718A1478F006EEC0D /* Permission.m in Sources */,
-				CD490A1C18A1628700CFECE0 /* NSString+URLEncoding.m in Sources */,
 				CDD9E65F18A147A7006EEC0D /* ContentTypeUtilities.m in Sources */,
 				CDD9E5AF18A146EB006EEC0D /* NewestPhotoCell.m in Sources */,
 				CDD9E62518A1478F006EEC0D /* Account.m in Sources */,
 				CDD9E5E318A1473B006EEC0D /* ELCAsset.m in Sources */,
 				CDD9E65218A147A7006EEC0D /* WebViewController.m in Sources */,
 				CDD9E5D318A1472A006EEC0D /* JobUploaderDelegate.m in Sources */,
-				CD490A2418A1628700CFECE0 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
-				CD490A2918A1628700CFECE0 /* OAToken.m in Sources */,
 				CDD9E5AE18A146EB006EEC0D /* UploadStatusTableViewController.m in Sources */,
 				CDD9E5BF18A14707006EEC0D /* ProfileViewController.m in Sources */,
 				CDD9E65D18A147A7006EEC0D /* SHA1.m in Sources */,
-				CD490A2718A1628700CFECE0 /* OARequestParameter.m in Sources */,
 				CDD9E56418A1467F006EEC0D /* Photo.m in Sources */,
 				CDD9E61018A14769006EEC0D /* AlbumViewController.m in Sources */,
 				CDD9E5E418A1473B006EEC0D /* ELCAssetCell.m in Sources */,
-				CD490A2118A1628700CFECE0 /* OAAsynchronousDataFetcher.m in Sources */,
 				CDD9E50618A144E4006EEC0D /* main.m in Sources */,
+				CD63EE6D191065C300153F49 /* NSMutableURLRequest+Parameters.m in Sources */,
 				CDD9E56118A1467F006EEC0D /* Timeline+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1155,6 +1136,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CD63EE39191065C300153F49 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CD63EE3A191065C300153F49 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		CDD9E50218A144E4006EEC0D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1178,7 +1167,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1218,7 +1206,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1287,7 +1274,6 @@
 		CDD9E52A18A144E4006EEC0D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Trovebox.app/Trovebox";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1310,7 +1296,6 @@
 		CDD9E52B18A144E4006EEC0D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Trovebox.app/Trovebox";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

@@ -31,6 +31,5 @@
 
 - (NSArray *)parameters;
 - (void)setParameters:(NSArray *)parameters;
-- (void)attachFileWithParameterName:(NSString *)name filename:(NSString*)filename contentType:(NSString *)contentType data:(NSData*)data;
 
 @end

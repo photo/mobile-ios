@@ -25,7 +25,6 @@
 
 #import "NSMutableURLRequest+Parameters.h"
 
-static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBouNDaRy";
 
 @implementation NSMutableURLRequest (OAParameterAdditions)
 
@@ -44,15 +43,10 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
     }
     
     if ((encodedParameters == nil) || ([encodedParameters isEqualToString:@""]))
-	{
-		if (shouldfree)
-			[encodedParameters release];
-		
         return nil;
-	}
     
     NSArray *encodedParameterPairs = [encodedParameters componentsSeparatedByString:@"&"];
-    NSMutableArray *requestParameters = [[[NSMutableArray alloc] initWithCapacity:16] autorelease];
+    NSMutableArray *requestParameters = [[NSMutableArray alloc] initWithCapacity:16];
     
     for (NSString *encodedPair in encodedParameterPairs) 
 	{
@@ -66,14 +60,14 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
 	if (shouldfree)
 		[encodedParameters release];
 	
-    return requestParameters;
+    return [requestParameters autorelease];
 }
 
 - (void)setParameters:(NSArray *)parameters 
 {
     NSMutableString *encodedParameterPairs = [NSMutableString stringWithCapacity:256];
     
-    NSUInteger position = 1;
+    int position = 1;
     for (OARequestParameter *requestParameter in parameters) 
 	{
         [encodedParameterPairs appendString:[requestParameter URLEncodedNameValuePair]];
@@ -90,34 +84,9 @@ static NSString *Boundary = @"-----------------------------------0xCoCoaouTHeBou
         // POST, PUT
         NSData *postData = [encodedParameterPairs dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         [self setHTTPBody:postData];
-        [self setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
+        [self setValue:[NSString stringWithFormat:@"%d", [postData length]] forHTTPHeaderField:@"Content-Length"];
         [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
-}
-
-//taken from https://github.com/jdg/oauthconsumer/
-- (void)attachFileWithParameterName:(NSString *)name filename:(NSString*)filename contentType:(NSString *)contentType data:(NSData*)data {
-    
-	NSArray *parameters = [self parameters];
-	[self setValue:[@"multipart/form-data; boundary=" stringByAppendingString:Boundary] forHTTPHeaderField:@"Content-type"];
-    
-	NSMutableData *bodyData = [NSMutableData new];
-	for (OARequestParameter *parameter in parameters) {
-		NSString *param = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n%@\r\n",
-						   Boundary, [parameter URLEncodedName], [parameter value]];
-        
-		[bodyData appendData:[param dataUsingEncoding:NSUTF8StringEncoding]];
-	}
-    
-	NSString *filePrefix = [NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\nContent-Type: %@\r\n\r\n",
-                            Boundary, name, filename, contentType];
-	[bodyData appendData:[filePrefix dataUsingEncoding:NSUTF8StringEncoding]];
-	[bodyData appendData:data];
-    
-	[bodyData appendData:[[[@"\r\n--" stringByAppendingString:Boundary] stringByAppendingString:@"--"] dataUsingEncoding:NSUTF8StringEncoding]];
-	[self setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[bodyData length]] forHTTPHeaderField:@"Content-Length"];
-	[self setHTTPBody:bodyData];
-	[bodyData release];
 }
 
 @end

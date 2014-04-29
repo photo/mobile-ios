@@ -488,7 +488,8 @@
 
 - (void) displayProfileScreen
 {
-    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller) {
+    
+    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success) {
         // Account - Profile
         if (self.profileController == nil){
             self.profileController = [[UINavigationController alloc]initWithRootViewController:[[ProfileViewController alloc] init]];
@@ -507,7 +508,7 @@
 
 - (void) displayHomeScreen
 {
-    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller) {
+    [self.viewDeckController openLeftViewAnimated:YES completion:^(IIViewDeckController *controller, BOOL success) {
         controller.centerController = SharedAppDelegate.centerController;
         [self selectLatestActivity];
         [MBProgressHUD hideAllHUDsForView:self.viewDeckController.view animated:YES];

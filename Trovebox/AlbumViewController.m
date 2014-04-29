@@ -337,7 +337,7 @@
     UIAlertView* av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new album name",@"Album screen - create a new album") message:nil delegate:self
                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                        otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
     [av show];
 }
 

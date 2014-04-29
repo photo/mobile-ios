@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 
 #import "OAAsynchronousDataFetcher.h"
-#import "Debug.h"
+
 #import "OAServiceTicket.h"
 
 @implementation OAAsynchronousDataFetcher
@@ -38,7 +38,7 @@
 	if (self = [super init])
 	{
 		request = [aRequest retain];
-		delegate = [aDelegate retain];
+		delegate = aDelegate;
 		didFinishSelector = finishSelector;
 		didFailSelector = failSelector;	
 	}
@@ -48,7 +48,6 @@
 - (void)start
 {    
     [request prepare];
-    SHKLog(@"starting request:%@", request.URL);
 	
 	if (connection)
 		[connection release];
@@ -69,8 +68,6 @@
         [delegate performSelector:didFailSelector
                        withObject:ticket
                        withObject:nil];
-        [delegate release];
-        delegate = nil;
 		[ticket release];
 	}
 }
@@ -88,7 +85,6 @@
 - (void)dealloc
 {
 	if (request) [request release];
-    if (delegate) [delegate release];
 	if (connection) [connection release];
 	if (response) [response release];
 	if (responseData) [responseData release];
@@ -102,7 +98,7 @@
 {
 	if (response)
 		[response release];
-	response = (NSHTTPURLResponse *)[aResponse retain];
+	response = [aResponse retain];
 	[responseData setLength:0];
 }
 
@@ -119,9 +115,6 @@
 	[delegate performSelector:didFailSelector
 				   withObject:ticket
 				   withObject:error];
-    SHKLog(@"connection did fail with error:%@", [error description]);
-    [delegate release];
-    delegate = nil;
 	
 	[ticket release];
 }
@@ -134,9 +127,6 @@
 	[delegate performSelector:didFinishSelector
 				   withObject:ticket
 				   withObject:responseData];
-    SHKLog(@"connection finished with response:%@", [[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] autorelease]);
-    [delegate release];
-    delegate = nil;
 	
 	[ticket release];
 }

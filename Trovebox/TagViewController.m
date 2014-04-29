@@ -157,7 +157,7 @@
     UIAlertView * av = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Enter new tag name",@"Tag screen - create a new screen") message:nil delegate:self
                                        cancelButtonTitle:NSLocalizedString(@"Cancel",nil)
                                        otherButtonTitles:NSLocalizedString(@"OK",nil),nil];
-    av.style = UIAlertViewStylePlainTextInput;
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
     [av show];
 }
 

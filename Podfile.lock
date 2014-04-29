@@ -18,9 +18,9 @@ PODS:
   - MBProgressHUD (0.8)
   - Reachability (3.1.1)
   - SBJson (3.2)
-  - SDWebImage (3.5.4):
+  - SDWebImage (3.6):
     - SDWebImage/Core
-  - SDWebImage/Core (3.5.4)
+  - SDWebImage/Core (3.6)
   - TMQuiltView (0.0.1)
   - ViewDeck (2.3.1)
 
@@ -32,20 +32,20 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.8)
   - Reachability (~> 3.1.1)
   - SBJson (~> 3.2)
-  - SDWebImage (~> 3.5.2)
+  - SDWebImage (~> 3.6)
   - TMQuiltView (~> 0.0.1)
   - ViewDeck (~> 2.3.1)
 
 SPEC CHECKSUMS:
-  ASIHTTPRequest: 4bd3ed65bf8a726292c5fa79ea5c0a2e02c97241
-  GoogleAnalytics-iOS-SDK: c135fb62b1e5aa003b7be97b656ccee212896cf7
+  ASIHTTPRequest: 0b05282cf3c422c3474eff98c5bb8c1192b91b86
+  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
   InAppSettingsKit: 5e42f626b9be9c33e3b04c0cc9523ca5eabe7ad3
   iRate: 99aef520b335a1eb4a14a8d9ba5e8db4e1d95bbe
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  SBJson: abc2bf2baef456d5dae213f9826fe2b6fdf19861
-  SDWebImage: 1a62010700adbba823b621fc217906739dbf6aa5
-  TMQuiltView: 520d09d6a98f1a6aa75ed92a91123ecc79bab62c
+  SBJson: 0eeb4062451ec5ed792ff8b6615daff2ae39e218
+  SDWebImage: 7eb273e54ca8a2e506ad9bd5e80c35b2a4d7c95e
+  TMQuiltView: b14fdb23e238bca05f400f5e5ff59f7c539032a7
   ViewDeck: 2cdc67c4b41a10cafc7556b982f028409e33604d
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.32.1

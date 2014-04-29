@@ -216,9 +216,9 @@ static const NSInteger kGANDispatchPeriodSec = 10;
 }
 
 - (void) shareTwitterOrFacebook:(NSNotification*) notification{
-    NSDictionary *dictionary = [notification object];
+    /* NSDictionary *dictionary = [notification object];
     
-    /*
+   
     // create the item
     SHKItem *item = [SHKItem URL:[NSURL URLWithString:[dictionary objectForKey:@"url"]] title:[dictionary objectForKey:@"title"] contentType:SHKURLContentTypeWebpage];
     
@@ -380,7 +380,7 @@ static const NSInteger kGANDispatchPeriodSec = 10;
     [internetReachable startNotifier];
     
     // check if a pathway to a random host exists
-    hostReachable = [Reachability reachabilityWithHostName: @"www.apple.com"] ;
+    hostReachable = [Reachability reachabilityWithHostname: @"www.apple.com"] ;
     [hostReachable startNotifier];
     
     // do the first network check

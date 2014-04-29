@@ -129,6 +129,8 @@
 
 - (void) shareUrl:(NSString*) url
 {
+    
+    /*
     // create the item to share
     SHKItem *item = [SHKItem URL:[NSURL URLWithString:url] title:self.label.text contentType:SHKURLContentTypeWebpage];
     
@@ -141,6 +143,9 @@
     
     // Display the action sheet
     [actionSheet showFromToolbar:self.newestPhotosTableViewController.navigationController.toolbar];
+     
+     */
+    
 }
 
 @end
