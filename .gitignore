@@ -18,8 +18,8 @@ DerivedData
 .idea/
 
 # private class
-Photo/PrivateAuthenticationService.m
-Photo/PrivateConstants.m
+Trovebox/PrivateAuthenticationService.m
+Trovebox/PrivateConstants.m
 
 
 # cocoa Pods
