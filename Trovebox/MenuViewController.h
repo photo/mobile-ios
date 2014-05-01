@@ -27,6 +27,7 @@
 #import "AccountViewController.h"
 #import "ProfileViewController.h"
 #import "GalleryViewController.h"
+#import "FriendsViewController.h"
 #import "CoreLocationController.h"
 
 // for settings
@@ -53,6 +54,7 @@
 @property (nonatomic, strong) UINavigationController *tagController;
 @property (nonatomic, strong) UINavigationController *syncController;
 @property (nonatomic, strong) UINavigationController *profileController;
+@property (nonatomic, strong) UINavigationController *friendsController;
 
 
 @property (nonatomic, strong) CLLocation *location;

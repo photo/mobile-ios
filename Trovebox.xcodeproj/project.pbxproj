@@ -153,6 +153,10 @@
 		CDD9E69618A15613006EEC0D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E69518A15613006EEC0D /* CFNetwork.framework */; };
 		CDD9E69818A1561A006EEC0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E69718A1561A006EEC0D /* QuartzCore.framework */; };
 		CDD9E69A18A159E3006EEC0D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E69918A159E3006EEC0D /* Crashlytics.framework */; };
+		CDF53A4819117F1B00353716 /* FriendsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF53A4419117F1B00353716 /* FriendsCell.m */; };
+		CDF53A4919117F1B00353716 /* FriendsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDF53A4519117F1B00353716 /* FriendsCell.xib */; };
+		CDF53A4A19117F1B00353716 /* FriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF53A4719117F1B00353716 /* FriendsViewController.m */; };
+		CDF53A4D191180E300353716 /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF53A4C191180E300353716 /* Friend.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +405,13 @@
 		CDD9E69518A15613006EEC0D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CDD9E69718A1561A006EEC0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CDD9E69918A159E3006EEC0D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		CDF53A4319117F1B00353716 /* FriendsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsCell.h; sourceTree = "<group>"; };
+		CDF53A4419117F1B00353716 /* FriendsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsCell.m; sourceTree = "<group>"; };
+		CDF53A4519117F1B00353716 /* FriendsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendsCell.xib; sourceTree = "<group>"; };
+		CDF53A4619117F1B00353716 /* FriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsViewController.h; sourceTree = "<group>"; };
+		CDF53A4719117F1B00353716 /* FriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsViewController.m; sourceTree = "<group>"; };
+		CDF53A4B191180E300353716 /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
+		CDF53A4C191180E300353716 /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		E1C70016612945A8B28FA125 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -581,6 +592,7 @@
 				CDD9E5A018A146D9006EEC0D /* Home & Upload Status */,
 				CDD9E60A18A1475A006EEC0D /* Album */,
 				CDD9E5EB18A14743006EEC0D /* Gallery */,
+				CDF53A4219117E6D00353716 /* Friends */,
 				CDD9E61118A1476D006EEC0D /* Tag */,
 				CDD9E5D418A1472D006EEC0D /* Sync */,
 				CDD9E5C318A1471D006EEC0D /* Upload */,
@@ -873,6 +885,20 @@
 			name = Utility;
 			sourceTree = "<group>";
 		};
+		CDF53A4219117E6D00353716 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				CDF53A4B191180E300353716 /* Friend.h */,
+				CDF53A4C191180E300353716 /* Friend.m */,
+				CDF53A4319117F1B00353716 /* FriendsCell.h */,
+				CDF53A4419117F1B00353716 /* FriendsCell.m */,
+				CDF53A4519117F1B00353716 /* FriendsCell.xib */,
+				CDF53A4619117F1B00353716 /* FriendsViewController.h */,
+				CDF53A4719117F1B00353716 /* FriendsViewController.m */,
+			);
+			name = Friends;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -958,6 +984,7 @@
 				CD63EE6C191065C300153F49 /* InfoPlist.strings in Resources */,
 				CDD9E58318A1469E006EEC0D /* AuthenticationViewController5.xib in Resources */,
 				CDD9E5B118A146EB006EEC0D /* NewestPhotoCelliPad.xib in Resources */,
+				CDF53A4919117F1B00353716 /* FriendsCell.xib in Resources */,
 				CDD9E5B418A146EB006EEC0D /* UploadCelliPad.xib in Resources */,
 				CDD9E66618A147F2006EEC0D /* Localizable.strings in Resources */,
 				CDD9E58218A1469E006EEC0D /* AuthenticationViewController.xib in Resources */,
@@ -1033,6 +1060,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDF53A4D191180E300353716 /* Friend.m in Sources */,
 				CDD9E65918A147A7006EEC0D /* CoreDataTableViewController.m in Sources */,
 				CDD9E62A18A1478F006EEC0D /* WebService.m in Sources */,
 				CDD9E60218A14754006EEC0D /* MWCaptionView.m in Sources */,
@@ -1069,6 +1097,7 @@
 				CDD9E59E18A146CC006EEC0D /* UINavigationBar+Trovebox.m in Sources */,
 				CDD9E60718A14754006EEC0D /* MWZoomingScrollView.m in Sources */,
 				CDD9E60018A14754006EEC0D /* DACircularProgressView.m in Sources */,
+				CDF53A4819117F1B00353716 /* FriendsCell.m in Sources */,
 				CDD9E65C18A147A7006EEC0D /* PrivateConstants.m in Sources */,
 				CD63EE7E191065C300153F49 /* OARequestParameter.m in Sources */,
 				CDD9E5AD18A146EB006EEC0D /* HomeTableViewController.m in Sources */,
@@ -1078,6 +1107,7 @@
 				CDD9E66218A147A7006EEC0D /* DisplayUtilities.m in Sources */,
 				CDD9E62818A1478F006EEC0D /* AuthenticationService.m in Sources */,
 				CDD9E5E818A1473B006EEC0D /* SyncService.m in Sources */,
+				CDF53A4A19117F1B00353716 /* FriendsViewController.m in Sources */,
 				CDD9E65A18A147A7006EEC0D /* PhotoAlertView.m in Sources */,
 				CDD9E60518A14754006EEC0D /* MWTapDetectingImageView.m in Sources */,
 				CDD9E60418A14754006EEC0D /* MWPhotoBrowser.m in Sources */,

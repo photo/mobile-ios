@@ -37,6 +37,7 @@
 @synthesize tagController=_tagController;
 @synthesize syncController=_syncController;
 @synthesize profileController=_profileController;
+@synthesize friendsController=_friendsController;
 
 - (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle
 {
@@ -96,12 +97,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // if type = group, returns only 7: We need to remove Tags and My Profile
+    // if type = group, returns only 8: We need to remove Tags and My Profile
+    // we added a new one Friends
     NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
     if (type && [type isEqualToString:@"group"]){
-        return 7;
+        return 8;
     }else{
-        return 9;
+        return 10;
     }
 }
 
@@ -172,6 +174,11 @@
         cell.label.text = NSLocalizedString(@"Upload & Sync", @"Menu - title for Upload & Sync");
         return cell;
     }else if ( (row ==  6 && !groupUser) || (row == 5 && groupUser) ){
+        // Friends
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-upload.png" imageSelected:@"menu-upload-selected.png"];
+        cell.label.text = NSLocalizedString(@"Friends", @"Menu - title for Friends");
+        return cell;
+    }else if ( (row ==  7 && !groupUser) || (row == 6 && groupUser) ){
         // preferences
         // load preference cell
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:menuTableViewSectionCellIdentifier];
@@ -183,7 +190,7 @@
         cell.contentView.backgroundColor = UIColorFromRGB(0x40332D);
         
         return cell;
-    }else if ( row ==  7 && !groupUser){
+    }else if ( row ==  8 && !groupUser){
         // my account
         MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-profile.png" imageSelected:@"menu-profile-selected.png"];
         cell.label.text = NSLocalizedString(@"My Account", @"Menu - title for Account");
@@ -261,7 +268,13 @@
                 }
                 controller.centerController = self.syncController;
                 controller.centerController.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-            }else if (  indexPath.row == 7 && !groupUser){
+            }else if (  (indexPath.row == 6 && !groupUser) || (indexPath.row == 5 && groupUser) ){
+                // Friends
+                if (self.friendsController == nil){
+                    self.friendsController = [[UINavigationController alloc]initWithRootViewController:[[FriendsViewController alloc] init]];
+                }
+                controller.centerController = self.friendsController;
+            }else if (  indexPath.row == 8 && !groupUser){
                 // Account - Profile
                 if (self.profileController == nil){
                     if ([DisplayUtilities isIPad]){
