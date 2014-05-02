@@ -186,4 +186,12 @@
     [self setPhoto:nil];
     [super viewDidUnload];
 }
+
+- (IBAction)showPhotos:(id)sender {
+    
+}
+
+- (IBAction)showAlbums:(id)sender {
+    
+}
 @end

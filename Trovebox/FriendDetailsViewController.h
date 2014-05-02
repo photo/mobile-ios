@@ -29,5 +29,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelPhotos;
 @property (nonatomic, weak) IBOutlet UILabel *labelName;
 @property (nonatomic, weak) IBOutlet UIImageView *photo;
+- (IBAction)showPhotos:(id)sender;
+- (IBAction)showAlbums:(id)sender;
+
 
 @end
