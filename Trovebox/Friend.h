@@ -13,6 +13,9 @@
 
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *photoUrl;
+
+- (id) initWithHost:(NSString*) host name:(NSString*) name userName:(NSString*) userName photoUrl:(NSString*) photoUrl;
 
 @end

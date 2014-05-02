@@ -64,6 +64,9 @@
 // get user details
 - (NSDictionary*) getUserDetails;
 
+// get a specifi user details
+- (NSDictionary*) getUserDetailsForSite:(NSString*) site;
+
 // remove credentials form the server when sign out
 - (NSArray *)  removeCredentialsForKey:(NSString *) consumerKey;
 

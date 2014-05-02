@@ -193,6 +193,28 @@
     return  [self parseResponseAsNSDictionary:[self sendSynchronousRequest:@"/v1/user/profile.json" httpMethod:@"GET"]];
 }
 
+- (NSDictionary*) getUserDetailsForSite:(NSString*) site
+{
+    // create the url to connect to Trovebox
+    NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site, @"/v1/user/profile.json"];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+    
+    // transform in URL for the request
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    asiHttpRequest.userAgentString=@"Trovebox iOS";
+    [asiHttpRequest setTimeOutSeconds:60];
+    
+    // send the request synchronous
+    [asiHttpRequest startSynchronous];
+    
+    return  [self parseResponseAsNSDictionary:asiHttpRequest];
+}
+
 - (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey
 {
     return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"]];

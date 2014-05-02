@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		352084D3053E411883B01EC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1C70016612945A8B28FA125 /* libPods.a */; };
+		CD3DA78019143FE200C4B5C9 /* FriendDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD3DA77C19143FE200C4B5C9 /* FriendDetailsViewController.m */; };
+		CD3DA78119143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3DA77E19143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib */; };
+		CD3DA78219143FE200C4B5C9 /* FriendDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD3DA77F19143FE200C4B5C9 /* FriendDetailsViewController.xib */; };
 		CD63EE6B191065C300153F49 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE36191065C300153F49 /* Base64Transcoder.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD63EE6C191065C300153F49 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CD63EE39191065C300153F49 /* InfoPlist.strings */; };
 		CD63EE6D191065C300153F49 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE3C191065C300153F49 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -171,6 +174,10 @@
 
 /* Begin PBXFileReference section */
 		17419F6492FF466FA193AFC0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		CD3DA77C19143FE200C4B5C9 /* FriendDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetailsViewController.m; sourceTree = "<group>"; };
+		CD3DA77D19143FE200C4B5C9 /* FriendDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetailsViewController.h; sourceTree = "<group>"; };
+		CD3DA77E19143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendDetailsViewControlleriPad.xib; sourceTree = "<group>"; };
+		CD3DA77F19143FE200C4B5C9 /* FriendDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendDetailsViewController.xib; sourceTree = "<group>"; };
 		CD63EE36191065C300153F49 /* Base64Transcoder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64Transcoder.c; sourceTree = "<group>"; };
 		CD63EE37191065C300153F49 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		CD63EE3A191065C300153F49 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -895,6 +902,10 @@
 				CDF53A4519117F1B00353716 /* FriendsCell.xib */,
 				CDF53A4619117F1B00353716 /* FriendsViewController.h */,
 				CDF53A4719117F1B00353716 /* FriendsViewController.m */,
+				CD3DA77D19143FE200C4B5C9 /* FriendDetailsViewController.h */,
+				CD3DA77C19143FE200C4B5C9 /* FriendDetailsViewController.m */,
+				CD3DA77E19143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib */,
+				CD3DA77F19143FE200C4B5C9 /* FriendDetailsViewController.xib */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -996,6 +1007,7 @@
 				CDD9E5CF18A1472A006EEC0D /* PhotoViewController.xib in Resources */,
 				CDD9E50418A144E4006EEC0D /* InfoPlist.strings in Resources */,
 				CDD9E58618A1469E006EEC0D /* MultiSiteSelectionCell.xib in Resources */,
+				CD3DA78219143FE200C4B5C9 /* FriendDetailsViewController.xib in Resources */,
 				CDD9E5B018A146EB006EEC0D /* NewestPhotoCell.xib in Resources */,
 				CDD9E5C218A14707006EEC0D /* Settings.bundle in Resources */,
 				CDD9E5E718A1473B006EEC0D /* ELCImagePickerController.xib in Resources */,
@@ -1009,6 +1021,7 @@
 				CDD9E5D018A1472A006EEC0D /* PhotoViewController5.xib in Resources */,
 				CDD9E57B18A1469E006EEC0D /* LoginViewController.xib in Resources */,
 				CDD9E58018A1469E006EEC0D /* LoginConnectViewController5.xib in Resources */,
+				CD3DA78119143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,6 +1094,7 @@
 				CDD9E65818A147A7006EEC0D /* CoreLocationController.m in Sources */,
 				CD63EE6B191065C300153F49 /* Base64Transcoder.c in Sources */,
 				CD63EE82191065C300153F49 /* OAToken.m in Sources */,
+				CD3DA78019143FE200C4B5C9 /* FriendDetailsViewController.m in Sources */,
 				CDD9E65718A147A7006EEC0D /* InitializerService.m in Sources */,
 				CDD9E65418A147A7006EEC0D /* TransformationUtilities.m in Sources */,
 				CDD9E62618A1478F006EEC0D /* Profile.m in Sources */,

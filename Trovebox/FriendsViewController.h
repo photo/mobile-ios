@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Friend.h"
 #import "FriendsCell.h"
+#import "FriendDetailsViewController.h"
 
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface FriendsViewController : UITableViewController
+@interface FriendsViewController : UITableViewController<UINavigationControllerDelegate>
 
 @end
