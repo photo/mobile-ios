@@ -20,13 +20,16 @@
 
 #import "FriendDetailsViewController.h"
 
-@interface ProfileViewController ()
+@interface FriendDetailsViewController ()
 - (void) loadUserDetails;
+@property (nonatomic, strong) Friend *friend;
 @end
 
 @implementation FriendDetailsViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize friend=_friend;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil friend:(Friend*) frnd
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -37,6 +40,9 @@
         self.hidesBottomBarWhenPushed = NO;
         self.wantsFullScreenLayout = YES;
         self.view.backgroundColor =  UIColorFromRGB(0XFAF3EF);
+        
+        //set friend
+        _friend=frnd;
     }
     return self;
 }
@@ -118,7 +124,7 @@
             
             @try{
                 WebService *service = [[WebService alloc] init];
-                NSDictionary *rawAnswer = [service getUserDetailsForSite:@"jmathai.trvbx.co"];
+                NSDictionary *rawAnswer = [service getUserDetailsForSite:self.friend.host];
                 NSDictionary *result = [rawAnswer objectForKey:@"result"];
                 
                 // display details

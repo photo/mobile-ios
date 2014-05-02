@@ -22,6 +22,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/SDImageCache.h>
 #import <QuartzCore/QuartzCore.h>
+#import "Friend.h"
 
 @interface FriendDetailsViewController : GAITrackedViewController <UIAlertViewDelegate>
 
@@ -29,6 +30,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *labelPhotos;
 @property (nonatomic, weak) IBOutlet UILabel *labelName;
 @property (nonatomic, weak) IBOutlet UIImageView *photo;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil friend:(Friend*) frnd;
+
 - (IBAction)showPhotos:(id)sender;
 - (IBAction)showAlbums:(id)sender;
 

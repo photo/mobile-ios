@@ -116,9 +116,9 @@
     // open friend
     UINavigationController *nav;
     if ([DisplayUtilities isIPad]){
-        nav = [[UINavigationController alloc]initWithRootViewController:[[FriendDetailsViewController alloc] initWithNibName:@"FriendDetailsViewControlleriPad" bundle:nil]];
+        nav = [[UINavigationController alloc]initWithRootViewController:[[FriendDetailsViewController alloc] initWithNibName:@"FriendDetailsViewControlleriPad" bundle:nil friend:friend]];
     }else{
-        nav = [[UINavigationController alloc]initWithRootViewController:[[FriendDetailsViewController alloc] init]];
+        nav = [[UINavigationController alloc]initWithRootViewController:[[FriendDetailsViewController alloc] initWithNibName:@"FriendDetailsViewController" bundle:nil friend:friend]];
     }
 
     self.viewDeckController.centerController = nav;
