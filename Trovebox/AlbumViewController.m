@@ -37,7 +37,7 @@
 
 @implementation AlbumViewController
 
-@synthesize albums = _albums, readOnly=_readOnly;
+@synthesize albums = _albums, readOnly=_readOnly, friend=_friend;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -234,8 +234,13 @@
             @try {
                 // get factory for OpenPhoto Service
                 WebService *service = [[WebService alloc] init];
-                NSArray *result = [service loadAlbums:25 onPage:self.page version:versionServer];
+                NSArray *result;
                 
+                if (self.friend){
+                    result = [service loadAlbums:25 onPage:self.page version:versionServer forSite:self.friend.host];
+                }else{
+                    result = [service loadAlbums:25 onPage:self.page version:versionServer];
+                }
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     if ([result class] != [NSNull class] && [result count] >0) {
@@ -316,7 +321,10 @@
             size = @"photo200x200xCR";
         else
             size = @"photo100x100xCR";
-        NSArray *pathCover = [cover objectForKey:size];
+        
+        NSArray *pathCover;
+        if (cover &&  [cover class] != [NSNull class])
+            pathCover = [cover objectForKey:size];
         
         // create an album and add to the list of albums
         Album *album = [[Album alloc]initWithAlbumName:name Quantity:[qtd integerValue] Identification:identification AlbumImageUrl:[pathCover objectAtIndex:0]];
@@ -345,7 +353,7 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     
-     UITextField *textField = [alertView textFieldAtIndex:0];
+    UITextField *textField = [alertView textFieldAtIndex:0];
     
     // cancel
     if( buttonIndex == 0 || textField.text == nil || textField.text.length==0)

@@ -123,7 +123,6 @@
 
     self.viewDeckController.centerController = nav;
     [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
-    
 }
 
 - (void)tableView:(UITableView *)tableView   willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

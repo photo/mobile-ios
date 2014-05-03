@@ -22,6 +22,7 @@
 #import "MBProgressHUD.h"
 #import "PhotoAlertView.h"
 #import "Album.h"
+#import "Friend.h"
 
 // image cache
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -29,6 +30,8 @@
 @interface AlbumViewController : UITableViewController<UIAlertViewDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *albums;
+@property (nonatomic, strong) Friend *friend;
+
 
 -(void) setReadOnly;
 -(NSString*) getSelectedAlbumsIdentification;
