@@ -64,9 +64,6 @@
 // get user details
 - (NSDictionary*) getUserDetails;
 
-// get a specifi user details
-- (NSDictionary*) getUserDetailsForSite:(NSString*) site;
-
 // remove credentials form the server when sign out
 - (NSArray *)  removeCredentialsForKey:(NSString *) consumerKey;
 
@@ -81,4 +78,11 @@
 // - :id = id of photo or album
 - (NSString *) shareToken:(NSString *) id;
 
+
+// FOR FRIENDS
+// get a specifi user details
+- (NSDictionary*) getUserDetailsForSite:(NSString*) site;
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page forSite:(NSString*) site;
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album*) album forSite:(NSString*) site;
+- (NSArray *) loadAlbums:(int) pageSize onPage:(int) page version:(NSString *) serverVersion forSite:(NSString*) site;
 @end

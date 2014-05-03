@@ -193,28 +193,6 @@
     return  [self parseResponseAsNSDictionary:[self sendSynchronousRequest:@"/v1/user/profile.json" httpMethod:@"GET"]];
 }
 
-- (NSDictionary*) getUserDetailsForSite:(NSString*) site
-{
-    // create the url to connect to Trovebox
-    NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site, @"/v1/user/profile.json"];
-    
-#ifdef DEVELOPMENT_ENABLED
-    NSLog(@"Request to be sent = [%@]",urlString);
-#endif
-    
-    // transform in URL for the request
-    NSURL *url = [NSURL URLWithString:urlString];
-    
-    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
-    asiHttpRequest.userAgentString=@"Trovebox iOS";
-    [asiHttpRequest setTimeOutSeconds:60];
-    
-    // send the request synchronous
-    [asiHttpRequest startSynchronous];
-    
-    return  [self parseResponseAsNSDictionary:asiHttpRequest];
-}
-
 - (NSArray*)  removeCredentialsForKey:(NSString *) consumerKey
 {
     return  [self parseResponse:[self sendSynchronousRequest:[NSString stringWithFormat:@"/oauth/%@/delete.json",consumerKey] httpMethod:@"POST"]];
@@ -535,4 +513,107 @@
         }
     }
 }
+
+- (NSDictionary*) getUserDetailsForSite:(NSString*) site
+{
+    // create the url to connect to Trovebox
+    NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site, @"/v1/user/profile.json"];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+    
+    // transform in URL for the request
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    asiHttpRequest.userAgentString=@"Trovebox iOS";
+    [asiHttpRequest setTimeOutSeconds:60];
+    
+    // send the request synchronous
+    [asiHttpRequest startSynchronous];
+    
+    return  [self parseResponseAsNSDictionary:asiHttpRequest];
+}
+
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page forSite:(NSString*) site
+{
+    // create the url to connect to Trovebox
+    NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site, [NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@", pageSize,page,[self getScreenSizesForRequest]]];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+    
+    // transform in URL for the request
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    asiHttpRequest.userAgentString=@"Trovebox iOS";
+    [asiHttpRequest setTimeOutSeconds:60];
+    
+    // send the request synchronous
+    [asiHttpRequest startSynchronous];
+    
+    return  [self parseResponse:asiHttpRequest];
+}
+
+- (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album*) album forSite:(NSString*) site
+{
+    // create the url to connect to Trovebox
+    NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site,[NSString stringWithFormat:@"/v1/photos/list.json?pageSize=%d&page=%d&returnSizes=%@&album=%@", pageSize,page,[self getScreenSizesForRequest],[album.identification stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+    
+    // transform in URL for the request
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+    asiHttpRequest.userAgentString=@"Trovebox iOS";
+    [asiHttpRequest setTimeOutSeconds:60];
+    
+    // send the request synchronous
+    [asiHttpRequest startSynchronous];
+    
+    return  [self parseResponse:asiHttpRequest];
+}
+
+- (NSArray *) loadAlbums:(int) pageSize onPage:(int) page version:(NSString *) serverVersion forSite:(NSString*) site
+{
+    if ([serverVersion isEqualToString:@"v1"] ||
+        [serverVersion isEqualToString:@"v2"]){
+        
+        // in the case of version two, we can add the skipEmpty
+        NSString *additionalParameters=@"";
+        if ( [serverVersion isEqualToString:@"v2"] )
+            additionalParameters = @"&skipEmpty=1";
+        
+        // create the url to connect to Trovebox
+        NSString *urlString =     [NSString stringWithFormat: @"http://%@%@", site, [NSString stringWithFormat: @"/%@/albums/list.json?pageSize=%d&page=%d%@", serverVersion, pageSize, page,additionalParameters]];
+        
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Request to be sent = [%@]",urlString);
+#endif
+        
+        // transform in URL for the request
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        ASIHTTPRequest *asiHttpRequest = [ASIHTTPRequest requestWithURL:url];
+        asiHttpRequest.userAgentString=@"Trovebox iOS";
+        [asiHttpRequest setTimeOutSeconds:60];
+        
+        // send the request synchronous
+        [asiHttpRequest startSynchronous];
+        
+        return  [self parseResponse:asiHttpRequest];
+    }else{
+        NSException *exception = [NSException exceptionWithName: @"Incorrect server version"
+                                                         reason: @"Only version v1 and v2 are accept"
+                                                       userInfo: nil];
+        @throw exception;
+    }
+}
+
 @end
