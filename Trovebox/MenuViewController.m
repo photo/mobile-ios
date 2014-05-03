@@ -175,7 +175,7 @@
         return cell;
     }else if ( (row ==  6 && !groupUser) || (row == 5 && groupUser) ){
         // Friends
-        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-upload.png" imageSelected:@"menu-upload-selected.png"];
+        MenuTableViewCell *cell = [self getDefaultUITableViewCell:tableView image:@"menu-friends.png" imageSelected:@"menu-friends-selected.png"];
         cell.label.text = NSLocalizedString(@"Friends", @"Menu - title for Friends");
         return cell;
     }else if ( (row ==  7 && !groupUser) || (row == 6 && groupUser) ){

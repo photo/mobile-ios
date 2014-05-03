@@ -194,10 +194,14 @@
 }
 
 - (IBAction)showPhotos:(id)sender {
-    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Show photos");
+#endif
 }
 
 - (IBAction)showAlbums:(id)sender {
-    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Show albums");
+#endif
 }
 @end

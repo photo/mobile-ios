@@ -155,10 +155,6 @@
     __block int assetsNotUploaded = 0;
     
     @autoreleasepool {
-#ifdef DEVELOPMENT_ENABLED
-        NSLog(@"numberOfAssets %i", assetsNumber);
-#endif
-        
         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
          {
              if(result == nil)
