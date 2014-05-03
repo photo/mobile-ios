@@ -199,7 +199,11 @@
     }else{
         if (album.quantity >0 ){
             // open the gallery with a tag that contains at least one picture.
-            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[[GalleryViewController alloc]initWithAlbum:album]];
+            GalleryViewController *controller = [[GalleryViewController alloc]initWithAlbum:album];
+            if (self.friend){
+                controller.friend = self.friend;
+            }
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:controller];
             self.viewDeckController.centerController = nav;
             [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
         }

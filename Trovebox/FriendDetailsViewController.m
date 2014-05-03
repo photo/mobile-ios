@@ -197,6 +197,13 @@
 #ifdef DEVELOPMENT_ENABLED
     NSLog(@"Show photos");
 #endif
+    // open friend
+    GalleryViewController *controller = [[GalleryViewController alloc]init];
+    controller.friend=self.friend;
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:controller];
+    self.viewDeckController.centerController = nav;
+    [NSThread sleepForTimeInterval:(300+arc4random()%700)/1000000.0]; // mimic delay... not really necessary
 }
 
 - (IBAction)showAlbums:(id)sender {

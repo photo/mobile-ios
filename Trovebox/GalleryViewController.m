@@ -33,11 +33,7 @@
 @end
 
 @implementation GalleryViewController
-@synthesize photos=_photos;
-@synthesize page=_page;
-@synthesize totalPages=_totalPages;
-@synthesize album=_album;
-@synthesize tag=_tag;
+@synthesize photos=_photos, page=_page, totalPages=_totalPages,  album=_album,  tag=_tag, friend=_friend;
 
 - (id)init
 {
@@ -99,7 +95,7 @@
     [super viewWillAppear:animated];
     
     self.page = 1;
-    self.totalPages = nil;
+    self.totalPages = 0;
     // load photos
     [self loadPhotos:nil];
 }
@@ -240,15 +236,23 @@
                 // if user is refreshing that means we must load the initial data
                 if (refreshControl != nil){
                     self.page = 1;
-                    self.totalPages = nil;
+                    self.totalPages = 0;
                 }
                 
-                if (self.album){
-                    result = [service loadGallery:50 onPage:self.page++ album:self.album];
-                }else if (self.tag){
-                    result = [service loadGallery:50 onPage:self.page++ tag:self.tag];
+                if (self.friend) {
+                    if (self.album){
+                        result = [service loadGallery:50 onPage:self.page++ album:self.album forSite:self.friend.host];
+                    }else{
+                        result = [service loadGallery:50 onPage:self.page++ forSite:self.friend.host];
+                    }
                 }else{
-                    result = [service loadGallery:50 onPage:self.page++];
+                    if (self.album){
+                        result = [service loadGallery:50 onPage:self.page++ album:self.album];
+                    }else if (self.tag){
+                        result = [service loadGallery:50 onPage:self.page++ tag:self.tag];
+                    }else{
+                        result = [service loadGallery:50 onPage:self.page++];
+                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), ^{

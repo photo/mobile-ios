@@ -24,10 +24,12 @@
 #import "Album.h"
 #import "Tag.h"
 #import "MWPhotoBrowser.h"
+#import "Friend.h"
 
 @interface GalleryViewController : TMQuiltViewController <MWPhotoBrowserDelegate>
 
 @property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) Friend *friend;
 
 - (id) initWithTag:(Tag *) tag;
 - (id) initWithAlbum:(Album *) album;
