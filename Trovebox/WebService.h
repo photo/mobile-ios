@@ -8,9 +8,9 @@
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
 //  You may obtain a copy of the License at
-// 
+//
 //  http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,10 +33,10 @@
     
 }
 
-- (id)initForServer:(NSString *) server 
-           oAuthKey:(NSString *) oAuthKey 
-        oAuthSecret:(NSString *) oAuthSecret 
-        consumerKey:(NSString *) consumerKey 
+- (id)initForServer:(NSString *) server
+           oAuthKey:(NSString *) oAuthKey
+        oAuthSecret:(NSString *) oAuthSecret
+        consumerKey:(NSString *) consumerKey
      consumerSecret:(NSString *) consumerSecret;
 
 - (NSArray *) fetchNewestPhotosMaxResult:(int) maxResult;
@@ -85,4 +85,5 @@
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page forSite:(NSString*) site;
 - (NSArray *) loadGallery:(int) pageSize onPage:(int) page album:(Album*) album forSite:(NSString*) site;
 - (NSArray *) loadAlbums:(int) pageSize onPage:(int) page version:(NSString *) serverVersion forSite:(NSString*) site;
+- (NSDictionary *) copyPictureWithUrl:(NSString*) photoUrl;
 @end

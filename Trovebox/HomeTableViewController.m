@@ -199,8 +199,13 @@
         // set the upload photo object in the cell for restart or cancel
         uploadCell.originalObject = photo;
         
-        // set thumb
-        uploadCell.thumb.image = [UIImage imageWithData:photo.photoDataThumb];
+        if ([photo.copyFromFriend boolValue]){
+            // show default thumb
+            uploadCell.thumb.image = [UIImage imageNamed:@"Icon.png"];
+        }else{
+            // set thumb
+            uploadCell.thumb.image = [UIImage imageWithData:photo.photoDataThumb];
+        }
         [uploadCell.thumb.superview.layer setCornerRadius:3.0f];
         [uploadCell.thumb.superview.layer setShadowColor:[UIColor blackColor].CGColor];
         [uploadCell.thumb.superview.layer setShadowOpacity:0.25];
@@ -212,18 +217,32 @@
         uploadCell.progressBar.hidden=YES;
         
         if ( [photo.status isEqualToString:kUploadStatusTypeCreated]){
-            uploadCell.status.text=NSLocalizedString(@"Waiting ...",@"Status upload - waiting");
+            if ([photo.copyFromFriend boolValue]){
+                uploadCell.status.text=NSLocalizedString(@"Waiting to copy",@"Waiting to copy");
+            }else{
+                uploadCell.status.text=NSLocalizedString(@"Waiting ...",@"Status upload - waiting");
+            }
+            
+            
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-waiting.png"]];
             uploadCell.imageStatus.hidden=NO;
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploading]){
-            uploadCell.status.text=@"";
-            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
-            uploadCell.progressBar.hidden=NO;
+            if ([photo.copyFromFriend boolValue]){
+                uploadCell.status.text=@"Copying ...";
+            }else{
+                uploadCell.status.text=@"";
+                [uploadCell.progressBar setProgress:[photo.photoUploadProgress floatValue]];
+                uploadCell.progressBar.hidden=NO;
+            }
             
-            [uploadCell.progressBar setProgress:[photo.photoUploadProgress floatValue]];
+            uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeUploadFinished]){
-            uploadCell.status.text=NSLocalizedString(@"Upload finished!",@"Status upload - Upload finished!");
+            if ([photo.copyFromFriend boolValue]){
+                uploadCell.status.text=NSLocalizedString(@"Copy finished!",@"Status copy - copy finished!");
+            }else{
+                uploadCell.status.text=NSLocalizedString(@"Upload finished!",@"Status upload - Upload finished!");
+            }
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
             [uploadCell.imageStatus setImage:[UIImage imageNamed:@"home-finished.png"]];
             uploadCell.imageStatus.hidden=NO;
@@ -251,7 +270,11 @@
             // delete this object after 2 seconds
             [self performSelector:@selector(deleteTimeline:) withObject:photo afterDelay:2.0];
         }else if ( [photo.status isEqualToString:kUploadStatusTypeFailed]){
-            uploadCell.status.text=NSLocalizedString(@"Retry uploading",@"Status upload - Retry uploading!");
+            if ([photo.copyFromFriend boolValue]){
+                uploadCell.status.text=NSLocalizedString(@"Retry copying",@"Status upload - Retry copying!");
+            }else{
+                uploadCell.status.text=NSLocalizedString(@"Retry uploading",@"Status upload - Retry uploading!");
+            }
             uploadCell.status.textColor=UIColorFromRGB(0x3B2414);
         }else if ( [photo.status isEqualToString:kUploadStatusTypeDuplicated]){
             uploadCell.status.text=NSLocalizedString(@"Already in your account",@"Status upload - Already in your account");
@@ -425,7 +448,7 @@
         self.mwphoto.permission = photo.permission;
         
         MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-
+        
         // check if user is type GROUP
         // if yes, he should not have access to actions
         NSString *type = [[NSUserDefaults standardUserDefaults] objectForKey:kTroveboxTypeUser];
@@ -434,7 +457,7 @@
         }else{
             browser.displayActionButton = YES;
         }
-
+        
         UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
         
         // Present

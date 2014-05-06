@@ -173,6 +173,47 @@
     [asiRequest startSynchronous];
     
     return [self parseResponseAsNSDictionary:asiRequest];
+};
+
+- (NSDictionary *) copyPictureWithUrl:(NSString*) photoUrl
+{
+    [self validateCredentials];
+    
+    NSMutableString *urlString = [NSMutableString stringWithFormat: @"%@/v1/photo/upload.json", self.server];
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    OAMutableURLRequest *oaUrlRequest = [self getUrlRequest:url];
+    [oaUrlRequest setHTTPMethod:@"POST"];
+    
+    // set the parameter to copy
+    NSArray *params = [NSArray arrayWithObjects:[[OARequestParameter alloc] initWithName:@"photo"
+                                                                                   value:photoUrl], nil];
+    [oaUrlRequest setParameters:params];
+    
+    // prepare the request. This will be used to get the Authorization header and add in the multipart component
+    [oaUrlRequest prepare];
+    
+    /*
+     *
+     *   Using ASIHTTPRequest for Multipart. The authentication come from the OAMutableURLRequest
+     *
+     */
+    ASIFormDataRequest *asiRequest = [ASIFormDataRequest requestWithURL:url];
+    asiRequest.userAgentString=@"Trovebox iOS";
+    
+    
+    // set the authorization header to be used in the OAuth
+    NSDictionary *dictionary =  [oaUrlRequest allHTTPHeaderFields];
+    [asiRequest addRequestHeader:@"Authorization" value:[dictionary objectForKey:@"Authorization"]];
+    
+    // set the parameter already added in the signature
+    [asiRequest addPostValue:photoUrl forKey:@"photo"];
+
+    // timeout 4 minutes. TODO. Needs improvements.
+    [asiRequest setTimeOutSeconds:240];
+    [asiRequest startSynchronous];
+    
+    return [self parseResponseAsNSDictionary:asiRequest];
 }
 
 // get all tags. It brings how many images have this tag.

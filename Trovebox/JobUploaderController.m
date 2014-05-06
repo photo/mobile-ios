@@ -176,14 +176,14 @@
 #endif
                      NSURL *url = [[result valueForProperty:ALAssetPropertyURLs] valueForKey:[[[result valueForProperty:ALAssetPropertyURLs] allKeys] objectAtIndex:0]];
                      [uploader loadDataAndSaveEntityUploadDate:[NSDate date]
-                                             shareFacebook:[NSNumber numberWithBool:NO]
-                                              shareTwitter:[NSNumber numberWithBool:NO]
-                                                permission:[NSNumber numberWithBool:NO]
-                                                      tags:@""
-                                                    albums:@""
-                                                     title:@""
-                                                       url:url
-                                                  groupUrl:nil];
+                                                 shareFacebook:[NSNumber numberWithBool:NO]
+                                                  shareTwitter:[NSNumber numberWithBool:NO]
+                                                    permission:[NSNumber numberWithBool:NO]
+                                                          tags:@""
+                                                        albums:@""
+                                                         title:@""
+                                                           url:url
+                                                      groupUrl:nil];
                  }
              }else{
                  // stop the enumeration
@@ -253,17 +253,27 @@
                         // prepare the data to upload
                         NSString *filename = photo.fileName;
                         
-                        // set size
-                        delegate.totalSize = [NSNumber numberWithInteger:data.length];
-                        
+                        if (![photo.copyFromFriend boolValue]){
+                            // on upload, not copying
+                            // set size
+                            delegate.totalSize = [NSNumber numberWithInteger:data.length];
+                        }
                         // create the service, check photo exists and send the request
                         WebService *service = [[WebService alloc] init];
                         
                         // before check if the photo already exist
-                        if ([service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
+                        if (![photo.copyFromFriend boolValue] &&[service isPhotoAlreadyOnServer:[SHA1 sha1File:data]]){
                             @throw  [NSException exceptionWithName:@"Failed to upload" reason:@"409" userInfo: nil];
                         }else{
-                            NSDictionary *response = [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
+                            NSDictionary *response;
+                            
+                            if ([photo.copyFromFriend boolValue]){
+                                // copy
+                                response= [service copyPictureWithUrl:photo.photoUrl];
+                            }else{
+                                response= [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
+                            }
+                            
 #ifdef DEVELOPMENT_ENABLED
                             NSLog(@"Photo uploaded correctly");
 #endif

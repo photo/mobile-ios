@@ -61,4 +61,7 @@
 // in the server
 - (NSString *)identification;
 
+// photo url to upload to server in the case of friends
+- (NSString *)url;
+
 @end

@@ -25,6 +25,8 @@
 		CD63EE7E191065C300153F49 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE5E191065C300153F49 /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD63EE80191065C300153F49 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE62191065C300153F49 /* OAServiceTicket.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CD63EE82191065C300153F49 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = CD63EE67191065C300153F49 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		CDBE75A519196F50004710F2 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBE75A419196F50004710F2 /* Timeline.m */; };
+		CDBE75A81919706D004710F2 /* PhotoFriendUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CDBE75A71919706D004710F2 /* PhotoFriendUploader.m */; };
 		CDD9E4F818A144E4006EEC0D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F718A144E4006EEC0D /* Foundation.framework */; };
 		CDD9E4FA18A144E4006EEC0D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */; };
 		CDD9E4FC18A144E4006EEC0D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD9E4FB18A144E4006EEC0D /* UIKit.framework */; };
@@ -41,7 +43,6 @@
 		CDD9E52318A144E4006EEC0D /* TroveboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E52218A144E4006EEC0D /* TroveboxTests.m */; };
 		CDD9E56018A1467F006EEC0D /* Synced+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55418A1467F006EEC0D /* Synced+Methods.m */; };
 		CDD9E56118A1467F006EEC0D /* Timeline+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55618A1467F006EEC0D /* Timeline+Methods.m */; };
-		CDD9E56218A1467F006EEC0D /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55818A1467F006EEC0D /* Timeline.m */; };
 		CDD9E56318A1467F006EEC0D /* Photo.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55918A1467F006EEC0D /* Photo.xcdatamodel */; };
 		CDD9E56418A1467F006EEC0D /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55B18A1467F006EEC0D /* Photo.m */; };
 		CDD9E56518A1467F006EEC0D /* Synced.m in Sources */ = {isa = PBXBuildFile; fileRef = CDD9E55D18A1467F006EEC0D /* Synced.m */; };
@@ -207,6 +208,10 @@
 		CD63EE66191065C300153F49 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
 		CD63EE67191065C300153F49 /* OAToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken.m; sourceTree = "<group>"; };
 		CD63EE6A191065C300153F49 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
+		CDBE75A319196F50004710F2 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
+		CDBE75A419196F50004710F2 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
+		CDBE75A61919706D004710F2 /* PhotoFriendUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoFriendUploader.h; sourceTree = "<group>"; };
+		CDBE75A71919706D004710F2 /* PhotoFriendUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoFriendUploader.m; sourceTree = "<group>"; };
 		CDD9E4F418A144E4006EEC0D /* Trovebox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trovebox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD9E4F718A144E4006EEC0D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CDD9E4F918A144E4006EEC0D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -228,8 +233,6 @@
 		CDD9E55418A1467F006EEC0D /* Synced+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Synced+Methods.m"; sourceTree = "<group>"; };
 		CDD9E55518A1467F006EEC0D /* Timeline+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Timeline+Methods.h"; sourceTree = "<group>"; };
 		CDD9E55618A1467F006EEC0D /* Timeline+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Timeline+Methods.m"; sourceTree = "<group>"; };
-		CDD9E55718A1467F006EEC0D /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
-		CDD9E55818A1467F006EEC0D /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
 		CDD9E55918A1467F006EEC0D /* Photo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Photo.xcdatamodel; sourceTree = "<group>"; };
 		CDD9E55A18A1467F006EEC0D /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		CDD9E55B18A1467F006EEC0D /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
@@ -651,9 +654,9 @@
 				CDD9E55418A1467F006EEC0D /* Synced+Methods.m */,
 				CDD9E55518A1467F006EEC0D /* Timeline+Methods.h */,
 				CDD9E55618A1467F006EEC0D /* Timeline+Methods.m */,
-				CDD9E55718A1467F006EEC0D /* Timeline.h */,
-				CDD9E55818A1467F006EEC0D /* Timeline.m */,
 				CDD9E55918A1467F006EEC0D /* Photo.xcdatamodel */,
+				CDBE75A319196F50004710F2 /* Timeline.h */,
+				CDBE75A419196F50004710F2 /* Timeline.m */,
 				CDD9E55A18A1467F006EEC0D /* Photo.h */,
 				CDD9E55B18A1467F006EEC0D /* Photo.m */,
 				CDD9E55C18A1467F006EEC0D /* Synced.h */,
@@ -906,6 +909,8 @@
 				CD3DA77C19143FE200C4B5C9 /* FriendDetailsViewController.m */,
 				CD3DA77E19143FE200C4B5C9 /* FriendDetailsViewControlleriPad.xib */,
 				CD3DA77F19143FE200C4B5C9 /* FriendDetailsViewController.xib */,
+				CDBE75A61919706D004710F2 /* PhotoFriendUploader.h */,
+				CDBE75A71919706D004710F2 /* PhotoFriendUploader.m */,
 			);
 			name = Friends;
 			sourceTree = "<group>";
@@ -1077,7 +1082,6 @@
 				CDD9E65918A147A7006EEC0D /* CoreDataTableViewController.m in Sources */,
 				CDD9E62A18A1478F006EEC0D /* WebService.m in Sources */,
 				CDD9E60218A14754006EEC0D /* MWCaptionView.m in Sources */,
-				CDD9E56218A1467F006EEC0D /* Timeline.m in Sources */,
 				CDD9E59A18A146CC006EEC0D /* MenuTableViewSectionCell.m in Sources */,
 				CDD9E57E18A1469E006EEC0D /* LoginConnectViewController.m in Sources */,
 				CD63EE7A191065C300153F49 /* OAMutableURLRequest.m in Sources */,
@@ -1129,6 +1133,7 @@
 				CDD9E65B18A147A7006EEC0D /* Constants.m in Sources */,
 				CDD9E5D218A1472A006EEC0D /* JobUploaderController.m in Sources */,
 				CDD9E65E18A147A7006EEC0D /* NSDictionarySerializer.m in Sources */,
+				CDBE75A81919706D004710F2 /* PhotoFriendUploader.m in Sources */,
 				CDD9E5BE18A14707006EEC0D /* OpenPhotoIASKAppSettingsViewController.m in Sources */,
 				CDD9E5B218A146EB006EEC0D /* UploadCell.m in Sources */,
 				CDD9E60918A14754006EEC0D /* TMPhotoQuiltViewCell.m in Sources */,
@@ -1158,6 +1163,7 @@
 				CDD9E56418A1467F006EEC0D /* Photo.m in Sources */,
 				CDD9E61018A14769006EEC0D /* AlbumViewController.m in Sources */,
 				CDD9E5E418A1473B006EEC0D /* ELCAssetCell.m in Sources */,
+				CDBE75A519196F50004710F2 /* Timeline.m in Sources */,
 				CDD9E50618A144E4006EEC0D /* main.m in Sources */,
 				CD63EE6D191065C300153F49 /* NSMutableURLRequest+Parameters.m in Sources */,
 				CDD9E56118A1467F006EEC0D /* Timeline+Methods.m in Sources */,

@@ -1242,50 +1242,19 @@
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Download image");
 #endif
-        
-        
-        /*
-        // Only react when image has loaded
         id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
         
-        // get factory for Service
-        TroveboxServerAPI *service = [[TroveboxServerAPI alloc] init];
+        PhotoFriendUploader *upload = [[PhotoFriendUploader alloc]init];
+        [upload loadDataAndSaveEntityUrl:photo.url];
         
-        // progress
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        
-        [service inappropriatePhoto:photo.identification success:^(id response) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            // get default answer
-            TroveboxAnswerAPI *api = [[TroveboxAnswerAPI alloc] initWithAnswer:response];
-#ifdef DEVELOPMENT_ENABLED
-            NSLog(@"Answer %@",api);
-#endif
-            
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Message received"
-                                                              message:@"Thanks for reporting this photo."
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Copying"
+                                                              message:@""
                                                              delegate:nil
                                                     cancelButtonTitle:@"OK"
                                                     otherButtonTitles:nil];
             [message show];
-            
-        } failure:^(NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-#ifdef DEVELOPMENT_ENABLED
-            NSLog(@"Error %@", error.description);
-#endif
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Error to send your request. Try again later, please."
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
-        }];
-         */
     }
-         
 }
-
 
 #pragma mark - Actions
 
