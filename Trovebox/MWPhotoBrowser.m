@@ -1228,8 +1228,8 @@
     if ([self numberOfPhotos] > 0 && [photo underlyingImage]) {
         
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Copy to your Trovebox"
-                                                          message:@"Please confirm download your friend's photo to you account."
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:nil
+                                                          message:@"Please confirm you’d like to download your friend’s photo to your NAS."
                                                          delegate:self
                                                 cancelButtonTitle:@"Cancel"
                                                 otherButtonTitles:@"Yes",nil];
@@ -1246,13 +1246,6 @@
         
         PhotoFriendUploader *upload = [[PhotoFriendUploader alloc]init];
         [upload loadDataAndSaveEntityUrl:photo.url];
-        
-            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Copying"
-                                                              message:@""
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles:nil];
-            [message show];
     }
 }
 

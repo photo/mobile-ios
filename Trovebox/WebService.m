@@ -208,7 +208,14 @@
     
     // set the parameter already added in the signature
     [asiRequest addPostValue:photoUrl forKey:@"photo"];
-
+    
+    
+#ifdef DEVELOPMENT_ENABLED
+    NSLog(@"Request to be sent = [%@]",urlString);
+    NSLog(@"PhotoUrl = [%@]",photoUrl);
+#endif
+    
+    
     // timeout 4 minutes. TODO. Needs improvements.
     [asiRequest setTimeOutSeconds:240];
     [asiRequest startSynchronous];

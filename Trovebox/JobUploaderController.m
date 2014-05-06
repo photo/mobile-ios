@@ -230,9 +230,6 @@
             for (Timeline *photo in waitings){
                 photo.status = kUploadStatusTypeUploading;
                 
-                // create a delegate
-                JobUploaderDelegate *delegate = [[JobUploaderDelegate alloc] initWithPhoto:photo size:[NSNumber numberWithInteger:0]];
-                
                 NSDictionary *dictionary = nil;
                 @try {
                     dictionary = [photo toDictionary];
@@ -253,11 +250,6 @@
                         // prepare the data to upload
                         NSString *filename = photo.fileName;
                         
-                        if (![photo.copyFromFriend boolValue]){
-                            // on upload, not copying
-                            // set size
-                            delegate.totalSize = [NSNumber numberWithInteger:data.length];
-                        }
                         // create the service, check photo exists and send the request
                         WebService *service = [[WebService alloc] init];
                         
@@ -271,44 +263,52 @@
                                 // copy
                                 response= [service copyPictureWithUrl:photo.photoUrl];
                             }else{
+                                // create a delegate
+                                JobUploaderDelegate *delegate = [[JobUploaderDelegate alloc] initWithPhoto:photo size:[NSNumber numberWithInteger:0]];
+                                // set size
+                                delegate.totalSize = [NSNumber numberWithInteger:data.length];
+                                
                                 response= [service uploadPicture:data metadata:dictionary fileName:filename delegate:delegate];
                             }
-                            
 #ifdef DEVELOPMENT_ENABLED
                             NSLog(@"Photo uploaded correctly");
 #endif
                             
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                // save the url
-                                if (photo.syncedUrl){
-                                    // add to the sync list, with that we don't need to show photos already uploaded.
-                                    // in the case of edited images via Aviary, we don't save it.
-                                    Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
-                                                                                  inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
-                                    sync.filePath = photo.syncedUrl;
-                                    sync.status = kSyncedStatusTypeUploaded;
+                                if (![photo.copyFromFriend boolValue]){
+                                    // save the url
+                                    if (photo.syncedUrl){
+                                        // add to the sync list, with that we don't need to show photos already uploaded.
+                                        // in the case of edited images via Aviary, we don't save it.
+                                        Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
+                                                                                      inManagedObjectContext:[SharedAppDelegate managedObjectContext]];
+                                        sync.filePath = photo.syncedUrl;
+                                        sync.status = kSyncedStatusTypeUploaded;
+                                        
+                                        // used to say which user uploaded this image
+                                        sync.userUrl = [SharedAppDelegate userHost];
+                                    }
                                     
-                                    // used to say which user uploaded this image
-                                    sync.userUrl = [SharedAppDelegate userHost];
+                                    
+                                    photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
+                                    
+                                    // delete local file
+                                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                                    NSError *error;
+                                    BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
+#ifdef DEVELOPMENT_ENABLED
+                                    NSLog(@"Path to file: %@", photo.photoDataTempUrl);
+                                    NSLog(@"File exists: %d", fileExists);
+                                    NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
+#endif
+                                    if (fileExists)
+                                    {
+                                        BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
+                                        if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+                                    }
                                 }
                                 
                                 photo.status = kUploadStatusTypeUploadFinished;
-                                photo.photoUploadResponse = [NSDictionarySerializer nsDictionaryToNSData:[response objectForKey:@"result"]];
-                                
-                                // delete local file
-                                NSFileManager *fileManager = [NSFileManager defaultManager];
-                                NSError *error;
-                                BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
-#ifdef DEVELOPMENT_ENABLED
-                                NSLog(@"Path to file: %@", photo.photoDataTempUrl);
-                                NSLog(@"File exists: %d", fileExists);
-                                NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
-#endif
-                                if (fileExists)
-                                {
-                                    BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
-                                    if (!success) NSLog(@"Error: %@", [error localizedDescription]);
-                                }
                                 
                                 // check if there is more files to upload
                                 // if not, refresh the Home page
@@ -320,16 +320,18 @@
                                     // refresh profile details
                                     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationProfileRefresh object:nil userInfo:nil];
                                     
+                                    /*
                                     // also lets save the Managed Context
                                     NSError *saveError = nil;
                                     if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
                                         NSLog(@"Error to save context = %@",[saveError localizedDescription]);
                                     }
+                                     */
                                 }
                             });
                         }
                     }@catch (NSException* e) {
-                        NSLog(@"Error to upload image:%@", [e description]);
+                        NSLog(@"Error Sync to upload image: %@", [e description]);
                         
                         // if it fails for any reason, set status FAILED in the main thread
                         dispatch_async(dispatch_get_main_queue(), ^{
@@ -338,7 +340,7 @@
                                 [[e description] hasPrefix:@"409"]){
                                 
                                 // this photo is already uploaded
-                                if (photo.syncedUrl){
+                                if (![photo.copyFromFriend boolValue] && photo.syncedUrl){
                                     // add to the sync list, with that we don't need to show photos already uploaded.
                                     // in the case of edited images via Aviary, we don't save it.
                                     Synced *sync =  [NSEntityDescription insertNewObjectForEntityForName:@"Synced"
@@ -366,21 +368,23 @@
                             }
                         });
                     }@finally{
-                        // delete local file
-                        NSFileManager *fileManager = [NSFileManager defaultManager];
-                        NSError *error;
-                        BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
-#ifdef DEVELOPMENT_ENABLED
-                        NSLog(@"Path to file: %@", photo.photoDataTempUrl);
-                        NSLog(@"File exists: %d", fileExists);
-                        NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
-#endif
-                        if (fileExists)
-                        {
-                            BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
-                            if (!success) NSLog(@"Error: %@", [error localizedDescription]);
-                        }
                         
+                        if (![photo.copyFromFriend boolValue]){
+                            // delete local file
+                            NSFileManager *fileManager = [NSFileManager defaultManager];
+                            NSError *error;
+                            BOOL fileExists = [fileManager fileExistsAtPath:photo.photoDataTempUrl];
+#ifdef DEVELOPMENT_ENABLED
+                            NSLog(@"Path to file: %@", photo.photoDataTempUrl);
+                            NSLog(@"File exists: %d", fileExists);
+                            NSLog(@"Is deletable file at path: %d", [fileManager isDeletableFileAtPath:photo.photoDataTempUrl]);
+#endif
+                            if (fileExists)
+                            {
+                                BOOL success = [fileManager removeItemAtPath:photo.photoDataTempUrl error:&error];
+                                if (!success) NSLog(@"Error: %@", [error localizedDescription]);
+                            }
+                        }
                     }
                 });
             }

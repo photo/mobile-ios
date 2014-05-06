@@ -106,7 +106,7 @@
 }
 
 -(void) copyImages{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to download this Friend's album to your account?",@"Message to confirm if user really wants copy buddy's photos") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Copy",@""),nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"Please confirm you’d like to download your friend’s album to your NAS",@"Message to Please confirm you’d like to download your friend’s photo to your NAS") delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Copy",@""),nil];
     [alert show];
 }
 
@@ -115,6 +115,23 @@
 #ifdef DEVELOPMENT_ENABLED
         NSLog(@"Add all images in the database");
 #endif
+        // limit to max 20;
+        int i = 0;
+        for ( MWPhoto *photo in self.photos){
+            if (i <20){
+                PhotoFriendUploader *upload = [[PhotoFriendUploader alloc]init];
+                [upload loadDataAndSaveEntityUrl:photo.url];
+                i++;
+            }else{
+                break;
+            }
+        }
+        
+        // also lets save the Managed Context
+        NSError *saveError = nil;
+        if (![[SharedAppDelegate managedObjectContext] save:&saveError]){
+            NSLog(@"Error to save context = %@",[saveError localizedDescription]);
+        }
     }
 }
 
@@ -206,7 +223,7 @@
     
     [browser setCurrentPhotoIndex:indexPath.row];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
-
+    
     // Present
     [self presentViewController:nav animated:NO completion:nil];
 }
