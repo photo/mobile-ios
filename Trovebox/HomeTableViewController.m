@@ -446,6 +446,10 @@
     return 1;
 }
 
+- (BOOL) isPhotoFromFriend{
+    return NO;
+}
+
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     return self.mwphoto;
 }

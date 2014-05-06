@@ -74,14 +74,48 @@
     // image for the navigator
     [self.navigationController.navigationBar troveboxStyle:NO];
     
-    // title and buttons
-    [self.navigationItem troveboxStyle:NSLocalizedString(@"Gallery", @"Menu - title for Gallery") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
+    if (self.friend && self.album){
+        // let use to download album
+        [self.navigationItem troveboxStyle:NSLocalizedString(@"Gallery", @"Menu - title for Gallery")  defaultButtons:NO viewController:nil menuViewController:nil];
+        
+        // menu
+        UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *leftButtonImage = [UIImage imageNamed:@"button-navigation-menu.png"] ;
+        [leftButton setImage:leftButtonImage forState:UIControlStateNormal];
+        leftButton.frame = CGRectMake(0, 0, leftButtonImage.size.width, leftButtonImage.size.height);
+        [leftButton addTarget:self.viewDeckController  action:@selector(toggleLeftView) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *customLeftButton = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+        self.navigationItem.leftBarButtonItem = customLeftButton;
+        
+        // button Logout
+        UIBarButtonItem *customBarItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Copy", @"Copy in the Album") style:UIBarButtonItemStylePlain target:self action:@selector(copyImages)];
+        self.navigationItem.rightBarButtonItem = customBarItem;
+        
+        
+    }else{
+        // title and buttons
+        [self.navigationItem troveboxStyle:NSLocalizedString(@"Gallery", @"Menu - title for Gallery") defaultButtons:YES viewController:self.viewDeckController menuViewController:(MenuViewController*) self.viewDeckController.leftController];
+    }
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = UIColorFromRGB(0x3B2414);
     [refreshControl addTarget:self action:@selector(loadPhotos:) forControlEvents:UIControlEventValueChanged];
     
     [self.view addSubview:refreshControl];
+}
+
+-(void) copyImages{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Are you sure you want to download this Friend's album to your account?",@"Message to confirm if user really wants copy buddy's photos") message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"") otherButtonTitles:NSLocalizedString(@"Copy",@""),nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Add all images in the database");
+#endif
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,13 +206,17 @@
     
     [browser setCurrentPhotoIndex:indexPath.row];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:browser];
-    
+
     // Present
     [self presentViewController:nav animated:NO completion:nil];
 }
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
     return self.photos.count;
+}
+
+- (BOOL) isPhotoFromFriend{
+    return (self.friend != nil);
 }
 
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {

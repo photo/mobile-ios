@@ -26,7 +26,7 @@
 #import "MWPhotoBrowser.h"
 #import "Friend.h"
 
-@interface GalleryViewController : TMQuiltViewController <MWPhotoBrowserDelegate>
+@interface GalleryViewController : TMQuiltViewController <MWPhotoBrowserDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) Friend *friend;

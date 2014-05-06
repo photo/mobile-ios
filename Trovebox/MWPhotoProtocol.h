@@ -55,6 +55,10 @@
 
 // Return a caption string to be displayed over the image
 // Return nil to display no caption
-- (NSString *)caption; 
+- (NSString *)caption;
+
+// id for this photo. used in the case we need to reference
+// in the server
+- (NSString *)identification;
 
 @end

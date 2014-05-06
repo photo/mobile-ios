@@ -36,7 +36,7 @@
 	// Navigation & controls
 	UIToolbar *_toolbar;
 	NSTimer *_controlVisibilityTimer;
-	UIBarButtonItem *_previousButton, *_nextButton, *_actionButton;
+	UIBarButtonItem *_previousButton, *_nextButton, *_actionButton, *_actionDownloadToMyTrovebox;
     MBProgressHUD *_progressHUD;
     UIActionSheet *_actionsSheet;
     
@@ -260,6 +260,12 @@
     }
     if (self.displayActionButton) {
         _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
+        
+        
+        // should allow user to download the image
+        if ([self numberOfPhotos] > 0 && [self isPhotoFromFriend]) {
+            _actionDownloadToMyTrovebox = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"shoebox.png"] style:UIBarButtonItemStylePlain target:self action:@selector(actionCopyToMyTroveboxButtonPressed:)];
+        }
     }
     
     // Update
@@ -318,6 +324,12 @@
         self.navigationItem.rightBarButtonItem = _actionButton;
     }
     
+    BOOL actionInappropiateOnNavBar = !self.navigationItem.leftBarButtonItem;
+    if (_actionDownloadToMyTrovebox && actionInappropiateOnNavBar){
+        // here we add another button for the inappropiate
+        self.navigationItem.leftBarButtonItem = _actionDownloadToMyTrovebox;
+    }
+    
     // Toolbar items
     UIBarButtonItem *fixedLeftSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     fixedLeftSpace.width = 32; // To balance action button
@@ -331,6 +343,12 @@
         if (_nextButton && numberOfPhotos > 1) [items addObject:_nextButton];
     }
     [items addObject:flexSpace];
+    
+    if (_actionDownloadToMyTrovebox && !actionInappropiateOnNavBar){
+        [items addObject:_actionDownloadToMyTrovebox];
+        [items addObject:flexSpace];
+    }
+    
     if (_actionButton && !actionButtonOnNavBar) [items addObject:_actionButton];
     [_toolbar setItems:items];
     
@@ -643,6 +661,16 @@
     if (_photoCount == NSNotFound) _photoCount = 0;
     return _photoCount;
 }
+
+- (BOOL) isPhotoFromFriend
+{
+    if ([_delegate respondsToSelector:@selector(isPhotoFromFriend)]) {
+        return [_delegate isPhotoFromFriend];
+    }
+    
+    return NO;
+}
+
 
 - (id<MWPhoto>)photoAtIndex:(NSUInteger)index {
     id <MWPhoto> photo = nil;
@@ -980,7 +1008,7 @@
 	_previousButton.enabled = (_currentPageIndex > 0);
 	_nextButton.enabled = (_currentPageIndex < [self numberOfPhotos]-1);
     _actionButton.enabled = [[self photoAtIndex:_currentPageIndex] underlyingImage] != nil;
-	
+    _actionDownloadToMyTrovebox.enabled = [[self photoAtIndex:_currentPageIndex] underlyingImage] != nil;
 }
 
 - (void)jumpToPageAtIndex:(NSUInteger)index animated:(BOOL)animated {
@@ -1192,6 +1220,72 @@
 - (void)doneButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (void) actionCopyToMyTroveboxButtonPressed:(id) sender
+{
+    // Only react when image has loaded
+    id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
+    if ([self numberOfPhotos] > 0 && [photo underlyingImage]) {
+        
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Copy to your Trovebox"
+                                                          message:@"Please confirm download your friend's photo to you account."
+                                                         delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles:@"Yes",nil];
+        [message show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1){
+#ifdef DEVELOPMENT_ENABLED
+        NSLog(@"Download image");
+#endif
+        
+        
+        /*
+        // Only react when image has loaded
+        id <MWPhoto> photo = [self photoAtIndex:_currentPageIndex];
+        
+        // get factory for Service
+        TroveboxServerAPI *service = [[TroveboxServerAPI alloc] init];
+        
+        // progress
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
+        [service inappropriatePhoto:photo.identification success:^(id response) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            // get default answer
+            TroveboxAnswerAPI *api = [[TroveboxAnswerAPI alloc] initWithAnswer:response];
+#ifdef DEVELOPMENT_ENABLED
+            NSLog(@"Answer %@",api);
+#endif
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Message received"
+                                                              message:@"Thanks for reporting this photo."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+            
+        } failure:^(NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+#ifdef DEVELOPMENT_ENABLED
+            NSLog(@"Error %@", error.description);
+#endif
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Error to send your request. Try again later, please."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }];
+         */
+    }
+         
+}
+
 
 #pragma mark - Actions
 
