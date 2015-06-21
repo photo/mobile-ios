@@ -1,8 +1,8 @@
 <img src="https://trovebox.com/images/logo.png" style="margin:auto;">
+[![Join the chat at https://gitter.im/photo/mobile-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/photo/mobile-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 ### What is Trovebox?
-
-[![Join the chat at https://gitter.im/photo/mobile-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/photo/mobile-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 1.  [FAQ][faq], Answers to the most common questions.
 1.  [API][api], Documentation to get started building applications on Trovebox.
